@@ -1,0 +1,11 @@
+{
+  "name": "DeepingSource | Anonymized Spatial AI",
+  "short_name": "DeepingSource",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#376AE2",
+  "icons": [
+    { "src": "/icon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ]
+}
