@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreInsightDesktopMockup from '@/components/mockups/StoreInsightDesktopMockup';
-import { FunnelDiagram } from '@/components/mockups';
+import dynamic from 'next/dynamic';
 import POSAnalysisSection from '@/components/sections/POSAnalysisSection';
 import {
   BarChart3,
@@ -15,6 +15,12 @@ import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+
+// Below-the-fold framer-motion mockup → deferred so its chunk stays out of the
+// initial JS of /products/store-insight. Default SSR keeps the content prerendered.
+const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram'), {
+  loading: () => <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />,
+});
 
 /**
  * StoreInsightView — shared Store Insight product-detail composition.
