@@ -185,8 +185,8 @@ export default function B2bQuoteSimulator({ t, onBackToB2c }: { t: Content; onBa
           </div>
         </div>
 
-        {/* ── 엔터프라이즈 카드 2장 ── */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {/* ── 엔터프라이즈 카드 ── */}
+        <div className="max-w-md mx-auto">
           {/* 엔터프라이즈 솔루션 */}
           <div className="relative p-7 bg-gray-900 text-white rounded-2xl overflow-hidden shadow-xl">
             <div className="absolute -right-10 -top-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
