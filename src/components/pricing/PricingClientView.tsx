@@ -111,7 +111,7 @@ export interface Content {
   simReqMessage: (args: { cam: number; cost: string }) => string;
   b2bReqName: string;
   b2bReqInquiry: string;
-  b2bReqMessage: (count: number) => string;
+  b2bReqMessage: (count: number, cameras: number) => string;
   // quote-form submit error copy
   errSubmitFailed: string;
   errGeneric: string;
@@ -212,7 +212,7 @@ const C: Record<Locale, Content> = {
     simReqMessage: ({ cam, cost }) => `카메라 ${cam}대 기준 Store Insight 예상 비용 ${cost}원/월 견적 요청`,
     b2bReqName: '프랜차이즈 견적',
     b2bReqInquiry: '엔터프라이즈 견적',
-    b2bReqMessage: (count) => `프랜차이즈 ${count}개 매장 견적 요청. 시너지 할인 적용 문의.`,
+    b2bReqMessage: (count, cameras) => `프랜차이즈 ${count}개 매장(매장당 카메라 ${cameras}대) 견적 요청. 시너지 할인 적용 문의.`,
     errSubmitFailed: '견적 요청에 실패했습니다. 다시 시도해주세요.',
     errGeneric: '일시적인 오류입니다. 잠시 후 다시 시도해 주세요.',
   },
@@ -310,7 +310,7 @@ const C: Record<Locale, Content> = {
     simReqMessage: ({ cam, cost }) => `Store Insight quote request — estimated ${cost} KRW/mo based on ${cam} cameras`,
     b2bReqName: 'Franchise quote',
     b2bReqInquiry: 'Enterprise quote',
-    b2bReqMessage: (count) => `Franchise quote request for ${count} stores. Inquiry about synergy discount.`,
+    b2bReqMessage: (count, cameras) => `Franchise quote request for ${count} stores (${cameras} cameras per store). Inquiry about synergy discount.`,
     errSubmitFailed: 'Quote request failed. Please try again.',
     errGeneric: 'A temporary error occurred. Please try again shortly.',
   },
@@ -408,7 +408,7 @@ const C: Record<Locale, Content> = {
     simReqMessage: ({ cam, cost }) => `カメラ${cam}台を基準とした Store Insight 想定費用 ${cost}円/月の見積もり依頼`,
     b2bReqName: 'フランチャイズ見積もり',
     b2bReqInquiry: 'エンタープライズ見積もり',
-    b2bReqMessage: (count) => `フランチャイズ${count}店舗の見積もり依頼。シナジー割引適用のお問い合わせ。`,
+    b2bReqMessage: (count, cameras) => `フランチャイズ${count}店舗（1店舗あたりカメラ${cameras}台）の見積もり依頼。シナジー割引適用のお問い合わせ。`,
     errSubmitFailed: 'お申し込みに失敗しました。もう一度お試しください。',
     errGeneric: '一時的なエラーが発生しました。しばらくしてからもう一度お試しください。',
   },

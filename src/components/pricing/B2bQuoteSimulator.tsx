@@ -9,6 +9,10 @@ import { submitQuoteRequest } from '@/lib/contact-lead';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
 
+// StoreCare Plus is priced per camera; 6,125/cam keeps the default (4 cams) at the
+// prior 24,500/store figure while making the "cameras per store" slider drive the estimate.
+const B2B_PER_CAMERA = 6125;
+
 export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Content; locale: Locale; onBackToB2c: () => void }) {
   /* ── B2B multi-store simulator ── */
   const [b2bStoreCount, setB2bStoreCount] = useState(10);
@@ -29,7 +33,7 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
         contact: b2bEmail,
         storeCount: String(b2bStoreCount),
         inquiryType: t.b2bReqInquiry,
-        message: t.b2bReqMessage(b2bStoreCount),
+        message: t.b2bReqMessage(b2bStoreCount, b2bCamerasPerStore),
       });
       if (ok) {
         setB2bSubmitted(true);
@@ -133,14 +137,14 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                 <div className="p-4 bg-blue-50 rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.perStoreCost}</p>
                   <p className="text-2xl font-extrabold text-gray-900">
-                    ~{(Math.round(24500 * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
+                    ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
                   </p>
                   <p className="text-xs text-gray-500">{t.perStoreBasis}</p>
                 </div>
                 <div className="p-4 bg-gray-50 rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.totalMonthly}</p>
                   <p className="text-2xl font-extrabold text-gray-900">
-                    ~{(Math.round(24500 * (1 - discount / 100) / 100) * 100 * b2bStoreCount).toLocaleString()}{t.won}
+                    ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100 * b2bStoreCount).toLocaleString()}{t.won}
                   </p>
                   <p className="text-xs text-gray-500">{t.totalBasis(b2bStoreCount)}</p>
                 </div>
