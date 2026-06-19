@@ -1,9 +1,9 @@
 {
-  "name": "storeagent-b2c-landing",
+  "name": "deepingsource-site",
   "version": "0.1.0",
   "private": true,
-  "description": "STOREAGENT - AI 모닝 브리핑 서비스 B2C 랜딩페이지",
-  "author": "STOREAGENT Team",
+  "description": "Deeping Source corporate website (deepingsource.io) — products, technology, and STOREAGENT mockups",
+  "author": "Deeping Source",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",
