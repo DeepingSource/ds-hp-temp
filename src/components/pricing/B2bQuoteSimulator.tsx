@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { Check, Mail, Users, Shield } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { submitQuoteRequest } from '@/lib/contact-lead';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
 
-export default function B2bQuoteSimulator({ t, onBackToB2c }: { t: Content; onBackToB2c: () => void }) {
+export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Content; locale: Locale; onBackToB2c: () => void }) {
   /* ── B2B multi-store simulator ── */
   const [b2bStoreCount, setB2bStoreCount] = useState(10);
   const [b2bCamerasPerStore, setB2bCamerasPerStore] = useState(4);
@@ -203,7 +204,7 @@ export default function B2bQuoteSimulator({ t, onBackToB2c }: { t: Content; onBa
                   <li key={f} className="flex items-start gap-2.5 text-sm text-gray-300"><Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />{f}</li>
                 ))}
               </ul>
-              <Link href="/contact" className="btn-primary w-full text-center shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)]">
+              <Link href={localeHref(locale, '/contact')} className="btn-primary w-full text-center shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)]">
                 {t.entCta}
               </Link>
             </div>

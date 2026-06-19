@@ -5,7 +5,7 @@ import { Building2, Store } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { RoiCalculatorWidget } from '@/components/mockups';
 import Link from 'next/link';
 import B2cPlans from './B2cPlans';
@@ -450,12 +450,12 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
         /* ════════════════════════════════════════
            B2C View — 개별 매장 점주용
            ════════════════════════════════════════ */
-        <B2cPlans t={t} />
+        <B2cPlans t={t} locale={locale} />
       ) : (
         /* ════════════════════════════════════════
            B2B View — 프랜차이즈 본사 / 다점포용
            ════════════════════════════════════════ */
-        <B2bQuoteSimulator t={t} onBackToB2c={() => setPersona('b2c')} />
+        <B2bQuoteSimulator t={t} locale={locale} onBackToB2c={() => setPersona('b2c')} />
       )}
 
       {/* ════════════════════════════════
@@ -470,7 +470,7 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
       {/* ════════════════════════════════
          Pricing Simulator Lead Gen
          ════════════════════════════════ */}
-      <InlinePricingSimulator t={t} />
+      <InlinePricingSimulator t={t} locale={locale} />
 
       {/* ════════════════════════════════
          Bundle Synergy CTA
@@ -490,11 +490,11 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
             {t.bundleBodyPre}<strong className="text-white font-semibold">{t.bundleBodyStrong}</strong>{t.bundleBodyPost}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact" className="btn-primary px-8 py-4 shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[box-shadow]">
+            <Link href={localeHref(locale, '/contact')} className="btn-primary px-8 py-4 shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[box-shadow]">
               {t.bundleCta}
             </Link>
             <Link
-              href="/pricing/simulator"
+              href={localeHref(locale, '/pricing/simulator')}
               className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-colors text-sm"
             >
               {t.bundleSimLink}

@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { Check, Eye, LayoutGrid, Zap, Calculator, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
 
 interface PlanCardDescriptor {
@@ -66,7 +67,7 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
   );
 }
 
-export default function B2cPlans({ t }: { t: Content }) {
+export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) {
   const cards: PlanCardDescriptor[] = [
     {
       icon: <Eye className="w-5 h-5 text-blue-600" />,
@@ -80,7 +81,7 @@ export default function B2cPlans({ t }: { t: Content }) {
       ),
       desc: t.careDesc,
       features: t.careFeatures,
-      ctaHref: '/contact',
+      ctaHref: localeHref(locale, '/contact'),
       ctaLabel: t.freeConsult,
     },
     {
@@ -96,7 +97,7 @@ export default function B2cPlans({ t }: { t: Content }) {
       ),
       desc: t.insightDesc,
       features: t.insightFeatures,
-      ctaHref: '/contact',
+      ctaHref: localeHref(locale, '/contact'),
       ctaLabel: t.freeConsult,
     },
     {
@@ -111,7 +112,7 @@ export default function B2cPlans({ t }: { t: Content }) {
       ),
       desc: t.agentDesc,
       features: t.agentFeatures,
-      ctaHref: '/contact',
+      ctaHref: localeHref(locale, '/contact'),
       ctaLabel: t.startFree,
       featured: true,
     },
@@ -179,7 +180,7 @@ export default function B2cPlans({ t }: { t: Content }) {
         {/* 상세 비교 링크 */}
         <div className="flex flex-wrap justify-center gap-4 mt-10">
           <Link
-            href="/pricing/simulator"
+            href={localeHref(locale, '/pricing/simulator')}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
           >
             <Calculator className="w-4 h-4" />

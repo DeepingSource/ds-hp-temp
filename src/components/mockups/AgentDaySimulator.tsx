@@ -17,7 +17,7 @@ import {
 } from '@/data/mockup-scenarios/simulator';
 import type { SimCardId, SimChoice } from '@/data/mockup-scenarios/simulator';
 import { formatWon } from '@/data/mockup-scenarios/canonical';
-import type { Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 
 const CARD_ORDER: SimCardId[] = ['umbrella', 'onigiri', 'staffing'];
 
@@ -356,7 +356,7 @@ export default function AgentDaySimulator({
                       {t.result.again}
                     </button>
                     <a
-                      href="/pricing"
+                      href={localeHref(locale, '/pricing')}
                       className="flex-1 min-h-[44px] inline-flex items-center justify-center rounded-xl bg-primary text-white font-bold text-sm px-4 py-2.5 transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                     >
                       {t.result.cta}

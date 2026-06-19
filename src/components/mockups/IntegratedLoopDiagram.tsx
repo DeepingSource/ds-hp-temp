@@ -8,7 +8,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import { canonicalStore, canonicalStoreName, canonicalHq, formatWon } from '@/data/mockup-scenarios/canonical';
-import type { Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 
 interface Props {
   active?: boolean;
@@ -369,7 +369,7 @@ export default function IntegratedLoopDiagram({
       {/* CTA — integrated guide to all three products */}
       <div className="mt-5">
         <a
-          href="/products"
+          href={localeHref(locale, '/products')}
           className="inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {t.cta}

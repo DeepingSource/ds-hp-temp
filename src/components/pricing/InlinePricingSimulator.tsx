@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Check, ArrowRight, Calculator, Mail } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { submitQuoteRequest } from '@/lib/contact-lead';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
 
 const SIM_PRODUCT_OPTIONS = [
@@ -13,7 +14,7 @@ const SIM_PRODUCT_OPTIONS = [
   { key: 'agent', label: 'Store Agent', color: 'blue' },
 ] as const;
 
-export default function InlinePricingSimulator({ t }: { t: Content }) {
+export default function InlinePricingSimulator({ t, locale }: { t: Content; locale: Locale }) {
   /* ── Inline simulator (simplified) ── */
   const [simCameras, setSimCameras] = useState<number>(8);
   const [simProducts, setSimProducts] = useState<Set<string>>(new Set(['insight']));
@@ -187,7 +188,7 @@ export default function InlinePricingSimulator({ t }: { t: Content }) {
             </p>
 
             <Link
-              href="/pricing/simulator"
+              href={localeHref(locale, '/pricing/simulator')}
               className="inline-flex items-center gap-1 text-xs text-gray-300 hover:text-gray-100 transition-colors mt-4"
             >
               {t.detailSimLink} <ArrowRight className="w-3 h-3" />

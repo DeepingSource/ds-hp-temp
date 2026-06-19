@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 
 /* ─── 요금 기준 ─── */
@@ -822,7 +822,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
 
       {/* ── CTA ── */}
       <Link
-        href="/contact?plan=enterprise"
+        href={localeHref(locale, '/contact') + '?plan=enterprise'}
         className="flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors text-sm"
       >
         {t.ctaConsult}

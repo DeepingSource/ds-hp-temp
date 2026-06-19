@@ -105,8 +105,8 @@ export default function ProductsView({ locale }: { locale: Locale }) {
 
   const icons = [BarChart3, BrainCircuit, Store, ShoppingBag];
   const productMeta: Pick<ProductCardProps, 'href' | 'external' | 'badge' | 'kicker'>[] = [
-    { href: '/products/store-insight', kicker: solutionTaglines.insight[locale] },
-    { href: '/products/store-agent', kicker: solutionTaglines.agent[locale] },
+    { href: localeHref(locale, '/products/store-insight'), kicker: solutionTaglines.insight[locale] },
+    { href: localeHref(locale, '/products/store-agent'), kicker: solutionTaglines.agent[locale] },
     { href: 'https://storecare.ai', external: true, badge: 'storecare.ai', kicker: solutionTaglines.care[locale] },
     { href: 'https://saai.store', external: true, badge: 'saai.store' },
   ];

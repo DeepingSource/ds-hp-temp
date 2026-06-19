@@ -7,7 +7,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import Spinner from '@/components/ui/Spinner';
 
 type Content = {
@@ -412,7 +412,7 @@ function ContactForm({ locale }: { locale: Locale }) {
             </Link>
           </div>
           <Link
-            href="/"
+            href={localeHref(locale, '/')}
             className="inline-flex items-center justify-center px-6 py-3 text-gray-700 font-medium hover:text-gray-900 transition-colors animate-fade-in-up delay-400"
           >
             {t.backToHome}
@@ -649,7 +649,7 @@ function ContactForm({ locale }: { locale: Locale }) {
           {/* Back Link */}
           <div className="text-center mt-8">
             <Link
-              href="/"
+              href={localeHref(locale, '/')}
               className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
             >
               {t.backToHome}

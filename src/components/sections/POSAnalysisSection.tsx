@@ -9,7 +9,7 @@ import { posAnalysisData } from '@/data/posAnalysisData';
 import type { AreaId } from '@/data/posAnalysisData';
 import { getAreaLabel } from '@/data/area-i18n';
 import { getPOSCopy } from '@/data/pos-analysis-i18n';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import BrowserChrome from '@/components/mockups/BrowserChrome';
 import MockupBadge from '@/components/mockups/MockupBadge';
 
@@ -464,7 +464,7 @@ export default function POSAnalysisSection({ locale = 'en' }: { locale?: Locale 
         {/* CTA */}
         <div className={`text-center mt-10 ${isVisible ? 'scroll-visible delay-300' : 'scroll-hidden'}`}>
           <Link
-            href="/contact?plan=standard"
+            href={localeHref(locale, '/contact') + '?plan=standard'}
             className="btn-primary inline-flex items-center gap-2"
           >
             {t.ctaInquire}
