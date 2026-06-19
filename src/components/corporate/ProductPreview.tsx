@@ -26,7 +26,7 @@ const copy: Record<Locale, { eyebrow: string; heading: string; sub: string; isoA
     features: [
       { icon: LayoutDashboard, title: '브랜드 전체가 한 화면', desc: '전국 모든 매장의 핵심 지표를 본부에서 한눈에 비교합니다.' },
       { icon: TrendingUp, title: '방문·체류·전환', desc: '지나감에서 입장, 결제까지 — 둘러보다 나간 손님까지 단계별로 읽습니다.' },
-      { icon: BellRing, title: '읽고, 알리고, 실행', desc: '필요한 순간만 골라 알리고, 다음 한 수까지 제안합니다.' },
+      { icon: BellRing, title: '관찰 · 분석 · 제안 · 학습', desc: '필요한 순간만 골라 알리고, 다음 한 수까지 제안합니다.' },
     ],
   },
   en: {
@@ -38,7 +38,7 @@ const copy: Record<Locale, { eyebrow: string; heading: string; sub: string; isoA
     features: [
       { icon: LayoutDashboard, title: 'Your whole brand, one screen', desc: 'Compare key metrics for every store from HQ at a glance.' },
       { icon: TrendingUp, title: 'Visits · dwell · conversion', desc: 'From passing by to entry to checkout — even the shoppers who left without buying.' },
-      { icon: BellRing, title: 'Read. Alert. Act.', desc: 'Surface only the moments that matter, then recommend the next move.' },
+      { icon: BellRing, title: 'Observe · Analyze · Suggest · Learn', desc: 'Surface only the moments that matter, then recommend the next move.' },
     ],
   },
   jp: {
@@ -50,7 +50,7 @@ const copy: Record<Locale, { eyebrow: string; heading: string; sub: string; isoA
     features: [
       { icon: LayoutDashboard, title: 'ブランド全体をひとつの画面で', desc: '全国すべての店舗の主要指標を、本部から一目で比較。' },
       { icon: TrendingUp, title: '来店・滞在・転換', desc: '通過から入店、決済まで — 見て回って出ていった客まで段階的に読み解く。' },
-      { icon: BellRing, title: '読み、知らせ、実行する', desc: '必要な瞬間だけを選んで通知し、次の一手まで提案。' },
+      { icon: BellRing, title: '観察 · 分析 · 提案 · 学習', desc: '必要な瞬間だけを選んで通知し、次の一手まで提案。' },
     ],
   },
 };

@@ -5,7 +5,7 @@ import WordRise from '@/components/ui/WordRise';
 import Container from '@/components/ui/Container';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
-import { reinventOffline, perfectSpace } from '@/lib/brand-canon';
+import { perfectSpace } from '@/lib/brand-canon';
 import { technologyImages } from '@/data/siteImages';
 
 /** Credential badges — real, hard credentials shown as proof pills (not a sentence). */
@@ -45,7 +45,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
-              {reinventOffline} · ANONYMIZED SPATIAL AI
+              ANONYMIZED SPATIAL AI · SAAI
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display">
               <WordRise text={perfectSpace.your[locale]} />

@@ -14,7 +14,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { companyLine, perfectSpace, purpose, reinventOffline } from '@/lib/brand-canon';
+import { companyLine, perfectSpace, purpose } from '@/lib/brand-canon';
 
 /**
  * AboutView — shared locale-aware About composition.
@@ -246,7 +246,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
             {t.companyIntro}
           </p>
           <p className="mt-6 text-sm text-slate-400 max-w-xl mx-auto break-keep">
-            {perfectSpace.your[locale]} → {perfectSpace.every[locale]} · {reinventOffline}
+            {perfectSpace.your[locale]} → {perfectSpace.every[locale]}
           </p>
         </div>
       </section>

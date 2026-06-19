@@ -5,7 +5,9 @@ import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, readAlertAct, productFunction } from '@/lib/brand-canon';
+import { solutionTaglines, operatingLoop, productFunction } from '@/lib/brand-canon';
+
+const loopLabel = (locale: Locale) => operatingLoop[locale].map((s) => s.label).join(' · ');
 
 /**
  * SolutionTimeline — the 3 SOLUTION products as one flow (NEXTRISE launch film 00:11–14).
@@ -33,8 +35,8 @@ const newTabHint: Record<Locale, string> = {
 
 const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; nodes: Node[] }> = {
   ko: {
-    eyebrow: readAlertAct.ko,
-    heading: '읽고, 알리고, 실행한다',
+    eyebrow: loopLabel('ko'),
+    heading: '세 store, 하나의 흐름',
     sub: '세 개의 store가 하나의 흐름으로 — 어제를 읽고, 지금을 알리고, 다음을 실행합니다.',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: '어제를 읽습니다 — 매출이 미처 보지 못한 것을.', img: '/images/storeinsight-heatmap.webp', alt: '매장 히트맵 — 고객 체류·동선 분석', href: '/products/store-insight' },
@@ -43,8 +45,8 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     ],
   },
   en: {
-    eyebrow: readAlertAct.en,
-    heading: 'Read. Alert. Act.',
+    eyebrow: loopLabel('en'),
+    heading: 'Three stores, one flow',
     sub: 'Three stores, one flow — read yesterday, flag the now, act on next.',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: 'Reads yesterday — what your sales numbers never showed you.', img: '/images/storeinsight-heatmap.webp', alt: 'Store heatmap — dwell and pathway analysis', href: '/products/store-insight' },
@@ -53,8 +55,8 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     ],
   },
   jp: {
-    eyebrow: readAlertAct.jp,
-    heading: '読み、知らせ、動かす。',
+    eyebrow: loopLabel('jp'),
+    heading: '三つのstore、ひとつの流れ',
     sub: '三つのstoreがひとつの流れに — 昨日を読み、今を知らせ、次を動かします。',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: '昨日を読みます — 売上が見落としていたものまで。', img: '/images/storeinsight-heatmap.webp', alt: '店舗ヒートマップ — 滞在・動線分析', href: '/products/store-insight' },

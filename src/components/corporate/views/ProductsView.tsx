@@ -28,7 +28,7 @@ const C: Record<Locale, {
 }> = {
   ko: {
     eyebrow: 'PRODUCTS',
-    heroTitle: '읽고, 알리고, 실행한다',
+    heroTitle: '관찰 · 분석 · 제안 · 학습',
     heroSub: [
       '매장은 창고가 아니라 무대입니다. 이미 달린 CCTV 위에서 공간을 읽고, 알리고, 실행하는',
       '세 개의 store가 하나의 흐름으로 이어집니다.',
@@ -52,7 +52,7 @@ const C: Record<Locale, {
   },
   en: {
     eyebrow: 'PRODUCTS',
-    heroTitle: 'Read. Alert. Act.',
+    heroTitle: 'Observe · Analyze · Suggest · Learn',
     heroSub: [
       'A store is a stage, not a warehouse. On the CCTV you already have, three stores read,',
       'flag, and act on your space — as one flow.',
@@ -76,7 +76,7 @@ const C: Record<Locale, {
   },
   jp: {
     eyebrow: 'PRODUCTS',
-    heroTitle: '読み、知らせ、動かす。',
+    heroTitle: '観察 · 分析 · 提案 · 学習',
     heroSub: [
       '店舗は倉庫ではなく、舞台です。すでにあるCCTVの上で、空間を読み、知らせ、動かす',
       '三つの store が、ひとつの流れでつながります。',

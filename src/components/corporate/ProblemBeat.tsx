@@ -1,4 +1,4 @@
-import { Receipt, LineChart, Lock, Eye, BellRing, Zap, ArrowRight } from 'lucide-react';
+import { Receipt, LineChart, Lock, Eye, BellRing, RefreshCw, ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -7,7 +7,7 @@ import IconChip from '@/components/ui/IconChip';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { type Locale } from '@/lib/i18n';
-import { signature, readAlertAct, solutionTaglines } from '@/lib/brand-canon';
+import { signature, operatingLoop } from '@/lib/brand-canon';
 
 /**
  * ProblemBeat — the tension before the solution (home #2).
@@ -93,22 +93,19 @@ const dict: Record<Locale, {
 };
 
 /**
- * Read→Alert→Act method ribbon — our agentic wedge: others stop at "suggest", we act.
- * Verbs lifted from readAlertAct (읽고/알리고/실행한다 → Read/Alert/Act), step labels
- * from solutionTaglines per product (insight/care/agent). Third step (Act) emphasized.
+ * Operating-loop ribbon — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
+ * The agentic wedge: others stop at seeing; we close the loop and learn.
+ * label + time-phase from operatingLoop; last step (Learn) emphasized.
  */
-const RIBBON = [
-  { key: 'insight', icon: Eye, emphasis: false },
-  { key: 'care', icon: BellRing, emphasis: false },
-  { key: 'agent', icon: Zap, emphasis: true },
-] as const;
+const LOOP_ICONS = [Eye, LineChart, BellRing, RefreshCw] as const;
 
 function methodSteps(locale: Locale) {
-  const verbs = readAlertAct[locale].split(/[,.、]\s*/).filter(Boolean);
-  return RIBBON.map((s, i) => ({
-    ...s,
-    verb: verbs[i] ?? '',
-    label: solutionTaglines[s.key][locale],
+  const steps = operatingLoop[locale];
+  return steps.map((s, i) => ({
+    icon: LOOP_ICONS[i],
+    label: s.label,
+    phase: s.phase,
+    emphasis: i === steps.length - 1,
   }));
 }
 
@@ -165,13 +162,13 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
           {t.bridge}
         </p>
 
-        {/* Read→Alert→Act method ribbon — stakes the agentic wedge (others stop at suggest, we act) */}
+        {/* Operating-loop ribbon — Observe·Analyze·Suggest·Learn (close the loop, then learn) */}
         <div className="mt-6">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {methodSteps(locale).map((s, i) => {
               const Icon = s.icon;
               return (
-                <div key={s.key} className="flex items-center gap-2 sm:gap-3">
+                <div key={s.label} className="flex items-center gap-2 sm:gap-3">
                   <span
                     className={[
                       'inline-flex items-center gap-2 rounded-full border px-3.5 py-2',
@@ -184,17 +181,17 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                       className={['w-4 h-4 shrink-0', s.emphasis ? 'text-white' : 'text-primary'].join(' ')}
                       aria-hidden="true"
                     />
-                    <span className="text-sm font-bold break-keep">{s.verb}</span>
+                    <span className="text-sm font-bold break-keep">{s.label}</span>
                     <span
                       className={[
                         'text-2xs break-keep',
                         s.emphasis ? 'text-white/80' : 'text-gray-500',
                       ].join(' ')}
                     >
-                      {s.label}
+                      {s.phase}
                     </span>
                   </span>
-                  {i < 2 && (
+                  {i < 3 && (
                     <ArrowRight className="w-4 h-4 shrink-0 text-gray-300" aria-hidden="true" />
                   )}
                 </div>

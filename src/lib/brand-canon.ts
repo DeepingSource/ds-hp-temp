@@ -25,8 +25,12 @@ export const signature: Record<Locale, string> = {
   jp: '見るAIを超え、空間を運営するAI。',
 };
 
-/** Overarching brand lockup — English mark across all locales (launch film opener/close). */
-export const reinventOffline = 'REINVENT OFFLINE';
+/** Brand signature (5자) — SAAI_AI_Handoff.md · A2. EN/JP per the weaving frame. */
+export const seam: Record<Locale, string> = {
+  ko: '사이를 메웁니다.',
+  en: 'We weave the in-between.',
+  jp: '間を紡ぐ。',
+};
 
 /**
  * Perfect Space — the two-level promise (launch film 00:0 / 09:5).
@@ -37,18 +41,37 @@ export const perfectSpace: { your: Record<Locale, string>; every: Record<Locale,
   every: { ko: '모든 공간을, 완벽하게', en: 'Perfect every space.', jp: 'すべての空間を、完璧に。' },
 };
 
-/** Category definition — the recurring thesis of the launch film. */
+/** Category definition — the recurring thesis. */
 export const categoryLine: Record<Locale, string> = {
-  ko: '이미 달린 CCTV 위에서, 누가가 아니라 무엇을 어떻게. 익명으로 읽고, 알리고, 실행하는 AI.',
-  en: 'On the CCTV you already have — not who, but what and how. AI that reads, flags, and acts, anonymously.',
-  jp: 'すでにあるCCTVの上で、誰かではなく、何をどう。匿名で読み、知らせ、動かすAI。',
+  ko: '이미 달린 CCTV 위에서, 누가가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
+  en: 'On the CCTV you already have — not who, but what and how. AI that observes, analyzes, suggests, and learns, anonymously.',
+  jp: 'すでにあるCCTVの上で、誰かではなく、何をどう。匿名で観察し、分析し、提案し、学習するAI。',
 };
 
-/** Read · Alert · Act — the three stores as one flow (launch film 00:11). */
-export const readAlertAct: Record<Locale, string> = {
-  ko: '읽고, 알리고, 실행한다',
-  en: 'Read. Alert. Act.',
-  jp: '読み、知らせ、動かす。',
+/**
+ * Operating loop — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
+ * Replaces the retired 3-step Read·Alert·Act. phase = the time axis (어제/지금/알림/다음).
+ * (KO/JP wording is a handoff-faithful draft pending brand sign-off.)
+ */
+export const operatingLoop: Record<Locale, { label: string; phase: string }[]> = {
+  ko: [
+    { label: '관찰', phase: '어제' },
+    { label: '분석', phase: '지금' },
+    { label: '제안', phase: '알림' },
+    { label: '학습', phase: '다음' },
+  ],
+  en: [
+    { label: 'Observe', phase: 'Yesterday' },
+    { label: 'Analyze', phase: 'Now' },
+    { label: 'Suggest', phase: 'Alert' },
+    { label: 'Learn', phase: 'Next' },
+  ],
+  jp: [
+    { label: '観察', phase: '昨日' },
+    { label: '分析', phase: '今' },
+    { label: '提案', phase: '通知' },
+    { label: '学習', phase: '次' },
+  ],
 };
 
 /** 회사 한 줄 — 창업 서사 (SAAI_AI_Handoff.md · Copy_Decision_v1 회사 한 줄). */

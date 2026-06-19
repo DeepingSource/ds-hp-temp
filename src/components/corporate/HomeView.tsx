@@ -13,7 +13,7 @@ import SpacesShowcase from './SpacesShowcase';
 import PartnerGrid from './PartnerGrid';
 import PurposeBand from './PurposeBand';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
-import { reinventOffline } from '@/lib/brand-canon';
+import { seam } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 
 /** basePath prefix for CSS background images (set for the GitHub Pages export). */
@@ -156,7 +156,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
           style={{ backgroundImage: `url(${BASE}/images/saai-symbol.svg)`, position: 'absolute', left: '50%', top: '48%', width: 'min(560px, 86%)', aspectRatio: '534.51 / 267.36', transform: 'translate(-50%, -50%)' }}
         />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-xs font-semibold tracking-[0.25em] text-primary-light mb-4">{reinventOffline}</p>
+          <p className="text-xs font-semibold tracking-[0.25em] text-primary-light mb-4">{seam[locale]}</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight font-display break-keep">
             {cta.heading}
           </h2>
