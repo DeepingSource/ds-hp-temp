@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Bar — sorted, zero-baseline, one highlight</title>
+<link rel="stylesheet" href="_card.css">
+<link rel="stylesheet" href="../charts.css">
+<style>body{padding:18px 22px;background:#fff;gap:0}
+.box{max-width:640px}
+svg{display:block;width:100%;height:200px;overflow:visible;font-family:var(--font-sans)}
+text{font-size:11px;fill:var(--grey-700)}
+.muted{fill:var(--grey-400)}
+</style></head><body>
+<div class="box">
+  <h3 class="chart-takeaway">음료가 어제 매출의 38%를 차지했다</h3>
+  <p class="chart-meta">2026-04-26 · all categories · sorted by share</p>
+  <svg viewBox="0 0 640 200" preserveAspectRatio="none">
+    <!-- baseline -->
+    <line x1="120" y1="180" x2="600" y2="180" stroke="#D9DBDD" stroke-width="1"/>
+    <!-- bars -->
+    <g>
+      <text x="115" y="29" text-anchor="end">음료</text>
+      <rect x="120" y="20" width="380" height="18" fill="#376AE2"/>
+      <text x="508" y="33" fill="#1E3A7C" font-weight="600">38%</text>
+
+      <text x="115" y="59" text-anchor="end">스낵</text>
+      <rect x="120" y="50" width="220" height="18" fill="#D9DBDD"/>
+      <text x="348" y="63" class="muted">22%</text>
+
+      <text x="115" y="89" text-anchor="end">디저트</text>
+      <rect x="120" y="80" width="160" height="18" fill="#D9DBDD"/>
+      <text x="288" y="93" class="muted">16%</text>
+
+      <text x="115" y="119" text-anchor="end">즉석식</text>
+      <rect x="120" y="110" width="120" height="18" fill="#D9DBDD"/>
+      <text x="248" y="123" class="muted">12%</text>
+
+      <text x="115" y="149" text-anchor="end">생활용품</text>
+      <rect x="120" y="140" width="80" height="18" fill="#D9DBDD"/>
+      <text x="208" y="153" class="muted">8%</text>
+
+      <text x="115" y="179" text-anchor="end">기타</text>
+      <rect x="120" y="170" width="40" height="10" fill="#D9DBDD"/>
+      <text x="168" y="179" class="muted">4%</text>
+    </g>
+  </svg>
+  <p class="chart-source">Source · POS · sorted desc · 0-baseline</p>
+</div>
+</body></html>

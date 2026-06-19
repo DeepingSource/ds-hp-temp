@@ -1,0 +1,50 @@
+/* =============================================================
+ * SAAI Design System — Audience 분기 (Operator vs Analyst)
+ * Single source: constitution/SAAI_MASTER.md §3.2 / §2.5
+ * Version: v1.4  (2026-05-06)
+ *
+ * 사용 (마스터 §2.5):
+ *   - <body class="audience-plain">  → Operator 모드 (디폴트)
+ *   - <body class="audience-analyst"> → Analyst 모드
+ *   - URL 쿼리: ?audience=plain|analyst 로 전환
+ *
+ * 모드 무관 (항상 적용):
+ *   §6 안전성 룰 (★ 룰·추론 사다리·마커·결손 라벨)은 모드와 무관.
+ *   톤만 바뀌고 진실은 바뀌지 않는다.
+ *
+ * 도메인 친숙 관습은 프로덕트별 결정 (마스터 §7.2.3):
+ *   - 한·일 주식시장: ▲ 빨강 / ▼ 파랑  → audience-plain
+ *   - 미국 시장·시각화 표준: ▲ 녹 / ▼ 빨    → audience-analyst
+ * 본 파일은 한·일 시장 친숙 관습을 디폴트로.
+ * ============================================================= */
+
+@import url('./saai-semantic.css');
+
+/* ── Operator 모드 — 도메인 친숙 관습 (한·일 ▲빨강) ─────── */
+body.audience-plain {
+  --color-up:               var(--color-deep-red);    /* ▲ 빨강 — 매장 점주 친숙 */
+  --color-down:             var(--color-primary);     /* ▼ 파랑 */
+
+  /* 차트 강조 색도 audience 에 따라 분기 가능 */
+  --chart-up:               var(--saai-red-700);
+  --chart-down:             var(--saai-blue-500);
+}
+
+/* ── Analyst 모드 — 일반 데이터 시각화 표준 (▲녹 / ▼빨) ── */
+body.audience-analyst {
+  --color-up:               var(--color-positive);    /* ▲ 녹 */
+  --color-down:             var(--color-negative);    /* ▼ 빨 */
+
+  --chart-up:               var(--saai-green-700);
+  --chart-down:             var(--saai-red-700);
+}
+
+/* ── Fallback: body 클래스 미지정 시 Operator 디폴트 ─────
+ * Operator 모드를 SAAI 디폴트로 한다 (1차 사용자 우선).
+ */
+body:not(.audience-plain):not(.audience-analyst) {
+  --color-up:               var(--color-deep-red);
+  --color-down:             var(--color-primary);
+  --chart-up:               var(--saai-red-700);
+  --chart-down:             var(--saai-blue-500);
+}

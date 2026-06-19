@@ -1,0 +1,200 @@
+/* =============================================================
+ * SAAI Design System — Medium: Cover / Marketing
+ * Single source: constitution/SAAI_MASTER.md §8.5
+ * Version: v1.4  (2026-05-06)
+ *
+ * 매체: 표지·포스터·일러스트·세일즈 1-pager
+ * 단위: 디지털 px 기본 + 인쇄 시 mm/pt 보조
+ * 페이지: 자유 (16:9 / 1:1 / A3 / A4 등)
+ *
+ * 핵심: §8.4.3 #2 표지 7슬롯 + §8.5 자유도 + RGB↔CMYK 점검
+ *
+ * 사용:
+ *   <link rel="stylesheet" href="./saai.css">
+ *   <link rel="stylesheet" href="./saai-medium-cover.css">
+ * ============================================================= */
+
+@import url('./saai-tokens.css');
+
+/* ─────────────────────────────────────────────────────
+ * §8.5 자유도 — gradient 2 색·대형 헤로
+ * ───────────────────────────────────────────────────── */
+:root {
+  /* Hero — 24pt+ 가능, line-height 1.2~1.4 */
+  --cover-hero-size:        48px;     /* 디지털 기본 */
+  --cover-hero-lh:          1.2;
+  --cover-hero-tracking:    -0.02em;
+
+  --cover-subhead-size:     24px;
+  --cover-subhead-lh:       1.4;
+
+  --cover-meta-size:        14px;
+
+  /* Gradient 2 색 한정 */
+  --cover-bg-start:         var(--saai-blue-800);
+  --cover-bg-end:           var(--saai-blue-900);
+
+  /* Cyan 강조 — 표지·포스터 공용 */
+  --cover-accent:           var(--saai-cyan-500);
+
+  /* CTA */
+  --cta-pill-bg:            var(--saai-cyan-500);
+  --cta-pill-fg:            var(--saai-blue-900);
+
+  /* QR 코드 영역 — 우측 하단 90×90mm 보존 */
+  --qr-area-size:           90mm;
+}
+
+/* ─────────────────────────────────────────────────────
+ * 디지털 포스터 — 16:9 (1920×1080)
+ * ───────────────────────────────────────────────────── */
+.cover-poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--cover-bg-start), var(--cover-bg-end));
+  color: var(--saai-white);
+  font-family: var(--saai-font-sans);
+  padding: 80px 96px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 1:1 정사각 (1080×1080) — 인스타그램·Slack 카드 */
+.cover-poster--square {
+  aspect-ratio: 1 / 1;
+  padding: 64px;
+}
+
+.cover-poster__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--saai-blue-100);
+}
+.cover-poster__brand-mark {
+  color: var(--cover-accent);
+  font-size: 20px;
+}
+
+.cover-poster__hero {
+  font-size: var(--cover-hero-size);
+  font-weight: 700;
+  line-height: var(--cover-hero-lh);
+  letter-spacing: var(--cover-hero-tracking);
+  margin: 0;
+}
+.cover-poster__subhead {
+  font-size: var(--cover-subhead-size);
+  font-weight: 400;
+  line-height: var(--cover-subhead-lh);
+  color: var(--saai-blue-100);
+  margin: 16px 0 0 0;
+}
+
+.cover-poster__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.cover-poster__cta-pill {
+  background: var(--cta-pill-bg);
+  color: var(--cta-pill-fg);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.cover-poster__cta-text {
+  font-family: var(--saai-font-numeric);
+  font-size: 18px;
+  color: var(--cover-accent);
+}
+
+/* QR 코드 영역 (우측 하단) */
+.cover-poster__qr {
+  position: absolute;
+  right: 64px;
+  bottom: 64px;
+  width: var(--qr-area-size);
+  height: var(--qr-area-size);
+  background: var(--saai-white);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* ─────────────────────────────────────────────────────
+ * 인쇄 포스터 — A3·A4 등
+ * ───────────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: A3 portrait;
+    margin: 0;
+  }
+  .cover-poster {
+    width: 297mm;
+    height: 420mm;
+    aspect-ratio: auto;
+    padding: 30mm 32mm;
+  }
+
+  /* RGB→CMYK 색 강제 */
+  .cover-poster, .cover-poster *,
+  .ebook-cover, .ebook-cover * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+ * 세일즈 1-pager — A4 + cover 7슬롯 + 본문 2-col grid
+ * ───────────────────────────────────────────────────── */
+.cover-onepager {
+  width: 100%;
+  max-width: 210mm;
+  background: var(--saai-white);
+  color: var(--saai-grey-900);
+  font-family: var(--saai-font-sans);
+  padding: 20mm 18mm;
+}
+.cover-onepager__header {
+  background: linear-gradient(180deg, var(--cover-bg-start), var(--cover-bg-end));
+  color: var(--saai-white);
+  padding: 16mm 14mm;
+  border-radius: 8px;
+  margin: -20mm -18mm 12mm -18mm;
+}
+.cover-onepager__header .cover-poster__hero {
+  font-size: 32pt;
+}
+.cover-onepager__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12mm;
+  font-size: 10pt;
+  line-height: 1.6;
+}
+.cover-onepager__body h2 {
+  font-size: 13pt;
+  font-weight: 700;
+  margin: 0 0 6mm 0;
+  color: var(--saai-blue-700);
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.5.4 RGB↔CMYK 점검 가이드 (주석)
+ *
+ * SAAI Blue:    #376AE2  →  CMYK (81, 65, 0, 0)
+ * Cyan-500:     (검토 필요 — 인쇄 시 컬러 매니지먼트 프로파일 확인)
+ *
+ * 흑백 인쇄 가정:
+ *   - 명도 차이 ≥ 30 (Lightness diff) 필요
+ *   - SAAI Blue 800 (lightness ~22) ↔ Blue 900 (lightness ~16) → 차이 6
+ *     → 흑백 인쇄 시 거의 같은 회색. *명암 대비 필요한 포스터는 다른 색 조합*
+ * ───────────────────────────────────────────────────── */

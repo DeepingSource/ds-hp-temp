@@ -1,0 +1,447 @@
+/* =============================================================
+ * SAAI Design System — Medium: Ebook (5.5×8.5in)
+ * Single source: constitution/SAAI_MASTER.md §8.4
+ * Version: v1.4  (2026-05-06)
+ *
+ * 매체: 모바일 친화 책자 (CVS-Intelligence 이북 시리즈 등)
+ * 단위: pt (인쇄 + ePUB 호환)
+ * 페이지: 5.5×8.5in = 396×612pt
+ *
+ * 4 핵심 컴포넌트 (마스터 §8.4.3):
+ *   1) 박스 4종 (insight·caution·action·case)
+ *   2) 표지 7슬롯
+ *   3) 인쇄용 체크리스트 (.printable-checklist)
+ *   4) CTA 블록
+ *
+ * 사용:
+ *   <link rel="stylesheet" href="./saai.css">
+ *   <link rel="stylesheet" href="./saai-medium-ebook.css">
+ * ============================================================= */
+
+@import url('./saai-tokens.css');
+
+/* ─────────────────────────────────────────────────────
+ * §8.4.1 페이지 — 5.5×8.5in + 카테고리 1px 액센트
+ * ───────────────────────────────────────────────────── */
+@page {
+  size: 5.5in 8.5in;                     /* = 396×612pt */
+  margin: 0.42in 0.4in 0.48in 0.4in;
+
+  @top-left {
+    content: "";
+    width: 1px;
+    background: var(--cover-category-accent, var(--saai-blue-500));
+  }
+  @top-right {
+    content: var(--ebook-page-header, "");
+    font-family: var(--saai-font-sans);
+    font-size: 8pt;
+    color: var(--saai-grey-500);
+  }
+  @bottom-center {
+    content: counter(page);
+    font-family: var(--saai-font-numeric);
+    font-size: 8pt;
+    color: var(--saai-grey-500);
+  }
+}
+
+@page :first {                          /* 표지 — 헤더·풋터 제거 */
+  margin: 0;
+  @top-left { content: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; }
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.4.2 단위·크기 — pt 기반
+ * ───────────────────────────────────────────────────── */
+:root {
+  --ebook-body-size:        10.5pt;
+  --ebook-body-lh:          1.7;      /* 책자 가독성 — Web 동일 */
+
+  --ebook-h1-size:          21pt;     /* 24pt+ hero 예외 line-height 1.4 */
+  --ebook-h2-size:          16pt;
+  --ebook-h3-size:          13pt;
+  --ebook-h4-size:          12pt;
+
+  --ebook-box-label-size:   10pt;
+  --ebook-meta-size:        8pt;
+
+  /* CJK letter-spacing — 마스터 §4.7 */
+  --ebook-cjk-letter-spacing: 0.02em;
+
+  /* ─── 박스 4종 (마스터 §8.4.3 #1) ─────────────────── */
+  --box-padding-x:    24pt;
+  --box-padding-y:    20pt;
+  --box-margin-y:     28pt;
+  --box-radius:       8pt;
+  --box-accent-width: 4pt;       /* Case 만 1px 전체 border */
+
+  --box-insight-accent: var(--saai-cyan-700);
+  --box-insight-bg:     var(--saai-cyan-25);
+  --box-insight-label:  var(--saai-cyan-700);
+
+  --box-caution-accent: var(--saai-yellow-700);
+  --box-caution-bg:     var(--saai-yellow-25);
+  --box-caution-label:  var(--saai-yellow-800);
+
+  --box-action-accent:  var(--saai-orange-700);   /* warning 과 분리 */
+  --box-action-bg:      var(--saai-orange-25);
+  --box-action-label:   var(--saai-orange-700);
+
+  --box-case-accent:    var(--saai-grey-100);     /* 1px solid */
+  --box-case-bg:        var(--saai-grey-25);
+  --box-case-label:     var(--saai-grey-600);
+  --box-case-tag-bg:    var(--saai-blue-800);
+  --box-case-tag-fg:    var(--saai-white);
+
+  /* ─── 표지 7슬롯 (마스터 §8.4.3 #2) ───────────────── */
+  --cover-bg-start:        var(--saai-blue-800);
+  --cover-bg-end:          var(--saai-blue-900);
+  --cover-text-primary:    var(--saai-white);
+  --cover-text-secondary:  var(--saai-blue-100);
+  --cover-divider:         var(--saai-cyan-400);
+  --cover-category-accent: var(--saai-blue-500);   /* 빌더가 카테고리별 치환 */
+
+  --cover-padding-x:       80pt;
+  --cover-padding-y:       80pt;
+  --cover-title-size:      28pt;
+  --cover-subtitle-size:   13pt;
+  --cover-divider-width:   80pt;
+  --cover-divider-thickness: 2pt;
+  --cover-meta-size:       9pt;
+
+  /* ─── 체크리스트 (마스터 §8.4.3 #3) ───────────────── */
+  --checklist-border:    2pt dashed var(--saai-grey-100);
+  --checklist-padding:   24pt;
+  --checklist-radius:    8pt;
+  --checklist-bg:        var(--saai-blue-25);
+  --checklist-row-border: 1pt dashed var(--saai-grey-50);
+
+  /* ─── CTA (마스터 §8.4.3 #4) ──────────────────────── */
+  --cta-bg-start:    var(--saai-blue-900);
+  --cta-bg-end:      var(--saai-blue-800);
+  --cta-text:        var(--saai-white);
+  --cta-pill-bg:     var(--saai-cyan-500);
+  --cta-pill-fg:     var(--saai-blue-900);
+  --cta-padding:     48pt 32pt;
+  --cta-radius:      8pt;
+}
+
+/* ─────────────────────────────────────────────────────
+ * 본문 — pt 기반 + CJK letter-spacing
+ * ───────────────────────────────────────────────────── */
+html, body {
+  font-family: var(--saai-font-sans);
+  font-size: var(--ebook-body-size);
+  line-height: var(--ebook-body-lh);
+  color: var(--saai-grey-900);
+  letter-spacing: var(--ebook-cjk-letter-spacing);   /* 마스터 §4.7 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+h1 { font-size: var(--ebook-h1-size); line-height: 1.4; font-weight: 700; }
+h2 { font-size: var(--ebook-h2-size); line-height: 1.5; font-weight: 700; }
+h3 { font-size: var(--ebook-h3-size); line-height: 1.5; font-weight: 700; }
+h4 { font-size: var(--ebook-h4-size); line-height: 1.5; font-weight: 500; }
+
+/* mono 컬럼 — letter-spacing 0 */
+code, pre, .font-numeric,
+.ebook-cover__number, .printable-checklist__time {
+  letter-spacing: 0;
+  font-family: var(--saai-font-numeric);
+}
+
+/* ─────────────────────────────────────────────────────
+ * 박스 4종 — .ebook-box (마스터 §8.4.3 #1)
+ * ───────────────────────────────────────────────────── */
+.ebook-box {
+  margin: var(--box-margin-y) 0;
+  padding: var(--box-padding-y) var(--box-padding-x);
+  border-radius: 0 var(--box-radius) var(--box-radius) 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.ebook-box__label {
+  font-weight: 700;
+  font-size: var(--ebook-box-label-size);
+  margin: 0 0 8pt 0;
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+}
+.ebook-box__body { font-size: var(--ebook-body-size); line-height: var(--ebook-body-lh); }
+.ebook-box__body :first-child { margin-top: 0; }
+.ebook-box__body :last-child  { margin-bottom: 0; }
+
+/* Modifiers */
+.ebook-box--insight {
+  border-left: var(--box-accent-width) solid var(--box-insight-accent);
+  background: var(--box-insight-bg);
+}
+.ebook-box--insight .ebook-box__label { color: var(--box-insight-label); }
+
+.ebook-box--caution {
+  border-left: var(--box-accent-width) solid var(--box-caution-accent);
+  background: var(--box-caution-bg);
+}
+.ebook-box--caution .ebook-box__label { color: var(--box-caution-label); }
+
+.ebook-box--action {
+  border-left: var(--box-accent-width) solid var(--box-action-accent);
+  background: var(--box-action-bg);
+}
+.ebook-box--action .ebook-box__label { color: var(--box-action-label); }
+
+.ebook-box--case {
+  border: 1pt solid var(--box-case-accent);
+  background: var(--box-case-bg);
+  border-radius: var(--box-radius);                  /* 좌·우 모두 둥글 */
+  position: relative;
+  padding-top: calc(var(--box-padding-y) + 16pt);
+}
+.ebook-box--case .ebook-box__tag {
+  position: absolute;
+  top: 0; left: var(--box-padding-x);
+  transform: translateY(-50%);
+  background: var(--box-case-tag-bg);
+  color: var(--box-case-tag-fg);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4pt 10pt;
+  border-radius: 4pt;
+}
+
+/* ─────────────────────────────────────────────────────
+ * 표지 — .ebook-cover 7슬롯 (마스터 §8.4.3 #2)
+ * ───────────────────────────────────────────────────── */
+.ebook-cover {
+  width: 5.5in;
+  height: 8.5in;
+  padding: var(--cover-padding-y) var(--cover-padding-x);
+  background: linear-gradient(180deg, var(--cover-bg-start), var(--cover-bg-end));
+  color: var(--cover-text-primary);
+  font-family: var(--saai-font-sans);
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ebook-cover__brand {
+  display: flex;
+  align-items: center;
+  gap: 8pt;
+  font-size: var(--cover-meta-size);
+  color: var(--cover-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ebook-cover__brand-mark { color: var(--saai-cyan-400); font-size: 14pt; }
+
+.ebook-cover__category {
+  display: flex;
+  align-items: center;
+  gap: 10pt;
+  font-size: 11pt;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin: 0 0 16pt 0;
+}
+.ebook-cover__cat-line {
+  display: inline-block;
+  width: var(--cover-divider-width);
+  height: var(--cover-divider-thickness);
+  background: var(--cover-category-accent);
+}
+
+.ebook-cover__title {
+  font-size: var(--cover-title-size);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.ebook-cover__subtitle {
+  font-size: var(--cover-subtitle-size);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cover-text-secondary);
+  margin: 16pt 0 0 0;
+}
+
+.ebook-cover__series {
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+  font-size: 11pt;
+  color: var(--cover-text-secondary);
+}
+.ebook-cover__series .ebook-cover__number {
+  margin-left: auto;
+  font-family: var(--saai-font-numeric);
+  color: var(--saai-cyan-400);
+  font-weight: 700;
+}
+
+.ebook-cover__divider {
+  border: none;
+  border-top: var(--cover-divider-thickness) solid var(--cover-divider);
+  margin: 24pt 0 16pt 0;
+}
+.ebook-cover__meta {
+  display: flex;
+  gap: 8pt;
+  font-size: var(--cover-meta-size);
+  color: var(--cover-text-secondary);
+  font-family: var(--saai-font-numeric);
+}
+
+/* ─────────────────────────────────────────────────────
+ * 인쇄용 체크리스트 — .printable-checklist (마스터 §8.4.3 #3)
+ * ───────────────────────────────────────────────────── */
+.printable-checklist {
+  border: var(--checklist-border);
+  border-radius: var(--checklist-radius);
+  padding: var(--checklist-padding);
+  background: var(--checklist-bg);
+  page-break-before: always;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  max-height: calc(8.5in - 0.9in);
+  display: flex;
+  flex-direction: column;
+}
+.printable-checklist__category {
+  font-size: 9pt;
+  color: var(--saai-grey-600);
+  letter-spacing: 0.05em;
+  margin: 0 0 8pt 0;
+}
+.printable-checklist__title {
+  font-size: 16pt;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 16pt 0;
+}
+.printable-checklist__meta {
+  display: flex;
+  gap: 24pt;
+  font-size: 9pt;
+  color: var(--saai-grey-600);
+}
+.printable-checklist__meta label {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  flex: 1;
+}
+.printable-checklist__line {
+  flex: 1;
+  border-bottom: 1pt solid var(--saai-grey-100);
+  height: 1em;
+}
+
+.printable-checklist__list {
+  list-style: none;
+  margin: 24pt 0 0 0;
+  padding: 0;
+  flex: 1;
+}
+.printable-checklist__row {
+  display: grid;
+  grid-template-columns: 1.5em 1fr auto;
+  gap: 10pt;
+  align-items: baseline;
+  padding: 12pt 0;
+  border-bottom: var(--checklist-row-border);
+  font-size: var(--ebook-body-size);
+}
+.printable-checklist__row:last-child { border-bottom: none; }
+.printable-checklist__check {
+  font-size: 13pt;
+  color: var(--saai-grey-600);
+  font-family: 'Apple Symbols', 'Segoe UI Symbol', sans-serif;
+}
+.printable-checklist__time {
+  color: var(--saai-cyan-700);
+  font-size: 9pt;
+  white-space: nowrap;
+}
+
+.printable-checklist__footer {
+  margin-top: 24pt;
+  padding-top: 16pt;
+  border-top: 1pt solid var(--saai-grey-100);
+}
+.printable-checklist__quote {
+  font-size: 9pt;
+  color: var(--saai-grey-600);
+  font-style: italic;
+  margin: 0 0 6pt 0;
+}
+.printable-checklist__source {
+  font-size: 8pt;
+  color: var(--saai-grey-400);
+  font-family: var(--saai-font-numeric);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────
+ * CTA 블록 (마스터 §8.4.3 #4)
+ * ───────────────────────────────────────────────────── */
+.ebook-cta {
+  background: linear-gradient(135deg, var(--cta-bg-start), var(--cta-bg-end));
+  color: var(--cta-text);
+  padding: var(--cta-padding);
+  border-radius: var(--cta-radius);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.ebook-cta__pill {
+  display: inline-block;
+  background: var(--cta-pill-bg);
+  color: var(--cta-pill-fg);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4pt 12pt;
+  border-radius: 999px;
+  margin-bottom: 12pt;
+}
+.ebook-cta__headline {
+  font-size: 18pt;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 12pt 0;
+  color: var(--cta-text);
+}
+.ebook-cta__url {
+  font-family: var(--saai-font-numeric);
+  font-size: 11pt;
+  color: var(--saai-cyan-400);
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.4.5 인쇄 함정
+ * ───────────────────────────────────────────────────── */
+.ebook-cover, .ebook-box, .printable-checklist, .ebook-cta {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* 인쇄 시 체크리스트 흰 배경 강제 (잉크 절약 + 손글씨 가능) */
+@media print {
+  .printable-checklist {
+    background: var(--saai-white) !important;
+  }
+}
+
+p, li { widows: 3; orphans: 3; }
+h1, h2, h3 { page-break-after: avoid; break-after: avoid-page; }
+img.diagram, figure { page-break-inside: avoid; break-inside: avoid; }

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ローソン KDDI高輪 17F · 2026 W16 週次サマリー</title>
+<style>
+/* =============================================================
+ * SAAI Design System — Inlined for WeasyPrint print
+ * Single source: constitution/SAAI_MASTER.md
+ * Operator mode (Japan ▲赤 / ▼青) · Light forced for print
+ * ============================================================= */
+
+/* ── Tier 1 Primitive ─────────────────────────────────── */
+:root {
+  --saai-white: #FFFFFF;
+  --saai-grey-25:  #F9F9FB;
+  --saai-grey-50:  #E9E9EA;
+  --saai-grey-100: #D9DBDD;
+  --saai-grey-200: #B1B5BB;
+  --saai-grey-300: #8E949D;
+  --saai-grey-400: #787F89;
+  --saai-grey-500: #565F6C;
+  --saai-grey-700: #3D434D;
+  --saai-grey-900: #24282D;
+
+  --saai-blue-25:  #F7F9FD;
+  --saai-blue-50:  #EBF0FC;
+  --saai-blue-100: #C1D1F6;
+  --saai-blue-300: #799BEC;
+  --saai-blue-500: #376AE2;
+  --saai-blue-700: #274BA0;
+
+  --saai-red-50:   #FCEEEE;
+  --saai-red-700:  #9F3F3F;
+  --saai-red-800:  #7B3131;
+  --saai-green-700:#12820F;
+  --saai-green-800:#0E650C;
+  --saai-yellow-50:#FFFBEB;
+  --saai-yellow-500:#FAD232;
+
+  /* Tier 2 Semantic */
+  --color-bg-app: var(--saai-white);
+  --color-bg-subtle: var(--saai-grey-25);
+  --color-text-primary: var(--saai-grey-900);
+  --color-text-body: var(--saai-grey-700);
+  --color-text-secondary: var(--saai-grey-500);
+  --color-text-muted: var(--saai-grey-400);
+  --color-divider: var(--saai-grey-200);
+  --color-border-card: var(--saai-grey-100);
+  --color-primary: var(--saai-blue-500);
+  --color-primary-bg: var(--saai-blue-50);
+  --color-positive: var(--saai-green-800);
+  --color-negative: var(--saai-red-700);
+  --color-warning: var(--saai-yellow-500);
+  --color-warning-bg: var(--saai-yellow-50);
+  --color-deep-red: var(--saai-red-800);
+
+  /* Operator mode (Japan ▲ red / ▼ blue) */
+  --color-up: var(--color-deep-red);
+  --color-down: var(--color-primary);
+
+  /* Spacing 2px grid */
+  --space-xs: 6px;
+  --space-s: 10px;
+  --space-m: 16px;
+  --space-l: 20px;
+  --space-xl: 28px;
+
+  /* Radii */
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Chart tokens */
+  --chart-cat-1: var(--saai-blue-500);
+  --chart-context: var(--saai-grey-200);
+  --chart-grid: var(--saai-grey-100);
+  --chart-grid-strong: var(--saai-grey-500);
+  --chart-axis: var(--saai-grey-300);
+  --chart-positive: var(--saai-green-700);
+  --chart-negative: var(--saai-red-700);
+  --chart-forecast: var(--saai-grey-400);
+  --chart-band: rgba(55,106,226,0.10);
+
+  /* Sequential 7 (heatmap) */
+  --chart-seq-1: #F7F9FD;
+  --chart-seq-2: #EBF0FC;
+  --chart-seq-3: #C1D1F6;
+  --chart-seq-4: #799BEC;
+  --chart-seq-5: #376AE2;
+  --chart-seq-6: #274BA0;
+  --chart-seq-7: #172D5F;
+}
+
+/* ── Reset + base typography (Pretendard JP letter-spacing) */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../../../../../../../Downloads/SAAI Design System/fonts/PretendardKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../../../../../../../Downloads/SAAI Design System/fonts/PretendardKR-Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../../../../../../../Downloads/SAAI Design System/fonts/PretendardKR-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+
+html[lang="ja"], body {
+  font-family: 'PretendardJP', 'PretendardKR', 'Noto Sans JP', 'Hiragino Sans',
+               'Yu Gothic', 'Meiryo', system-ui, sans-serif;
+  letter-spacing: 0.02em; /* JP body — master §3.3 */
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  background: var(--color-bg-app);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: 0.01em; /* JP heading */
+  color: var(--color-text-primary);
+  line-height: 1.4; /* hero/section 24px+ */
+  margin: 0;
+  font-weight: 700;
+}
+h1 { font-size: 22pt; line-height: 1.4; }
+h2 { font-size: 14pt; line-height: 1.4; margin-bottom: 4px; }
+h3 { font-size: 11pt; line-height: 1.5; font-weight: 700; }
+h4 { font-size: 10pt; line-height: 1.5; font-weight: 500; color: var(--color-text-secondary); }
+
+p { margin: 0; }
+small { font-size: 9pt; color: var(--color-text-muted); line-height: 1.4; }
+
+/* ── Print page setup A4 ─────────────────────────────── */
+@page {
+  size: A4;
+  margin: 16mm 14mm 14mm 14mm;
+}
+body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.page {
+  break-inside: avoid;
+  break-after: page;
+  padding-bottom: 8mm;
+}
+.page:last-child { break-after: auto; }
+
+/* ── Layout primitives ───────────────────────────────── */
+.row { display: flex; gap: var(--space-m); }
+.row > * { flex: 1; min-width: 0; }
+.stack > * + * { margin-top: var(--space-m); }
+.stack-s > * + * { margin-top: var(--space-s); }
+.muted { color: var(--color-text-muted); }
+.mono { font-family: 'SF Mono', ui-monospace, Menlo, monospace; letter-spacing: 0; }
+
+/* ── Brand header strip ──────────────────────────────── */
+.brand-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: var(--space-m);
+  font-size: 9pt;
+  color: var(--color-text-muted);
+}
+.brand-strip__mark {
+  width: 14px; height: 14px;
+  background: var(--color-primary);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.brand-strip__name {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0;
+}
+.brand-strip__sep { color: var(--color-divider); }
+.brand-strip__page {
+  margin-left: auto;
+  font-family: 'SF Mono', monospace;
+}
+
+/* ── Hero ────────────────────────────────────────────── */
+.hero-meta {
+  font-size: 9pt;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-takeaway {
+  font-size: 18pt;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-s);
+}
+.hero-sub {
+  font-size: 10pt;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── KPI card ────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.kpi {
+  border: 1px solid var(--color-border-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-s) var(--space-m) var(--space-m);
+  background: var(--color-bg-app);
+}
+.kpi__label {
+  font-size: 8.5pt;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+.kpi__value {
+  font-size: 19pt;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.kpi__unit {
+  font-size: 10pt;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  margin-left: 2px;
+}
+.kpi__delta {
+  font-size: 8.5pt;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.kpi__delta.up   { background: var(--saai-red-50); color: var(--color-up); }
+.kpi__delta.down { background: var(--color-primary-bg); color: var(--color-down); }
+.kpi__date {
+  font-size: 8pt;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.kpi__spark { margin-top: 6px; }
+
+/* ── Marker (mast §6.4) ──────────────────────────────── */
+.marker {
+  display: inline-block;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.marker--caution     { background: var(--color-warning-bg); color: var(--saai-grey-900); border: 1px solid var(--color-warning); }
+.marker--data-short  { background: var(--saai-grey-50); color: var(--color-text-secondary); border: 1px solid var(--color-divider); }
+.marker--event-fix   { background: var(--color-primary-bg); color: var(--color-primary); border: 1px solid var(--saai-blue-100); }
+.marker--hypothesis  { background: var(--color-primary-bg); color: var(--color-primary); border: 1px solid var(--saai-blue-100); }
+.marker--storeagent  { background: var(--color-primary); color: var(--saai-white); border: 1px solid var(--color-primary); }
+.marker--prediction  { background: var(--saai-grey-50); color: var(--color-text-primary); border: 1px solid var(--color-divider); }
+
+/* ── Insight box / handoff card ──────────────────────── */
+.insight {
+  background: var(--color-bg-app);
+  border: 1px solid var(--color-border-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-m);
+}
+.insight__head {
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+.insight__body {
+  font-size: 10pt;
+  color: var(--color-text-body);
+  line-height: 1.6;
+}
+.insight__action {
+  font-size: 9pt;
+  color: var(--color-primary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+.insight--storeagent {
+  background: var(--color-primary-bg);
+  border-color: var(--saai-blue-100);
+}
+.insight--alert {
+  border-left: 3px solid var(--color-deep-red);
+  background: var(--color-bg-app);
+}
+.insight--positive {
+  border-left: 3px solid var(--color-positive);
+  background: var(--color-bg-app);
+}
+
+/* ── Data Quality Banner (master §6.5.2) ─────────────── */
+.dq-banner {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 9pt;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.dq-banner__body { flex: 1; }
+.dq-banner strong { font-weight: 700; }
+
+/* ── Clean table (master §4.2) ───────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+.table th, .table td {
+  text-align: right;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--color-divider);
+  letter-spacing: 0;
+}
+.table th:first-child, .table td:first-child { text-align: left; letter-spacing: 0.01em; }
+.table th {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.table tbody tr:nth-child(odd) { background: var(--color-bg-subtle); }
+.table tbody tr.total {
+  background: transparent;
+  border-top: 1px solid var(--color-divider);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.table tbody tr.total td { border-bottom: 0; padding-top: 8px; }
+.table tbody tr.delta td {
+  background: transparent;
+  font-size: 8.5pt;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+.delta-up   { color: var(--color-up);   font-weight: 700; }
+.delta-down { color: var(--color-down); font-weight: 700; }
+.delta-neut { color: var(--color-text-muted); }
+
+/* ── Heatmap (master §5.4 sequential 7-step) ────────── */
+.heatmap {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 1px;
+  font-size: 8.5pt;
+  background: var(--color-divider);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  letter-spacing: 0;
+}
+.heatmap th, .heatmap td {
+  background: var(--color-bg-app);
+  padding: 5px 4px;
+  text-align: center;
+  font-weight: 500;
+  color: var(--color-text-body);
+}
+.heatmap thead th {
+  background: var(--color-bg-subtle);
+  font-size: 8pt;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.heatmap td.h-empty { background: var(--saai-grey-25); color: var(--color-text-muted); }
+.heatmap td.h-1 { background: var(--chart-seq-1); color: var(--color-text-body); }
+.heatmap td.h-2 { background: var(--chart-seq-2); color: var(--color-text-body); }
+.heatmap td.h-3 { background: var(--chart-seq-3); color: var(--saai-grey-900); }
+.heatmap td.h-4 { background: var(--chart-seq-4); color: var(--saai-white); }
+.heatmap td.h-5 { background: var(--chart-seq-5); color: var(--saai-white); font-weight: 700; }
+.heatmap td.h-6 { background: var(--chart-seq-6); color: var(--saai-white); font-weight: 700; }
+.heatmap td.h-7 { background: var(--chart-seq-7); color: var(--saai-white); font-weight: 700; }
+.heatmap td.row-label, .heatmap td.h-total {
+  background: var(--color-bg-subtle);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.heatmap-legend {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 8pt; color: var(--color-text-secondary);
+  margin-top: 8px; letter-spacing: 0;
+}
+.heatmap-legend__bar {
+  display: inline-flex;
+}
+.heatmap-legend__bar span {
+  width: 24px; height: 12px;
+}
+
+/* ── Bar chart inline (sparkline-ish) ────────────────── */
+.bar-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr 60px;
+  align-items: center;
+  gap: 8px;
+  font-size: 9pt;
+  padding: 4px 0;
+  letter-spacing: 0;
+}
+.bar-row + .bar-row { border-top: 1px solid var(--color-divider); }
+.bar-row__label { color: var(--color-text-secondary); }
+.bar-row__value { font-weight: 700; color: var(--color-text-primary); text-align: right; }
+.bar-row__bar-wrap {
+  position: relative;
+  height: 14px;
+  background: var(--color-bg-subtle);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar-row__bar {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  background: var(--chart-cat-1);
+  border-radius: 2px;
+}
+.bar-row__bar.context { background: var(--chart-context); }
+.bar-row__delta { font-size: 8.5pt; text-align: right; font-weight: 700; }
+
+/* ── SVG line chart wrapper ──────────────────────────── */
+.linechart {
+  width: 100%; height: 110px;
+  background: var(--color-bg-app);
+}
+
+/* ── Section header ──────────────────────────────────── */
+.section-h {
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.section-takeaway {
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* ── Footnote / source ───────────────────────────────── */
+.footnote {
+  font-size: 8pt;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-divider);
+  padding-top: 6px;
+  margin-top: var(--space-m);
+  line-height: 1.5;
+}
+.footnote-inline {
+  font-size: 8pt;
+  color: var(--color-text-muted);
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+/* ── Anchor — module identity ───────────────────────── */
+.module-question {
+  font-size: 8pt;
+  color: var(--color-text-secondary);
+  font-style: normal;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     Page 1 — Executive Summary (Hero + KPI + Insights)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="page">
+  <div class="brand-strip">
+    <div class="brand-strip__mark"></div>
+    <div class="brand-strip__name">STOREAGENT</div>
+    <div class="brand-strip__sep">·</div>
+    <div>ローソン KDDI高輪 17F · W16</div>
+    <div class="brand-strip__page">1 / 5</div>
+  </div>
+
+  <!-- Hero — 結論型ヘッドライン (master §6.6.3, §6.8.4) -->
+  <div class="hero-meta">2026 · W16 (04/20–04/26) · 前週比 = vs W15 (04/13–04/19)</div>
+  <h1 class="hero-takeaway">
+    W16 売上 351.9万円、前週比 +1.7%。木曜12時の昼ピークが引き上げ役
+    <span class="footnote-inline">(#sec-C2 参照)</span>
+  </h1>
+  <p class="hero-sub">客数 +0.3%・購買率 +6.1pp の二指標同時改善。週末営業なし(オフィスビル) — 平日5日基準で前週比較。</p>
+
+  <!-- KPI 4 -->
+  <div class="kpi-grid" style="margin-top: var(--space-l);">
+    <div class="kpi">
+      <div class="kpi__label">売上 (POS合計)</div>
+      <div class="kpi__value">352<span class="kpi__unit">万円</span></div>
+      <div class="kpi__delta up">▲ +1.7%</div>
+      <svg class="kpi__spark" viewBox="0 0 120 30" width="100%" height="30" preserveAspectRatio="none" role="img" aria-label="売上 平日5日推移">
+        <polyline fill="none" stroke="var(--chart-cat-1)" stroke-width="1.5"
+                  points="0,12 30,9 60,9 90,4 120,16"/>
+        <circle cx="120" cy="16" r="2.5" fill="var(--chart-cat-1)"/>
+      </svg>
+      <div class="kpi__date">※ ピーク 04/23(木) 769千円</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">訪問者数 (カメラ)</div>
+      <div class="kpi__value">9,344<span class="kpi__unit">人</span></div>
+      <div class="kpi__delta down">▼ -5.6%</div>
+      <svg class="kpi__spark" viewBox="0 0 120 30" width="100%" height="30" preserveAspectRatio="none" role="img" aria-label="訪問者 平日5日推移">
+        <polyline fill="none" stroke="var(--chart-cat-1)" stroke-width="1.5"
+                  points="0,12 30,7 60,6 90,4 120,22"/>
+        <circle cx="120" cy="22" r="2.5" fill="var(--chart-cat-1)"/>
+      </svg>
+      <div class="kpi__date">※ 谷 04/24(金) 1,736人</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">購買率 (客数÷訪問者)</div>
+      <div class="kpi__value">48.4<span class="kpi__unit">%</span></div>
+      <div class="kpi__delta up">▲ +6.1pp</div>
+      <svg class="kpi__spark" viewBox="0 0 120 30" width="100%" height="30" preserveAspectRatio="none" role="img" aria-label="購買率 平日5日推移">
+        <polyline fill="none" stroke="var(--chart-cat-1)" stroke-width="1.5"
+                  points="0,18 30,16 60,17 90,20 120,4"/>
+        <circle cx="120" cy="4" r="2.5" fill="var(--chart-cat-1)"/>
+      </svg>
+      <div class="kpi__date">※ ピーク 04/24(金) 51.6%</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi__label">客単価 (売上÷客数)</div>
+      <div class="kpi__value">778<span class="kpi__unit">円</span></div>
+      <div class="kpi__delta up">▲ +1.4%</div>
+      <svg class="kpi__spark" viewBox="0 0 120 30" width="100%" height="30" preserveAspectRatio="none" role="img" aria-label="客単価 平日5日推移">
+        <polyline fill="none" stroke="var(--chart-cat-1)" stroke-width="1.5"
+                  points="0,18 30,13 60,12 90,4 120,18"/>
+        <circle cx="120" cy="4" r="2.5" fill="var(--chart-cat-1)"/>
+      </svg>
+      <div class="kpi__date">※ ピーク 04/23(木) 850円</div>
+    </div>
+  </div>
+
+  <!-- Data Quality Banner — master §6.5.2 (画面上部1回) -->
+  <div class="dq-banner" style="margin-top: var(--space-m);">
+    <div class="dq-banner__body">
+      <span class="marker marker--event-fix">[イベント補正]</span>
+      <strong>オフィスビル店舗:</strong> 週末・祝日は来客 0 が正常パターン。
+      本レポートの前週比較・日平均は <strong>平日5日基準</strong> で算出。
+      ※ 二指標の同時動きは因果関係を意味しません。
+    </div>
+  </div>
+
+  <!-- Insight cards — 3-card news (master §4.1 Grade card) -->
+  <div class="row" style="margin-top: var(--space-l);">
+    <div class="insight insight--storeagent">
+      <div class="insight__head">
+        <span class="marker marker--storeagent">[STOREAGENT]</span>
+        機会
+      </div>
+      <p class="insight__body">
+        <span class="marker marker--hypothesis">[仮説]</span>
+        購買率が前週比 +6.1pp と二指標同時に改善 — 訪問者減の中で来店客の
+        購買意欲が上がっている可能性。
+      </p>
+      <p class="insight__action">→ 推奨: 米飯部門 (売上1位 +2.6%) の品揃えを<br>火曜・木曜のピーク時間帯に厚めに割当 検討可</p>
+    </div>
+
+    <div class="insight insight--storeagent">
+      <div class="insight__head">
+        <span class="marker marker--storeagent">[STOREAGENT]</span>
+        危機
+      </div>
+      <p class="insight__body">
+        <span class="marker marker--data-short">[データ不足]</span>
+        訪問者 -5.6% の単週変動。4週移動平均との差異が信号閾値外
+        ではないため、原因不明の変動として扱う。
+      </p>
+      <p class="insight__action">→ 推奨: 翌週 W17 で再観測。連続2週なら<br>仮説格上げ ★ → ★★ で再確認 検討可</p>
+    </div>
+
+    <div class="insight insight--storeagent">
+      <div class="insight__head">
+        <span class="marker marker--storeagent">[STOREAGENT]</span>
+        効率
+      </div>
+      <p class="insight__body">
+        <span class="marker marker--hypothesis">[仮説]</span>
+        週末営業なしの構造を踏まえ、発注・人員を平日特化に
+        振り分けるのが原価最適に資する可能性。
+      </p>
+      <p class="insight__action">→ 推奨: 平日 vs 週末構成比は §3 参照。<br>具体配分は店長判断 検討可</p>
+    </div>
+  </div>
+
+  <!-- Action Tracker — next cycle verification (master §4.1) -->
+  <div class="insight" style="margin-top: var(--space-m); border-left: 3px solid var(--color-primary);">
+    <div class="insight__head">
+      アクショントラッカー · 次サイクル検証 (W17 04/27–05/03)
+    </div>
+    <table class="table" style="margin-top: 6px;">
+      <thead>
+        <tr>
+          <th>確認項目</th>
+          <th style="text-align:left;">担当</th>
+          <th style="text-align:left;">期限</th>
+          <th style="text-align:left;">状態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>木曜12時 昼ピークの再現性</td>
+          <td style="text-align:left;">店長</td>
+          <td style="text-align:left;">W17 木 17:00</td>
+          <td style="text-align:left;">未着手</td>
+        </tr>
+        <tr>
+          <td>訪問者 -5.6% 連続性 (2週連続なら格上げ)</td>
+          <td style="text-align:left;">エリアM</td>
+          <td style="text-align:left;">W17 月 09:00</td>
+          <td style="text-align:left;">未着手</td>
+        </tr>
+        <tr>
+          <td>米飯部門 平日ピーク帯 品揃え 検証</td>
+          <td style="text-align:left;">発注担当</td>
+          <td style="text-align:left;">W17 火 14:00</td>
+          <td style="text-align:left;">未着手</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="footnote">
+    出典: POS (売上・客数) · トラフィックカメラ (訪問者) · 集計 04/26 24:00 締め · ベースライン: 同曜日 4週 EWMA 分布。
+    ※ 本レポートは平日5日 (月–金) を比較対象とする。週末・祝日 0 件は構造的正常。
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     Page 2 — 日次指標 (Daily metrics)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="page">
+  <div class="brand-strip">
+    <div class="brand-strip__mark"></div>
+    <div class="brand-strip__name">STOREAGENT</div>
+    <div class="brand-strip__sep">·</div>
+    <div>ローソン KDDI高輪 17F · W16</div>
+    <div class="brand-strip__page">2 / 5</div>
+  </div>
+
+  <div class="section-h">§01 日次指標</div>
+  <h2 class="section-takeaway">木曜が今週の頂点 (769千円)、金曜訪問者の急減 -10.5%</h2>
+  <p class="module-question">この曜日 — *何が起き、何が一緒に起きたか*</p>
+
+  <!-- Combo bar+line chart — master §5.3 ch_combo_bar_line -->
+  <div style="margin-top: var(--space-m); background: var(--color-bg-app); padding: var(--space-s); border: 1px solid var(--color-border-card); border-radius: var(--radius-md);">
+    <svg viewBox="0 0 600 180" width="100%" height="180" role="img"
+         aria-labelledby="ch1-t" aria-describedby="ch1-d">
+      <title id="ch1-t">日別 売上・訪問者数 W16</title>
+      <desc id="ch1-d">月660千、火721千、水722千、木769千、金647千。木曜が最高、金曜が最低。訪問者は1736〜1940人で推移。</desc>
+      <!-- grid -->
+      <line x1="40" y1="20"  x2="560" y2="20"  stroke="var(--chart-grid)" stroke-width="0.5"/>
+      <line x1="40" y1="60"  x2="560" y2="60"  stroke="var(--chart-grid)" stroke-width="0.5"/>
+      <line x1="40" y1="100" x2="560" y2="100" stroke="var(--chart-grid)" stroke-width="0.5"/>
+      <line x1="40" y1="140" x2="560" y2="140" stroke="var(--chart-grid-strong)" stroke-width="1"/>
+      <text x="38" y="143" text-anchor="end" font-size="9" fill="var(--color-text-muted)" letter-spacing="0">0</text>
+      <text x="38" y="103" text-anchor="end" font-size="9" fill="var(--color-text-muted)" letter-spacing="0">300</text>
+      <text x="38" y="63"  text-anchor="end" font-size="9" fill="var(--color-text-muted)" letter-spacing="0">600</text>
+      <text x="38" y="23"  text-anchor="end" font-size="9" fill="var(--color-text-muted)" letter-spacing="0">900千円</text>
+      <!-- Bars (売上 千円) — context grey except 木曜 (highlight) -->
+      <!-- 月 660 -->
+      <rect x="70"  y="52"  width="60" height="88" fill="var(--chart-context)"/>
+      <!-- 火 721 -->
+      <rect x="170" y="44"  width="60" height="96" fill="var(--chart-context)"/>
+      <!-- 水 722 -->
+      <rect x="270" y="44"  width="60" height="96" fill="var(--chart-context)"/>
+      <!-- 木 769 highlight -->
+      <rect x="370" y="38"  width="60" height="102" fill="var(--chart-cat-1)"/>
+      <!-- 金 647 -->
+      <rect x="470" y="54"  width="60" height="86" fill="var(--chart-context)"/>
+      <!-- direct labels -->
+      <text x="100" y="46"  text-anchor="middle" font-size="10" font-weight="500" fill="var(--color-text-secondary)" letter-spacing="0">660</text>
+      <text x="200" y="38"  text-anchor="middle" font-size="10" font-weight="500" fill="var(--color-text-secondary)" letter-spacing="0">721</text>
+      <text x="300" y="38"  text-anchor="middle" font-size="10" font-weight="500" fill="var(--color-text-secondary)" letter-spacing="0">722</text>
+      <text x="400" y="32"  text-anchor="middle" font-size="11" font-weight="700" fill="var(--saai-blue-700)" letter-spacing="0">769千</text>
+      <text x="500" y="48"  text-anchor="middle" font-size="10" font-weight="500" fill="var(--color-text-secondary)" letter-spacing="0">647</text>
+      <!-- Line (訪問者 — secondary axis sketch) -->
+      <polyline fill="none" stroke="var(--chart-context)" stroke-width="1.5" stroke-dasharray="3 3"
+                points="100,75 200,69 300,68 400,65 500,90"/>
+      <circle cx="500" cy="90" r="3" fill="var(--chart-context)"/>
+      <text x="510" y="93" font-size="9" fill="var(--color-text-muted)" letter-spacing="0">1,736人</text>
+      <!-- x-axis labels -->
+      <text x="100" y="160" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" letter-spacing="0">月 4/20</text>
+      <text x="200" y="160" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" letter-spacing="0">火 4/21</text>
+      <text x="300" y="160" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" letter-spacing="0">水 4/22</text>
+      <text x="400" y="160" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" letter-spacing="0">木 4/23</text>
+      <text x="500" y="160" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)" letter-spacing="0">金 4/24</text>
+      <!-- legend -->
+      <rect x="40" y="170" width="10" height="6" fill="var(--chart-cat-1)"/>
+      <text x="54" y="176" font-size="8" fill="var(--color-text-secondary)" letter-spacing="0">売上 (千円, 強調=最高日)</text>
+      <line x1="200" y1="173" x2="220" y2="173" stroke="var(--chart-context)" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="224" y="176" font-size="8" fill="var(--color-text-secondary)" letter-spacing="0">訪問者数 (人, 副軸)</text>
+    </svg>
+  </div>
+
+  <!-- Daily metrics table -->
+  <table class="table" style="margin-top: var(--space-m);">
+    <thead>
+      <tr>
+        <th>日</th>
+        <th>訪問者数</th>
+        <th>客数</th>
+        <th>購買率</th>
+        <th>売上 (千円)</th>
+        <th>客単価 (円)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2026-04-20 (月)</td><td>1,847</td><td>898</td><td>48.6%</td><td>660</td><td>735</td></tr>
+      <tr><td>2026-04-21 (火)</td><td>1,905</td><td>917</td><td>48.1%</td><td>721</td><td>786</td></tr>
+      <tr><td>2026-04-22 (水)</td><td>1,916</td><td>911</td><td>47.5%</td><td>722</td><td>793</td></tr>
+      <tr><td>2026-04-23 (木)</td><td>1,940</td><td>904</td><td>46.6%</td><td>769</td><td>850</td></tr>
+      <tr><td>2026-04-24 (金)</td><td>1,736</td><td>896</td><td>51.6%</td><td>647</td><td>722</td></tr>
+      <tr class="total"><td>合計 / 平均</td><td>9,344</td><td>4,526</td><td>48.4%</td><td>3,519</td><td>777</td></tr>
+      <tr class="delta"><td>前週比 (vs W15 平日5日)</td>
+        <td><span class="delta-down">▼ -5.6%</span></td>
+        <td><span class="delta-up">▲ +0.3%</span></td>
+        <td><span class="delta-up">▲ +6.1pp</span></td>
+        <td><span class="delta-up">▲ +1.7%</span></td>
+        <td><span class="delta-up">▲ +1.4%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="footnote">
+    定義: 売上 = POS合計 (税込, 千円) · 客数 = レシート数 · 訪問者 = トラフィックカメラ ·
+    購買率 = 客数 ÷ 訪問者 × 100 · 客単価 = 売上 ÷ 客数。
+    出典: POS (実測) · カメラ (推定) · 集計 04/26 24:00。
+    ※ 二指標が並んで動いていても因果関係は確認されていません。
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     Page 3 — 前週比較 (W15 vs W16 sales by day)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="page">
+  <div class="brand-strip">
+    <div class="brand-strip__mark"></div>
+    <div class="brand-strip__name">STOREAGENT</div>
+    <div class="brand-strip__sep">·</div>
+    <div>ローソン KDDI高輪 17F · W16</div>
+    <div class="brand-strip__page">3 / 5</div>
+  </div>
+
+  <div class="section-h">§02 前週比較</div>
+  <h2 class="section-takeaway">水曜が +7.0% で最大改善、火曜は -2.8% で唯一の悪化</h2>
+  <p class="module-question">この週 — *先週比でどこが変わったか*</p>
+
+  <!-- Dumbbell-like comparison (per day W15 → W16) -->
+  <div style="margin-top: var(--space-m); background: var(--color-bg-app); padding: var(--space-m); border: 1px solid var(--color-border-card); border-radius: var(--radius-md);">
+    <h3 style="margin-bottom: var(--space-s);">日別売上 W15 → W16 (千円)</h3>
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label" style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.04em;font-size:8pt;">日</div>
+      <div class="bar-row__label" style="text-align:right;font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:0.04em;">前週</div>
+      <div></div>
+      <div class="bar-row__label" style="text-align:right;font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:0.04em;">今週</div>
+      <div class="bar-row__label" style="text-align:right;font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:0.04em;">前週比</div>
+    </div>
+
+    <!-- 月: 643 → 659  +2.6 -->
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label">04-20 (月)</div>
+      <div class="bar-row__value">643</div>
+      <div class="bar-row__bar-wrap" style="height:10px;">
+        <div class="bar-row__bar context" style="width: 83.5%;"></div>
+        <div class="bar-row__bar" style="width: 85.6%; background: var(--chart-cat-1); opacity: 0.5;"></div>
+      </div>
+      <div class="bar-row__value">659</div>
+      <div class="bar-row__delta delta-up">▲ +2.6%</div>
+    </div>
+    <!-- 火: 741 → 721  -2.8 (唯一の悪化) -->
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label">04-21 (火)</div>
+      <div class="bar-row__value">741</div>
+      <div class="bar-row__bar-wrap" style="height:10px;">
+        <div class="bar-row__bar context" style="width: 96.2%;"></div>
+        <div class="bar-row__bar" style="width: 93.7%; background: var(--chart-cat-1); opacity: 0.5;"></div>
+      </div>
+      <div class="bar-row__value">721</div>
+      <div class="bar-row__delta delta-down">▼ -2.8%</div>
+    </div>
+    <!-- 水: 674 → 722  +7.0 (最大改善) -->
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label">04-22 (水)</div>
+      <div class="bar-row__value">674</div>
+      <div class="bar-row__bar-wrap" style="height:10px;">
+        <div class="bar-row__bar context" style="width: 87.5%;"></div>
+        <div class="bar-row__bar" style="width: 93.8%; background: var(--chart-cat-1);"></div>
+      </div>
+      <div class="bar-row__value" style="color: var(--color-up);">722</div>
+      <div class="bar-row__delta delta-up">▲ +7.0%</div>
+    </div>
+    <!-- 木: 760 → 768  +1.0 -->
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label">04-23 (木)</div>
+      <div class="bar-row__value">760</div>
+      <div class="bar-row__bar-wrap" style="height:10px;">
+        <div class="bar-row__bar context" style="width: 98.8%;"></div>
+        <div class="bar-row__bar" style="width: 99.7%; background: var(--chart-cat-1); opacity: 0.5;"></div>
+      </div>
+      <div class="bar-row__value">768</div>
+      <div class="bar-row__delta delta-up">▲ +1.0%</div>
+    </div>
+    <!-- 金: 640 → 647  +1.0 -->
+    <div class="bar-row" style="grid-template-columns: 70px 60px 1fr 60px 60px 60px;">
+      <div class="bar-row__label">04-24 (金)</div>
+      <div class="bar-row__value">640</div>
+      <div class="bar-row__bar-wrap" style="height:10px;">
+        <div class="bar-row__bar context" style="width: 83.1%;"></div>
+        <div class="bar-row__bar" style="width: 84.0%; background: var(--chart-cat-1); opacity: 0.5;"></div>
+      </div>
+      <div class="bar-row__value">647</div>
+      <div class="bar-row__delta delta-up">▲ +1.0%</div>
+    </div>
+    <p class="footnote-inline" style="margin-top: 8px;">
+      濃い青 = 今週、淡い青 = 前週。バー幅は最大値 (木曜768) 比例。
+    </p>
+  </div>
+
+  <!-- Min / Max insight boxes -->
+  <div class="row" style="margin-top: var(--space-m);">
+    <div class="insight insight--positive">
+      <div class="insight__head">最高 — 04-23 (木) 768千円</div>
+      <p class="insight__body">
+        <span class="marker marker--hypothesis">[仮説]</span>
+        4週移動平均 (754千円) との差 +1.9%。同曜日 EWMA分布の閾値内 →
+        定常パターンの維持と判断。
+      </p>
+      <p class="insight__action">→ 推奨: 木曜のオペレーション現状維持 検討可</p>
+    </div>
+    <div class="insight insight--alert">
+      <div class="insight__head">最低 — 04-24 (金) 647千円</div>
+      <p class="insight__body">
+        <span class="marker marker--hypothesis">[仮説]</span>
+        前週比 +1.0% で *悪化ではない*。ただし訪問者 -10.5% は
+        単週変動として要観察 (W17 で再確認)。
+      </p>
+      <p class="insight__action">→ 推奨: 翌週金曜の訪問者数 要観測 検討可</p>
+    </div>
+  </div>
+
+  <p class="footnote">
+    集計範囲: 平日5日 (月–金) のみ。週末0は構造的正常。
+    ※ 全体WoW +1.7% (2026-04-26 締め) — 前週同曜日と単純比較した値。
+    インディケーターの並びと結果の因果関係は確認されていません。
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     Page 4 — 平日 vs 週末 (Weekday vs Weekend)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="page">
+  <div class="brand-strip">
+    <div class="brand-strip__mark"></div>
+    <div class="brand-strip__name">STOREAGENT</div>
+    <div class="brand-strip__sep">·</div>
+    <div>ローソン KDDI高輪 17F · W16</div>
+    <div class="brand-strip__page">4 / 5</div>
+  </div>
+
+  <div class="section-h">§03 平日 vs 週末・祝日</div>
+  <h2 class="section-takeaway">週末営業なし — 平日5日の単独構造で運営中</h2>
+  <p class="module-question">この店 — *構造的にどう動いているか*</p>
+
+  <!-- KPI 2 + data deficit notice -->
+  <div class="row" style="margin-top: var(--space-m);">
+    <div class="kpi" style="border-left: 3px solid var(--color-primary);">
+      <div class="kpi__label">平日 (5日 · 月–金)</div>
+      <div class="kpi__value">703<span class="kpi__unit">千円</span><span style="font-size: 9pt; color: var(--color-text-muted); font-weight: 500; margin-left: 4px;">/日</span></div>
+      <div class="kpi__delta up">▲ 売上/日 +1.7%</div>
+      <div style="margin-top: 8px; font-size: 9pt; color: var(--color-text-secondary); letter-spacing: 0;">
+        客数 4,526 (+0.3%) · 購買率 48.4% (+6.1pp)
+      </div>
+    </div>
+    <div class="kpi" style="background: var(--color-bg-subtle);">
+      <div class="kpi__label">週末・祝日 (0日)</div>
+      <div class="kpi__value muted">—<span class="kpi__unit">　</span></div>
+      <div style="margin-top: 4px;">
+        <span class="marker marker--data-short">[データ不足]</span>
+      </div>
+      <div style="margin-top: 8px; font-size: 9pt; color: var(--color-text-muted); letter-spacing: 0;">
+        オフィスビル店舗 — 構造的に営業日 0。<br>
+        ※ 比較不可項目を 0 に置換しない。
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily average comparison table -->
+  <h3 style="margin-top: var(--space-l);">日平均比較 — 平日 vs 週末・祝日</h3>
+  <table class="table" style="margin-top: 6px;">
+    <thead>
+      <tr>
+        <th>指標</th>
+        <th>平日 (5日)</th>
+        <th>週末・祝日 (0日)</th>
+        <th style="text-align:left;">構成比</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>売上 / 日</td>
+        <td>703 千円</td>
+        <td><span class="muted">— ([データ不足])</span></td>
+        <td style="text-align:left;">
+          <div style="height: 6px; background: var(--color-bg-subtle); border-radius: 3px; overflow: hidden;">
+            <div style="height: 100%; width: 100%; background: var(--chart-cat-1);"></div>
+          </div>
+          <small>平日 100%</small>
+        </td>
+      </tr>
+      <tr>
+        <td>訪問者数 / 日</td>
+        <td>1,868 人</td>
+        <td><span class="muted">—</span></td>
+        <td style="text-align:left;">
+          <div style="height: 6px; background: var(--color-bg-subtle); border-radius: 3px; overflow: hidden;">
+            <div style="height: 100%; width: 100%; background: var(--chart-cat-1);"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>客数 / 日</td>
+        <td>905</td>
+        <td><span class="muted">—</span></td>
+        <td style="text-align:left;">
+          <div style="height: 6px; background: var(--color-bg-subtle); border-radius: 3px; overflow: hidden;">
+            <div style="height: 100%; width: 100%; background: var(--chart-cat-1);"></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Why: structural -->
+  <div class="insight insight--storeagent" style="margin-top: var(--space-m);">
+    <div class="insight__head">
+      <span class="marker marker--storeagent">[STOREAGENT]</span>
+      構造説明
+    </div>
+    <p class="insight__body">
+      KDDI高輪 17F はオフィスビル内店舗のため、<strong>平日5日のみ営業</strong>が
+      正常パターン。週末・祝日 0 件は *データ欠損* ではなく *構造的事実* — 比較群として
+      使用しない。発注・人員配置の検討は <strong>平日5日内の曜日差</strong>を軸に。
+    </p>
+    <p class="insight__action">→ 推奨: §05 時間帯×曜日 ヒートマップで<br>平日内のピーク・閑散帯を確認の上で判断 検討可</p>
+  </div>
+
+  <!-- Constraint reminder -->
+  <p class="footnote">
+    ※ 平日 = 月–金、週末・祝日 = 土・日・祝。日平均で比較。
+    [データ不足] 状態の指標には L3 予測を付与しない (REPORT_CONSTITUTION §6.5)。
+    出典: POS · カメラ · 営業日マスタ。
+  </p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     Page 5 — 時間帯×曜日 売上ヒートマップ
+     ═══════════════════════════════════════════════════════════ -->
+<section class="page">
+  <div class="brand-strip">
+    <div class="brand-strip__mark"></div>
+    <div class="brand-strip__name">STOREAGENT</div>
+    <div class="brand-strip__sep">·</div>
+    <div>ローソン KDDI高輪 17F · W16</div>
+    <div class="brand-strip__page">5 / 5</div>
+  </div>
+
+  <div class="section-h">§04 時間帯 × 曜日 売上 ヒートマップ</div>
+  <h2 class="section-takeaway">木 12:00 が今週の最高売上 (218千円)、米飯部門 569千円が牽引</h2>
+  <p class="module-question">この時間帯 — *いつ何が起きたか*</p>
+
+  <!-- Heatmap — Sequential 7-step blue (master §5.4) -->
+  <table class="heatmap" style="margin-top: var(--space-m);">
+    <thead>
+      <tr>
+        <th>時間</th>
+        <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th>
+        <th>土</th><th>日</th>
+        <th>合計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">07時</td>
+        <td class="h-1">16</td><td class="h-1">14</td><td class="h-1">17</td><td class="h-1">19</td><td class="h-1">21</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">88千</td>
+      </tr>
+      <tr>
+        <td class="row-label">08時</td>
+        <td class="h-2">57</td><td class="h-3">72</td><td class="h-3">97</td><td class="h-3">68</td><td class="h-2">60</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">356千</td>
+      </tr>
+      <tr>
+        <td class="row-label">09時</td>
+        <td class="h-3">72</td><td class="h-4">105</td><td class="h-3">74</td><td class="h-3">65</td><td class="h-3">63</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">381千</td>
+      </tr>
+      <tr>
+        <td class="row-label">10時</td>
+        <td class="h-2">56</td><td class="h-2">64</td><td class="h-3">80</td><td class="h-3">82</td><td class="h-2">50</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">334千</td>
+      </tr>
+      <tr>
+        <td class="row-label">11時</td>
+        <td class="h-4">121</td><td class="h-5">155</td><td class="h-4">100</td><td class="h-5">146</td><td class="h-3">91</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">614千</td>
+      </tr>
+      <tr>
+        <td class="row-label">12時</td>
+        <td class="h-5">188</td><td class="h-5">180</td><td class="h-5">172</td><td class="h-7">218</td><td class="h-5">182</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">942千</td>
+      </tr>
+      <tr>
+        <td class="row-label">13時</td>
+        <td class="h-2">45</td><td class="h-2">44</td><td class="h-2">54</td><td class="h-2">50</td><td class="h-2">51</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">245千</td>
+      </tr>
+      <tr>
+        <td class="row-label">14時</td>
+        <td class="h-2">44</td><td class="h-1">33</td><td class="h-2">43</td><td class="h-2">42</td><td class="h-2">57</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">221千</td>
+      </tr>
+      <tr>
+        <td class="row-label">15時</td>
+        <td class="h-1">15</td><td class="h-1">20</td><td class="h-1">31</td><td class="h-1">28</td><td class="h-1">18</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">116千</td>
+      </tr>
+      <tr>
+        <td class="row-label">16時</td>
+        <td class="h-1">13</td><td class="h-1">9</td><td class="h-1">12</td><td class="h-1">10</td><td class="h-1">9</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">55千</td>
+      </tr>
+      <tr>
+        <td class="row-label">17時</td>
+        <td class="h-1">13</td><td class="h-1">12</td><td class="h-1">12</td><td class="h-1">12</td><td class="h-1">23</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">74千</td>
+      </tr>
+      <tr>
+        <td class="row-label">18時</td>
+        <td class="h-1">7</td><td class="h-1">5</td><td class="h-1">19</td><td class="h-1">11</td><td class="h-1">12</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">56千</td>
+      </tr>
+      <tr>
+        <td class="row-label">19時</td>
+        <td class="h-1">5</td><td class="h-1">1</td><td class="h-1">5</td><td class="h-1">13</td><td class="h-1">4</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">30千</td>
+      </tr>
+      <tr>
+        <td class="row-label">20時</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td><td class="h-empty">—</td><td class="h-empty">—</td><td class="h-1">0.5</td>
+        <td class="h-empty">—</td><td class="h-empty">—</td>
+        <td class="h-total">1千</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="heatmap-legend">
+    <span>低</span>
+    <span class="heatmap-legend__bar">
+      <span style="background: var(--chart-seq-1);"></span>
+      <span style="background: var(--chart-seq-2);"></span>
+      <span style="background: var(--chart-seq-3);"></span>
+      <span style="background: var(--chart-seq-4);"></span>
+      <span style="background: var(--chart-seq-5);"></span>
+      <span style="background: var(--chart-seq-6);"></span>
+      <span style="background: var(--chart-seq-7);"></span>
+    </span>
+    <span>高</span>
+    <span style="margin-left: 16px;">単位: 千円。— = 営業外時間帯。</span>
+  </div>
+
+  <!-- AI insight box -->
+  <div class="insight insight--storeagent" style="margin-top: var(--space-m);">
+    <div class="insight__head">
+      <span class="marker marker--storeagent">[STOREAGENT]</span>
+      ピーク分析
+      <span class="footnote-inline" style="margin-left: 8px;">出典: §sec-C5</span>
+    </div>
+    <p class="insight__body">
+      <span class="marker marker--hypothesis">[仮説] ★</span>
+      木12時 218千円 (週内最高) は同時間帯月平均 188千円より +16% 高い。
+      4週同曜・同時間 EWMA との差が連続2週で確認されれば中信号 ★ で扱う。
+      売上1位部門 = <strong>米飯</strong> (569千円 · 前週比 +2.6%)。
+      ※ 二指標の同時上昇は因果関係を意味しません。
+    </p>
+    <p class="insight__action">
+      → 推奨: 木曜11–12時の米飯陳列量・補充タイミング 検討可。<br>
+      → 閑散帯 金20:00 (1千円) は人員配置見直し対象 検討可。
+    </p>
+  </div>
+
+  <p class="footnote">
+    定義: 時間帯 (行) × 曜日 (列) の売上集計。色濃度 = 売上 7-step (低 → 高)。
+    出典: POS 時刻スタンプ集計 (04/20–04/24, 平日5日)。
+    ※ 売上1位部門 = 米飯 (569千円, +2.6%)。
+    ※ 2指標の並び = 因果関係 ≠ — REPORT_CONSTITUTION §3.3。
+  </p>
+</section>
+
+</body>
+</html>

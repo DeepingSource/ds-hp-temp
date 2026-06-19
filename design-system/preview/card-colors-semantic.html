@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Semantic — success / warn / error</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:18px 22px;}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:900px;font-size:12px;line-height:1.4;font-weight:500}
+.dot{width:6px;height:6px;border-radius:50%}
+</style>
+</head><body>
+<div class="row tight">
+  <div class="swatch"><div class="chip" style="background:#1AB715"></div><div class="name">success/500</div><div class="hex">#1AB715</div></div>
+  <div class="swatch"><div class="chip" style="background:#FAD232"></div><div class="name">warning/500</div><div class="hex">#FAD232</div></div>
+  <div class="swatch"><div class="chip" style="background:#E05959"></div><div class="name">error/500</div><div class="hex">#E05959</div></div>
+  <div class="swatch"><div class="chip" style="background:#376AE2"></div><div class="name">info/500</div><div class="hex">#376AE2</div></div>
+</div>
+<div class="row tight" style="margin-top:6px">
+  <span class="pill" style="background:#E8F8E8;color:#0E650C"><span class="dot" style="background:#1AB715"></span>Completed</span>
+  <span class="pill" style="background:#FFFBEB;color:#967E1E"><span class="dot" style="background:#FAD232"></span>Pending</span>
+  <span class="pill" style="background:#FCEEEE;color:#9F3F3F"><span class="dot" style="background:#E05959"></span>Error</span>
+  <span class="pill" style="background:#EBF0FC;color:#274BA0"><span class="dot" style="background:#376AE2"></span>Info</span>
+</div>
+</body></html>

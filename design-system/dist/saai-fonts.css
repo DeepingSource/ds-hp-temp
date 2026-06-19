@@ -1,0 +1,76 @@
+/* =============================================================
+ * SAAI Design System — Pretendard KR @font-face
+ * Source: fonts/PretendardKR-{Regular,Medium,Bold}.woff2
+ * Version: v1.4  (2026-05-06)
+ *
+ * 사용 (마스터 §3.3):
+ *   - Pretendard KR 1 패밀리, weight 400/500/700 한정.
+ *   - weight 600/800/900 사용 금지.
+ *   - 일본어는 PretendardJP (별도 import 필요).
+ *
+ * 본 파일은 dist/ 외부의 fonts/ 폴더를 참조한다.
+ * 배포 시 폴더 구조:
+ *   dist/saai-fonts.css
+ *   fonts/PretendardKR-Regular.woff2
+ *   fonts/PretendardKR-Medium.woff2
+ *   fonts/PretendardKR-Bold.woff2
+ * ============================================================= */
+
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../fonts/PretendardKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../fonts/PretendardKR-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('../fonts/PretendardKR-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────────────
+ * PretendardJP — 일본어 (마스터 §3.3 i18n 차이)
+ *
+ * 본 패키지는 .woff2 파일을 *직접 포함하지 않는다*.
+ * 일본어 지원이 필요한 프로덕트는 Pretendard JP 공식 배포
+ * (https://github.com/orioncactus/pretendard) 에서 받아
+ * fonts/PretendardJP-{Regular,Medium,Bold}.woff2 로 배치.
+ *
+ * 파일이 없으면 system-ui 폴백 (saai-tokens.css 의 --saai-font-jp).
+ * ───────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'PretendardJP';
+  src: url('../fonts/PretendardJP-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PretendardJP';
+  src: url('../fonts/PretendardJP-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PretendardJP';
+  src: url('../fonts/PretendardJP-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

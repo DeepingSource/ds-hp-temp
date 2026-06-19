@@ -1,0 +1,282 @@
+/* =============================================================
+ * SAAI Design System — Chart Tokens
+ * Single source: constitution/SAAI_MASTER.md §5.4 / 부록 A.6 / A.7 (다크)
+ * Version: v1.4  (2026-05-06)
+ *
+ * 사용 규칙 (마스터 §5):
+ *   - 차트 팔레트는 3종 한정: Categorical / Sequential / Diverging
+ *   - 임의 팔레트 추가 = SAAI 표준 위반
+ *   - Categorical 6 hue cap, 7+ 시 small multiples
+ *   - Sequential 7 step (단방향 blue), 단계 ≠ 7 = 위반
+ *   - Diverging 중앙 = grey-200 (노란색 절대 금지 — 색맹 안전)
+ *   - 데이터 라벨 11px 미만 금지
+ *
+ * Layer order 의존:
+ *   saai-tokens.css → saai-semantic.css → saai-audience.css → 본 파일
+ * ============================================================= */
+
+@import url('./saai-semantic.css');
+
+:root {
+  /* ─────────────────────────────────────────────────────
+   * Categorical — ≤ 6 cap (마스터 §5.4)
+   *   cat-1 = SAAI Blue 가 *항상* 강조 시리즈 (protagonist)
+   *   나머지는 디폴트로 --chart-context 회색 처리,
+   *   메시지가 다루는 시리즈만 색.
+   * ───────────────────────────────────────────────────── */
+  --chart-cat-1:            var(--saai-blue-500);    /* 항상 강조 */
+  --chart-cat-2:            var(--saai-green-700);
+  --chart-cat-3:            var(--saai-purple-600);
+  --chart-cat-4:            var(--saai-pink-600);
+  --chart-cat-5:            var(--saai-cyan-600);
+  --chart-cat-6:            var(--saai-yellow-700);
+
+  /* Hover variants */
+  --chart-cat-1-hover:      var(--saai-blue-600);
+  --chart-cat-2-hover:      var(--saai-green-800);
+  --chart-cat-3-hover:      var(--saai-purple-700);
+  --chart-cat-4-hover:      var(--saai-pink-700);
+  --chart-cat-5-hover:      var(--saai-cyan-700);
+  --chart-cat-6-hover:      var(--saai-yellow-800);
+
+  /* Context — "everything else" (회색 디폴트) */
+  --chart-context:          var(--saai-grey-200);    /* 베이스라인·non-emphasised */
+  --chart-context-strong:   var(--saai-grey-300);    /* 컨텍스트가 가독성 필요 시 */
+  --chart-baseline:         var(--saai-grey-500);    /* 레퍼런스·baseline 시리즈 */
+
+  /* ─────────────────────────────────────────────────────
+   * Sequential — Single-hue blue 7 step (마스터 §5.4)
+   * 히트맵·밀도·연속량 인코딩.
+   * ───────────────────────────────────────────────────── */
+  --chart-seq-1:            var(--saai-blue-25);
+  --chart-seq-2:            var(--saai-blue-50);
+  --chart-seq-3:            var(--saai-blue-100);
+  --chart-seq-4:            var(--saai-blue-300);
+  --chart-seq-5:            var(--saai-blue-500);
+  --chart-seq-6:            var(--saai-blue-700);
+  --chart-seq-7:            var(--saai-blue-900);
+
+  /* ─────────────────────────────────────────────────────
+   * Diverging — neg-3 → grey → pos-3 (마스터 §5.4)
+   * variance vs target / vs zero.
+   * 중앙 = grey-200. 노란색 절대 금지.
+   * ───────────────────────────────────────────────────── */
+  --chart-div-neg-3:        var(--saai-red-700);
+  --chart-div-neg-2:        var(--saai-red-400);
+  --chart-div-neg-1:        var(--saai-red-100);
+  --chart-div-mid:          var(--saai-grey-200);    /* === 중앙 === */
+  --chart-div-pos-1:        var(--saai-blue-100);
+  --chart-div-pos-2:        var(--saai-blue-400);
+  --chart-div-pos-3:        var(--saai-blue-700);
+
+  /* ─────────────────────────────────────────────────────
+   * Semantic — 차트 전용 의미 색 (마스터 §5.4)
+   * 명확한 방향성 변화에만 사용. 장식 ❌.
+   * ───────────────────────────────────────────────────── */
+  --chart-positive:         var(--saai-green-700);
+  --chart-negative:         var(--saai-red-700);
+  --chart-neutral:          var(--saai-grey-400);
+  --chart-warning:          var(--saai-yellow-500);
+  --chart-forecast:         var(--saai-grey-400);    /* 예측·보간 — 항상 dash 와 페어 */
+
+  /* ─────────────────────────────────────────────────────
+   * Chrome — 축·격자·툴팁·CI band (마스터 §5.4)
+   * ───────────────────────────────────────────────────── */
+  --chart-axis:             var(--saai-grey-300);    /* 1px solid */
+  --chart-axis-tick:        var(--saai-grey-200);
+  --chart-grid:             var(--saai-grey-100);    /* 1px solid 보조 격자 */
+  --chart-grid-strong:      var(--saai-grey-500);    /* 1.5px solid zero/target line */
+  --chart-tooltip-bg:       rgba(0,0,0,0.9);
+  --chart-tooltip-fg:       var(--saai-white);
+  --chart-band:             rgba(55,106,226,0.10);   /* CI band fill */
+  --chart-band-strong:      rgba(55,106,226,0.18);
+
+  /* ─────────────────────────────────────────────────────
+   * Type — 데이터 라벨 11px 미만 금지 (마스터 §5.4)
+   * ───────────────────────────────────────────────────── */
+  --chart-title-size:       14px;        /* bold takeaway */
+  --chart-title-weight:     700;
+  --chart-subtitle-size:    12px;        /* source / period */
+  --chart-axis-fs:          11px;        /* axis labels — 최소 11px */
+  --chart-label-fs:         11px;        /* 직접 데이터 라벨 */
+  --chart-annot-fs:         11px;        /* annotation·callout */
+  --chart-source-fs:        10px;        /* footnote·source — 라벨 아닌 메타 */
+
+  /* ─────────────────────────────────────────────────────
+   * Stroke / Point
+   * ───────────────────────────────────────────────────── */
+  --chart-stroke-emph:      2px;         /* 강조 line */
+  --chart-stroke-base:      1.5px;       /* normal line + zero/target */
+  --chart-stroke-ctx:       1px;         /* context line */
+  --chart-stroke-dash:      4 4;         /* 점선 = 예측·보간 (forecast 와 항상 페어) */
+  --chart-point-r:          3px;
+  --chart-point-r-emph:     4.5px;
+}
+
+/* ─────────────────────────────────────────────────────
+ * Utility classes — 차트 카드·캔버스 공통
+ * ───────────────────────────────────────────────────── */
+.chart-takeaway {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-title-size);
+  font-weight: var(--chart-title-weight);
+  color: var(--saai-grey-900);
+  line-height: 1.4;
+  margin: 0 0 4px;
+}
+
+.chart-meta {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-subtitle-size);
+  color: var(--saai-grey-400);
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.chart-source {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-source-fs);
+  color: var(--saai-grey-300);
+  line-height: 1.4;
+  margin-top: 8px;
+}
+
+.chart-annot {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-annot-fs);
+  fill: var(--saai-grey-700);
+  font-weight: 500;
+}
+
+.chart-label-emph {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-label-fs);
+  font-weight: 700;   /* SAAI 룰 — 400/500/700 한정 (마스터 §3.3) */
+  fill: var(--saai-blue-600);
+}
+
+.chart-label-ctx {
+  font-family: var(--saai-font-sans);
+  font-size: var(--chart-label-fs);
+  fill: var(--saai-grey-400);
+}
+
+/* 예측 점선 강조 — forecast 와 stroke-dash 페어 */
+.chart-forecast-line {
+  stroke: var(--chart-forecast);
+  stroke-dasharray: var(--chart-stroke-dash);
+  stroke-width: var(--chart-stroke-base);
+  fill: none;
+}
+
+/* CI band */
+.chart-ci-band {
+  fill: var(--chart-band);
+  stroke: none;
+}
+
+/* ─────────────────────────────────────────────────────
+ * 다크 모드 — 차트 토큰 분기 (마스터 §A.7)
+ *
+ * Tier 1 색은 그대로. Tier 2 매핑만 한 톤 밝은 색으로.
+ * 라이트의 진한 색이 다크 배경에서 안 보이는 문제 회피.
+ * ───────────────────────────────────────────────────── */
+
+body.theme-dark {
+  /* Categorical — 한 톤 밝게 */
+  --chart-cat-1:            var(--saai-blue-400);
+  --chart-cat-2:            var(--saai-green-400);
+  --chart-cat-3:            var(--saai-purple-400);
+  --chart-cat-4:            var(--saai-pink-400);
+  --chart-cat-5:            var(--saai-cyan-400);
+  --chart-cat-6:            var(--saai-yellow-400);
+
+  --chart-cat-1-hover:      var(--saai-blue-300);
+  --chart-cat-2-hover:      var(--saai-green-300);
+  --chart-cat-3-hover:      var(--saai-purple-300);
+  --chart-cat-4-hover:      var(--saai-pink-300);
+  --chart-cat-5-hover:      var(--saai-cyan-300);
+  --chart-cat-6-hover:      var(--saai-yellow-300);
+
+  /* Context — 다크 배경 위에서 의미 있는 회색 */
+  --chart-context:          var(--saai-grey-600);
+  --chart-context-strong:   var(--saai-grey-500);
+  --chart-baseline:         var(--saai-grey-400);
+
+  /* Sequential — 어두운 배경 → 밝은 색이 짙음 방향 */
+  --chart-seq-1:            var(--saai-blue-900);
+  --chart-seq-2:            var(--saai-blue-800);
+  --chart-seq-3:            var(--saai-blue-700);
+  --chart-seq-4:            var(--saai-blue-500);
+  --chart-seq-5:            var(--saai-blue-400);
+  --chart-seq-6:            var(--saai-blue-200);
+  --chart-seq-7:            var(--saai-blue-25);
+
+  /* Diverging — 중앙 grey-600 (그레이 유지) */
+  --chart-div-neg-3:        var(--saai-red-300);
+  --chart-div-neg-2:        var(--saai-red-500);
+  --chart-div-neg-1:        var(--saai-red-700);
+  --chart-div-mid:          var(--saai-grey-600);
+  --chart-div-pos-1:        var(--saai-blue-700);
+  --chart-div-pos-2:        var(--saai-blue-500);
+  --chart-div-pos-3:        var(--saai-blue-300);
+
+  /* Semantic */
+  --chart-positive:         var(--saai-green-400);
+  --chart-negative:         var(--saai-red-400);
+  --chart-neutral:          var(--saai-grey-400);
+  --chart-warning:          var(--saai-yellow-400);
+  --chart-forecast:         var(--saai-grey-500);
+
+  /* Chrome */
+  --chart-axis:             var(--saai-grey-500);
+  --chart-axis-tick:        var(--saai-grey-600);
+  --chart-grid:             var(--saai-grey-800);
+  --chart-grid-strong:      var(--saai-grey-500);
+
+  /* Tooltip — 라이트와 반전 (다크 배경 위 흰 tooltip) */
+  --chart-tooltip-bg:       rgba(255, 255, 255, 0.95);
+  --chart-tooltip-fg:       var(--saai-grey-900);
+
+  /* CI band — 더 밝은 blue */
+  --chart-band:             rgba(95, 136, 232, 0.18);
+  --chart-band-strong:      rgba(95, 136, 232, 0.30);
+}
+
+/* OS 자동 감지 — body.theme-light/dark 미지정 시 동일 적용 */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-light):not(.theme-dark) {
+    --chart-cat-1:            var(--saai-blue-400);
+    --chart-cat-2:            var(--saai-green-400);
+    --chart-cat-3:            var(--saai-purple-400);
+    --chart-cat-4:            var(--saai-pink-400);
+    --chart-cat-5:            var(--saai-cyan-400);
+    --chart-cat-6:            var(--saai-yellow-400);
+
+    --chart-context:          var(--saai-grey-600);
+    --chart-context-strong:   var(--saai-grey-500);
+
+    --chart-seq-1:            var(--saai-blue-900);
+    --chart-seq-2:            var(--saai-blue-800);
+    --chart-seq-3:            var(--saai-blue-700);
+    --chart-seq-4:            var(--saai-blue-500);
+    --chart-seq-5:            var(--saai-blue-400);
+    --chart-seq-6:            var(--saai-blue-200);
+    --chart-seq-7:            var(--saai-blue-25);
+
+    --chart-div-mid:          var(--saai-grey-600);
+
+    --chart-positive:         var(--saai-green-400);
+    --chart-negative:         var(--saai-red-400);
+    --chart-forecast:         var(--saai-grey-500);
+
+    --chart-axis:             var(--saai-grey-500);
+    --chart-grid:             var(--saai-grey-800);
+    --chart-grid-strong:      var(--saai-grey-500);
+
+    --chart-tooltip-bg:       rgba(255, 255, 255, 0.95);
+    --chart-tooltip-fg:       var(--saai-grey-900);
+
+    --chart-band:             rgba(95, 136, 232, 0.18);
+  }
+}

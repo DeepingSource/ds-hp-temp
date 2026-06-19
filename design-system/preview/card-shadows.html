@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Shadow system</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:24px 22px;background:#fafafa}
+.row{gap:20px}
+.box{display:flex;flex-direction:column;align-items:center;gap:8px}
+.s{width:130px;height:60px;background:#fff;border-radius:10px}
+.k{font-size:11px;color:var(--grey-500);font-family:ui-monospace,Menlo,monospace}
+.l{font-size:10px;color:var(--grey-300);text-transform:uppercase;letter-spacing:.06em}
+</style>
+</head><body>
+<div class="row">
+  <div class="box"><div class="s" style="box-shadow:0px 1px 2px 0px rgba(0,0,0,0.05)"></div><div class="k">menu</div><div class="l">0 1 2 · 5%</div></div>
+  <div class="box"><div class="s" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.08)"></div><div class="k">card</div><div class="l">0 2 6 · 8%</div></div>
+  <div class="box"><div class="s" style="box-shadow:0px 2px 10px 0px rgba(135,135,135,0.12)"></div><div class="k">input</div><div class="l">0 2 10 · grey 12%</div></div>
+  <div class="box"><div class="s" style="box-shadow:0px 0px 20px 0px rgba(135,135,135,0.12);border-radius:900px"></div><div class="k">pill</div><div class="l">0 0 20 · grey 12%</div></div>
+  <div class="box"><div class="s" style="box-shadow:0 0 0 2px rgba(122,197,255,0.30);background:#fff"></div><div class="k">focus</div><div class="l">2px sky 30%</div></div>
+</div>
+</body></html>

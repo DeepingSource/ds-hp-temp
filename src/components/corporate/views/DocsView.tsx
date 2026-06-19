@@ -1,0 +1,242 @@
+import Link from 'next/link';
+import { BookOpen, Rocket, Plug, Shield, BarChart3, FileText, Bot, ShieldCheck } from 'lucide-react';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import { crumb } from '@/lib/breadcrumb-labels';
+import { type Locale, localeHref } from '@/lib/i18n';
+
+/**
+ * DocsView — shared product-docs hub composition.
+ * Rendered by `/resources/docs` (en), `/ko/resources/docs`, `/jp/resources/docs` with the
+ * locale prop (PLAN_v1.1 D6 path-prefix i18n).
+ */
+
+const C: Record<Locale, {
+  eyebrow: string;
+  heroTitle: string;
+  heroSub: string;
+  sidebarLabel: string;
+  noticeBefore: string;
+  noticeLink: string;
+  noticeAfter: string;
+  manualSectionTitle: string;
+  featuredTitle: string;
+  featuredDesc: string;
+  comingSoon: string;
+  docComingSoon: string;
+  navSections: { id: string; title: string; items: string[] }[];
+  comingSoonManuals: { title: string; desc: string }[];
+}> = {
+  ko: {
+    eyebrow: 'Docs',
+    heroTitle: '제품 매뉴얼',
+    heroSub: 'DeepingSource 제품의 설치, 연동, 운영에 필요한 기술 문서를 제공합니다. 아래 섹션에서 필요한 주제를 선택해 시작하세요.',
+    sidebarLabel: '제품 문서',
+    noticeBefore: '상세 문서는 순차적으로 공개 예정입니다. 지금 필요한 자료가 있다면 ',
+    noticeLink: '문의',
+    noticeAfter: '해 주세요.',
+    manualSectionTitle: '제품별 매뉴얼',
+    featuredTitle: 'Store Insight 사용자 매뉴얼',
+    featuredDesc: '로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 — 대시보드 리포트 읽는 법을 안내합니다.',
+    comingSoon: '준비 중',
+    docComingSoon: '문서 준비 중',
+    navSections: [
+      { id: 'getting-started', title: '시작하기', items: ['제품 개요', '도입 절차', '환경 요구사항', '첫 리포트 받기'] },
+      { id: 'integration', title: '연동 가이드', items: ['CCTV 연동', 'POS 연동', '대시보드 접근', 'API 개요'] },
+      { id: 'privacy', title: '프라이버시 & 보안', items: ['익명화 동작 원리', '데이터 보관 정책', '접근 권한 관리', '컴플라이언스'] },
+      { id: 'analytics', title: '분석 활용', items: ['히트맵 읽는 법', '체류·전환 지표', '리포트 해석', '기간 비교 분석'] },
+    ],
+    comingSoonManuals: [
+      { title: 'Store Agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 Store Agent 매뉴얼입니다.' },
+      { title: 'Store Care 사용자 매뉴얼', desc: '이상·청결·냉장·진열 모듈의 알림 설정과 점주 모바일 운영을 다루는 Store Care 매뉴얼입니다.' },
+    ],
+  },
+  en: {
+    eyebrow: 'Docs',
+    heroTitle: 'Product Manuals',
+    heroSub: 'Technical documentation for installing, integrating, and operating DeepingSource products. Pick a topic below to get started.',
+    sidebarLabel: 'Product Docs',
+    noticeBefore: 'Detailed docs are rolling out in stages. If you need something now, ',
+    noticeLink: 'get in touch',
+    noticeAfter: '.',
+    manualSectionTitle: 'Manuals by Product',
+    featuredTitle: 'Store Insight User Manual',
+    featuredDesc: 'From login and date ranges to visitor analysis, heatmaps, flow, funnels, and purchase conversion — a guide to reading the dashboard report.',
+    comingSoon: 'Coming soon',
+    docComingSoon: 'Doc coming soon',
+    navSections: [
+      { id: 'getting-started', title: 'Getting Started', items: ['Product Overview', 'Deployment Steps', 'Environment Requirements', 'Your First Report'] },
+      { id: 'integration', title: 'Integration Guide', items: ['CCTV Integration', 'POS Integration', 'Dashboard Access', 'API Overview'] },
+      { id: 'privacy', title: 'Privacy & Security', items: ['How Anonymization Works', 'Data Retention Policy', 'Access Control', 'Compliance'] },
+      { id: 'analytics', title: 'Using Analytics', items: ['Reading Heatmaps', 'Dwell & Conversion Metrics', 'Interpreting Reports', 'Period-over-Period Analysis'] },
+    ],
+    comingSoonManuals: [
+      { title: 'Store Agent User Manual', desc: 'The Store Agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
+      { title: 'Store Care User Manual', desc: 'The Store Care manual covering alert settings for the anomaly, cleanliness, refrigeration, and display modules, and mobile operations for owners.' },
+    ],
+  },
+  jp: {
+    eyebrow: 'Docs',
+    heroTitle: '製品マニュアル',
+    heroSub: 'DeepingSource 製品の導入、連携、運用に必要な技術文書をご提供します。下のセクションから必要なトピックを選んで始めてください。',
+    sidebarLabel: '製品ドキュメント',
+    noticeBefore: '詳細なドキュメントは順次公開予定です。今すぐ必要な資料がございましたら、',
+    noticeLink: 'お問い合わせ',
+    noticeAfter: 'ください。',
+    manualSectionTitle: '製品別マニュアル',
+    featuredTitle: 'Store Insight ユーザーマニュアル',
+    featuredDesc: 'ログイン・期間設定から、来店者分析、ヒートマップ、動線、ファネル、購買転換率まで — ダッシュボードレポートの読み方をご案内します。',
+    comingSoon: '準備中',
+    docComingSoon: 'ドキュメント準備中',
+    navSections: [
+      { id: 'getting-started', title: 'はじめに', items: ['製品概要', '導入手順', '動作環境', '初めてのレポート'] },
+      { id: 'integration', title: '連携ガイド', items: ['CCTV 連携', 'POS 連携', 'ダッシュボードへのアクセス', 'API 概要'] },
+      { id: 'privacy', title: 'プライバシー & セキュリティ', items: ['匿名化の仕組み', 'データ保管ポリシー', 'アクセス権限の管理', 'コンプライアンス'] },
+      { id: 'analytics', title: '分析活用', items: ['ヒートマップの読み方', '滞在・転換指標', 'レポートの解釈', '期間比較分析'] },
+    ],
+    comingSoonManuals: [
+      { title: 'Store Agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する Store Agent のマニュアルです。' },
+      { title: 'Store Care ユーザーマニュアル', desc: '異常・清潔・冷蔵・陳列モジュールの通知設定と、店主向けモバイル運用を扱う Store Care のマニュアルです。' },
+    ],
+  },
+};
+
+const navIcons = [Rocket, Plug, Shield, BarChart3];
+const comingSoonIcons = [Bot, ShieldCheck];
+
+export default function DocsView({ locale }: { locale: Locale }) {
+  const t = C[locale];
+
+  return (
+    <div className="bg-white min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-20">
+        <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }, { name: crumb('docs', locale), path: '/resources/docs' }]} locale={locale} tone="light" className="mb-6" />
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Sidebar */}
+          <aside className="lg:w-64 shrink-0">
+            <div className="lg:sticky lg:top-24">
+              <div className="flex items-center gap-2 mb-6">
+                <BookOpen className="w-5 h-5 text-primary" />
+                <span className="text-sm font-bold text-gray-900">{t.sidebarLabel}</span>
+              </div>
+              <nav className="space-y-6">
+                {t.navSections.map((section) => (
+                  <div key={section.id}>
+                    <p className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-2">
+                      {section.title}
+                    </p>
+                    <ul className="space-y-1 border-l border-gray-100 pl-3">
+                      {section.items.map((item) => (
+                        <li key={item}>
+                          <a
+                            href={`#${section.id}`}
+                            className="block text-sm text-gray-500 hover:text-primary py-1 transition-colors"
+                          >
+                            {item}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Main */}
+          <main className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.eyebrow}</p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
+              {t.heroTitle}
+            </h1>
+            <p className="text-gray-500 leading-relaxed max-w-2xl mb-6 break-keep">
+              {t.heroSub}
+            </p>
+
+            <div className="flex items-start gap-2 px-4 py-3 bg-amber-50 border border-amber-100 rounded-lg mb-12">
+              <FileText className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+              <p className="text-xs text-amber-800 leading-relaxed">
+                {t.noticeBefore}
+                <Link href={localeHref(locale, '/contact')} className="underline underline-offset-2 hover:text-amber-900 transition-colors">
+                  {t.noticeLink}
+                </Link>
+                {t.noticeAfter}
+              </p>
+            </div>
+
+            {/* 제품별 매뉴얼 */}
+            <div className="mb-12">
+              <p className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3">{t.manualSectionTitle}</p>
+              <div className="space-y-3">
+                <Link
+                  href={localeHref(locale, '/resources/docs/store-insight')}
+                  className="group flex items-start gap-4 p-5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <BarChart3 className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">
+                      {t.featuredTitle}
+                    </h3>
+                    <p className="text-xs text-gray-600 leading-relaxed break-keep">
+                      {t.featuredDesc}
+                    </p>
+                  </div>
+                  <span className="text-primary text-sm shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                </Link>
+
+                {t.comingSoonManuals.map((m, i) => {
+                  const Icon = comingSoonIcons[i];
+                  return (
+                    <div
+                      key={m.title}
+                      className="flex items-start gap-4 p-5 rounded-xl border border-gray-100 bg-gray-50/60"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-gray-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-sm font-bold text-gray-500">{m.title}</h3>
+                          <span className="rounded bg-gray-200 px-1.5 py-0.5 text-3xs font-bold text-gray-500">{t.comingSoon}</span>
+                        </div>
+                        <p className="text-xs text-gray-500 leading-relaxed break-keep">{m.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="space-y-12">
+              {t.navSections.map((section, i) => {
+                const Icon = navIcons[i];
+                return (
+                  <section key={section.id} id={section.id} className="scroll-mt-24">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h2 className="text-xl font-bold text-gray-900">{section.title}</h2>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {section.items.map((item) => (
+                        <div
+                          key={item}
+                          className="card p-5"
+                        >
+                          <h3 className="text-sm font-semibold text-gray-900 mb-1">{item}</h3>
+                          <p className="text-xs text-gray-500 leading-relaxed">{t.docComingSoon}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  );
+}

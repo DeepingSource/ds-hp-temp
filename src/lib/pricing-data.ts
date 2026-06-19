@@ -1,0 +1,120 @@
+export type PlanTier = 'free' | 'standard' | 'premium' | 'enterprise';
+
+export interface PlanFeature {
+  text: string;
+  included: boolean;
+}
+
+export interface Plan {
+  id: PlanTier;
+  name: string;
+  price: string;
+  priceNote?: string;
+  description: string;
+  targetUser?: string;
+  features: PlanFeature[];
+  cta: string;
+  ctaLink: string;
+  popular?: boolean;
+}
+
+export const plans: Plan[] = [
+  {
+    id: 'free',
+    name: '기본형',
+    price: '무료',
+    description: '매일 아침 브리핑으로 시작하기',
+    targetUser: '매장 운영 인사이트가 필요한 점주님',
+    features: [
+      { text: '매일 모닝 브리핑', included: true },
+      { text: '날씨/이벤트 알림', included: true },
+      { text: '운영 체크리스트', included: true },
+      { text: '주간 뉴스레터', included: true },
+      { text: 'POS 연동 분석', included: false },
+      { text: '대화형 AI 채팅', included: false },
+    ],
+    cta: '무료로 시작하기',
+    ctaLink: '/contact?plan=free',
+  },
+  {
+    id: 'standard',
+    name: 'POS 연동',
+    price: '15,000원',
+    priceNote: '/월',
+    description: 'POS 데이터 기반 리포트 수신',
+    targetUser: '데이터 기반 매출 분석이 필요한 점주님',
+    features: [
+      { text: '기본형 모든 기능', included: true },
+      { text: 'POS 매출 연동', included: true },
+      { text: '매출 예측 리포트', included: true },
+      { text: '경쟁점 동향 분석', included: true },
+      { text: 'AI 발주 추천', included: true },
+      { text: '대화형 AI 채팅', included: false },
+    ],
+    cta: '무료 상담 신청',
+    ctaLink: '/contact?plan=standard',
+    popular: true,
+  },
+  {
+    id: 'premium',
+    name: 'AI 비서',
+    price: '25,000원',
+    priceNote: '/월',
+    description: '대화형 채팅으로 매장을 관리',
+    targetUser: 'AI와 대화하며 매장 운영을 최적화하는 점주님',
+    features: [
+      { text: 'POS 연동 모든 기능', included: true },
+      { text: '대화형 AI 채팅', included: true },
+      { text: '맞춤형 액션 카드', included: true },
+      { text: 'AI 홍보물 자동 제작', included: true },
+      { text: '프로모션 효과 분석', included: true },
+      { text: '우선 지원', included: true },
+    ],
+    cta: '무료 상담 신청',
+    ctaLink: '/contact?plan=premium',
+  },
+];
+
+/** 일일 환산 가격 앵커 (마케팅 표시용) */
+export const valueAnchors: Record<string, string> = {
+  standard: '하루 500원',
+  premium: '하루 833원',
+};
+
+export const comparisonFeatures = [
+  {
+    category: '콘텐츠',
+    features: [
+      { name: '매일 모닝 브리핑', free: true, standard: true, premium: true, enterprise: true },
+      { name: '주간 뉴스레터', free: true, standard: true, premium: true, enterprise: true },
+      { name: '시즌 캘린더', free: '주간', standard: '주간+일간', premium: '주간+일간', enterprise: '주간+일간' },
+    ],
+  },
+  {
+    category: '알림',
+    features: [
+      { name: '날씨 변화 알림', free: true, standard: true, premium: true, enterprise: true },
+      { name: '지역 이벤트 알림', free: true, standard: true, premium: true, enterprise: true },
+      { name: '경쟁점 동향', free: false, standard: true, premium: true, enterprise: true },
+    ],
+  },
+  {
+    category: '분석',
+    features: [
+      { name: 'POS 매출 연동', free: false, standard: true, premium: true, enterprise: true },
+      { name: '매출 예측', free: false, standard: true, premium: true, enterprise: true },
+      { name: 'AI 발주 추천', free: false, standard: true, premium: true, enterprise: true },
+      { name: '대화형 AI 채팅', free: false, standard: false, premium: true, enterprise: true },
+      { name: 'AI 홍보물 제작', free: false, standard: false, premium: true, enterprise: true },
+      { name: '카메라 AI 분석', free: false, standard: false, premium: false, enterprise: true },
+    ],
+  },
+  {
+    category: '지원',
+    features: [
+      { name: '이메일 지원', free: true, standard: true, premium: true, enterprise: true },
+      { name: '우선 지원', free: false, standard: false, premium: true, enterprise: true },
+      { name: '전담 매니저', free: false, standard: false, premium: false, enterprise: true },
+    ],
+  },
+];

@@ -1,0 +1,103 @@
+/* =============================================================
+ * SAAI Design System — Tier 2 Semantic Aliases
+ * Single source: constitution/SAAI_MASTER.md 부록 A.2
+ * Version: v1.4  (2026-05-06)
+ *
+ * 사용 규칙 (마스터 §3.2):
+ *   - 컴포넌트 코드는 반드시 본 Tier 2 (--color-*) 만 참조한다.
+ *   - Tier 1 (--saai-*) 직접 참조 = PR 거부.
+ *   - 새 의미 색 추가 = SAAI 정체성 결정 — 본 파일 수정 시 마스터 업데이트 동반.
+ *
+ * 의미 색은 5종 한정 (마스터 §3.2):
+ *   --color-primary / --color-positive / --color-negative
+ *   --color-warning / --color-deep-red
+ * 그 외 임의 의미 색 정의 금지.
+ *
+ * Audience 분기는 saai-audience.css 에서 정의.
+ * ============================================================= */
+
+@import url('./saai-tokens.css');
+
+:root {
+  /* ── Surface ─────────────────────────────────────────── */
+  --color-bg-app:           var(--saai-white);
+  --color-bg-sidebar:       var(--saai-grey-25);
+  --color-bg-bubble-user:   var(--saai-grey-25);
+  --color-bg-input:         #FAFAFA;
+  --color-bg-subtle:        var(--saai-grey-25);
+  --color-bg-active-blue:   var(--saai-blue-50);
+
+  /* Hover surfaces — 배경 tint, 색 shift 아님 (§4.6) */
+  --color-bg-hover-soft:    rgba(142,148,157,0.10);
+  --color-bg-hover-grey:    rgba(120,127,137,0.10);
+
+  /* ── Foreground (text) ───────────────────────────────── */
+  --color-text-primary:     var(--saai-grey-900);   /* 본문 최대 농도 — 순수 #000 사용 금지 */
+  --color-text-body:        var(--saai-grey-700);   /* 일반 본문 디폴트 */
+  --color-text-secondary:   var(--saai-grey-500);
+  --color-text-tertiary:    var(--saai-grey-400);
+  --color-text-muted:       var(--saai-grey-400);
+  --color-text-placeholder: var(--saai-grey-200);
+  --color-text-disabled:    var(--saai-grey-300);
+  --color-text-on-brand:    var(--saai-white);
+
+  /* ── Brand & Status (의미 색 5종 한정) ────────────────── */
+  --color-primary:          var(--saai-blue-500);   /* SAAI Blue — 1순위, 단일 브랜드 */
+  --color-primary-hover:    var(--saai-blue-600);
+  --color-primary-active:   var(--saai-blue-700);
+  --color-primary-bg:       var(--saai-blue-50);    /* selected 행 배경 */
+
+  --color-positive:         var(--saai-green-800);  /* 좋음·증가 (Analyst 모드 ▲) */
+  --color-positive-bg:      var(--saai-green-50);
+
+  --color-negative:         var(--saai-red-700);    /* 나쁨·감소 (Analyst 모드 ▼) */
+  --color-negative-bg:      var(--saai-red-50);
+
+  --color-warning:          var(--saai-yellow-500); /* 주의 */
+  --color-warning-bg:       var(--saai-yellow-50);
+
+  --color-deep-red:         var(--saai-red-800);    /* 위험·즉시 조치 — border-left only, 배경 강조 X */
+
+  /* ── Borders & Dividers ──────────────────────────────── */
+  --color-divider:          var(--saai-grey-200);
+  --color-border-card:      var(--saai-grey-100);
+  --color-border-input:     var(--saai-grey-50);
+  --color-border-focus:     var(--saai-blue-300);
+
+  /* ── Spacing alias (semantic) ────────────────────────── */
+  --space-xs:               var(--saai-space-1);    /* 6px  */
+  --space-s:                var(--saai-space-2);    /* 10px */
+  --space-m:                var(--saai-space-3);    /* 16px — 카드 패딩 최소 */
+  --space-l:                var(--saai-space-4);    /* 20px */
+  --space-xl:               var(--saai-space-5);    /* 28px — 카드 간 표준 */
+  --space-2xl:              var(--saai-space-6);    /* 36px — 섹션 간 */
+  --space-3xl:              var(--saai-space-8);    /* 48px — 큰 단락 */
+
+  /* ── Radii alias (semantic) ──────────────────────────── */
+  --radius-button:          var(--saai-radius-md);  /* 6px */
+  --radius-card:            var(--saai-radius-md);  /* 6px (small card) 또는 lg(8px) */
+  --radius-bubble:          var(--saai-radius-lg);  /* 8px — 메시지 버블·list row */
+  --radius-input:           var(--saai-radius-xl);  /* 10px — input bar */
+  --radius-menu:            var(--saai-radius-xl);  /* 10px — 메뉴 paper */
+  --radius-tooltip:         var(--saai-radius-md);  /* 6px */
+  --radius-pill:            var(--saai-radius-pill);/* 900px — 스토어 pill */
+
+  /* ── Shadow alias (semantic) ─────────────────────────── */
+  --shadow-input:           var(--saai-shadow-input);
+  --shadow-pill:            var(--saai-shadow-pill);
+  --shadow-card:            var(--saai-shadow-card);
+  --shadow-menu:            var(--saai-shadow-menu);
+  --shadow-tooltip:         var(--saai-shadow-tooltip);
+  --shadow-focus:           var(--saai-shadow-focus);
+
+  /* ── Motion alias (semantic) ─────────────────────────── */
+  --duration-fast:          var(--saai-duration-fast);
+  --duration-normal:        var(--saai-duration-normal);
+  --duration-sidebar:       var(--saai-duration-sidebar);
+  --duration-pane:          var(--saai-duration-pane);
+  --duration-pulse:         var(--saai-duration-pulse);
+  --ease:                   var(--saai-ease-saai);
+
+  /* ── Audience 분기는 saai-audience.css 참조 ─────────── */
+  /* --color-up / --color-down 은 body 클래스에서 정의 */
+}

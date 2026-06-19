@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Dropdown menu</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:24px 22px;background:#fafafa}
+.menu{width:200px;background:#fff;border-radius:10px;border:1px solid var(--grey-50);box-shadow:0px 1px 2px 0px rgba(0,0,0,0.05);padding:6px;display:flex;flex-direction:column;gap:0}
+.item{display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border-radius:4px;font-size:13px;color:var(--grey-900);cursor:pointer}
+.item:hover{background:rgba(142,148,157,0.10)}
+.item.danger{color:var(--red-500)}
+.item.danger:hover{background:#FCEEEE}
+.item .ic{width:14px;height:14px;color:var(--grey-400)}
+.divider{height:1px;background:var(--grey-50);margin:4px 6px}
+</style></head><body>
+<div class="menu">
+  <div class="item"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h10M3 8h10M3 12h6"/></svg>Rename</div>
+  <div class="item"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h6l2 2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>Duplicate</div>
+  <div class="item"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h10M8 4l4 4-4 4"/></svg>Export</div>
+  <div class="divider"></div>
+  <div class="item danger"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h10M5.5 5V3.5h5V5M6 8v4M10 8v4M4 5l1 8h6l1-8"/></svg>Delete chat</div>
+</div>
+</body></html>

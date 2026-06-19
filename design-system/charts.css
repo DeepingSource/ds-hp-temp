@@ -1,0 +1,134 @@
+/* charts.css — chart-specific tokens & helpers
+ * Source: CHART_DESIGN_GUIDE.md (v3) + apps/plus-agent-front/src/utils/chart.ts palette
+ *
+ * Principles encoded here:
+ *  - Categorical palette of 6 colors (the cognitive limit; never exceed 8).
+ *  - One brand-blue accent for "the highlighted series"; everything else is grey.
+ *  - Sequential and diverging ramps for heatmaps / variance.
+ *  - Semantic positive/negative tokens for waterfall + variance.
+ */
+
+:root {
+  /* ── Categorical (6 — cognitive limit) ───────────────────
+   * Order matches the in-product chart util's default series order.
+   * Use only when carrying truly distinct categories. Default to grey
+   * for everything except the one highlighted series.
+   */
+  --chart-cat-1: #376AE2; /* blue/500   — primary, the "highlighted" series */
+  --chart-cat-2: #76CCCF; /* cyan/500 */
+  --chart-cat-3: #B65BE1; /* purple/500 */
+  --chart-cat-4: #FAD232; /* yellow/500 */
+  --chart-cat-5: #1AB715; /* green/500 */
+  --chart-cat-6: #E05959; /* red/500 — reserve for negative when it must coexist with positive series */
+
+  /* ── Hover variants (slightly darker) ─────────────────── */
+  --chart-cat-1-hover: #3260CE;
+  --chart-cat-2-hover: #6BBABC;
+  --chart-cat-3-hover: #A653CD;
+  --chart-cat-4-hover: #E1BD2D;
+  --chart-cat-5-hover: #18A713;
+  --chart-cat-6-hover: #CC5151;
+
+  /* ── Greyed-out (non-emphasised) series ───────────────── */
+  --chart-context:        #B1B5BB; /* grey/200 — context / "everything else" */
+  --chart-context-strong: #8E949D; /* grey/300 — when context needs to be readable */
+  --chart-baseline:       #565F6C; /* grey/500 — reference / baseline series */
+
+  /* ── Sequential (single-hue blue) — for heatmaps, density,
+   * sequential/quantitative encodings.
+   */
+  --chart-seq-1: #F7F9FD;
+  --chart-seq-2: #EBF0FC;
+  --chart-seq-3: #C1D1F6;
+  --chart-seq-4: #799BEC;
+  --chart-seq-5: #376AE2;
+  --chart-seq-6: #274BA0;
+  --chart-seq-7: #172D5F;
+
+  /* ── Diverging (red ↔ neutral ↔ blue) — for variance vs target,
+   * MoM / YoY change, sentiment. Mid stop is light grey, NOT bright yellow.
+   */
+  --chart-div-neg-3: #9F3F3F;
+  --chart-div-neg-2: #E05959;
+  --chart-div-neg-1: #F1B3B3;
+  --chart-div-mid:   #E9E9EA;
+  --chart-div-pos-1: #A3BAF2;
+  --chart-div-pos-2: #376AE2;
+  --chart-div-pos-3: #274BA0;
+
+  /* ── Semantic (variance / waterfall) ───────────────────
+   * Use ONLY for clearly directional change. Never as decoration.
+   */
+  --chart-positive:   #18A713; /* green/600 — increase, on-target */
+  --chart-negative:   #CC5151; /* red/600   — decrease, miss */
+  --chart-neutral:    #787F89; /* grey/400  — start / end / no-change in waterfall */
+  --chart-warning:    #E1BD2D; /* yellow/600 — caution / threshold breach */
+  --chart-forecast:   #8E949D; /* grey/300  — predicted / interpolated values; ALWAYS dashed */
+
+  /* ── Chrome ───────────────────────────────────────────── */
+  --chart-axis:        #8E949D;          /* axis line */
+  --chart-axis-tick:   #B1B5BB;          /* tick label */
+  --chart-grid:        #E9E9EA;          /* grid line */
+  --chart-grid-strong: #D9DBDD;          /* zero / target line */
+  --chart-tooltip-bg:  rgba(0,0,0,0.9);
+  --chart-tooltip-fg:  #ffffff;
+  --chart-band:        rgba(55,106,226,0.08);  /* CI band fill */
+  --chart-band-strong: rgba(55,106,226,0.16);
+
+  /* ── Type ─────────────────────────────────────────────── */
+  --chart-title:    14px;     /* bold takeaway */
+  --chart-subtitle: 12px;     /* source / period — grey/400 */
+  --chart-axis-fs:  11px;     /* axis labels — minimum 11px */
+  --chart-label-fs: 11px;     /* direct data labels */
+  --chart-annot-fs: 11px;     /* annotations / callouts */
+  --chart-source-fs: 10px;    /* footnote / source — grey/400 */
+
+  /* ── Stroke / point ───────────────────────────────────── */
+  --chart-stroke-emph: 2px;   /* highlighted line */
+  --chart-stroke-base: 1.5px; /* normal line */
+  --chart-stroke-ctx:  1px;   /* context line */
+  --chart-point-r:     3px;
+  --chart-point-r-emph: 4.5px;
+  --chart-stroke-dash: 4 4;   /* dashed = forecast / predicted */
+}
+
+/* ── Utility classes used by the chart preview cards ───── */
+.chart-takeaway {
+  font-family: var(--font-sans);
+  font-size: var(--chart-title);
+  font-weight: 700;
+  color: var(--grey-900);
+  line-height: 1.4;
+  margin: 0 0 4px;
+}
+.chart-meta {
+  font-family: var(--font-sans);
+  font-size: var(--chart-subtitle);
+  color: var(--grey-400);
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+.chart-source {
+  font-family: var(--font-sans);
+  font-size: var(--chart-source-fs);
+  color: var(--grey-300);
+  line-height: 1.4;
+  margin-top: 8px;
+}
+.chart-annot {
+  font-family: var(--font-sans);
+  font-size: var(--chart-annot-fs);
+  fill: var(--grey-700);
+  font-weight: 500;
+}
+.chart-label-emph {
+  font-family: var(--font-sans);
+  font-size: var(--chart-label-fs);
+  font-weight: 600;
+  fill: var(--blue-600);
+}
+.chart-label-ctx {
+  font-family: var(--font-sans);
+  font-size: var(--chart-label-fs);
+  fill: var(--grey-400);
+}

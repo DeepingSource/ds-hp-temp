@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Message bubbles</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:20px 22px;gap:14px;background:#fff}
+.thread{display:flex;flex-direction:column;gap:14px;max-width:600px}
+.user{align-self:flex-end;background:var(--grey-25);color:var(--grey-900);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;max-width:75%}
+.bot{align-self:flex-start;color:var(--grey-900);font-size:13px;line-height:1.7;max-width:90%;padding:0}
+.bot strong{font-weight:600}
+.bot .small{font-size:11px;color:var(--grey-300);margin-top:6px}
+</style></head><body>
+<div class="thread">
+  <div class="user">매장의 어제 매출 추이를 알려줘</div>
+  <div class="bot">
+    어제 매출은 <strong>₩4,820,300</strong>으로 평소 대비 <strong>+12%</strong> 증가했어요. 오후 6–8시 사이에 피크가 형성됐고, 카테고리별로는 음료가 가장 큰 비중을 차지했습니다.
+    <div class="small">Source · POS daily · updated 09:14</div>
+  </div>
+  <div class="user">시간대별 차트로 보여줘</div>
+</div>
+</body></html>

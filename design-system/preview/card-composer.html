@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Composer / message input</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:24px 22px;background:#fff}
+.composer{max-width:640px;background:#fafafa;border-radius:10px;box-shadow:0px 2px 10px 0px rgba(135,135,135,0.12);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.line{display:flex;align-items:flex-end;gap:10px}
+.ta{flex:1;border:0;outline:0;background:transparent;font-family:var(--font-sans);font-size:14px;line-height:1.5;color:var(--grey-900);resize:none;min-height:24px;padding:0}
+.ta::placeholder{color:var(--grey-200)}
+.send{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--blue-500);border:0;cursor:pointer}
+.send svg{width:16px;height:16px;color:#fff}
+.send.empty{background:var(--grey-100)}
+.send.empty svg{color:var(--grey-300)}
+.foot{font-size:11px;color:var(--grey-300);line-height:1.4}
+</style></head><body>
+<div class="composer">
+  <div class="line">
+    <textarea class="ta" rows="1">매장의 어제 매출 추이를 알려줘</textarea>
+    <button class="send" aria-label="Send"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h11M9 3.5l4.5 4.5L9 12.5"/></svg></button>
+  </div>
+  <div class="foot">Plus Agent can make mistakes — verify important answers.</div>
+</div>
+<div style="height:14px"></div>
+<div class="composer" style="background:#fff;border:1px solid var(--grey-50)">
+  <div class="line">
+    <textarea class="ta" rows="1" placeholder="Ask anything about your store"></textarea>
+    <button class="send empty" aria-label="Send"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h11M9 3.5l4.5 4.5L9 12.5"/></svg></button>
+  </div>
+</div>
+</body></html>

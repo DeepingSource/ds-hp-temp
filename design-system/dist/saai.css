@@ -1,0 +1,30 @@
+/* =============================================================
+ * SAAI Design System — All-in-one Bundle (Web 기본)
+ * Single source: constitution/SAAI_MASTER.md
+ * Version: v1.4  (2026-05-06)
+ *
+ * 한 파일에 모든 SAAI 토큰·타이포·차트 import.
+ * 빠른 도입에 권장. 더 세밀한 제어가 필요하면 개별 파일 import.
+ *
+ * 본 파일은 마스터 §8.2 *Web 기본 매체*. 다른 매체는 추가 import:
+ *   - Print Report (A4)        : @import './saai-medium-print.css';
+ *   - Ebook (5.5×8.5in)        : @import './saai-medium-ebook.css';
+ *   - Cover/Marketing          : @import './saai-medium-cover.css';
+ *
+ * Import 순서 (의존):
+ *   1. saai-fonts.css       (@font-face)
+ *   2. saai-tokens.css      (Tier 1 primitive)
+ *   3. saai-semantic.css    (Tier 2 alias — 컴포넌트가 참조하는 단일 layer)
+ *   4. saai-audience.css    (body 클래스 분기)
+ *   5. saai-charts.css      (차트 전용 alias)
+ *   6. saai-typography.css  (heading-* / body-* 유틸)
+ *   7. saai-dark.css        (opt-in 다크 모드, v1.2 베타)
+ * ============================================================= */
+
+@import url('./saai-fonts.css');
+@import url('./saai-tokens.css');
+@import url('./saai-semantic.css');
+@import url('./saai-audience.css');
+@import url('./saai-charts.css');
+@import url('./saai-typography.css');
+@import url('./saai-dark.css');     /* opt-in 다크 모드 (v1.2 베타) */

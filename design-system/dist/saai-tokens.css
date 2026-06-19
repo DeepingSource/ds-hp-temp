@@ -1,0 +1,227 @@
+/* =============================================================
+ * SAAI Design System — Tier 1 Primitive Tokens
+ * Single source: constitution/SAAI_MASTER.md 부록 A.1
+ * Version: v1.4  (2026-05-06)
+ *
+ * 사용 규칙 (마스터 §3.2):
+ *   - 컴포넌트 코드는 Tier 2 (--color-*) 만 참조한다.
+ *   - 본 Tier 1 (--saai-*) 직접 참조 = PR 거부.
+ *   - 본 파일은 saai-semantic.css 가 import 후 사용된다.
+ *
+ * Layer order:
+ *   1. saai-fonts.css       (@font-face)
+ *   2. saai-tokens.css      (이 파일 — Tier 1)
+ *   3. saai-semantic.css    (Tier 2)
+ *   4. saai-audience.css    (body 클래스 분기)
+ *   5. saai-charts.css      (차트 전용 alias)
+ *   6. saai-typography.css  (heading-/body- 유틸)
+ * ============================================================= */
+
+:root {
+  /* ── Neutrals — 11 step grey scale + white/black ─────── */
+  --saai-white:           #FFFFFF;
+  --saai-black:           #000000;
+  --saai-grey-25:         #F9F9FB;
+  --saai-grey-50:         #E9E9EA;
+  --saai-grey-100:        #D9DBDD;
+  --saai-grey-200:        #B1B5BB;
+  --saai-grey-300:        #8E949D;
+  --saai-grey-400:        #787F89;
+  --saai-grey-500:        #565F6C;
+  --saai-grey-600:        #4E5662;
+  --saai-grey-700:        #3D434D;
+  --saai-grey-800:        #2F343B;
+  --saai-grey-900:        #24282D;
+
+  /* ── Brand: 단일 프라이머리 SAAI Blue ──────────────────
+   * 마스터 §3.2 / 4 Keywords: Brand-Single
+   * 두 번째 브랜드 색 추가 = SAAI 정체성 위반
+   */
+  --saai-blue-25:         #F7F9FD;
+  --saai-blue-50:         #EBF0FC;
+  --saai-blue-100:        #C1D1F6;
+  --saai-blue-200:        #A3BAF2;
+  --saai-blue-300:        #799BEC;
+  --saai-blue-400:        #5F88E8;
+  --saai-blue-500:        #376AE2;   /* === SAAI Blue === */
+  --saai-blue-600:        #3260CE;
+  --saai-blue-700:        #274BA0;
+  --saai-blue-800:        #1E3A7C;
+  --saai-blue-900:        #172D5F;
+
+  /* ── Data palettes — 차트·상태 칩 전용 (chrome 사용 금지)
+   * 마스터 §3.2 / P3: Data colors stay in data
+   * 버튼·내비에 칠하지 않는다.
+   */
+
+  /* Cyan */
+  --saai-cyan-50:         #F1FAFA;
+  --saai-cyan-100:        #D5EFF0;
+  --saai-cyan-200:        #C0E8E9;
+  --saai-cyan-300:        #A3DDDF;
+  --saai-cyan-400:        #91D6D9;
+  --saai-cyan-500:        #76CCCF;
+  --saai-cyan-600:        #6BBABC;
+  --saai-cyan-700:        #549193;
+  --saai-cyan-800:        #417072;
+  --saai-cyan-900:        #325657;
+
+  /* Purple */
+  --saai-purple-50:       #F8EFFC;
+  --saai-purple-100:      #E8CCF6;
+  --saai-purple-200:      #DDB4F1;
+  --saai-purple-300:      #CE91EB;
+  --saai-purple-400:      #C57CE7;
+  --saai-purple-500:      #B65BE1;
+  --saai-purple-600:      #A653CD;
+  --saai-purple-700:      #8141A0;
+  --saai-purple-800:      #64327C;
+  --saai-purple-900:      #4C265F;
+
+  /* Pink — 차트 카테고리 6 hue cap 의 일부 */
+  --saai-pink-50:         #FDEEF6;
+  --saai-pink-100:        #F9CCE3;
+  --saai-pink-200:        #F5B3D4;
+  --saai-pink-300:        #F08FBC;
+  --saai-pink-400:        #ED77AD;
+  --saai-pink-500:        #E5599A;
+  --saai-pink-600:        #CF508B;
+  --saai-pink-700:        #A33F6E;
+  --saai-pink-800:        #7E3055;
+  --saai-pink-900:        #602541;
+
+  /* Red — negative / destructive */
+  --saai-red-50:          #FCEEEE;
+  --saai-red-100:         #F5CCCC;
+  --saai-red-200:         #F1B3B3;
+  --saai-red-300:         #EA9090;
+  --saai-red-400:         #E67A7A;
+  --saai-red-500:         #E05959;
+  --saai-red-600:         #CC5151;
+  --saai-red-700:         #9F3F3F;
+  --saai-red-800:         #7B3131;
+  --saai-red-900:         #5E2525;
+
+  /* Yellow — warning */
+  --saai-yellow-50:       #FFFBEB;
+  --saai-yellow-100:      #FEF8E0;
+  --saai-yellow-200:      #FDF1BF;
+  --saai-yellow-300:      #FBE68D;
+  --saai-yellow-400:      #FADE66;
+  --saai-yellow-500:      #FAD232;
+  --saai-yellow-600:      #E1BD2D;
+  --saai-yellow-700:      #C8A828;
+  --saai-yellow-800:      #967E1E;
+  --saai-yellow-900:      #705E16;
+
+  /* Green — success / positive */
+  --saai-green-50:        #E8F8E8;
+  --saai-green-100:       #B8E9B6;
+  --saai-green-200:       #96DE93;
+  --saai-green-300:       #66CF62;
+  --saai-green-400:       #48C544;
+  --saai-green-500:       #1AB715;
+  --saai-green-600:       #18A713;
+  --saai-green-700:       #12820F;
+  --saai-green-800:       #0E650C;
+  --saai-green-900:       #0B4D09;
+
+  /* ── Spacing — 2px grid (마스터 §3.4) ───────────────── */
+  --saai-space-1:         6px;
+  --saai-space-2:         10px;
+  --saai-space-3:         16px;    /* 카드 패딩 최소 */
+  --saai-space-4:         20px;
+  --saai-space-5:         28px;    /* 카드 간 표준 */
+  --saai-space-6:         36px;    /* 섹션 간 */
+  --saai-space-8:         48px;    /* 큰 단락 */
+
+  /* ── Radii (마스터 §3.5) ─────────────────────────────── */
+  --saai-radius-sm:       2px;
+  --saai-radius:          4px;     /* 메뉴 row, divider chip */
+  --saai-radius-md:       6px;     /* 버튼·tooltip */
+  --saai-radius-lg:       8px;     /* 메시지 버블·list row·차트 카드 */
+  --saai-radius-xl:       10px;    /* input bar·메뉴 paper·스토어 pill outline */
+  --saai-radius-pill:     900px;   /* 라운드 pill (스토어 pill in chat title bar) */
+
+  /* ── Shadow — 장식 0건, 기능 5종 (마스터 §3.5)
+   * inner shadow / colored shadow / 다층 stack 금지.
+   */
+  --saai-shadow-input:    0px 2px 10px 0px rgba(135,135,135,0.12);
+  --saai-shadow-pill:     0px 0px 20px 0px rgba(135,135,135,0.12);
+  --saai-shadow-card:     0  2px  6px 0 rgba(0,0,0,0.08);
+  --saai-shadow-menu:     0px 1px  2px 0px rgba(0,0,0,0.05);
+  --saai-shadow-tooltip:  0  2px  4px rgba(0,0,0,0.25);
+  --saai-shadow-focus:    0 0 0 2px rgba(122,197,255,0.30);
+
+  /* ── Motion (마스터 §3.5) ────────────────────────────── */
+  --saai-duration-fast:   150ms;   /* 버튼 background-color, 작은 affordance */
+  --saai-duration-normal: 250ms;
+  --saai-duration-sidebar:300ms;   /* 사이드바 fold */
+  --saai-duration-pane:   480ms;   /* 채팅↔차트 패널 resize */
+  --saai-duration-pulse:  800ms;   /* 강조 pulse */
+
+  --saai-ease-saai:       cubic-bezier(0.22, 1, 0.36, 1);   /* 소프트 outward */
+  --saai-ease-out:        ease-out;
+  --saai-ease-in-out:     ease-in-out;
+
+  /* ── Typography family (마스터 §3.3) ─────────────────── */
+  --saai-font-sans:       'PretendardKR', 'Pretendard', system-ui, -apple-system,
+                          'Helvetica Neue', sans-serif;
+  --saai-font-jp:         'PretendardJP', 'Pretendard', system-ui, sans-serif;
+  --saai-font-numeric:    'SF Mono', ui-monospace, 'JetBrains Mono', Menlo, Consolas,
+                          monospace;     /* 명시 예외 — tabular-nums */
+
+  /* ── Type scale — 2-track (마스터 §3.3) ──────────────── */
+
+  /* Heading track (line-height 1.5 fixed; 24px+ hero 예외 1.4) */
+  --saai-heading-3xl-size:    36px;
+  --saai-heading-3xl-lh:      1.4;     /* hero 예외 */
+  --saai-heading-3xl-weight:  700;
+
+  --saai-heading-2xl-size:    24px;
+  --saai-heading-2xl-lh:      1.4;     /* hero 예외 (24px+) */
+  --saai-heading-2xl-weight:  700;
+
+  --saai-heading-xl-size:     20px;
+  --saai-heading-xl-lh:       1.5;
+  --saai-heading-xl-weight:   700;
+
+  --saai-heading-lg-size:     18px;
+  --saai-heading-lg-lh:       1.5;
+  --saai-heading-lg-weight:   500;
+
+  --saai-heading-md-size:     16px;
+  --saai-heading-md-lh:       1.5;
+  --saai-heading-md-weight:   500;
+
+  --saai-heading-sm-size:     14px;
+  --saai-heading-sm-lh:       1.5;
+  --saai-heading-sm-weight:   500;
+
+  /* Body track (line-height 1.7) */
+  --saai-body-xl-size:        18px;
+  --saai-body-xl-lh:          1.7;
+  --saai-body-xl-weight:      400;
+
+  --saai-body-lg-size:        16px;
+  --saai-body-lg-lh:          1.7;
+  --saai-body-lg-weight:      400;
+
+  --saai-body-base-size:      14px;
+  --saai-body-base-lh:        1.7;
+  --saai-body-base-weight:    400;
+
+  --saai-body-s-size:         12px;     /* CJK 최소 — 미만 클래스 정의 금지 */
+  --saai-body-s-lh:           1.7;
+  --saai-body-s-weight:       400;
+
+  /* ── i18n letter-spacing (마스터 §3.3 CJK 차이) ─────── */
+  --saai-letter-spacing-ja-body:    0.02em;   /* 일본어 본문 — hiragana·katakana 가독성 */
+  --saai-letter-spacing-ja-heading: 0.01em;   /* 일본어 heading — bold 한자 군집 분리 */
+
+  /* ── Breakpoints (마스터 §3.8) ───────────────────────── */
+  --saai-bp-mobile:           480px;
+  --saai-bp-tablet:           768px;
+  --saai-bp-desktop:          1024px;
+  --saai-bp-wide:             1440px;
+}

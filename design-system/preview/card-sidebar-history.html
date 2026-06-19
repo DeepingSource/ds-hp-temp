@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Sidebar — history rows</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:0;background:#fff}
+.sb{width:248px;background:var(--grey-25);min-height:240px;padding:14px 10px;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--grey-50)}
+.brand{display:flex;align-items:center;gap:8px;padding:4px 8px}
+.brand img{height:18px}
+.new{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--grey-100);border-radius:6px;padding:7px 10px;background:#fff;font-size:13px;color:var(--grey-900);font-weight:500;cursor:pointer}
+.new .k{font-size:10px;color:var(--grey-300);font-family:ui-monospace,Menlo,monospace}
+.label{font-size:11px;color:var(--grey-300);text-transform:uppercase;letter-spacing:.06em;padding:6px 10px 2px}
+.row{display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border-radius:6px;font-size:13px;color:var(--grey-700);cursor:pointer}
+.row:hover{background:rgba(120,127,137,0.10)}
+.row.active{background:var(--blue-50);color:var(--blue-500);font-weight:500}
+.row .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+</style></head><body>
+<div class="sb">
+  <div class="brand"><img src="../assets/logos/logo-with-text.svg"></div>
+  <button class="new">New chat <span class="k">⌘ N</span></button>
+  <div class="label">Today</div>
+  <div class="row active"><span class="t">매장 매출 추이 분석</span></div>
+  <div class="row"><span class="t">Top categories last week</span></div>
+  <div class="label">Yesterday</div>
+  <div class="row"><span class="t">방문 고객 수 비교</span></div>
+  <div class="row"><span class="t">Hourly traffic Hongdae branch</span></div>
+</div>
+</body></html>

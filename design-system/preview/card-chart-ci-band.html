@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Forecast — CI band + dashed</title>
+<link rel="stylesheet" href="_card.css">
+<link rel="stylesheet" href="../charts.css">
+<style>body{padding:18px 22px;background:#fff;gap:0}
+.box{max-width:640px}
+svg{display:block;width:100%;height:200px;overflow:visible;font-family:var(--font-sans)}
+text{font-size:11px;fill:var(--grey-400)}
+</style></head><body>
+<div class="box">
+  <h3 class="chart-takeaway">다음 주 매출, 95% 신뢰구간 ₩4.4M – ₩5.6M</h3>
+  <p class="chart-meta">관측 4주 + 예측 2주 · 95% CI band</p>
+  <svg viewBox="0 0 640 200">
+    <line x1="40" y1="170" x2="600" y2="170" stroke="#D9DBDD"/>
+    <!-- CI band -->
+    <path d="M 360,80 L 440,55 L 520,40 L 600,30 L 600,90 L 520,100 L 440,115 L 360,120 Z"
+          fill="rgba(55,106,226,0.16)"/>
+    <!-- observed -->
+    <polyline fill="none" stroke="#376AE2" stroke-width="2.4"
+      points="40,140 120,125 200,110 280,100 360,100"/>
+    <!-- forecast (dashed grey) -->
+    <polyline fill="none" stroke="#8E949D" stroke-width="2" stroke-dasharray="5 4"
+      points="360,100 440,85 520,70 600,60"/>
+    <!-- divider -->
+    <line x1="360" y1="20" x2="360" y2="170" stroke="#B1B5BB" stroke-width="1" stroke-dasharray="2 4"/>
+    <text x="356" y="32" text-anchor="end" fill="#3D434D" font-weight="600">관측</text>
+    <text x="364" y="32" text-anchor="start" fill="#787F89" font-weight="600">예측</text>
+    <!-- x labels -->
+    <text x="40"  y="190">W-4</text>
+    <text x="200" y="190">W-2</text>
+    <text x="360" y="190" text-anchor="middle">today</text>
+    <text x="520" y="190">W+1</text>
+    <text x="600" y="190" text-anchor="end">W+2</text>
+  </svg>
+  <p class="chart-source">예측값은 점선·회색으로 표시 · §11.5 환각 방지</p>
+</div>
+</body></html>

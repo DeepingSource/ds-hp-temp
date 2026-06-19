@@ -1,0 +1,16 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Icon set — 33 SVGs</title>
+<link rel="stylesheet" href="_card.css">
+<style>body{padding:18px 20px;gap:10px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(11,1fr);gap:10px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border:1px solid var(--grey-50);border-radius:6px;background:#fff}
+.cell img{width:20px;height:20px;color:var(--grey-900)}
+.cell .n{font-size:9px;color:var(--grey-400);font-family:ui-monospace,Menlo,monospace;text-align:center;line-height:1.2}
+</style></head><body>
+<div class="grid" id="g"></div>
+<script>
+const names=["apps","arrow","arrow-curve-left-down","arrow-down","arrow-down-left","arrow-notification","arrow-refresh","arrow-right","arrow-up-right","bold-popup","bold-x","bracket","chart","chat","check","completed-status","document","export","fold-snb-collapsed","more","pause","pending-status","plus","refresh","report","sad","send","setting","store","symbol","unfold-snb-collapsed","warning","x"];
+const g=document.getElementById('g');
+for(const n of names){const c=document.createElement('div');c.className='cell';c.innerHTML=`<img src="../assets/icons/icon-${n}.svg" alt="${n}"><div class="n">${n}</div>`;g.appendChild(c);}
+</script>
+</body></html>

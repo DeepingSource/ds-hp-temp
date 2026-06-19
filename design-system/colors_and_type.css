@@ -1,0 +1,230 @@
+/* SAAI / Plus Agent — Colors & Type tokens
+ * Source of truth: apps/plus-agent-front/tailwind.config.ts and global.css
+ * Figma palette ref: 🌱PI-Atom (linked in tailwind.config.ts comment)
+ */
+
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('./fonts/PretendardKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('./fonts/PretendardKR-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PretendardKR';
+  src: url('./fonts/PretendardKR-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ── Neutrals (greys) ────────────────────────────────────── */
+  --grey-25:  #F9F9FB;
+  --grey-50:  #E9E9EA;
+  --grey-100: #D9DBDD;
+  --grey-200: #B1B5BB;
+  --grey-300: #8E949D;
+  --grey-400: #787F89;
+  --grey-500: #565F6C;
+  --grey-600: #4E5662;
+  --grey-700: #3D434D;
+  --grey-800: #2F343B;
+  --grey-900: #24282D;
+  --white:    #ffffff;
+  --black:    #000000;
+
+  /* ── Brand: Blue (primary action) ────────────────────────── */
+  --blue-25:  #F7F9FD;
+  --blue-50:  #EBF0FC;
+  --blue-100: #C1D1F6;
+  --blue-200: #A3BAF2;
+  --blue-300: #799BEC;
+  --blue-400: #5F88E8;
+  --blue-500: #376AE2; /* primary */
+  --blue-600: #3260CE;
+  --blue-700: #274BA0;
+  --blue-800: #1E3A7C;
+  --blue-900: #172D5F;
+
+  /* ── Cyan (data) ─────────────────────────────────────────── */
+  --cyan-50:  #F1FAFA;
+  --cyan-100: #D5EFF0;
+  --cyan-200: #C0E8E9;
+  --cyan-300: #A3DDDF;
+  --cyan-400: #91D6D9;
+  --cyan-500: #76CCCF;
+  --cyan-600: #6BBABC;
+  --cyan-700: #549193;
+  --cyan-800: #417072;
+  --cyan-900: #325657;
+
+  /* ── Purple (data) ───────────────────────────────────────── */
+  --purple-50:  #F8EFFC;
+  --purple-100: #E8CCF6;
+  --purple-200: #DDB4F1;
+  --purple-300: #CE91EB;
+  --purple-400: #C57CE7;
+  --purple-500: #B65BE1;
+  --purple-600: #A653CD;
+  --purple-700: #8141A0;
+  --purple-800: #64327C;
+  --purple-900: #4C265F;
+
+  /* ── Red (negative / destructive) ────────────────────────── */
+  --red-50:  #FCEEEE;
+  --red-100: #F5CCCC;
+  --red-200: #F1B3B3;
+  --red-300: #EA9090;
+  --red-400: #E67A7A;
+  --red-500: #E05959;
+  --red-600: #CC5151;
+  --red-700: #9F3F3F;
+  --red-800: #7B3131;
+  --red-900: #5E2525;
+
+  /* ── Yellow (warning) ────────────────────────────────────── */
+  --yellow-50:  #FFFBEB;
+  --yellow-100: #FEF8E0;
+  --yellow-200: #FDF1BF;
+  --yellow-300: #FBE68D;
+  --yellow-400: #FADE66;
+  --yellow-500: #FAD232;
+  --yellow-600: #E1BD2D;
+  --yellow-700: #C8A828;
+  --yellow-800: #967E1E;
+  --yellow-900: #705E16;
+
+  /* ── Green (success) ─────────────────────────────────────── */
+  --green-50:  #E8F8E8;
+  --green-100: #B8E9B6;
+  --green-200: #96DE93;
+  --green-300: #66CF62;
+  --green-400: #48C544;
+  --green-500: #1AB715;
+  --green-600: #18A713;
+  --green-700: #12820F;
+  --green-800: #0E650C;
+  --green-900: #0B4D09;
+
+  /* ── Semantic / role tokens ──────────────────────────────── */
+  --bg-app:           var(--white);
+  --bg-sidebar:       var(--grey-25);
+  --bg-bubble-user:   var(--grey-25);   /* request message bubble */
+  --bg-input:         #fafafa;
+  --bg-hover-soft:    rgba(142,148,157,0.10); /* transparent.hover */
+  --bg-hover-grey:    rgba(120,127,137,0.10); /* applyOpacity grey-400 0.1 */
+  --bg-active-blue:   var(--blue-50);
+
+  --fg-primary:       var(--grey-900);
+  --fg-secondary:     var(--grey-700);
+  --fg-tertiary:      var(--grey-500);
+  --fg-muted:         var(--grey-400);
+  --fg-placeholder:   var(--grey-200);
+  --fg-on-brand:      var(--white);
+  --fg-link:          var(--blue-500);
+
+  --border-subtle:    var(--grey-50);
+  --border-default:   var(--grey-100);
+  --border-focus:     var(--blue-300);
+
+  --accent-primary:   var(--blue-500);
+  --accent-primary-hover: var(--blue-600);
+
+  --status-success:   var(--green-500);
+  --status-warning:   var(--yellow-500);
+  --status-error:     var(--red-500);
+  --status-info:      var(--blue-500);
+
+  /* ── Radius ──────────────────────────────────────────────── */
+  --radius-xs:  4px;
+  --radius-sm:  6px;   /* buttons */
+  --radius-md:  8px;   /* message bubble, list rows */
+  --radius-lg:  10px;  /* input bar, menus, store pill outline */
+  --radius-pill: 900px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-input:   0px 2px 10px 0px rgba(135,135,135,0.12);
+  --shadow-pill:    0px 0px 20px 0px rgba(135,135,135,0.12);
+  --shadow-card:    0 2px 6px 0 rgba(0,0,0,0.08);
+  --shadow-menu:    0px 1px 2px 0px rgba(0,0,0,0.05);
+  --shadow-tooltip: 0 2px 4px rgba(0,0,0,0.25);
+  --shadow-focus:   0 0 0 2px rgba(122,197,255,0.30); /* boxShadow.sky */
+
+  /* ── Spacing (Tailwind-aligned, 2px base) ───────────────── */
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  6px;
+  --space-4:  8px;
+  --space-5:  10px;
+  --space-6:  12px;
+  --space-7:  16px;
+  --space-8:  24px;  /* 'l' padding alias in tw */
+  --space-9:  32px;
+  --space-10: 40px;
+  --space-11: 60px;
+
+  /* ── Type family ─────────────────────────────────────────── */
+  --font-sans: 'PretendardKR', 'Pretendard', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-jp:   'PretendardJP', 'Pretendard', system-ui, sans-serif;
+
+  /* ── Type scale (raw px, from tailwind.config.ts) ───────── */
+  --fs-15:   8px;
+  --fs-25:   10px;
+  --fs-50:   11px;
+  --fs-75:   12px;
+  --fs-100:  13px;   /* body-m, default body */
+  --fs-200:  15px;
+  --fs-300:  17px;
+  --fs-400:  19px;
+  --fs-500:  21px;
+  --fs-600:  24px;
+  --fs-700:  27px;
+  --fs-800:  30px;
+  --fs-900:  34px;
+  --fs-1000: 38px;
+  --fs-1100: 43px;
+
+  /* heading line-height = 1.5; body line-height = 1.7 */
+  --lh-heading: 1.5;
+  --lh-body:    1.7;
+  --lh-tight:   1.4; /* used for chips, pills, captions */
+
+  /* ── Easing & motion ─────────────────────────────────────── */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bg:        ease-out; /* button background-color 150ms */
+  --dur-fast:       150ms;
+  --dur-base:       300ms;
+  --dur-pane:       480ms;
+}
+
+/* ── Semantic element styles ─────────────────────────────── */
+html { font-family: var(--font-sans); color: var(--fg-primary); }
+
+h1, .heading-3xl { font-size: var(--fs-1000); line-height: var(--lh-heading); font-weight: 700; }
+h2, .heading-2xl { font-size: var(--fs-900);  line-height: var(--lh-heading); font-weight: 700; }
+h3, .heading-xl  { font-size: var(--fs-700);  line-height: var(--lh-heading); font-weight: 600; }
+h4, .heading-l   { font-size: var(--fs-600);  line-height: var(--lh-heading); font-weight: 600; }
+h5, .heading-m   { font-size: var(--fs-500);  line-height: var(--lh-heading); font-weight: 500; }
+h6, .heading-s   { font-size: var(--fs-300);  line-height: var(--lh-heading); font-weight: 500; }
+.heading-xs      { font-size: var(--fs-200);  line-height: var(--lh-heading); font-weight: 500; }
+.heading-2xs     { font-size: var(--fs-100);  line-height: var(--lh-heading); font-weight: 500; }
+
+.body-xl         { font-size: var(--fs-300);  line-height: var(--lh-body); }
+.body-l          { font-size: var(--fs-200);  line-height: var(--lh-body); }
+.body-m          { font-size: var(--fs-100);  line-height: var(--lh-body); }
+.body-s          { font-size: var(--fs-75);   line-height: var(--lh-body); }
+
+p { font-size: var(--fs-100); line-height: var(--lh-body); color: var(--fg-primary); }
+
+code, pre, kbd, samp {
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}

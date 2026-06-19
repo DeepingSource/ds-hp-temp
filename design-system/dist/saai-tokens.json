@@ -1,0 +1,425 @@
+{
+  "$metadata": {
+    "name": "SAAI Design System",
+    "version": "1.3.0",
+    "format": "Tokens Studio for Figma (v2)",
+    "generatedFrom": "constitution/SAAI_MASTER.md 부록 A",
+    "lastUpdated": "2026-05-04",
+    "tokenSetOrder": ["primitive", "semantic", "semantic-dark", "audience-plain", "audience-analyst", "chart", "chart-dark"]
+  },
+
+  "primitive": {
+    "color": {
+      "white":  { "value": "#FFFFFF", "type": "color" },
+      "black":  { "value": "#000000", "type": "color" },
+
+      "grey": {
+        "25":  { "value": "#F9F9FB", "type": "color" },
+        "50":  { "value": "#E9E9EA", "type": "color" },
+        "100": { "value": "#D9DBDD", "type": "color" },
+        "200": { "value": "#B1B5BB", "type": "color" },
+        "300": { "value": "#8E949D", "type": "color" },
+        "400": { "value": "#787F89", "type": "color" },
+        "500": { "value": "#565F6C", "type": "color" },
+        "600": { "value": "#4E5662", "type": "color" },
+        "700": { "value": "#3D434D", "type": "color" },
+        "800": { "value": "#2F343B", "type": "color" },
+        "900": { "value": "#24282D", "type": "color" }
+      },
+
+      "blue": {
+        "25":  { "value": "#F7F9FD", "type": "color" },
+        "50":  { "value": "#EBF0FC", "type": "color" },
+        "100": { "value": "#C1D1F6", "type": "color" },
+        "200": { "value": "#A3BAF2", "type": "color" },
+        "300": { "value": "#799BEC", "type": "color" },
+        "400": { "value": "#5F88E8", "type": "color" },
+        "500": { "value": "#376AE2", "type": "color", "description": "SAAI Blue — 단일 브랜드 색 (1순위)" },
+        "600": { "value": "#3260CE", "type": "color" },
+        "700": { "value": "#274BA0", "type": "color" },
+        "800": { "value": "#1E3A7C", "type": "color" },
+        "900": { "value": "#172D5F", "type": "color" }
+      },
+
+      "cyan": {
+        "50":  { "value": "#F1FAFA", "type": "color" },
+        "100": { "value": "#D5EFF0", "type": "color" },
+        "200": { "value": "#C0E8E9", "type": "color" },
+        "300": { "value": "#A3DDDF", "type": "color" },
+        "400": { "value": "#91D6D9", "type": "color" },
+        "500": { "value": "#76CCCF", "type": "color" },
+        "600": { "value": "#6BBABC", "type": "color" },
+        "700": { "value": "#549193", "type": "color" },
+        "800": { "value": "#417072", "type": "color" },
+        "900": { "value": "#325657", "type": "color" }
+      },
+
+      "purple": {
+        "50":  { "value": "#F8EFFC", "type": "color" },
+        "100": { "value": "#E8CCF6", "type": "color" },
+        "200": { "value": "#DDB4F1", "type": "color" },
+        "300": { "value": "#CE91EB", "type": "color" },
+        "400": { "value": "#C57CE7", "type": "color" },
+        "500": { "value": "#B65BE1", "type": "color" },
+        "600": { "value": "#A653CD", "type": "color" },
+        "700": { "value": "#8141A0", "type": "color" },
+        "800": { "value": "#64327C", "type": "color" },
+        "900": { "value": "#4C265F", "type": "color" }
+      },
+
+      "pink": {
+        "50":  { "value": "#FDEEF6", "type": "color" },
+        "100": { "value": "#F9CCE3", "type": "color" },
+        "200": { "value": "#F5B3D4", "type": "color" },
+        "300": { "value": "#F08FBC", "type": "color" },
+        "400": { "value": "#ED77AD", "type": "color" },
+        "500": { "value": "#E5599A", "type": "color" },
+        "600": { "value": "#CF508B", "type": "color" },
+        "700": { "value": "#A33F6E", "type": "color" },
+        "800": { "value": "#7E3055", "type": "color" },
+        "900": { "value": "#602541", "type": "color" }
+      },
+
+      "red": {
+        "50":  { "value": "#FCEEEE", "type": "color" },
+        "100": { "value": "#F5CCCC", "type": "color" },
+        "200": { "value": "#F1B3B3", "type": "color" },
+        "300": { "value": "#EA9090", "type": "color" },
+        "400": { "value": "#E67A7A", "type": "color" },
+        "500": { "value": "#E05959", "type": "color" },
+        "600": { "value": "#CC5151", "type": "color" },
+        "700": { "value": "#9F3F3F", "type": "color" },
+        "800": { "value": "#7B3131", "type": "color" },
+        "900": { "value": "#5E2525", "type": "color" }
+      },
+
+      "yellow": {
+        "50":  { "value": "#FFFBEB", "type": "color" },
+        "100": { "value": "#FEF8E0", "type": "color" },
+        "200": { "value": "#FDF1BF", "type": "color" },
+        "300": { "value": "#FBE68D", "type": "color" },
+        "400": { "value": "#FADE66", "type": "color" },
+        "500": { "value": "#FAD232", "type": "color" },
+        "600": { "value": "#E1BD2D", "type": "color" },
+        "700": { "value": "#C8A828", "type": "color" },
+        "800": { "value": "#967E1E", "type": "color" },
+        "900": { "value": "#705E16", "type": "color" }
+      },
+
+      "green": {
+        "50":  { "value": "#E8F8E8", "type": "color" },
+        "100": { "value": "#B8E9B6", "type": "color" },
+        "200": { "value": "#96DE93", "type": "color" },
+        "300": { "value": "#66CF62", "type": "color" },
+        "400": { "value": "#48C544", "type": "color" },
+        "500": { "value": "#1AB715", "type": "color" },
+        "600": { "value": "#18A713", "type": "color" },
+        "700": { "value": "#12820F", "type": "color" },
+        "800": { "value": "#0E650C", "type": "color" },
+        "900": { "value": "#0B4D09", "type": "color" }
+      }
+    },
+
+    "spacing": {
+      "1": { "value": "6px",  "type": "spacing" },
+      "2": { "value": "10px", "type": "spacing" },
+      "3": { "value": "16px", "type": "spacing", "description": "카드 패딩 최소" },
+      "4": { "value": "20px", "type": "spacing" },
+      "5": { "value": "28px", "type": "spacing", "description": "카드 간 표준" },
+      "6": { "value": "36px", "type": "spacing", "description": "섹션 간" },
+      "8": { "value": "48px", "type": "spacing", "description": "큰 단락" }
+    },
+
+    "radius": {
+      "sm":   { "value": "2px",   "type": "borderRadius" },
+      "base": { "value": "4px",   "type": "borderRadius", "description": "메뉴 row, divider chip" },
+      "md":   { "value": "6px",   "type": "borderRadius", "description": "버튼·tooltip" },
+      "lg":   { "value": "8px",   "type": "borderRadius", "description": "메시지 버블·list row·차트 카드" },
+      "xl":   { "value": "10px",  "type": "borderRadius", "description": "input bar·메뉴 paper·스토어 pill outline" },
+      "pill": { "value": "900px", "type": "borderRadius", "description": "라운드 pill" }
+    },
+
+    "shadow": {
+      "input":   { "value": { "x": "0", "y": "2px", "blur": "10px", "spread": "0", "color": "rgba(135,135,135,0.12)" }, "type": "boxShadow" },
+      "pill":    { "value": { "x": "0", "y": "0",   "blur": "20px", "spread": "0", "color": "rgba(135,135,135,0.12)" }, "type": "boxShadow" },
+      "card":    { "value": { "x": "0", "y": "2px", "blur": "6px",  "spread": "0", "color": "rgba(0,0,0,0.08)"        }, "type": "boxShadow" },
+      "menu":    { "value": { "x": "0", "y": "1px", "blur": "2px",  "spread": "0", "color": "rgba(0,0,0,0.05)"        }, "type": "boxShadow" },
+      "tooltip": { "value": { "x": "0", "y": "2px", "blur": "4px",  "spread": "0", "color": "rgba(0,0,0,0.25)"        }, "type": "boxShadow" },
+      "focus":   { "value": { "x": "0", "y": "0",   "blur": "0",    "spread": "2px", "color": "rgba(122,197,255,0.30)" }, "type": "boxShadow" }
+    },
+
+    "duration": {
+      "fast":     { "value": "150ms", "type": "duration" },
+      "normal":   { "value": "250ms", "type": "duration" },
+      "sidebar":  { "value": "300ms", "type": "duration" },
+      "pane":     { "value": "480ms", "type": "duration" },
+      "pulse":    { "value": "800ms", "type": "duration" }
+    },
+
+    "easing": {
+      "saai":      { "value": "cubic-bezier(0.22, 1, 0.36, 1)", "type": "cubicBezier" },
+      "out":       { "value": "ease-out", "type": "cubicBezier" },
+      "in-out":    { "value": "ease-in-out", "type": "cubicBezier" }
+    },
+
+    "fontFamily": {
+      "sans":    { "value": "PretendardKR, Pretendard, system-ui, -apple-system, 'Helvetica Neue', sans-serif", "type": "fontFamilies" },
+      "jp":      { "value": "PretendardJP, Pretendard, system-ui, sans-serif", "type": "fontFamilies" },
+      "numeric": { "value": "SF Mono, ui-monospace, JetBrains Mono, Menlo, Consolas, monospace", "type": "fontFamilies" }
+    },
+
+    "fontWeight": {
+      "regular": { "value": "400", "type": "fontWeights" },
+      "medium":  { "value": "500", "type": "fontWeights" },
+      "bold":    { "value": "700", "type": "fontWeights" }
+    },
+
+    "fontSize": {
+      "heading-3xl": { "value": "36px", "type": "fontSizes" },
+      "heading-2xl": { "value": "24px", "type": "fontSizes" },
+      "heading-xl":  { "value": "20px", "type": "fontSizes" },
+      "heading-lg":  { "value": "18px", "type": "fontSizes" },
+      "heading-md":  { "value": "16px", "type": "fontSizes" },
+      "heading-sm":  { "value": "14px", "type": "fontSizes" },
+      "body-xl":     { "value": "18px", "type": "fontSizes" },
+      "body-lg":     { "value": "16px", "type": "fontSizes" },
+      "body-base":   { "value": "14px", "type": "fontSizes" },
+      "body-s":      { "value": "12px", "type": "fontSizes", "description": "CJK 최소 — 미만 금지" }
+    },
+
+    "lineHeight": {
+      "heading":     { "value": "1.5", "type": "lineHeights", "description": "heading 디폴트" },
+      "heading-hero": { "value": "1.4", "type": "lineHeights", "description": "24px+ hero 예외" },
+      "body":        { "value": "1.7", "type": "lineHeights", "description": "body 디폴트" }
+    },
+
+    "breakpoint": {
+      "mobile":  { "value": "480px",  "type": "sizing" },
+      "tablet":  { "value": "768px",  "type": "sizing" },
+      "desktop": { "value": "1024px", "type": "sizing" },
+      "wide":    { "value": "1440px", "type": "sizing" }
+    }
+  },
+
+  "semantic": {
+    "color": {
+      "bg": {
+        "app":          { "value": "{primitive.color.white}",                  "type": "color" },
+        "sidebar":      { "value": "{primitive.color.grey.25}",                "type": "color" },
+        "bubble-user":  { "value": "{primitive.color.grey.25}",                "type": "color" },
+        "input":        { "value": "#FAFAFA",                                  "type": "color" },
+        "subtle":       { "value": "{primitive.color.grey.25}",                "type": "color" },
+        "active-blue":  { "value": "{primitive.color.blue.50}",                "type": "color" },
+        "hover-soft":   { "value": "rgba(142,148,157,0.10)",                   "type": "color" },
+        "hover-grey":   { "value": "rgba(120,127,137,0.10)",                   "type": "color" }
+      },
+      "text": {
+        "primary":     { "value": "{primitive.color.grey.900}", "type": "color" },
+        "body":        { "value": "{primitive.color.grey.700}", "type": "color" },
+        "secondary":   { "value": "{primitive.color.grey.500}", "type": "color" },
+        "tertiary":    { "value": "{primitive.color.grey.400}", "type": "color" },
+        "muted":       { "value": "{primitive.color.grey.400}", "type": "color" },
+        "placeholder": { "value": "{primitive.color.grey.200}", "type": "color" },
+        "disabled":    { "value": "{primitive.color.grey.300}", "type": "color" },
+        "on-brand":    { "value": "{primitive.color.white}",     "type": "color" }
+      },
+      "primary":         { "value": "{primitive.color.blue.500}", "type": "color", "description": "SAAI Blue — 단일 브랜드, 1순위" },
+      "primary-hover":   { "value": "{primitive.color.blue.600}", "type": "color" },
+      "primary-active":  { "value": "{primitive.color.blue.700}", "type": "color" },
+      "primary-bg":      { "value": "{primitive.color.blue.50}",  "type": "color" },
+      "positive":        { "value": "{primitive.color.green.800}","type": "color" },
+      "positive-bg":     { "value": "{primitive.color.green.50}", "type": "color" },
+      "negative":        { "value": "{primitive.color.red.700}",  "type": "color" },
+      "negative-bg":     { "value": "{primitive.color.red.50}",   "type": "color" },
+      "warning":         { "value": "{primitive.color.yellow.500}","type": "color" },
+      "warning-bg":      { "value": "{primitive.color.yellow.50}", "type": "color" },
+      "deep-red":        { "value": "{primitive.color.red.800}",  "type": "color", "description": "위험·즉시 조치 (border-left only)" },
+      "divider":         { "value": "{primitive.color.grey.200}", "type": "color" },
+      "border-card":     { "value": "{primitive.color.grey.100}", "type": "color" },
+      "border-input":    { "value": "{primitive.color.grey.50}",  "type": "color" },
+      "border-focus":    { "value": "{primitive.color.blue.300}", "type": "color" }
+    }
+  },
+
+  "audience-plain": {
+    "$description": "Operator 모드 — 한·일 주식시장 친숙 관습 (▲빨강 / ▼파랑)",
+    "color": {
+      "up":   { "value": "{semantic.color.deep-red}", "type": "color" },
+      "down": { "value": "{semantic.color.primary}",  "type": "color" }
+    }
+  },
+
+  "audience-analyst": {
+    "$description": "Analyst 모드 — 일반 데이터 시각화 표준 (▲녹 / ▼빨)",
+    "color": {
+      "up":   { "value": "{semantic.color.positive}", "type": "color" },
+      "down": { "value": "{semantic.color.negative}", "type": "color" }
+    }
+  },
+
+  "chart": {
+    "$description": "차트 전용 토큰 (마스터 §5.4). Categorical 6 cap / Sequential 7 / Diverging neg-grey-pos",
+    "categorical": {
+      "1": { "value": "{primitive.color.blue.500}",   "type": "color", "description": "항상 강조 시리즈 (protagonist)" },
+      "2": { "value": "{primitive.color.green.700}",  "type": "color" },
+      "3": { "value": "{primitive.color.purple.600}", "type": "color" },
+      "4": { "value": "{primitive.color.pink.600}",   "type": "color" },
+      "5": { "value": "{primitive.color.cyan.600}",   "type": "color" },
+      "6": { "value": "{primitive.color.yellow.700}", "type": "color" }
+    },
+    "context":         { "value": "{primitive.color.grey.200}", "type": "color", "description": "베이스라인·non-emphasised" },
+    "context-strong":  { "value": "{primitive.color.grey.300}", "type": "color" },
+    "baseline":        { "value": "{primitive.color.grey.500}", "type": "color" },
+
+    "sequential": {
+      "1": { "value": "{primitive.color.blue.25}",  "type": "color" },
+      "2": { "value": "{primitive.color.blue.50}",  "type": "color" },
+      "3": { "value": "{primitive.color.blue.100}", "type": "color" },
+      "4": { "value": "{primitive.color.blue.300}", "type": "color" },
+      "5": { "value": "{primitive.color.blue.500}", "type": "color" },
+      "6": { "value": "{primitive.color.blue.700}", "type": "color" },
+      "7": { "value": "{primitive.color.blue.900}", "type": "color" }
+    },
+
+    "diverging": {
+      "neg-3": { "value": "{primitive.color.red.700}",  "type": "color" },
+      "neg-2": { "value": "{primitive.color.red.400}",  "type": "color" },
+      "neg-1": { "value": "{primitive.color.red.100}",  "type": "color" },
+      "mid":   { "value": "{primitive.color.grey.200}", "type": "color", "description": "중앙 — 노란색 절대 금지" },
+      "pos-1": { "value": "{primitive.color.blue.100}", "type": "color" },
+      "pos-2": { "value": "{primitive.color.blue.400}", "type": "color" },
+      "pos-3": { "value": "{primitive.color.blue.700}", "type": "color" }
+    },
+
+    "semantic": {
+      "positive": { "value": "{primitive.color.green.700}", "type": "color" },
+      "negative": { "value": "{primitive.color.red.700}",   "type": "color" },
+      "neutral":  { "value": "{primitive.color.grey.400}",  "type": "color" },
+      "warning":  { "value": "{primitive.color.yellow.500}","type": "color" },
+      "forecast": { "value": "{primitive.color.grey.400}",  "type": "color", "description": "예측·보간 — 항상 dash 와 페어" }
+    },
+
+    "chrome": {
+      "axis":         { "value": "{primitive.color.grey.300}",   "type": "color" },
+      "axis-tick":    { "value": "{primitive.color.grey.200}",   "type": "color" },
+      "grid":         { "value": "{primitive.color.grey.100}",   "type": "color" },
+      "grid-strong":  { "value": "{primitive.color.grey.500}",   "type": "color" },
+      "tooltip-bg":   { "value": "rgba(0,0,0,0.9)",              "type": "color" },
+      "tooltip-fg":   { "value": "{primitive.color.white}",       "type": "color" },
+      "band":         { "value": "rgba(55,106,226,0.10)",        "type": "color" },
+      "band-strong":  { "value": "rgba(55,106,226,0.18)",        "type": "color" }
+    },
+
+    "type": {
+      "title":    { "value": "14px", "type": "fontSizes" },
+      "subtitle": { "value": "12px", "type": "fontSizes" },
+      "axis":     { "value": "11px", "type": "fontSizes", "description": "최소 11px — 미만 금지" },
+      "label":    { "value": "11px", "type": "fontSizes" },
+      "annot":    { "value": "11px", "type": "fontSizes" },
+      "source":   { "value": "10px", "type": "fontSizes", "description": "메타 — 데이터 라벨 아님" }
+    },
+
+    "stroke": {
+      "emph":     { "value": "2px",   "type": "borderWidth" },
+      "base":     { "value": "1.5px", "type": "borderWidth" },
+      "context":  { "value": "1px",   "type": "borderWidth" },
+      "dash":     { "value": "4 4",   "type": "other", "description": "예측·보간 점선 — forecast 와 페어" }
+    },
+
+    "point": {
+      "r":      { "value": "3px",   "type": "sizing" },
+      "r-emph": { "value": "4.5px", "type": "sizing" }
+    }
+  },
+
+  "semantic-dark": {
+    "$description": "다크 모드 — Tier 2 매핑 재정의 (마스터 §3.2 / 부록 A.7). 라이트와 동일한 키, 다른 Tier 1 참조.",
+    "color": {
+      "bg": {
+        "app":          { "value": "{primitive.color.grey.900}", "type": "color" },
+        "sidebar":      { "value": "{primitive.color.grey.800}", "type": "color" },
+        "bubble-user":  { "value": "{primitive.color.grey.800}", "type": "color" },
+        "input":        { "value": "{primitive.color.grey.800}", "type": "color" },
+        "subtle":       { "value": "{primitive.color.grey.800}", "type": "color" },
+        "active-blue":  { "value": "{primitive.color.blue.900}", "type": "color" },
+        "hover-soft":   { "value": "rgba(255,255,255,0.08)",     "type": "color" },
+        "hover-grey":   { "value": "rgba(255,255,255,0.06)",     "type": "color" }
+      },
+      "text": {
+        "primary":     { "value": "{primitive.color.grey.25}",  "type": "color" },
+        "body":        { "value": "{primitive.color.grey.100}", "type": "color" },
+        "secondary":   { "value": "{primitive.color.grey.200}", "type": "color" },
+        "tertiary":    { "value": "{primitive.color.grey.300}", "type": "color" },
+        "muted":       { "value": "{primitive.color.grey.300}", "type": "color" },
+        "placeholder": { "value": "{primitive.color.grey.500}", "type": "color" },
+        "disabled":    { "value": "{primitive.color.grey.500}", "type": "color" },
+        "on-brand":    { "value": "{primitive.color.white}",     "type": "color" }
+      },
+      "primary":         { "value": "{primitive.color.blue.400}", "type": "color", "description": "다크 — 한 톤 밝게 (대비)" },
+      "primary-hover":   { "value": "{primitive.color.blue.300}", "type": "color" },
+      "primary-active":  { "value": "{primitive.color.blue.200}", "type": "color" },
+      "primary-bg":      { "value": "{primitive.color.blue.900}", "type": "color" },
+      "positive":        { "value": "{primitive.color.green.400}","type": "color" },
+      "positive-bg":     { "value": "{primitive.color.green.900}","type": "color" },
+      "negative":        { "value": "{primitive.color.red.400}",  "type": "color" },
+      "negative-bg":     { "value": "{primitive.color.red.900}",  "type": "color" },
+      "warning":         { "value": "{primitive.color.yellow.400}","type": "color" },
+      "warning-bg":      { "value": "{primitive.color.yellow.900}","type": "color" },
+      "deep-red":        { "value": "{primitive.color.red.300}",  "type": "color" },
+      "divider":         { "value": "{primitive.color.grey.700}", "type": "color" },
+      "border-card":     { "value": "{primitive.color.grey.700}", "type": "color" },
+      "border-input":    { "value": "{primitive.color.grey.800}", "type": "color" },
+      "border-focus":    { "value": "{primitive.color.blue.300}", "type": "color" }
+    }
+  },
+
+  "chart-dark": {
+    "$description": "다크 모드 — 차트 토큰 재매핑 (마스터 §A.7). cat-1~6 한 톤 밝게, 시퀀셜 방향 반전.",
+    "categorical": {
+      "1": { "value": "{primitive.color.blue.400}",   "type": "color" },
+      "2": { "value": "{primitive.color.green.400}",  "type": "color" },
+      "3": { "value": "{primitive.color.purple.400}", "type": "color" },
+      "4": { "value": "{primitive.color.pink.400}",   "type": "color" },
+      "5": { "value": "{primitive.color.cyan.400}",   "type": "color" },
+      "6": { "value": "{primitive.color.yellow.400}", "type": "color" }
+    },
+    "context":         { "value": "{primitive.color.grey.600}", "type": "color" },
+    "context-strong":  { "value": "{primitive.color.grey.500}", "type": "color" },
+    "baseline":        { "value": "{primitive.color.grey.400}", "type": "color" },
+    "sequential": {
+      "1": { "value": "{primitive.color.blue.900}", "type": "color" },
+      "2": { "value": "{primitive.color.blue.800}", "type": "color" },
+      "3": { "value": "{primitive.color.blue.700}", "type": "color" },
+      "4": { "value": "{primitive.color.blue.500}", "type": "color" },
+      "5": { "value": "{primitive.color.blue.400}", "type": "color" },
+      "6": { "value": "{primitive.color.blue.200}", "type": "color" },
+      "7": { "value": "{primitive.color.blue.25}",  "type": "color" }
+    },
+    "diverging": {
+      "neg-3": { "value": "{primitive.color.red.300}",  "type": "color" },
+      "neg-2": { "value": "{primitive.color.red.500}",  "type": "color" },
+      "neg-1": { "value": "{primitive.color.red.700}",  "type": "color" },
+      "mid":   { "value": "{primitive.color.grey.600}", "type": "color", "description": "다크 중앙 — 노란색 절대 금지" },
+      "pos-1": { "value": "{primitive.color.blue.700}", "type": "color" },
+      "pos-2": { "value": "{primitive.color.blue.500}", "type": "color" },
+      "pos-3": { "value": "{primitive.color.blue.300}", "type": "color" }
+    },
+    "semantic": {
+      "positive": { "value": "{primitive.color.green.400}", "type": "color" },
+      "negative": { "value": "{primitive.color.red.400}",   "type": "color" },
+      "neutral":  { "value": "{primitive.color.grey.400}",  "type": "color" },
+      "warning":  { "value": "{primitive.color.yellow.400}","type": "color" },
+      "forecast": { "value": "{primitive.color.grey.500}",  "type": "color" }
+    },
+    "chrome": {
+      "axis":         { "value": "{primitive.color.grey.500}", "type": "color" },
+      "axis-tick":    { "value": "{primitive.color.grey.600}", "type": "color" },
+      "grid":         { "value": "{primitive.color.grey.800}", "type": "color" },
+      "grid-strong":  { "value": "{primitive.color.grey.500}", "type": "color" },
+      "tooltip-bg":   { "value": "rgba(255,255,255,0.95)",     "type": "color" },
+      "tooltip-fg":   { "value": "{primitive.color.grey.900}", "type": "color" },
+      "band":         { "value": "rgba(95,136,232,0.18)",       "type": "color" },
+      "band-strong":  { "value": "rgba(95,136,232,0.30)",       "type": "color" }
+    }
+  }
+}

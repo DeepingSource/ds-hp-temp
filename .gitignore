@@ -1,0 +1,35 @@
+# dependencies
+/node_modules
+
+# next.js / build output
+/.next
+/out
+
+# velite generated content
+/.velite
+
+# typescript incremental build cache
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+
+# logs
+*.log
+npm-debug.log*
+
+# os / editor
+.DS_Store
+.vscode
+.idea
+
+# playwright scratch
+/.playwright-mcp
+
+# claude code scratch
+.claude/
+
+# editable source-of-record design assets (151MB) — kept on disk, not tracked.
+# See CLEANUP_REVIEW.md §7. Remove this line to version-control them.
+/assets

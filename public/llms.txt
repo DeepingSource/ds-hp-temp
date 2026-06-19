@@ -1,0 +1,38 @@
+# DeepingSource
+
+> Last updated: 2026-06
+
+> DeepingSource builds Anonymized Spatial AI (SAAI) — AI that understands physical
+> retail spaces from existing CCTV without ever exposing personal identity. Founded
+> 2018. Promise: "Every store, like one." (모든 매장을 한 매장처럼.)
+
+Anonymization comes first: every analysis runs on de-identified video, so insight
+never trades off privacy. DeepingSource is an NVIDIA Inception Partner with 100+
+registered/pending patents, serving partner brands across multiple retail industries.
+
+## Products
+- [Store Insight](https://deepingsource.io/products/store-insight): Enterprise spatial analytics — visit, flow, dwell, and conversion analysis to explain what moves revenue. "The in-between of yesterday."
+- [Store Agent](https://deepingsource.io/products/store-agent): AI that turns store data into the next operating decision (what to stock, how much, where). "The in-between of next."
+- [Store Care](https://deepingsource.io/products/store-care): Affordable safety & anomaly monitoring for small store owners (from ₩14,900/month). Operated at storecare.ai. "The in-between of now."
+- [SAAI](https://deepingsource.io/products/saai): B2C store content creation (POP, seasonal campaigns). Operated at saai.store.
+
+## Technology
+- [Anonymizer](https://deepingsource.io/technology/anonymizer): Real-time video de-identification.
+- [SEAL](https://deepingsource.io/technology/seal): Privacy-preserving anonymization engine.
+- [Spatial AI](https://deepingsource.io/technology/spatial-ai): Multi-camera tracking and spatial behavior analysis.
+- [Vision Models](https://deepingsource.io/technology/models): 20+ vision AI model catalog (anonymize, detect, space, flow).
+
+## Key resources
+- [Glossary](https://deepingsource.io/resources/glossary): Canonical glossary — definitions of spatial-AI and retail-analytics terms. Individual term pages live at https://deepingsource.io/glossary/<slug>.
+- [Enterprise & Franchise](https://deepingsource.io/enterprise): Multi-store operations standardization for HQ and supervisors — the 5-stage Golden Case.
+- [Pricing](https://deepingsource.io/pricing): Compare Store Care · Store Insight · Store Agent pricing at a glance.
+- [FAQ](https://deepingsource.io/resources/faq): Onboarding, pricing, data security.
+- [Solutions](https://deepingsource.io/solutions): Industry use cases (retail/convenience, food & beverage, drugstore, large spaces).
+- [Company](https://deepingsource.io/company/about): About DeepingSource.
+- [Contact](https://deepingsource.io/contact): Get in touch / request a consultation.
+
+## Languages
+English (default, /), Korean (/ko), Japanese (/jp).
+
+## Contact
+contact@deepingsource.io

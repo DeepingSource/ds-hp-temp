@@ -1,0 +1,178 @@
+/* =============================================================
+ * SAAI Design System — Medium: Print Report (A4)
+ * Single source: constitution/SAAI_MASTER.md §8.3
+ * Version: v1.4  (2026-05-06)
+ *
+ * 매체: 업무용 인쇄 리포트 (Lawson Weekly Report 등)
+ * 단위: pt (인쇄 기준)
+ * 페이지: A4 세로 (595×842pt)
+ *
+ * 사용:
+ *   <link rel="stylesheet" href="./saai.css">
+ *   <link rel="stylesheet" href="./saai-medium-print.css">
+ *
+ * 본 파일은 Web (saai.css) 위에 *덧입히는 layer*.
+ * Web 기본 룰 (마스터 §3) + 인쇄 매체 특화 룰 (마스터 §8.3) 결합.
+ * ============================================================= */
+
+@import url('./saai-tokens.css');
+
+/* ─────────────────────────────────────────────────────
+ * §8.3.1 페이지 — A4 세로 + 헤더·풋터
+ * ───────────────────────────────────────────────────── */
+@page {
+  size: A4 portrait;                       /* 595×842pt = 21×29.7cm */
+  margin: 20mm 18mm 22mm 18mm;             /* 상 우 하 좌 */
+
+  @top-right {
+    content: var(--print-header-text, "");
+    font-family: var(--saai-font-sans);
+    font-size: 8pt;
+    color: var(--saai-grey-500);
+  }
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: var(--saai-font-numeric);
+    font-size: 8pt;
+    color: var(--saai-grey-500);
+  }
+}
+
+/* :first 페이지 (cover 가정) — 헤더·풋터 제거 */
+@page :first {
+  @top-right { content: none; }
+  @bottom-center { content: none; }
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.3.2 단위·크기 — pt 기반
+ * Web 의 px 토큰 위에 인쇄 전용 alias.
+ * ───────────────────────────────────────────────────── */
+:root {
+  /* 인쇄 본문·헤딩 (마스터 §8.3.2) */
+  --print-body-size:    10pt;
+  --print-body-lh:      1.6;        /* Web 1.7 보다 ↓ — 지면 절약 */
+
+  --print-h1-size:      18pt;       /* 페이지 제목 */
+  --print-h2-size:      14pt;       /* 섹션 */
+  --print-h3-size:      11pt;
+  --print-h4-size:      10pt;
+
+  --print-table-header-size: 9pt;
+  --print-table-cell-size:   9pt;
+  --print-chart-label-size:  8pt;   /* CJK 가독 한계 */
+  --print-meta-size:         8pt;
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.3.3 인쇄 함정 5종 봉합
+ * ───────────────────────────────────────────────────── */
+
+/* 1. 색 강제 (그레이스케일 fallback 방지) */
+html, body,
+.kpi-card, .insight-box, .chart-container,
+table, th, td,
+.section-header, .ebook-box, .printable-checklist {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* 2. 박스·표·차트 페이지 분할 금지 */
+.kpi-card,
+.insight-box,
+.chart-container, .chart-canvas,
+table,
+.section-header,
+.flow-step,
+figure {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* 3. 단락 widow / orphan */
+p, li, blockquote { widows: 3; orphans: 3; }
+
+/* 4. 헤딩 외로움 방지 */
+h1, h2, h3, h4 {
+  page-break-after: avoid;
+  break-after: avoid-page;
+}
+
+/* 5. 큰 이미지·다이어그램 페이지 분할 금지 + 최대 높이 */
+img.diagram, figure.chart-large {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  max-height: calc(100vh - 60mm);
+}
+
+/* ─────────────────────────────────────────────────────
+ * §8.3 인쇄 매체 — body / heading / table 크기 적용
+ * @media print 안에 두어 화면에서는 영향 없음.
+ * ───────────────────────────────────────────────────── */
+@media print {
+  /* 본문 */
+  html, body {
+    font-size: var(--print-body-size);
+    line-height: var(--print-body-lh);
+    background: var(--saai-white);
+    color: var(--saai-grey-900);
+  }
+
+  /* 헤딩 */
+  h1, .heading-print-h1 {
+    font-size: var(--print-h1-size);
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  h2, .heading-print-h2 {
+    font-size: var(--print-h2-size);
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  h3, .heading-print-h3 {
+    font-size: var(--print-h3-size);
+    line-height: 1.5;
+    font-weight: 700;
+  }
+  h4, .heading-print-h4 {
+    font-size: var(--print-h4-size);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* 표 */
+  table { font-size: var(--print-table-cell-size); }
+  th    { font-size: var(--print-table-header-size); font-weight: 700; }
+
+  /* 차트 라벨 */
+  .chart-label, .axis-label { font-size: var(--print-chart-label-size); }
+
+  /* 메타·풋터 */
+  .meta, .footer-text, .page-meta { font-size: var(--print-meta-size); }
+
+  /* §8.3.5 인터랙션 0 — 화면 전용 요소 숨김 */
+  .no-print, button, input, select, textarea,
+  .interactive-only, [data-interactive],
+  nav.app-nav, .page-controls {
+    display: none !important;
+  }
+
+  /* 다크 모드 강제 라이트 (마스터 §8.3.4) */
+  body.theme-dark, [data-theme="dark"] {
+    background: var(--saai-white) !important;
+    color: var(--saai-grey-900) !important;
+  }
+
+  /* 링크 — 인쇄 시 URL 표시 (선택) */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: var(--saai-grey-500);
+  }
+  a.no-url::after { content: none; }     /* opt-out */
+}
+
+/* ─────────────────────────────────────────────────────
+ * 페이지 헤더 텍스트 주입 변수 — 사용자가 :root 에서 설정
+ *   :root { --print-header-text: "Lawson Weekly Report W18"; }
+ * ───────────────────────────────────────────────────── */

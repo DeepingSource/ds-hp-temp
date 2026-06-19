@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Emphasis = grey baseline + 1 highlighted</title>
+<link rel="stylesheet" href="_card.css">
+<link rel="stylesheet" href="../charts.css">
+<style>body{padding:16px 22px;background:#fff;gap:6px}
+.row{display:flex;gap:18px;align-items:flex-start}
+.col-c{flex:1;min-width:0}
+.h{font-size:11px;color:var(--grey-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.bad{color:#9F3F3F}
+.good{color:#0E650C}
+svg{display:block;width:100%;height:160px;overflow:visible}
+.note{font-size:11px;color:var(--grey-500);margin-top:6px;line-height:1.5}
+</style></head><body>
+<div class="row">
+  <div class="col-c">
+    <div class="h bad">✕ Rainbow — every series equally loud</div>
+    <svg viewBox="0 0 320 160" preserveAspectRatio="none">
+      <g fill="none" stroke-width="2" stroke-linecap="round">
+        <polyline stroke="#E05959" points="0,120 40,110 80,90 120,95 160,80 200,70 240,55 280,60 320,40"/>
+        <polyline stroke="#FAD232" points="0,90 40,95 80,100 120,85 160,90 200,80 240,75 280,70 320,75"/>
+        <polyline stroke="#1AB715" points="0,75 40,70 80,65 120,55 160,60 200,50 240,45 280,40 320,35"/>
+        <polyline stroke="#76CCCF" points="0,130 40,125 80,118 120,115 160,108 200,102 240,98 280,90 320,85"/>
+        <polyline stroke="#B65BE1" points="0,55 40,60 80,50 120,45 160,40 200,30 240,38 280,28 320,32"/>
+        <polyline stroke="#376AE2" points="0,140 40,138 80,135 120,130 160,128 200,118 240,112 280,108 320,100"/>
+      </g>
+    </svg>
+  </div>
+  <div class="col-c">
+    <div class="h good">✓ Grey + 1 highlight — message reads first</div>
+    <svg viewBox="0 0 320 160" preserveAspectRatio="none">
+      <g fill="none" stroke="#D9DBDD" stroke-width="1.2" stroke-linecap="round">
+        <polyline points="0,120 40,110 80,90 120,95 160,80 200,70 240,55 280,60 320,40"/>
+        <polyline points="0,90 40,95 80,100 120,85 160,90 200,80 240,75 280,70 320,75"/>
+        <polyline points="0,75 40,70 80,65 120,55 160,60 200,50 240,45 280,40 320,35"/>
+        <polyline points="0,130 40,125 80,118 120,115 160,108 200,102 240,98 280,90 320,85"/>
+        <polyline points="0,140 40,138 80,135 120,130 160,128 200,118 240,112 280,108 320,100"/>
+      </g>
+      <polyline fill="none" stroke="#376AE2" stroke-width="2.4" stroke-linecap="round"
+        points="0,55 40,60 80,50 120,45 160,40 200,30 240,38 280,28 320,32"/>
+      <circle cx="320" cy="32" r="3.5" fill="#376AE2"/>
+      <text x="316" y="22" text-anchor="end" class="chart-label-emph">Hongdae</text>
+    </svg>
+  </div>
+</div>
+<div class="note">Knaflic §7 ① · Cleveland & McGill — color as a focal point, not as decoration.</div>
+</body></html>
