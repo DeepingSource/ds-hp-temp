@@ -5,7 +5,7 @@
  * 이미지를 추가하거나 경로가 바뀌면 이 파일만 수정하면 됩니다.
  *
  * 사용법:
- *   import { cctvImages, cctvByDetection, cctvCoverageGrid } from '@/data/cctvImages';
+ *   import { cctvImages } from '@/data/cctvImages';
  *   <Image src={cctvImages.heroShelfEmpty.src} alt={cctvImages.heroShelfEmpty.alt} ... />
  */
 
@@ -389,53 +389,3 @@ export const cctvImages = {
 } as const satisfies Record<string, CctvImage>;
 
 export type CctvImageKey = keyof typeof cctvImages;
-
-// ─── 감지 카테고리별 그룹 (DetectionGallery 용) ───────────────────────────────
-
-export const cctvByDetection = {
-  contamination: [
-    cctvImages.contamDetection,
-    cctvImages.contamCafeTable,
-    cctvImages.contamKitchen,
-    cctvImages.contamGlassDoor,
-  ],
-  intrusion: [
-    cctvImages.intrusionNightIr,
-    cctvImages.intrusionCounterEmpty,
-    cctvImages.intrusionFittingRoom,
-    cctvImages.unmannedNight,
-  ],
-  display: [
-    cctvImages.displayFrontFacing,
-    cctvImages.displayDetection2,
-    cctvImages.displayShelfEmptyWide,
-    cctvImages.heroShelfEmpty,
-  ],
-  equipment: [
-    cctvImages.equipFridgeDoorOpen,
-    cctvImages.equipDetection,
-    cctvImages.equipFridgeFrost,
-    cctvImages.heroFridgeOpen,
-  ],
-} as const;
-
-// ─── 커버리지 그리드 (StoreCare 페이지 16칸 그리드 용) ───────────────────────
-
-export const cctvCoverageGrid: CctvImage[] = [
-  cctvImages.cvsEntrance,
-  cctvImages.cvsFridge,
-  cctvImages.cafeHall,
-  cctvImages.cafeCounter,
-  cctvImages.fashionFloor,
-  cctvImages.warehouseAisle,
-  cctvImages.unmannedNight,
-  cctvImages.checkout,
-  cctvImages.drugstoreAisle,
-  cctvImages.supermarketProduce,
-  cctvImages.bakeryShowcase,
-  cctvImages.restaurantKitchen,
-  cctvImages.martCheckout,
-  cctvImages.parkingGate,
-  cctvImages.mallCorridor,
-  cctvImages.warehouseLoading,
-];

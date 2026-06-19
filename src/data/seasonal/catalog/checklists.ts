@@ -68,12 +68,6 @@ export const cherryBlossomChecks = [
   '음료 냉장고 풀가동 확인 (생수·이온음료)',
 ];
 
-export const holidayReturnChecks = [
-  '연휴 후 생필품 재고 +40% 확인',
-  '우유·빵·계란 등 신선식품 발주 확인',
-  '유통기한 임박 상품 확인 (연휴 중 미판매분)',
-];
-
 export const weekendOutingChecks = [
   '나들이 간식(과자·음료 패밀리팩) 진열 확인',
   '김밥·샌드위치 재고 확인 (아침 피크 대비)',

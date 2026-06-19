@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { HelpCircle, ArrowRight } from 'lucide-react';
 import Accordion from '@/components/ui/Accordion';
-import { commonFaqs, storeCareFaqs, storeInsightFaqs, faqData } from '@/lib/faq-data';
-import { faqI18n } from '@/lib/faq-i18n';
+import { commonFaqs, storeCareFaqs, storeInsightFaqs, faqData } from '@/data/faq-data';
+import { faqI18n } from '@/data/faq-i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { type Locale } from '@/lib/i18n';

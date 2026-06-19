@@ -23,14 +23,6 @@ export const springSnappy: Transition = {
   mass: 0.85,
 };
 
-/** Bouncy — checkmarks, confirmations, icons */
-export const springBouncy: Transition = {
-  type: 'spring',
-  damping: 14,
-  stiffness: 380,
-  mass: 0.75,
-};
-
 /** Tab/segment sliding pill — fast settle, no visible overshoot */
 export const springTabPill: Transition = {
   type: 'spring',

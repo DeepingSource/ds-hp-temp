@@ -1,40 +1,8 @@
 /**
  * 목업 디자인 토큰
  *
- * 모든 목업 컴포넌트가 참조하는 사이즈, 컬러, 타이포 규격.
- * 페이지에서 목업을 배치할 때 MOCKUP_SIZES를 사용하여 일관된 크기 제어.
+ * 모든 목업 컴포넌트가 참조하는 컬러, 타이포 규격.
  */
-
-// ── 디바이스 사이즈 ──────────────────────────────────────────────────────────
-
-export type DeviceType = 'phone' | 'tablet' | 'desktop';
-export type SizeVariant = 'sm' | 'md' | 'lg';
-
-/** 반응형 사이즈 클래스 (Tailwind) — 프레임 max-width에 맞춤 */
-export const MOCKUP_SIZES: Record<DeviceType, Record<SizeVariant, string>> = {
-  phone: {
-    sm: 'max-w-[280px]',   // 모바일 뷰포트 / 다단 레이아웃
-    md: 'max-w-[340px]',   // 태블릿 뷰포트
-    lg: 'max-w-[400px]',   // 데스크탑 뷰포트 (PhoneFrame max: 420px)
-  },
-  tablet: {
-    sm: 'max-w-[400px]',   // 모바일 뷰포트
-    md: 'max-w-[520px]',   // 태블릿 뷰포트
-    lg: 'max-w-[680px]',   // 데스크탑 뷰포트 (TabletFrame max: 768px)
-  },
-  desktop: {
-    sm: 'max-w-[640px]',   // 모바일 뷰포트
-    md: 'max-w-[820px]',   // 태블릿 뷰포트
-    lg: 'max-w-[1024px]',  // 데스크탑 뷰포트 (MacBookFrame max: 896px / Desktop max: 1024px)
-  },
-} as const;
-
-/** 반응형 기본 사이즈 (sm → md → lg 자동 전환) — 프레임 max-width 내에서 스케일 */
-export const MOCKUP_RESPONSIVE: Record<DeviceType, string> = {
-  phone:   'w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px]',
-  tablet:  'w-full max-w-[400px] sm:max-w-[520px] lg:max-w-[680px]',
-  desktop: 'w-full max-w-[640px] sm:max-w-[820px] lg:max-w-[1024px]',
-} as const;
 
 // ── 제품 컬러 매핑 ──────────────────────────────────────────────────────────
 
@@ -103,22 +71,6 @@ export const MOCKUP_SCHEME = {
     cardClass: 'bg-gray-900/70 rounded-lg border border-gray-800/50',
   },
 } as const;
-
-export type MockupScheme = keyof typeof MOCKUP_SCHEME;
-
-// ── 업종 목업 악센트 ─────────────────────────────────────────────────────
-
-export const INDUSTRY_ACCENT = {
-  cafe:       { border: 'border-amber-500',  text: 'text-amber-600',  bg: 'bg-amber-50' },
-  drugstore:  { border: 'border-rose-500',   text: 'text-rose-600',   bg: 'bg-rose-50' },
-  unmanned:   { border: 'border-blue-500',   text: 'text-blue-600',   bg: 'bg-blue-50' },
-  exhibition: { border: 'border-indigo-500', text: 'text-indigo-600', bg: 'bg-indigo-50' },
-  logistics:  { border: 'border-slate-500',  text: 'text-slate-600',  bg: 'bg-slate-50' },
-  mart:       { border: 'border-violet-500', text: 'text-violet-600', bg: 'bg-violet-50' },
-  fashion:    { border: 'border-pink-500',   text: 'text-pink-600',   bg: 'bg-pink-50' },
-} as const;
-
-export type IndustrySlug = keyof typeof INDUSTRY_ACCENT;
 
 // ── 디바이스별 목업 내부 규격 ────────────────────────────────────────────
 

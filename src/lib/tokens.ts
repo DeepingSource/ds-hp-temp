@@ -19,23 +19,3 @@ export const BRAND = {
   secondary: '#26A69A',
   secondaryDark: '#00897B',
 } as const;
-
-export const GRAY = {
-  50: '#F9FAFB',
-  100: '#F3F4F6',
-  200: '#E5E7EB',
-  300: '#D1D5DB',
-  400: '#9CA3AF',
-  500: '#6B7280',
-  600: '#4B5563',
-  700: '#374151',
-  800: '#1F2937',
-  900: '#111827',
-} as const;
-
-/** Live semantic status palette (Material set). */
-export const STATUS = {
-  success: '#4CAF50',
-  warning: '#FF9800',
-  error: '#F44336',
-} as const;

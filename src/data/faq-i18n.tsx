@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { COMPANY } from '@/lib/company-data';
 import { type Locale } from '@/lib/i18n';
-import { type FAQItem } from '@/lib/faq-data';
+import { type FAQItem } from '@/data/faq-data';
 
 /**
  * faq-i18n — translation OVERLAY for /resources/faq (en, jp).

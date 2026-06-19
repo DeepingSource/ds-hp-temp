@@ -14,10 +14,6 @@ export const yearEndPartyGangnam: EventBlock = {
   icon: '🍻', title: '강남 송년회 집중일',
   detail: '오후 6시~ · 주변 음식점 만석', impact: '주류 +150%, 마른안주 +120%',
 };
-export const gangnamJobFair: EventBlock = {
-  icon: '🏢', title: '강남역 채용박람회',
-  detail: '오전 10시~ · 예상 3,000명', impact: '점심 도시락·음료 수요 급증',
-};
 export const newYearSeminar: EventBlock = {
   icon: '🏢', title: '테헤란로 신년 세미나 시즌',
   detail: '1~2월 집중 기간', impact: '점심 도시락 수요 분산',
@@ -40,10 +36,6 @@ export const lottemartClosed: EventBlock = {
 export const elementarySportsDay: EventBlock = {
   icon: '🏃', title: '잠실초 가을 운동회',
   detail: '오전 9시~ · 학생 600명', impact: '아침 김밥·음료·간식 +150%',
-};
-export const elementaryFieldTrip: EventBlock = {
-  icon: '🏫', title: '잠실초 봄 소풍',
-  detail: '오전 9시 출발 · 학생 600명', impact: '아침 김밥·음료·간식 +80%',
 };
 export const hangangCherryBlossom: EventBlock = {
   icon: '🌸', title: '한강 벚꽃축제 피크',

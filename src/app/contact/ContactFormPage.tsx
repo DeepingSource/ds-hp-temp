@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
+import Spinner from '@/components/ui/Spinner';
 
 type Content = {
   loading: string;
@@ -621,10 +622,7 @@ function ContactForm({ locale }: { locale: Locale }) {
               <span className="flex items-center justify-center gap-2">
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin motion-reduce:animate-none h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
+                    <Spinner />
                     {t.submitting}
                   </>
                 ) : (

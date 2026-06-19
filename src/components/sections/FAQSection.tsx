@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, HelpCircle, ChevronDown } from 'lucide-react';
-import { faqData } from '@/lib/faq-data';
+import { faqData } from '@/data/faq-data';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
 

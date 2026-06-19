@@ -8,21 +8,10 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { type Locale } from '@/lib/i18n';
 import { RoiCalculatorWidget } from '@/components/mockups';
-
-export interface PlanData {
-  name: string;
-  price: string;
-  priceUnit?: string;
-  pricePeriod?: string;
-  features: string[];
-  note?: string;
-  recommended?: boolean;
-}
+import { submitQuoteRequest } from '@/lib/contact-lead';
 
 interface PricingClientViewProps {
   locale?: Locale;
-  storeCarePlans?: PlanData[];
-  storeAgentPlans?: PlanData[];
 }
 
 const SIM_PRODUCT_OPTIONS = [
@@ -452,44 +441,26 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
   const handleSimulateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (simEmail) {
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: t.simReqName,
-            contact: simEmail,
-            storeCount: '1',
-            inquiryType: t.simReqInquiry,
-            message: t.simReqMessage({ cam: simCameras, cost: estimatedCost.toLocaleString() }),
-          }),
-        });
-        if (res.ok) setSimSubmitted(true);
-      } catch {
-        // 네트워크 오류 — 다음 시도 가능
-      }
+      if (await submitQuoteRequest({
+        name: t.simReqName,
+        contact: simEmail,
+        storeCount: '1',
+        inquiryType: t.simReqInquiry,
+        message: t.simReqMessage({ cam: simCameras, cost: estimatedCost.toLocaleString() }),
+      })) setSimSubmitted(true);
     }
   };
 
   const handleB2bSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (b2bEmail) {
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: t.b2bReqName,
-            contact: b2bEmail,
-            storeCount: String(b2bStoreCount),
-            inquiryType: t.b2bReqInquiry,
-            message: t.b2bReqMessage(b2bStoreCount),
-          }),
-        });
-        if (res.ok) setB2bSubmitted(true);
-      } catch {
-        // 네트워크 오류 — 다음 시도 가능
-      }
+      if (await submitQuoteRequest({
+        name: t.b2bReqName,
+        contact: b2bEmail,
+        storeCount: String(b2bStoreCount),
+        inquiryType: t.b2bReqInquiry,
+        message: t.b2bReqMessage(b2bStoreCount),
+      })) setB2bSubmitted(true);
     }
   };
 

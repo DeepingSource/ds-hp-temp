@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { Check } from 'lucide-react';
+import Spinner from '@/components/ui/Spinner';
 
 const schema = z.object({
   email: z.string().email('올바른 이메일 주소를 입력해주세요'),
@@ -115,10 +116,7 @@ export default function NewsletterForm() {
           </span>
         ) : isSubmitting ? (
           <span className="inline-flex items-center gap-2">
-            <svg className="animate-spin motion-reduce:animate-none h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
+            <Spinner />
             구독 중...
           </span>
         ) : '뉴스레터 구독하기'}

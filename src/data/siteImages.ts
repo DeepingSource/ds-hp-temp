@@ -19,28 +19,6 @@ export const industryThumbs: Record<string, [string, string]> = {
   fashion:     ['/images/industries/fashion-hero.webp',              '/images/industries/fashion-hero.webp'],
 };
 
-/** 업종별 대시보드 프리뷰 이미지 — industryContent에서 사용 */
-export const industryDashboardImages: Record<string, string> = {
-  convenience: '/images/industries/convenience-dashboard.webp',
-  cafe:        '/images/industries/cafe-dashboard.webp',
-  unmanned:    '/images/industries/unmanned-dashboard.webp',
-  drugstore:   '/images/industries/drugstore-dashboard.webp',
-  mart:        '/images/industries/mart-dashboard.webp',
-  exhibition:  '/images/industries/exhibition-dashboard.webp',
-  logistics:   '/images/industries/logistics-dashboard.webp',
-};
-
-/** 업종 슬라이더 카드 히어로 이미지 — IndustrySlider에서 사용 */
-export const industrySliderImages: Record<string, string> = {
-  convenience: '/images/industries/convenience-hero-interior.webp',
-  cafe:        '/images/industries/cafe-hero-morning.webp',
-  unmanned:    '/images/industries/unmanned-hero-interior.webp',
-  drugstore:   '/images/industries/drugstore-hero-aisle.webp',
-  mart:        '/images/industries/mart-hero-aisle.webp',
-  exhibition:  '/images/industries/exhibition-hero-atrium.webp',
-  logistics:   '/images/industries/logistics-hero-rack.webp',
-};
-
 // ── 기술 페이지 이미지 ───────────────────────────────────────────────────────
 
 export const technologyImages = {

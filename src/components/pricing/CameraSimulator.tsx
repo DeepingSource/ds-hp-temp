@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
+import { submitQuoteRequest } from '@/lib/contact-lead';
 
 /* ─── 요금 기준 ─── */
 const STORECARE_BASIC = 14_900;
@@ -775,29 +776,20 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           <form onSubmit={async (e) => {
             e.preventDefault();
             if (quoteEmail && !noneSelected) {
-              try {
-                const res = await fetch('/api/contact', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    name: t.reqName,
-                    contact: quoteEmail,
-                    storeCount: '1',
-                    inquiryType: t.reqInquiry,
-                    message: t.reqMessage({
-                      products: selectedProducts,
-                      cam: cameraCount,
-                      fridge: fridgeCount,
-                      monthly: fmt(estimate.monthly),
-                      oneTime: fmt(estimate.oneTime),
-                    }),
-                  }),
-                });
-                if (res.ok) {
-                  setQuoteSubmitted(true);
-                }
-              } catch {
-                // 네트워크 오류 — 폼 그대로 유지
+              if (await submitQuoteRequest({
+                name: t.reqName,
+                contact: quoteEmail,
+                storeCount: '1',
+                inquiryType: t.reqInquiry,
+                message: t.reqMessage({
+                  products: selectedProducts,
+                  cam: cameraCount,
+                  fridge: fridgeCount,
+                  monthly: fmt(estimate.monthly),
+                  oneTime: fmt(estimate.oneTime),
+                }),
+              })) {
+                setQuoteSubmitted(true);
               }
             }
           }}>

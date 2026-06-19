@@ -1,5 +1,5 @@
 import { articles as allArticlesRaw } from '../../.velite';
-import type { ArticleMeta, ArticleCategory } from '@/data/articles/types';
+import type { ArticleMeta } from '@/data/articles/types';
 
 // Strip body field for client-side usage (body is not serializable for 'use client')
 const allMeta: ArticleMeta[] = allArticlesRaw.map(
@@ -15,10 +15,6 @@ const cachedMeta: ArticleMeta[] = [...allMeta]
 
 export function getAllArticlesMeta(): ArticleMeta[] {
   return cachedMeta;
-}
-
-export function getArticleMetasByCategory(category: ArticleCategory): ArticleMeta[] {
-  return getAllArticlesMeta().filter((a) => a.category === category);
 }
 
 export type { ArticleMeta, ArticleCategory } from '@/data/articles/types';
