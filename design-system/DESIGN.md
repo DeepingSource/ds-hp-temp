@@ -1,3 +1,7 @@
+> 📌 **읽기 전 — 이 문서의 자리 (2026-06-19 정리)**
+> 본 문서는 **SAAI 브랜드 시스템 reference export**(대상: 브랜드/디자인 시스템)이며, **이 사이트(deepingsource.io)의 디자인 SOT 가 아니다.** 라이브 사이트 디자인 SOT 는 repo-root **[`/DESIGN.md`](../DESIGN.md)** + `src/` 다.
+> 또한 아래에서 단일 source 로 인용하는 **`constitution/SAAI_MASTER.md` 는 본 repo 에 존재하지 않는다** — SAAI 컨스티튜션은 상위 **SAAI repo** 에 있고, 여기 `design-system/` 폴더는 그 **read-only export 스냅샷**이다(아래 16개 형제 문서도 같은 전제).
+
 # SAAI Design System
 
 > ⚠️ **원칙·룰의 단일 source는 [`constitution/SAAI_MASTER.md`](./constitution/SAAI_MASTER.md) 로 통합되었습니다** (v1.0, 2026-05-04).

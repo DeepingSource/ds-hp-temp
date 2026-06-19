@@ -1,3 +1,7 @@
+> 📌 **읽기 전 — 이 문서의 자리 (2026-06-19 정리)**
+> 본 문서는 **Phase 3 디자인 *계획서*(2026-05-29)**이며 history 보존용이다. 라이브 디자인 SOT 는 repo-root **[`/DESIGN.md`](../DESIGN.md)** + `src/` 다.
+> 본 v2 가 신설을 제안한 **`ui_kits/corporate/` 는 끝내 만들어지지 않았다** — corporate(회사 사이트) 모드는 `ui_kits/corporate/` 대신 **`src/`** 에 바로 구현되어 출하됐다. 또한 상속 source 로 인용하는 **`brand-system/`(약 41 문서) 는 본 repo 에 없고 상위 SAAI repo** 에 있다.
+
 # 디자인 시스템 v2 — 회사 사이트 모드의 재정렬
 
 > **버전** v2.0 · **작성** 2026-05-29 · **상위 SOT** [PLAN_v1.1.md](./PLAN_v1.1.md) §0.3 (D1–D10) · §1.3 3-레이어 · §2.1 IA · §7 Phase 3 · **자매 문서** [BRAND_v2.md](./BRAND_v2.md) §4 4-레이어 보이스 차별화 · **상속** `design-system/` 13 CSS + 31 preview + ui_kits/store-agent (v1.4, 2026-05-06)

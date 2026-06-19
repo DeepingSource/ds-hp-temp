@@ -1,3 +1,6 @@
+> ⚠️ **DRAFT — 발행 금지 (2026-06-19 정리)**
+> 본 문서는 **Phase 2 골격 초안**이며, 본문 숫자에는 **`(가상)` 플레이스홀더 수치**가 섞여 있다. 이 수치는 **실측·발행 데이터가 아니다** — 외부 인용·발행물에 그대로 쓰지 말 것.
+
 # 새 deepingsource.io · Case Studies v1 — Phase 2 골격 (D9)
 
 > **위치** PLAN v1.1 §0.3 D9 · §2.1 `/resources/case-studies` · §4.3 P2 *Case Studies* 의 산출물.

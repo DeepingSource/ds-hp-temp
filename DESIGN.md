@@ -4,8 +4,9 @@ The single entry point for editing this site's design. Read this before changing
 colors, spacing, type, or shared UI.
 
 > ⚠️ **Source of truth lives here, not in `design-system/`.**
-> The repo‑root **`design-system/`** and **`brand-system/`** folders are the **SAAI
-> product / brand** system (a *different* product). This marketing site's tokens
+> The repo‑root **`design-system/`** folder is a read‑only export of the **SAAI
+> product / brand** system (a *different* product; the brand‑system docs live in
+> the upstream SAAI repo, not here). This marketing site's tokens
 > are defined in **`src/app/globals.css`** (CSS) and **`src/lib/tokens.ts`** (JS).
 > Don't wire site components to `design-system/`.
 
