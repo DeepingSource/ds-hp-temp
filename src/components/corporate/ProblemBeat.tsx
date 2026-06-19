@@ -30,17 +30,20 @@ const dict: Record<Locale, {
   ko: {
     eyebrow: '무대 위를, 보고 있나요?',
     heading: '매장은 창고가 아니라 무대입니다 — 그런데 무대 위에서 무슨 일이 일어나는지, 보고 계신가요?',
-    funnelTitle: '어제, 우리 매장 앞에서',
+    funnelTitle: '어제, 우리 매장 안에서',
     funnel: [
-      { n: '1,160', pct: 100, label: '앞을 지나감' },
-      { n: '382', pct: 33, label: '매장에 입장' },
-      { n: '65', pct: 6, label: '결제까지' },
+      { n: '382', pct: 100, label: '입장' },
+      { n: '300', pct: 79, label: '매대 방문' },
+      { n: '214', pct: 56, label: '머묾' },
+      { n: '138', pct: 36, label: '응시' },
+      { n: '88', pct: 23, label: '픽업' },
+      { n: '65', pct: 17, label: '결제' },
     ],
-    leak: { n: '317', label: '둘러보다 그냥 나간 손님 — POS엔 없습니다' },
+    leak: { n: '317', label: '매장 안에서 보고·머물고·집어 든 행동 — POS엔 없습니다' },
     pains: [
-      { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명, 결제한 65명. 둘러보다 그냥 나간 317명은 어디에도 없습니다.' },
-      { icon: LineChart, title: '본 건 매출과 재고 — 거래의 결과뿐', desc: '체류도, 동선도, 손길도 — 무대 위의 경험은 POS에 남지 않습니다. 왜 안 팔렸는지는, 숫자가 말해주지 않습니다.' },
-      { icon: Lock, title: 'CCTV는 흘러가고, 공간은 안 읽힙니다', desc: '답은 공간에 있는데, 손님의 얼굴을 다루는 순간 멈춥니다. 그래서 그 화면은, 흘러갈 뿐입니다.' },
+      { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '거래의 결과만 남고, 매장 안에서 일어난 행동은 사라집니다.' },
+      { icon: LineChart, title: '본 건 매출과 재고 — 거래의 결과뿐', desc: '체류·동선·손길은 POS에 없습니다. 왜 안 팔렸는지도.' },
+      { icon: Lock, title: 'CCTV는 흘러가고, 공간은 안 읽힙니다', desc: '답은 공간에 있는데, 얼굴을 다루는 순간 분석이 멈춥니다.' },
     ],
     bridge: signature.ko,
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
@@ -48,17 +51,20 @@ const dict: Record<Locale, {
   en: {
     eyebrow: 'Are you watching the stage?',
     heading: 'Your store is a stage, not a warehouse — so are you watching what happens on it?',
-    funnelTitle: 'Yesterday, at your storefront',
+    funnelTitle: 'Yesterday, inside your store',
     funnel: [
-      { n: '1,160', pct: 100, label: 'walked past' },
-      { n: '382', pct: 33, label: 'came inside' },
-      { n: '65', pct: 6, label: 'checked out' },
+      { n: '382', pct: 100, label: 'entered' },
+      { n: '300', pct: 79, label: 'at a shelf' },
+      { n: '214', pct: 56, label: 'paused' },
+      { n: '138', pct: 36, label: 'looked' },
+      { n: '88', pct: 23, label: 'picked up' },
+      { n: '65', pct: 17, label: 'checked out' },
     ],
-    leak: { n: '317', label: 'browsed and left — nowhere in your POS' },
+    leak: { n: '317', label: 'looked, paused, reached for it — none of it in your POS' },
     pains: [
-      { icon: Receipt, title: 'POS only keeps who paid', desc: '1,160 walked past your store yesterday, 382 came in, 65 checked out. The 317 who browsed and left aren’t anywhere.' },
-      { icon: LineChart, title: 'You see sales and stock — outcomes, not the show', desc: 'Dwell, paths, the reach of a hand — what happens on the stage never lands in the POS. The numbers won’t tell you why it didn’t sell.' },
-      { icon: Lock, title: 'CCTV just streams past — the space goes unread', desc: 'The answer is in the space, but analysis stops the moment it touches a face. So the footage only flows by.' },
+      { icon: Receipt, title: 'POS only keeps who paid', desc: 'Only the outcome remains; what happened inside the store disappears.' },
+      { icon: LineChart, title: 'You see sales and stock — outcomes, not the show', desc: 'Dwell, paths, the reach of a hand aren’t in the POS. Nor is why it didn’t sell.' },
+      { icon: Lock, title: 'CCTV just streams past — the space goes unread', desc: 'The answer is in the space, but analysis stops the moment it touches a face.' },
     ],
     bridge: signature.en,
     methodTagline: 'We don’t stop at seeing — we act.',
@@ -66,17 +72,20 @@ const dict: Record<Locale, {
   jp: {
     eyebrow: '舞台の上を、見ていますか?',
     heading: '店舗は倉庫ではなく、舞台です — その舞台で何が起きているか、見ていますか?',
-    funnelTitle: '昨日、店の前で',
+    funnelTitle: '昨日、店内で',
     funnel: [
-      { n: '1,160', pct: 100, label: '通り過ぎ' },
-      { n: '382', pct: 33, label: '入店' },
-      { n: '65', pct: 6, label: '会計まで' },
+      { n: '382', pct: 100, label: '入店' },
+      { n: '300', pct: 79, label: '棚へ' },
+      { n: '214', pct: 56, label: '滞留' },
+      { n: '138', pct: 36, label: '注視' },
+      { n: '88', pct: 23, label: '手に取る' },
+      { n: '65', pct: 17, label: '会計' },
     ],
-    leak: { n: '317', label: '見て回って出ていった客 — POSにいません' },
+    leak: { n: '317', label: '見て・滞まり・手に取った行動 — POSにはありません' },
     pains: [
-      { icon: Receipt, title: 'POSに残るのは、会計した客だけ', desc: '昨日、店の前を通った1,160人、入った382人、会計した65人。見て回って出ていった317人は、どこにもいません。' },
-      { icon: LineChart, title: '見えるのは売上と在庫 — 取引の結果だけ', desc: '滞在も、動線も、手に取る瞬間も — 舞台の上の体験はPOSに残りません。なぜ売れなかったかは、数字では分かりません。' },
-      { icon: Lock, title: 'CCTVは流れ去り、空間は読まれない', desc: '答えは空間にあるのに、客の顔に触れた瞬間に止まります。だからその映像は、ただ流れていくだけです。' },
+      { icon: Receipt, title: 'POSに残るのは、会計した客だけ', desc: '残るのは結果だけ。店内で起きた行動は消えます。' },
+      { icon: LineChart, title: '見えるのは売上と在庫 — 取引の結果だけ', desc: '滞在・動線・手に取る瞬間はPOSにありません。なぜ売れなかったかも。' },
+      { icon: Lock, title: 'CCTVは流れ去り、空間は読まれない', desc: '答えは空間にあるのに、顔に触れた瞬間に分析が止まります。' },
     ],
     bridge: signature.jp,
     methodTagline: '見るだけで終わらせない — 実行まで。',
@@ -115,18 +124,18 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
 
         {/* Funnel of the invisible majority — built from the copy's own numbers (language-neutral) */}
         <div className="mb-12 rounded-2xl border border-gray-200 bg-white p-6 sm:p-9 shadow-card">
-          <p className="mb-6 text-2xs font-bold uppercase tracking-[0.2em] text-gray-400">{t.funnelTitle}</p>
-          <div className="grid grid-cols-3 gap-3 sm:gap-8 items-end">
+          <p className="mb-6 text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
+          <div className="grid grid-cols-6 gap-1.5 sm:gap-3 items-end">
             {t.funnel.map((s, i) => (
               <div key={s.label} className="text-center">
-                <div className="flex items-end justify-center h-24 sm:h-28">
+                <div className="flex items-end justify-center h-20 sm:h-28">
                   <div
                     className="w-full rounded-t-md bg-primary"
-                    style={{ height: `${Math.max(s.pct, 8)}%`, opacity: 1 - i * 0.28 }}
+                    style={{ height: `${Math.max(s.pct, 8)}%`, opacity: 1 - i * 0.12 }}
                   />
                 </div>
-                <p className="mt-3 text-2xl sm:text-4xl font-extrabold text-gray-900 tabular-nums">{s.n}</p>
-                <p className="text-xs sm:text-sm text-gray-500 break-keep">{s.label}</p>
+                <p className="mt-2 sm:mt-3 text-base sm:text-2xl font-extrabold text-gray-900 tabular-nums">{s.n}</p>
+                <p className="text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
@@ -179,7 +188,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                     <span
                       className={[
                         'text-2xs break-keep',
-                        s.emphasis ? 'text-white/80' : 'text-gray-400',
+                        s.emphasis ? 'text-white/80' : 'text-gray-500',
                       ].join(' ')}
                     >
                       {s.label}

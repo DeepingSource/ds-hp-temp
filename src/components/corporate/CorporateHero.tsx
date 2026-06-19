@@ -3,10 +3,9 @@ import Image from 'next/image';
 import { Cpu, Award, Users } from 'lucide-react';
 import WordRise from '@/components/ui/WordRise';
 import Container from '@/components/ui/Container';
-import Eyebrow from '@/components/ui/Eyebrow';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
-import { signature, reinventOffline, perfectSpace } from '@/lib/brand-canon';
+import { reinventOffline, perfectSpace } from '@/lib/brand-canon';
 import { technologyImages } from '@/data/siteImages';
 
 /** Credential badges — real, hard credentials shown as proof pills (not a sentence). */
@@ -45,14 +44,8 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
       <Container className="relative py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold tracking-[0.2em] text-primary mb-2 animate-fade-in-up">
-              {reinventOffline}
-            </p>
-            <Eyebrow className="mb-3">
-              Anonymized Spatial AI · SAAI
-            </Eyebrow>
-            <p className="text-base sm:text-lg font-semibold text-gray-500 mb-6 break-keep">
-              {signature[locale]}
+            <p className="text-xs font-semibold tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
+              {reinventOffline} · ANONYMIZED SPATIAL AI
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display">
               <WordRise text={perfectSpace.your[locale]} />
@@ -97,9 +90,19 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               />
               {/* Face-free detection overlay — proves anonymized tracking (shown, not told). Illustrative boxes. */}
               <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-                <span className="absolute rounded-md border-2 border-primary-light/90 animate-pulse" style={{ left: '25%', top: '40%', width: '13%', height: '34%' }} />
-                <span className="absolute rounded-md border-2 border-primary-light/90 animate-pulse" style={{ left: '50%', top: '36%', width: '12%', height: '36%', animationDelay: '0.7s' }} />
-                <span className="absolute rounded-md border-2 border-primary-light/90 animate-pulse" style={{ left: '70%', top: '46%', width: '11%', height: '30%', animationDelay: '1.4s' }} />
+                {[
+                  { left: '25%', top: '40%', width: '13%', height: '34%', id: '01', delay: '0s' },
+                  { left: '50%', top: '36%', width: '12%', height: '36%', id: '02', delay: '0.7s' },
+                  { left: '70%', top: '46%', width: '11%', height: '30%', id: '03', delay: '1.4s' },
+                ].map((b) => (
+                  <span
+                    key={b.id}
+                    className="absolute rounded-md border-2 border-primary-light bg-primary-light/10 animate-pulse"
+                    style={{ left: b.left, top: b.top, width: b.width, height: b.height, animationDelay: b.delay }}
+                  >
+                    <span className="absolute -top-[18px] left-0 rounded bg-primary px-1 py-0.5 text-[9px] font-bold leading-none text-white tabular-nums">ID·{b.id}</span>
+                  </span>
+                ))}
                 <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gray-950/70 px-2.5 py-1 text-2xs font-semibold text-white backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
                   {trackChip[locale]}
