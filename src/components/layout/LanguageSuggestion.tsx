@@ -46,7 +46,11 @@ export default function LanguageSuggestion() {
     if (/^\/(storeagent|ms-agent)(\/|$)/.test(pathname)) return;
     const current = getLocaleFromPath(pathname);
     const detected = detectLocale();
-    if (detected && detected !== current) setSuggest(detected);
+    if (detected && detected !== current) {
+      // Defer past the effect body so it lands after first paint (non-blocking).
+      const id = requestAnimationFrame(() => setSuggest(detected));
+      return () => cancelAnimationFrame(id);
+    }
   }, [pathname]);
 
   if (!suggest) return null;
