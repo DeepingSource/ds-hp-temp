@@ -2,8 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, Calculator, Mail } from 'lucide-react';
+import { Check, ArrowRight, Calculator, Mail, AlertCircle } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import Spinner from '@/components/ui/Spinner';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
@@ -20,6 +21,8 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
   const [simProducts, setSimProducts] = useState<Set<string>>(new Set(['insight']));
   const [simEmail, setSimEmail] = useState('');
   const [simSubmitted, setSimSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const toggleSimProduct = useCallback((key: string) => {
     setSimProducts((prev) => {
@@ -36,14 +39,24 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
 
   const handleSimulateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (simEmail) {
-      if (await submitQuoteRequest({
+    if (!simEmail || isSubmitting) return;
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      const ok = await submitQuoteRequest({
         name: t.simReqName,
         contact: simEmail,
         storeCount: '1',
         inquiryType: t.simReqInquiry,
         message: t.simReqMessage({ cam: simCameras, cost: estimatedCost.toLocaleString() }),
-      })) setSimSubmitted(true);
+      });
+      if (ok) {
+        setSimSubmitted(true);
+      } else {
+        setError(t.errSubmitFailed);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -124,8 +137,21 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
                       className="w-full pl-2.5 py-3 bg-transparent text-sm focus:outline-none"
                     />
                   </div>
-                  <button type="submit" className="btn-primary py-3 px-6 shrink-0 shadow-md">{t.getQuote}</button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary py-3 px-6 shrink-0 shadow-md disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting && <Spinner />}
+                    {t.getQuote}
+                  </button>
                 </div>
+                {error && (
+                  <p className="flex items-center gap-1.5 text-xs text-error mt-2" role="alert">
+                    <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                    {error}
+                  </p>
+                )}
                 <p className="text-xs text-gray-500 mt-2">{t.simEmailNote}</p>
               </form>
             ) : (

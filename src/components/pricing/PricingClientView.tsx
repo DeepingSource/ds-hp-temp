@@ -112,6 +112,9 @@ export interface Content {
   b2bReqName: string;
   b2bReqInquiry: string;
   b2bReqMessage: (count: number) => string;
+  // quote-form submit error copy
+  errSubmitFailed: string;
+  errGeneric: string;
 }
 
 const C: Record<Locale, Content> = {
@@ -210,6 +213,8 @@ const C: Record<Locale, Content> = {
     b2bReqName: '프랜차이즈 견적',
     b2bReqInquiry: '엔터프라이즈 견적',
     b2bReqMessage: (count) => `프랜차이즈 ${count}개 매장 견적 요청. 시너지 할인 적용 문의.`,
+    errSubmitFailed: '견적 요청에 실패했습니다. 다시 시도해주세요.',
+    errGeneric: '일시적인 오류입니다. 잠시 후 다시 시도해 주세요.',
   },
   en: {
     toggleB2c: 'Single store',
@@ -306,6 +311,8 @@ const C: Record<Locale, Content> = {
     b2bReqName: 'Franchise quote',
     b2bReqInquiry: 'Enterprise quote',
     b2bReqMessage: (count) => `Franchise quote request for ${count} stores. Inquiry about synergy discount.`,
+    errSubmitFailed: 'Quote request failed. Please try again.',
+    errGeneric: 'A temporary error occurred. Please try again shortly.',
   },
   jp: {
     toggleB2c: '個別店舗',
@@ -402,6 +409,8 @@ const C: Record<Locale, Content> = {
     b2bReqName: 'フランチャイズ見積もり',
     b2bReqInquiry: 'エンタープライズ見積もり',
     b2bReqMessage: (count) => `フランチャイズ${count}店舗の見積もり依頼。シナジー割引適用のお問い合わせ。`,
+    errSubmitFailed: 'お申し込みに失敗しました。もう一度お試しください。',
+    errGeneric: '一時的なエラーが発生しました。しばらくしてからもう一度お試しください。',
   },
 };
 

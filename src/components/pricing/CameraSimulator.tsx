@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { submitQuoteRequest } from '@/lib/contact-lead';
+import Spinner from '@/components/ui/Spinner';
 
 /* ─── 요금 기준 ─── */
 const STORECARE_BASIC = 14_900;
@@ -71,6 +72,8 @@ interface SimContent {
   submittedTitle: string;
   recalc: string;
   ctaConsult: string;
+  errSubmitFailed: string;
+  errGeneric: string;
   /* form-request message strings */
   reqName: string;
   reqInquiry: string;
@@ -132,6 +135,8 @@ const C: Record<Locale, SimContent> = {
     submittedTitle: '견적 요청이 접수되었습니다!',
     recalc: '다시 계산하기',
     ctaConsult: '전문 상담사와 정확한 견적 받기',
+    errSubmitFailed: '견적 요청에 실패했습니다. 다시 시도해주세요.',
+    errGeneric: '일시적인 오류입니다. 잠시 후 다시 시도해 주세요.',
     reqName: '시뮬레이터 견적',
     reqInquiry: '견적 요청',
     reqMessage: ({ products, cam, fridge, monthly, oneTime }) =>
@@ -191,6 +196,8 @@ const C: Record<Locale, SimContent> = {
     submittedTitle: 'Your quote request has been received!',
     recalc: 'Recalculate',
     ctaConsult: 'Get an exact quote from a specialist',
+    errSubmitFailed: 'Quote request failed. Please try again.',
+    errGeneric: 'A temporary error occurred. Please try again shortly.',
     reqName: 'Simulator quote',
     reqInquiry: 'Quote request',
     reqMessage: ({ products, cam, fridge, monthly, oneTime }) =>
@@ -250,6 +257,8 @@ const C: Record<Locale, SimContent> = {
     submittedTitle: '見積もり依頼を受け付けました！',
     recalc: '再計算する',
     ctaConsult: '専門相談員から正確な見積もりを受け取る',
+    errSubmitFailed: 'お申し込みに失敗しました。もう一度お試しください。',
+    errGeneric: '一時的なエラーが発生しました。しばらくしてからもう一度お試しください。',
     reqName: 'シミュレーター見積もり',
     reqInquiry: '見積もり依頼',
     reqMessage: ({ products, cam, fridge, monthly, oneTime }) =>
@@ -284,6 +293,8 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
   // 이메일 견적
   const [quoteEmail, setQuoteEmail] = useState('');
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handlePreset = useCallback((index: number) => {
     const preset = storeSizePresets[index];
@@ -346,6 +357,35 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
     () => [useCare && 'StoreCare', useInsight && 'StoreInsight', useAgent && 'StoreAgent'].filter(Boolean).join('+'),
     [useCare, useInsight, useAgent]
   );
+
+  const handleQuoteSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!quoteEmail || noneSelected || isSubmitting) return;
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      const ok = await submitQuoteRequest({
+        name: t.reqName,
+        contact: quoteEmail,
+        storeCount: '1',
+        inquiryType: t.reqInquiry,
+        message: t.reqMessage({
+          products: selectedProducts,
+          cam: cameraCount,
+          fridge: fridgeCount,
+          monthly: fmt(estimate.monthly),
+          oneTime: fmt(estimate.oneTime),
+        }),
+      });
+      if (ok) {
+        setQuoteSubmitted(true);
+      } else {
+        setError(t.errSubmitFailed);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -773,26 +813,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           {t.emailTitle}
         </h3>
         {!quoteSubmitted ? (
-          <form onSubmit={async (e) => {
-            e.preventDefault();
-            if (quoteEmail && !noneSelected) {
-              if (await submitQuoteRequest({
-                name: t.reqName,
-                contact: quoteEmail,
-                storeCount: '1',
-                inquiryType: t.reqInquiry,
-                message: t.reqMessage({
-                  products: selectedProducts,
-                  cam: cameraCount,
-                  fridge: fridgeCount,
-                  monthly: fmt(estimate.monthly),
-                  oneTime: fmt(estimate.oneTime),
-                }),
-              })) {
-                setQuoteSubmitted(true);
-              }
-            }
-          }}>
+          <form onSubmit={handleQuoteSubmit}>
             <div className="flex gap-2">
               <div className="flex items-center flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-[border-color,box-shadow]">
                 <Mail className="w-4 h-4 text-gray-500 shrink-0" />
@@ -805,10 +826,21 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                   className="w-full pl-2.5 py-3 bg-transparent text-sm focus:outline-none"
                 />
               </div>
-              <button type="submit" className="btn-primary py-3 px-5 shrink-0 shadow-md text-sm">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-primary py-3 px-5 shrink-0 shadow-md text-sm disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+              >
+                {isSubmitting && <Spinner />}
                 {t.emailBtn}
               </button>
             </div>
+            {error && (
+              <p className="flex items-center gap-1.5 text-xs text-error mt-2" role="alert">
+                <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                {error}
+              </p>
+            )}
             <p className="text-xs text-gray-500 mt-2">{t.emailNote}</p>
           </form>
         ) : (

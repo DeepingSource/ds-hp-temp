@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, Mail, Users, Shield } from 'lucide-react';
+import { Check, Mail, Users, Shield, AlertCircle } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import Spinner from '@/components/ui/Spinner';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
@@ -14,17 +15,29 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
   const [b2bCamerasPerStore, setB2bCamerasPerStore] = useState(4);
   const [b2bEmail, setB2bEmail] = useState('');
   const [b2bSubmitted, setB2bSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleB2bSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (b2bEmail) {
-      if (await submitQuoteRequest({
+    if (!b2bEmail || isSubmitting) return;
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      const ok = await submitQuoteRequest({
         name: t.b2bReqName,
         contact: b2bEmail,
         storeCount: String(b2bStoreCount),
         inquiryType: t.b2bReqInquiry,
         message: t.b2bReqMessage(b2bStoreCount),
-      })) setB2bSubmitted(true);
+      });
+      if (ok) {
+        setB2bSubmitted(true);
+      } else {
+        setError(t.errSubmitFailed);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -168,10 +181,21 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                         className="w-full pl-2.5 py-3 bg-transparent text-sm focus:outline-none"
                       />
                     </div>
-                    <button type="submit" className="btn-primary py-3 px-6 shrink-0 shadow-md">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-primary py-3 px-6 shrink-0 shadow-md disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting && <Spinner />}
                       {t.getQuote}
                     </button>
                   </div>
+                  {error && (
+                    <p className="flex items-center gap-1.5 text-xs text-error mt-2" role="alert">
+                      <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                      {error}
+                    </p>
+                  )}
                   <p className="text-xs text-gray-500 mt-2">{t.b2bEmailNote}</p>
                 </form>
               ) : (
