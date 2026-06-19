@@ -2,6 +2,8 @@
 /**
  * Design-token drift guard. Run: `npm run lint:tokens`.
  * - HARD FAIL: the deprecated blue (#1E88E5 / rgb(30,136,229)) appearing anywhere.
+ * - HARD FAIL: brand-primary drift — the hand-mirrored primary hexes in
+ *   globals.css `:root` must equal BRAND.* in src/lib/tokens.ts.
  * - WARN: hardcoded brand blue (#376AE2 / rgb(55,106,226)) or arbitrary color
  *   literals (bg/text/border/from/via/to/ring/stroke/fill-[#…]) outside the
  *   token Sources of Truth — these should use a token/utility instead.
@@ -46,6 +48,31 @@ for (const file of walk(SRC)) {
       warnings++;
     }
   });
+}
+
+// --- brand-primary sync guard: globals.css :root  ==  tokens.ts BRAND.* ---
+function grab(content, re) {
+  const m = content.match(re);
+  return m ? m[1].toLowerCase() : null;
+}
+const cssSrc = readFileSync('src/app/globals.css', 'utf8');
+const tokensSrc = readFileSync('src/lib/tokens.ts', 'utf8');
+const SYNC_PAIRS = [
+  ['primary', /--primary:\s*(#[0-9a-fA-F]{6})/, /\bprimary:\s*'(#[0-9a-fA-F]{6})'/],
+  ['primary-dark', /--primary-dark:\s*(#[0-9a-fA-F]{6})/, /\bprimaryDark:\s*'(#[0-9a-fA-F]{6})'/],
+  ['primary-light', /--primary-light:\s*(#[0-9a-fA-F]{6})/, /\bprimaryLight:\s*'(#[0-9a-fA-F]{6})'/],
+  ['primary-lighter', /--primary-lighter:\s*(#[0-9a-fA-F]{6})/, /\bprimaryLighter:\s*'(#[0-9a-fA-F]{6})'/],
+];
+for (const [name, cssRe, tsRe] of SYNC_PAIRS) {
+  const c = grab(cssSrc, cssRe);
+  const t = grab(tokensSrc, tsRe);
+  if (!c || !t) {
+    console.error(`✗ TOKEN SYNC  could not read ${name} (globals.css=${c}, tokens.ts=${t})`);
+    failures++;
+  } else if (c !== t) {
+    console.error(`✗ TOKEN SYNC  ${name} drift: globals.css ${c} != tokens.ts ${t}`);
+    failures++;
+  }
 }
 
 console.log(`\ndesign-token check: ${failures} error(s), ${warnings} warning(s).`);
