@@ -23,11 +23,11 @@ interface HeroSectionProps {
 
 export default function HeroSection({ copy, ctaVariant = 'contact' }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-blue-100 via-blue-50 to-white">
+    <section className="relative overflow-hidden bg-blue-50">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
       {/* Dot pattern overlay */}
       <div className="absolute inset-0 bg-dot-pattern opacity-50 pointer-events-none" aria-hidden="true" />

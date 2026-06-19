@@ -320,7 +320,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
           {insightVisible && (
             <motion.div
               key={activeTab}
-              className="bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5 p-4 rounded-xl border border-violet-100"
+              className="bg-primary/5 p-4 rounded-xl border border-primary/10"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}

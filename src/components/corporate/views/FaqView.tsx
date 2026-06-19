@@ -89,7 +89,7 @@ export default function FaqView({ locale }: { locale: Locale }) {
     <div className="bg-white min-h-screen">
       <JsonLd data={faqPage(faqItems)} />
       {/* Hero */}
-      <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 overflow-hidden">
+      <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-16 bg-surface-dark overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }, { name: crumb('faq', locale), path: '/resources/faq' }]} locale={locale} tone="dark" className="mb-6" />

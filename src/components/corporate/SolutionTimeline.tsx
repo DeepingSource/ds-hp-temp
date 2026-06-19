@@ -122,7 +122,7 @@ export default function SolutionTimeline({ locale }: { locale: Locale }) {
             );
           })}
           <span
-            className="draw-line hidden sm:block absolute top-[3.125rem] left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20"
+            className="draw-line hidden sm:block absolute top-[3.125rem] left-[16.66%] right-[16.66%] h-px bg-primary/30"
             style={{ animationDelay: '250ms' }}
             aria-hidden="true"
           />

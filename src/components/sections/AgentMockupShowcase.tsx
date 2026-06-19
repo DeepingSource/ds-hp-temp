@@ -48,7 +48,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
   }, [tabs]);
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-gradient-to-b from-white to-blue-50/50">
+    <section ref={ref} className="py-20 lg:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 섹션 헤더 */}
         <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>

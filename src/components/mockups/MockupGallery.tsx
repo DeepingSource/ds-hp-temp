@@ -487,7 +487,7 @@ function DemoCard({
       </div>
 
       <div
-        className={`flex flex-1 items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 p-6 ${
+        className={`flex flex-1 items-center justify-center bg-gray-100 p-6 ${
           wide ? 'min-h-[420px]' : 'min-h-[560px]'
         }`}
       >

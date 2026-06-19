@@ -14,8 +14,6 @@ html {
   --primary-dark: #2453C4;
   --primary-light: #5B86EA;
   --primary-lighter: #E5EDFC;
-  --secondary: #26A69A;
-  --secondary-dark: #00897B;
 
   /* Dark surface (section-dark base) — single source for dark backgrounds + scrims */
   --surface-dark: #0B1220;
@@ -43,9 +41,8 @@ html {
   --bg-cool: #F7F9FC;
 
   /* Brand color channels — for rgb(var(--x) / a) alpha compositing in stylesheets.
-     Mirror --primary / --secondary hex above (keep in sync). */
+     Mirror --primary hex above (keep in sync). */
   --primary-rgb: 55 106 226;   /* #376AE2 */
-  --secondary-rgb: 38 166 154; /* #26A69A */
 
   /* Z-index scale — makes the stacking contract explicit (use z-[var(--z-…)]). */
   --z-sticky: 30;
@@ -71,8 +68,6 @@ html {
   --color-primary-lighter: var(--primary-lighter);
   --color-surface-dark: var(--surface-dark);
   --color-surface-dark-2: var(--surface-dark-2);
-  --color-secondary: var(--secondary);
-  --color-secondary-dark: var(--secondary-dark);
 
   /* Semantic Colors */
   --color-success: var(--success);
@@ -596,7 +591,7 @@ select[aria-invalid="true"]:focus-visible {
   left: 10%;
   right: 10%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgb(var(--primary-rgb) / 0.2), rgb(var(--secondary-rgb) / 0.2), transparent);
+  background: rgb(var(--primary-rgb) / 0.2);
 }
 
 /* Glow ring for accent elements */
@@ -624,52 +619,10 @@ select[aria-invalid="true"]:focus-visible {
   transform: translateX(4px);
 }
 
-/* Gradient text utility */
-.text-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* Hero progress bar — CSS animation replaces 50ms setInterval */
 @keyframes progress-fill {
   from { width: 0% }
   to   { width: 100% }
-}
-
-/* Shimmer sweep on CTA buttons — subtle light streak */
-@keyframes shimmer {
-  0% { transform: translateX(-100%) skewX(-15deg); }
-  100% { transform: translateX(200%) skewX(-15deg); }
-}
-
-.btn-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  transform: translateX(-100%) skewX(-15deg);
-  animation: shimmer 3s ease-in-out infinite;
-  animation-delay: 1s;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Soft mesh gradient for light sections — organic warmth */
-.bg-mesh-light {
-  background:
-    radial-gradient(ellipse at 20% 50%, rgb(var(--primary-rgb) / 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgb(var(--secondary-rgb) / 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(124,58,237,0.02) 0%, transparent 50%);
 }
 
 /* Floating dot pattern for light sections */
@@ -697,7 +650,7 @@ select[aria-invalid="true"]:focus-visible {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: var(--primary);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -815,10 +768,6 @@ select[aria-invalid="true"]:focus-visible {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .btn-shimmer::after {
-    animation: none !important;
   }
 }
 

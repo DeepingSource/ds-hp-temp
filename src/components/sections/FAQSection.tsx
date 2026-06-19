@@ -112,8 +112,7 @@ export default function FAQSection() {
 
       {/* Final CTA */}
       <section className="relative py-20 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-surface-dark" />
 
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 break-keep">

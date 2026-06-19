@@ -12,42 +12,22 @@ const features = [
     icon: ClipboardCheck,
     title: '오늘 할 일 액션 카드',
     description: '오늘 할 일을 AI가 정리합니다. 확인만 하면 끝.',
-    color: 'text-primary',
-    bgFrom: 'from-primary/15',
-    bgTo: 'to-primary/5',
-    borderColor: 'group-hover:border-primary/20',
-    barColor: 'from-primary to-primary-light',
   },
   {
     icon: Palette,
     title: 'AI 홍보물(POP) 자동 제작',
     description: '행사·신상품 포스터를 AI가 즉시 제작합니다.',
     badge: '곧 출시',
-    color: 'text-rose-500',
-    bgFrom: 'from-rose-100',
-    bgTo: 'to-rose-50',
-    borderColor: 'group-hover:border-rose-200',
-    barColor: 'from-rose-400 to-rose-300',
   },
   {
     icon: CloudRain,
     title: '날씨·행사 연동 발주 제안',
     description: '내일 비? 근처 축제? 매출 예측에 맞춰 발주량을 제안합니다.',
-    color: 'text-sky-500',
-    bgFrom: 'from-sky-100',
-    bgTo: 'to-sky-50',
-    borderColor: 'group-hover:border-sky-200',
-    barColor: 'from-sky-400 to-sky-300',
   },
   {
     icon: Users,
     title: '근무 스케줄 최적화',
     description: '방문자 패턴에 맞춰 최적 근무 배치를 제안합니다.',
-    color: 'text-secondary',
-    bgFrom: 'from-secondary/15',
-    bgTo: 'to-secondary/5',
-    borderColor: 'group-hover:border-secondary/20',
-    barColor: 'from-secondary to-secondary-dark',
   },
 ];
 
@@ -72,13 +52,13 @@ export default function FeatureSection({ heading, hidePop }: { heading?: string;
             return (
               <div
                 key={feature.title}
-                className={`group bg-white rounded-2xl p-7 border border-gray-100 shadow-sm overflow-hidden ${feature.borderColor} ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}
+                className={`group bg-white rounded-2xl p-7 border border-gray-100 shadow-sm overflow-hidden group-hover:border-primary/20 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}
                 style={{ animationDelay: `${(index + 1) * 100}ms` }}
               >
                 {/* Color accent bar */}
-                <div className={`h-[3px] bg-gradient-to-r ${feature.barColor} -mx-[29px] -mt-[29px] mb-5`} aria-hidden="true" />
-                <div className={`w-12 h-12 bg-gradient-to-br ${feature.bgFrom} ${feature.bgTo} rounded-2xl flex items-center justify-center mb-5 transition-shadow duration-200 group-hover:shadow-md`}>
-                  <Icon className={`w-6 h-6 ${feature.color}`} aria-hidden="true" />
+                <div className="h-[3px] bg-primary -mx-[29px] -mt-[29px] mb-5" aria-hidden="true" />
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-5 transition-shadow duration-200 group-hover:shadow-md">
+                  <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="font-medium text-gray-900 text-sm">

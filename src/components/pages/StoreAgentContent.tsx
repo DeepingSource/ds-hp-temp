@@ -121,7 +121,7 @@ export default function StoreAgentContent({
         <>
           {/* ── S4 · 로드맵 — 리테일 OS ── */}
           <AnimatedSection className="py-20 lg:py-28 bg-white relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-primary/20" />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
               <div className="text-center mb-16">
@@ -217,7 +217,7 @@ export default function StoreAgentContent({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact?product=StoreAgent"
-                  className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-bold text-slate-900 bg-blue-500 hover:bg-blue-400 rounded-xl btn-shimmer shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-[background-color,box-shadow] cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-bold text-slate-900 bg-blue-500 hover:bg-blue-400 rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-[background-color,box-shadow] cursor-pointer"
                 >
                   무료 상담 신청
                   <ArrowRight className="w-5 h-5 ml-1" />

@@ -329,9 +329,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
     <div className="bg-white min-h-screen">
       {/* ── Hero ── */}
       <section className="relative pt-28 pb-24 lg:pt-36 overflow-hidden section-dark">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-dark via-surface-dark-2 to-surface-dark" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_70%_20%,rgba(55,106,226,0.18),transparent)]" aria-hidden="true" />
-        <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-white to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-surface-dark" aria-hidden="true" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-3xl">
             <Breadcrumb items={[{ name: crumb('technology', locale), path: '/technology' }]} locale={locale} tone="dark" className="mb-6" />

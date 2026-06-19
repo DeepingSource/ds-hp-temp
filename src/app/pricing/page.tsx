@@ -30,7 +30,7 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 lg:pt-36 lg:pb-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-32 pb-16 lg:pt-36 lg:pb-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">
             Pricing

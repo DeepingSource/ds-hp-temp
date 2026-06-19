@@ -429,7 +429,7 @@ function ContactForm({ locale }: { locale: Locale }) {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="max-w-4xl w-full grid md:grid-cols-[1fr_1.1fr] gap-12 items-start">
         {/* Context Panel — 좌측 (데스크탑) / 상단 (모바일) */}
-        <div className="hidden md:block p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 shadow-sm h-full">
+        <div className="hidden md:block p-8 bg-gray-50 rounded-2xl border border-gray-200 shadow-sm h-full">
           <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">{t.eyebrow}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 leading-snug">
             {t.contextHeading}

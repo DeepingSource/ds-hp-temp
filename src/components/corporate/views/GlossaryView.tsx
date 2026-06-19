@@ -66,7 +66,7 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
         })}
       />
       {/* Hero */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 overflow-hidden">
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 bg-surface-dark overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }, { name: crumb('glossary', locale), path: '/resources/glossary' }]} locale={locale} tone="dark" className="mb-6" />

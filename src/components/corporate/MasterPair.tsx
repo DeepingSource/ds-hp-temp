@@ -21,10 +21,10 @@ export default function MasterPair({ locale }: { locale: Locale }) {
   const d = dict[locale];
   return (
     <Section variant="dark" className="relative overflow-hidden">
-      {/* Cinematic depth — store at night, kept legible by the gradient scrim */}
+      {/* Cinematic depth — store at night, kept legible by the solid scrim */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image src="/images/nextrise/bg-film00-night-cvs.webp" alt="" fill className="object-cover opacity-30" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/85 via-surface-dark/70 to-surface-dark/90" />
+        <div className="absolute inset-0 bg-surface-dark/85" />
       </div>
       <Container size="medium" className="relative text-center">
         <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-primary-light mb-10">{d.bridge}</h2>

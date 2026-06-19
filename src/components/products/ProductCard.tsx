@@ -52,7 +52,7 @@ export default function ProductCard({
   );
 
   const className =
-    'card glow-ring flex flex-col h-full no-underline';
+    'card flex flex-col h-full no-underline';
 
   if (external) {
     return (

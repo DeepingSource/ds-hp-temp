@@ -33,7 +33,6 @@ export default function ResourcesBlogPage() {
     <div className="bg-white min-h-screen">
       {/* Hero */}
       <section className="relative bg-white border-b border-gray-100">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 to-white pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-8">
           <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Blog</p>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-3">

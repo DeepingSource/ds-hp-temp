@@ -323,7 +323,7 @@ export default function POSAnalysisSection({ locale = 'en' }: { locale?: Locale 
                           <span className="text-xs text-gray-500 w-28 sm:w-32 truncate shrink-0">{copy.categories[idx]}</span>
                           <div className="flex-1 h-5 bg-gray-800/60 rounded-full overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full transition-[width] duration-700"
+                              className="h-full bg-primary rounded-full transition-[width] duration-700"
                               style={{ width: `${item.barPercent}%` }}
                             />
                           </div>

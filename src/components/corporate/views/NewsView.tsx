@@ -169,9 +169,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
     <div className="bg-white min-h-screen">
       {/* ── Hero ── */}
       <section className="relative pt-28 pb-20 lg:pt-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(55,106,226,0.18),transparent)]" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute inset-0 bg-surface-dark" aria-hidden="true" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('news', locale), path: '/company/news' }]} locale={locale} tone="dark" className="mb-6" />
@@ -181,7 +179,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
           </HeroBadge>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroMaster}<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-primary-light">
+            <span className="text-primary-light">
               {t.heroMasterAccent}
             </span>
           </h1>

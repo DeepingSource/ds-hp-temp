@@ -213,9 +213,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
     <div className="bg-white min-h-screen">
       {/* ── Hero · 두 마스터 카피 미러 ── */}
       <section className="relative pt-28 pb-20 lg:pt-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(99,102,241,0.15),transparent)]" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute inset-0 bg-surface-dark" aria-hidden="true" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('about', locale), path: '/company/about' }]} locale={locale} tone="dark" className="mb-6" />
@@ -286,7 +284,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* ── 우리가 일하는 법 · 익명화 → 공간 지능 → 에이전트 AI ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gradient-to-b from-white to-slate-50">
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{method.eyebrow}</p>
@@ -364,7 +362,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
             {t.leadership.map((l) => (
               <StaggerItem key={l.role}>
                 <div className="p-6 rounded-3xl border border-gray-100 bg-slate-50 h-full text-center">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-slate-200 mx-auto mb-4 flex items-center justify-center">
                     <Users className="w-7 h-7 text-slate-500" />
                   </div>
                   <p className="text-base font-bold text-gray-900 mb-1 break-keep">{l.role}</p>

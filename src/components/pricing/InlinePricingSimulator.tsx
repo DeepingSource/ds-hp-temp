@@ -62,7 +62,7 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
 
   return (
     <AnimatedSection className="py-16 bg-gray-50 border-t border-gray-100 relative">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-primary/20" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
@@ -164,7 +164,7 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
           </div>
 
           {/* Result */}
-          <div className="relative p-6 sm:p-8 md:w-1/2 bg-gradient-to-br from-gray-900 to-slate-900 text-white flex flex-col justify-center items-center text-center">
+          <div className="relative p-6 sm:p-8 md:w-1/2 bg-surface-dark text-white flex flex-col justify-center items-center text-center">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-bl-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/20 rounded-tr-full blur-2xl" />
 

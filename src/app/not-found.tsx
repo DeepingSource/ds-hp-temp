@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-surface-dark flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -25,7 +25,7 @@ export default function NotFound() {
       <div className="relative z-10 max-w-lg w-full text-center">
         {/* 404 number */}
         <p
-          className="text-[8rem] sm:text-[10rem] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 mb-2 select-none"
+          className="text-[8rem] sm:text-[10rem] font-bold leading-none text-white/15 mb-2 select-none"
           aria-hidden="true"
         >
           404

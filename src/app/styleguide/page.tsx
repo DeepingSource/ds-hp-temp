@@ -18,7 +18,6 @@ const brand = [
   SWATCH('primary-dark', 'bg-primary-dark', '#2453C4'),
   SWATCH('primary-light', 'bg-primary-light', '#5B86EA'),
   SWATCH('primary-lighter', 'bg-primary-lighter', '#E5EDFC'),
-  SWATCH('secondary', 'bg-secondary', '#26A69A'),
 ];
 const grays = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].map((g) =>
   SWATCH(`gray-${g}`, `bg-gray-${g}`, `var(--gray-${g})`),

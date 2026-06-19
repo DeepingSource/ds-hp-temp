@@ -167,7 +167,6 @@ function BlogContent() {
     <div className="min-h-screen bg-white">
       {/* ── Hero ── */}
       <section className="relative bg-white border-b border-gray-100">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 to-white pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 pb-6">
           {/* Compact header + search row */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4">
@@ -337,7 +336,7 @@ function BlogContent() {
                 <ArticleCard article={article} />
                 {/* Inline CTA Banner after the 5th card (index 4) */}
                 {i === 4 && (
-                  <div className="col-span-full bg-gradient-to-br from-primary to-blue-600 rounded-xl p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
+                  <div className="col-span-full bg-primary rounded-xl p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
                     <div className="flex items-center gap-5">
                       <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
                         <Mail className="w-6 h-6 text-white" aria-hidden="true" />

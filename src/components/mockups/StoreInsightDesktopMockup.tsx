@@ -445,7 +445,7 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
           {/* Bottom Row */}
           <div className="grid grid-cols-2 gap-3">
             {/* AI Insight */}
-            <div className="bg-gradient-to-br from-violet-500/5 to-fuchsia-500/5 p-3.5 rounded-lg border border-violet-100">
+            <div className="bg-primary/5 p-3.5 rounded-lg border border-primary/10">
               <div className="flex items-start gap-2.5">
                 <div className="w-7 h-7 rounded-full bg-violet-100 flex items-center justify-center shrink-0">
                   <TrendingUp className="w-3.5 h-3.5 text-violet-600" aria-hidden="true" />

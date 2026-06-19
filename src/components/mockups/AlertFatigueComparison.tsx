@@ -235,11 +235,6 @@ export default function AlertFatigueComparison({
               ))}
             </div>
 
-            {/* blur + fade overlay on bottom ~40% — makes noise unreadable */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-gray-50 via-gray-50/80 to-transparent backdrop-blur-[2px]"
-            />
           </div>
         </section>
 

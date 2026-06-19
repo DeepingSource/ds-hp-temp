@@ -146,9 +146,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${BASE}/images/nextrise/funnel-floor-projection.webp)` }}
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-dark/80 via-surface-dark/55 to-surface-dark/85" />
-        {/* Restrained brand-blue glow (one-blue only — no rainbow) */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_42%,rgb(var(--primary-rgb)/0.22),transparent_70%)]" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-surface-dark/80" />
         {/* SAAI symbol watermark — the endcard signature (nextrise-motion) */}
         <div
           aria-hidden="true"
@@ -162,7 +160,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
           </h2>
           <p className="text-lg text-gray-300 mb-10 max-w-xl mx-auto break-keep">{cta.sub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg btn-shimmer">
+            <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
               {cta.close}
             </Link>
             <Link

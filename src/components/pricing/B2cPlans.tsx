@@ -25,7 +25,7 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
       ? 'flex flex-col p-7 bg-white border border-blue-200 rounded-2xl shadow-[0_4px_20px_-4px_rgba(59,130,246,0.15)] relative overflow-hidden'
       : 'flex flex-col p-7 bg-white border border-blue-100 rounded-2xl hover:border-blue-300 transition-colors shadow-sm'}>
       {featured && (
-        <div className="absolute top-0 right-0 w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-bl-[32px] flex items-start justify-end p-2.5">
+        <div className="absolute top-0 right-0 w-14 h-14 bg-primary rounded-bl-[32px] flex items-start justify-end p-2.5">
           <Zap className="w-4 h-4 text-white" />
         </div>
       )}

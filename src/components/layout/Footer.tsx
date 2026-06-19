@@ -65,7 +65,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-gray-300 noise-overlay">
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" aria-hidden="true" />
+      <div className="h-px bg-primary/20" aria-hidden="true" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Brand */}

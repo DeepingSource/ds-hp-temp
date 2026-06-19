@@ -150,7 +150,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
       />
 
       {/* ── 히어로 ── */}
-      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800">
+      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-surface-dark">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -263,7 +263,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
       {/* ── 후기 ── */}
       <AnimatedSection className="py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="card relative bg-gradient-to-br from-primary/[0.04] to-white border-primary/10">
+          <div className="card relative bg-primary/5 border-primary/10">
             <Quote className="w-10 h-10 text-primary/20 mb-4" />
             <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-relaxed break-keep mb-6">
               {t.quote}

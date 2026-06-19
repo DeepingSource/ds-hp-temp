@@ -59,31 +59,31 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Arrow 1 */}
         <div className="flex items-center px-2">
-          <div className="w-10 h-px bg-gradient-to-r from-slate-600 to-violet-500/60 vision-dash-h" />
-          <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-violet-500/60" />
+          <div className="w-10 h-px bg-primary/50 vision-dash-h" />
+          <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-primary/60" />
         </div>
 
         {/* Privacy Shield */}
         <div className="flex-1 max-w-[180px]">
-          <div className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-indigo-500/10 backdrop-blur-sm p-6 text-center">
-            <p className="text-3xs font-bold text-violet-400 uppercase tracking-widest mb-3">Privacy Shield</p>
-            <div className="w-14 h-14 rounded-2xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-3">
-              <Shield className="w-7 h-7 text-violet-400" />
+          <div className="rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur-sm p-6 text-center">
+            <p className="text-3xs font-bold text-primary-light uppercase tracking-widest mb-3">Privacy Shield</p>
+            <div className="w-14 h-14 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-3">
+              <Shield className="w-7 h-7 text-primary-light" />
             </div>
-            <p className="text-xs text-violet-300 font-medium">{t.shieldTitle}</p>
+            <p className="text-xs text-blue-200 font-medium">{t.shieldTitle}</p>
             <p className="text-3xs text-slate-400 mt-1">{t.shieldSub}</p>
           </div>
         </div>
 
         {/* Arrow 2 */}
         <div className="flex items-center px-2">
-          <div className="w-10 h-px bg-gradient-to-r from-violet-500/60 to-blue-500/60 vision-dash-h" />
-          <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-blue-500/60" />
+          <div className="w-10 h-px bg-primary/50 vision-dash-h" />
+          <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-primary/60" />
         </div>
 
         {/* AI Engine */}
         <div className="flex-1 max-w-[220px]">
-          <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 backdrop-blur-sm p-6 text-center">
+          <div className="rounded-2xl border border-blue-500/30 bg-primary/10 backdrop-blur-sm p-6 text-center">
             <p className="text-3xs font-bold text-blue-400 uppercase tracking-widest mb-3">Spatial AI</p>
             <div className="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-3 vision-pulse">
               <Brain className="w-7 h-7 text-blue-400" />
@@ -118,30 +118,30 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Vertical arrow */}
         <div className="flex flex-col items-center py-1">
-          <div className="w-px h-6 bg-gradient-to-b from-slate-600 to-violet-500/60 vision-dash-v" />
-          <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-violet-500/60" />
+          <div className="w-px h-6 bg-primary/50 vision-dash-v" />
+          <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-primary/60" />
         </div>
 
         {/* Privacy Shield */}
         <div className="w-full max-w-[220px]">
-          <div className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-indigo-500/10 backdrop-blur-sm p-5 text-center">
-            <p className="text-3xs font-bold text-violet-400 uppercase tracking-widest mb-2">Privacy Shield</p>
-            <div className="w-12 h-12 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-2">
-              <Shield className="w-6 h-6 text-violet-400" />
+          <div className="rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur-sm p-5 text-center">
+            <p className="text-3xs font-bold text-primary-light uppercase tracking-widest mb-2">Privacy Shield</p>
+            <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-2">
+              <Shield className="w-6 h-6 text-primary-light" />
             </div>
-            <p className="text-xs text-violet-300 font-medium">{t.shieldTitle}</p>
+            <p className="text-xs text-blue-200 font-medium">{t.shieldTitle}</p>
           </div>
         </div>
 
         {/* Vertical arrow */}
         <div className="flex flex-col items-center py-1">
-          <div className="w-px h-6 bg-gradient-to-b from-violet-500/60 to-blue-500/60 vision-dash-v" />
-          <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-blue-500/60" />
+          <div className="w-px h-6 bg-primary/50 vision-dash-v" />
+          <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-primary/60" />
         </div>
 
         {/* AI Engine */}
         <div className="w-full max-w-[260px]">
-          <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 backdrop-blur-sm p-5 text-center">
+          <div className="rounded-2xl border border-blue-500/30 bg-primary/10 backdrop-blur-sm p-5 text-center">
             <p className="text-3xs font-bold text-blue-400 uppercase tracking-widest mb-2">Spatial AI</p>
             <div className="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-2 vision-pulse">
               <Brain className="w-6 h-6 text-blue-400" />

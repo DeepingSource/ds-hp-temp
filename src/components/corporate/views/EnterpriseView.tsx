@@ -209,7 +209,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 noise-overlay">
+      <section className="relative overflow-hidden bg-surface-dark noise-overlay">
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-3xl" />
         </div>
@@ -222,7 +222,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight break-keep">
             {t.heroTitleA}
             <br />
-            <span className="text-gradient">{t.heroTitleB}</span>
+            <span className="text-primary-light">{t.heroTitleB}</span>
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10 break-keep">
             {t.heroSub1}
@@ -231,7 +231,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </p>
           <Link
             href={localeHref(locale, '/contact') + '?type=enterprise'}
-            className="btn-primary btn-lg btn-shimmer shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow] inline-flex items-center gap-2"
+            className="btn-primary btn-lg shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow] inline-flex items-center gap-2"
           >
             {t.heroCta}
             <ArrowRight className="w-4 h-4" />
@@ -409,7 +409,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={localeHref(locale, '/contact') + '?type=enterprise'}
-              className="btn-primary btn-lg btn-shimmer shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow]"
+              className="btn-primary btn-lg shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow]"
             >
               {t.ctaPrimary}
             </Link>

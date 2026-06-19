@@ -421,7 +421,7 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Persona View Toggle */}
-      <section className="pt-8 pb-12 bg-gradient-to-b from-white to-gray-50">
+      <section className="pt-8 pb-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-6">
           <Breadcrumb items={[{ name: crumb('pricing', locale), path: '/pricing' }]} locale={locale} tone="light" />
         </div>
@@ -487,8 +487,8 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
       <AnimatedSection className="py-20 bg-gray-950 overflow-hidden relative">
         <div className="absolute inset-0 opacity-[0.05]" aria-hidden="true" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <div className="inline-block mb-5 px-4 py-1.5 bg-gradient-to-r from-blue-500/20 to-primary/20 border border-primary/20 rounded-full">
-            <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary-light uppercase tracking-wider">
+          <div className="inline-block mb-5 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full">
+            <span className="text-sm font-bold text-primary-light uppercase tracking-wider">
               Synergy Package
             </span>
           </div>

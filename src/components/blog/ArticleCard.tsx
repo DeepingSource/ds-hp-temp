@@ -103,7 +103,7 @@ export const FeaturedArticleCard = memo(function FeaturedArticleCard({ article }
       className={`group relative block bg-gray-50 rounded-xl border border-gray-100 overflow-hidden hover:shadow-xl transition-[box-shadow,border-color] duration-300 cursor-pointer ${accent.hoverBorder}`}
     >
       {/* Top accent strip */}
-      <div className="h-1 bg-gradient-to-r from-blue-400 via-violet-400 to-primary" />
+      <div className="h-1 bg-primary" />
       <div className="flex flex-col sm:flex-row">
         <div className="flex-1 p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-start gap-5">
