@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from 'lucide-react';
 import { glossaryBySlug, type GlossaryTerm } from '@/data/glossaryTerms';
 import { industryList, type IndustryMeta } from '@/data/industryList';
 import { glossaryCardI18n, glossaryCategoryI18n } from '@/data/glossary-i18n';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -160,7 +160,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
             </div>
             <p className="text-gray-300 leading-relaxed break-keep text-sm sm:text-base">{term.saaiUsage}</p>
             <Link
-              href="/contact"
+              href={localeHref(locale, '/contact')}
               className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-xl text-sm hover:bg-primary-dark transition-colors"
             >
               {c.viewCase}
@@ -218,7 +218,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           {/* 용어 사전 돌아가기 */}
           <div className="mt-12 pt-8 border-t border-gray-100">
             <Link
-              href="/resources/glossary"
+              href={localeHref(locale, '/resources/glossary')}
               className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -238,14 +238,14 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           <p className="text-gray-500 mb-8 break-keep">{c.ctaBody}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/contact"
+              href={localeHref(locale, '/contact')}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-white font-bold rounded-2xl hover:bg-primary-dark transition-colors text-sm w-full sm:w-auto"
             >
               {c.ctaPrimary}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/solutions"
+              href={localeHref(locale, '/solutions')}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-gray-200 text-gray-700 font-semibold rounded-2xl hover:bg-gray-50 transition-colors text-sm w-full sm:w-auto"
             >
               {c.ctaSecondary}

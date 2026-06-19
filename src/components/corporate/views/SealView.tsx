@@ -2,7 +2,7 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Accordion from '@/components/ui/Accordion';
 import { Package, ArrowRight, Plug, Code2 } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -285,7 +285,7 @@ export default function SealView({ locale }: { locale: Locale }) {
           <p className="text-gray-600 text-lg mb-9 break-keep">
             {t.ctaSub}
           </p>
-          <Link href="/contact" className="btn-primary btn-lg gap-2">
+          <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2">
             {t.ctaPrimary}
             <ArrowRight className="w-4 h-4" />
           </Link>

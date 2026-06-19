@@ -5,7 +5,7 @@ import { commonFaqs, storeCareFaqs, storeInsightFaqs, faqData } from '@/data/faq
 import { faqI18n } from '@/data/faq-i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, faqPage, nodeToText } from '@/lib/structured-data';
 
 /**
@@ -118,7 +118,7 @@ export default function FaqView({ locale }: { locale: Locale }) {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {c.ctaTitle}
           </h2>
-          <Link href="/contact" className="btn-primary gap-2">
+          <Link href={localeHref(locale, '/contact')} className="btn-primary gap-2">
             {c.ctaButton}
             <ArrowRight className="w-4 h-4" />
           </Link>

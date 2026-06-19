@@ -3,7 +3,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreCareMockup from '@/components/mockups/StoreCareMockup';
 import { KakaoAlertMockup } from '@/components/mockups';
 import { Store, ArrowUpRight, ShieldCheck, Eye, Bell } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -176,7 +176,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
             </a>
             <p className="mt-6 text-sm text-gray-500 break-keep">
               {t.valueNote[0]}{' '}
-              <Link href="/products" className="text-primary hover:text-primary-dark transition-colors">
+              <Link href={localeHref(locale, '/products')} className="text-primary hover:text-primary-dark transition-colors">
                 {t.otherProducts}
               </Link>
             </p>

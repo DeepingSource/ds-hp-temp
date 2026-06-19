@@ -13,7 +13,7 @@ import {
   CheckCircle2, AlertCircle,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 
@@ -576,8 +576,8 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
           </h2>
           <p className="text-gray-500 text-lg mb-10 break-keep">{t.ctaSub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn-primary btn-lg">{t.ctaPrimary}</Link>
-            <Link href="/company/about" className="inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors">{t.ctaSecondary}</Link>
+            <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">{t.ctaPrimary}</Link>
+            <Link href={localeHref(locale, '/company/about')} className="inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors">{t.ctaSecondary}</Link>
           </div>
         </div>
       </AnimatedSection>

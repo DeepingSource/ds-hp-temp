@@ -3,7 +3,7 @@ import { ArrowRight, Lightbulb } from 'lucide-react';
 import { solutionsData } from '@/data/solutionsData';
 import { industryList, industryColorMap } from '@/data/industryList';
 import { industryLabelI18n, solutionCardI18n } from '@/data/solutions-i18n';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 
@@ -231,7 +231,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/contact"
+              href={localeHref(locale, '/contact')}
               className="btn-primary-dark gap-2 w-full sm:w-auto"
             >
               {t.ctaPrimary}

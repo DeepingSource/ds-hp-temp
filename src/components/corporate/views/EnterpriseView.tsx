@@ -3,7 +3,7 @@ import { ArrowRight, Building2, BarChart3, Shield, Eye, LayoutGrid, Zap, Users, 
 import { COMPANY } from '@/lib/company-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import MultiStoreDashboardMockup from '@/components/mockups/MultiStoreDashboardMockup';
 import { HqMapDashboardMockup } from '@/components/mockups';
@@ -230,7 +230,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
             {t.heroSub2}
           </p>
           <Link
-            href="/contact?type=enterprise"
+            href={localeHref(locale, '/contact') + '?type=enterprise'}
             className="btn-primary btn-lg btn-shimmer shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow] inline-flex items-center gap-2"
           >
             {t.heroCta}
@@ -351,7 +351,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </div>
 
           <div className="mt-10">
-            <Link href="/resources/case-studies" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+            <Link href={localeHref(locale, '/resources/case-studies')} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
               {t.goldenLink}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
@@ -408,13 +408,13 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact?type=enterprise"
+              href={localeHref(locale, '/contact') + '?type=enterprise'}
               className="btn-primary btn-lg btn-shimmer shadow-[0_0_20px_theme(colors.primary/0.3)] hover:shadow-[0_0_30px_theme(colors.primary/0.5)] transition-[box-shadow]"
             >
               {t.ctaPrimary}
             </Link>
             <Link
-              href="/"
+              href={localeHref(locale, '/')}
               className="btn-secondary btn-lg !bg-white/5 hover:!bg-white/10 !text-white !border-white/10 backdrop-blur-sm transition-colors inline-flex items-center gap-1"
             >
               {t.ctaSecondary}

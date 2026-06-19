@@ -9,7 +9,7 @@ import {
   Layers,
 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
@@ -179,7 +179,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/contact" className="btn-primary-dark gap-2 w-full sm:w-auto">
+            <Link href={localeHref(locale, '/contact')} className="btn-primary-dark gap-2 w-full sm:w-auto">
               {t.heroCta}
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -236,7 +236,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
                 {t.mtmcBody}
               </p>
               <Link
-                href="/technology/spatial-ai"
+                href={localeHref(locale, '/technology/spatial-ai')}
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
               >
                 {t.mtmcLink}
@@ -292,7 +292,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
           <p className="text-slate-300 text-lg mb-10 break-keep">
             {t.ctaSub}
           </p>
-          <Link href="/contact" className="btn-primary-dark gap-2">
+          <Link href={localeHref(locale, '/contact')} className="btn-primary-dark gap-2">
             {t.ctaButton}
             <ArrowRight className="w-4 h-4" />
           </Link>

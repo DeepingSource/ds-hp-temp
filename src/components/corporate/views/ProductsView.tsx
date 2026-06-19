@@ -3,7 +3,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import ProductCard, { type ProductCardProps } from '@/components/products/ProductCard';
 import MultiStoreDashboardMockup from '@/components/mockups/MultiStoreDashboardMockup';
 import { BarChart3, BrainCircuit, Store, ShoppingBag, ArrowRight } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -197,7 +197,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
 
           <div className="mt-10 text-center">
             <Link
-              href="/contact"
+              href={localeHref(locale, '/contact')}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
             >
               {t.cta}

@@ -9,7 +9,7 @@ import {
   Lightbulb,
   TrendingUp,
 } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -162,7 +162,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
             {t.heroSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact?product=StoreAgent" className="btn-primary btn-lg">
+            <Link href={localeHref(locale, '/contact') + '?product=StoreAgent'} className="btn-primary btn-lg">
               {t.ctaPrimary}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -258,7 +258,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
             {t.pricingSub}
           </p>
           <Link
-            href="/pricing"
+            href={localeHref(locale, '/pricing')}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
           >
             {t.pricingCta}
@@ -279,7 +279,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
           <p className="text-lg text-gray-300 mb-10 break-keep">
             {t.finalSub}
           </p>
-          <Link href="/contact?product=StoreAgent" className="btn-primary btn-lg">
+          <Link href={localeHref(locale, '/contact') + '?product=StoreAgent'} className="btn-primary btn-lg">
             {t.finalCta}
             <ArrowRight className="w-5 h-5 ml-2" />
           </Link>

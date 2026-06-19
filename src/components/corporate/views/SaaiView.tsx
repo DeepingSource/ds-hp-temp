@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { ShoppingBag, ArrowUpRight, Sparkles, Archive, CalendarDays } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -142,7 +142,7 @@ export default function SaaiView({ locale }: { locale: Locale }) {
             </a>
             <p className="mt-6 text-sm text-gray-500 break-keep">
               {t.featureNote}{' '}
-              <Link href="/products" className="text-primary hover:text-primary-dark transition-colors">
+              <Link href={localeHref(locale, '/products')} className="text-primary hover:text-primary-dark transition-colors">
                 {t.otherProducts}
               </Link>
             </p>

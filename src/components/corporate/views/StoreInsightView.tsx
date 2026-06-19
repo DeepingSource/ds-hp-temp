@@ -10,7 +10,7 @@ import {
   Route,
   Repeat,
 } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -211,7 +211,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             {t.heroSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact?product=StoreInsight" className="btn-primary btn-lg">
+            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="btn-primary btn-lg">
               {t.ctaPrimary}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -360,17 +360,17 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             {t.finalSub}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact?product=StoreInsight" className="btn-primary btn-lg">
+            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="btn-primary btn-lg">
               {t.finalCta}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <Link href="/products/store-agent" className="btn-ghost-dark">
+            <Link href={localeHref(locale, '/products/store-agent')} className="btn-ghost-dark">
               {t.seeAgent}
             </Link>
           </div>
           <p className="mt-6 text-sm text-gray-400">
             {t.alreadyUsing}{' '}
-            <Link href="/resources/docs/store-insight" className="text-white underline underline-offset-4 hover:text-primary-light transition-colors">
+            <Link href={localeHref(locale, '/resources/docs/store-insight')} className="text-white underline underline-offset-4 hover:text-primary-light transition-colors">
               {t.manual}
             </Link>
           </p>
