@@ -9,6 +9,7 @@ import HeaderWrapper from "@/components/layout/HeaderWrapper";
 import FooterWrapper from "@/components/layout/FooterWrapper";
 import LandingStickyCta from "@/components/layout/LandingStickyCta";
 import HtmlLangSync from "@/components/layout/HtmlLangSync";
+import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
 // import Analytics from "@/components/Analytics"; // Umami Analytics 적용 시 주석 해제
 
@@ -122,6 +123,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <HtmlLangSync />
+        <LanguageSuggestion />
         {/* ?lp=1 → header hidden; otherwise → normal header */}
         <Suspense fallback={<Header />}>
           <HeaderWrapper />
