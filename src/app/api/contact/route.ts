@@ -12,8 +12,8 @@ const contactSchema = z.object({
   storeCount: z.string().min(1).max(10),
   affiliationType: z.string().min(1).max(20).optional(),
   brandName: z.string().max(50).optional(),
-  product: z.enum(['StoreCare', 'StoreInsight', 'StoreAgent']).optional(),
-  plan: z.enum(['standard', 'premium', 'enterprise']).optional(),
+  product: z.enum(['StoreCare', 'StoreInsight', 'StoreAgent']).nullish(),
+  plan: z.enum(['standard', 'premium', 'enterprise']).nullish(),
   inquiryType: z.string().max(30).optional(),
   message: z.string().max(1000).optional(),
 });

@@ -39,6 +39,16 @@ describe('POST /api/contact', () => {
     expect(body.message).toBe('상담 신청이 완료되었습니다');
   });
 
+  it('plan/product가 null이어도 → 200 (실제 폼 페이로드: 쿼리 파라미터 부재 시)', async () => {
+    const res = await POST(
+      makeRequest(
+        { name: '홍길동', contact: '010-1234-5678', storeCount: '1', plan: null, product: null },
+        uniqueIp(),
+      ),
+    );
+    expect(res.status).toBe(200);
+  });
+
   it('inquiryType, message 포함 요청 → 200', async () => {
     const res = await POST(
       makeRequest(

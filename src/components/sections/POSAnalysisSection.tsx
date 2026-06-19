@@ -179,7 +179,7 @@ export default function POSAnalysisSection({ locale = 'en' }: { locale?: Locale 
     const koreaDate = new Date(d.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     setToday({
       dayIndex: (koreaDate.getDay() + 6) % 7,
-      label: koreaDate.toLocaleDateString(t.dateLocale, { timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric' }),
+      label: d.toLocaleDateString(t.dateLocale, { timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric' }),
     });
   }, [t.dateLocale]);
 

@@ -34,7 +34,7 @@ export const plans: Plan[] = [
       { text: '대화형 AI 채팅', included: false },
     ],
     cta: '무료로 시작하기',
-    ctaLink: '/contact?plan=free',
+    ctaLink: '/contact',
   },
   {
     id: 'standard',

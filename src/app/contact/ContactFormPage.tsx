@@ -363,7 +363,7 @@ function ContactForm({ locale }: { locale: Locale }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...data, plan: planParam, product: productParam }),
+        body: JSON.stringify({ ...data, plan: planParam ?? undefined, product: productParam ?? undefined }),
         signal: controller.signal,
       });
 
