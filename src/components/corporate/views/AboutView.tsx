@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { companyLine, perfectSpace, purpose, reinventOffline } from '@/lib/brand-canon';
@@ -218,10 +219,10 @@ export default function AboutView({ locale }: { locale: Locale }) {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('about', locale), path: '/company/about' }]} locale={locale} tone="dark" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-semibold tracking-wide backdrop-blur-sm mb-10">
+          <HeroBadge tone="dark" className="mb-10">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             {t.badge}
-          </div>
+          </HeroBadge>
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">

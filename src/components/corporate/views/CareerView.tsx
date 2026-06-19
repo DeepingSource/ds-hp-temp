@@ -9,6 +9,7 @@ import {
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 /**
@@ -251,10 +252,10 @@ export default function CareerView({ locale }: { locale: Locale }) {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('career', locale), path: '/company/career' }]} locale={locale} tone="dark" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-semibold tracking-wide backdrop-blur-sm mb-8">
+          <HeroBadge tone="dark">
             <Briefcase className="w-3.5 h-3.5" />
             {t.badge}
-          </div>
+          </HeroBadge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] mb-6 break-keep">
             {t.heroMaster}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-primary-light">

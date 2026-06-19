@@ -7,6 +7,7 @@ import {
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { EdgePerfMonitorMockup } from '@/components/mockups';
 
@@ -212,10 +213,10 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       <section className="relative pt-28 pb-20 lg:pt-36 bg-slate-50 border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <Breadcrumb items={[{ name: crumb('technology', locale), path: '/technology' }, { name: crumb('anonymizer', locale), path: '/technology/anonymizer' }]} locale={locale} tone="light" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-lighter text-primary text-xs font-semibold tracking-wide mb-6">
+          <HeroBadge tone="light">
             <Fingerprint className="w-3.5 h-3.5" />
             {t.heroBadge}
-          </div>
+          </HeroBadge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-6 break-keep">
             {t.heroTitleA}<br className="hidden sm:block" />
             {t.heroTitleB}

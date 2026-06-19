@@ -15,6 +15,7 @@ import {
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 type StackItem = { tag: string; title: string; desc: string };
@@ -334,10 +335,10 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-3xl">
             <Breadcrumb items={[{ name: crumb('technology', locale), path: '/technology' }]} locale={locale} tone="dark" className="mb-6" />
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-semibold tracking-wide backdrop-blur-sm mb-8">
+            <HeroBadge tone="dark">
               <Fingerprint className="w-3.5 h-3.5" />
               {t.heroBadge}
-            </div>
+            </HeroBadge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-6 break-keep">
               {t.heroTitleA}<br className="hidden sm:block" />
               <span className="text-primary-light">{t.heroTitleB}</span>

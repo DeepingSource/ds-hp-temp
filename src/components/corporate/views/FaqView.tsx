@@ -4,6 +4,7 @@ import Accordion from '@/components/ui/Accordion';
 import { commonFaqs, storeCareFaqs, storeInsightFaqs, faqData } from '@/data/faq-data';
 import { faqI18n } from '@/data/faq-i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, faqPage, nodeToText } from '@/lib/structured-data';
@@ -86,10 +87,10 @@ export default function FaqView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }, { name: crumb('faq', locale), path: '/resources/faq' }]} locale={locale} tone="dark" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-semibold tracking-wide backdrop-blur-sm mb-8">
+          <HeroBadge tone="dark">
             <HelpCircle className="w-3.5 h-3.5" />
             {c.eyebrow}
-          </div>
+          </HeroBadge>
           <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {c.heroTitle}
           </h1>
