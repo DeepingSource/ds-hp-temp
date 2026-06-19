@@ -1,7 +1,7 @@
 # SAAI Brand Alignment — Prioritized Execution Plan
 
 > **Source of truth:** `SAAI_AI_Handoff.md`. User decision: FULLY ALIGN the site to the handoff; the handoff wins over the recent NEXTRISE pivot.
-> **Status:** REVIEW COMPLETE — this plan is the execution roadmap. No files have been modified yet.
+> **Status:** ✅ EXECUTED & SHIPPED (2026-06-19) — plan applied on `chore/brand-align`, merged to `main` (44db145), redeployed to gh-pages (73c836a, live). Held: terms/privacy 비식별→익명화 pending PIPA sign-off. Open: draft wording (seam EN/JP, 4-step labels), V5 per-product verbs. _(Originally: REVIEW COMPLETE — no files modified yet.)_
 > **Scope verified:** counts re-grepped 2026-06-19 — 비식별 = 45 (src+content), font-semibold = 329, font-extrabold = 17, font-black = 42, bg-gradient = 78+ literals. All 7 `reinventOffline` sites confirmed, Geist confirmed in 4 places.
 
 ---

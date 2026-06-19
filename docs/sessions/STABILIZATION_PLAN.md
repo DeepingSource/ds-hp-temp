@@ -1,5 +1,7 @@
 # DS_NEW_HP — Stabilization & Optimization Plan
 
+> **Status:** ✅ EXECUTED & SHIPPED (2026-06-19) — applied (incl. P0 contact-funnel fix), merged to `main`, deployed to gh-pages. Retained as execution record.
+
 Status snapshot: GREEN (tsc 0, lint 0 errors / 30 intentional warnings, 31/31 tests, build OK).
 Scope: whole-codebase correctness/robustness bugs + real perf/bundle wins. Evidence-backed, review-only.
 Out of scope (separate fix in flight): raw internal `href` locale-nav convergence onto `localeHref`.

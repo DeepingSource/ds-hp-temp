@@ -1,5 +1,7 @@
 # Refactor Plan — DS_NEW_HP (live `src/`)
 
+> **Status:** ✅ EXECUTED & SHIPPED (2026-06-19) — endorsed batch applied on `chore/refactor`, merged to `main`, deployed to gh-pages. Retained as execution record.
+
 Scope: code-quality refactoring (reduce duplication / complexity / inconsistency) in **live** code under `src/`.
 This is **not** a hygiene pass — but a handful of clearly-dead exports that the prior pass missed are included because they are zero-risk and remove misleading API surface.
 
