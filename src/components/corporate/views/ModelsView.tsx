@@ -104,9 +104,9 @@ const jp: Copy = {
   categoryNote:
     '匿名化の上で、認識・空間・フロー・変化・生成へ。各モデルは単独で、またはパイプライン段階として組み合わせ、空間知能を形づくります。',
   models: [
-    { name: 'face-anon', promise: 'フレーム内の顔領域を非識別化', stage: 'Live' },
-    { name: 'body-anon', promise: '体型の識別信号を非識別化', stage: 'Live' },
-    { name: 'plate-anon', promise: '車両ナンバープレート領域を非識別化', stage: 'Live' },
+    { name: 'face-anon', promise: 'フレーム内の顔領域を匿名化', stage: 'Live' },
+    { name: 'body-anon', promise: '体型の識別信号を匿名化', stage: 'Live' },
+    { name: 'plate-anon', promise: '車両ナンバープレート領域を匿名化', stage: 'Live' },
     { name: 'person-detect', promise: 'フレーム内の人物領域を検出', stage: 'Live' },
     { name: 'object-detect', promise: '一般オブジェクト領域を検出', stage: 'Live' },
     { name: 'pose-estimate', promise: '姿勢・キーポイントを推定', stage: 'Live' },

@@ -60,7 +60,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     sub: '三つのstoreがひとつの流れに — 昨日を読み、今を知らせ、次を動かします。',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: '昨日を読みます — 売上が見落としていたものまで。', img: '/images/storeinsight-heatmap.webp', alt: '店舗ヒートマップ — 滞在・動線分析', href: '/products/store-insight' },
-      { key: 'care', icon: Radio, product: 'Store Care', desc: '今を捉えて知らせます — 必要な瞬間だけを、リアルタイムで。', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — 汚れ・異常をリアルタイム検知（非識別）', href: 'https://storecare.ai', external: true },
+      { key: 'care', icon: Radio, product: 'Store Care', desc: '今を捉えて知らせます — 必要な瞬間だけを、リアルタイムで。', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — 汚れ・異常をリアルタイム検知（匿名化）', href: 'https://storecare.ai', external: true },
       { key: 'agent', icon: Sparkles, product: 'Store Agent', desc: '次を提案し、運営します — 推奨はAI、判断は人。', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'StoreAgent — 次の一手の提案画面', href: '/products/store-agent' },
     ],
   },

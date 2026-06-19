@@ -42,7 +42,7 @@ const COPY: Record<Locale, Copy> = {
       {
         n: '02',
         title: '공간 확장',
-        body: "공장·물류·시설·병원의 '익명화 공간 AI' 표준 사업자 — 매장 외 매출 30%+",
+        body: "공장·물류·시설·병원의 '익명화 공간 AI' 표준 사업자 — 매장 외 매출 비중 30% 이상 목표 (2031)",
       },
       {
         n: '03',
@@ -76,7 +76,7 @@ const COPY: Record<Locale, Copy> = {
       {
         n: '02',
         title: 'Spatial Expansion',
-        body: "The standard provider of 'anonymized spatial AI' for factories, logistics, facilities, and hospitals — 30%+ of revenue beyond stores.",
+        body: "The standard provider of 'anonymized spatial AI' for factories, logistics, facilities, and hospitals — targeting 30%+ of revenue beyond stores by 2031.",
       },
       {
         n: '03',
@@ -110,7 +110,7 @@ const COPY: Record<Locale, Copy> = {
       {
         n: '02',
         title: '空間拡張',
-        body: "工場・物流・施設・病院の「匿名化空間AI」標準事業者 — 店舗外売上30%以上です。",
+        body: "工場・物流・施設・病院の「匿名化空間AI」標準事業者 — 店舗外売上比率30%以上を目標 (2031)。",
       },
       {
         n: '03',

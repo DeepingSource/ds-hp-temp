@@ -46,6 +46,7 @@ type Copy = {
   partnersHeading: string;
   partnersSub: string;
   partnerStatLabels: string[];
+  partnerStatsNote: string;
   ctaHeading: string;
   ctaSub: string;
   ctaButton: string;
@@ -86,6 +87,7 @@ const C: Record<Locale, Copy> = {
     partnersHeading: `${COMPANY.partnerBrands}개 파트너 브랜드가 함께합니다`,
     partnersSub: `${COMPANY.industries}개 업종에서 검증된 SAAI. ${COMPANY.nvidiaPartner}로서 글로벌 표준을 따릅니다.`,
     partnerStatLabels: ['파트너 브랜드', '지원 업종', '특허', '규제 준수'],
+    partnerStatsNote: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.',
     ctaHeading: '데이터센터가 아니라,\n사람이 사는 세상을',
     ctaSub: '도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요',
     ctaButton: '문의하기',
@@ -124,6 +126,7 @@ const C: Record<Locale, Copy> = {
     partnersHeading: `${COMPANY.partnerBrands} partner brands work with us`,
     partnersSub: `SAAI proven across ${COMPANY.industries} industries. As an ${COMPANY.nvidiaPartner}, we follow the global standard.`,
     partnerStatLabels: ['Partner brands', 'Industries served', 'Patents', 'Compliance'],
+    partnerStatsNote: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.',
     ctaHeading: 'Not a world in a data center —\nthe world people live in',
     ctaSub: 'From adoption inquiries to partnership proposals, reach out anytime.',
     ctaButton: 'Get in touch',
@@ -162,6 +165,7 @@ const C: Record<Locale, Copy> = {
     partnersHeading: `${COMPANY.partnerBrands}社のパートナーブランドがともにあります`,
     partnersSub: `${COMPANY.industries}業種で実証されたSAAI。${COMPANY.nvidiaPartner}として、グローバル標準に準拠します。`,
     partnerStatLabels: ['パートナーブランド', '対応業種', '特許', '規制準拠'],
+    partnerStatsNote: '* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。',
     ctaHeading: 'データセンターの中ではなく、\n人が暮らす世界を',
     ctaSub: '導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。',
     ctaButton: 'お問い合わせ',
@@ -386,7 +390,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
             {t.partnersSub}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, '100%'].map((stat, i) => (
+            {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, 'PIPA'].map((stat, i) => (
               <div key={i} className="p-5 bg-white rounded-2xl border border-gray-100">
                 <p className="text-2xl font-bold text-gray-900 mb-1">{stat}</p>
                 <p className="text-xs text-gray-500 font-medium">
@@ -395,6 +399,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+          <p className="text-2xs text-gray-400 mt-5 break-keep">{t.partnerStatsNote}</p>
         </div>
       </AnimatedSection>
 

@@ -413,6 +413,21 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                     />
                   ))}
                 </svg>
+                {/* 인라인 끝점 라벨 — 범례 없이도 계열 식별 (NC-06) */}
+                <span
+                  className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-violet-600 whitespace-nowrap pointer-events-none"
+                  style={{ left: `${((currentIdx * 10 + 5) / 120) * 100}%` }}
+                >
+                  {t.today}
+                </span>
+                {currentIdx < lastIdx && (
+                  <span
+                    className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-violet-400 whitespace-nowrap pointer-events-none"
+                    style={{ left: `${((lastIdx * 10 + 5) / 120) * 100}%` }}
+                  >
+                    {t.legendForecast}
+                  </span>
+                )}
               </div>
             </div>
 

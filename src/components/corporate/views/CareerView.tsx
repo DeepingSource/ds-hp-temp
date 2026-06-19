@@ -68,7 +68,7 @@ const C: Record<Locale, Copy> = {
     benefits: [
       { title: '유연한 근무', desc: '자율 출퇴근과 집중 근무 환경. 결과로 신뢰하는 문화입니다.' },
       { title: '성장 지원', desc: '컨퍼런스 · 도서 · 교육 지원으로 기술과 시야를 함께 키웁니다.' },
-      { title: '최고의 도구', desc: 'NVIDIA Inception 파트너로서 AI 개발에 필요한 컴퓨팅과 도구를 갖춥니다.' },
+      { title: '개발 도구', desc: 'NVIDIA Inception 파트너로서 AI 개발에 필요한 컴퓨팅과 도구를 갖춥니다.' },
       { title: '일하기 좋은 환경', desc: '강남 본사, 집중과 협업이 균형을 이루는 업무 공간.' },
     ],
     rolesEyebrow: 'Open Roles',
