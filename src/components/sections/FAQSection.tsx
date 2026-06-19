@@ -66,7 +66,7 @@ export default function FAQSection() {
           {/* FAQ 아코디언 */}
           <div className={`bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm mb-6 ${isVisible ? 'scroll-visible delay-100' : 'scroll-hidden'}`}>
             {mainFaqItems.map((item, i) => (
-              <FaqItem key={item.question} id={`faq-home-${i}`} question={item.question} answer={item.answer} />
+              <FaqItem key={item.question} id={`faq-home-${i}`} question={item.question} answer={typeof item.answer === 'function' ? item.answer('en') : item.answer} />
             ))}
           </div>
 

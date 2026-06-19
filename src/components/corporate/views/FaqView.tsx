@@ -66,11 +66,17 @@ export default function FaqView({ locale }: { locale: Locale }) {
     { id: 'storecare' as const, label: 'StoreCare', ko: storeCareFaqs },
     { id: 'storeinsight' as const, label: 'StoreInsight', ko: storeInsightFaqs },
     { id: 'storeagent' as const, label: 'StoreAgent', ko: storeAgentKo },
-  ].map((s) => ({
-    id: s.id,
-    label: s.label,
-    items: locale === 'ko' ? s.ko : (faqI18n[s.id]?.[locale] ?? s.ko),
-  }));
+  ].map((s) => {
+    const source = locale === 'ko' ? s.ko : (faqI18n[s.id]?.[locale] ?? s.ko);
+    return {
+      id: s.id,
+      label: s.label,
+      items: source.map((it) => ({
+        question: it.question,
+        answer: typeof it.answer === 'function' ? it.answer(locale) : it.answer,
+      })),
+    };
+  });
 
   const faqItems = sections.flatMap((s) =>
     s.items.map((it) => ({

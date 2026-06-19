@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { COMPANY } from '@/lib/company-data';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { type FAQItem } from '@/data/faq-data';
 
 /**
@@ -20,7 +20,7 @@ export const faqI18n: Record<
     en: [
       {
         question: 'What does the onboarding process look like?',
-        answer: (
+        answer: (locale) => (
           <>
             <ul className="space-y-2 mb-4">
               <li><strong>1. Request a consultation</strong></li>
@@ -29,7 +29,7 @@ export const faqI18n: Record<
               <li><strong>4. First report delivered and operations begin (D+7 after sign-up)</strong></li>
             </ul>
             Because we use your existing equipment, you can start quickly with no replacement burden.<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">Request a free consultation &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">Request a free consultation &rarr;</Link>
           </>
         ),
       },
@@ -51,10 +51,10 @@ export const faqI18n: Record<
       },
       {
         question: 'How does payment work?',
-        answer: (
+        answer: (locale) => (
           <>
             After you request a free consultation, your representative will walk you through the payment options. We support card payment, bank transfer, tax-invoice issuance, and other methods suited to your business.<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">Inquire about adoption &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">Inquire about adoption &rarr;</Link>
           </>
         ),
       },
@@ -76,11 +76,11 @@ export const faqI18n: Record<
       },
       {
         question: 'Is there a discount for running multiple stores?',
-        answer: (
+        answer: (locale) => (
           <>
             Yes. We offer dedicated plans for multi-store operators and franchise headquarters (up to a 30% synergy discount). You can also manage multiple stores from a single account.<br /><br />
-            <Link href="/pricing/simulator" className="text-primary hover:underline font-semibold text-sm mr-4">Run a quote simulation &rarr;</Link>
-            <Link href="/contact" className="text-primary hover:underline font-semibold text-sm">Get a custom quote &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold text-sm mr-4">Run a quote simulation &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold text-sm">Get a custom quote &rarr;</Link>
           </>
         ),
       },
@@ -96,7 +96,7 @@ export const faqI18n: Record<
     jp: [
       {
         question: '導入の流れはどうなりますか？',
-        answer: (
+        answer: (locale) => (
           <>
             <ul className="space-y-2 mb-4">
               <li><strong>1. ご相談のお申し込み</strong></li>
@@ -105,7 +105,7 @@ export const faqI18n: Record<
               <li><strong>4. 初回レポートの受信と運用開始（お申し込み後 D+7）</strong></li>
             </ul>
             既存の機器をそのまま活用するため、入れ替えの負担なくすぐに始められます。<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">無料相談を申し込む &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">無料相談を申し込む &rarr;</Link>
           </>
         ),
       },
@@ -127,10 +127,10 @@ export const faqI18n: Record<
       },
       {
         question: 'お支払いはどのようにしますか？',
-        answer: (
+        answer: (locale) => (
           <>
             無料相談のお申し込み後、担当者がお支払い方法をご案内します。カード決済、口座振込、適格請求書の発行など、企業環境に合わせたさまざまな方法に対応しています。<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">導入について問い合わせる &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">導入について問い合わせる &rarr;</Link>
           </>
         ),
       },
@@ -152,11 +152,11 @@ export const faqI18n: Record<
       },
       {
         question: '複数店舗を運営すると割引はありますか？',
-        answer: (
+        answer: (locale) => (
           <>
             はい、多店舗運営のお客様やフランチャイズ本部向けの専用プラン（最大30%のシナジー割引）をご用意しています。一つのアカウントで複数店舗をまとめて管理することも可能です。<br /><br />
-            <Link href="/pricing/simulator" className="text-primary hover:underline font-semibold text-sm mr-4">見積もりシミュレーションを試す &rarr;</Link>
-            <Link href="/contact" className="text-primary hover:underline font-semibold text-sm">カスタム見積もりを相談する &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold text-sm mr-4">見積もりシミュレーションを試す &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold text-sm">カスタム見積もりを相談する &rarr;</Link>
           </>
         ),
       },
@@ -220,19 +220,19 @@ export const faqI18n: Record<
       },
       {
         question: 'How much does it cost to get started?',
-        answer: (
+        answer: (locale) => (
           <>
             You pay a one-time fee of 50,000 KRW for the AI analysis device. After that, you only pay the monthly subscription. (More devices may be needed depending on store size.)<br /><br />
-            <Link href="/pricing" className="text-primary hover:underline font-semibold">See StoreCare pricing in detail &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing')} className="text-primary hover:underline font-semibold">See StoreCare pricing in detail &rarr;</Link>
           </>
         ),
       },
       {
         question: 'Can I compare with other stores?',
-        answer: (
+        answer: (locale) => (
           <>
             Yes. If you run multiple stores, you can compare them at a glance on the integrated dashboard. You can immediately see which stores keep cleanliness well and where to focus. Multi-store discounts are available too.<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">Consult about multiple stores &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">Consult about multiple stores &rarr;</Link>
           </>
         ),
       },
@@ -284,19 +284,19 @@ export const faqI18n: Record<
       },
       {
         question: '最初にいくらかかりますか？',
-        answer: (
+        answer: (locale) => (
           <>
             AI分析装置の初回費用5万ウォンだけお支払いいただければ大丈夫です。その後は月額の利用料のみお支払いください。（店舗の広さに応じて装置が増えることがあります。）<br /><br />
-            <Link href="/pricing" className="text-primary hover:underline font-semibold">StoreCareの料金プランを詳しく見る &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing')} className="text-primary hover:underline font-semibold">StoreCareの料金プランを詳しく見る &rarr;</Link>
           </>
         ),
       },
       {
         question: '他の店舗と比較もできますか？',
-        answer: (
+        answer: (locale) => (
           <>
             はい、複数の店舗を運営されている場合は、統合ダッシュボードで一目で比較できます。どの店舗が清潔さをよく保てているか、どこに注力すべきかがすぐに分かります。多店舗割引もあります。<br /><br />
-            <Link href="/contact" className="text-primary hover:underline font-semibold">多店舗について相談する &rarr;</Link>
+            <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">多店舗について相談する &rarr;</Link>
           </>
         ),
       },
@@ -324,11 +324,11 @@ export const faqI18n: Record<
       },
       {
         question: 'How much does it cost?',
-        answer: (
+        answer: (locale) => (
           <>
             It is an enterprise custom solution priced according to the size of the space being analyzed, the camera environment, and the types of analysis required.<br /><br />
-            <Link href="/pricing/simulator" className="text-primary hover:underline font-semibold mr-4 text-sm">Monthly pricing simulation &rarr;</Link>
-            <Link href="/contact?product=StoreInsight" className="text-primary hover:underline font-semibold text-sm">Get a custom consultation &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold mr-4 text-sm">Monthly pricing simulation &rarr;</Link>
+            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="text-primary hover:underline font-semibold text-sm">Get a custom consultation &rarr;</Link>
           </>
         ),
       },
@@ -376,11 +376,11 @@ export const faqI18n: Record<
       },
       {
         question: '費用はどうなりますか？',
-        answer: (
+        answer: (locale) => (
           <>
             分析する空間の広さ、カメラ環境、必要な分析の種類に応じて費用が算定される、エンタープライズ向けのカスタムソリューションです。<br /><br />
-            <Link href="/pricing/simulator" className="text-primary hover:underline font-semibold mr-4 text-sm">月額料金シミュレーション &rarr;</Link>
-            <Link href="/contact?product=StoreInsight" className="text-primary hover:underline font-semibold text-sm">カスタム相談をする &rarr;</Link>
+            <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold mr-4 text-sm">月額料金シミュレーション &rarr;</Link>
+            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="text-primary hover:underline font-semibold text-sm">カスタム相談をする &rarr;</Link>
           </>
         ),
       },
