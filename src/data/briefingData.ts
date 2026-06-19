@@ -1,4 +1,5 @@
 import type { TimeSlot } from '@/lib/timeUtils';
+import type { AreaId } from './seasonal/types';
 
 export interface BriefingTip {
   text: string;
@@ -27,7 +28,7 @@ export interface ValueProp {
 }
 
 export interface AreaType {
-  id: string;
+  id: AreaId;
   icon: string;
   label: string;
   location: string;

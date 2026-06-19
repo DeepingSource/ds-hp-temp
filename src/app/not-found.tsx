@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { ArrowRight, Home, Zap, Eye, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '페이지를 찾을 수 없습니다 | DeepingSource',
+  title: 'Page not found · 페이지를 찾을 수 없습니다 | DeepingSource',
 };
 
 export default function NotFound() {
@@ -32,10 +32,12 @@ export default function NotFound() {
         </p>
 
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-          페이지를 찾을 수 없습니다
+          Page not found
+          <span className="block text-lg sm:text-xl font-semibold text-slate-300 mt-1">페이지를 찾을 수 없습니다</span>
         </h1>
         <p className="text-slate-300 text-base mb-10 leading-relaxed">
-          요청하신 페이지가 존재하지 않거나 이동되었습니다.
+          The page you requested doesn’t exist or has moved.
+          <span className="block mt-1">요청하신 페이지가 존재하지 않거나 이동되었습니다.</span>
         </p>
 
         {/* Primary CTA */}
@@ -44,15 +46,15 @@ export default function NotFound() {
           className="btn-primary-dark gap-2 rounded-xl mb-8"
         >
           <Home className="w-4 h-4" />
-          메인으로 돌아가기
+          Home · 메인으로
         </Link>
 
         {/* Quick links */}
         <div className="grid grid-cols-3 gap-3 mt-2">
           {[
-            { href: '/storecare', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-            { href: '/storeinsight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
-            { href: '/storeagent', label: 'STOREAGENT', icon: Zap, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+            { href: '/products/store-care', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+            { href: '/products/store-insight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
+            { href: '/products/store-agent', label: 'STOREAGENT', icon: Zap, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
           ].map((item) => {
             const Icon = item.icon;
             return (

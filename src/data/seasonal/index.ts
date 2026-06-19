@@ -73,10 +73,10 @@ export function buildWeeklySamples(): WeeklyAreaSample[] {
  * 1. 현재 월에 맞는 날씨로 교체 (getMonthlyWeather)
  * 2. 오늘 기준 ±14일 내 이벤트가 있으면 상위에 주입 (getNearbyEvents)
  */
-export function getSeasonalScenario(areaId: string, timeSlot: TimeSlot): BriefingScenario {
+export function getSeasonalScenario(areaId: AreaId, timeSlot: TimeSlot): BriefingScenario {
   const season = getCurrentSeason();
   const scenarios = scenarioMap[season];
-  const templates = scenarios[areaId as AreaId] ?? scenarios.office;
+  const templates = scenarios[areaId] ?? scenarios.office;
   const base = templates[TIME_SLOT_DAY[timeSlot]].scenario;
 
   const today = new Date();
@@ -86,7 +86,7 @@ export function getSeasonalScenario(areaId: string, timeSlot: TimeSlot): Briefin
   const weather = getMonthlyWeather(month);
 
   // 2. 가까운 이벤트 주입 (있으면 기존 events 앞에 합침, 최대 2개 유지)
-  const nearbyEvents = getNearbyEvents(today, areaId as AreaId);
+  const nearbyEvents = getNearbyEvents(today, areaId);
   const events =
     nearbyEvents.length > 0
       ? [...nearbyEvents, ...base.events].slice(0, 2)

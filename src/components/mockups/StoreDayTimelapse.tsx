@@ -396,15 +396,23 @@ export default function StoreDayTimelapse({
   const sliderPct = ((t - T_START) / T_SPAN) * 100;
 
   // Jump to an event time + highlight its feed card
+  const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const jumpToEvent = useCallback(
     (e: DayEvent) => {
+      if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
       setT(clampT(e.t));
       pauseForUser();
       setHighlightRef(e.refId);
-      setTimeout(() => setHighlightRef((cur) => (cur === e.refId ? null : cur)), 2200);
+      highlightTimerRef.current = setTimeout(
+        () => setHighlightRef((cur) => (cur === e.refId ? null : cur)),
+        2200,
+      );
     },
     [pauseForUser],
   );
+  useEffect(() => () => {
+    if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
+  }, []);
 
   const containerCls = kiosk
     ? 'w-full h-full bg-white text-slate-900'
