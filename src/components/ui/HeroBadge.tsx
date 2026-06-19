@@ -13,9 +13,9 @@ import { cn } from '@/lib/cn';
 type Tone = 'dark' | 'light';
 
 const BASE: Record<Tone, string> = {
-  dark: 'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-semibold tracking-wide backdrop-blur-sm',
+  dark: 'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/70 text-sm font-medium tracking-wide backdrop-blur-sm',
   light:
-    'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-lighter text-primary text-xs font-semibold tracking-wide',
+    'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-lighter text-primary text-xs font-medium tracking-wide',
 };
 
 const DEFAULT_MARGIN: Record<Tone, string> = {

@@ -41,7 +41,7 @@ export default function IosStatusBar({ time, bg = 'bg-transparent', dark = false
       />
 
       {/* Time */}
-      <span className={`relative z-10 text-[14px] font-semibold ${color}`} suppressHydrationWarning>
+      <span className={`relative z-10 text-[14px] font-medium ${color}`} suppressHydrationWarning>
         {displayTime}
       </span>
 

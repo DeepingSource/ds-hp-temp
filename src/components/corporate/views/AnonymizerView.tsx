@@ -231,7 +231,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-2xl">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.mechanismEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.mechanismEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
               {t.mechanismTitle}
             </h2>
@@ -249,7 +249,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
                     <div className="w-10 h-10 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-xs font-mono font-semibold text-gray-500">
+                    <span className="text-xs font-mono font-medium text-gray-500">
                       0{i + 1}
                     </span>
                   </div>
@@ -266,7 +266,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.specEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.specEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">
               {t.specTitle}
             </h2>
@@ -276,15 +276,15 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">{t.specColItem}</th>
-                  <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">{t.specColDetail}</th>
-                  <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide hidden sm:table-cell">{t.specColNote}</th>
+                  <th className="px-6 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide">{t.specColItem}</th>
+                  <th className="px-6 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide">{t.specColDetail}</th>
+                  <th className="px-6 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:table-cell">{t.specColNote}</th>
                 </tr>
               </thead>
               <tbody>
                 {t.specRows.map((row) => (
                   <tr key={row.feature} className="border-b border-gray-100 last:border-b-0">
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900 whitespace-nowrap">{row.feature}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{row.feature}</td>
                     <td className="px-6 py-4 text-sm text-gray-700">{row.detail}</td>
                     <td className="px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">{row.note}</td>
                   </tr>
@@ -302,7 +302,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.faqEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.faqEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">
               {t.faqTitle}
             </h2>
@@ -321,7 +321,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       {/* CTA */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50 border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-lighter rounded-full text-sm text-primary font-semibold mb-7">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-lighter rounded-full text-sm text-primary font-medium mb-7">
             <ShieldCheck className="w-3.5 h-3.5" />
             {t.ctaBadge}
           </div>

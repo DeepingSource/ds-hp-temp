@@ -120,7 +120,7 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xl" aria-hidden="true">{scenario.weather.icon}</span>
-            <span className="font-semibold text-gray-800 text-base">{c.weatherTitle}</span>
+            <span className="font-medium text-gray-800 text-base">{c.weatherTitle}</span>
           </div>
           <p className="text-gray-600 text-base">{scenario.weather.temp}</p>
           <div className="mt-2 flex items-start gap-1.5 bg-orange-50 text-orange-700 text-sm font-medium px-2.5 py-1.5 rounded-lg">
@@ -138,7 +138,7 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
         >
           <div className="flex items-center gap-2 mb-3">
             <Lightbulb className="w-5 h-5 text-amber-500" aria-hidden="true" />
-            <span className="font-semibold text-gray-800 text-base">{c.tipsTitle}</span>
+            <span className="font-medium text-gray-800 text-base">{c.tipsTitle}</span>
           </div>
           <div className="space-y-3">
             {scenario.tips.map((tip, idx) => (
@@ -159,7 +159,7 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
         >
           <div className="flex items-center gap-2 mb-3">
             <MapPin className="w-5 h-5 text-red-500" aria-hidden="true" />
-            <span className="font-semibold text-gray-800 text-base">{c.eventsTitle}</span>
+            <span className="font-medium text-gray-800 text-base">{c.eventsTitle}</span>
           </div>
           <div className="space-y-3">
             {scenario.events.map((event, idx) => (
@@ -181,7 +181,7 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
         >
           <div className="flex items-center gap-2 mb-3">
             <CheckSquare className="w-5 h-5 text-emerald-500" aria-hidden="true" />
-            <span className="font-semibold text-gray-800 text-base">{c.checklistTitle}</span>
+            <span className="font-medium text-gray-800 text-base">{c.checklistTitle}</span>
           </div>
           <div className="space-y-2">
             {scenario.checklist.map((item, idx) => {
@@ -238,7 +238,7 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
         >
           <div className="flex items-center gap-2 mb-3">
             <Calendar className="w-5 h-5 text-primary" aria-hidden="true" />
-            <span className="font-semibold text-gray-800 text-base">{c.weekTitle}</span>
+            <span className="font-medium text-gray-800 text-base">{c.weekTitle}</span>
           </div>
           <div className="space-y-1.5">
             {scenario.weekPreview.map((item, idx) => (

@@ -144,7 +144,7 @@ export default function DocsView({ locale }: { locale: Locale }) {
 
           {/* Main */}
           <main className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.eyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.eyebrow}</p>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
               {t.heroTitle}
             </h1>
@@ -225,7 +225,7 @@ export default function DocsView({ locale }: { locale: Locale }) {
                           key={item}
                           className="card p-5"
                         >
-                          <h3 className="text-sm font-semibold text-gray-900 mb-1">{item}</h3>
+                          <h3 className="text-sm font-medium text-gray-900 mb-1">{item}</h3>
                           <p className="text-xs text-gray-500 leading-relaxed">{t.docComingSoon}</p>
                         </div>
                       ))}

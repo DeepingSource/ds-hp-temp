@@ -226,7 +226,7 @@ export default function HqMapDashboardMockup({
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
             <Store className="h-4 w-4 text-primary" aria-hidden />
           </div>
-          <span className="text-sm font-semibold tracking-tight">{t.mapTitle}</span>
+          <span className="text-sm font-medium tracking-tight">{t.mapTitle}</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-2xs font-medium text-slate-500">
@@ -264,7 +264,7 @@ export default function HqMapDashboardMockup({
               </div>
               <div className="mt-1.5 flex items-baseline gap-0.5">
                 <span className="text-2xl font-bold tabular-nums tracking-tight">{k.value}</span>
-                <span className="text-sm font-semibold text-slate-400">{k.suffix}</span>
+                <span className="text-sm font-medium text-slate-400">{k.suffix}</span>
               </div>
               {k.sub && (
                 <div className="mt-0.5 text-3xs font-medium tabular-nums text-slate-400">
@@ -359,9 +359,9 @@ export default function HqMapDashboardMockup({
         >
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold tracking-tight">{cardName}</span>
+              <span className="text-sm font-medium tracking-tight">{cardName}</span>
               <span
-                className="flex items-center gap-1 rounded-full px-2 py-0.5 text-2xs font-semibold"
+                className="flex items-center gap-1 rounded-full px-2 py-0.5 text-2xs font-medium"
                 style={{
                   color: STATUS_COLOR[activePin.status],
                   backgroundColor: STATUS_COLOR[activePin.status] + '1A',

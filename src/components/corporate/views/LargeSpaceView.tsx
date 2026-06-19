@@ -192,7 +192,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-16 lg:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">
               {t.scenariosEyebrow}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">
@@ -226,7 +226,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/70 text-xs font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/70 text-xs font-medium mb-6">
                 <Layers className="w-3.5 h-3.5" />
                 {t.mtmcBadge}
               </div>
@@ -238,7 +238,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
               </p>
               <Link
                 href={localeHref(locale, '/technology/spatial-ai')}
-                className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
               >
                 {t.mtmcLink}
                 <ArrowRight className="w-4 h-4" />
@@ -265,7 +265,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="card relative bg-gradient-to-br from-primary/[0.04] to-white border-primary/10">
             <Quote className="w-10 h-10 text-primary/20 mb-4" />
-            <p className="text-xl sm:text-2xl font-semibold text-gray-900 leading-relaxed break-keep mb-6">
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-relaxed break-keep mb-6">
               {t.quote}
             </p>
             <div className="flex items-center gap-3">
@@ -284,7 +284,7 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
       {/* ── 본사 도입 CTA ── */}
       <section className="py-20 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {t.ctaTitle[0]}
             <br />

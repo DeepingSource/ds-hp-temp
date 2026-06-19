@@ -194,7 +194,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                     className={`px-4 py-2.5 flex items-center gap-2.5 border-l-2 transition-colors duration-300 ${selIdx === i ? 'bg-white/10 border-emerald-400' : 'border-transparent'}`}
                   >
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`} />
-                    <span className={`text-xs transition-colors duration-300 ${selIdx === i ? 'text-white font-semibold' : 'text-gray-400'}`}>
+                    <span className={`text-xs transition-colors duration-300 ${selIdx === i ? 'text-white font-medium' : 'text-gray-400'}`}>
                       {t.storeNames[s.id]}
                     </span>
                     {s.alerts > 0 && (
@@ -240,7 +240,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                 </span>
                 <span className="flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded-full">
                   <Sparkles className="w-3 h-3 text-primary" aria-hidden="true" />
-                  <span className="text-2xs text-primary font-semibold">{t.aiAnalysis}</span>
+                  <span className="text-2xs text-primary font-medium">{t.aiAnalysis}</span>
                 </span>
               </div>
             </div>

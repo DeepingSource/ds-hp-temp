@@ -137,7 +137,7 @@ export default function AgentDaySimulator({
                   className="flex-1 flex flex-col px-5 py-6"
                 >
                   {/* morning briefing */}
-                  <div className="flex items-center gap-2 text-xs font-semibold text-primary">
+                  <div className="flex items-center gap-2 text-xs font-medium text-primary">
                     <Sparkles className="w-4 h-4" aria-hidden="true" />
                     <span>AI</span>
                   </div>
@@ -212,7 +212,7 @@ export default function AgentDaySimulator({
                               transition={reducedMotion ? { duration: 0 } : { duration: 0.32, ease: 'easeOut' }}
                               className="w-full rounded-2xl border border-gray-100 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-5"
                             >
-                              <span className="inline-block text-2xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                              <span className="inline-block text-2xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                                 {i + 1} / {CARD_ORDER.length}
                               </span>
                               <h4 className="mt-3 text-lg font-bold leading-snug">{card.title}</h4>
@@ -232,7 +232,7 @@ export default function AgentDaySimulator({
                                 <button
                                   type="button"
                                   onClick={() => handleChoice(id, 'hold')}
-                                  className="min-h-[44px] rounded-xl border border-gray-200 bg-white text-gray-700 font-semibold text-sm px-4 py-3 transition-colors hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
+                                  className="min-h-[44px] rounded-xl border border-gray-200 bg-white text-gray-700 font-medium text-sm px-4 py-3 transition-colors hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
                                 >
                                   {t.decide.hold}
                                 </button>
@@ -264,7 +264,7 @@ export default function AgentDaySimulator({
                   className="flex-1 flex flex-col items-center justify-center px-5 py-6 gap-4"
                 >
                   <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />
-                  <p className="text-sm font-semibold text-gray-700">{t.calculating}</p>
+                  <p className="text-sm font-medium text-gray-700">{t.calculating}</p>
                   <div className="flex gap-1.5" aria-hidden="true">
                     {[0, 1, 2].map((i) => (
                       <span
@@ -288,7 +288,7 @@ export default function AgentDaySimulator({
                   className="flex-1 min-h-0 flex flex-col"
                 >
                   <div className="flex-1 min-h-0 overflow-y-auto px-5 py-6">
-                    <p className="text-xs font-semibold text-gray-500">{t.result.heading}</p>
+                    <p className="text-xs font-medium text-gray-500">{t.result.heading}</p>
                     <div className="mt-1 flex items-end gap-2 flex-wrap">
                       <span className="text-3xl font-bold text-gray-900 tabular-nums">
                         {formatWon(totalCount)}
@@ -322,7 +322,7 @@ export default function AgentDaySimulator({
                               {approved ? <Check className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
                             </span>
                             <div className="min-w-0">
-                              <p className="text-xs font-semibold text-gray-800">
+                              <p className="text-xs font-medium text-gray-800">
                                 {card.title}
                                 <span className={`ml-1.5 font-bold ${approved ? 'text-emerald-600' : 'text-gray-400'}`}>
                                   · {approved ? t.decide.approve : t.decide.hold}
@@ -350,7 +350,7 @@ export default function AgentDaySimulator({
                     <button
                       type="button"
                       onClick={reset}
-                      className="min-h-[44px] inline-flex items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white text-gray-700 font-semibold text-sm px-4 py-2.5 transition-colors hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
+                      className="min-h-[44px] inline-flex items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white text-gray-700 font-medium text-sm px-4 py-2.5 transition-colors hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
                     >
                       <RotateCcw className="w-4 h-4" aria-hidden="true" />
                       {t.result.again}

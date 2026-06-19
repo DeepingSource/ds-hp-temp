@@ -87,7 +87,7 @@ export default function ResourcesView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }]} locale={locale} tone="dark" className="mb-6" />
-          <p className="text-sm font-semibold text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroTitle}
           </h1>
@@ -140,7 +140,7 @@ export default function ResourcesView({ locale }: { locale: Locale }) {
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">{label}</p>
+                    <p className="text-xs font-medium text-primary mb-2 uppercase tracking-wide">{label}</p>
                     <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
                       {title}
                     </h2>

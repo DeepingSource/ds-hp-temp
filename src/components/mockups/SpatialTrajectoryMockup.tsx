@@ -449,7 +449,7 @@ export default function SpatialTrajectoryMockup({
                   {card.n}
                 </span>
                 <h3
-                  className={`text-sm font-semibold leading-tight ${
+                  className={`text-sm font-medium leading-tight ${
                     emph ? 'text-white' : 'text-gray-200'
                   }`}
                 >

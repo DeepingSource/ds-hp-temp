@@ -59,7 +59,7 @@ export default function FeatureSection({ heading, hidePop }: { heading?: string;
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className={`text-center mb-14 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">Features</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Features</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">
             {heading ?? '매일 이렇게 운영이 달라집니다'}
           </h2>
@@ -81,7 +81,7 @@ export default function FeatureSection({ heading, hidePop }: { heading?: string;
                   <Icon className={`w-6 h-6 ${feature.color}`} aria-hidden="true" />
                 </div>
                 <div className="flex items-center gap-2 mb-2">
-                  <h3 className="font-semibold text-gray-900 text-sm">
+                  <h3 className="font-medium text-gray-900 text-sm">
                     {feature.title}
                   </h3>
                   {feature.badge && (

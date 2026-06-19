@@ -101,7 +101,7 @@ export default function SpacesShowcase({ locale }: { locale: Locale }) {
         <div className="mt-10">
           <Link
             href={localeHref(locale, '/solutions')}
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary"
           >
             {t.allLabel}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />

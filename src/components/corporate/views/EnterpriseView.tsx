@@ -298,7 +298,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.dashboardEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.dashboardEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
               {t.dashboardTitle}
             </h2>
@@ -351,7 +351,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </div>
 
           <div className="mt-10">
-            <Link href={localeHref(locale, '/resources/case-studies')} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+            <Link href={localeHref(locale, '/resources/case-studies')} className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
               {t.goldenLink}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>

@@ -29,7 +29,7 @@ export default function ProductCard({
           <Icon className="w-6 h-6 text-primary" />
         </div>
         {badge && (
-          <span className="text-xs font-semibold text-primary bg-primary-lighter px-2.5 py-1 rounded-full">
+          <span className="text-xs font-medium text-primary bg-primary-lighter px-2.5 py-1 rounded-full">
             {badge}
           </span>
         )}
@@ -38,9 +38,9 @@ export default function ProductCard({
         <p className="text-2xs font-bold uppercase tracking-[0.18em] text-gray-500 mb-1">{kicker}</p>
       )}
       <h3 className="text-xl font-bold text-gray-900 mb-1.5">{name}</h3>
-      <p className="text-sm font-semibold text-primary mb-3 break-keep">{tagline}</p>
+      <p className="text-sm font-medium text-primary mb-3 break-keep">{tagline}</p>
       <p className="text-base text-gray-500 leading-relaxed mb-6 break-keep">{desc}</p>
-      <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+      <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
         {external ? '바로가기' : '자세히 보기'}
         {external ? (
           <ArrowUpRight className="w-4 h-4" />

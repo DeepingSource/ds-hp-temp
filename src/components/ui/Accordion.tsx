@@ -30,7 +30,7 @@ function AccordionItem({
         aria-controls={panelId}
         id={btnId}
       >
-        <span className={`pr-4 transition-colors ${isOpen ? 'font-semibold text-primary' : 'font-medium text-gray-900 group-hover:text-primary'
+        <span className={`pr-4 transition-colors ${isOpen ? 'font-medium text-primary' : 'font-medium text-gray-900 group-hover:text-primary'
           }`}>
           {question}
         </span>

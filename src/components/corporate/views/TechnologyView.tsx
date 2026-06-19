@@ -353,7 +353,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               </div>
               <div className="w-px h-10 bg-white/10" />
               <div className="text-left">
-                <p className="text-sm font-semibold text-white">{t.heroStackLine}</p>
+                <p className="text-sm font-medium text-white">{t.heroStackLine}</p>
                 <p className="text-xs text-slate-300 mt-0.5">{COMPANY.patentsLabel}</p>
               </div>
             </div>
@@ -446,7 +446,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
                   <div key={item.label} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-semibold text-gray-900">{item.label}</p>
+                      <p className="text-sm font-medium text-gray-900">{item.label}</p>
                       <p className="text-sm text-gray-500">{item.desc}</p>
                     </div>
                   </div>
@@ -489,7 +489,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
                     <p className="text-2xs font-bold uppercase tracking-wider text-gray-500 mb-1">{s.tag}</p>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
                     <p className="text-sm text-gray-600 leading-relaxed flex-1 break-keep">{s.desc}</p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                       {t.learnMore}
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
@@ -543,7 +543,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               <div className="p-10 section-dark rounded-3xl text-center flex-1 flex flex-col justify-center">
                 <p className="text-7xl font-bold mb-2 text-white">{COMPANY.patents}</p>
                 <p className="text-lg font-bold mb-1 text-white">{t.patentsLabel}</p>
-                <p className="text-sm text-slate-300 font-semibold mb-1">{COMPANY.patentsLabel}</p>
+                <p className="text-sm text-slate-300 font-medium mb-1">{COMPANY.patentsLabel}</p>
                 <p className="text-slate-400 text-sm">{t.patentsStackLine}</p>
               </div>
               <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
@@ -568,7 +568,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
       {/* ── CTA ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/15 rounded-full text-sm text-primary font-semibold mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/15 rounded-full text-sm text-primary font-medium mb-8">
             <Fingerprint className="w-3.5 h-3.5" />
             {t.ctaBadge(COMPANY.patents)}
           </div>
@@ -578,7 +578,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
           <p className="text-gray-500 text-lg mb-10 break-keep">{t.ctaSub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">{t.ctaPrimary}</Link>
-            <Link href={localeHref(locale, '/company/about')} className="inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors">{t.ctaSecondary}</Link>
+            <Link href={localeHref(locale, '/company/about')} className="inline-flex items-center justify-center px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors">{t.ctaSecondary}</Link>
           </div>
         </div>
       </AnimatedSection>

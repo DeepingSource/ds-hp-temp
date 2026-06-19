@@ -61,7 +61,7 @@ export default function LandingStickyCta() {
       aria-label={t.aria}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
-        <p className="hidden sm:block text-sm font-semibold text-gray-900 break-keep">
+        <p className="hidden sm:block text-sm font-medium text-gray-900 break-keep">
           {t.tagline}
         </p>
         <div className="flex items-center gap-3 w-full sm:w-auto">

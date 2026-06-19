@@ -25,7 +25,7 @@ export default function LocaleSwitcher({ className = '' }: { className?: string 
             href={localeHref(loc, path)}
             hrefLang={loc === 'jp' ? 'ja' : loc}
             aria-current={active ? 'true' : undefined}
-            className={`px-1.5 py-0.5 text-xs font-semibold rounded transition-colors ${
+            className={`px-1.5 py-0.5 text-xs font-medium rounded transition-colors ${
               active ? 'text-primary' : 'text-gray-500 hover:text-gray-700'
             }`}
           >

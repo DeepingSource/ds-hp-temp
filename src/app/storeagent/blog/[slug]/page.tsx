@@ -89,7 +89,7 @@ export default async function ArticlePage({
 
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${meta.bgColor} ${meta.color}`}>
+              <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${meta.bgColor} ${meta.color}`}>
                 {meta.label}
               </span>
               <span className="text-sm text-gray-500">{article.date}</span>

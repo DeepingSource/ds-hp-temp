@@ -78,7 +78,7 @@ export default function LanguageSuggestion() {
         <Link
           href={target}
           onClick={dismiss}
-          className="rounded-full bg-primary px-3.5 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+          className="rounded-full bg-primary px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
         >
           {c.cta}
         </Link>

@@ -215,7 +215,7 @@ export default function KakaoAlertMockup({
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-0.5">
-                            <span className="text-2xs font-semibold text-gray-500 truncate">{t.channel}</span>
+                            <span className="text-2xs font-medium text-gray-500 truncate">{t.channel}</span>
                             <span className="text-3xs text-gray-400 shrink-0 ml-2">{a.time}</span>
                           </div>
                           <p className="text-[13px] font-medium text-gray-900 leading-snug">{a.body}</p>
@@ -249,7 +249,7 @@ export default function KakaoAlertMockup({
                   <p className="text-sm font-bold leading-tight truncate">{t.appName}</p>
                   <p className="text-2xs opacity-80 leading-tight truncate">{t.channel}</p>
                 </div>
-                <span className="ml-auto flex items-center gap-1 text-3xs font-semibold opacity-90">
+                <span className="ml-auto flex items-center gap-1 text-3xs font-medium opacity-90">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   {t.liveLabel}
                 </span>

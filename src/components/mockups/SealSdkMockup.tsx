@@ -264,7 +264,7 @@ export default function SealSdkMockup({
             {/* Code panel */}
             <div className="relative md:w-[60%] border-b md:border-b-0 md:border-r border-white/5">
               {/* Example badge per D7 */}
-              <span className="absolute top-2 right-2 z-10 rounded-full bg-primary/15 text-primary text-[9px] font-semibold px-2 py-0.5 border border-primary/30">
+              <span className="absolute top-2 right-2 z-10 rounded-full bg-primary/15 text-primary text-[9px] font-medium px-2 py-0.5 border border-primary/30">
                 {c.badge}
               </span>
               <pre

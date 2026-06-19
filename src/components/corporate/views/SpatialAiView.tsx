@@ -146,7 +146,7 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
                         <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-mono font-semibold text-gray-500 mb-1">0{i + 1} · {s.label}</p>
+                        <p className="text-xs font-mono font-medium text-gray-500 mb-1">0{i + 1} · {s.label}</p>
                         <h2 className="text-lg font-bold text-gray-900">{s.title}</h2>
                       </div>
                     </div>
@@ -162,7 +162,7 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
       {/* Citations / references */}
       <AnimatedSection className="py-16 bg-slate-50 border-y border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.referencesEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.referencesEyebrow}</p>
           <p className="text-gray-600 leading-relaxed break-keep">
             {t.referencesBody}
           </p>

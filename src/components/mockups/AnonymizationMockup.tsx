@@ -337,7 +337,7 @@ export default function AnonymizationMockup({ active = true, locale = 'en' }: Pr
             {/* Processing checklist */}
             <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-gray-300">{t.checklist}</span>
+                <span className="text-xs font-medium text-gray-300">{t.checklist}</span>
                 <span className="flex items-center gap-1 text-3xs text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse motion-reduce:animate-none" />
                   {t.realtime}

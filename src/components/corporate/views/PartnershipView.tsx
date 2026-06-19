@@ -199,7 +199,7 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.tiersEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.tiersEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.tiersHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.tiersSub}
@@ -236,7 +236,7 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.benefitsEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.benefitsEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.benefitsHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.benefitsSub}
@@ -265,7 +265,7 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.onboardingEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.onboardingEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.onboardingHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.onboardingSub}
@@ -296,7 +296,7 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
       {/* ── 파트너 로고 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.logosEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.logosEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
             {t.logosHeading}
           </h2>
@@ -307,7 +307,7 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
             {Array.from({ length: COMPANY.partnerBrands }).map((_, i) => (
               <div
                 key={i}
-                className="h-20 rounded-2xl border border-dashed border-gray-200 bg-white flex items-center justify-center text-gray-300 text-sm font-semibold"
+                className="h-20 rounded-2xl border border-dashed border-gray-200 bg-white flex items-center justify-center text-gray-300 text-sm font-medium"
               >
                 {t.partnerLabel} {i + 1}
               </div>

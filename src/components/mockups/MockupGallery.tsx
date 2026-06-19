@@ -341,7 +341,7 @@ export default function MockupGallery() {
                   <button
                     key={l}
                     onClick={() => setLocale(l)}
-                    className={`rounded-md px-3 py-1 text-xs font-semibold uppercase transition-colors ${
+                    className={`rounded-md px-3 py-1 text-xs font-medium uppercase transition-colors ${
                       locale === l ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-800'
                     }`}
                   >
@@ -353,7 +353,7 @@ export default function MockupGallery() {
               {/* 애니메이션 재생/정지 */}
               <button
                 onClick={() => setActive((v) => !v)}
-                className={`rounded-lg px-3 py-1.5 text-xs font-semibold ring-1 transition-colors ${
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium ring-1 transition-colors ${
                   active
                     ? 'bg-primary/10 text-primary ring-primary/20'
                     : 'bg-gray-100 text-gray-500 ring-gray-200'
@@ -480,7 +480,7 @@ function DemoCard({
           <p className="mt-1 text-xs leading-relaxed text-gray-500">{demo.description}</p>
         </div>
         <span
-          className={`shrink-0 rounded-full px-2.5 py-0.5 text-2xs font-semibold ring-1 ${PRODUCT_BADGE[demo.product]}`}
+          className={`shrink-0 rounded-full px-2.5 py-0.5 text-2xs font-medium ring-1 ${PRODUCT_BADGE[demo.product]}`}
         >
           {demo.product}
         </span>

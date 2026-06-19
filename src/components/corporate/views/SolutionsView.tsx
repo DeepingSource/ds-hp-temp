@@ -135,7 +135,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                 <a
                   key={industry.slug}
                   href={`#industry-${industry.slug}`}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold ${colors.bg} ${colors.text} border ${colors.border} hover:opacity-80 transition-[opacity,border-color] duration-200`}
+                  className={`px-4 py-2 rounded-full text-sm font-medium ${colors.bg} ${colors.text} border ${colors.border} hover:opacity-80 transition-[opacity,border-color] duration-200`}
                 >
                   {indLabel(industry.slug, industry.label)}
                 </a>
@@ -176,7 +176,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                   <div className="h-px flex-1 bg-gray-100" />
                   <Link
                     href={`/industries/${industry.slug}`}
-                    className={`inline-flex items-center gap-1 text-xs font-semibold ${colors.text} hover:opacity-70 transition-opacity`}
+                    className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} hover:opacity-70 transition-opacity`}
                   >
                     {t.industryDetail} <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -205,7 +205,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                         {c?.excerpt ?? sol.excerpt}
                       </p>
 
-                      <div className="flex items-center gap-1 text-xs font-semibold text-gray-500 group-hover:text-primary transition-colors mt-1">
+                      <div className="flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-primary transition-colors mt-1">
                         {t.viewSolution}
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </div>
@@ -222,7 +222,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
       {/* ── CTA ── */}
       <section className="py-20 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {t.ctaTitle[0]}<br />{t.ctaTitle[1]}
           </h2>

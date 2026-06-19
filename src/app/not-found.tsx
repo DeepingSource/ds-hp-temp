@@ -33,7 +33,7 @@ export default function NotFound() {
 
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
           Page not found
-          <span className="block text-lg sm:text-xl font-semibold text-slate-300 mt-1">페이지를 찾을 수 없습니다</span>
+          <span className="block text-lg sm:text-xl font-medium text-slate-300 mt-1">페이지를 찾을 수 없습니다</span>
         </h1>
         <p className="text-slate-300 text-base mb-10 leading-relaxed">
           The page you requested doesn’t exist or has moved.
@@ -64,7 +64,7 @@ export default function NotFound() {
                 className={`group flex flex-col items-center gap-2 p-4 rounded-2xl border ${item.color} hover:scale-105 transition-transform duration-200`}
               >
                 <Icon className={`w-5 h-5 ${item.color.split(' ')[0]}`} />
-                <span className="text-xs font-semibold text-slate-300">{item.label}</span>
+                <span className="text-xs font-medium text-slate-300">{item.label}</span>
                 <ArrowRight className="w-3 h-3 text-slate-500 group-hover:text-slate-300 transition-colors" />
               </Link>
             );

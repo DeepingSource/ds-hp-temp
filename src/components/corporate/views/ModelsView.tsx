@@ -172,8 +172,8 @@ export default function ModelsView({ locale }: { locale: Locale }) {
             {t.models.map((m) => (
               <div key={m.name} className="card p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between gap-3 mb-3">
-                  <code className="text-sm font-mono font-semibold text-gray-900">{m.name}</code>
-                  <span className={`text-2xs font-semibold px-2 py-0.5 rounded-full ${stageStyle[m.stage]}`}>
+                  <code className="text-sm font-mono font-medium text-gray-900">{m.name}</code>
+                  <span className={`text-2xs font-medium px-2 py-0.5 rounded-full ${stageStyle[m.stage]}`}>
                     {m.stage}
                   </span>
                 </div>

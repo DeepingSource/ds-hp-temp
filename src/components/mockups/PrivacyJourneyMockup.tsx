@@ -127,7 +127,7 @@ export default function PrivacyJourneyMockup({
       {/* Header */}
       <div className="mb-5 max-w-2xl">
         <SaaiHeader name="seal" tone="dark" className="mb-1.5" />
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">{t.eyebrow}</p>
+        <p className="text-xs font-medium uppercase tracking-wide text-primary">{t.eyebrow}</p>
         <h3 className="mt-1.5 text-lg font-bold text-white sm:text-xl">{t.heading}</h3>
       </div>
 
@@ -159,7 +159,7 @@ export default function PrivacyJourneyMockup({
                   {STEP_GLYPHS[i]}
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-xs font-semibold">{s.label}</span>
+                  <span className="block text-xs font-medium">{s.label}</span>
                   <span className="mt-0.5 block text-2xs leading-snug text-slate-400">
                     {s.desc}
                   </span>
@@ -243,14 +243,14 @@ export default function PrivacyJourneyMockup({
 
               {/* ② processing chip */}
               {current === 1 && (
-                <span className="absolute right-1.5 top-1.5 rounded-full bg-primary/20 px-2 py-0.5 text-3xs font-semibold text-primary">
+                <span className="absolute right-1.5 top-1.5 rounded-full bg-primary/20 px-2 py-0.5 text-3xs font-medium text-primary">
                   {t.procChip}
                 </span>
               )}
 
               {/* ④ discard label overlay */}
               {dissolving && (
-                <span className="absolute inset-x-2 bottom-2 rounded-md bg-slate-900/80 px-2 py-1 text-center text-2xs font-semibold text-white backdrop-blur-sm">
+                <span className="absolute inset-x-2 bottom-2 rounded-md bg-slate-900/80 px-2 py-1 text-center text-2xs font-medium text-white backdrop-blur-sm">
                   {t.discardLabel}
                 </span>
               )}
@@ -307,7 +307,7 @@ export default function PrivacyJourneyMockup({
                 animate ? { scale: signalsAtHub ? 1.04 : 1 } : { scale: 1 }
               }
               transition={{ duration: 0.3 }}
-              className={`flex aspect-square w-20 items-center justify-center rounded-full border-2 text-center text-2xs font-semibold transition-colors duration-300 ${
+              className={`flex aspect-square w-20 items-center justify-center rounded-full border-2 text-center text-2xs font-medium transition-colors duration-300 ${
                 signalsAtHub
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-slate-700 bg-slate-900 text-slate-500'
@@ -329,13 +329,13 @@ export default function PrivacyJourneyMockup({
             <tr className="border-b border-slate-800 bg-slate-900/60">
               <th
                 scope="col"
-                className="w-1/2 px-3 py-2 text-xs font-semibold text-slate-200"
+                className="w-1/2 px-3 py-2 text-xs font-medium text-slate-200"
               >
                 <span className="text-primary">✓</span> {t.retainedTitle}
               </th>
               <th
                 scope="col"
-                className="w-1/2 border-l border-slate-800 px-3 py-2 text-xs font-semibold text-slate-200"
+                className="w-1/2 border-l border-slate-800 px-3 py-2 text-xs font-medium text-slate-200"
               >
                 <span className="text-slate-500">✕</span> {t.notRetainedTitle}
               </th>

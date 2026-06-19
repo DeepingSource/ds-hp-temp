@@ -453,7 +453,7 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                 <div>
                   <p className="text-xs font-bold text-violet-900 mb-0.5">{t.aiReportTitle}</p>
                   <p className="text-xs text-gray-600 leading-relaxed">
-                    <span className="font-semibold text-gray-900">{t.insightHead}</span>{t.insightBody}
+                    <span className="font-medium text-gray-900">{t.insightHead}</span>{t.insightBody}
                     <span className="text-violet-600 font-medium ml-0.5">{t.insightAction}</span>
                   </p>
                 </div>

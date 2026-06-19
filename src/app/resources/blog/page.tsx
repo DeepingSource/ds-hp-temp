@@ -35,7 +35,7 @@ export default function ResourcesBlogPage() {
       <section className="relative bg-white border-b border-gray-100">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 to-white pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-8">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">Blog</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Blog</p>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-3">
             인사이트 &amp; 가이드
           </h1>
@@ -59,7 +59,7 @@ export default function ResourcesBlogPage() {
                 >
                   <div className="p-5 sm:p-6">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${meta.bgColor} ${meta.color}`}>
+                      <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${meta.bgColor} ${meta.color}`}>
                         {meta.label}
                       </span>
                       <span className="text-xs text-gray-500">{formatDate(article.date)}</span>

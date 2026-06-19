@@ -182,7 +182,7 @@ export default function StoreInsightManual() {
 
           {/* Main */}
           <main className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">Docs · Store Insight</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Docs · Store Insight</p>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
               Store Insight 사용자 매뉴얼
             </h1>
@@ -217,7 +217,7 @@ export default function StoreInsightManual() {
                   ['데이터 기반 의사결정', '감이 아니라 근거로, 빠르게 결정합니다.'],
                 ].map(([t, d]) => (
                   <div key={t} className="card p-5">
-                    <h3 className="text-sm font-semibold text-gray-900 mb-1">{t}</h3>
+                    <h3 className="text-sm font-medium text-gray-900 mb-1">{t}</h3>
                     <p className="text-xs text-gray-500 leading-relaxed break-keep">{d}</p>
                   </div>
                 ))}
@@ -296,7 +296,7 @@ export default function StoreInsightManual() {
                     <div className="space-y-7">
                       {r.items.map((it) => (
                         <div key={it.img} className="border-l-2 border-gray-100 pl-4">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-1">{it.name}</h4>
+                          <h4 className="text-sm font-medium text-gray-900 mb-1">{it.name}</h4>
                           <p className="text-xs text-gray-500 leading-relaxed break-keep">{it.desc}</p>
                           <Figure src={SI(it.img)} alt={`${it.name} 화면`} caption={`${it.name} · 공식 가이드 v3.5 화면`} w={610} h={it.h} />
                         </div>
@@ -316,7 +316,7 @@ export default function StoreInsightManual() {
               <dl className="divide-y divide-gray-100 border-y border-gray-100">
                 {glossary.map(([term, def]) => (
                   <div key={term} className="grid sm:grid-cols-[8rem_1fr] gap-1 sm:gap-4 py-3">
-                    <dt className="text-sm font-semibold text-gray-900">{term}</dt>
+                    <dt className="text-sm font-medium text-gray-900">{term}</dt>
                     <dd className="text-sm text-gray-600 leading-relaxed break-keep">{def}</dd>
                   </div>
                 ))}
@@ -332,7 +332,7 @@ export default function StoreInsightManual() {
               <div className="space-y-3">
                 {faqs.map(([q, a]) => (
                   <details key={q} className="card p-5 group">
-                    <summary className="text-sm font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+                    <summary className="text-sm font-medium text-gray-900 cursor-pointer list-none flex items-center justify-between">
                       {q}
                       <span className="text-gray-400 group-open:rotate-45 transition-transform">+</span>
                     </summary>
@@ -346,13 +346,13 @@ export default function StoreInsightManual() {
             <div className="flex flex-col sm:flex-row items-start gap-3 px-5 py-5 bg-primary/5 border border-primary/10 rounded-xl">
               <Lightbulb className="w-5 h-5 text-primary shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="text-sm font-semibold text-gray-900 mb-1">더 자세한 내용이 필요하신가요?</p>
+                <p className="text-sm font-medium text-gray-900 mb-1">더 자세한 내용이 필요하신가요?</p>
                 <p className="text-sm text-gray-600 leading-relaxed mb-3 break-keep">
                   전체 화면 설명과 최신 기능은 공식 가이드에서 확인하실 수 있습니다. 도입·계정 관련 문의는 언제든 연락 주세요.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a href={GUIDE_URL} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">공식 가이드 보기</a>
-                  <Link href="/contact" className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-gray-900 bg-white border border-gray-200 rounded-xl hover:border-primary-light transition-colors">도입 문의</Link>
+                  <Link href="/contact" className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl hover:border-primary-light transition-colors">도입 문의</Link>
                 </div>
               </div>
             </div>

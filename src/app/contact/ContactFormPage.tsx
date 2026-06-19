@@ -430,7 +430,7 @@ function ContactForm({ locale }: { locale: Locale }) {
       <div className="max-w-4xl w-full grid md:grid-cols-[1fr_1.1fr] gap-12 items-start">
         {/* Context Panel — 좌측 (데스크탑) / 상단 (모바일) */}
         <div className="hidden md:block p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 shadow-sm h-full">
-          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">{t.eyebrow}</p>
+          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">{t.eyebrow}</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 leading-snug">
             {t.contextHeading}
           </h2>
@@ -455,7 +455,7 @@ function ContactForm({ locale }: { locale: Locale }) {
           <div className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden mb-6">
             <div className="p-4 border-b border-gray-100">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">{t.provenLabel}</p>
-              <p className="text-sm font-semibold text-gray-900">{t.provenText}</p>
+              <p className="text-sm font-medium text-gray-900">{t.provenText}</p>
             </div>
             <div className="p-4">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">{t.partnerLabel}</p>
@@ -473,7 +473,7 @@ function ContactForm({ locale }: { locale: Locale }) {
           {/* Mobile Trust Bar */}
           <div className="md:hidden mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100 text-center">
             <p className="text-xs text-gray-500 mb-1">{t.mobileTrustLabel}</p>
-            <p className="text-sm font-semibold text-gray-700">{t.mobileTrustBrands}</p>
+            <p className="text-sm font-medium text-gray-700">{t.mobileTrustBrands}</p>
           </div>
           {/* Header */}
           <div className="text-center mb-8">

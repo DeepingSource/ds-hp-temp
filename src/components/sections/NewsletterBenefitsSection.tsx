@@ -15,7 +15,7 @@ export default function NewsletterBenefitsSection() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* Benefits list */}
           <div className="flex-1">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-3">
+            <p className="text-sm font-medium text-primary uppercase tracking-wide mb-3">
               무료로 시작하세요
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-8 break-keep">

@@ -155,7 +155,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight break-keep mb-6">
             {t.heroTitle}
           </h1>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-light mb-4">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light mb-4">
             {solutionTaglines.agent[locale]}
           </p>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
@@ -259,7 +259,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
           </p>
           <Link
             href={localeHref(locale, '/pricing')}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
           >
             {t.pricingCta}
             <ArrowRight className="w-4 h-4" />

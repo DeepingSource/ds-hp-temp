@@ -317,11 +317,11 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
             <caption className="sr-only">{t.caption}</caption>
             <thead>
               <tr className="text-3xs uppercase tracking-wide text-gray-400">
-                <th scope="col" className="py-1.5 pl-2 pr-2 font-semibold">{t.colModel}</th>
-                <th scope="col" className="py-1.5 px-2 font-semibold">{t.colStatus}</th>
-                <th scope="col" className="py-1.5 px-2 font-semibold">{t.colInput}</th>
-                <th scope="col" className="py-1.5 px-2 font-semibold">{t.colOutput}</th>
-                <th scope="col" className="py-1.5 px-2 font-semibold">{t.colProduct}</th>
+                <th scope="col" className="py-1.5 pl-2 pr-2 font-medium">{t.colModel}</th>
+                <th scope="col" className="py-1.5 px-2 font-medium">{t.colStatus}</th>
+                <th scope="col" className="py-1.5 px-2 font-medium">{t.colInput}</th>
+                <th scope="col" className="py-1.5 px-2 font-medium">{t.colOutput}</th>
+                <th scope="col" className="py-1.5 px-2 font-medium">{t.colProduct}</th>
               </tr>
             </thead>
             <tbody>
@@ -353,14 +353,14 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
                             className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"
                           />
                         )}
-                        <code className={`text-2xs font-mono ${isSel ? 'text-primary font-semibold' : 'text-gray-800'}`}>
+                        <code className={`text-2xs font-mono ${isSel ? 'text-primary font-medium' : 'text-gray-800'}`}>
                           {MODEL_PROMISE[m.id][locale]}
                         </code>
                       </span>
                     </th>
                     <td className="py-1.5 px-2">
                       <span
-                        className={`inline-block text-[9px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${stageStyle[stage]}`}
+                        className={`inline-block text-[9px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${stageStyle[stage]}`}
                       >
                         {t.stageLabels[stage]}
                       </span>
@@ -368,7 +368,7 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
                     <td className="py-1.5 px-2 text-3xs text-gray-500 font-mono whitespace-nowrap">{m.input}</td>
                     <td className="py-1.5 px-2 text-3xs text-gray-500 font-mono whitespace-nowrap">{m.output}</td>
                     <td className="py-1.5 px-2">
-                      <span className={`inline-block text-[9px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${productStyle[m.product]}`}>
+                      <span className={`inline-block text-[9px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${productStyle[m.product]}`}>
                         {m.product}
                       </span>
                     </td>
@@ -386,17 +386,17 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
             {/* live indicator */}
             <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/55 px-1.5 py-0.5 rounded-full backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse motion-reduce:animate-none" />
-              <span className="text-[9px] font-semibold text-white">{t.liveLabel}</span>
+              <span className="text-[9px] font-medium text-white">{t.liveLabel}</span>
             </div>
           </div>
 
           {/* overlay text label, synced to selected row */}
           <div className="flex items-center justify-between rounded-lg bg-slate-50 border border-gray-100 px-3 py-2">
             <div className="min-w-0">
-              <code className="text-2xs font-mono font-semibold text-primary">{selected.id}</code>
+              <code className="text-2xs font-mono font-medium text-primary">{selected.id}</code>
               <p className="text-2xs text-gray-600 truncate">{t.overlayLabels[selected.overlay]}</p>
             </div>
-            <span className={`shrink-0 text-[9px] font-semibold px-1.5 py-0.5 rounded-full ${productStyle[selected.product]}`}>
+            <span className={`shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-full ${productStyle[selected.product]}`}>
               {selected.product}
             </span>
           </div>

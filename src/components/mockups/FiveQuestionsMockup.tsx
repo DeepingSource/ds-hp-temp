@@ -174,7 +174,7 @@ export default function FiveQuestionsMockup({
         <p className="mt-2 text-sm leading-relaxed text-gray-600">{t.lead}</p>
         <a
           href={localeHref(locale, '/company')}
-          className="mt-3 inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="mt-3 inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {t.cta}
         </a>
@@ -201,7 +201,7 @@ export default function FiveQuestionsMockup({
               </span>
             </div>
 
-            <h3 className="mt-2 min-h-[2.5rem] text-sm font-semibold leading-snug text-gray-900">
+            <h3 className="mt-2 min-h-[2.5rem] text-sm font-medium leading-snug text-gray-900">
               {item.q}
             </h3>
 
@@ -216,7 +216,7 @@ export default function FiveQuestionsMockup({
                   />
                 </dt>
                 <dd className="text-xs leading-relaxed text-gray-700">
-                  <span className="font-semibold text-primary">
+                  <span className="font-medium text-primary">
                     {t.passLabel}
                   </span>{' '}
                   {item.pass}
@@ -232,7 +232,7 @@ export default function FiveQuestionsMockup({
                   />
                 </dt>
                 <dd className="text-xs leading-relaxed text-gray-500">
-                  <span className="font-semibold text-gray-500">
+                  <span className="font-medium text-gray-500">
                     {t.failLabel}
                   </span>{' '}
                   {item.fail}

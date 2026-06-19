@@ -104,7 +104,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             {t.heroTitle}
           </h1>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">
             {solutionTaglines.care[locale]}
           </p>
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto break-keep mb-10">

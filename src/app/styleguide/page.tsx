@@ -96,7 +96,7 @@ export default function StyleguidePage() {
           <div className="space-y-2 text-gray-900">
             <p className="text-5xl font-bold font-display">Display 5xl</p>
             <p className="text-3xl font-bold">Heading 3xl</p>
-            <p className="text-xl font-semibold">Subhead xl</p>
+            <p className="text-xl font-medium">Subhead xl</p>
             <p className="text-base">Body base</p>
             <p className="text-sm text-gray-600">Small sm</p>
             <p className="text-2xs text-gray-500">Micro text-2xs (11px)</p>

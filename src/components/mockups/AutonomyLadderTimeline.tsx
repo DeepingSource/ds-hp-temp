@@ -358,13 +358,13 @@ export default function AutonomyLadderTimeline({
               </div>
               <dl className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div>
-                  <dt className="text-2xs font-semibold uppercase tracking-wide text-primary">
+                  <dt className="text-2xs font-medium uppercase tracking-wide text-primary">
                     {t.categoryLabel}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-700">{detail.category}</dd>
                 </div>
                 <div>
-                  <dt className="text-2xs font-semibold uppercase tracking-wide text-primary">
+                  <dt className="text-2xs font-medium uppercase tracking-wide text-primary">
                     {t.conditionLabel}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-700">{detail.condition}</dd>

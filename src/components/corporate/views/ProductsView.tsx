@@ -138,7 +138,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         </div>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center">
           <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }]} locale={locale} tone="light" className="mb-6" />
-          <p className="text-sm font-semibold text-primary mb-4 tracking-wide">{t.eyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-4 tracking-wide">{t.eyebrow}</p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             {t.heroTitle}
           </h1>
@@ -185,7 +185,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.flow.map((item, i) => (
               <div key={flowNames[i]} className="card flex flex-col">
-                <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
+                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">
                   {item.step}
                 </p>
                 <p className="text-lg font-bold text-gray-900 mb-1">{flowNames[i]}</p>
@@ -198,7 +198,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <div className="mt-10 text-center">
             <Link
               href={localeHref(locale, '/contact')}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
             >
               {t.cta}
               <ArrowRight className="w-4 h-4" />

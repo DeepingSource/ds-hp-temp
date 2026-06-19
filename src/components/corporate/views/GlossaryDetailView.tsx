@@ -109,7 +109,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
             className="mb-3"
           />
           <div className="mb-4">
-            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700">
+            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
               {categoryLabel}
             </span>
           </div>
@@ -132,7 +132,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
 
           {/* 핵심 정의 박스 */}
           <div className="p-6 rounded-2xl bg-blue-50 border border-blue-100 mb-10">
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{c.coreDefinition}</p>
+            <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">{c.coreDefinition}</p>
             <p className="text-base text-gray-800 leading-relaxed break-keep">{definition}</p>
           </div>
 
@@ -156,12 +156,12 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           <div className="mt-12 p-6 rounded-2xl bg-gray-950 text-white">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <p className="text-sm font-semibold text-primary uppercase tracking-wide">{c.saaiUsage}</p>
+              <p className="text-sm font-medium text-primary uppercase tracking-wide">{c.saaiUsage}</p>
             </div>
             <p className="text-gray-300 leading-relaxed break-keep text-sm sm:text-base">{term.saaiUsage}</p>
             <Link
               href={localeHref(locale, '/contact')}
-              className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-xl text-sm hover:bg-primary-dark transition-colors"
+              className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium rounded-xl text-sm hover:bg-primary-dark transition-colors"
             >
               {c.viewCase}
               <ArrowRight className="w-3.5 h-3.5" />
@@ -171,7 +171,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           {/* 관련 업종 */}
           {relatedIndustryObjects.length > 0 && (
             <div className="mt-10">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">{c.relatedIndustries}</h3>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">{c.relatedIndustries}</h3>
               <div className="flex flex-wrap gap-2">
                 {relatedIndustryObjects.map((ind) => (
                   <Link
@@ -190,7 +190,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           {/* 관련 용어 */}
           {relatedTermObjects.length > 0 && (
             <div className="mt-10">
-              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">{c.relatedTerms}</h3>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">{c.relatedTerms}</h3>
               <div className="grid sm:grid-cols-2 gap-3">
                 {relatedTermObjects.map((rel) => {
                   const relOverlay = glossaryCardI18n[rel.slug]?.[locale];
@@ -202,7 +202,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
                       className="group flex items-center justify-between gap-3 p-4 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-[border-color,box-shadow]"
                     >
                       <div>
-                        <p className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                        <p className="text-sm font-medium text-gray-900 group-hover:text-primary transition-colors">
                           {relTitle}
                         </p>
                         <p className="text-xs text-gray-500">{rel.englishTitle}</p>
@@ -231,7 +231,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
       {/* ── CTA ── */}
       <section className="py-16 bg-slate-50 border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{c.ctaEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{c.ctaEyebrow}</p>
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
             {c.ctaHeading(title)}
           </h2>
@@ -246,7 +246,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
             </Link>
             <Link
               href={localeHref(locale, '/solutions')}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-gray-200 text-gray-700 font-semibold rounded-2xl hover:bg-gray-50 transition-colors text-sm w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-gray-200 text-gray-700 font-medium rounded-2xl hover:bg-gray-50 transition-colors text-sm w-full sm:w-auto"
             >
               {c.ctaSecondary}
             </Link>

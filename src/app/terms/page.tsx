@@ -166,7 +166,7 @@ export default function TermsPage() {
               </ol>
             </section>
 
-            <p className="font-semibold text-gray-900 mt-12 bg-gray-50 p-4 rounded-xl inline-block border border-gray-100">
+            <p className="font-medium text-gray-900 mt-12 bg-gray-50 p-4 rounded-xl inline-block border border-gray-100">
               [부칙] 이 약관은 2025년 01월 15일부터 시행합니다. 제16조(구독 서비스)는 2026년 02월 26일부터 시행합니다.
             </p>
           </div>

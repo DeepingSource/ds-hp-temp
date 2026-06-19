@@ -21,7 +21,7 @@ function FaqItem({ question, answer, id }: { question: string; answer: React.Rea
         aria-expanded={open}
         aria-controls={panelId}
       >
-        <h3 className={`text-sm font-semibold leading-relaxed transition-colors ${open ? 'text-primary' : 'text-gray-900'}`}>
+        <h3 className={`text-sm font-medium leading-relaxed transition-colors ${open ? 'text-primary' : 'text-gray-900'}`}>
           {question}
         </h3>
         <ChevronDown
@@ -54,7 +54,7 @@ export default function FAQSection() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           {/* 섹션 헤더 */}
           <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">FAQ</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">FAQ</p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">
               자주 묻는 질문
             </h2>

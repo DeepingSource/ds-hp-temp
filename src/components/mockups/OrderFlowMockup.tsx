@@ -230,14 +230,14 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                   <span className="text-3xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 inline-block mb-1">
                     {t.priority}
                   </span>
-                  <h4 className="text-sm font-semibold text-gray-900 leading-snug">{t.cardTitle}</h4>
+                  <h4 className="text-sm font-medium text-gray-900 leading-snug">{t.cardTitle}</h4>
                 </div>
               </div>
               <p className="text-xs text-gray-500 leading-relaxed mb-3 ml-12">{t.cardReason}</p>
               <div className="flex gap-2 ml-12">
                 <motion.button
                   type="button"
-                  className={`inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 ${
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-white text-xs font-medium rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 ${
                     activeStep > 0 ? 'opacity-90' : ''
                   } ${activeStep === 0 && !reducedMotion ? 'ring-2 ring-primary/40 ring-offset-1' : ''}`}
                   animate={
@@ -292,7 +292,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                         <dd className="font-medium text-gray-700">{t.vendor}</dd>
                       </div>
                       <div className="flex justify-between gap-2 pt-1.5 mt-1 border-t border-dashed border-gray-200">
-                        <dt className="text-gray-500 font-semibold">{t.amountLabel}</dt>
+                        <dt className="text-gray-500 font-medium">{t.amountLabel}</dt>
                         <dd className="font-bold text-primary tabular-nums">{formatWon(PO.totalWon)}</dd>
                       </div>
                     </dl>
@@ -348,7 +348,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                       </li>
                     ))}
                   </ol>
-                  <p className="text-2xs text-amber-600 font-semibold text-center mt-2">{t.eta}</p>
+                  <p className="text-2xs text-amber-600 font-medium text-center mt-2">{t.eta}</p>
                 </motion.section>
               )}
             </AnimatePresence>

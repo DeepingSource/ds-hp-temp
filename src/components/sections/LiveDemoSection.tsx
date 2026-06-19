@@ -46,7 +46,7 @@ function ValuePanel({ area, locale }: { area: AreaType; locale: Locale }) {
               <p className="text-gray-800 text-sm font-medium">{prop.after}</p>
             </div>
             <div className="flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-lg w-fit">
-              <span className="text-sm font-semibold">{prop.metric}</span>
+              <span className="text-sm font-medium">{prop.metric}</span>
             </div>
           </div>
         ))}
@@ -73,7 +73,7 @@ export default function LiveDemoSection({ locale = 'en' }: { locale?: Locale }) 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className={`text-center mb-10 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">{c.eyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wide uppercase">{c.eyebrow}</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 break-keep">
             {c.heading}
           </h2>

@@ -171,7 +171,7 @@ export default function VisionCoordinatesMockup({
       <div className="relative">
         <SaaiHeader name="saai" tone="dark" className="mb-1.5" />
         <div className="mb-1 flex items-center justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-light">
             {copy.eyebrow}
           </p>
           <MockupBadge label={copy.badge} />
@@ -214,7 +214,7 @@ export default function VisionCoordinatesMockup({
                   </span>
                   <div>
                     <h3
-                      className={`text-base font-semibold ${
+                      className={`text-base font-medium ${
                         isBlue ? 'text-primary-light' : 'text-white'
                       }`}
                     >
@@ -262,7 +262,7 @@ export default function VisionCoordinatesMockup({
         <div className="mt-5">
           <a
             href="/company"
-            className="inline-flex items-center text-sm font-semibold text-primary-light underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="inline-flex items-center text-sm font-medium text-primary-light underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {copy.cta}
           </a>

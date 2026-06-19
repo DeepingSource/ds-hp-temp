@@ -57,7 +57,7 @@ export const ArticleCard = memo(function ArticleCard({ article }: { article: Art
         {/* Category + Date row */}
         <div className="flex items-center gap-2 mb-4">
           <span className={`w-1.5 h-1.5 rounded-full ${accent.dot}`} />
-          <span className={`text-xs font-semibold ${meta.color}`}>
+          <span className={`text-xs font-medium ${meta.color}`}>
             {meta.label}
           </span>
           <span className="text-gray-300" aria-hidden="true">&middot;</span>

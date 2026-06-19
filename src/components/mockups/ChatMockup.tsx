@@ -251,7 +251,7 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
                             <p className="text-3xs text-gray-500 mb-0.5 leading-tight">{s.label}</p>
                             <p className="text-xs font-bold text-gray-900 tabular-nums leading-tight">{s.value}</p>
                             {s.sub && (
-                              <p className={`text-3xs font-semibold leading-tight ${
+                              <p className={`text-3xs font-medium leading-tight ${
                                 s.up === true ? 'text-emerald-500' : s.up === false ? 'text-red-400' : 'text-gray-500'
                               }`}>{s.sub}</p>
                             )}
@@ -262,7 +262,7 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
                   </div>
                   {'action' in msg && msg.action && (
                     <div className="mt-1.5 flex gap-1.5">
-                      <button type="button" tabIndex={-1} className={`inline-flex items-center gap-1 px-3 py-1.5 text-white text-xs font-semibold rounded-lg ${msg.action.color}`}>
+                      <button type="button" tabIndex={-1} className={`inline-flex items-center gap-1 px-3 py-1.5 text-white text-xs font-medium rounded-lg ${msg.action.color}`}>
                         <msg.action.icon className="w-3 h-3" aria-hidden="true" />
                         {msg.action.label}
                       </button>

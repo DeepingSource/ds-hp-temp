@@ -55,7 +55,7 @@ export default function LegalIndexPage() {
                     <p className="text-sm text-gray-600 leading-relaxed break-keep flex-1">
                       {doc.description}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                       자세히 보기
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

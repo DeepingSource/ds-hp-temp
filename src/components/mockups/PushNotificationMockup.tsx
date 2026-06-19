@@ -164,7 +164,7 @@ export default function PushNotificationMockup({
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-xs font-semibold text-gray-700 lowercase"><span className="font-normal text-gray-400">saai</span><span className="text-gray-300 mx-0.5">|</span>store agent</span>
+                    <span className="text-xs font-medium text-gray-700 lowercase"><span className="font-normal text-gray-400">saai</span><span className="text-gray-300 mx-0.5">|</span>store agent</span>
                     <span className="text-xs text-gray-400">{notif.time}</span>
                   </div>
                   <p className="text-sm font-bold text-gray-900 leading-snug">{notif.title}</p>

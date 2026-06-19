@@ -300,7 +300,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
                     <span className={`text-3xs font-bold px-2 py-0.5 rounded-full ${card.priorityColor} inline-block mb-1`}>
                       {card.priority}
                     </span>
-                    <h4 className="text-sm font-semibold text-gray-900 leading-snug">{card.title}</h4>
+                    <h4 className="text-sm font-medium text-gray-900 leading-snug">{card.title}</h4>
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 leading-relaxed mb-1.5 ml-12">{card.reason}</p>
@@ -311,7 +311,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
                     {card.statBadges.map((badge) => (
                       <span
                         key={badge.label}
-                        className={`inline-flex items-center gap-1 text-3xs font-semibold px-1.5 py-0.5 rounded-full ${
+                        className={`inline-flex items-center gap-1 text-3xs font-medium px-1.5 py-0.5 rounded-full ${
                           badge.up === true
                             ? 'bg-emerald-50 text-emerald-700'
                             : badge.up === false
@@ -335,7 +335,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
                     <motion.button
                       type="button"
                       tabIndex={-1}
-                      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg ${
+                      className={`inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-white text-xs font-medium rounded-lg ${
                         isApproving ? 'ring-2 ring-primary/40 ring-offset-1 shadow-md shadow-primary/30' : ''
                       }`}
                       animate={isPressed ? { scale: 0.88 } : { scale: 1 }}

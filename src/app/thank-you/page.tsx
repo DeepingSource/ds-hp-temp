@@ -57,7 +57,7 @@ export default function ThankYouPage() {
               <div className="w-10 h-10 rounded-xl bg-primary-lighter flex items-center justify-center mx-auto mb-2" aria-hidden="true">
                 <StepIcon className="w-5 h-5 text-primary" />
               </div>
-              <h2 className="font-semibold text-gray-900 text-sm mb-1">
+              <h2 className="font-medium text-gray-900 text-sm mb-1">
                 {step.title}
               </h2>
               <p className="text-xs text-gray-500">{step.description}</p>

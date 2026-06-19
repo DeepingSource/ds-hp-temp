@@ -76,7 +76,7 @@ export default function InlineNewsletterForm({ variant = 'light', sampleHref }: 
 
   if (isSuccess) {
     return (
-      <div className={`inline-flex flex-col items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold ${
+      <div className={`inline-flex flex-col items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium ${
         isDark ? 'bg-success/20 border border-success/30 text-emerald-300' : 'bg-success/10 border border-success/20 text-success'
       }`}>
         <span className="inline-flex items-center gap-2">

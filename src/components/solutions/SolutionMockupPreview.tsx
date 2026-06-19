@@ -67,7 +67,7 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-primary mb-5 tracking-wider uppercase">{t.eyebrow}</p>
+      <p className="text-sm font-medium text-primary mb-5 tracking-wider uppercase">{t.eyebrow}</p>
       <h2 className="text-2xl font-bold text-gray-900 mb-6 break-keep">
         {t.heading}
       </h2>
@@ -83,7 +83,7 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
                 key={product}
                 type="button"
                 onClick={() => setActiveProduct(product)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-semibold transition-colors cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-colors cursor-pointer ${
                   isActive
                     ? `${m.activeCls} ${m.textCls}`
                     : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'

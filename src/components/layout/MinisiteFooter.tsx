@@ -25,7 +25,7 @@ export default function MinisiteFooter() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         {/* Newsletter CTA */}
         <div className="max-w-md mx-auto text-center mb-12">
-          <p className="text-lg font-semibold text-white mb-2">
+          <p className="text-lg font-medium text-white mb-2">
             매주 월요일, 편의점 운영 인사이트
           </p>
           <p className="text-sm text-gray-300 mb-4">
@@ -66,7 +66,7 @@ export default function MinisiteFooter() {
           {/* Links */}
           <div className="flex flex-wrap gap-8 sm:gap-14">
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">StoreAgent</p>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">StoreAgent</p>
               <nav className="flex flex-col gap-2" aria-label="StoreAgent">
                 {minisiteLinks.map((link) => (
                   <Link
@@ -80,7 +80,7 @@ export default function MinisiteFooter() {
               </nav>
             </div>
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">법적 고지</p>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">법적 고지</p>
               <nav className="flex flex-col gap-2" aria-label="법적 고지">
                 {legalLinks.map((link) => (
                   <Link

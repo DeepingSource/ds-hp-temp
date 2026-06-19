@@ -202,7 +202,7 @@ export default function POSAnalysisSection({ locale = 'en' }: { locale?: Locale 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className={`text-center mb-10 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">POS Intelligence</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">POS Intelligence</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 break-keep">
             {t.heading}
           </h2>
@@ -259,7 +259,7 @@ export default function POSAnalysisSection({ locale = 'en' }: { locale?: Locale 
 
             <BrowserChrome
               trailing={
-                <div className="flex items-center gap-1.5 text-sm text-emerald-400 font-semibold">
+                <div className="flex items-center gap-1.5 text-sm text-emerald-400 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   LIVE
                 </div>

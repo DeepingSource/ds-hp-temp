@@ -159,7 +159,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-16 lg:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">
               {t.scenariosEyebrow}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">
@@ -192,7 +192,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="card relative bg-gradient-to-br from-primary/[0.04] to-white border-primary/10">
             <Quote className="w-10 h-10 text-primary/20 mb-4" />
-            <p className="text-xl sm:text-2xl font-semibold text-gray-900 leading-relaxed break-keep mb-6">
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-relaxed break-keep mb-6">
               {t.quote}
             </p>
             <div className="flex items-center gap-3">
@@ -211,7 +211,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
       {/* ── CTA ── */}
       <section className="py-20 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {t.ctaTitle[0]}
             <br />

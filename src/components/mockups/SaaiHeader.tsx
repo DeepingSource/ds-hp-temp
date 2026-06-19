@@ -21,7 +21,7 @@ export default function SaaiHeader({
   const sep = tone === 'dark' ? 'text-slate-600' : 'text-gray-300';
   const product = tone === 'dark' ? 'text-slate-200' : 'text-gray-700';
   return (
-    <span className={`inline-flex items-center gap-1 text-xs font-semibold lowercase tracking-tight ${className}`}>
+    <span className={`inline-flex items-center gap-1 text-xs font-medium lowercase tracking-tight ${className}`}>
       <span className={`font-normal ${saai}`}>saai</span>
       <span className={sep}>|</span>
       <span className={product}>{name}</span>

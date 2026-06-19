@@ -232,7 +232,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <Target className="w-7 h-7 text-primary mx-auto mb-5" />
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.visionEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.visionEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 break-keep">{t.visionHeading}</h2>
           <p className="text-lg text-gray-500 leading-relaxed break-keep">
             {t.visionBody}
@@ -245,7 +245,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <Cpu className="w-7 h-7 text-primary mx-auto mb-5" />
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.marketEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.marketEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
               {t.marketHeading}
             </h2>
@@ -276,7 +276,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.tractionEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.tractionEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.tractionHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.tractionSub}
@@ -296,7 +296,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
             ))}
           </StaggerContainer>
           <div className="p-6 rounded-3xl border border-primary/15 bg-primary/[0.03] text-center">
-            <p className="text-sm font-semibold text-gray-700 break-keep">
+            <p className="text-sm font-medium text-gray-700 break-keep">
               {t.tractionFootnote}
             </p>
           </div>
@@ -308,7 +308,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <Map className="w-7 h-7 text-primary mx-auto mb-5" />
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.milestonesEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.milestonesEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">{t.milestonesHeading}</h2>
           </div>
           <div className="relative">
@@ -335,7 +335,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.downloadsEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.downloadsEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.downloadsHeading}</h2>
             <p className="text-sm text-gray-500 break-keep">
               {t.downloadsNote}
@@ -353,7 +353,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
                   type="button"
                   disabled
                   aria-disabled="true"
-                  className="mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-gray-500 text-sm font-semibold cursor-not-allowed"
+                  className="mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-gray-500 text-sm font-medium cursor-not-allowed"
                 >
                   <Download className="w-4 h-4" />
                   {t.comingSoon}

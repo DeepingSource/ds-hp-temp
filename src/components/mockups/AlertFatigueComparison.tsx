@@ -204,7 +204,7 @@ export default function AlertFatigueComparison({
         >
           <header className="flex items-start justify-between gap-2 border-b border-gray-200 px-4 py-3">
             <div>
-              <p className="text-sm font-semibold text-gray-700">{t.legacyTitle}</p>
+              <p className="text-sm font-medium text-gray-700">{t.legacyTitle}</p>
               <p className="text-2xs text-gray-400">{t.legacySub}</p>
             </div>
             <div className="shrink-0 rounded-md bg-gray-200 px-2 py-1 text-right">
@@ -250,7 +250,7 @@ export default function AlertFatigueComparison({
         >
           <header className="flex items-start justify-between gap-2 border-b border-gray-200 px-4 py-3">
             <div>
-              <p className="text-sm font-semibold text-primary">{t.agentTitle}</p>
+              <p className="text-sm font-medium text-primary">{t.agentTitle}</p>
               <p className="text-2xs text-gray-400">{t.agentSub}</p>
             </div>
             <div className="shrink-0 rounded-md bg-primary/10 px-2 py-1 text-right">
@@ -273,7 +273,7 @@ export default function AlertFatigueComparison({
                 className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm font-semibold text-gray-900">{c.title}</p>
+                  <p className="text-sm font-medium text-gray-900">{c.title}</p>
                   <span className={`shrink-0 rounded-full px-2 py-0.5 text-3xs font-bold ${c.tone}`}>
                     {c.priority}
                   </span>

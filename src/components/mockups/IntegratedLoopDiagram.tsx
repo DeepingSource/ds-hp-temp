@@ -206,7 +206,7 @@ function SvgNode({
         y={cy}
         textAnchor="middle"
         dominantBaseline="central"
-        className={`${textCls} ${tone === 'hub' ? 'font-bold' : 'font-semibold'}`}
+        className={`${textCls} ${tone === 'hub' ? 'font-bold' : 'font-medium'}`}
         fontSize={tone === 'hub' ? 15 : 14}
       >
         {label}
@@ -246,7 +246,7 @@ export default function IntegratedLoopDiagram({
       {/* Header */}
       <div className="mb-6 max-w-3xl">
         <SaaiHeader name="saai" tone="light" className="mb-1.5" />
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">{t.eyebrow}</p>
+        <p className="text-xs font-medium uppercase tracking-wide text-primary">{t.eyebrow}</p>
         <h2 className="mt-1.5 text-lg font-bold text-gray-900 sm:text-xl">{t.heading}</h2>
         <p className="mt-2 text-sm leading-relaxed text-gray-600">{t.lead}</p>
       </div>
@@ -359,7 +359,7 @@ export default function IntegratedLoopDiagram({
           >
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold tabular-nums text-primary">{card.no}</span>
-              <h3 className="text-sm font-semibold text-gray-900">{card.title}</h3>
+              <h3 className="text-sm font-medium text-gray-900">{card.title}</h3>
             </div>
             <p className="mt-2 text-xs leading-relaxed text-gray-600">{card.body}</p>
           </motion.div>
@@ -370,7 +370,7 @@ export default function IntegratedLoopDiagram({
       <div className="mt-5">
         <a
           href={localeHref(locale, '/products')}
-          className="inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {t.cta}
         </a>

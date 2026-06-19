@@ -149,7 +149,7 @@ export default function MockupImage({ active = true }: { active?: boolean }) {
             >
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-4 h-4 text-orange-500" aria-hidden="true" />
-                <span className={`font-semibold text-gray-800 ${D.body}`}>오늘 날씨</span>
+                <span className={`font-medium text-gray-800 ${D.body}`}>오늘 날씨</span>
               </div>
               <p className={`text-gray-600 ${D.body}`}>{content.weather.temp}</p>
               <div className="mt-2 flex items-start gap-1.5 bg-orange-50 text-orange-700 text-sm font-medium px-2.5 py-1.5 rounded-lg">
@@ -173,7 +173,7 @@ export default function MockupImage({ active = true }: { active?: boolean }) {
             >
               <div className="flex items-center gap-2 mb-2">
                 <Lightbulb className="w-4 h-4 text-amber-500" aria-hidden="true" />
-                <span className={`font-semibold text-gray-800 ${D.body}`}>오늘의 팁</span>
+                <span className={`font-medium text-gray-800 ${D.body}`}>오늘의 팁</span>
               </div>
               <p className={`text-gray-600 ${D.body}`}>{content.tip.text}</p>
               <p className={`text-primary ${D.body} font-medium mt-1`}>&rarr; {content.tip.action}</p>
@@ -194,7 +194,7 @@ export default function MockupImage({ active = true }: { active?: boolean }) {
             >
               <div className="flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-blue-500" aria-hidden="true" />
-                <span className={`font-semibold text-gray-800 ${D.body}`}>주변 이벤트</span>
+                <span className={`font-medium text-gray-800 ${D.body}`}>주변 이벤트</span>
               </div>
               <p className={`text-gray-600 ${D.body}`}>{content.event.text}</p>
               <p className={`text-primary ${D.body} font-medium mt-1`}>&rarr; {content.event.impact}</p>
@@ -215,7 +215,7 @@ export default function MockupImage({ active = true }: { active?: boolean }) {
             >
               <div className="flex items-center gap-2 mb-3">
                 <ClipboardCheck className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-                <span className={`font-semibold text-gray-800 ${D.body}`}>오늘 체크리스트</span>
+                <span className={`font-medium text-gray-800 ${D.body}`}>오늘 체크리스트</span>
               </div>
               <div className="space-y-2">
                 {content.checklist.map((item, idx) => {

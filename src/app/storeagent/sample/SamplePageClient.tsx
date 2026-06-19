@@ -62,7 +62,7 @@ const DayInsightPanel = memo(function DayInsightPanel({ daily }: { daily: DailyB
             <Lightbulb className="w-4 h-4 text-amber-500 shrink-0" aria-hidden="true" /> 핵심 준비 팁
           </h4>
           <p className="text-sm text-gray-700">{scenario.tips[0].text}</p>
-          <p className="text-sm text-primary font-semibold mt-1">&rarr; {scenario.tips[0].action}</p>
+          <p className="text-sm text-primary font-medium mt-1">&rarr; {scenario.tips[0].action}</p>
         </div>
       )}
 

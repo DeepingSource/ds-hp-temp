@@ -389,7 +389,7 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
               }
             </div>
             <div>
-              <p className="font-semibold text-gray-900 text-base">
+              <p className="font-medium text-gray-900 text-base">
                 {isCalm ? t.allZonesNormal
                 : isDetecting ? st.detectingTitle
                 : isAlerting ? st.alertTitle

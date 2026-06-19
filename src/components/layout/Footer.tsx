@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-8 sm:gap-12">
             {columns.map((col) => (
               <div key={col.title.en}>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{col.title[locale]}</p>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">{col.title[locale]}</p>
                 <nav className="flex flex-col gap-2" aria-label={col.title[locale]}>
                   {col.links.map((link) => (
                     <Link

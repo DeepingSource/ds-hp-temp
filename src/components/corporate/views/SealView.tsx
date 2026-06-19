@@ -214,7 +214,7 @@ export default function SealView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-2xl">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.promiseEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.promiseEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">
               {t.promiseTitle}
             </h2>
@@ -238,7 +238,7 @@ export default function SealView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-2xl">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.integrationEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.integrationEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
               {t.integrationTitle}
             </h2>
@@ -254,7 +254,7 @@ export default function SealView({ locale }: { locale: Locale }) {
                   <div className="w-9 h-9 rounded-lg bg-primary-lighter flex items-center justify-center shrink-0">
                     {i === 0 ? <Code2 className="w-4 h-4 text-primary" /> : <Plug className="w-4 h-4 text-primary" />}
                   </div>
-                  <span className="text-xs font-mono font-semibold text-gray-500">{t.stepLabel(i + 1)}</span>
+                  <span className="text-xs font-mono font-medium text-gray-500">{t.stepLabel(i + 1)}</span>
                 </div>
                 <h3 className="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep">{step.desc}</p>
@@ -268,7 +268,7 @@ export default function SealView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.faqEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.faqEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">
               {t.faqTitle}
             </h2>

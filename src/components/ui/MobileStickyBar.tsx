@@ -55,7 +55,7 @@ export default function MobileStickyBar() {
           </Link>
           <Link
             href={contactHref}
-            className="flex-1 py-3.5 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors text-center"
+            className="flex-1 py-3.5 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors text-center"
           >
             무료 상담 신청
           </Link>

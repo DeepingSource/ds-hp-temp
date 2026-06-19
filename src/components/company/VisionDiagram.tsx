@@ -70,7 +70,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-14 h-14 rounded-2xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-3">
               <Shield className="w-7 h-7 text-violet-400" />
             </div>
-            <p className="text-xs text-violet-300 font-semibold">{t.shieldTitle}</p>
+            <p className="text-xs text-violet-300 font-medium">{t.shieldTitle}</p>
             <p className="text-3xs text-slate-400 mt-1">{t.shieldSub}</p>
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-3 vision-pulse">
               <Brain className="w-7 h-7 text-blue-400" />
             </div>
-            <p className="text-xs text-blue-300 font-semibold">Agentic AI</p>
+            <p className="text-xs text-blue-300 font-medium">Agentic AI</p>
             <p className="text-3xs text-slate-400 mt-1">{t.aiLoop}</p>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-12 h-12 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-2">
               <Shield className="w-6 h-6 text-violet-400" />
             </div>
-            <p className="text-xs text-violet-300 font-semibold">{t.shieldTitle}</p>
+            <p className="text-xs text-violet-300 font-medium">{t.shieldTitle}</p>
           </div>
         </div>
 
@@ -146,7 +146,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-2 vision-pulse">
               <Brain className="w-6 h-6 text-blue-400" />
             </div>
-            <p className="text-xs text-blue-300 font-semibold">Agentic AI</p>
+            <p className="text-xs text-blue-300 font-medium">Agentic AI</p>
             <p className="text-3xs text-slate-400 mt-1">{t.aiLoop}</p>
           </div>
         </div>

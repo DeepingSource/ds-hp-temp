@@ -505,7 +505,7 @@ export default function StoreDayTimelapse({
           {/* ① Hourly chart */}
           <section className="rounded-xl ring-1 ring-slate-100 p-3">
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-600">
+              <span className="text-xs font-medium text-slate-600">
                 {series === 'sales' ? copy.metricSeriesSales : copy.metricSeriesVisitors}
               </span>
               <div className="flex rounded-md bg-slate-100 p-0.5 text-3xs font-medium">
@@ -563,7 +563,7 @@ export default function StoreDayTimelapse({
               className="mb-2 flex w-full items-center justify-between lg:cursor-default"
               aria-expanded={heatOpen}
             >
-              <span className="text-xs font-semibold text-slate-600">{copy.heatmapTitle}</span>
+              <span className="text-xs font-medium text-slate-600">{copy.heatmapTitle}</span>
               <span className="text-3xs text-slate-400 lg:hidden">{heatOpen ? '–' : '+'}</span>
             </button>
             <div className={`${heatOpen ? 'grid' : 'hidden'} lg:grid grid-cols-5 gap-1 aspect-square`}>
@@ -580,7 +580,7 @@ export default function StoreDayTimelapse({
 
           {/* ③ Event feed */}
           <section className="rounded-xl ring-1 ring-slate-100 p-3">
-            <span className="mb-2 block text-xs font-semibold text-slate-600">{copy.feedTitle}</span>
+            <span className="mb-2 block text-xs font-medium text-slate-600">{copy.feedTitle}</span>
             <div
               className="flex max-h-48 flex-col gap-2 overflow-y-auto"
               role="log"

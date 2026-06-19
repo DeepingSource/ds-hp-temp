@@ -45,7 +45,7 @@ export default function MinisiteHeader() {
               href={link.href}
               className={`text-sm transition-colors ${
                 pathname === link.href
-                  ? 'text-primary font-semibold'
+                  ? 'text-primary font-medium'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -88,7 +88,7 @@ export default function MinisiteHeader() {
               onClick={() => setIsOpen(false)}
               className={`block px-3 py-2.5 rounded-lg text-sm transition-colors ${
                 pathname === link.href
-                  ? 'text-primary font-semibold bg-primary/5'
+                  ? 'text-primary font-medium bg-primary/5'
                   : 'text-gray-700 hover:bg-gray-50'
               }`}
             >

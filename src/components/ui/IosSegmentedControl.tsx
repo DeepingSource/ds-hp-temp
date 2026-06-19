@@ -41,7 +41,7 @@ export default function IosSegmentedControl<T extends string>({
               />
             )}
             <span
-              className={`relative z-10 flex items-center justify-center w-full text-xs font-semibold py-1.5 transition-colors duration-150 ${
+              className={`relative z-10 flex items-center justify-center w-full text-xs font-medium py-1.5 transition-colors duration-150 ${
                 isActive ? activeTextClass : 'text-white/70'
               }`}
               aria-hidden="true"

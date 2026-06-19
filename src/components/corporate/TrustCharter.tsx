@@ -57,7 +57,7 @@ export default function TrustCharter({ locale }: { locale: Locale }) {
               {t.eyebrow}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display">{t.heading}</h2>
-            <p className="mt-5 text-lg sm:text-xl font-semibold text-primary break-keep">{charter.tagline}</p>
+            <p className="mt-5 text-lg sm:text-xl font-medium text-primary break-keep">{charter.tagline}</p>
             <Link
               href={localeHref(locale, '/technology/seal')}
               className="mt-7 inline-flex items-center gap-1.5 text-sm font-bold text-gray-900 hover:text-primary transition-colors"

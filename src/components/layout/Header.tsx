@@ -204,7 +204,7 @@ export default function Header() {
 
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <LocaleSwitcher />
-          <Link href={localeHref(locale, '/contact')} className="px-5 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors">
+          <Link href={localeHref(locale, '/contact')} className="px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors">
             {homeCopy[locale].ctaPrimary}
           </Link>
         </div>
@@ -289,7 +289,7 @@ export default function Header() {
               <Link
                 href={localeHref(locale, '/contact')}
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full py-3 text-sm font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-colors text-center"
+                className="block w-full py-3 text-sm font-medium text-white bg-primary rounded-xl hover:bg-primary-dark transition-colors text-center"
               >
                 {homeCopy[locale].ctaPrimary}
               </Link>

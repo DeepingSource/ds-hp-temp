@@ -494,7 +494,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">Store Care</p>
-                <span className="text-3xs font-semibold px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.careTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.careTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.careDesc}</p>
             </div>
@@ -520,7 +520,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">Store Insight</p>
-                <span className="text-3xs font-semibold px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.insightTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.insightTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.insightDesc}</p>
             </div>
@@ -546,7 +546,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">Store Agent</p>
-                <span className="text-3xs font-semibold px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.agentTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.agentTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.agentDesc}</p>
             </div>

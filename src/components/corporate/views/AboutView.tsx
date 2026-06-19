@@ -255,7 +255,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.vmEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.vmEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">{t.vision}</h2>
           </div>
 
@@ -267,12 +267,12 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <div className="p-8 rounded-3xl bg-slate-50 border border-gray-100">
               <Lock className="w-6 h-6 text-primary mb-4" />
               <p className="text-xs font-bold text-primary mb-2 tracking-wider uppercase">{t.visionLabel}</p>
-              <p className="text-gray-900 font-semibold text-lg break-keep">{t.vision}</p>
+              <p className="text-gray-900 font-medium text-lg break-keep">{t.vision}</p>
             </div>
             <div className="p-8 rounded-3xl bg-slate-50 border border-gray-100">
               <Maximize className="w-6 h-6 text-primary mb-4" />
               <p className="text-xs font-bold text-primary mb-2 tracking-wider uppercase">{t.missionLabel}</p>
-              <p className="text-gray-900 font-semibold text-lg break-keep">{t.mission}</p>
+              <p className="text-gray-900 font-medium text-lg break-keep">{t.mission}</p>
             </div>
           </div>
         </div>
@@ -289,7 +289,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{method.eyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{method.eyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{method.heading}</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{method.intro}</p>
           </div>
@@ -321,7 +321,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.storyEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.storyEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
               {t.storyHeading}
             </h2>
@@ -353,7 +353,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.leadershipEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.leadershipEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.leadershipHeading}</h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto break-keep">
               {t.leadershipNote}
@@ -380,7 +380,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <Handshake className="w-7 h-7 text-primary mx-auto mb-5" />
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.partnersEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.partnersEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 break-keep">
             {t.partnersHeading}
           </h2>

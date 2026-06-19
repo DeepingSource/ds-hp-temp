@@ -44,7 +44,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
       <Container className="relative py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
+            <p className="text-xs font-medium tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
               ANONYMIZED SPATIAL AI · SAAI
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display">
@@ -59,7 +59,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               </Link>
               <Link
                 href={localeHref(locale, '/products')}
-                className="inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light hover:bg-gray-50 transition-colors"
               >
                 {t.ctaSecondary}
               </Link>
@@ -70,7 +70,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
                 return (
                   <li
                     key={c}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-gray-700 shadow-card"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-xs font-medium text-gray-700 shadow-card"
                   >
                     <Icon className="w-3.5 h-3.5 text-primary shrink-0" aria-hidden="true" />
                     <span className="break-keep">{c}</span>
@@ -103,7 +103,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
                     <span className="absolute -top-[18px] left-0 rounded bg-primary px-1 py-0.5 text-[9px] font-bold leading-none text-white tabular-nums">ID·{b.id}</span>
                   </span>
                 ))}
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gray-950/70 px-2.5 py-1 text-2xs font-semibold text-white backdrop-blur-sm">
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gray-950/70 px-2.5 py-1 text-2xs font-medium text-white backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
                   {trackChip[locale]}
                 </span>

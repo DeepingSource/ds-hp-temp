@@ -246,7 +246,7 @@ export default function PriorityEngineDiagram({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="block truncate text-3xs font-semibold leading-tight text-gray-800"
+              className="block truncate text-3xs font-medium leading-tight text-gray-800"
             >
               {trigger}
             </motion.span>
@@ -319,7 +319,7 @@ export default function PriorityEngineDiagram({
                   {i + 1}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-2xs font-semibold leading-tight text-gray-800">
+                  <span className="block truncate text-2xs font-medium leading-tight text-gray-800">
                     {card.action}
                   </span>
                   <span className="block truncate text-[9px] leading-tight text-gray-400">
@@ -336,7 +336,7 @@ export default function PriorityEngineDiagram({
       {/* Downstream: Human decision → Learning feedback (dotted loop back) */}
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="flex-1 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">
-          <p className="text-2xs font-semibold text-gray-800">{t.human}</p>
+          <p className="text-2xs font-medium text-gray-800">{t.human}</p>
           <p className="text-3xs leading-tight text-gray-500">{t.humanNote}</p>
         </div>
 
@@ -358,7 +358,7 @@ export default function PriorityEngineDiagram({
         </svg>
 
         <div className="flex-1 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2">
-          <p className="text-2xs font-semibold text-primary">{t.learning}</p>
+          <p className="text-2xs font-medium text-primary">{t.learning}</p>
           <p className="text-3xs leading-tight text-gray-500">{t.learningNote}</p>
         </div>
       </div>
@@ -367,17 +367,17 @@ export default function PriorityEngineDiagram({
       <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t border-gray-100 pt-3 text-3xs text-gray-400">
         <div className="flex items-center gap-1.5">
           <dt>{t.alertsLabel}</dt>
-          <dd className="font-semibold tabular-nums text-gray-600">
+          <dd className="font-medium tabular-nums text-gray-600">
             {canonicalHq.dailyAlerts.toLocaleString('en-US')}
           </dd>
         </div>
         <div className="flex items-center gap-1.5">
           <dt>{t.responseLabel}</dt>
-          <dd className="font-semibold tabular-nums text-gray-600">{canonicalHq.responseRate}%</dd>
+          <dd className="font-medium tabular-nums text-gray-600">{canonicalHq.responseRate}%</dd>
         </div>
         <div className="flex items-center gap-1.5">
           <dt>{canonicalStoreName[locale]}</dt>
-          <dd className="font-semibold tabular-nums text-gray-600">
+          <dd className="font-medium tabular-nums text-gray-600">
             {formatWon(canonicalStore.forecastRevenueWon)}
           </dd>
         </div>

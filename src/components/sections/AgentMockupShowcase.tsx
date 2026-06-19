@@ -52,7 +52,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 섹션 헤더 */}
         <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{c.eyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{c.eyebrow}</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">
             {c.heading}
           </h2>

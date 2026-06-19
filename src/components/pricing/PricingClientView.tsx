@@ -496,7 +496,7 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
             {t.bundleHeading}
           </h2>
           <p className="text-gray-300 mb-8 leading-relaxed max-w-xl mx-auto">
-            {t.bundleBodyPre}<strong className="text-white font-semibold">{t.bundleBodyStrong}</strong>{t.bundleBodyPost}
+            {t.bundleBodyPre}<strong className="text-white font-medium">{t.bundleBodyStrong}</strong>{t.bundleBodyPost}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href={localeHref(locale, '/contact')} className="btn-primary px-8 py-4 shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[box-shadow]">
@@ -504,7 +504,7 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
             </Link>
             <Link
               href={localeHref(locale, '/pricing/simulator')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-colors text-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-medium hover:bg-white/20 transition-colors text-sm"
             >
               {t.bundleSimLink}
             </Link>

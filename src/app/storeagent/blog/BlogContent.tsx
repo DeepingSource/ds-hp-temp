@@ -209,7 +209,7 @@ function BlogContent() {
             <div className="mt-4 flex items-start gap-2 px-3 py-2.5 bg-amber-50 border border-amber-100 rounded-lg">
               <Store className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
               <p className="text-xs text-amber-800 leading-relaxed">
-                <span className="font-semibold">매장 운영 기준</span> 콘텐츠입니다. 업종·매장 환경에 따라 세부 내용이 다를 수 있습니다.
+                <span className="font-medium">매장 운영 기준</span> 콘텐츠입니다. 업종·매장 환경에 따라 세부 내용이 다를 수 있습니다.
                 다른 업종의 인사이트는 <Link href="/industries" className="underline underline-offset-2 hover:text-amber-900 transition-colors">업종별 솔루션</Link>에서 확인하세요.
               </p>
             </div>
@@ -313,8 +313,8 @@ function BlogContent() {
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
           <p className="text-sm text-gray-500">
             {debouncedQuery.trim() || activeTag
-              ? <><strong className="text-gray-900 font-semibold">{filtered.length}개</strong> 결과</>
-              : <><strong className="text-gray-900 font-semibold">{allArticles.length}개</strong>의 아티클</>}
+              ? <><strong className="text-gray-900 font-medium">{filtered.length}개</strong> 결과</>
+              : <><strong className="text-gray-900 font-medium">{allArticles.length}개</strong>의 아티클</>}
           </p>
         </div>
 
@@ -369,7 +369,7 @@ function BlogContent() {
             <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mx-auto mb-4">
               <Search className="w-6 h-6 text-gray-300" />
             </div>
-            <p className="text-gray-900 font-semibold mb-1">검색 결과가 없습니다</p>
+            <p className="text-gray-900 font-medium mb-1">검색 결과가 없습니다</p>
             <p className="text-sm text-gray-500">다른 키워드나 카테고리를 선택해 보세요.</p>
           </div>
         )}

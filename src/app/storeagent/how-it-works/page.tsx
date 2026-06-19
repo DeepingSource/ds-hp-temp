@@ -282,7 +282,7 @@ export default function HowItWorksPage() {
                     </div>
                     <span className="text-primary-light font-mono font-bold text-lg">{step.time}</span>
                   </div>
-                  <h3 className="font-semibold text-white mb-1">{step.title}</h3>
+                  <h3 className="font-medium text-white mb-1">{step.title}</h3>
                   <p className="text-sm text-gray-300 leading-relaxed">{step.description}</p>
                 </div>
               </div>
@@ -340,7 +340,7 @@ export default function HowItWorksPage() {
                 <div className="w-16 h-16 bg-primary-lighter rounded-full flex items-center justify-center mx-auto mb-4">
                   <ItemIcon className="w-7 h-7 text-primary" aria-hidden="true" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <h3 className="font-medium text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.desc}</p>
               </div>
               );

@@ -110,7 +110,7 @@ function Source({ children }: { children: React.ReactNode }) {
     <div className="rounded-xl p-4 bg-gray-50 border border-gray-100 flex items-start gap-3 mt-6">
       <BookOpen className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
       <div className="text-xs text-gray-500 leading-relaxed">
-        <p className="font-semibold text-gray-600 mb-1">출처 · 참고자료</p>
+        <p className="font-medium text-gray-600 mb-1">출처 · 참고자료</p>
         {children}
       </div>
     </div>
@@ -122,7 +122,7 @@ function PrivacyNote({ children }: { children?: React.ReactNode }) {
     <div className="rounded-xl p-4 bg-slate-50 border border-slate-200 flex items-start gap-3 mt-4">
       <ShieldCheck className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
       <div className="text-xs text-slate-600 leading-relaxed">
-        <p className="font-semibold mb-1">개인정보 보호 안내</p>
+        <p className="font-medium mb-1">개인정보 보호 안내</p>
         {children ?? (
           <p>SAAI의 CCTV 기반 분석은 모든 영상을 실시간 익명화 처리합니다. 개인을 식별할 수 있는 데이터는 수집·저장되지 않으며, GDPR·개인정보보호법을 준수합니다.</p>
         )}

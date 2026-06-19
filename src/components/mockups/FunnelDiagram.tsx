@@ -150,7 +150,7 @@ function StageRow({
       {/* Stage header: label + count */}
       <div className="flex items-baseline justify-between mb-1">
         <span
-          className={`text-sm font-semibold ${
+          className={`text-sm font-medium ${
             isBottleneck ? 'text-primary' : 'text-gray-800'
           }`}
         >
@@ -185,7 +185,7 @@ function StageRow({
           {dropOff > 0 ? (
             <div
               className={`flex items-center gap-1 text-2xs leading-tight ${
-                isBottleneck ? 'text-primary font-semibold' : 'text-gray-400'
+                isBottleneck ? 'text-primary font-medium' : 'text-gray-400'
               }`}
             >
               <span aria-hidden="true">↘</span>

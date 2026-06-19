@@ -202,7 +202,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
             {t.categories.map((c, i) => (
               <span
                 key={c}
-                className={`px-4 py-2 rounded-full text-sm font-semibold border ${
+                className={`px-4 py-2 rounded-full text-sm font-medium border ${
                   i === 0
                     ? 'bg-primary/5 border-primary/20 text-primary'
                     : 'bg-slate-50 border-gray-100 text-gray-500'
@@ -219,7 +219,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-16 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.coverageEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.coverageEyebrow}</p>
             <h2 className="text-3xl font-bold text-gray-900 mb-4 break-keep">{t.coverageHeading}</h2>
             <p className="text-sm text-gray-500 break-keep">
               {t.coverageNotePre}
@@ -232,7 +232,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl border border-gray-100 bg-slate-50 hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-[background-color,box-shadow] duration-300">
                   <div className="flex items-center gap-3 sm:w-44 shrink-0">
                     <span className="text-sm font-bold text-gray-900">{item.date}</span>
-                    <span className="text-xs font-semibold text-primary px-2.5 py-1 rounded-full bg-primary/5">{item.category}</span>
+                    <span className="text-xs font-medium text-primary px-2.5 py-1 rounded-full bg-primary/5">{item.category}</span>
                   </div>
                   <div className="flex-1">
                     <p className="text-base font-bold text-gray-900 break-keep mb-1">{item.title}</p>
@@ -249,7 +249,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.badgesEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.badgesEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.badgesHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.badgesSub}
@@ -290,7 +290,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
                 type="button"
                 disabled
                 aria-disabled="true"
-                className="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-gray-500 text-sm font-semibold cursor-not-allowed"
+                className="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-gray-500 text-sm font-medium cursor-not-allowed"
               >
                 <FileText className="w-4 h-4" /> {t.comingSoon}
               </button>

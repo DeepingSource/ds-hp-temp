@@ -48,13 +48,13 @@ export default function PartnerGrid({ locale }: { locale: Locale }) {
 
         <div className="flex items-center gap-4 mb-8">
           <div className="flex-1 h-px bg-gray-200" />
-          <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 shrink-0">{d.partners}</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-gray-500 shrink-0">{d.partners}</p>
           <div className="flex-1 h-px bg-gray-200" />
         </div>
         <StaggerContainer className="flex flex-wrap justify-center gap-2 sm:gap-3">
           {trustedBrands.map((brand) => (
             <StaggerItem key={brand}>
-              <span className="inline-flex items-center px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-700 select-none">
+              <span className="inline-flex items-center px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 select-none">
                 {brand}
               </span>
             </StaggerItem>

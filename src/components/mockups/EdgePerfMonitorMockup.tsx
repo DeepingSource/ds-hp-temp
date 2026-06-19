@@ -137,7 +137,7 @@ function Gauge({
         <span className="font-mono text-3xs text-gray-500">{unit}</span>
       </div>
       <div className="mt-1 flex items-baseline gap-1">
-        <span className="font-mono text-2xl font-semibold tabular-nums text-white">
+        <span className="font-mono text-2xl font-bold tabular-nums text-white">
           {value}
         </span>
       </div>
@@ -211,7 +211,7 @@ export default function EdgePerfMonitorMockup({
       <div className="flex items-center justify-between">
         <div>
           <SaaiHeader name="anonymizer" tone="dark" className="mb-1.5" />
-          <h3 className="font-mono text-sm font-semibold text-white">
+          <h3 className="font-mono text-sm font-medium text-white">
             {t.title}
           </h3>
           <p className="font-mono text-3xs text-gray-400">{t.subtitle}</p>

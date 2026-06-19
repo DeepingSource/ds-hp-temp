@@ -272,7 +272,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.cultureEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.cultureEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.cultureHeading}</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">
               {t.cultureSub}
@@ -301,7 +301,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.benefitsEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.benefitsEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.benefitsHeading}</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">
               {t.benefitsSub}
@@ -330,7 +330,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.rolesHeading}</h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto break-keep">
               {t.rolesNotePre}<strong className="text-gray-500">{t.rolesNoteIllustrative}</strong>{t.rolesNotePost}
@@ -365,7 +365,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.processEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.processEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.processHeading}</h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
               {t.processSub}

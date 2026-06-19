@@ -505,7 +505,7 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }, { name: crumb('case-studies', locale), path: '/resources/case-studies' }]} locale={locale} tone="dark" className="mb-6" />
-          <p className="text-sm font-semibold text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroTitle}
           </h1>
@@ -554,8 +554,8 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
       <section className="bg-amber-50/60 border-b border-amber-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
           <p className="text-xs text-amber-800 leading-relaxed break-keep">
-            <span className="font-semibold">{t.disclaimerMeasured}</span>{t.disclaimerMeasuredRest}
-            <span className="font-semibold">{t.disclaimerIllustrative}</span>{t.disclaimerIllustrativeRest}
+            <span className="font-medium">{t.disclaimerMeasured}</span>{t.disclaimerMeasuredRest}
+            <span className="font-medium">{t.disclaimerIllustrative}</span>{t.disclaimerIllustrativeRest}
           </p>
         </div>
       </section>
@@ -573,7 +573,7 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
                     {caseSteps[ci]} {c.stepTitle}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
                     <Icon className="w-4 h-4" />
                     {c.industry}
                   </span>
@@ -600,11 +600,11 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
                 {/* Before / After */}
                 <div className="grid sm:grid-cols-2 gap-3 mb-6">
                   <div className="rounded-lg bg-gray-50 p-4">
-                    <p className="text-xs font-semibold text-gray-500 mb-1.5">{t.beforeLabel}</p>
+                    <p className="text-xs font-medium text-gray-500 mb-1.5">{t.beforeLabel}</p>
                     <p className="text-sm text-gray-700 leading-relaxed break-keep">{c.before}</p>
                   </div>
                   <div className="rounded-lg bg-primary/5 p-4">
-                    <p className="text-xs font-semibold text-primary mb-1.5">{t.afterLabel}</p>
+                    <p className="text-xs font-medium text-primary mb-1.5">{t.afterLabel}</p>
                     <p className="text-sm text-gray-800 leading-relaxed break-keep">{c.after}</p>
                   </div>
                 </div>
@@ -627,7 +627,7 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
                           </span>
                         </div>
                         <p className="text-2xs text-gray-500 mb-0.5">{m.label}</p>
-                        <p className="text-sm font-semibold text-gray-900 leading-snug break-keep">{m.value}</p>
+                        <p className="text-sm font-medium text-gray-900 leading-snug break-keep">{m.value}</p>
                       </div>
                     );
                   })}
@@ -664,7 +664,7 @@ export default function CaseStudiesView({ locale }: { locale: Locale }) {
       {/* CTA */}
       <section className="py-20 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {t.ctaHeading}
           </h2>

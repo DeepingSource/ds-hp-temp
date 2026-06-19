@@ -20,7 +20,7 @@ export default function PrivacyPage() {
               <p>
                 회사는 관계법령에서 규정하고 있는 책임과 의무를 준수하고 실천하기 위해 최선의 노력을 하고 있습니다.
               </p>
-              <p className="font-semibold text-gray-900 mt-6">시행일: 2026-03-10</p>
+              <p className="font-medium text-gray-900 mt-6">시행일: 2026-03-10</p>
             </section>
 
             <section className="space-y-4">
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-gray-900">제5조 개인정보의 제3자 제공</h2>
               <p>회사는 정보주체의 개인정보를 &apos;제1조 개인정보의 수집 및 이용에 관한 안내&apos;에서 명시한 범위 내에서만 처리하며, 이용자의 별도 사전동의, 관련법령의 특별한 요구가 발생하는 경우에만 개인정보를 제3자에게 제공합니다.</p>
-              <p className="font-semibold text-gray-700 mt-2">관련법령에 근거한 사전동의 없는 제3자 제공안내:</p>
+              <p className="font-medium text-gray-700 mt-2">관련법령에 근거한 사전동의 없는 제3자 제공안내:</p>
               <ol className="list-decimal pl-5 space-y-1 text-gray-600">
                 <li>통계작성, 학술연구 또는 시장조사를 위하여 필요한 경우로서 특정 개인을 식별할 수 없는 형태로 제공하는 경우</li>
                 <li>관계법령에 의하여 국가기관으로부터 요구받은 경우</li>
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-gray-900">제8조 이용자 및 법정대리인의 권리와 그 행사 방법</h2>
               <p>회사는 이용자(또는 법정대리인)의 개인정보 권리를 보호하기 위해 아래와 같이 행사 방법을 마련하고 있습니다.</p>
 
-              <p className="font-semibold text-gray-700 mt-4">이용자의 권리 및 행사방법:</p>
+              <p className="font-medium text-gray-700 mt-4">이용자의 권리 및 행사방법:</p>
               <ol className="list-decimal pl-5 space-y-1 text-gray-600">
                 <li>서면, 전자우편 등을 통하여 개인정보의 처리 정지 및 삭제를 요구할 수 있습니다.</li>
                 <li>회사는 개인정보의 오류 등에 대한 정정 또는 삭제를 요청한 경우에는 정정 또는 삭제를 완료하기 전까지 당해 개인정보를 이용하거나 제공하지 않습니다.</li>
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
                 <li>회사는 이용자 권리에 따른 열람의 요구, 정정·삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인인지를 확인합니다.</li>
               </ol>
 
-              <p className="font-semibold text-gray-700 mt-4">법정대리인의 권리 및 행사방법:</p>
+              <p className="font-medium text-gray-700 mt-4">법정대리인의 권리 및 행사방법:</p>
               <ol className="list-decimal pl-5 space-y-1 text-gray-600">
                 <li>이용자의 법정대리인이나 위임을 받은 자 등 대리인이 이용자의 권리(열람, 정정, 처리정지, 삭제)를 행사하는 경우 개인정보보호법 시행규칙 별지 제11호 서식에 따른 위임장을 제출해야 합니다.</li>
                 <li>회사는 이용자 권리에 따른 열람의 요구, 정정·삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 정당한 대리인인지를 확인합니다.</li>
@@ -109,7 +109,7 @@ export default function PrivacyPage() {
               <p>회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 이용자의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보보호책임자를 지정하고 있습니다.</p>
 
               <div className="bg-gray-50 p-4 rounded-2xl mt-2 text-gray-700">
-                <p className="font-semibold mb-2">개인정보보호 책임자</p>
+                <p className="font-medium mb-2">개인정보보호 책임자</p>
                 <p>성명: 김태훈</p>
                 <p>직책: 대표이사</p>
                 <p>연락처: <a href="mailto:contact@deepingsource.io">contact@deepingsource.io</a></p>
@@ -117,29 +117,29 @@ export default function PrivacyPage() {
 
               <p className="mt-4">이용자는 서비스를 이용하면서 발생한 모든 개인정보보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보보호책임자에게 문의하실 수 있습니다. 회사는 이용자의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.</p>
 
-              <p className="font-semibold text-gray-700 mt-6">권익침해 관련 도움받을 수 있는 기관:</p>
+              <p className="font-medium text-gray-700 mt-6">권익침해 관련 도움받을 수 있는 기관:</p>
               <div className="space-y-4 mt-3">
                 <div className="bg-gray-50 p-4 rounded-2xl text-sm text-gray-600 space-y-1">
-                  <p className="font-semibold text-gray-700">1. 개인정보 침해신고센터 (한국인터넷진흥원 운영)</p>
+                  <p className="font-medium text-gray-700">1. 개인정보 침해신고센터 (한국인터넷진흥원 운영)</p>
                   <p>소관업무: 개인정보 침해사실 신고, 상담 신청</p>
                   <p>홈페이지: privacy.kisa.or.kr</p>
                   <p>전화: (국번없이) 118</p>
                   <p>주소: (58324) 전남 나주시 진흥길 9(빛가람동 301-2) 3층 개인정보침해신고센터</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-2xl text-sm text-gray-600 space-y-1">
-                  <p className="font-semibold text-gray-700">2. 개인정보 분쟁조정위원회</p>
+                  <p className="font-medium text-gray-700">2. 개인정보 분쟁조정위원회</p>
                   <p>소관업무: 개인정보 분쟁조정신청, 집단분쟁조정 (민사적 해결)</p>
                   <p>홈페이지: www.kopico.go.kr</p>
                   <p>전화: (국번없이) 1833-6972</p>
                   <p>주소: (03171) 서울특별시 종로구 세종대로 209 정부서울청사 4층</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-2xl text-sm text-gray-600 space-y-1">
-                  <p className="font-semibold text-gray-700">3. 대검찰청 사이버범죄수사단</p>
+                  <p className="font-medium text-gray-700">3. 대검찰청 사이버범죄수사단</p>
                   <p>전화: 02-3480-3573</p>
                   <p>홈페이지: www.spo.go.kr</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-2xl text-sm text-gray-600 space-y-1">
-                  <p className="font-semibold text-gray-700">4. 경찰청 사이버안전국</p>
+                  <p className="font-medium text-gray-700">4. 경찰청 사이버안전국</p>
                   <p>전화: 182</p>
                   <p>홈페이지: cyberbureau.police.go.kr</p>
                 </div>

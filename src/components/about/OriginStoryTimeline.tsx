@@ -176,7 +176,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
       {/* 콘텐츠 */}
       <div className="flex-1 pb-2 pt-0.5">
         <div className="flex items-center gap-3 flex-wrap mb-3">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-gray-200 bg-gray-50 text-gray-600">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border border-gray-200 bg-gray-50 text-gray-600">
             {item.phase}
           </span>
           <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>

@@ -13,7 +13,7 @@ export default function PricingSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className={`text-center mb-14 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">Pricing</p>
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Pricing</p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">
             매장에 맞는 플랜을 선택하세요
           </h2>
@@ -101,7 +101,7 @@ export default function PricingSection() {
 
                 <Link
                   href={plan.ctaLink}
-                  className={`block w-full text-center py-3.5 rounded-xl font-semibold transition-[background-color,box-shadow] duration-200 text-sm ${isPopular
+                  className={`block w-full text-center py-3.5 rounded-xl font-medium transition-[background-color,box-shadow] duration-200 text-sm ${isPopular
                       ? 'bg-white text-gray-900 hover:bg-gray-100 hover:shadow-lg hover:shadow-white/20'
                       : 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-lg'
                     }`}

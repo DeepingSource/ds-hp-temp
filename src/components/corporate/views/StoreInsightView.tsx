@@ -210,7 +210,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             <br className="hidden sm:block" />
             <span className="text-primary">{t.heroTitle[1]}</span>
           </h1>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">
             {solutionTaglines.insight[locale]}
           </p>
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
@@ -232,7 +232,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 lg:mb-14 max-w-2xl mx-auto">
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.dashEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.dashEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
               {t.dashTitle}
             </h2>
@@ -298,7 +298,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
                   <div className="w-12 h-12 rounded-xl bg-primary-lighter flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="text-xs font-semibold text-gray-500 mb-1">STEP 0{i + 1}</span>
+                  <span className="text-xs font-medium text-gray-500 mb-1">STEP 0{i + 1}</span>
                   <p className="text-lg font-bold text-gray-900 mb-1">{k.label}</p>
                   <p className="text-sm text-gray-500 break-keep">{k.desc}</p>
                 </div>
@@ -322,7 +322,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="card bg-white">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Before</p>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Before</p>
               <ul className="space-y-3">
                 {t.before.map((line) => (
                   <li key={line} className="flex items-start gap-2 text-sm text-gray-500 break-keep">
@@ -333,7 +333,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
               </ul>
             </div>
             <div className="card border-primary/20">
-              <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-4">After</p>
+              <p className="text-xs font-medium text-primary uppercase tracking-wider mb-4">After</p>
               <ul className="space-y-3">
                 {t.after.map((line) => (
                   <li key={line} className="flex items-start gap-2 text-sm text-gray-700 break-keep">

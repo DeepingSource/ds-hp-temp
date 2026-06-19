@@ -25,7 +25,7 @@ export const commonFaqs: FAQItem[] = [
           <li><strong>4. 첫 리포트 수신 및 운영 시작 (가입 후 D+7)</strong></li>
         </ul>
         기존 장비를 그대로 활용하므로 교체 부담 없이 빠르게 시작할 수 있습니다.<br /><br />
-        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">무료 상담 신청하기 &rarr;</Link>
+        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-medium">무료 상담 신청하기 &rarr;</Link>
       </>
     ),
   },
@@ -50,7 +50,7 @@ export const commonFaqs: FAQItem[] = [
     answer: (locale) => (
       <>
         무료 상담 신청 후 담당자가 결제 방법을 안내드립니다. 카드 결제, 계좌이체, 세금계산서 발행 등 기업 환경에 맞는 다양한 방법을 지원합니다.<br /><br />
-        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">도입 문의하기 &rarr;</Link>
+        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-medium">도입 문의하기 &rarr;</Link>
       </>
     ),
   },
@@ -75,8 +75,8 @@ export const commonFaqs: FAQItem[] = [
     answer: (locale) => (
       <>
         네, 다점포 운영 고객님이나 프랜차이즈 본사를 위한 전용 요금제(최대 30% 시너지 할인)를 제공합니다. 하나의 계정으로 여러 매장을 통합 관리할 수도 있습니다.<br /><br />
-        <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold text-sm mr-4">견적 시뮬레이션 해보기 &rarr;</Link>
-        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold text-sm">맞춤 견적 상담하기 &rarr;</Link>
+        <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-medium text-sm mr-4">견적 시뮬레이션 해보기 &rarr;</Link>
+        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-medium text-sm">맞춤 견적 상담하기 &rarr;</Link>
       </>
     ),
   },
@@ -141,7 +141,7 @@ export const storeCareFaqs: FAQItem[] = [
     answer: (locale) => (
       <>
         AI 분석 장치 1회 비용 5만 원만 내시면 돼요. 그 뒤는 월 구독료만 납부하세요. (매장 크기에 따라 장치가 늘어날 수 있어요.)<br /><br />
-        <Link href={localeHref(locale, '/pricing')} className="text-primary hover:underline font-semibold">StoreCare 요금제 자세히 보기 &rarr;</Link>
+        <Link href={localeHref(locale, '/pricing')} className="text-primary hover:underline font-medium">StoreCare 요금제 자세히 보기 &rarr;</Link>
       </>
     ),
   },
@@ -150,7 +150,7 @@ export const storeCareFaqs: FAQItem[] = [
     answer: (locale) => (
       <>
         네, 여러 매장을 운영하시면 통합 대시보드에서 한눈에 비교할 수 있어요. 어떤 매장이 청결이 잘 되고 있는지, 어디에 집중해야 할지 바로 알 수 있어요. 다점포 할인도 있어요.<br /><br />
-        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-semibold">다점포 상담하기 &rarr;</Link>
+        <Link href={localeHref(locale, '/contact')} className="text-primary hover:underline font-medium">다점포 상담하기 &rarr;</Link>
       </>
     ),
   },
@@ -179,8 +179,8 @@ export const storeInsightFaqs: FAQItem[] = [
     answer: (locale) => (
       <>
         분석할 공간의 크기, 카메라 환경, 필요한 분석 유형에 따라 비용이 산정되는 엔터프라이즈 맞춤 솔루션입니다.<br /><br />
-        <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-semibold mr-4 text-sm">월간 요금 시뮬레이션 &rarr;</Link>
-        <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="text-primary hover:underline font-semibold text-sm">맞춤 상담하기 &rarr;</Link>
+        <Link href={localeHref(locale, '/pricing/simulator')} className="text-primary hover:underline font-medium mr-4 text-sm">월간 요금 시뮬레이션 &rarr;</Link>
+        <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="text-primary hover:underline font-medium text-sm">맞춤 상담하기 &rarr;</Link>
       </>
     ),
   },

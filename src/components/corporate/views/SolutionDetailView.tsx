@@ -214,7 +214,7 @@ export default function SolutionDetailView({
 
           {/* 문제 배경 */}
           <div>
-            <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.problemEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.problemEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5 break-keep">
               {backgroundHeading}
             </h2>
@@ -225,7 +225,7 @@ export default function SolutionDetailView({
 
           {/* 원인 분석 */}
           <div>
-            <p className="text-sm font-semibold text-gray-500 mb-5 tracking-wider uppercase">{t.causesEyebrow}</p>
+            <p className="text-sm font-medium text-gray-500 mb-5 tracking-wider uppercase">{t.causesEyebrow}</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {sol.causes.map((cause, i) => (
                 <div key={i} className="flex gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100">
@@ -245,7 +245,7 @@ export default function SolutionDetailView({
 
           {/* SAAI 솔루션 단계 */}
           <div>
-            <p className="text-sm font-semibold text-primary mb-5 tracking-wider uppercase">{t.solutionEyebrow}</p>
+            <p className="text-sm font-medium text-primary mb-5 tracking-wider uppercase">{t.solutionEyebrow}</p>
             <h2 className="text-2xl font-bold text-gray-900 mb-8 break-keep">{t.solutionHeading}</h2>
             <div className="space-y-4">
               {sol.steps.map((step, i) => {
@@ -274,7 +274,7 @@ export default function SolutionDetailView({
 
           {/* 기대 결과 */}
           <div>
-            <p className="text-sm font-semibold text-gray-500 mb-5 tracking-wider uppercase">{t.resultsEyebrow}</p>
+            <p className="text-sm font-medium text-gray-500 mb-5 tracking-wider uppercase">{t.resultsEyebrow}</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {sol.results.map((res, i) => (
                 <div key={i} className={`flex flex-col items-center text-center p-5 rounded-2xl ${industryColors.bg} border ${industryColors.border}`}>
@@ -309,7 +309,7 @@ export default function SolutionDetailView({
           {/* 관련 용어 */}
           {relatedTermObjects.length > 0 && (
             <div>
-              <p className="text-sm font-semibold text-gray-500 mb-5 tracking-wider uppercase">{t.relatedTermsEyebrow}</p>
+              <p className="text-sm font-medium text-gray-500 mb-5 tracking-wider uppercase">{t.relatedTermsEyebrow}</p>
               <div className="flex flex-wrap gap-2">
                 {relatedTermObjects.map((term) => (
                   <Link
@@ -328,7 +328,7 @@ export default function SolutionDetailView({
           {/* 같은 업종 다른 솔루션 */}
           {(sameSolutions.length > 0 || relatedSolutionObjects.length > 0) && (
             <div>
-              <p className="text-sm font-semibold text-gray-500 mb-5 tracking-wider uppercase">
+              <p className="text-sm font-medium text-gray-500 mb-5 tracking-wider uppercase">
                 {sameSolutions.length > 0 ? t.sameIndustryEyebrow(industryLabel) : t.relatedSolutionsEyebrow}
               </p>
               <div className="grid sm:grid-cols-2 gap-4">

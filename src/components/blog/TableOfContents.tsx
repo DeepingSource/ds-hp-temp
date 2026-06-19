@@ -37,7 +37,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
 
   return (
     <nav className="hidden lg:block sticky top-24 w-56 shrink-0" aria-label="목차">
-      <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+      <div className="flex items-center gap-2 text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
         <List className="w-3.5 h-3.5" />
         목차
       </div>
@@ -76,7 +76,7 @@ export function MobileTOC({ headings }: { headings: Heading[] }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center justify-between w-full px-4 py-3 bg-gray-50 text-sm font-semibold text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
+        className="flex items-center justify-between w-full px-4 py-3 bg-gray-50 text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
         aria-expanded={open}
         aria-controls="mobile-toc-list"
       >
