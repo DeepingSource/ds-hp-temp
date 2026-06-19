@@ -1,5 +1,3 @@
-'use client';
-
 import { Building2, Shield, Brain, Store, Landmark, Music } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
 
@@ -153,50 +151,6 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
           </div>
         </div>
       </div>
-
-      {/* CSS animations */}
-      <style jsx>{`
-        .vision-dash-h {
-          background-image: repeating-linear-gradient(
-            90deg,
-            currentColor 0,
-            currentColor 4px,
-            transparent 4px,
-            transparent 8px
-          );
-          background-size: 8px 1px;
-          animation: dashMoveH 1.5s linear infinite;
-        }
-        .vision-dash-v {
-          background-image: repeating-linear-gradient(
-            180deg,
-            currentColor 0,
-            currentColor 4px,
-            transparent 4px,
-            transparent 8px
-          );
-          background-size: 1px 8px;
-          animation: dashMoveV 1.5s linear infinite;
-        }
-        .vision-pulse {
-          animation: visionPulse 3s ease-in-out infinite;
-        }
-        @keyframes dashMoveH {
-          to { background-position: 8px 0; }
-        }
-        @keyframes dashMoveV {
-          to { background-position: 0 8px; }
-        }
-        @keyframes visionPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3); }
-          50% { box-shadow: 0 0 20px 4px rgba(59, 130, 246, 0.15); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .vision-dash-h, .vision-dash-v, .vision-pulse {
-            animation: none;
-          }
-        }
-      `}</style>
     </div>
   );
 }

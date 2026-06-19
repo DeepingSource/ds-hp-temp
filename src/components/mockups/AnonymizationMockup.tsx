@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import Image from 'next/image';
 import { ShieldCheck, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -52,7 +52,7 @@ function CamOverlay() {
   );
 }
 
-function OriginalScene() {
+const OriginalScene = memo(function OriginalScene() {
   return (
     <div className="absolute inset-0">
       <SceneImage />
@@ -61,9 +61,9 @@ function OriginalScene() {
       <CamOverlay />
     </div>
   );
-}
+});
 
-function AnonymizedScene() {
+const AnonymizedScene = memo(function AnonymizedScene() {
   return (
     <div className="absolute inset-0">
       {/* Whole-frame light blur baseline (privacy filter applied to the feed) */}
@@ -118,7 +118,7 @@ function AnonymizedScene() {
       <CamOverlay />
     </div>
   );
-}
+});
 
 interface Props { active?: boolean; locale?: Locale; }
 

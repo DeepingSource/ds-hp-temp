@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CorporateHero from './CorporateHero';
 import ProblemBeat from './ProblemBeat';
@@ -11,13 +12,21 @@ import MasterPair from './MasterPair';
 import SpacesShowcase from './SpacesShowcase';
 import PartnerGrid from './PartnerGrid';
 import PurposeBand from './PurposeBand';
-import SpatialTrajectoryMockup from '@/components/mockups/SpatialTrajectoryMockup';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { reinventOffline } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 
 /** basePath prefix for CSS background images (set for the GitHub Pages export). */
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+/**
+ * Below-the-fold framer-motion mockup — the only framer importer on this page.
+ * Loaded via next/dynamic (default SSR preserved for SEO prose) so framer's
+ * hydration JS is deferred off the initial/preloaded homepage bundle.
+ */
+const SpatialTrajectoryMockup = dynamic(() => import('@/components/mockups/SpatialTrajectoryMockup'), {
+  loading: () => <div className="h-[400px] animate-pulse rounded-2xl bg-gray-100" />,
+});
 
 /**
  * HomeView — shared home composition (PR-01).
