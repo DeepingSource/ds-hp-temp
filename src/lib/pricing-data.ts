@@ -73,6 +73,21 @@ export const plans: Plan[] = [
     cta: '무료 상담 신청',
     ctaLink: '/contact?plan=premium',
   },
+  {
+    id: 'enterprise',
+    name: '엔터프라이즈',
+    price: '맞춤 견적',
+    description: '카메라 AI 분석까지, 다점포·체인 맞춤 운영',
+    targetUser: '카메라 AI 분석·다점포 통합이 필요한 사업자',
+    features: [
+      { text: 'AI 비서 모든 기능', included: true },
+      { text: '카메라 AI 분석', included: true },
+      { text: '전담 매니저', included: true },
+      { text: '맞춤 온보딩·통합 지원', included: true },
+    ],
+    cta: '문의하기',
+    ctaLink: '/contact?plan=enterprise',
+  },
 ];
 
 /** 일일 환산 가격 앵커 (마케팅 표시용) */
