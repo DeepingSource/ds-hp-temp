@@ -38,9 +38,9 @@ const ko: Copy = {
   categoryNote:
     '익명화 위에서 인식 · 공간 · 흐름 · 변화 · 생성으로 — 각 모델은 단독으로, 또는 파이프라인 단계로 조합해 공간 지능을 만듭니다.',
   models: [
-    { name: 'face-anon', promise: '프레임 내 얼굴 영역 비식별화', stage: 'Live' },
-    { name: 'body-anon', promise: '체형 식별 신호 비식별화', stage: 'Live' },
-    { name: 'plate-anon', promise: '차량 번호판 영역 비식별화', stage: 'Live' },
+    { name: 'face-anon', promise: '프레임 내 얼굴 영역 익명화', stage: 'Live' },
+    { name: 'body-anon', promise: '체형 식별 신호 익명화', stage: 'Live' },
+    { name: 'plate-anon', promise: '차량 번호판 영역 익명화', stage: 'Live' },
     { name: 'person-detect', promise: '프레임 내 사람 영역 검출', stage: 'Live' },
     { name: 'object-detect', promise: '일반 객체 영역 검출', stage: 'Live' },
     { name: 'pose-estimate', promise: '자세·키포인트 추정', stage: 'Live' },

@@ -195,7 +195,7 @@ export default function FiveQuestionsMockup({
             <div className="flex items-baseline gap-2">
               <span
                 aria-hidden="true"
-                className="text-2xl font-extrabold leading-none text-primary"
+                className="text-2xl font-bold leading-none text-primary"
               >
                 Q{i + 1}
               </span>

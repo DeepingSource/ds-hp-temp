@@ -256,7 +256,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
             <Briefcase className="w-3.5 h-3.5" />
             {t.badge}
           </HeroBadge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] mb-6 break-keep">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-6 break-keep">
             {t.heroMaster}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-primary-light">
               {t.heroMasterAccent}
@@ -339,7 +339,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
           <div className="space-y-10">
             {t.teams.map((group) => (
               <div key={group.team}>
-                <h3 className="text-sm font-black text-primary mb-4 tracking-wide flex items-center gap-2">
+                <h3 className="text-sm font-bold text-primary mb-4 tracking-wide flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   {group.team}
                 </h3>
@@ -381,7 +381,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
                       <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <span className="text-2xl font-black text-gray-200">{p.step}</span>
+                      <span className="text-2xl font-bold text-gray-200">{p.step}</span>
                     </div>
                     <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
                     <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>

@@ -169,7 +169,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
           transition={reducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeOut' as const, delay: 0.1 + index * 0.08 }}
           className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 group-hover:border-gray-400 flex items-center justify-center transition-colors duration-300 shadow-sm"
         >
-          <span className="text-xs font-black text-gray-500">{String(index + 1).padStart(2, '0')}</span>
+          <span className="text-xs font-bold text-gray-500">{String(index + 1).padStart(2, '0')}</span>
         </motion.div>
       </div>
 

@@ -59,7 +59,7 @@ export default function PricingSection() {
                 )}
 
                 <div className="mb-1">
-                  <span className={`text-4xl font-extrabold tracking-tight ${isPopular ? 'text-white' : 'text-gray-900'}`}>
+                  <span className={`text-4xl font-bold tracking-tight ${isPopular ? 'text-white' : 'text-gray-900'}`}>
                     {plan.price}
                   </span>
                   {plan.priceNote && (

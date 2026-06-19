@@ -22,23 +22,23 @@ const C: Record<Locale, {
     nodes: [
       { label: 'CCTV 영상', sub: '원본 영상 입력' },
       { label: 'AI 익명화', sub: 'PII 실시간 제거' },
-      { label: '비식별 데이터', sub: '행동 속성 보존' },
+      { label: '익명화 데이터', sub: '행동 속성 보존' },
       { label: 'ML 모델 학습', sub: '원본 없이 학습' },
       { label: '인사이트 출력', sub: '실행 가능한 분석' },
     ],
     coreLabel: '핵심:',
-    coreBody: 'AI는 원본 영상에서 개인 식별 정보를 제거한 비식별 데이터만 학습에 사용합니다. 원본 영상은 장치 밖으로 나가지 않으며, ML 모델은 비식별 데이터로 실제 사용 가능한 수준으로 학습됩니다.',
+    coreBody: 'AI는 원본 영상에서 개인 식별 정보를 제거한 익명화 데이터만 학습에 사용합니다. 원본 영상은 장치 밖으로 나가지 않으며, ML 모델은 익명화 데이터로 실제 사용 가능한 수준으로 학습됩니다.',
   },
   en: {
     nodes: [
       { label: 'CCTV Footage', sub: 'Raw video input' },
       { label: 'AI Anonymization', sub: 'Real-time PII removal' },
-      { label: 'De-identified Data', sub: 'Behavioral attributes kept' },
+      { label: 'Anonymized Data', sub: 'Behavioral attributes kept' },
       { label: 'ML Model Training', sub: 'Trained without raw video' },
       { label: 'Insight Output', sub: 'Actionable analysis' },
     ],
     coreLabel: 'Key:',
-    coreBody: 'The AI trains only on de-identified data, with personal identifiers stripped from the raw footage. Raw video never leaves the device, and the ML model reaches production-grade accuracy on de-identified data alone.',
+    coreBody: 'The AI trains only on anonymized data, with personal identifiers stripped from the raw footage. Raw video never leaves the device, and the ML model reaches production-grade accuracy on anonymized data alone.',
   },
   jp: {
     nodes: [

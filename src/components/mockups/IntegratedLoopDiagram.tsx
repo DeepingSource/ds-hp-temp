@@ -48,10 +48,10 @@ const COPY: Record<Locale, Copy> = {
     heading: '세 시간 축이 하나의 운영 루프로 닫힙니다',
     lead: 'Insight가 어제를 정리합니다. Care가 지금을 알립니다. Agent가 다음을 짚습니다. 운영자의 행동 결과가 되먹임이 되어 셋을 다 더 똑똑하게 만듭니다.',
     nodes: {
-      cctv: { label: 'CCTV', tip: '매장 영상 신호 — 입력 시점에 비식별화됩니다.' },
+      cctv: { label: 'CCTV', tip: '매장 영상 신호 — 입력 시점에 익명화됩니다.' },
       pos: { label: 'POS', tip: '거래·매출 신호 — 개인 식별 없이 집계됩니다.' },
       ext: { label: '외부 컨텍스트', tip: '날씨·상권·이벤트 등 외부 맥락 신호.' },
-      seal: { label: 'SEAL + Anonymizer', tip: '입력 시점 비식별화 — 원본은 저장하지 않습니다.' },
+      seal: { label: 'SEAL + Anonymizer', tip: '입력 시점 익명화 — 원본은 저장하지 않습니다.' },
       hub: { label: '익명화 이벤트 허브', tip: '세 제품이 공유하는 단일 익명 이벤트 스트림.' },
       insight: { label: 'Insight', tip: '어제 · 왜 — 지난 패턴을 정리해 원인을 설명합니다.' },
       care: { label: 'Care', tip: '지금 — 실시간 상황을 운영자에게 알립니다.' },

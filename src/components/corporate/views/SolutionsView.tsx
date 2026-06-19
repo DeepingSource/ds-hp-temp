@@ -116,7 +116,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroTitle[0]}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-400">
               {t.heroTitle[1]}
@@ -193,7 +193,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                       className="group flex flex-col gap-3 p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                     >
                       {/* 임팩트 수치 */}
-                      <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-black ${colors.bg} ${colors.text}`}>
+                      <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-bold ${colors.bg} ${colors.text}`}>
                         {sol.impact} {c?.impactLabel ?? sol.impactLabel}
                       </div>
 

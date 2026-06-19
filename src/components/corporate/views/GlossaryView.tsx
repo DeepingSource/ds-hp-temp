@@ -74,7 +74,7 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
             <Library className="w-3.5 h-3.5" />
             {c.eyebrow}
           </HeroBadge>
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {c.heading}
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">

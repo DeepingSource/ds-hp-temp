@@ -171,7 +171,7 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
             <Calculator className="w-8 h-8 text-primary mb-3 opacity-80" />
             <p className="text-sm text-gray-300 font-medium mb-2">{t.simResultLabel}</p>
             <div className="mb-2">
-              <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+              <span className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
                 {estimatedCost > 0 ? estimatedCost.toLocaleString() : '0'}
               </span>
               <span className="text-lg text-gray-300 ml-1">{t.won}</span>

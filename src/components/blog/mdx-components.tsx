@@ -19,7 +19,7 @@ function extractText(node: React.ReactNode): string {
 function Stat({ label, value, change }: { label: string; value: string; change?: string }) {
   return (
     <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 text-center">
-      <p className="text-2xl font-extrabold text-gray-900">{value}</p>
+      <p className="text-2xl font-bold text-gray-900">{value}</p>
       <p className="text-sm font-medium text-gray-600 mt-1">{label}</p>
       {change && <p className="text-xs text-primary mt-0.5">{change}</p>}
     </div>

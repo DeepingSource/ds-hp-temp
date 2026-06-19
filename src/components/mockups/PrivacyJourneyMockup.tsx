@@ -198,14 +198,14 @@ export default function PrivacyJourneyMockup({
               >
                 <title id="pj-frame-title">
                   {locale === 'ko'
-                    ? 'CCTV 프레임의 수명: 포착 · 비식별화 · 신호 추출 · 폐기'
+                    ? 'CCTV 프레임의 수명: 포착 · 익명화 · 신호 추출 · 폐기'
                     : locale === 'jp'
                       ? 'CCTVフレームの寿命：取得・匿名化・信号抽出・破棄'
                       : 'Lifecycle of a CCTV frame: capture, anonymize, extract, discard'}
                 </title>
                 <desc id="pj-frame-desc">
                   {locale === 'ko'
-                    ? '추상화된 CCTV 장면에서 얼굴은 회색 원으로 표현됩니다. 비식별화 후 신호 6종만 추출되고 원본 프레임은 픽셀 단위로 소멸합니다.'
+                    ? '추상화된 CCTV 장면에서 얼굴은 회색 원으로 표현됩니다. 익명화 후 신호 6종만 추출되고 원본 프레임은 픽셀 단위로 소멸합니다.'
                     : locale === 'jp'
                       ? '抽象化されたCCTV映像で顔は灰色の円で表されます。匿名化後に6種の信号のみ抽出され、原本フレームはピクセル単位で消滅します。'
                       : 'In an abstract CCTV scene, faces are gray circles. After anonymization only six signals are extracted and the original frame dissolves pixel by pixel.'}

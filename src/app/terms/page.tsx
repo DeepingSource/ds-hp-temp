@@ -23,7 +23,7 @@ export default function TermsPage() {
               <p>본 약관에서 사용되는 주요한 용어의 정의는 다음과 같습니다.</p>
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>회사:</strong> 서비스를 제공하는 사업자를 의미합니다.</li>
-                <li><strong>서비스:</strong> STORECARE, STOREINSIGHT, STOREAGENT 등 회사가 제공하는 AI 기반 오프라인 매장 방문자 데이터 비식별 처리, 동선·행동 정보 수집 및 분석 서비스</li>
+                <li><strong>서비스:</strong> STORECARE, STOREINSIGHT, STOREAGENT 등 회사가 제공하는 AI 기반 오프라인 매장 방문자 데이터 익명화 처리, 동선·행동 정보 수집 및 분석 서비스</li>
                 <li><strong>이용자:</strong> 이 약관에 따라 회사와 서비스 이용계약을 체결하고, 회사가 제공하는 서비스를 이용하는 개인 또는 기업을 의미합니다.</li>
                 <li><strong>이용계약:</strong> 서비스 이용과 관련하여 서비스와 이용자 간에 체결하는 계약을 말합니다.</li>
               </ul>

@@ -227,13 +227,13 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">
               <p className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">{t.heroEyebrowCompany}</p>
-              <p className="text-2xl sm:text-3xl font-black text-white leading-snug break-keep whitespace-pre-line">
+              <p className="text-2xl sm:text-3xl font-bold text-white leading-snug break-keep whitespace-pre-line">
                 {t.heroMasterCompany}
               </p>
             </div>
             <div className="p-8 rounded-3xl bg-primary/10 border border-primary/20 backdrop-blur-sm text-center">
               <p className="text-xs font-bold text-primary uppercase tracking-widest mb-4">{t.heroEyebrowOwner}</p>
-              <p className="text-2xl sm:text-3xl font-black text-white leading-snug break-keep whitespace-pre-line">
+              <p className="text-2xl sm:text-3xl font-bold text-white leading-snug break-keep whitespace-pre-line">
                 {t.heroMasterOwner}
               </p>
             </div>
@@ -297,7 +297,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="grid sm:grid-cols-3 gap-5">
             {method.steps.map((s, i) => (
               <div key={s.key} className="relative p-7 bg-white rounded-2xl border border-gray-100 h-full">
-                <span className="text-2xl font-black text-gray-200 tabular-nums">{`0${i + 1}`}</span>
+                <span className="text-2xl font-bold text-gray-200 tabular-nums">{`0${i + 1}`}</span>
                 <p className="mt-3 text-base font-bold text-gray-900 break-keep">{s.term}</p>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed break-keep">{s.promise}</p>
               </div>
@@ -339,7 +339,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
               <StaggerItem key={m.year}>
                 <div className="p-6 bg-white rounded-2xl border border-gray-100 h-full text-center">
                   <Calendar className="w-5 h-5 text-primary mx-auto mb-3" />
-                  <p className="text-2xl font-black text-gray-900 mb-1">{m.year}</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-1">{m.year}</p>
                   <p className="text-sm font-bold text-primary mb-2">{m.label}</p>
                   <p className="text-xs text-gray-500 leading-relaxed break-keep">{m.desc}</p>
                 </div>
@@ -390,7 +390,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, '100%'].map((stat, i) => (
               <div key={i} className="p-5 bg-white rounded-2xl border border-gray-100">
-                <p className="text-2xl font-black text-gray-900 mb-1">{stat}</p>
+                <p className="text-2xl font-bold text-gray-900 mb-1">{stat}</p>
                 <p className="text-xs text-gray-500 font-medium">
                   {t.partnerStatLabels[i]}
                 </p>

@@ -61,9 +61,9 @@ export const CATALOG_MODELS: CatalogModel[] = [
 
 /** 모델명 3로케일 짧은 설명 (카탈로그 표용) */
 export const MODEL_PROMISE: Record<string, { ko: string; en: string; jp: string }> = {
-  'face-anon':      { ko: '얼굴 비식별화',       en: 'Face anonymization',     jp: '顔の匿名化' },
-  'body-anon':      { ko: '전신 비식별화',       en: 'Body anonymization',     jp: '全身の匿名化' },
-  'plate-anon':     { ko: '번호판 비식별화',     en: 'Plate anonymization',    jp: 'ナンバー匿名化' },
+  'face-anon':      { ko: '얼굴 익명화',         en: 'Face anonymization',     jp: '顔の匿名化' },
+  'body-anon':      { ko: '전신 익명화',         en: 'Body anonymization',     jp: '全身の匿名化' },
+  'plate-anon':     { ko: '번호판 익명화',       en: 'Plate anonymization',    jp: 'ナンバー匿名化' },
   'person-detect':  { ko: '사람 검출',           en: 'Person detection',       jp: '人物検出' },
   'pose-estimate':  { ko: '자세 추정',           en: 'Pose estimation',        jp: '姿勢推定' },
   'reid-embed':     { ko: '재식별 임베딩',       en: 'Re-ID embedding',        jp: '再識別の埋め込み' },

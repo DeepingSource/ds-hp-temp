@@ -20,7 +20,7 @@ const dict: Record<Kind, Record<Locale, { text: string; button: string }>> = {
     jp: { text: '安全に見て、正確に読む — 映像は残さず、誰かではなく何をどう。', button: '導入のご相談' },
   },
   product: {
-    ko: { text: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 보는 것을 넘어, 공간을 운영하는 AI.', button: '맞는 조합 찾기' },
+    ko: { text: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 보는 것을 넘어, 매장을 운영하는 AI.', button: '맞는 조합 찾기' },
     en: { text: 'Read yesterday, alert on now, act on next — AI that runs your space, not just watches it.', button: 'Find your fit' },
     jp: { text: '昨日を読み、今を知らせ、次を実行する — 見るだけでなく、空間を運営するAI。', button: '最適な組み合わせを見る' },
   },

@@ -132,10 +132,10 @@ const DEMOS: DemoItem[] = [
   },
   {
     id: 'anonymization',
-    label: '비식별화 데모',
+    label: '익명화 데모',
     product: '공통',
     device: 'phone',
-    description: '영상 내 인물 비식별화(익명화) 처리 전/후 시퀀스.',
+    description: '영상 내 인물 익명화 처리 전/후 시퀀스.',
     render: ({ active, locale }) => <AnonymizationMockup active={active} locale={locale} />,
   },
 
@@ -179,7 +179,7 @@ const DEMOS: DemoItem[] = [
     label: '#5 MTMC 멀티캠 궤적',
     product: '공통',
     device: 'tech',
-    description: '카메라 3대를 잇는 한 사람의 점선 궤적 + 공유 ID. 얼굴은 비식별 도형. (다크)',
+    description: '카메라 3대를 잇는 한 사람의 점선 궤적 + 공유 ID. 얼굴은 익명화 도형. (다크)',
     render: ({ active, locale }) => <SpatialTrajectoryMockup active={active} locale={locale} />,
   },
   {
@@ -187,7 +187,7 @@ const DEMOS: DemoItem[] = [
     label: '#6 SEAL SDK 에디터',
     product: '공통',
     device: 'tech',
-    description: '다크 IDE 의사코드 타이핑 → 터미널 로그 → 비식별 프레임. Example 뱃지. (MacBook·다크)',
+    description: '다크 IDE 의사코드 타이핑 → 터미널 로그 → 익명화 프레임. Example 뱃지. (MacBook·다크)',
     render: ({ active, locale }) => <SealSdkMockup active={active} locale={locale} />,
   },
   {

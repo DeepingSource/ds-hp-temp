@@ -118,7 +118,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
             <BookOpen className="w-4 h-4 text-gray-500" aria-hidden="true" />
             <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">{c.termDefinition}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 leading-tight mb-1 break-keep">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-1 break-keep">
             {title}
           </h1>
           <p className="text-base text-gray-500 font-medium mb-3">{term.englishTitle}</p>

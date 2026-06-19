@@ -83,7 +83,7 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
               {/* STEP 1: 매장당 평균 카메라 수 */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-5 h-5 rounded-full bg-primary text-white text-3xs font-black flex items-center justify-center shrink-0">1</span>
+                  <span className="w-5 h-5 rounded-full bg-primary text-white text-3xs font-bold flex items-center justify-center shrink-0">1</span>
                   <label htmlFor="b2b-cameras" className="text-sm font-bold text-gray-700">{t.b2bCamLabel}</label>
                   <span className="ml-auto text-lg font-bold text-primary">{b2bCamerasPerStore}{t.unitDevice}</span>
                 </div>
@@ -107,7 +107,7 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
               {/* STEP 2: 매장 수 슬라이더 */}
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-5 h-5 rounded-full bg-primary text-white text-3xs font-black flex items-center justify-center shrink-0">2</span>
+                  <span className="w-5 h-5 rounded-full bg-primary text-white text-3xs font-bold flex items-center justify-center shrink-0">2</span>
                   <label htmlFor="b2b-store-count" className="text-sm font-bold text-gray-700">{t.b2bStoreLabel}</label>
                   <span className="ml-auto text-lg font-bold text-primary">{b2bStoreCount}{t.unitStore}</span>
                 </div>
@@ -132,18 +132,18 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
               <div className="grid sm:grid-cols-3 gap-4 mb-4">
                 <div className="p-4 bg-primary/5 rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.discountLabel}</p>
-                  <p className="text-2xl font-extrabold text-primary">{discount}%</p>
+                  <p className="text-2xl font-bold text-primary">{discount}%</p>
                 </div>
                 <div className="p-4 bg-blue-50 rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.perStoreCost}</p>
-                  <p className="text-2xl font-extrabold text-gray-900">
+                  <p className="text-2xl font-bold text-gray-900">
                     ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
                   </p>
                   <p className="text-xs text-gray-500">{t.perStoreBasis}</p>
                 </div>
                 <div className="p-4 bg-gray-50 rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.totalMonthly}</p>
-                  <p className="text-2xl font-extrabold text-gray-900">
+                  <p className="text-2xl font-bold text-gray-900">
                     ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100 * b2bStoreCount).toLocaleString()}{t.won}
                   </p>
                   <p className="text-xs text-gray-500">{t.totalBasis(b2bStoreCount)}</p>

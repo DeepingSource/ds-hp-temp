@@ -193,7 +193,7 @@ export default function SolutionDetailView({
             </div>
           )}
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-5 break-keep">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1] mb-5 break-keep">
             {title}
           </h1>
           <p className="text-lg text-slate-300 leading-relaxed max-w-2xl break-keep mb-8">
@@ -202,7 +202,7 @@ export default function SolutionDetailView({
 
           {/* 임팩트 수치 */}
           <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm">
-            <span className="text-3xl font-black text-white">{sol.impact}</span>
+            <span className="text-3xl font-bold text-white">{sol.impact}</span>
             <span className="text-slate-300 text-sm leading-snug">{impactLabel}</span>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function SolutionDetailView({
             <div className="grid sm:grid-cols-2 gap-4">
               {sol.causes.map((cause, i) => (
                 <div key={i} className="flex gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100">
-                  <span className={`flex-shrink-0 w-7 h-7 rounded-xl ${industryColors.bg} ${industryColors.text} flex items-center justify-center text-xs font-black`}>
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-xl ${industryColors.bg} ${industryColors.text} flex items-center justify-center text-xs font-medium`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div>
@@ -278,7 +278,7 @@ export default function SolutionDetailView({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {sol.results.map((res, i) => (
                 <div key={i} className={`flex flex-col items-center text-center p-5 rounded-2xl ${industryColors.bg} border ${industryColors.border}`}>
-                  <span className={`text-2xl sm:text-3xl font-black ${industryColors.text} mb-1 tabular-nums`}>
+                  <span className={`text-2xl sm:text-3xl font-bold ${industryColors.text} mb-1 tabular-nums`}>
                     {res.stat}
                   </span>
                   <span className="text-xs text-gray-500 leading-snug break-keep">
@@ -345,7 +345,7 @@ export default function SolutionDetailView({
                       href={`${prefix}/solutions/${rel.slug}`}
                       className="group flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 hover:shadow-md hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                     >
-                      <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-black ${relColors.bg} ${relColors.text}`}>
+                      <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-medium ${relColors.bg} ${relColors.text}`}>
                         {rel.impact} {relImpactLabel}
                       </div>
                       <div>

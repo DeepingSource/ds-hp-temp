@@ -130,10 +130,10 @@ type Copy = {
 
 const COPY: Record<Locale, Copy> = {
   ko: {
-    title: 'AI 비식별화 처리', sub: '실시간 · 온디바이스', original: '원본', anonymized: 'AI 비식별화',
+    title: 'AI 익명화 처리', sub: '실시간 · 온디바이스', original: '원본', anonymized: 'AI 익명화',
     procTime: '처리 시간', detected: '감지 인원', today: '오늘 처리', peopleUnit: '명',
     checklist: '처리 항목', realtime: '실시간 처리',
-    items: ['얼굴 비식별화', '차량번호 마스킹', '개인정보 보호'],
+    items: ['얼굴 익명화', '차량번호 마스킹', '개인정보 보호'],
   },
   en: {
     title: 'AI anonymization', sub: 'Real-time · on-device', original: 'Original', anonymized: 'Anonymized',
@@ -267,7 +267,7 @@ export default function AnonymizationMockup({ active = true, locale = 'en' }: Pr
 
           {/* Body */}
           <div className="flex-1 min-h-0 overflow-y-auto px-4 py-3 space-y-3">
-            {/* Comparison scene — 드래그/방향키로 비식별화 경계를 직접 조작 */}
+            {/* Comparison scene — 드래그/방향키로 익명화 경계를 직접 조작 */}
             <div
               ref={sceneRef}
               role="slider"

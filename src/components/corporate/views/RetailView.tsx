@@ -160,7 +160,7 @@ export default function RetailView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroTitle[0]}
             <br />
             <span className="text-primary">{t.heroTitle[1]}</span>
@@ -199,7 +199,7 @@ export default function RetailView({ locale }: { locale: Locale }) {
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="self-start px-2.5 py-1 rounded-lg text-xs font-black bg-primary/10 text-primary">
+                  <span className="self-start px-2.5 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary">
                     {s.tag}
                   </span>
                   <h3 className="text-lg font-bold text-gray-900 break-keep">{s.title}</h3>

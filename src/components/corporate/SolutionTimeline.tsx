@@ -38,7 +38,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     sub: '세 개의 store가 하나의 흐름으로 — 어제를 읽고, 지금을 알리고, 다음을 실행합니다.',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: '어제를 읽습니다 — 매출이 미처 보지 못한 것을.', img: '/images/storeinsight-heatmap.webp', alt: '매장 히트맵 — 고객 체류·동선 분석', href: '/products/store-insight' },
-      { key: 'care', icon: Radio, product: 'Store Care', desc: '지금을 짚어 알립니다 — 필요한 순간만 모아서.', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — 매장 오염·이상 상황 실시간 감지 (비식별)', href: 'https://storecare.ai', external: true },
+      { key: 'care', icon: Radio, product: 'Store Care', desc: '지금을 짚어 알립니다 — 필요한 순간만 모아서.', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — 매장 오염·이상 상황 실시간 감지 (익명화)', href: 'https://storecare.ai', external: true },
       { key: 'agent', icon: Sparkles, product: 'Store Agent', desc: '다음을 제안하고 운영합니다 — 권고는 AI가, 결정은 사람이.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'StoreAgent — 다음 한 수 제안 화면', href: '/products/store-agent' },
     ],
   },
@@ -48,7 +48,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     sub: 'Three stores, one flow — read yesterday, flag the now, act on next.',
     nodes: [
       { key: 'insight', icon: History, product: 'Store Insight', desc: 'Reads yesterday — what your sales numbers never showed you.', img: '/images/storeinsight-heatmap.webp', alt: 'Store heatmap — dwell and pathway analysis', href: '/products/store-insight' },
-      { key: 'care', icon: Radio, product: 'Store Care', desc: 'Flags the now — only the moments that matter, in real time.', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — real-time detection of spills and store issues (de-identified)', href: 'https://storecare.ai', external: true },
+      { key: 'care', icon: Radio, product: 'Store Care', desc: 'Flags the now — only the moments that matter, in real time.', img: '/images/storecare-contamination-detection.webp', alt: 'StoreCare — real-time detection of spills and store issues (anonymized)', href: 'https://storecare.ai', external: true },
       { key: 'agent', icon: Sparkles, product: 'Store Agent', desc: 'Proposes and runs the next move — AI recommends, you decide.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'StoreAgent — next-move proposal screen', href: '/products/store-agent' },
     ],
   },

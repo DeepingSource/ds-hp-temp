@@ -123,7 +123,7 @@ const ko: Copy = {
   demoSub: 'CCTV 영상이 들어오는 그 시점에 신원을 제거합니다. 여러 사람을 동시에 보호하고, 원본은 어디에도 남기지 않습니다.',
   demoItems: [
     { label: '입력 시점 익명화', desc: '읽기 전에 먼저 신원을 지웁니다' },
-    { label: '동의 없이도 보호', desc: '여러 사람을 동시에 비식별' },
+    { label: '동의 없이도 보호', desc: '여러 사람을 동시에 익명화' },
     { label: '원본 미보존', desc: '원본은 시스템 어디에도 남기지 않습니다' },
   ],
 
@@ -348,7 +348,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
             </p>
             <div className="inline-flex items-center gap-4 px-6 py-4 bg-white/5 border border-white/15 rounded-2xl backdrop-blur-sm">
               <div className="text-center">
-                <CountUp to={COMPANY.patents} className="text-4xl font-extrabold text-white tabular-nums" />
+                <CountUp to={COMPANY.patents} className="text-4xl font-bold text-white tabular-nums" />
                 <p className="text-xs text-slate-300 font-medium mt-0.5">{t.heroPatentsLabel}</p>
               </div>
               <div className="w-px h-10 bg-white/10" />
@@ -527,7 +527,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
                 {t.complianceItems.map((item) => (
                   <div key={item.law} className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100">
                     <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center shrink-0">
-                      <span className="text-xs font-black text-gray-900">{item.region}</span>
+                      <span className="text-xs font-bold text-gray-900">{item.region}</span>
                     </div>
                     <div>
                       <p className="text-sm font-bold text-gray-900">{item.law}</p>
@@ -541,7 +541,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
 
             <div className="flex flex-col gap-6">
               <div className="p-10 section-dark rounded-3xl text-center flex-1 flex flex-col justify-center">
-                <p className="text-7xl font-extrabold mb-2 text-white">{COMPANY.patents}</p>
+                <p className="text-7xl font-bold mb-2 text-white">{COMPANY.patents}</p>
                 <p className="text-lg font-bold mb-1 text-white">{t.patentsLabel}</p>
                 <p className="text-sm text-slate-300 font-semibold mb-1">{COMPANY.patentsLabel}</p>
                 <p className="text-slate-400 text-sm">{t.patentsStackLine}</p>

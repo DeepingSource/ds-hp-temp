@@ -36,7 +36,7 @@ const C: Record<Locale, {
     mockupNote: '* AI 분석 예시 화면입니다.',
     products: [
       { name: 'Store Insight', tagline: '어제를 읽다 · 엔터프라이즈 공간 분석', desc: 'POS가 미처 세지 못한 것을 봅니다. 둘러보다 그냥 나간 손님까지 — 어디서 멈추고 무엇을 놓쳤는지, 어제의 매장을 읽습니다.' },
-      { name: 'Store Agent', tagline: '다음을 실행하다 · 운영하는 AI', desc: '보는 AI를 넘어, 공간을 운영하는 AI. 숫자로 무엇을 할지까지 권고하고 발주로 잇습니다. 권고는 AI가, 결정은 사람이.' },
+      { name: 'Store Agent', tagline: '다음을 실행하다 · 운영하는 AI', desc: '보는 AI를 넘어, 매장을 운영하는 AI. 숫자로 무엇을 할지까지 권고하고 발주로 잇습니다. 권고는 AI가, 결정은 사람이.' },
       { name: 'Store Care', tagline: '지금을 알리다 · 점주용', desc: '24시간 매장을 대신 지켜보는 눈. 쏟아지는 알림이 아니라, 정작 필요한 순간만 골라 실시간으로 짚어드립니다.' },
       { name: 'SAAI', tagline: '매장의 콘텐츠 · B2C', desc: '손님의 시선을 잡는 매장 광고를, 이 매장에 맞춰. POP부터 시즌 콘텐츠까지 1분이면 시안 여러 장, 골라서 출력만.' },
     ],

@@ -134,13 +134,13 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                     style={{ height: `${Math.max(s.pct, 8)}%`, opacity: 1 - i * 0.12 }}
                   />
                 </div>
-                <p className="mt-2 sm:mt-3 text-base sm:text-2xl font-extrabold text-gray-900 tabular-nums">{s.n}</p>
+                <p className="mt-2 sm:mt-3 text-base sm:text-2xl font-bold text-gray-900 tabular-nums">{s.n}</p>
                 <p className="text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
           <p className="mt-7 flex items-baseline gap-2.5 border-t border-gray-100 pt-5 break-keep">
-            <span className="text-2xl sm:text-3xl font-extrabold text-primary tabular-nums shrink-0">−{t.leak.n}</span>
+            <span className="text-2xl sm:text-3xl font-bold text-primary tabular-nums shrink-0">−{t.leak.n}</span>
             <span className="text-sm sm:text-base text-gray-600">{t.leak.label}</span>
           </p>
         </div>

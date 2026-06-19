@@ -36,7 +36,7 @@ export const PRIVACY_COPY: Record<Locale, PrivacyCopy> = {
     heading: '0.03초 뒤, 원본은 없습니다',
     steps: [
       { label: '카메라 프레임', desc: '카메라가 한 프레임을 포착합니다.' },
-      { label: '엣지 비식별화', desc: '얼굴·번호판을 캡처 시점에 비가역 마스킹.' },
+      { label: '엣지 익명화', desc: '얼굴·번호판을 캡처 시점에 비가역 마스킹.' },
       { label: '신호 추출', desc: 'Pattern·Detection·Priority·Response·Context·Outcome 6 신호만 추출.' },
       { label: '원본 폐기', desc: '원본은 저장되지 않습니다 — 프레임이 소멸합니다.' },
       { label: '이벤트 허브 전달', desc: '익명 신호만 이벤트 허브로 전달됩니다.' },

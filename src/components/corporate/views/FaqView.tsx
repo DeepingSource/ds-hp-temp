@@ -97,7 +97,7 @@ export default function FaqView({ locale }: { locale: Locale }) {
             <HelpCircle className="w-3.5 h-3.5" />
             {c.eyebrow}
           </HeroBadge>
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {c.heroTitle}
           </h1>
           <p className="text-lg text-slate-300 leading-relaxed break-keep">

@@ -179,7 +179,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
             <Newspaper className="w-3.5 h-3.5" />
             {t.badge}
           </HeroBadge>
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroMaster}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-primary-light">
               {t.heroMasterAccent}
@@ -231,7 +231,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
               <StaggerItem key={i}>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl border border-gray-100 bg-slate-50 hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-[background-color,box-shadow] duration-300">
                   <div className="flex items-center gap-3 sm:w-44 shrink-0">
-                    <span className="text-sm font-black text-gray-900">{item.date}</span>
+                    <span className="text-sm font-bold text-gray-900">{item.date}</span>
                     <span className="text-xs font-semibold text-primary px-2.5 py-1 rounded-full bg-primary/5">{item.category}</span>
                   </div>
                   <div className="flex-1">
@@ -264,7 +264,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
                     <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
-                    <p className="text-base font-black text-gray-900 mb-1.5 break-keep">{b.label}</p>
+                    <p className="text-base font-bold text-gray-900 mb-1.5 break-keep">{b.label}</p>
                     <p className="text-xs text-gray-500 leading-relaxed break-keep">{b.sub}</p>
                   </div>
                 </StaggerItem>

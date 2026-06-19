@@ -16,6 +16,4 @@ export const BRAND = {
   primaryDark: '#2453C4',
   primaryLight: '#5B86EA',
   primaryLighter: '#E5EDFC',
-  secondary: '#26A69A',
-  secondaryDark: '#00897B',
 } as const;

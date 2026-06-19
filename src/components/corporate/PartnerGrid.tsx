@@ -29,19 +29,19 @@ export default function PartnerGrid({ locale }: { locale: Locale }) {
       <Container>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 text-center mb-14">
           <div>
-            <CountUp to={COMPANY.patents} suffix={d.units.patents} className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1 tabular-nums block" />
+            <CountUp to={COMPANY.patents} suffix={d.units.patents} className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tabular-nums block" />
             <p className="text-xs text-gray-500 font-medium">{d.metrics.patents}</p>
           </div>
           <div>
-            <CountUp to={COMPANY.partnerBrands} suffix={d.units.brands} className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1 tabular-nums block" />
+            <CountUp to={COMPANY.partnerBrands} suffix={d.units.brands} className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tabular-nums block" />
             <p className="text-xs text-gray-500 font-medium">{d.metrics.brands}</p>
           </div>
           <div>
-            <CountUp to={COMPANY.industries} suffix={d.units.industries} className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1 tabular-nums block" />
+            <CountUp to={COMPANY.industries} suffix={d.units.industries} className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tabular-nums block" />
             <p className="text-xs text-gray-500 font-medium">{d.metrics.industries}</p>
           </div>
           <div>
-            <p className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1">NVIDIA</p>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">NVIDIA</p>
             <p className="text-xs text-gray-500 font-medium">Inception Partner</p>
           </div>
         </div>

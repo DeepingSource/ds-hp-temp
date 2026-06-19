@@ -305,7 +305,7 @@ export default function KakaoAlertMockup({
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-lg font-extrabold text-primary tabular-nums leading-none">{t.perHour}</span>
+            <span className="text-lg font-bold text-primary tabular-nums leading-none">{t.perHour}</span>
             <span className="text-gray-300" aria-hidden="true">·</span>
             <span className="text-sm font-bold text-gray-700 tabular-nums leading-none">{t.perMonth}</span>
           </div>

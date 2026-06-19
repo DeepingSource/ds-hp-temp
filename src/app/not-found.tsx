@@ -25,7 +25,7 @@ export default function NotFound() {
       <div className="relative z-10 max-w-lg w-full text-center">
         {/* 404 number */}
         <p
-          className="text-[8rem] sm:text-[10rem] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 mb-2 select-none"
+          className="text-[8rem] sm:text-[10rem] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 mb-2 select-none"
           aria-hidden="true"
         >
           404

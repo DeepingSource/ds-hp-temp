@@ -3,28 +3,24 @@ import { type Locale } from './i18n';
 /**
  * brand-canon.ts — single source for brand copy lifted from the brand-system SOT.
  *
- * SOT: brand-system/02_messaging/SAAI_Brand_Copy_Master_v2.md (척추 15줄 · Weaving)
- *      brand-system/02_messaging/SAAI_Master_Copy_Decision_v1.md (두 마스터)
- *      brand-system/01_brand_system/SAAI_Brand_Architecture_v3.md (SEED·SOURCE·SOLUTION)
+ * SOT: SAAI_AI_Handoff.md
+ *      — Voice_v2.5 (messaging spine · two master copies)
+ *      — Architecture_v4 (SEED·SOURCE·SOLUTION)
+ *      — Copy_Decision_v1 (두 마스터)
  *
  * RULE: do not invent copy here — only lift from the SOT. The two master copies
  * (모든 매장을 한 매장처럼 / 우리 매장이 대표 매장처럼) live in i18n.ts homeCopy;
  * this file holds the *texture* lines the site was missing.
  *
  * NOTE (jp): the SOT copy spine is ko/en authoritative. Japanese renderings below
- * are FINALIZED (2026-05-29). Core word choice — 사이/in-between is rendered with the
- * weaving frame, not literal "fill": signature uses 紡ぐ (to weave/spin, idiomatic for
- * 絆/物語を紡ぐ) to match the EN "We weave the in-between" and the Weaving system. The
- * noun 사이 is 間(あいだ) in the hero signature; product taglines use すき間 to avoid
- * the あいだ "duration" reading and the 次の間="next room" collision.
+ * are FINALIZED (2026-05-29).
  */
 
 /**
- * 시그니처 — 마스터 카피를 받치는 카테고리 정의 (NEXTRISE 2026 launch narrative).
- * Pivot 2026-06-17: weaving/"사이" 메타포 → 런치 필름의 명확한 카테고리 보이스.
+ * 시그니처 — 마스터 카피를 받치는 카테고리 정의 (SAAI_AI_Handoff.md · Voice_v2.5).
  */
 export const signature: Record<Locale, string> = {
-  ko: '보는 AI를 넘어, 공간을 운영하는 AI.',
+  ko: '보는 AI를 넘어, 매장을 운영하는 AI.',
   en: 'Beyond seeing — AI that operates space.',
   jp: '見るAIを超え、空間を運営するAI。',
 };
@@ -55,7 +51,7 @@ export const readAlertAct: Record<Locale, string> = {
   jp: '読み、知らせ、動かす。',
 };
 
-/** 회사 한 줄 — 창업 서사 (Copy Master v2 §1 회사 한 줄). */
+/** 회사 한 줄 — 창업 서사 (SAAI_AI_Handoff.md · Copy_Decision_v1 회사 한 줄). */
 export const companyLine: Record<Locale, string> = {
   ko: '2018년부터 영상의 익명화를 깎아 온 회사.',
   en: 'Honing video anonymization since 2018.',
@@ -70,7 +66,7 @@ export const nameOrigin: Record<Locale, string> = {
 };
 
 /**
- * 3 SOLUTION 시간축 태그라인 — read·alert·act (NEXTRISE launch film 00:12–14).
+ * 3 SOLUTION 시간축 태그라인 — read·alert·act (SAAI_AI_Handoff.md · Copy_Decision_v1).
  * Store Insight 어제를 읽다 / Store Care 지금을 알리다 / Store Agent 다음을 실행하다.
  */
 export const solutionTaglines: Record<'insight' | 'care' | 'agent', Record<Locale, string>> = {

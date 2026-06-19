@@ -27,7 +27,7 @@ export { default as MockupImage } from './MockupImage';
 // ── 데스크톱 목업 ───────────────────────────────────────────────────────────
 export { default as StoreInsightDesktopMockup } from './StoreInsightDesktopMockup';
 
-// ── 멀티 매장·비식별화 목업 ───────────────────────────────────────────────────
+// ── 멀티 매장·익명화 목업 ───────────────────────────────────────────────────
 export { default as MultiStoreDashboardMockup } from './MultiStoreDashboardMockup';
 export { default as AnonymizationMockup } from './AnonymizationMockup';
 

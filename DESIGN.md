@@ -34,7 +34,7 @@ colors, spacing, type, or shared UI.
 - **Easing:** `var(--ease-out-cubic)` (default reveal), `var(--ease-out-expo)` (counts). Springs for JS motion: `src/lib/spring-config.ts` (`springGentle`, …).
 - **Z‑index scale:** use `z-[var(--z-NAME)]` where NAME is one of sticky · float · header · overlay · modal · toast · skiplink (30/35/40/45/50/60/100). Don't hardcode numeric z-index.
 - **Micro‑type:** `text-2xs` (11px), `text-3xs` (10px), `text-4xs` (8px).
-- **Fonts:** `--font-sans` Pretendard, `--font-display` Geist, `--font-mono`.
+- **Fonts:** `--font-sans` Pretendard, `--font-display` Pretendard (KR; JP→PretendardJP), `--font-mono`.
 
 ## Shared UI primitives (`src/components/ui/`)
 

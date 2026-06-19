@@ -224,7 +224,7 @@ export default function SealView({ locale }: { locale: Locale }) {
             {t.promise.map((p) => (
               <div key={p.letter} className="card p-7 h-full">
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-4xl font-black text-primary font-mono leading-none">{p.letter}</span>
+                  <span className="text-4xl font-bold text-primary font-mono leading-none">{p.letter}</span>
                   <span className="text-base font-bold text-gray-900">{p.word}</span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>

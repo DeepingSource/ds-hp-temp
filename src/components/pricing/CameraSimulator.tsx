@@ -719,7 +719,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               <div className="flex items-end justify-between mb-2">
                 <span className="text-sm font-medium text-gray-500">{t.monthlySum}</span>
                 <div className="text-right">
-                  <span className="text-3xl font-extrabold text-gray-900">~{fmt(estimate.monthly)}</span>
+                  <span className="text-3xl font-bold text-gray-900">~{fmt(estimate.monthly)}</span>
                   <span className="text-sm font-normal text-gray-500 ml-1">{t.won}{t.perMonth}</span>
                 </div>
               </div>

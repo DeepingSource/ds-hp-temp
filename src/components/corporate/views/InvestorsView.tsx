@@ -216,7 +216,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
             <TrendingUp className="w-3.5 h-3.5" />
             {t.badge}
           </HeroBadge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroMaster}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-primary-light">
               {t.heroMasterAccent}
@@ -286,7 +286,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
             {t.traction.map((tr) => (
               <StaggerItem key={tr.label}>
                 <div className="p-8 bg-slate-50 rounded-3xl border border-gray-100 h-full text-center">
-                  <p className="text-4xl sm:text-5xl font-black text-primary mb-3">
+                  <p className="text-4xl sm:text-5xl font-bold text-primary mb-3">
                     <CountUp to={tr.to} suffix={tr.suffix} />
                   </p>
                   <p className="text-base font-bold text-gray-900 mb-1 break-keep">{tr.label}</p>
@@ -319,7 +319,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
                   <div className="relative pl-8">
                     <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-slate-50" aria-hidden="true" />
                     <div className="flex items-baseline gap-3 mb-1">
-                      <span className="text-sm font-black text-primary">{m.year}</span>
+                      <span className="text-sm font-bold text-primary">{m.year}</span>
                       <h3 className="text-base font-bold text-gray-900 break-keep">{m.title}</h3>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed break-keep">{m.desc}</p>

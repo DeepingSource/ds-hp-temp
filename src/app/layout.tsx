@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -106,7 +105,7 @@ export default function RootLayout({
   // corrects it (and the skip-link) per locale on the client from the URL prefix
   // (/ko·/jp), with the Korean minisite falling back to ko via the x-site-mode cookie.
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
         <script

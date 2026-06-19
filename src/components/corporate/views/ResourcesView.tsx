@@ -88,7 +88,7 @@ export default function ResourcesView({ locale }: { locale: Locale }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }]} locale={locale} tone="dark" className="mb-6" />
           <p className="text-sm font-semibold text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
-          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6 break-keep">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
             {t.heroTitle}
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
