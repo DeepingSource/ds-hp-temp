@@ -71,9 +71,9 @@ const C: Record<Locale, Content> = {
       </>
     ),
     cards: [
-      { label: 'Store Care', desc: '매장을 빠짐없이 기록합니다' },
-      { label: 'Store Insight', desc: '매출이 새는 곳을 찾아드립니다' },
-      { label: 'Store Agent', desc: 'AI가 정리하고, 사장님은 확인만' },
+      { label: 'store care', desc: '매장을 빠짐없이 기록합니다' },
+      { label: 'store insight', desc: '매출이 새는 곳을 찾아드립니다' },
+      { label: 'store agent', desc: 'AI가 정리하고, 사장님은 확인만' },
     ],
     provenLabel: '입증된 도입 효과',
     provenText: '도입 첫 달부터 야간 인건비 평균 80만 원 절감 효과 달성',
@@ -136,9 +136,9 @@ const C: Record<Locale, Content> = {
       enterprise: '케어·인사이트',
     },
     productLabels: {
-      StoreAgent: 'StoreAgent',
-      StoreCare: 'StoreCare',
-      StoreInsight: 'StoreInsight',
+      StoreAgent: 'store agent',
+      StoreCare: 'store care',
+      StoreInsight: 'store insight',
     },
   },
   en: {
@@ -151,9 +151,9 @@ const C: Record<Locale, Content> = {
       </>
     ),
     cards: [
-      { label: 'Store Care', desc: 'Captures everything happening in your store' },
-      { label: 'Store Insight', desc: 'Pinpoints where revenue is leaking' },
-      { label: 'Store Agent', desc: 'AI handles the work; you simply review' },
+      { label: 'store care', desc: 'Captures everything happening in your store' },
+      { label: 'store insight', desc: 'Pinpoints where revenue is leaking' },
+      { label: 'store agent', desc: 'AI handles the work; you simply review' },
     ],
     provenLabel: 'Proven impact',
     provenText: 'Owners cut overnight labor costs by an average of ₩800,000 in the first month.',
@@ -216,9 +216,9 @@ const C: Record<Locale, Content> = {
       enterprise: 'Care & Insight',
     },
     productLabels: {
-      StoreAgent: 'StoreAgent',
-      StoreCare: 'StoreCare',
-      StoreInsight: 'StoreInsight',
+      StoreAgent: 'store agent',
+      StoreCare: 'store care',
+      StoreInsight: 'store insight',
     },
   },
   jp: {
@@ -231,9 +231,9 @@ const C: Record<Locale, Content> = {
       </>
     ),
     cards: [
-      { label: 'Store Care', desc: '店舗の出来事をもれなく記録します' },
-      { label: 'Store Insight', desc: '売上が漏れている箇所を見つけます' },
-      { label: 'Store Agent', desc: 'AIが整理し、オーナーは確認するだけ' },
+      { label: 'store care', desc: '店舗の出来事をもれなく記録します' },
+      { label: 'store insight', desc: '売上が漏れている箇所を見つけます' },
+      { label: 'store agent', desc: 'AIが整理し、オーナーは確認するだけ' },
     ],
     provenLabel: '実証された導入効果',
     provenText: '導入初月から、夜間人件費を平均80万ウォン削減する効果を達成しました。',
@@ -296,9 +296,9 @@ const C: Record<Locale, Content> = {
       enterprise: 'ケア・インサイト',
     },
     productLabels: {
-      StoreAgent: 'StoreAgent',
-      StoreCare: 'StoreCare',
-      StoreInsight: 'StoreInsight',
+      StoreAgent: 'store agent',
+      StoreCare: 'store care',
+      StoreInsight: 'store insight',
     },
   },
 };

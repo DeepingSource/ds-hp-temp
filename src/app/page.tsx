@@ -10,7 +10,7 @@ const languages = {
 
 export const metadata: Metadata = {
   title: 'DeepingSource | Anonymized Spatial AI — Every store, like one',
-  description: 'Anonymized Spatial AI that reads every store safely — and leaves you one thing to do today. Store Insight · StoreCare · StoreAgent · SAAI.',
+  description: 'Anonymized Spatial AI that reads every store safely — and leaves you one thing to do today. store insight · store care · store agent · SAAI.',
   alternates: { canonical: '/', languages },
   openGraph: {
     title: 'DeepingSource | Anonymized Spatial AI',

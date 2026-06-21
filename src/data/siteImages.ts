@@ -31,6 +31,6 @@ export const technologyImages = {
 // ── 제품 페이지 이미지 ───────────────────────────────────────────────────────
 
 export const productImages = {
-  storecarePrivacy:  { src: '/images/storecare-privacy.webp',          alt: 'StoreCare 프라이버시 보호 — AI 익명화 처리' },
-  storeagentMockup:  { src: '/images/storeagent-ai-pop-mockup.webp',  alt: 'StoreAgent AI 팝업 목업' },
+  storecarePrivacy:  { src: '/images/storecare-privacy.webp',          alt: 'store care 프라이버시 보호 — AI 익명화 처리' },
+  storeagentMockup:  { src: '/images/storeagent-ai-pop-mockup.webp',  alt: 'store agent AI 팝업 목업' },
 } as const;

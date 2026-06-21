@@ -26,7 +26,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; link: string; img
     heading: '영상은 남기지 않습니다',
     link: 'SEAL 기술 보기',
     imgAlt: '익명화 시각화 — 사람의 신원이 익명 데이터 포인트로 흩어집니다',
-    caption: '누가가 아니라, 무엇을 어떻게 — 신원은 입력 시점에 지우고, 흐름만 남깁니다.',
+    caption: '누구가 아니라, 무엇을 어떻게 — 신원은 입력 시점에 지우고, 흐름만 남깁니다.',
   },
   en: {
     eyebrow: 'SEAL · Anonymization charter',

@@ -45,8 +45,8 @@ const COPY: Record<Locale, Copy> = {
     before: '도입 전',
     after: '도입 후',
     chips: ['45→15분 −67%', '30→8분 −73%', '6→3회 −50%'],
-    chipNote: 'StoreCare 실측 사례',
-    footnote: '* 도입 점주 53명 · 4주 자가기록 — StoreCare 실측',
+    chipNote: 'store care 실측 사례',
+    footnote: '* 도입 점주 53명 · 4주 자가기록 — store care 실측',
   },
   en: {
     bluf: 'CCTV checks down 67% after adoption',
@@ -58,8 +58,8 @@ const COPY: Record<Locale, Copy> = {
     before: 'Before',
     after: 'After',
     chips: ['45→15 min −67%', '30→8 min −73%', '6→3× −50%'],
-    chipNote: 'StoreCare measured case',
-    footnote: '* 53 store owners · 4-week self-log — StoreCare measured',
+    chipNote: 'store care measured case',
+    footnote: '* 53 store owners · 4-week self-log — store care measured',
   },
   jp: {
     bluf: '導入後、CCTV確認が67%短縮',
@@ -71,8 +71,8 @@ const COPY: Record<Locale, Copy> = {
     before: '導入前',
     after: '導入後',
     chips: ['45→15分 −67%', '30→8分 −73%', '6→3回 −50%'],
-    chipNote: 'StoreCare実測ケース',
-    footnote: '＊ 導入店主53名・4週間 自己記録 — StoreCare実測',
+    chipNote: 'store care実測ケース',
+    footnote: '＊ 導入店主53名・4週間 自己記録 — store care実測',
   },
 };
 

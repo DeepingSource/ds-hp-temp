@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import FoodBeverageView from '@/components/corporate/views/FoodBeverageView';
 
 export const metadata: Metadata = {
-  title: 'Café & F&B Solutions | Deeping Source',
+  title: 'Café & F&B Solutions | DeepingSource',
   description:
     'Hygiene, waits and turnover, and reorder timing. A café and food-service solution that helps every format run like one store.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Café & F&B Solutions | Deeping Source',
+    title: 'Café & F&B Solutions | DeepingSource',
     description: 'Hygiene, waits, and reordering, by the same standard. Food-service operations run like one store, whatever the format.',
     url: '/solutions/food-beverage',
   },

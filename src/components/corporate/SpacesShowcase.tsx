@@ -22,7 +22,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
   ko: {
     eyebrow: 'Beyond retail',
     heading: '매장을 넘어, 모든 공간으로',
-    sub: '누가가 아니라 무엇을 — 익명화는 공간을 가리지 않습니다. 같은 프라이버시 약속 그대로, 어떤 공간에서든 읽고·알리고·실행합니다.',
+    sub: '누구가 아니라 무엇을 — 익명화는 공간을 가리지 않습니다. 같은 프라이버시 약속 그대로, 어떤 공간에서든 읽고·알리고·실행합니다.',
     allLabel: '전체 솔루션 보기',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: '리테일·편의점', desc: '진열·동선·결제까지, 매장 운영을 한눈에 읽습니다.' },

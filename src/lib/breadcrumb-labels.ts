@@ -2,7 +2,7 @@ import { type Locale } from '@/lib/i18n';
 
 /**
  * breadcrumb-labels — localized labels for breadcrumb trail segments.
- * Keyed by the last URL segment. Brand/product names (Store Insight, SEAL …)
+ * Keyed by the last URL segment. Brand/product names (store insight, SEAL …)
  * are identical across locales and passed as literals by the caller instead.
  *
  * NOTE: there is no /company index page (404), so company subpages use a

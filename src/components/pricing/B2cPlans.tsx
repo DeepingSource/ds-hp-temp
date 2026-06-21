@@ -72,7 +72,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
     {
       icon: <Eye className="w-5 h-5 text-blue-600" />,
       step: t.careStep,
-      title: 'Store Care',
+      title: 'store care',
       price: (
         <>
           <span className="text-3xl font-bold text-gray-900">10,000원</span>
@@ -87,7 +87,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
     {
       icon: <LayoutGrid className="w-5 h-5 text-blue-600" />,
       step: t.insightStep,
-      title: 'Store Insight',
+      title: 'store insight',
       price: (
         <>
           <span className="text-3xl font-bold text-gray-900">100,000원</span>
@@ -103,7 +103,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
     {
       icon: <Zap className="w-5 h-5 text-blue-600" />,
       step: t.agentStep,
-      title: 'Store Agent',
+      title: 'store agent',
       price: (
         <>
           <span className="text-3xl font-bold text-gray-900">{t.agentFree}</span>
@@ -136,7 +136,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
           ))}
         </div>
 
-        {/* SAAI(무료) vs Store Care(유료) 차이 안내 */}
+        {/* SAAI(무료) vs store care(유료) 차이 안내 */}
         <div className="mt-10 bg-gray-50 rounded-2xl border border-gray-200 p-6">
           <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-primary" />

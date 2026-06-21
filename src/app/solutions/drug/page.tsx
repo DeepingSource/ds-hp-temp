@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import DrugView from '@/components/corporate/views/DrugView';
 
 export const metadata: Metadata = {
-  title: 'Drugstore Solutions | Deeping Source',
+  title: 'Drugstore Solutions | DeepingSource',
   description:
     'Display consistency, out-of-stock prevention, and customer flow. A drugstore solution that helps every format run like one store.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Drugstore Solutions | Deeping Source',
+    title: 'Drugstore Solutions | DeepingSource',
     description: 'Display, out-of-stock, and flow, by the same standard. Drugstores run like one store, whatever the format.',
     url: '/solutions/drug',
   },

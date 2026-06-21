@@ -40,21 +40,21 @@ export interface SolutionPage {
 const PRODUCT_STEPS = {
   storecare: (title: string, desc: string): SolutionStep => ({
     product: 'StoreCare',
-    productLabel: '01 관찰 · StoreCare',
+    productLabel: '01 관찰 · store care',
     productColor: 'emerald',
     title,
     desc,
   }),
   storeinsight: (title: string, desc: string): SolutionStep => ({
     product: 'StoreInsight',
-    productLabel: '02 분석 · StoreInsight',
+    productLabel: '02 분석 · store insight',
     productColor: 'violet',
     title,
     desc,
   }),
   storeagent: (title: string, desc: string): SolutionStep => ({
     product: 'StoreAgent',
-    productLabel: '03 실행 · StoreAgent',
+    productLabel: '03 실행 · store agent',
     productColor: 'blue',
     title,
     desc,

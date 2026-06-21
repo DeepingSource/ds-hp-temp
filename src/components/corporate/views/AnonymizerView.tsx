@@ -272,7 +272,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
             </h2>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-50">

@@ -4,7 +4,7 @@ import PricingClientView from '@/components/pricing/PricingClientView';
 export const metadata: Metadata = {
   title: 'Pricing | DeepingSource',
   description:
-    'Compare Store Care · Store Insight · Store Agent pricing at a glance. Choose the plan that fits your store size and needs.',
+    'Compare store care · store insight · store agent pricing at a glance. Choose the plan that fits your store size and needs.',
   alternates: {
     canonical: '/pricing',
     languages: {
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Pricing | DeepingSource',
-    description: 'Compare Store Care · Store Insight · Store Agent pricing at a glance.',
+    description: 'Compare store care · store insight · store agent pricing at a glance.',
     url: '/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Pricing | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing | DeepingSource',
-    description: 'Compare Store Care · Store Insight · Store Agent pricing at a glance.',
+    description: 'Compare store care · store insight · store agent pricing at a glance.',
   },
 };
 

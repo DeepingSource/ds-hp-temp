@@ -213,7 +213,12 @@ export default function NewsView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 대표 미디어 커버리지 리스트 ── */}
+      {/*
+        ── 대표 미디어 커버리지 리스트 ──
+        TEMPORARILY HIDDEN: the coverage items (t.coverage / t.coverage* copy) are
+        illustrative placeholders. The whole section is hidden pending real, verifiable
+        press coverage. Restore this block once actual coverage links are secured.
+
       <AnimatedSection className="py-16 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
@@ -242,6 +247,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
           </StaggerContainer>
         </div>
       </AnimatedSection>
+      */}
 
       {/* ── 수상·인증 배지 그리드 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">

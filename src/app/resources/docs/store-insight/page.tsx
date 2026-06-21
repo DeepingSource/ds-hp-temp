@@ -30,13 +30,13 @@ type Item = { name: string; desc: string; img: string; h: number };
 const SI = (slug: string) => `/images/si-guide/${slug}.png`;
 
 export const metadata: Metadata = {
-  title: 'Store Insight 사용자 매뉴얼 | DeepingSource',
+  title: 'store insight 사용자 매뉴얼 | DeepingSource',
   description:
-    'Store Insight 공간 분석 대시보드 사용 매뉴얼. 로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 리포트 읽는 법을 한곳에서 안내합니다.',
+    'store insight 공간 분석 대시보드 사용 매뉴얼. 로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 리포트 읽는 법을 한곳에서 안내합니다.',
   alternates: { canonical: '/resources/docs/store-insight' },
   openGraph: {
-    title: 'Store Insight 사용자 매뉴얼 | DeepingSource',
-    description: '로그인부터 리포트 해석까지, Store Insight 대시보드 사용 매뉴얼.',
+    title: 'store insight 사용자 매뉴얼 | DeepingSource',
+    description: '로그인부터 리포트 해석까지, store insight 대시보드 사용 매뉴얼.',
     url: '/resources/docs/store-insight',
   },
 };
@@ -47,7 +47,7 @@ type Sub = { id: string; title: string };
 type Section = { id: string; icon: typeof Rocket; title: string; subs: Sub[] };
 
 const sections: Section[] = [
-  { id: 'overview', icon: BookOpen, title: '개요', subs: [{ id: 'overview', title: 'Store Insight란' }] },
+  { id: 'overview', icon: BookOpen, title: '개요', subs: [{ id: 'overview', title: 'store insight란' }] },
   { id: 'getting-started', icon: Rocket, title: '시작하기', subs: [
     { id: 'login', title: '로그인' },
     { id: 'dashboard', title: '대시보드 둘러보기' },
@@ -159,7 +159,7 @@ export default function StoreInsightManual() {
               </Link>
               <div className="flex items-center gap-2 mb-6">
                 <BookOpen className="w-5 h-5 text-primary" />
-                <span className="text-sm font-bold text-gray-900">Store Insight 매뉴얼</span>
+                <span className="text-sm font-bold text-gray-900">store insight 매뉴얼</span>
               </div>
               <nav className="space-y-5">
                 {sections.map((section) => (
@@ -182,12 +182,12 @@ export default function StoreInsightManual() {
 
           {/* Main */}
           <main className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Docs · Store Insight</p>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">Docs · store insight</p>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
-              Store Insight 사용자 매뉴얼
+              store insight 사용자 매뉴얼
             </h1>
             <p className="text-gray-500 leading-relaxed max-w-2xl mb-6 break-keep">
-              Store Insight는 매장의 <strong className="text-gray-700">방문 → 둘러보기 → 고민 → 구매</strong>로 이어지는
+              store insight는 매장의 <strong className="text-gray-700">방문 → 둘러보기 → 고민 → 구매</strong>로 이어지는
               고객 여정을 데이터로 보여주는 공간 분석 대시보드입니다. 로그인부터 리포트 해석까지, 일상 운영에 필요한 사용법을 안내합니다.
             </p>
             <a
@@ -203,11 +203,11 @@ export default function StoreInsightManual() {
             <section id="overview" className="scroll-mt-24 mb-14">
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                 <span className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><BookOpen className="w-5 h-5 text-primary" /></span>
-                Store Insight란
+                store insight란
               </h2>
               <p className="text-gray-600 leading-relaxed mb-5 break-keep">
                 CCTV 영상을 익명화해 분석하므로 개인을 식별하지 않고도 매장 공간에서 일어나는 일을 이해할 수 있습니다.
-                Store Insight는 다음 네 가지 방식으로 매장 의사결정을 돕습니다.
+                store insight는 다음 네 가지 방식으로 매장 의사결정을 돕습니다.
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
@@ -233,7 +233,7 @@ export default function StoreInsightManual() {
 
               <h3 id="login" className="scroll-mt-24 text-base font-bold text-gray-900 mb-2">로그인</h3>
               <p className="text-gray-600 leading-relaxed mb-3 break-keep">
-                Store Insight는 웹 브라우저로 접속합니다. 접속 주소(URL)와 계정은 매장별로 관리자가 발급합니다.
+                store insight는 웹 브라우저로 접속합니다. 접속 주소(URL)와 계정은 매장별로 관리자가 발급합니다.
               </p>
               <ol className="list-decimal list-inside space-y-1.5 text-sm text-gray-600 mb-8 marker:text-primary marker:font-bold">
                 <li>관리자에게 받은 접속 주소로 이동합니다.</li>

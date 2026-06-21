@@ -66,7 +66,7 @@ const COPY: Record<Locale, Copy> = {
     ],
   },
   en: {
-    appName: 'StoreCare',
+    appName: 'store care',
     channel: 'saai | store care',
     liveLabel: 'Live',
     actions: { approve: 'Approve', acknowledge: 'Acknowledge', review: 'Review' },
@@ -83,7 +83,7 @@ const COPY: Record<Locale, Copy> = {
     ],
   },
   jp: {
-    appName: 'StoreCare',
+    appName: 'store care',
     channel: 'saai | store care',
     liveLabel: 'リアルタイム',
     actions: { approve: '承認', acknowledge: '確認しました', review: '検討する' },

@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, type LucideIcon } from 'lucide-react';
+import type { Locale } from '@/lib/i18n';
+
+const CTA = {
+  ko: { external: '바로가기', internal: '자세히 보기' },
+  en: { external: 'Visit', internal: 'Learn more' },
+  jp: { external: 'サイトへ', internal: '詳しく見る' },
+} as const;
 
 export interface ProductCardProps {
   icon: LucideIcon;
@@ -10,6 +17,7 @@ export interface ProductCardProps {
   external?: boolean;
   badge?: string;
   kicker?: string;
+  locale?: Locale;
 }
 
 export default function ProductCard({
@@ -21,6 +29,7 @@ export default function ProductCard({
   external = false,
   badge,
   kicker,
+  locale = 'ko',
 }: ProductCardProps) {
   const cardInner = (
     <>
@@ -41,7 +50,7 @@ export default function ProductCard({
       <p className="text-sm font-medium text-primary mb-3 break-keep">{tagline}</p>
       <p className="text-base text-gray-500 leading-relaxed mb-6 break-keep">{desc}</p>
       <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-        {external ? '바로가기' : '자세히 보기'}
+        {external ? CTA[locale].external : CTA[locale].internal}
         {external ? (
           <ArrowUpRight className="w-4 h-4" />
         ) : (

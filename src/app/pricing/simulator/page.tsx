@@ -7,7 +7,7 @@ import { type Locale, localeHref } from '@/lib/i18n';
 export const metadata: Metadata = {
   title: 'Pricing Simulator | DeepingSource',
   description:
-    'Simulate estimated StoreCare · StoreInsight pricing based on your store size, camera count, and number of refrigerators.',
+    'Simulate estimated store care · store insight pricing based on your store size, camera count, and number of refrigerators.',
   alternates: {
     canonical: '/pricing/simulator',
     languages: {

@@ -7,7 +7,7 @@ import { type Locale, localeHref } from '@/lib/i18n';
 export const metadata: Metadata = {
   title: '料金シミュレーション | DeepingSource',
   description:
-    '店舗規模・カメラ台数・冷蔵庫台数に応じた StoreCare・StoreInsight の想定料金をシミュレーションできます。',
+    '店舗規模・カメラ台数・冷蔵庫台数に応じた store care・store insight の想定料金をシミュレーションできます。',
   alternates: {
     canonical: '/jp/pricing/simulator',
     languages: {

@@ -69,7 +69,7 @@ const C: Record<Locale, Copy> = {
     storyHeading: '익명화에서, 물리 세계로',
     storySub: '우리는 익명화에서 시작했습니다. 비전 AI로 공간을 읽다가, 사람이 일하는 물리 세계를 만났습니다.',
     milestones: [
-      { year: `${COMPANY.foundingYear}`, label: '설립', desc: '영상의 익명화를 깎기 시작' },
+      { year: `${COMPANY.foundingYear}`, label: '설립', desc: '영상의 익명화를 다듬기 시작' },
       { year: '2020', label: 'NVIDIA Inception', desc: 'Inception Partner 합류 · Series A1' },
       { year: '2021', label: '100+ 매장', desc: '공간을 읽는 AI 상용화' },
       { year: '현재', label: `특허 ${COMPANY.patents}건`, desc: COMPANY.patentsLabel },
@@ -80,7 +80,7 @@ const C: Record<Locale, Copy> = {
     leadership: [
       { role: '경영 리더십 (CEO)', focus: '비전 · 전략 · 사업 전반' },
       { role: '기술 리더십 (CTO)', focus: '익명화 · 공간 지능 · 에이전트 AI' },
-      { role: '제품 리더십 (CPO)', focus: 'SAAI 제품 · 사용자 경험' },
+      { role: '제품 리더십 (CPO)', focus: 'SAAI 제품군 · 사용자 경험' },
       { role: '연구 리더십 (Research)', focus: '컴퓨터 비전 · 모델 연구' },
     ],
     partnersEyebrow: 'Trusted Partners',

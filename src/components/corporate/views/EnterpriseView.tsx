@@ -70,7 +70,7 @@ const ko: Copy = {
   goldenTitle: '한 매장의 성공을, 전국으로',
   goldenSub: '잘 되는 매장 하나를 찾아 전 매장으로 옮기는 본사 운영 사이클 — 발견에서 재측정까지 다섯 단계로 돕습니다.',
   golden: [
-    { en: 'Discover', title: '발견', desc: '한 매장의 성공·문제를 Store Insight가 Golden Case 후보로 자동 표시합니다.' },
+    { en: 'Discover', title: '발견', desc: '한 매장의 성공·문제를 store insight가 Golden Case 후보로 자동 표시합니다.' },
     { en: 'Verify', title: '검증', desc: "본사가 '왜 그런가'를 가설과 Case 기반 비교로 확인합니다." },
     { en: 'Translate', title: '번역', desc: "본사의 한 줄을 점주 언어로 옮깁니다 — '진열을 옮기면 객단가 +8%'." },
     { en: 'Sync', title: '전파', desc: '검증된 운영 패턴을 전 매장에 동시 적용·동기화합니다.' },
@@ -97,7 +97,7 @@ const en: Copy = {
   badge: 'Enterprise',
   heroTitleA: 'Standardize multi-store',
   heroTitleB: 'operations with data',
-  heroSub1: 'Deeping Source for franchise headquarters, supervisors, and operations leaders.',
+  heroSub1: 'DeepingSource for franchise headquarters, supervisors, and operations leaders.',
   heroSub2: 'Reduce variance between stores and raise the bar across your entire network.',
   heroCta: 'Request a consultation',
   challengesTitle: 'The core challenges HQ faces',
@@ -107,7 +107,7 @@ const en: Copy = {
     { title: 'Delayed visibility', desc: "Without a supervisor on-site, there's no way to know a store's true state." },
     { title: 'Gut-feel decisions', desc: 'Decisions keep relying on experience instead of data.' },
   ],
-  benefitsTitle: 'How Deeping Source solves it',
+  benefitsTitle: 'How DeepingSource solves it',
   benefits: [
     { title: 'Real-time AI situation sensing across every store', description: 'Track equipment, hygiene, and merchandising across all stores in real time, with alerts the moment something is off.' },
     { title: 'Cross-store performance benchmarking', description: 'Compare traffic-flow and sales patterns store by store, then scale the winning patterns.' },
@@ -122,7 +122,7 @@ const en: Copy = {
   goldenTitle: 'One store’s success, across the network',
   goldenSub: 'The HQ operating cycle that finds one thriving store and replicates it everywhere — five stages from discovery to re-measurement.',
   golden: [
-    { en: 'Discover', title: 'Discover', desc: 'Store Insight automatically flags a store’s success or problem as a Golden Case candidate.' },
+    { en: 'Discover', title: 'Discover', desc: 'store insight automatically flags a store’s success or problem as a Golden Case candidate.' },
     { en: 'Verify', title: 'Verify', desc: 'HQ confirms the "why" through hypotheses and case-based comparison.' },
     { en: 'Translate', title: 'Translate', desc: 'HQ turns one finding into the owner’s language — "move the display, lift basket size +8%".' },
     { en: 'Sync', title: 'Sync', desc: 'Roll out and sync the verified operating pattern to every store at once.' },
@@ -149,7 +149,7 @@ const jp: Copy = {
   badge: 'Enterprise',
   heroTitleA: '多店舗運営を、',
   heroTitleB: 'データで標準化しましょう',
-  heroSub1: 'フランチャイズ本部・スーパーバイザー・運営担当者のためのDeeping Sourceです。',
+  heroSub1: 'フランチャイズ本部・スーパーバイザー・運営担当者のためのDeepingSourceです。',
   heroSub2: '店舗間のばらつきを抑え、運営全体の水準を高めます。',
   heroCta: '導入のご相談',
   challengesTitle: '本部が抱える主な課題',
@@ -159,7 +159,7 @@ const jp: Copy = {
     { title: '現場把握の遅れ', desc: 'スーパーバイザーが直接訪問しなければ、店舗の状態を知ることができません。' },
     { title: '勘に頼る意思決定', desc: 'データのないまま経験に依存した意思決定が繰り返されます。' },
   ],
-  benefitsTitle: 'Deeping Sourceが解決します',
+  benefitsTitle: 'DeepingSourceが解決します',
   benefits: [
     { title: '全店舗のリアルタイムAI状況検知', description: '全店舗の設備・衛生・陳列をリアルタイムで把握し、異常時には通知を受け取れます。' },
     { title: '店舗間の成果比較・分析', description: '店舗ごとの動線・売上パターンを比較分析し、成功パターンを横展開します。' },
@@ -174,7 +174,7 @@ const jp: Copy = {
   goldenTitle: '一店舗の成功を、全国へ',
   goldenSub: 'うまくいっている一店舗を見つけ、全店舗へ広げる本部の運営サイクル — 発見から再測定まで五つの段階でお手伝いします。',
   golden: [
-    { en: 'Discover', title: '発見', desc: '一店舗の成功・課題を、Store InsightがGolden Case候補として自動的に表示します。' },
+    { en: 'Discover', title: '発見', desc: '一店舗の成功・課題を、store insightがGolden Case候補として自動的に表示します。' },
     { en: 'Verify', title: '検証', desc: '本部が「なぜそうなのか」を、仮説とCaseに基づく比較で確認します。' },
     { en: 'Translate', title: '翻訳', desc: '本部の一言を店主の言葉に置き換えます — 「陳列を変えれば客単価+8%」。' },
     { en: 'Sync', title: '展開', desc: '検証済みの運営パターンを全店舗へ同時に適用・同期します。' },

@@ -50,7 +50,7 @@ export default function NotFound() {
         </Link>
 
         {/* Quick links */}
-        <div className="grid grid-cols-3 gap-3 mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
           {[
             { href: '/products/store-care', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
             { href: '/products/store-insight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },

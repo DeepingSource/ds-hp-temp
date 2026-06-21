@@ -16,7 +16,7 @@ import { signature, operatingLoop } from '@/lib/brand-canon';
  * launch film (00:4–00:7, 01:2): POS only keeps who paid, the funnel of the
  * invisible majority who browse and leave, and the answer waiting in the space.
  * The funnel is drawn from the copy's own numbers (language-neutral, all locales).
- * Resolves into the SAAI answer (보는 AI를 넘어, 누가가 아니라 무엇을).
+ * Resolves into the SAAI answer (보는 AI를 넘어, 누구가 아니라 무엇을).
  */
 
 type Pain = { icon: typeof Receipt; title: string; desc: string };
@@ -122,7 +122,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
         {/* Funnel of the invisible majority — built from the copy's own numbers (language-neutral) */}
         <div className="mb-12 rounded-2xl border border-gray-200 bg-white p-6 sm:p-9 shadow-card">
           <p className="mb-6 text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
-          <div className="grid grid-cols-6 gap-1.5 sm:gap-3 items-end">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-3 items-end">
             {t.funnel.map((s, i) => (
               <div key={s.label} className="text-center">
                 <div className="flex items-end justify-center h-20 sm:h-28">

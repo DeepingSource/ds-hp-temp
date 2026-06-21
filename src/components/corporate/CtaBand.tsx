@@ -15,7 +15,7 @@ type Kind = 'trust' | 'product';
 
 const dict: Record<Kind, Record<Locale, { text: string; button: string }>> = {
   trust: {
-    ko: { text: '안전하게 보고, 정확하게 읽습니다 — 영상은 남기지 않고, 누가가 아니라 무엇을 어떻게.', button: '도입 상담 신청' },
+    ko: { text: '안전하게 보고, 정확하게 읽습니다 — 영상은 남기지 않고, 누구가 아니라 무엇을 어떻게.', button: '도입 상담 신청' },
     en: { text: 'Safe to watch, precise to read — no footage kept, not who but what and how.', button: 'Talk to us' },
     jp: { text: '安全に見て、正確に読む — 映像は残さず、誰かではなく何をどう。', button: '導入のご相談' },
   },

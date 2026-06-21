@@ -53,7 +53,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI의 StoreCare는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 StoreInsight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.',
+      'SAAI의 store care는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 store insight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.',
     relatedTerms: ['dwell-time', 'zone-analysis', 'purchase-conversion-rate', 'anonymized-cctv'],
     relatedIndustries: ['convenience', 'drugstore', 'mart'],
     metaDescription:
@@ -85,7 +85,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI의 모든 제품(StoreCare, StoreInsight, StoreAgent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.',
+      'SAAI의 모든 제품(store care, store insight, store agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.',
     relatedTerms: ['computer-vision', 'store-heatmap', 'cctv-analytics', 'retail-ai'],
     relatedIndustries: ['convenience', 'unmanned', 'logistics'],
     metaDescription:
@@ -118,7 +118,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreInsight는 구역별 체류 시간을 자동 측정해 시간대, 요일, 이벤트 전후 비교를 실시간 대시보드로 제공합니다. StoreCare의 실시간 감지 데이터를 기반으로 평균 체류 시간, 최장 체류 위치, 구역 이탈률 등 다차원 분석이 가능합니다.',
+      'SAAI store insight는 구역별 체류 시간을 자동 측정해 시간대, 요일, 이벤트 전후 비교를 실시간 대시보드로 제공합니다. store care의 실시간 감지 데이터를 기반으로 평균 체류 시간, 최장 체류 위치, 구역 이탈률 등 다차원 분석이 가능합니다.',
     relatedTerms: ['store-heatmap', 'zone-analysis', 'seat-turnover-rate', 'footfall-analysis'],
     relatedIndustries: ['cafe', 'exhibition', 'drugstore'],
     metaDescription:
@@ -150,7 +150,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 StoreInsight 대시보드에서 실시간으로 확인할 수 있습니다. StoreAgent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.',
+      'SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 store insight 대시보드에서 실시간으로 확인할 수 있습니다. store agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.',
     relatedTerms: ['store-heatmap', 'dwell-time', 'footfall-analysis', 'pos-data-limitations'],
     relatedIndustries: ['convenience', 'drugstore', 'mart'],
     metaDescription:
@@ -182,7 +182,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare는 카메라로 테이블별 착석 여부를 실시간 감지합니다. StoreInsight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. StoreAgent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.',
+      'SAAI store care는 카메라로 테이블별 착석 여부를 실시간 감지합니다. store insight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. store agent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.',
     relatedTerms: ['dwell-time', 'footfall-analysis', 'behavior-analysis'],
     relatedIndustries: ['cafe'],
     metaDescription:
@@ -214,7 +214,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.',
+      'SAAI store care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.',
     relatedTerms: ['computer-vision', 'anonymized-cctv', 'night-monitoring', 'cctv-analytics'],
     relatedIndustries: ['unmanned', 'convenience', 'logistics'],
     metaDescription:
@@ -279,7 +279,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreInsight의 구역별 분석 기능은 최대 20개 가상 구역을 동시에 모니터링합니다. 각 구역의 방문객 수, 평균 체류 시간, 재방문율을 시간대별로 집계하며, 구역 간 이동 패턴(어느 구역에서 어느 구역으로 이동하는지)도 분석합니다.',
+      'SAAI store insight의 구역별 분석 기능은 최대 20개 가상 구역을 동시에 모니터링합니다. 각 구역의 방문객 수, 평균 체류 시간, 재방문율을 시간대별로 집계하며, 구역 간 이동 패턴(어느 구역에서 어느 구역으로 이동하는지)도 분석합니다.',
     relatedTerms: ['store-heatmap', 'dwell-time', 'purchase-conversion-rate'],
     relatedIndustries: ['drugstore', 'mart', 'exhibition'],
     metaDescription:
@@ -311,7 +311,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 "방문했다"는 사실만 기록합니다. StoreInsight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.',
+      'SAAI store care는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 "방문했다"는 사실만 기록합니다. store insight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.',
     relatedTerms: ['purchase-conversion-rate', 'dwell-time', 'zone-analysis'],
     relatedIndustries: ['convenience', 'mart', 'logistics'],
     metaDescription:
@@ -343,7 +343,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreInsight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. StoreAgent는 분석 결과를 바탕으로 "B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요"와 같은 actionable 알림을 자동으로 전송합니다.',
+      'SAAI store insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. store agent는 분석 결과를 바탕으로 "B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요"와 같은 actionable 알림을 자동으로 전송합니다.',
     relatedTerms: ['store-heatmap', 'dwell-time', 'zone-analysis', 'purchase-conversion-rate'],
     relatedIndustries: ['drugstore', 'convenience', 'mart'],
     metaDescription:
@@ -375,7 +375,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare는 주요 매대 CCTV 영상을 분석해 결품 발생 시 실시간 앱 알림을 전송합니다. 알림에는 발생 시간, 해당 매대 위치, 카메라 캡처 이미지가 포함되어 담당자가 바로 확인할 수 있습니다. 결품 지속 시간과 빈도도 기록되어 재발 방지 발주 계획 수립에 활용됩니다.',
+      'SAAI store care는 주요 매대 CCTV 영상을 분석해 결품 발생 시 실시간 앱 알림을 전송합니다. 알림에는 발생 시간, 해당 매대 위치, 카메라 캡처 이미지가 포함되어 담당자가 바로 확인할 수 있습니다. 결품 지속 시간과 빈도도 기록되어 재발 방지 발주 계획 수립에 활용됩니다.',
     relatedTerms: ['anomaly-detection', 'vmd-optimization', 'footfall-analysis'],
     relatedIndustries: ['convenience', 'mart', 'drugstore'],
     metaDescription:
@@ -407,7 +407,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI의 StoreInsight는 방문객 동선, 구역별 체류 패턴, 상품 픽업 행동을 종합한 고객 행동 리포트를 주간·월간으로 자동 생성합니다. 익명화 처리로 개인정보 없이 행동 패턴만 분석하며, A/B 테스트 형태로 진열 개편 전후 효과를 비교 분석합니다.',
+      'SAAI의 store insight는 방문객 동선, 구역별 체류 패턴, 상품 픽업 행동을 종합한 고객 행동 리포트를 주간·월간으로 자동 생성합니다. 익명화 처리로 개인정보 없이 행동 패턴만 분석하며, A/B 테스트 형태로 진열 개편 전후 효과를 비교 분석합니다.',
     relatedTerms: ['store-heatmap', 'dwell-time', 'purchase-conversion-rate', 'footfall-analysis'],
     relatedIndustries: ['convenience', 'drugstore', 'mart'],
     metaDescription:
@@ -439,7 +439,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. StoreInsight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다.',
+      'SAAI store care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. store insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다.',
     relatedTerms: ['footfall-analysis', 'zone-analysis', 'anomaly-detection'],
     relatedIndustries: ['mart', 'exhibition', 'logistics'],
     metaDescription:
@@ -473,7 +473,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(StoreCare) → 분석(StoreInsight) → 실행(StoreAgent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.',
+      'SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(store care) → 분석(store insight) → 실행(store agent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.',
     relatedTerms: ['computer-vision', 'anonymized-cctv', 'behavior-analysis', 'store-operations-automation'],
     relatedIndustries: ['convenience', 'cafe', 'unmanned'],
     metaDescription:
@@ -537,7 +537,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreAgent는 StoreCare의 실시간 감지 데이터와 StoreInsight의 패턴 분석을 결합해 actionable 알림을 자동 발송합니다. 운영자는 매일 아침 전날 야간 이상 요약, 결품 발생 현황, 금일 혼잡 예측이 담긴 리포트를 앱으로 받아볼 수 있습니다.',
+      'SAAI store agent는 store care의 실시간 감지 데이터와 store insight의 패턴 분석을 결합해 actionable 알림을 자동 발송합니다. 운영자는 매일 아침 전날 야간 이상 요약, 결품 발생 현황, 금일 혼잡 예측이 담긴 리포트를 앱으로 받아볼 수 있습니다.',
     relatedTerms: ['retail-ai', 'anomaly-detection', 'stockout-detection', 'behavior-analysis'],
     relatedIndustries: ['convenience', 'unmanned', 'mart'],
     metaDescription:
@@ -569,7 +569,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreCare의 야간 모니터링은 해가 진 후 자동으로 야간 모드로 전환됩니다. 침입 감지 알림은 평균 15초 이내에 발송되며, 앱 알림과 함께 감지 순간의 영상 캡처가 첨부됩니다. 무인매장의 경우 원격 잠금·경고음 연동도 지원합니다.',
+      'SAAI store care의 야간 모니터링은 해가 진 후 자동으로 야간 모드로 전환됩니다. 침입 감지 알림은 평균 15초 이내에 발송되며, 앱 알림과 함께 감지 순간의 영상 캡처가 첨부됩니다. 무인매장의 경우 원격 잠금·경고음 연동도 지원합니다.',
     relatedTerms: ['anomaly-detection', 'cctv-analytics', 'store-operations-automation'],
     relatedIndustries: ['convenience', 'unmanned'],
     metaDescription:
@@ -602,7 +602,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreInsight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. "방문자 수 대비 매출"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.',
+      'SAAI store insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. "방문자 수 대비 매출"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.',
     relatedTerms: ['purchase-conversion-rate', 'stockout-detection', 'footfall-analysis', 'behavior-analysis'],
     relatedIndustries: ['convenience', 'mart', 'drugstore'],
     metaDescription:
@@ -636,7 +636,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       },
     ],
     saaiUsage:
-      'SAAI StoreAgent는 StoreCare의 실시간 감지와 StoreInsight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.',
+      'SAAI store agent는 store care의 실시간 감지와 store insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.',
     relatedTerms: ['store-operations-automation', 'retail-ai', 'behavior-analysis', 'anomaly-detection'],
     relatedIndustries: ['convenience', 'unmanned', 'mart'],
     metaDescription:

@@ -63,9 +63,9 @@ export default function FaqView({ locale }: { locale: Locale }) {
 
   const sections = [
     { id: 'common' as const, label: c.commonLabel, ko: commonFaqs },
-    { id: 'storecare' as const, label: 'StoreCare', ko: storeCareFaqs },
-    { id: 'storeinsight' as const, label: 'StoreInsight', ko: storeInsightFaqs },
-    { id: 'storeagent' as const, label: 'StoreAgent', ko: storeAgentKo },
+    { id: 'storecare' as const, label: 'store care', ko: storeCareFaqs },
+    { id: 'storeinsight' as const, label: 'store insight', ko: storeInsightFaqs },
+    { id: 'storeagent' as const, label: 'store agent', ko: storeAgentKo },
   ].map((s) => {
     const source = locale === 'ko' ? s.ko : (faqI18n[s.id]?.[locale] ?? s.ko);
     return {

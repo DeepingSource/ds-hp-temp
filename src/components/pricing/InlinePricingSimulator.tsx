@@ -10,9 +10,9 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { type Content } from './PricingClientView';
 
 const SIM_PRODUCT_OPTIONS = [
-  { key: 'care', label: 'Store Care', color: 'blue' },
-  { key: 'insight', label: 'Store Insight', color: 'blue' },
-  { key: 'agent', label: 'Store Agent', color: 'blue' },
+  { key: 'care', label: 'store care', color: 'blue' },
+  { key: 'insight', label: 'store insight', color: 'blue' },
+  { key: 'agent', label: 'store agent', color: 'blue' },
 ] as const;
 
 export default function InlinePricingSimulator({ t, locale }: { t: Content; locale: Locale }) {
@@ -182,19 +182,19 @@ export default function InlinePricingSimulator({ t, locale }: { t: Content; loca
               <div className="w-full space-y-1.5 mb-4 text-left">
                 {simProducts.has('care') && (
                   <div className="flex justify-between text-xs text-gray-300">
-                    <span>Store Care</span>
+                    <span>store care</span>
                     <span>{simCareCost.toLocaleString()}{t.won}</span>
                   </div>
                 )}
                 {simProducts.has('insight') && (
                   <div className="flex justify-between text-xs text-gray-300">
-                    <span>Store Insight</span>
+                    <span>store insight</span>
                     <span>{simInsightCost.toLocaleString()}{t.won}</span>
                   </div>
                 )}
                 {simProducts.has('agent') && (
                   <div className="flex justify-between text-xs text-gray-300">
-                    <span>Store Agent</span>
+                    <span>store agent</span>
                     <span>{simAgentCost.toLocaleString()}{t.won}</span>
                   </div>
                 )}

@@ -4,7 +4,7 @@ import PricingClientView from '@/components/pricing/PricingClientView';
 export const metadata: Metadata = {
   title: '요금 안내 | DeepingSource',
   description:
-    'Store Care · Store Insight · Store Agent 요금을 한눈에 비교하세요. 매장 규모와 필요에 맞는 플랜을 선택하세요.',
+    'store care · store insight · store agent 요금을 한눈에 비교하세요. 매장 규모와 필요에 맞는 플랜을 선택하세요.',
   alternates: {
     canonical: '/ko/pricing',
     languages: {
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: '요금 안내 | DeepingSource',
-    description: 'Store Care · Store Insight · Store Agent 요금을 한눈에 비교하세요.',
+    description: 'store care · store insight · store agent 요금을 한눈에 비교하세요.',
     url: '/ko/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: '요금 안내 | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '요금 안내 | DeepingSource',
-    description: 'Store Care · Store Insight · Store Agent 요금을 한눈에 비교하세요.',
+    description: 'store care · store insight · store agent 요금을 한눈에 비교하세요.',
   },
 };
 

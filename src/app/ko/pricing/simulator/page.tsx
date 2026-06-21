@@ -7,7 +7,7 @@ import { type Locale, localeHref } from '@/lib/i18n';
 export const metadata: Metadata = {
   title: '요금 시뮬레이션 | DeepingSource',
   description:
-    '매장 규모, 카메라 수, 냉장고 수에 따른 StoreCare·StoreInsight 예상 요금을 시뮬레이션해보세요.',
+    '매장 규모, 카메라 수, 냉장고 수에 따른 store care·store insight 예상 요금을 시뮬레이션해보세요.',
   alternates: {
     canonical: '/ko/pricing/simulator',
     languages: {

@@ -43,7 +43,7 @@ export const perfectSpace: { your: Record<Locale, string>; every: Record<Locale,
 
 /** Category definition — the recurring thesis. */
 export const categoryLine: Record<Locale, string> = {
-  ko: '이미 달린 CCTV 위에서, 누가가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
+  ko: '이미 달린 CCTV 위에서, 누구가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
   en: 'On the CCTV you already have — not who, but what and how. AI that observes, analyzes, suggests, and learns, anonymously.',
   jp: 'すでにあるCCTVの上で、誰かではなく、何をどう。匿名で観察し、分析し、提案し、学習するAI。',
 };
@@ -90,7 +90,7 @@ export const nameOrigin: Record<Locale, string> = {
 
 /**
  * 3 SOLUTION 시간축 태그라인 — read·alert·act (SAAI_AI_Handoff.md · Copy_Decision_v1).
- * Store Insight 어제를 읽다 / Store Care 지금을 알리다 / Store Agent 다음을 실행하다.
+ * store insight 어제를 읽다 / store care 지금을 알리다 / store agent 다음을 실행하다.
  */
 export const solutionTaglines: Record<'insight' | 'care' | 'agent', Record<Locale, string>> = {
   insight: { ko: '어제를 읽다', en: 'Reads yesterday', jp: '昨日を読む' },
@@ -101,7 +101,7 @@ export const solutionTaglines: Record<'insight' | 'care' | 'agent', Record<Local
 /**
  * Glanceable function-category label per product — so a cold visitor knows the
  * category in one glance (benchmark gap vs competitors). Privacy-safe framing:
- * Store Care = anomaly detection, NOT "safety/surveillance".
+ * store care = anomaly detection, NOT "safety/surveillance".
  */
 export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale, string>> = {
   insight: { ko: '공간 분석 AI', en: 'Spatial Analytics AI', jp: '空間分析AI' },

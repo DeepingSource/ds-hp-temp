@@ -15,6 +15,13 @@ const PRODUCT_META = {
   StoreAgent:   { color: 'blue',    dotCls: 'bg-blue-500',    activeCls: 'border-blue-300 bg-blue-50',      textCls: 'text-blue-700'    },
 } as const;
 
+/** Display labels — the keys above stay as logic identifiers (SolutionStep['product']). */
+const PRODUCT_DISPLAY: Record<SolutionStep['product'], string> = {
+  StoreCare:    'store care',
+  StoreInsight: 'store insight',
+  StoreAgent:   'store agent',
+};
+
 const C: Record<Locale, {
   eyebrow: string;
   heading: string;
@@ -90,7 +97,7 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
                 }`}
               >
                 <span className={`w-2 h-2 rounded-full shrink-0 ${m.dotCls}`} />
-                {t.productLabels[product]} · {product}
+                {t.productLabels[product]} · {PRODUCT_DISPLAY[product]}
               </button>
             );
           })}

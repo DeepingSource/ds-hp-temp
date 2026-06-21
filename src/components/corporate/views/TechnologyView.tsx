@@ -151,9 +151,9 @@ const ko: Copy = {
   patentsStackLine: '익명화 · 공간 지능 · 에이전트 AI',
   poweredLabel: '이 기술이 구동하는 제품',
   poweredProducts: [
-    { name: 'Store Insight', desc: '어제를 읽다 — 매출 너머의 공간' },
-    { name: 'Store Agent', desc: '다음을 실행하다 — 권고는 AI, 결정은 사람' },
-    { name: 'Store Care', desc: '지금을 알리다 — 필요한 순간만 실시간' },
+    { name: 'store insight', desc: '어제를 읽다 — 매출 너머의 공간' },
+    { name: 'store agent', desc: '다음을 실행하다 — 권고는 AI, 결정은 사람' },
+    { name: 'store care', desc: '지금을 알리다 — 필요한 순간만 실시간' },
   ],
 
   ctaBadge: () => '익명화 · 공간 지능 · 에이전트 AI',
@@ -228,9 +228,9 @@ const en: Copy = {
   patentsStackLine: 'Anonymizer · Spatial Intelligence · Agentic AI',
   poweredLabel: 'Products powered by this technology',
   poweredProducts: [
-    { name: 'Store Insight', desc: 'Reads yesterday — the space beyond sales' },
-    { name: 'Store Agent', desc: 'Acts on next — AI recommends, people decide' },
-    { name: 'Store Care', desc: 'Flags the now — only the moments that matter' },
+    { name: 'store insight', desc: 'Reads yesterday — the space beyond sales' },
+    { name: 'store agent', desc: 'Acts on next — AI recommends, people decide' },
+    { name: 'store care', desc: 'Flags the now — only the moments that matter' },
   ],
 
   ctaBadge: () => 'Anonymizer · Spatial AI · Agentic AI',
@@ -305,9 +305,9 @@ const jp: Copy = {
   patentsStackLine: '匿名化 · 空間知能 · エージェントAI',
   poweredLabel: 'この技術が支える製品',
   poweredProducts: [
-    { name: 'Store Insight', desc: '昨日を読む — 売上の先にある空間' },
-    { name: 'Store Agent', desc: '次を動かす — 推奨はAI、決定は人' },
-    { name: 'Store Care', desc: '今を知らせる — 必要な瞬間だけリアルタイム' },
+    { name: 'store insight', desc: '昨日を読む — 売上の先にある空間' },
+    { name: 'store agent', desc: '次を動かす — 推奨はAI、決定は人' },
+    { name: 'store care', desc: '今を知らせる — 必要な瞬間だけリアルタイム' },
   ],
 
   ctaBadge: () => '匿名化 · 空間知能 · エージェントAI',
@@ -539,7 +539,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
 
             <div className="flex flex-col gap-6">
               <div className="p-10 section-dark rounded-3xl text-center flex-1 flex flex-col justify-center">
-                <p className="text-7xl font-bold mb-2 text-white">{COMPANY.patents}</p>
+                <p className="text-5xl sm:text-7xl font-bold mb-2 text-white">{COMPANY.patents}</p>
                 <p className="text-lg font-bold mb-1 text-white">{t.patentsLabel}</p>
                 <p className="text-sm text-slate-300 font-medium mb-1">{COMPANY.patentsLabel}</p>
                 <p className="text-slate-400 text-sm">{t.patentsStackLine}</p>

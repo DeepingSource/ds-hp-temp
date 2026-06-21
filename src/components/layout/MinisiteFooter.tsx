@@ -37,9 +37,9 @@ export default function MinisiteFooter() {
         {/* Product cross-sell */}
         <div className="text-center mb-10 py-6 border-t border-b border-gray-800">
           <p className="text-sm text-gray-300">
-            관찰(<Link href="/storecare" className="text-gray-300 hover:text-white hover:underline transition-colors">StoreCare</Link>)
+            관찰(<Link href="/storecare" className="text-gray-300 hover:text-white hover:underline transition-colors">store care</Link>)
             {' · '}
-            분석(<Link href="/storeinsight" className="text-gray-300 hover:text-white hover:underline transition-colors">StoreInsight</Link>)과
+            분석(<Link href="/storeinsight" className="text-gray-300 hover:text-white hover:underline transition-colors">store insight</Link>)과
             함께 쓰면 더 강력합니다
           </p>
         </div>
@@ -66,8 +66,8 @@ export default function MinisiteFooter() {
           {/* Links */}
           <div className="flex flex-wrap gap-8 sm:gap-14">
             <div>
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">StoreAgent</p>
-              <nav className="flex flex-col gap-2" aria-label="StoreAgent">
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">store agent</p>
+              <nav className="flex flex-col gap-2" aria-label="store agent">
                 {minisiteLinks.map((link) => (
                   <Link
                     key={link.href}

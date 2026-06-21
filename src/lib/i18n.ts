@@ -62,7 +62,7 @@ export const homeCopy: Record<Locale, {
   ko: {
     masterCompany: '모든 매장을 한 매장처럼',
     masterOwner: '우리 매장이 대표 매장처럼',
-    heroSub: '이미 달린 CCTV 위에서 — 누가가 아니라 무엇을 어떻게. 공간을 관찰하고, 분석하고, 제안하고, 학습하는 익명화 공간 AI입니다.',
+    heroSub: '이미 달린 CCTV 위에서 — 누구가 아니라 무엇을 어떻게. 공간을 관찰하고, 분석하고, 제안하고, 학습하는 익명화 공간 AI입니다.',
     ctaPrimary: '도입 상담',
     ctaSecondary: '제품 보기',
   },

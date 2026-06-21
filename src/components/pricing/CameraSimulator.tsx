@@ -117,7 +117,7 @@ const C: Record<Locale, SimContent> = {
     emptyHint: '제품을 하나 이상 선택하면\n예상 비용이 계산됩니다',
     careLineBasic: '기본', careLinePlus: '플러스',
     tempAddBasic: '온도 모니터링 추가', tempAddPlus: '추가 냉장고 요금',
-    insightLine: (cam) => `Store Insight (카메라 ${cam}대)`,
+    insightLine: (cam) => `store insight (카메라 ${cam}대)`,
     agentLineFree: '기본형', agentLineStd: '표준', agentLinePrem: '프리미엄',
     free: '무료',
     monthlySum: '예상 월 비용 합산',
@@ -178,7 +178,7 @@ const C: Record<Locale, SimContent> = {
     emptyHint: 'Select at least one product\nto calculate the estimated cost',
     careLineBasic: 'Basic', careLinePlus: 'Plus',
     tempAddBasic: 'Temperature monitoring add-on', tempAddPlus: 'Additional refrigerator fee',
-    insightLine: (cam) => `Store Insight (${cam} cameras)`,
+    insightLine: (cam) => `store insight (${cam} cameras)`,
     agentLineFree: 'Basic', agentLineStd: 'Standard', agentLinePrem: 'Premium',
     free: 'Free',
     monthlySum: 'Estimated monthly total',
@@ -239,7 +239,7 @@ const C: Record<Locale, SimContent> = {
     emptyHint: '製品を1つ以上選択すると\n想定費用が計算されます',
     careLineBasic: '基本', careLinePlus: 'プラス',
     tempAddBasic: '温度モニタリング追加', tempAddPlus: '追加冷蔵庫料金',
-    insightLine: (cam) => `Store Insight（カメラ${cam}台）`,
+    insightLine: (cam) => `store insight（カメラ${cam}台）`,
     agentLineFree: '基本型', agentLineStd: '標準', agentLinePrem: 'プレミアム',
     free: '無料',
     monthlySum: '想定月額費用の合計',
@@ -493,7 +493,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Store Care</p>
+                <p className="text-sm font-bold text-gray-900">store care</p>
                 <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.careTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.careDesc}</p>
@@ -519,7 +519,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Store Insight</p>
+                <p className="text-sm font-bold text-gray-900">store insight</p>
                 <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.insightTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.insightDesc}</p>
@@ -545,7 +545,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-bold text-gray-900">Store Agent</p>
+                <p className="text-sm font-bold text-gray-900">store agent</p>
                 <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.agentTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.agentDesc}</p>
@@ -571,7 +571,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div>
               <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
-                Store Care
+                store care
               </p>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -606,7 +606,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div>
               <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
-                Store Agent
+                store agent
               </p>
               <div className="grid grid-cols-3 gap-2">
                 <button
@@ -678,7 +678,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600 flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
-                      Store Care {carePlan === 'plus' ? t.careLinePlus : t.careLineBasic}
+                      store care {carePlan === 'plus' ? t.careLinePlus : t.careLineBasic}
                     </span>
                     <span className="text-sm font-medium text-gray-900">{fmt(estimate.careMonthly)}{t.won}{t.perMonth}</span>
                   </div>
@@ -705,7 +705,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
-                    Store Agent {agentPlan === 'free' ? t.agentLineFree : agentPlan === 'standard' ? t.agentLineStd : t.agentLinePrem}
+                    store agent {agentPlan === 'free' ? t.agentLineFree : agentPlan === 'standard' ? t.agentLineStd : t.agentLinePrem}
                   </span>
                   <span className="text-sm font-medium text-gray-900">
                     {estimate.agentMonthly === 0 ? t.free : `${fmt(estimate.agentMonthly)}${t.won}${t.perMonth}`}

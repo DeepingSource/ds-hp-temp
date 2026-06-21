@@ -35,7 +35,7 @@ const C: Record<Locale, {
     noticeLink: '문의',
     noticeAfter: '해 주세요.',
     manualSectionTitle: '제품별 매뉴얼',
-    featuredTitle: 'Store Insight 사용자 매뉴얼',
+    featuredTitle: 'store insight 사용자 매뉴얼',
     featuredDesc: '로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 — 대시보드 리포트 읽는 법을 안내합니다.',
     comingSoon: '준비 중',
     docComingSoon: '문서 준비 중',
@@ -46,8 +46,8 @@ const C: Record<Locale, {
       { id: 'analytics', title: '분석 활용', items: ['히트맵 읽는 법', '체류·전환 지표', '리포트 해석', '기간 비교 분석'] },
     ],
     comingSoonManuals: [
-      { title: 'Store Agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 Store Agent 매뉴얼입니다.' },
-      { title: 'Store Care 사용자 매뉴얼', desc: '이상·청결·냉장·진열 모듈의 알림 설정과 점주 모바일 운영을 다루는 Store Care 매뉴얼입니다.' },
+      { title: 'store agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 store agent 매뉴얼입니다.' },
+      { title: 'store care 사용자 매뉴얼', desc: '이상·청결·냉장·진열 모듈의 알림 설정과 점주 모바일 운영을 다루는 store care 매뉴얼입니다.' },
     ],
   },
   en: {
@@ -59,7 +59,7 @@ const C: Record<Locale, {
     noticeLink: 'get in touch',
     noticeAfter: '.',
     manualSectionTitle: 'Manuals by Product',
-    featuredTitle: 'Store Insight User Manual',
+    featuredTitle: 'store insight User Manual',
     featuredDesc: 'From login and date ranges to visitor analysis, heatmaps, flow, funnels, and purchase conversion — a guide to reading the dashboard report.',
     comingSoon: 'Coming soon',
     docComingSoon: 'Doc coming soon',
@@ -70,8 +70,8 @@ const C: Record<Locale, {
       { id: 'analytics', title: 'Using Analytics', items: ['Reading Heatmaps', 'Dwell & Conversion Metrics', 'Interpreting Reports', 'Period-over-Period Analysis'] },
     ],
     comingSoonManuals: [
-      { title: 'Store Agent User Manual', desc: 'The Store Agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
-      { title: 'Store Care User Manual', desc: 'The Store Care manual covering alert settings for the anomaly, cleanliness, refrigeration, and display modules, and mobile operations for owners.' },
+      { title: 'store agent User Manual', desc: 'The store agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
+      { title: 'store care User Manual', desc: 'The store care manual covering alert settings for the anomaly, cleanliness, refrigeration, and display modules, and mobile operations for owners.' },
     ],
   },
   jp: {
@@ -83,7 +83,7 @@ const C: Record<Locale, {
     noticeLink: 'お問い合わせ',
     noticeAfter: 'ください。',
     manualSectionTitle: '製品別マニュアル',
-    featuredTitle: 'Store Insight ユーザーマニュアル',
+    featuredTitle: 'store insight ユーザーマニュアル',
     featuredDesc: 'ログイン・期間設定から、来店者分析、ヒートマップ、動線、ファネル、購買転換率まで — ダッシュボードレポートの読み方をご案内します。',
     comingSoon: '準備中',
     docComingSoon: 'ドキュメント準備中',
@@ -94,8 +94,8 @@ const C: Record<Locale, {
       { id: 'analytics', title: '分析活用', items: ['ヒートマップの読み方', '滞在・転換指標', 'レポートの解釈', '期間比較分析'] },
     ],
     comingSoonManuals: [
-      { title: 'Store Agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する Store Agent のマニュアルです。' },
-      { title: 'Store Care ユーザーマニュアル', desc: '異常・清潔・冷蔵・陳列モジュールの通知設定と、店主向けモバイル運用を扱う Store Care のマニュアルです。' },
+      { title: 'store agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する store agent のマニュアルです。' },
+      { title: 'store care ユーザーマニュアル', desc: '異常・清潔・冷蔵・陳列モジュールの通知設定と、店主向けモバイル運用を扱う store care のマニュアルです。' },
     ],
   },
 };
