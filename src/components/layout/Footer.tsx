@@ -48,7 +48,7 @@ const legalLinks: FLink[] = [
 const columns: { title: Tri; links: FLink[] }[] = [
   { title: L('제품', 'Products', '製品'), links: productLinks },
   { title: L('기술', 'Technology', '技術'), links: techLinks },
-  { title: L('Company', 'Company', '会社'), links: companyLinks },
+  { title: L('회사', 'Company', '会社'), links: companyLinks },
   { title: L('리소스', 'Resources', 'リソース'), links: resourceLinks },
 ];
 
