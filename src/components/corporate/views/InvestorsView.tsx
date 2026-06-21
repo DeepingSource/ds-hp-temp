@@ -4,7 +4,7 @@ import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { CountUp } from '@/components/ui/CountUp';
 import {
-  ArrowRight, TrendingUp, Cpu, FileText, Download, Mail, Target, Building2, Map,
+  ArrowRight, TrendingUp, Cpu, Mail, Target, Building2, Map,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -37,11 +37,6 @@ type Copy = {
   milestonesEyebrow: string;
   milestonesHeading: string;
   milestones: { year: string; title: string; desc: string }[];
-  downloadsEyebrow: string;
-  downloadsHeading: string;
-  downloadsNote: string;
-  downloads: { name: string; desc: string }[];
-  comingSoon: string;
   mailSubject: string;
   ctaHeading: string;
   ctaSub: string;
@@ -83,19 +78,9 @@ const C: Record<Locale, Copy> = {
       { year: '2025', title: 'SAAI 플랫폼', desc: '리테일 Spatial Agentic AI 플랫폼으로 운영 자동화 본격화.' },
       { year: '2031', title: '비전', desc: COMPANY.vision },
     ],
-    downloadsEyebrow: 'Downloads',
-    downloadsHeading: '자료실',
-    downloadsNote: '※ 자료는 준비 중입니다. 공개 시 다운로드가 활성화됩니다.',
-    downloads: [
-      { name: 'Brand Deck', desc: '브랜드 · 비전 소개 자료' },
-      { name: 'Brand Book', desc: '브랜드 가이드라인' },
-      { name: 'OnePager', desc: '한 장 요약 소개서' },
-      { name: 'IR Deck', desc: '투자 설명 자료' },
-    ],
-    comingSoon: '준비 중',
     mailSubject: 'IR 문의',
     ctaHeading: 'IR 문의',
-    ctaSub: '투자 및 IR 관련 문의는 아래로 연락 주세요',
+    ctaSub: 'IR Deck·브랜드 자료는 개별 요청에 한해 제공합니다. 투자·IR 문의는 아래로 연락 주세요.',
     ctaForm: '문의 양식',
   },
   en: {
@@ -132,19 +117,9 @@ const C: Record<Locale, Copy> = {
       { year: '2025', title: 'SAAI platform', desc: 'Scaling operational automation as a retail Spatial Agentic AI platform.' },
       { year: '2031', title: 'Vision', desc: 'All the world’s data, kept safe — all the world’s spaces, made perfect.' },
     ],
-    downloadsEyebrow: 'Downloads',
-    downloadsHeading: 'Resources',
-    downloadsNote: '※ Materials are in preparation. Downloads will be enabled once published.',
-    downloads: [
-      { name: 'Brand Deck', desc: 'Brand · vision overview' },
-      { name: 'Brand Book', desc: 'Brand guidelines' },
-      { name: 'OnePager', desc: 'One-page summary' },
-      { name: 'IR Deck', desc: 'Investor presentation' },
-    ],
-    comingSoon: 'Coming soon',
     mailSubject: 'IR inquiry',
     ctaHeading: 'IR inquiries',
-    ctaSub: 'For investment and IR inquiries, reach us below.',
+    ctaSub: 'The IR Deck and brand materials are provided on an individual-request basis. For investment and IR inquiries, reach us below.',
     ctaForm: 'Inquiry form',
   },
   jp: {
@@ -181,19 +156,9 @@ const C: Record<Locale, Copy> = {
       { year: '2025', title: 'SAAIプラットフォーム', desc: 'リテールSpatial Agentic AIプラットフォームとして運営自動化を本格化。' },
       { year: '2031', title: 'ビジョン', desc: '世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。' },
     ],
-    downloadsEyebrow: 'Downloads',
-    downloadsHeading: '資料室',
-    downloadsNote: '※ 資料は準備中です。公開時にダウンロードが有効になります。',
-    downloads: [
-      { name: 'Brand Deck', desc: 'ブランド · ビジョン紹介資料' },
-      { name: 'Brand Book', desc: 'ブランドガイドライン' },
-      { name: 'OnePager', desc: '一枚要約紹介書' },
-      { name: 'IR Deck', desc: '投資説明資料' },
-    ],
-    comingSoon: '準備中',
     mailSubject: 'IRのお問い合わせ',
     ctaHeading: 'IRのお問い合わせ',
-    ctaSub: '投資およびIRに関するお問い合わせは下記までご連絡ください。',
+    ctaSub: 'IR Deck · ブランド資料は個別のご要望に応じて提供します。投資 · IRのお問い合わせは下記までご連絡ください。',
     ctaForm: 'お問い合わせフォーム',
   },
 };
@@ -325,39 +290,6 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
                 </StaggerItem>
               ))}
             </StaggerContainer>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 자료 다운로드 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.downloadsEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.downloadsHeading}</h2>
-            <p className="text-sm text-gray-500 break-keep">
-              {t.downloadsNote}
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.downloads.map((d) => (
-              <div key={d.name} className="p-6 rounded-3xl border border-gray-100 bg-slate-50 text-center flex flex-col">
-                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-5">
-                  <FileText className="w-6 h-6 text-slate-400" />
-                </div>
-                <h3 className="text-base font-bold text-gray-900 mb-1">{d.name}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed mb-5 break-keep">{d.desc}</p>
-                <button
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  className="mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-gray-500 text-sm font-medium cursor-not-allowed"
-                >
-                  <Download className="w-4 h-4" />
-                  {t.comingSoon}
-                </button>
-              </div>
-            ))}
           </div>
         </div>
       </AnimatedSection>

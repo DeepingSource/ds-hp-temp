@@ -23,7 +23,7 @@ const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram')
 });
 
 /**
- * StoreInsightView — shared Store Insight product-detail composition.
+ * StoreInsightView — shared store insight product-detail composition.
  * Rendered by `/products/store-insight` (en), `/ko/products/store-insight`,
  * `/jp/products/store-insight` with the locale prop. Product name stays identical.
  */
@@ -56,7 +56,7 @@ const C: Record<Locale, {
 }> = {
   ko: {
     heroTitle: ['POS가 못 센 것을', '봅니다.'],
-    heroSub: '둘러보다 그냥 나간 손님은 POS에 없습니다. Store Insight는 매출 너머 — 어제의 매장에서 무슨 일이 있었고, 왜 그랬는지를 읽습니다.',
+    heroSub: '둘러보다 그냥 나간 손님은 POS에 없습니다. store insight는 매출 너머 — 어제의 매장에서 무슨 일이 있었고, 왜 그랬는지를 읽습니다.',
     ctaPrimary: '도입 상담 신청',
     ctaSecondary: '무엇을 보나요',
     dashEyebrow: 'DASHBOARD',
@@ -64,11 +64,11 @@ const C: Record<Locale, {
     dashSub: '방문·동선·체류·전환을 한 화면으로. 손님이 어디서 멈추고 무엇을 놓쳤는지, 어제의 매장이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',
     hypHeading: '매출이 미처 보지 못한 것을 봅니다',
-    hypSub: '매출만으로는 알 수 없던 질문에, Store Insight가 답합니다.',
+    hypSub: '매출만으로는 알 수 없던 질문에, store insight가 답합니다.',
     hypotheses: [
-      { claim: 'POS는 결제한 65명만 압니다.', answer: 'Store Insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },
-      { claim: '안 팔리던 매대, 이유는 감입니다.', answer: 'Store Insight는 히트맵으로 보여줍니다.', desc: '어디서 머물고 어디서 그냥 지나치는지 — 안 팔리던 매대의 진짜 이유가 드러납니다.' },
-      { claim: '"오늘 손님이 적었다"는 인상입니다.', answer: 'Store Insight는 왜 그랬는지 설명합니다.', desc: '입장부터 퇴장까지 여정을 따라가, 어디서 발길을 돌리는지 이탈 지점을 짚습니다.' },
+      { claim: 'POS는 결제한 65명만 압니다.', answer: 'store insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },
+      { claim: '안 팔리던 매대, 이유는 감입니다.', answer: 'store insight는 히트맵으로 보여줍니다.', desc: '어디서 머물고 어디서 그냥 지나치는지 — 안 팔리던 매대의 진짜 이유가 드러납니다.' },
+      { claim: '"오늘 손님이 적었다"는 인상입니다.', answer: 'store insight는 왜 그랬는지 설명합니다.', desc: '입장부터 퇴장까지 여정을 따라가, 어디서 발길을 돌리는지 이탈 지점을 짚습니다.' },
     ],
     funnelHeading: '지나감에서 결제까지, 보이지 않던 손님이 보입니다',
     funnelSub: 'POS엔 결제한 65명만 남습니다. 그 앞의 단계를 모두 펼쳐, 어디서 새는지 찾습니다.',
@@ -81,25 +81,23 @@ const C: Record<Locale, {
     baHeading: '감으로 보던 매장, 데이터로 봅니다',
     before: [
       '"오늘 좀 한가했다"는 인상만 남습니다.',
-      '안 팔리던 매대의 이유를 추측합니다.',
       '매출이 떨어진 날, 원인을 모릅니다.',
     ],
     after: [
       '방문·체류·응시·구매·이탈까지 18가지 분석으로 남습니다.',
-      '히트맵과 구역 동선으로 진짜 이유가 드러납니다.',
-      '동선 하나 바꿔 수익 +10%, 체류 +25%까지 — 어제와 "왜"에 매일 답합니다.',
+      '동선 하나 바꿔 수익 +10%, 체류 +25% — 어제와 "왜"에 매일 답합니다.',
     ],
     baNote: '* 수치는 학원가 편의점·시립 전시관 등 실제 운영 사례를 설명하기 위한 예시입니다.',
     finalHeading: '어제와 "왜"에, 매일 아침 답을 받으세요',
     finalSub: '이미 달린 CCTV 위에서 바로 시작할 수 있습니다.',
     finalCta: '도입 상담 신청',
-    seeAgent: 'Store Agent 보기',
+    seeAgent: 'store agent 보기',
     alreadyUsing: '이미 사용 중이신가요?',
     manual: '사용자 매뉴얼 보기 →',
   },
   en: {
     heroTitle: ['See what your POS', 'never counted.'],
-    heroSub: 'The shoppers who browsed and left aren’t in your POS. Store Insight reads beyond sales — what happened in your store yesterday, and why.',
+    heroSub: 'The shoppers who browsed and left aren’t in your POS. store insight reads beyond sales — what happened in your store yesterday, and why.',
     ctaPrimary: 'Request a consultation',
     ctaSecondary: 'What it shows',
     dashEyebrow: 'DASHBOARD',
@@ -107,11 +105,11 @@ const C: Record<Locale, {
     dashSub: 'Visits, flow, dwell, and conversion on one screen. See where shoppers stopped and what they missed — yesterday, made visible.',
     mockupNote: '* Sample AI analysis screen.',
     hypHeading: 'See what your sales numbers never could',
-    hypSub: 'Store Insight answers the questions sales data alone can’t.',
+    hypSub: 'store insight answers the questions sales data alone can’t.',
     hypotheses: [
-      { claim: 'POS knows only the 65 who paid.', answer: 'Store Insight sees the rest.', desc: '1,160 passed your storefront yesterday, 382 came in — and 317 browsed and walked out. We see them too.' },
-      { claim: 'Why a shelf underperforms is a guess.', answer: 'Store Insight shows it on a heatmap.', desc: 'Where people linger and where they walk past — the real reason that shelf isn’t selling.' },
-      { claim: '"Quiet today" is an impression.', answer: 'Store Insight explains why.', desc: 'Follow the journey from entry to exit and pinpoint exactly where shoppers turn back.' },
+      { claim: 'POS knows only the 65 who paid.', answer: 'store insight sees the rest.', desc: '1,160 passed your storefront yesterday, 382 came in — and 317 browsed and walked out. We see them too.' },
+      { claim: 'Why a shelf underperforms is a guess.', answer: 'store insight shows it on a heatmap.', desc: 'Where people linger and where they walk past — the real reason that shelf isn’t selling.' },
+      { claim: '"Quiet today" is an impression.', answer: 'store insight explains why.', desc: 'Follow the journey from entry to exit and pinpoint exactly where shoppers turn back.' },
     ],
     funnelHeading: 'From passing by to paying — the invisible majority, made visible',
     funnelSub: 'Your POS keeps only the 65 who paid. We unfold every step before it to find where it leaks.',
@@ -124,25 +122,23 @@ const C: Record<Locale, {
     baHeading: 'The store you ran on instinct, now seen in data',
     before: [
       'All you keep is the impression that "it was quiet today."',
-      'You guess why a shelf underperforms.',
       'On days sales drop, the cause stays unknown.',
     ],
     after: [
       'Visits, dwell, attention, purchase, drop-off — 18 analyses, recorded.',
-      'Heatmaps and zone flow reveal the real reason.',
       'One flow change lifted revenue +10% and dwell +25% — answering yesterday and "why," every day.',
     ],
     baNote: '* Figures illustrate real cases — a campus convenience store and a city exhibition hall.',
     finalHeading: 'Get the answer to yesterday and "why," every morning',
     finalSub: 'Start right on the CCTV you already have.',
     finalCta: 'Request a consultation',
-    seeAgent: 'See Store Agent',
+    seeAgent: 'See store agent',
     alreadyUsing: 'Already a user?',
     manual: 'View the user manual →',
   },
   jp: {
     heroTitle: ['POS が数えられなかったものを、', '見ます。'],
-    heroSub: '見て回っただけで出ていったお客様は、POS に残りません。Store Insight は売上の先 — 昨日の店舗で何が起き、なぜそうなったのかを読み解きます。',
+    heroSub: '見て回っただけで出ていったお客様は、POS に残りません。store insight は売上の先 — 昨日の店舗で何が起き、なぜそうなったのかを読み解きます。',
     ctaPrimary: '導入のご相談',
     ctaSecondary: '何が見えるのか',
     dashEyebrow: 'DASHBOARD',
@@ -150,11 +146,11 @@ const C: Record<Locale, {
     dashSub: '来店・動線・滞在・転換を一画面で。お客様がどこで立ち止まり、何を見逃したのか — 昨日の店舗が見えてきます。',
     mockupNote: '※ AI分析のサンプル画面です。',
     hypHeading: '売上が見られなかったものを、見ます',
-    hypSub: '売上だけでは分からなかった問いに、Store Insight がお答えします。',
+    hypSub: '売上だけでは分からなかった問いに、store insight がお答えします。',
     hypotheses: [
-      { claim: 'POS は決済した 65 人しか分かりません。', answer: 'Store Insight は残りを見ます。', desc: '昨日、店頭を通った 1,160 人、入った 382 人 — 見て回っただけで出ていった 317 人まで見ます。' },
-      { claim: '売れない棚の理由は、感覚頼みです。', answer: 'Store Insight はヒートマップで見せます。', desc: 'どこで留まり、どこを素通りするのか — 売れなかった棚の本当の理由が見えてきます。' },
-      { claim: '「今日は客が少なかった」は印象です。', answer: 'Store Insight はなぜそうなのかを説明します。', desc: '入店から退店までの動線をたどり、どこで引き返すのか離脱地点を突き止めます。' },
+      { claim: 'POS は決済した 65 人しか分かりません。', answer: 'store insight は残りを見ます。', desc: '昨日、店頭を通った 1,160 人、入った 382 人 — 見て回っただけで出ていった 317 人まで見ます。' },
+      { claim: '売れない棚の理由は、感覚頼みです。', answer: 'store insight はヒートマップで見せます。', desc: 'どこで留まり、どこを素通りするのか — 売れなかった棚の本当の理由が見えてきます。' },
+      { claim: '「今日は客が少なかった」は印象です。', answer: 'store insight はなぜそうなのかを説明します。', desc: '入店から退店までの動線をたどり、どこで引き返すのか離脱地点を突き止めます。' },
     ],
     funnelHeading: '通過から決済まで、見えなかったお客様が見えます',
     funnelSub: 'POS に残るのは決済した 65 人だけ。その手前の段階をすべて広げ、どこで取りこぼすかを探します。',
@@ -167,19 +163,17 @@ const C: Record<Locale, {
     baHeading: '感覚で見ていた店舗を、データで見ます',
     before: [
       '「今日は少し暇だった」という印象だけが残ります。',
-      '売れない棚の理由を推測します。',
       '売上が落ちた日、その要因が分かりません。',
     ],
     after: [
       '来店・滞在・注視・購入・離脱まで、18種類の分析として残ります。',
-      'ヒートマップと区域動線で、本当の理由が見えてきます。',
       '動線を一つ変えるだけで売上 +10%、滞在 +25% — 昨日と「なぜ」に毎日お答えします。',
     ],
     baNote: '※ 数値は学習塾街のコンビニ・市立展示館などの実例を説明するための一例です。',
     finalHeading: '昨日と「なぜ」への答えを、毎朝お受け取りください',
     finalSub: 'すでにある CCTV の上で、すぐに始められます。',
     finalCta: '導入のご相談',
-    seeAgent: 'Store Agent を見る',
+    seeAgent: 'store agent を見る',
     alreadyUsing: 'すでにご利用中ですか？',
     manual: 'ユーザーマニュアルを見る →',
   },
@@ -193,17 +187,17 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: 'Store Insight', description: t.heroSub, path: '/products/store-insight', locale })} />
+      <JsonLd data={softwareApplication({ name: 'store insight', description: t.heroSub, path: '/products/store-insight', locale })} />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-24 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'Store Insight', path: '/products/store-insight' }]} locale={locale} tone="light" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store insight', path: '/products/store-insight' }]} locale={locale} tone="light" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <BarChart3 className="w-4 h-4" />
-            Store Insight
+            store insight
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             {t.heroTitle[0]}

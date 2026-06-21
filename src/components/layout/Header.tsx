@@ -17,11 +17,13 @@ type NavItem =
 const NAV: NavItem[] = [
   {
     type: 'menu', key: 'products', label: L('제품', 'Products', '製品'), base: '/products', items: [
-      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('4개 제품 진열대', 'Four-product lineup', '4製品ラインナップ') },
-      { href: '/products/store-insight', label: L('Store Insight', 'Store Insight', 'Store Insight'), desc: L('엔터프라이즈 공간 분석', 'Enterprise spatial analytics', 'エンタープライズ空間分析') },
-      { href: '/products/store-agent', label: L('Store Agent', 'Store Agent', 'Store Agent'), desc: L('다음 한 수 제안', 'The next move', '次の一手を提案') },
-      { href: '/products/store-care', label: L('Store Care', 'Store Care', 'Store Care'), desc: L('매장 안심 기록', 'Store peace of mind', '店舗の安心記録') },
-      { href: '/products/saai', label: L('SAAI', 'SAAI', 'SAAI'), desc: L('B2C 콘텐츠', 'B2C content', 'B2Cコンテンツ') },
+      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('SAAI 우산 아래 전 제품', 'Everything under SAAI', 'SAAI傘下の全製品') },
+      { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight'), desc: L('어제를 읽다 · 공간 분석', 'Reads yesterday · analytics', '昨日を読む · 空間分析') },
+      { href: '/products/store-care', label: L('store care', 'store care', 'store care'), desc: L('지금을 알리다 · 이상 감지', 'Flags the now · detection', '今を知らせる · 異常検知') },
+      { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음을 실행하다 · 운영 제안', 'Acts on next · ops copilot', '次を動かす · 運営提案') },
+      { href: '/products#store-count', label: L('store count', 'store count', 'store count'), desc: L('곧 출시 · 상권·유입', 'Coming soon · footfall', '近日公開 · 商圏・流入') },
+      { href: '/products/saai', label: L('AI POP', 'AI POP', 'AI POP'), desc: L('POP·콘텐츠 생성', 'POP & content', 'POP・コンテンツ生成') },
+      { href: '/products#trend-fit', label: L('trend fit', 'trend fit', 'trend fit'), desc: L('곧 출시 · 발주·트렌드', 'Coming soon · ordering', '近日公開 · 発注・トレンド') },
     ],
   },
   {

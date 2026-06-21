@@ -4,7 +4,7 @@ import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import {
   ArrowRight, Briefcase, Heart, Compass, Sparkles, Mail,
-  Coffee, GraduationCap, Home, Users, FileCheck, MessageSquare, UserCheck, PartyPopper, Cpu,
+  Coffee, GraduationCap, Home, Users, Cpu,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -30,16 +30,6 @@ type Copy = {
   benefitsHeading: string;
   benefitsSub: string;
   benefits: { title: string; desc: string }[];
-  rolesEyebrow: string;
-  rolesHeading: string;
-  rolesNotePre: string;
-  rolesNoteIllustrative: string;
-  rolesNotePost: string;
-  teams: { team: string; roles: { title: string; type: string }[] }[];
-  processEyebrow: string;
-  processHeading: string;
-  processSub: string;
-  process: { step: string; title: string; desc: string }[];
   mailSubject: string;
   ctaHeading: string;
   ctaSub: string;
@@ -52,7 +42,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Careers',
     heroMaster: '모든 매장을 한 매장처럼 —',
     heroMasterAccent: '그 한 회사를 함께 짜는 자리',
-    heroSub: `${COMPANY.foundingYear}년 한 점주의 질문에서 시작한 여정에, 다음 장을 함께 쓸 동료를 찾습니다.`,
+    heroSub: '지금 공개된 채용 공고는 없습니다. 함께하고 싶은 마음이 있다면 언제든 먼저 이야기를 들려주세요.',
     cultureEyebrow: 'How We Work',
     cultureHeading: '우리가 일하는 법',
     cultureSub: `“${COMPANY.vision}” — 비전과 프라이버시 원칙이 일상의 의사결정으로 이어집니다.`,
@@ -71,39 +61,6 @@ const C: Record<Locale, Copy> = {
       { title: '개발 도구', desc: 'NVIDIA Inception 파트너로서 AI 개발에 필요한 컴퓨팅과 도구를 갖춥니다.' },
       { title: '일하기 좋은 환경', desc: '강남 본사, 집중과 협업이 균형을 이루는 업무 공간.' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: '팀별 오픈 포지션',
-    rolesNotePre: '※ 아래는 구성 ',
-    rolesNoteIllustrative: '예시 포지션',
-    rolesNotePost: '입니다. 실제 채용 공고는 추후 업데이트됩니다.',
-    teams: [
-      { team: 'Engineering', roles: [
-        { title: 'Computer Vision Engineer (예시)', type: '정규직 · 서울' },
-        { title: 'Backend / Platform Engineer (예시)', type: '정규직 · 서울' },
-        { title: 'MLOps Engineer (예시)', type: '정규직 · 서울' },
-      ] },
-      { team: 'AI Research', roles: [
-        { title: 'AI Research Scientist — 익명화 · 영상 이해 (예시)', type: '정규직 · 서울' },
-        { title: 'Applied Research Engineer (예시)', type: '정규직 · 서울' },
-      ] },
-      { team: 'Sales · Partnership', roles: [
-        { title: 'Sales / Partnership Manager (예시)', type: '정규직 · 서울' },
-        { title: 'Solution Consultant (예시)', type: '정규직 · 서울' },
-      ] },
-      { team: 'Operations · Product', roles: [
-        { title: 'Product Manager (예시)', type: '정규직 · 서울' },
-        { title: 'Customer Success Manager (예시)', type: '정규직 · 서울' },
-      ] },
-    ],
-    processEyebrow: 'Process',
-    processHeading: '채용 절차',
-    processSub: '서로를 충분히 알아가는 과정입니다. 보통 2~4주가 소요됩니다.',
-    process: [
-      { step: '01', title: '서류 전형', desc: '이력서와 포트폴리오로 첫 만남을 시작합니다.' },
-      { step: '02', title: '실무 인터뷰', desc: '함께 일할 팀과 직무 역량 · 협업 방식을 이야기합니다.' },
-      { step: '03', title: '컬처 · 리더 인터뷰', desc: '비전과 일하는 방식이 서로 맞는지 확인합니다.' },
-      { step: '04', title: '처우 협의 · 합류', desc: '조건을 조율하고 다음 장을 함께 시작합니다.' },
-    ],
     mailSubject: '채용 문의',
     ctaHeading: '맞는 자리가 없어도 괜찮습니다',
     ctaSub: '함께하고 싶은 마음이 있다면, 먼저 이야기를 들려주세요',
@@ -114,7 +71,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Careers',
     heroMaster: 'Every store, like one —',
     heroMasterAccent: 'the role of weaving that one company',
-    heroSub: `We’re looking for colleagues to write the next chapter of a journey that began in ${COMPANY.foundingYear} with one store owner’s question.`,
+    heroSub: 'We have no open roles right now. If you’d like to work with us, reach out anytime — we’d love to hear from you.',
     cultureEyebrow: 'How We Work',
     cultureHeading: 'How we work',
     cultureSub: `“${COMPANY.vision}” — our vision and privacy principle carry through to everyday decisions.`,
@@ -133,39 +90,6 @@ const C: Record<Locale, Copy> = {
       { title: 'Best-in-class tools', desc: 'As an NVIDIA Inception partner, we provide the compute and tools needed for AI development.' },
       { title: 'A great place to work', desc: 'A Gangnam headquarters where focus and collaboration are in balance.' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: 'Open positions by team',
-    rolesNotePre: '※ The roles below are ',
-    rolesNoteIllustrative: 'illustrative positions',
-    rolesNotePost: '. Actual job postings will be updated later.',
-    teams: [
-      { team: 'Engineering', roles: [
-        { title: 'Computer Vision Engineer (Illustrative)', type: 'Full-time · Seoul' },
-        { title: 'Backend / Platform Engineer (Illustrative)', type: 'Full-time · Seoul' },
-        { title: 'MLOps Engineer (Illustrative)', type: 'Full-time · Seoul' },
-      ] },
-      { team: 'AI Research', roles: [
-        { title: 'AI Research Scientist — Anonymization · Video Understanding (Illustrative)', type: 'Full-time · Seoul' },
-        { title: 'Applied Research Engineer (Illustrative)', type: 'Full-time · Seoul' },
-      ] },
-      { team: 'Sales · Partnership', roles: [
-        { title: 'Sales / Partnership Manager (Illustrative)', type: 'Full-time · Seoul' },
-        { title: 'Solution Consultant (Illustrative)', type: 'Full-time · Seoul' },
-      ] },
-      { team: 'Operations · Product', roles: [
-        { title: 'Product Manager (Illustrative)', type: 'Full-time · Seoul' },
-        { title: 'Customer Success Manager (Illustrative)', type: 'Full-time · Seoul' },
-      ] },
-    ],
-    processEyebrow: 'Process',
-    processHeading: 'Hiring process',
-    processSub: 'A process to get to know each other well. It usually takes 2–4 weeks.',
-    process: [
-      { step: '01', title: 'Application review', desc: 'We begin with your résumé and portfolio.' },
-      { step: '02', title: 'Working interview', desc: 'We discuss role skills and ways of collaborating with the team you’ll join.' },
-      { step: '03', title: 'Culture · leadership interview', desc: 'We check that vision and ways of working fit on both sides.' },
-      { step: '04', title: 'Offer · onboarding', desc: 'We align on terms and start the next chapter together.' },
-    ],
     mailSubject: 'Careers inquiry',
     ctaHeading: 'No matching role? That’s okay',
     ctaSub: 'If you’d like to join us, tell us your story first.',
@@ -176,7 +100,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Careers',
     heroMaster: 'すべての店舗を、ひとつの店舗のように —',
     heroMasterAccent: 'そのひとつの会社をともに織りなす場所',
-    heroSub: `${COMPANY.foundingYear}年、一軒の店主の問いから始まった歩みに、次の章をともに書く仲間を探しています。`,
+    heroSub: '現在、公開中の募集はありません。一緒に働きたい方は、いつでもまずはお声がけください。',
     cultureEyebrow: 'How We Work',
     cultureHeading: '私たちの働き方',
     cultureSub: `「${COMPANY.vision}」 — ビジョンとプライバシー原則が、日々の意思決定につながります。`,
@@ -195,39 +119,6 @@ const C: Record<Locale, Copy> = {
       { title: '最高のツール', desc: 'NVIDIA Inceptionパートナーとして、AI開発に必要なコンピューティングとツールを備えます。' },
       { title: '働きやすい環境', desc: '江南本社、集中と協働がバランスする業務空間。' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: 'チーム別オープンポジション',
-    rolesNotePre: '※ 以下は構成の',
-    rolesNoteIllustrative: '例ポジション',
-    rolesNotePost: 'です。実際の採用情報は今後更新されます。',
-    teams: [
-      { team: 'Engineering', roles: [
-        { title: 'Computer Vision Engineer (例)', type: '正社員 · ソウル' },
-        { title: 'Backend / Platform Engineer (例)', type: '正社員 · ソウル' },
-        { title: 'MLOps Engineer (例)', type: '正社員 · ソウル' },
-      ] },
-      { team: 'AI Research', roles: [
-        { title: 'AI Research Scientist — 匿名化 · 映像理解 (例)', type: '正社員 · ソウル' },
-        { title: 'Applied Research Engineer (例)', type: '正社員 · ソウル' },
-      ] },
-      { team: 'Sales · Partnership', roles: [
-        { title: 'Sales / Partnership Manager (例)', type: '正社員 · ソウル' },
-        { title: 'Solution Consultant (例)', type: '正社員 · ソウル' },
-      ] },
-      { team: 'Operations · Product', roles: [
-        { title: 'Product Manager (例)', type: '正社員 · ソウル' },
-        { title: 'Customer Success Manager (例)', type: '正社員 · ソウル' },
-      ] },
-    ],
-    processEyebrow: 'Process',
-    processHeading: '採用プロセス',
-    processSub: 'お互いを十分に知り合う過程です。通常2〜4週間ほどかかります。',
-    process: [
-      { step: '01', title: '書類選考', desc: '履歴書とポートフォリオで最初の出会いを始めます。' },
-      { step: '02', title: '実務インタビュー', desc: 'ともに働くチームと、職務能力 · 協働の進め方についてお話しします。' },
-      { step: '03', title: 'カルチャー · リーダー面談', desc: 'ビジョンと働き方が互いに合うかを確認します。' },
-      { step: '04', title: '条件調整 · ご参加', desc: '条件を調整し、次の章をともに始めます。' },
-    ],
     mailSubject: '採用のお問い合わせ',
     ctaHeading: '合うポジションがなくても大丈夫です',
     ctaSub: 'ともに働きたいお気持ちがあれば、まずはお話を聞かせてください。',
@@ -238,7 +129,6 @@ const C: Record<Locale, Copy> = {
 
 const cultureIcons = [Compass, Heart, Sparkles, Users];
 const benefitIcons = [Home, GraduationCap, Cpu, Coffee];
-const processIcons = [FileCheck, MessageSquare, UserCheck, PartyPopper];
 
 export default function CareerView({ locale }: { locale: Locale }) {
   const t = C[locale];
@@ -316,73 +206,6 @@ export default function CareerView({ locale }: { locale: Locale }) {
                     </div>
                     <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{b.title}</h3>
                     <p className="text-sm text-gray-600 leading-relaxed break-keep">{b.desc}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 팀별 오픈 포지션 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.rolesHeading}</h2>
-            <p className="text-sm text-gray-500 max-w-xl mx-auto break-keep">
-              {t.rolesNotePre}<strong className="text-gray-500">{t.rolesNoteIllustrative}</strong>{t.rolesNotePost}
-            </p>
-          </div>
-          <div className="space-y-10">
-            {t.teams.map((group) => (
-              <div key={group.team}>
-                <h3 className="text-sm font-bold text-primary mb-4 tracking-wide flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  {group.team}
-                </h3>
-                <StaggerContainer className="space-y-3">
-                  {group.roles.map((r, i) => (
-                    <StaggerItem key={i}>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 p-5 rounded-2xl border border-gray-100 bg-slate-50">
-                        <div className="flex-1">
-                          <p className="text-base font-bold text-gray-900 break-keep">{r.title}</p>
-                        </div>
-                        <p className="text-sm text-gray-500 shrink-0">{r.type}</p>
-                      </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 채용 프로세스 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.processEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.processHeading}</h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
-              {t.processSub}
-            </p>
-          </div>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.process.map((p, i) => {
-              const Icon = processIcons[i];
-              return (
-                <StaggerItem key={p.step}>
-                  <div className="p-7 rounded-3xl border border-gray-100 bg-white h-full">
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="text-2xl font-bold text-gray-200">{p.step}</span>
-                    </div>
-                    <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
                   </div>
                 </StaggerItem>
               );

@@ -6,7 +6,6 @@ import {
   ArrowRight, Handshake, Store, Building2, Globe, Check,
   TrendingUp, BookOpen, LifeBuoy, Megaphone, ClipboardList, GraduationCap, Rocket, Repeat,
 } from 'lucide-react';
-import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -34,10 +33,6 @@ type Copy = {
   onboardingHeading: string;
   onboardingSub: string;
   onboarding: { step: string; title: string; desc: string }[];
-  logosEyebrow: string;
-  logosHeading: string;
-  logosNote: string;
-  partnerLabel: string;
   ctaHeading: string;
   ctaSub: string;
   ctaButton: string;
@@ -48,7 +43,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Partnership',
     heroMaster: '파트너의 매장도',
     heroMasterAccent: '한 매장처럼',
-    heroSub: `이미 ${COMPANY.partnerBrands}개 파트너 브랜드가 함께합니다. SAAI와 함께 오프라인 공간 AI 시장을 확장하세요.`,
+    heroSub: '리셀러·채널·기술 파트너로 함께 오프라인 공간 AI 시장을 넓혀갑니다. 역할에 맞는 협업 방법을 함께 찾아 드립니다.',
     tiersEyebrow: 'Partner Program',
     tiersHeading: '함께 성장하는 세 가지 길',
     tiersSub: '역할에 맞는 프로그램으로 시작하고, 함께 확장합니다',
@@ -59,9 +54,9 @@ const C: Record<Locale, Copy> = {
     ],
     benefitsEyebrow: 'Why Partner',
     benefitsHeading: '파트너가 누리는 것',
-    benefitsSub: '검증된 제품과 지원으로, 파트너의 비즈니스도 한 매장처럼 매끄럽게 굴러갑니다.',
+    benefitsSub: '제품과 지원을 함께 제공해, 파트너의 비즈니스가 안정적으로 성장하도록 돕습니다.',
     partnerBenefits: [
-      { title: '함께 키우는 시장', desc: `이미 ${COMPANY.partnerBrands}개 브랜드와 ${COMPANY.industries}개 업종에서 검증된 SAAI로 새로운 매출 기회를 엽니다.` },
+      { title: '함께 키우는 시장', desc: 'SAAI와 함께 오프라인 공간 AI라는 새로운 매출 기회를 엽니다.' },
       { title: '교육 · 인증', desc: '제품 · 설치 · 영업 교육과 파트너 인증으로 빠르게 전문성을 갖춥니다.' },
       { title: '전담 기술 지원', desc: '온보딩부터 운영까지 파트너 전용 지원 채널이 함께합니다.' },
       { title: '공동 마케팅', desc: '레퍼런스 · 사례 기반의 공동 마케팅으로 신뢰를 함께 만듭니다.' },
@@ -75,10 +70,6 @@ const C: Record<Locale, Copy> = {
       { step: '03', title: '공동 영업 · 파일럿', desc: '첫 레퍼런스를 함께 만들고 운영을 점검합니다.' },
       { step: '04', title: '확장 · 정산', desc: '검증된 모델을 반복 확장하고 인센티브를 정산합니다.' },
     ],
-    logosEyebrow: 'Our Partners',
-    logosHeading: `${COMPANY.partnerBrands}개 브랜드가 신뢰합니다`,
-    logosNote: '※ 파트너 로고는 추후 게재 예정입니다.',
-    partnerLabel: 'Partner',
     ctaHeading: '파트너가 되어 함께 확장하세요',
     ctaSub: '어떤 역할이든, 함께할 방법을 찾아 드립니다',
     ctaButton: '파트너 신청 · 문의',
@@ -87,7 +78,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Partnership',
     heroMaster: 'Your store, partner,',
     heroMasterAccent: 'like one too',
-    heroSub: `${COMPANY.partnerBrands} partner brands already work with us. Expand the offline spatial AI market together with SAAI.`,
+    heroSub: 'As reseller, channel, and technology partners, we grow the offline spatial AI market together. We’ll find the way to collaborate that fits your role.',
     tiersEyebrow: 'Partner Program',
     tiersHeading: 'Three paths to grow together',
     tiersSub: 'Start with the program that fits your role, and expand together.',
@@ -98,9 +89,9 @@ const C: Record<Locale, Copy> = {
     ],
     benefitsEyebrow: 'Why Partner',
     benefitsHeading: 'What partners gain',
-    benefitsSub: 'With a proven product and support, your business runs as smoothly as one store, too.',
+    benefitsSub: 'With a product and support we provide together, we help your business grow steadily.',
     partnerBenefits: [
-      { title: 'A market we grow together', desc: `Open new revenue opportunities with SAAI, already proven across ${COMPANY.partnerBrands} brands and ${COMPANY.industries} industries.` },
+      { title: 'A market we grow together', desc: 'Open new revenue opportunities in offline spatial AI with SAAI.' },
       { title: 'Training · certification', desc: 'Build expertise fast through product, installation, and sales training plus partner certification.' },
       { title: 'Dedicated technical support', desc: 'A partner-only support channel accompanies you from onboarding to operations.' },
       { title: 'Co-marketing', desc: 'Build trust together through reference- and case-based co-marketing.' },
@@ -114,10 +105,6 @@ const C: Record<Locale, Copy> = {
       { step: '03', title: 'Joint sales · pilot', desc: 'We build the first reference together and review operations.' },
       { step: '04', title: 'Expansion · settlement', desc: 'We repeatedly scale the proven model and settle incentives.' },
     ],
-    logosEyebrow: 'Our Partners',
-    logosHeading: `Trusted by ${COMPANY.partnerBrands} brands`,
-    logosNote: '※ Partner logos will be posted later.',
-    partnerLabel: 'Partner',
     ctaHeading: 'Become a partner and expand with us',
     ctaSub: 'Whatever your role, we’ll find a way to work together.',
     ctaButton: 'Apply · inquire',
@@ -126,7 +113,7 @@ const C: Record<Locale, Copy> = {
     badge: 'Partnership',
     heroMaster: 'パートナーの店舗も',
     heroMasterAccent: 'ひとつの店舗のように',
-    heroSub: `すでに${COMPANY.partnerBrands}社のパートナーブランドがともにあります。SAAIとともに、オフライン空間AI市場を拡げましょう。`,
+    heroSub: 'リセラー · チャネル · 技術パートナーとして、ともにオフライン空間AI市場を拡げます。役割に合った協業の方法を、ともに見つけます。',
     tiersEyebrow: 'Partner Program',
     tiersHeading: 'ともに成長する三つの道',
     tiersSub: '役割に合うプログラムから始め、ともに拡張します。',
@@ -137,9 +124,9 @@ const C: Record<Locale, Copy> = {
     ],
     benefitsEyebrow: 'Why Partner',
     benefitsHeading: 'パートナーが得られるもの',
-    benefitsSub: '検証された製品と支援で、パートナーのビジネスもひとつの店舗のように滑らかに回ります。',
+    benefitsSub: '製品と支援をともに提供し、パートナーのビジネスが着実に成長できるよう支えます。',
     partnerBenefits: [
-      { title: 'ともに育てる市場', desc: `すでに${COMPANY.partnerBrands}社のブランドと${COMPANY.industries}業種で検証されたSAAIで、新たな売上機会を開きます。` },
+      { title: 'ともに育てる市場', desc: 'SAAIとともに、オフライン空間AIという新たな売上機会を開きます。' },
       { title: 'トレーニング · 認証', desc: '製品 · 設置 · 営業のトレーニングとパートナー認証で、素早く専門性を備えます。' },
       { title: '専任の技術サポート', desc: 'オンボーディングから運用まで、パートナー専用のサポートチャネルが伴走します。' },
       { title: '共同マーケティング', desc: 'リファレンス · 事例に基づく共同マーケティングで、信頼をともに築きます。' },
@@ -153,10 +140,6 @@ const C: Record<Locale, Copy> = {
       { step: '03', title: '共同営業 · パイロット', desc: '最初のリファレンスをともに作り、運用を点検します。' },
       { step: '04', title: '拡張 · 精算', desc: '検証されたモデルを繰り返し拡張し、インセンティブを精算します。' },
     ],
-    logosEyebrow: 'Our Partners',
-    logosHeading: `${COMPANY.partnerBrands}社のブランドが信頼しています`,
-    logosNote: '※ パートナーロゴは今後掲載予定です。',
-    partnerLabel: 'Partner',
     ctaHeading: 'パートナーとして、ともに拡張しましょう',
     ctaSub: 'どのような役割でも、ともに進む方法をご提案します。',
     ctaButton: 'パートナー申請 · お問い合わせ',
@@ -288,29 +271,6 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
               );
             })}
           </StaggerContainer>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 파트너 로고 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.logosEyebrow}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-            {t.logosHeading}
-          </h2>
-          <p className="text-sm text-gray-500 mb-10 break-keep">
-            {t.logosNote}
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {Array.from({ length: COMPANY.partnerBrands }).map((_, i) => (
-              <div
-                key={i}
-                className="h-20 rounded-2xl border border-dashed border-gray-200 bg-white flex items-center justify-center text-gray-300 text-sm font-medium"
-              >
-                {t.partnerLabel} {i + 1}
-              </div>
-            ))}
-          </div>
         </div>
       </AnimatedSection>
 

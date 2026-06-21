@@ -11,10 +11,10 @@ const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
 type FLink = { href: string; label: Tri };
 
 const productLinks: FLink[] = [
-  { href: '/products/store-insight', label: L('Store Insight', 'Store Insight', 'Store Insight') },
-  { href: '/products/store-agent', label: L('Store Agent', 'Store Agent', 'Store Agent') },
-  { href: '/products/store-care', label: L('Store Care', 'Store Care', 'Store Care') },
-  { href: '/products/saai', label: L('SAAI', 'SAAI', 'SAAI') },
+  { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight') },
+  { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent') },
+  { href: '/products/store-care', label: L('store care', 'store care', 'store care') },
+  { href: '/products#ai-pop', label: L('AI POP', 'AI POP', 'AI POP') },
 ];
 
 const techLinks: FLink[] = [
