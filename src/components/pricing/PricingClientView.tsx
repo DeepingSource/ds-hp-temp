@@ -6,11 +6,9 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { RoiCalculatorWidget } from '@/components/mockups';
 import Link from 'next/link';
 import B2cPlans from './B2cPlans';
 import B2bQuoteSimulator from './B2bQuoteSimulator';
-import InlinePricingSimulator from './InlinePricingSimulator';
 
 interface PricingClientViewProps {
   locale?: Locale;
@@ -466,20 +464,6 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
            ════════════════════════════════════════ */
         <B2bQuoteSimulator t={t} locale={locale} onBackToB2c={() => setPersona('b2c')} />
       )}
-
-      {/* ════════════════════════════════
-         ROI Calculator
-         ════════════════════════════════ */}
-      <AnimatedSection className="py-16 bg-white border-t border-gray-100">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <RoiCalculatorWidget locale={locale} />
-        </div>
-      </AnimatedSection>
-
-      {/* ════════════════════════════════
-         Pricing Simulator Lead Gen
-         ════════════════════════════════ */}
-      <InlinePricingSimulator t={t} locale={locale} />
 
       {/* ════════════════════════════════
          Bundle Synergy CTA
