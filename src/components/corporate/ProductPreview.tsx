@@ -61,38 +61,40 @@ export default function ProductPreview({ locale }: { locale: Locale }) {
     <Section variant="default" className="overflow-hidden">
       <Container>
         {/* Intro — copy + features */}
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-start mb-12 lg:mb-14">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-14">
           <div>
             <Eyebrow className="mb-3">{t.eyebrow}</Eyebrow>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-gray-900 mb-4 break-keep">{t.heading}</h2>
-            <p className="text-lg text-gray-600 leading-relaxed break-keep max-w-md">{t.sub}</p>
-            {/* Brand-as-one concept visual — connected stores (nextrise) */}
-            <div className="mt-8 relative aspect-[3/2] rounded-2xl overflow-hidden border border-gray-200 bg-[var(--layer-section-alt,#F7F9FC)] shadow-card">
-              <Image
-                src="/images/nextrise/iso-city-stores.webp"
-                alt={t.isoAlt}
-                fill
-                sizes="(min-width: 1024px) 420px, 100vw"
-                className="object-cover"
-              />
-            </div>
+            <p className="text-lg text-gray-600 leading-relaxed break-keep max-w-md mb-8">{t.sub}</p>
+            <AnimatedSection>
+              <ul className="flex flex-col gap-5">
+                {t.features.map((f) => {
+                  const Icon = f.icon;
+                  return (
+                    <li key={f.title} className="stagger-child flex items-start gap-3.5">
+                      <IconChip size="sm" className="shrink-0">
+                        <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
+                      </IconChip>
+                      <div>
+                        <p className="text-sm font-bold text-gray-900 mb-0.5">{f.title}</p>
+                        <p className="text-sm text-gray-600 leading-relaxed break-keep">{f.desc}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </AnimatedSection>
           </div>
-          <AnimatedSection>
-            <ul className="grid sm:grid-cols-3 gap-5 lg:gap-6">
-              {t.features.map((f) => {
-                const Icon = f.icon;
-                return (
-                  <li key={f.title} className="stagger-child">
-                    <IconChip size="sm" className="mb-3">
-                      <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                    </IconChip>
-                    <p className="text-sm font-bold text-gray-900 mb-0.5">{f.title}</p>
-                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{f.desc}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </AnimatedSection>
+          {/* Brand-as-one concept visual — connected stores (nextrise) */}
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-[var(--layer-section-alt,#F7F9FC)] shadow-card">
+            <Image
+              src="/images/nextrise/iso-city-stores.webp"
+              alt={t.isoAlt}
+              fill
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Full-width device mockup — 13" tablet */}
