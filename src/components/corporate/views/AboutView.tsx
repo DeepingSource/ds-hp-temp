@@ -4,6 +4,7 @@ import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
+import MasterPair from '@/components/corporate/MasterPair';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
 import FiveQuestionsMockup from '@/components/mockups/FiveQuestionsMockup';
 import {
@@ -282,6 +283,9 @@ export default function AboutView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </AnimatedSection>
+
+      {/* ── 두 약속 미러 · 본부 ↔ 매장 ── */}
+      <MasterPair locale={locale} />
 
       {/* ── Vision 2031 좌표 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">

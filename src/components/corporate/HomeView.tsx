@@ -8,12 +8,10 @@ import CaseBand from './CaseBand';
 import TrustCharter from './TrustCharter';
 import CtaBand from './CtaBand';
 import SolutionTimeline from './SolutionTimeline';
-import MasterPair from './MasterPair';
 import SpacesShowcase from './SpacesShowcase';
 import PartnerGrid from './PartnerGrid';
-import PurposeBand from './PurposeBand';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
-import { seam } from '@/lib/brand-canon';
+import { seam, purpose } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 
 /** basePath prefix for CSS background images (set for the GitHub Pages export). */
@@ -32,11 +30,12 @@ const SpatialTrajectoryMockup = dynamic(() => import('@/components/mockups/Spati
  * HomeView — shared home composition (PR-01).
  * Rendered by `/` (en), `/ko`, `/jp` with the locale prop (D6 path-prefix i18n).
  *
- * Narrative arc (2026-06 recut): hero → problem → product → trust(anonymization)
- * → capability(face-free MTMC) → [CTA] → solutions → [CTA] → mirror → proof →
- * purpose → close. Internal-strategy decks (autonomy ladder, Vision 2031, code
- * of conduct, integrated loop) relocated to /technology and /company/about.
- * Dark sections (SolutionTimeline, MasterPair, final CTA) never sit adjacent.
+ * Narrative arc (2026-06 refine): hero → problem → product → trust(anonymization)
+ * → capability(face-free MTMC) → solutions → [mid CTA] → breadth → proof →
+ * close. Internal-strategy decks (autonomy ladder, Vision 2031, code of conduct,
+ * integrated loop) relocated to /technology and /company/about; the company↔owner
+ * mirror (MasterPair) now lives on /company/about.
+ * Dark sections (SolutionTimeline, final CTA) never sit adjacent.
  */
 
 const ctaDict: Record<Locale, { heading: string; sub: string; close: string; reassure: string }> = {
@@ -117,28 +116,19 @@ export default function HomeView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* CTA A — trust + capability established */}
-      <CtaBand locale={locale} kind="trust" />
-
       {/* 6 — Solutions across time (the product depth) */}
       <SolutionTimeline locale={locale} />
 
-      {/* CTA B — products demonstrated */}
-      <CtaBand locale={locale} kind="product" />
+      {/* Mid CTA — single forward-looking conversion, after the product depth */}
+      <CtaBand locale={locale} />
 
-      {/* 7 — One promise, both sides */}
-      <MasterPair locale={locale} />
-
-      {/* 7b — Breadth: beyond retail, every space (benchmark — closes the breadth gap) */}
+      {/* 7 — Breadth: beyond retail, every space (benchmark — closes the breadth gap) */}
       <SpacesShowcase locale={locale} />
 
       {/* 8 — Proof: partners + metrics */}
       <PartnerGrid locale={locale} />
 
-      {/* 9 — Purpose (manifesto crescendo) */}
-      <PurposeBand locale={locale} />
-
-      {/* 10 — Closing CTA (escalated, differentiated from hero) */}
+      {/* 9 — Closing CTA (escalated, differentiated from hero) */}
       <AnimatedSection className="relative py-20 lg:py-28 section-dark noise-overlay overflow-hidden">
         {/* Cinematic floor light — the launch-film endcard mood */}
         <div
@@ -154,6 +144,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
           style={{ backgroundImage: `url(${BASE}/images/saai-symbol.svg)`, position: 'absolute', left: '50%', top: '48%', width: 'min(560px, 86%)', aspectRatio: '534.51 / 267.36', transform: 'translate(-50%, -50%)' }}
         />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">{purpose[locale].statement}</p>
           <p className="text-xs font-medium tracking-[0.25em] text-primary-light mb-4">{seam[locale]}</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight font-display break-keep">
             {cta.heading}

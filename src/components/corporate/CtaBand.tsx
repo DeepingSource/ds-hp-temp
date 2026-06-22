@@ -11,19 +11,10 @@ import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
  * Localized; reassurance microcopy mirrors the contact success screen.
  */
 
-type Kind = 'trust' | 'product';
-
-const dict: Record<Kind, Record<Locale, { text: string; button: string }>> = {
-  trust: {
-    ko: { text: '안전하게 보고, 정확하게 읽습니다 — 영상은 남기지 않고, 누구가 아니라 무엇을 어떻게.', button: '도입 상담 신청' },
-    en: { text: 'Safe to watch, precise to read — no footage kept, not who but what and how.', button: 'Talk to us' },
-    jp: { text: '安全に見て、正確に読む — 映像は残さず、誰かではなく何をどう。', button: '導入のご相談' },
-  },
-  product: {
-    ko: { text: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 보는 것을 넘어, 매장을 운영하는 AI.', button: '맞는 조합 찾기' },
-    en: { text: 'Read yesterday, alert on now, act on next — AI that runs your space, not just watches it.', button: 'Find your fit' },
-    jp: { text: '昨日を読み、今を知らせ、次を実行する — 見るだけでなく、空間を運営するAI。', button: '最適な組み合わせを見る' },
-  },
+const dict: Record<Locale, { text: string; button: string }> = {
+  ko: { text: '세 store를 한 흐름으로 — 우리 매장엔 어떤 조합이 맞을까요?', button: '맞는 조합 찾기' },
+  en: { text: 'Three stores, one flow — which mix fits yours?', button: 'Find your fit' },
+  jp: { text: '三つの store をひとつの流れに — あなたの店舗にはどの組み合わせが?', button: '最適な組み合わせを見る' },
 };
 
 const reassurance: Record<Locale, string> = {
@@ -32,8 +23,8 @@ const reassurance: Record<Locale, string> = {
   jp: '無料相談・営業日1〜2日以内に返信',
 };
 
-export default function CtaBand({ locale, kind }: { locale: Locale; kind: Kind }) {
-  const t = dict[kind][locale];
+export default function CtaBand({ locale }: { locale: Locale }) {
+  const t = dict[locale];
   const cta = homeCopy[locale];
   return (
     <Section variant="default" pad="compact">

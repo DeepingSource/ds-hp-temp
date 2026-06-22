@@ -24,9 +24,9 @@ const trackChip: Record<Locale, string> = {
 };
 
 const heroImg: Record<Locale, { alt: string; caption: string }> = {
-  ko: { alt: '이미 달린 CCTV 위에서 5명 고객의 동선을 얼굴 없이 연속 추적', caption: '누구가 아니라, 무엇을 어떻게 — 이미 달린 CCTV 위에서' },
-  en: { alt: 'On the CCTV you already have — five shoppers tracked continuously, without faces', caption: 'Not who, but what and how — on the CCTV you already have' },
-  jp: { alt: 'すでにあるCCTVの上で、5名の動線を顔なしで連続追跡', caption: '誰かではなく、何をどう — すでにあるCCTVの上で' },
+  ko: { alt: '이미 달린 CCTV 위에서 5명 고객의 동선을 얼굴 없이 연속 추적', caption: '5명을 얼굴 없이 연속 추적 — ID만, 신원은 없이.' },
+  en: { alt: 'On the CCTV you already have — five shoppers tracked continuously, without faces', caption: 'Five shoppers tracked continuously, without faces — IDs only, no identity.' },
+  jp: { alt: 'すでにあるCCTVの上で、5名の動線を顔なしで連続追跡', caption: '5名を顔なしで連続追跡 — IDのみ、身元は残さず。' },
 };
 
 /**

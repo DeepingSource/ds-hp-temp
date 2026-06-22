@@ -5,9 +5,7 @@ import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, operatingLoop, productFunction } from '@/lib/brand-canon';
-
-const loopLabel = (locale: Locale) => operatingLoop[locale].map((s) => s.label).join(' · ');
+import { solutionTaglines, productFunction } from '@/lib/brand-canon';
 
 /**
  * SolutionTimeline — the 3 SOLUTION products as one flow (NEXTRISE launch film 00:11–14).
@@ -35,7 +33,7 @@ const newTabHint: Record<Locale, string> = {
 
 const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; nodes: Node[] }> = {
   ko: {
-    eyebrow: loopLabel('ko'),
+    eyebrow: '어제 · 지금 · 다음',
     heading: '세 store, 하나의 흐름',
     sub: '세 개의 store가 하나의 흐름으로 — 어제를 읽고, 지금을 알리고, 다음을 실행합니다.',
     nodes: [
@@ -45,7 +43,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     ],
   },
   en: {
-    eyebrow: loopLabel('en'),
+    eyebrow: 'Yesterday · Now · Next',
     heading: 'Three stores, one flow',
     sub: 'Three stores, one flow — read yesterday, flag the now, act on next.',
     nodes: [
@@ -55,7 +53,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
     ],
   },
   jp: {
-    eyebrow: loopLabel('jp'),
+    eyebrow: '昨日 · 今 · 次',
     heading: '三つのstore、ひとつの流れ',
     sub: '三つのstoreがひとつの流れに — 昨日を読み、今を知らせ、次を動かします。',
     nodes: [

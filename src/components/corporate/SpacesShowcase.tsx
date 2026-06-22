@@ -22,7 +22,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
   ko: {
     eyebrow: 'Beyond retail',
     heading: '매장을 넘어, 모든 공간으로',
-    sub: '누구가 아니라 무엇을 — 익명화는 공간을 가리지 않습니다. 같은 프라이버시 약속 그대로, 어떤 공간에서든 읽고·알리고·실행합니다.',
+    sub: '익명화는 공간을 가리지 않습니다. 같은 프라이버시 약속 그대로, 어떤 공간에서든 읽고·알리고·실행합니다.',
     allLabel: '전체 솔루션 보기',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: '리테일·편의점', desc: '진열·동선·결제까지, 매장 운영을 한눈에 읽습니다.' },
@@ -36,7 +36,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
   en: {
     eyebrow: 'Beyond retail',
     heading: 'Beyond the store — for every space',
-    sub: 'Not who, but what — anonymization works in any space. The same privacy promise, reading, flagging, and acting wherever people move.',
+    sub: 'Anonymization works in any space. The same privacy promise, reading, flagging, and acting wherever people move.',
     allLabel: 'View all solutions',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: 'Retail & convenience', desc: 'Read shelves, flow, and checkout — store operations at a glance.' },
@@ -50,7 +50,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
   jp: {
     eyebrow: 'Beyond retail',
     heading: '店舗を超えて、すべての空間へ',
-    sub: '誰かではなく、何を — 匿名化は空間を選びません。同じプライバシーの約束のまま、どんな空間でも読み、知らせ、動かします。',
+    sub: '匿名化は空間を選びません。同じプライバシーの約束のまま、どんな空間でも読み、知らせ、動かします。',
     allLabel: 'すべて見る',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: 'リテール・コンビニ', desc: '陳列・動線・会計まで、店舗運営をひと目で読み取ります。' },
