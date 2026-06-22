@@ -9,7 +9,7 @@ import { PrivacyJourneyMockup } from '@/components/mockups';
 import AutonomyLadderTimeline from '@/components/mockups/AutonomyLadderTimeline';
 import IntegratedLoopDiagram from '@/components/mockups/IntegratedLoopDiagram';
 import {
-  Fingerprint, ShieldCheck, Layers, Grid3x3, Shield, ArrowRight,
+  Fingerprint, ShieldCheck, Grid3x3, Shield, ArrowRight,
   CheckCircle2, AlertCircle,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
@@ -76,10 +76,9 @@ type Copy = {
 const stackHrefs = [
   '/technology/anonymizer',
   '/technology/seal',
-  '/technology/spatial-ai',
   '/technology/models',
 ];
-const stackIcons = [Fingerprint, ShieldCheck, Layers, Grid3x3];
+const stackIcons = [Fingerprint, ShieldCheck, Grid3x3];
 const poweredHrefs = [
   '/products/store-insight',
   '/products/store-agent',
@@ -132,8 +131,7 @@ const ko: Copy = {
   coreSub: '익명화 위에 공간 지능, 그 위에 에이전트 AI — 세 축이 쌓여 공간을 운영합니다.',
   stack: [
     { tag: '① Anonymizer', title: '익명화', desc: '비전 AI는 결국 사람을 봅니다. 입력 시점에 신원을 지우고, 원본은 남기지 않습니다. 모든 분석이 그 위에서 시작됩니다.' },
-    { tag: '② Spatial AI', title: '공간 지능', desc: '누구인지가 아니라, 무엇을 어떻게. 검출·자세·재식별·군중 밀도까지, SOTA급 비전 모델이 하나의 영상에서 읽어냅니다.' },
-    { tag: 'MTMC', title: '흩어진 카메라를 하나로', desc: 'MTMC가 흩어진 카메라를 하나의 공간 좌표로 정합합니다. 카메라가 바뀌어도, 한 사람으로 이어 추적합니다.' },
+    { tag: '② Spatial AI', title: '공간 지능', desc: '누구인지가 아니라, 무엇을 어떻게. 검출·자세·재식별·군중 밀도를 하나의 영상에서 읽고, MTMC로 흩어진 카메라를 한 공간으로 정합해 카메라가 바뀌어도 한 사람으로 이어 추적합니다.' },
     { tag: '③ Agentic AI', title: '에이전트 AI', desc: '범용 모델이 아니라, 공간 운영에 맞게 튜닝한 AI. 보는 데서 그치지 않고, 다음 한 수까지 판단합니다.' },
   ],
   learnMore: '자세히 보기',
@@ -209,8 +207,7 @@ const en: Copy = {
   coreSub: 'Spatial intelligence on top of anonymization, agentic AI on top of that — three axes that stack up to operate space.',
   stack: [
     { tag: '① Anonymizer', title: 'Anonymization', desc: 'Vision AI ultimately sees people. Identity is erased at the moment of input and the original is never kept. Every analysis begins on top of it.' },
-    { tag: '② Spatial AI', title: 'Spatial intelligence', desc: 'Not who, but what and how. Detection, pose, re-ID, crowd density — SOTA vision models read all of it from a single feed.' },
-    { tag: 'MTMC', title: 'Scattered cameras, one space', desc: 'MTMC aligns scattered cameras into a single spatial coordinate. Even across cameras, one person is tracked as one.' },
+    { tag: '② Spatial AI', title: 'Spatial intelligence', desc: 'Not who, but what and how. Detection, pose, re-ID, crowd density from a single feed — and MTMC stitches scattered cameras into one space, tracking a person as one even across cameras.' },
     { tag: '③ Agentic AI', title: 'Agentic AI', desc: 'Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges the next move.' },
   ],
   learnMore: 'Learn more',
@@ -286,8 +283,7 @@ const jp: Copy = {
   coreSub: '匿名化の上に空間知能、その上にエージェントAI — 三つの軸が積み重なって空間を運営します。',
   stack: [
     { tag: '① Anonymizer', title: '匿名化', desc: 'ビジョンAIは結局、人を見ます。入力の時点で身元を消し、原本は残しません。すべての分析がその上で始まります。' },
-    { tag: '② Spatial AI', title: '空間知能', desc: '誰かではなく、何をどう。人物検出・姿勢推定・再識別・群衆密度まで、SOTA級のビジョンモデルが一つの映像から読み取ります。' },
-    { tag: 'MTMC', title: '散らばったカメラを一つに', desc: 'MTMCが散らばったカメラを一つの空間座標に整合します。カメラが変わっても、一人として追跡を続けます。' },
+    { tag: '② Spatial AI', title: '空間知能', desc: '誰かではなく、何をどう。人物検出・姿勢推定・再識別・群衆密度を一つの映像から読み取り、MTMCで散らばったカメラを一つの空間に整合し、カメラが変わっても一人として追跡し続けます。' },
     { tag: '③ Agentic AI', title: 'エージェントAI', desc: '汎用モデルではなく、空間運営に合わせてチューニングしたAI。見るだけで終わらず、次の一手まで判断します。' },
   ],
   learnMore: '詳しく見る',

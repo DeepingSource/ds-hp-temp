@@ -44,7 +44,7 @@ const C: Record<Locale, {
 }> = {
   ko: {
     badge: '하이퍼마켓 · 몰 · 컨벤션',
-    heroTitle: ['Every space,', 'like one.'],
+    heroTitle: ['모든 공간을,', '한 매장처럼'],
     heroSub: '아무리 넓은 공간도 하나의 매장처럼. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.',
     heroCta: '본사 도입 상담',
     scenarios: [
@@ -102,7 +102,7 @@ const C: Record<Locale, {
   },
   jp: {
     badge: 'ハイパーマーケット · モール · コンベンション',
-    heroTitle: ['Every space,', 'like one.'],
+    heroTitle: ['すべての空間を、', 'ひとつの店舗のように'],
     heroSub: 'どれほど広い空間も、ひとつの店舗のように。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。',
     heroCta: '本社導入のご相談',
     scenarios: [
