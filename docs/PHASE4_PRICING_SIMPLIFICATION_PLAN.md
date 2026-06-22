@@ -59,6 +59,12 @@
 ### 현 상태 정정
 - `pricing-data.ts`는 4플랜(free/standard/premium/enterprise) 보유, **테스트 통과**(이전 메모 "4↔3 불일치"는 오기). 단 이 파일은 **홈 `PricingSection.tsx`에서만** 사용 — /pricing 계산기들은 자체 상수 사용(= drift 원인).
 
+### ✅ 진행 요약 (2026-06-22)
+- Step A 완료(`22e082c`): CameraSimulator 13→3 + 고급옵션. Playwright 검증(추정 불변·프리셋 동기).
+- Step B 완료(`126a208`): pricing-data.ts 단일소스(B2C_PRICING/B2B_PRICING), 계산기 import, B2cPlans insight 100,000→149,000(공식). vitest 6/6.
+- Step C 완료(`5e53be9`): 고아 InlinePricingSimulator 삭제.
+- ⏳ 잔여: **B2cPlans care '10,000원~' 결정**(실제 basic 14,900보다 낮음 — 공개가 인상 승인 필요), Step D(Enterprise 카피, 주관).
+
 ### Step A — CameraSimulator state 13→3 (저위험, 결정 불필요) ⬅ 먼저 가능
 - 13 useState → **3 객체**: `preset{cameraCount,fridgeCount,activePreset}` · `product{useCare,useInsight,useAgent,carePlan,agentPlan,showAdvanced}` · `email{quoteEmail,quoteSubmitted,isSubmitting,error}`.
 - **냉장고 슬라이더(446-469) + Step3 플랜 선택(570-648)** → `<details>` 「고급 옵션」으로 이동(`showAdvanced` 토글).
