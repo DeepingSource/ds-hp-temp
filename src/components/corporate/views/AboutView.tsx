@@ -29,6 +29,7 @@ type Copy = {
   heroEyebrowOwner: string;
   heroMasterOwner: string;
   companyIntro: string;
+  companyIntro2: string;
   vmEyebrow: string;
   vision: string;
   visionLabel: string;
@@ -59,7 +60,8 @@ const C: Record<Locale, Copy> = {
     heroMasterCompany: '측정으로\n최적화됐다',
     heroEyebrowOwner: '현장은',
     heroMasterOwner: '거의\n그대로였다',
-    companyIntro: '온라인은 지난 20년, 끊임없이 측정하고 개선하며 최적화됐습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다. 딥핑소스는 그 현장을 다시 만듭니다.',
+    companyIntro: '온라인은 지난 20년, 끊임없이 측정하고 개선하며 최적화됐습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.',
+    companyIntro2: '딥핑소스는 그 현장을 다시 만듭니다.',
     vmEyebrow: 'Vision & Mission',
     vision: '당신의 공간에서, 모든 공간으로',
     visionLabel: 'Vision',
@@ -98,7 +100,8 @@ const C: Record<Locale, Copy> = {
     heroMasterCompany: 'got optimized\nby measurement.',
     heroEyebrowOwner: 'The physical world',
     heroMasterOwner: 'stayed\nlargely the same.',
-    companyIntro: 'For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed. DeepingSource is here to reinvent it.',
+    companyIntro: 'For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.',
+    companyIntro2: 'DeepingSource is here to reinvent it.',
     vmEyebrow: 'Vision & Mission',
     vision: 'From your space — to every space.',
     visionLabel: 'Vision',
@@ -137,7 +140,8 @@ const C: Record<Locale, Copy> = {
     heroMasterCompany: '測定で\n最適化された。',
     heroEyebrowOwner: '現場は',
     heroMasterOwner: 'ほぼ\nそのままだった。',
-    companyIntro: 'オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。ディーピングソースは、その現場を作り直します。',
+    companyIntro: 'オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。',
+    companyIntro2: 'ディーピングソースは、その現場を作り直します。',
     vmEyebrow: 'Vision & Mission',
     vision: 'あなたの空間から、すべての空間へ。',
     visionLabel: 'Vision',
@@ -246,6 +250,9 @@ export default function AboutView({ locale }: { locale: Locale }) {
           </h1>
           <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.companyIntro}
+          </p>
+          <p className="mt-3 text-lg text-white font-medium max-w-2xl mx-auto leading-relaxed break-keep">
+            {t.companyIntro2}
           </p>
           <p className="mt-6 text-sm text-slate-400 max-w-xl mx-auto break-keep">
             {perfectSpace.your[locale]} → {perfectSpace.every[locale]}

@@ -84,8 +84,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
-          <div className="flex flex-wrap gap-8 sm:gap-12">
+          {/* Link columns — 모바일 2열 그리드, sm+ 가로 배치 */}
+          <div className="grid grid-cols-2 gap-8 sm:flex sm:flex-wrap sm:gap-12">
             {columns.map((col) => (
               <div key={col.title.en}>
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">{col.title[locale]}</p>

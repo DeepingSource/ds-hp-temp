@@ -758,7 +758,7 @@ export const solutionsData: SolutionPage[] = [
     steps: [
       PRODUCT_STEPS.storecare(
         '다중 카메라 연속 동선 연결',
-        '카메라 간 핸드오버 기술로 익명화된 객체의 입장부터 퇴장까지 전체 이동 경로를 연속으로 연결합니다. 익명화 처리로 개인정보 없이 동선 데이터만 수집합니다.',
+        '카메라 간 핸드오버 기술로 익명화된 객체의 입장부터 퇴장까지 전체 이동 경로를 연속으로 연결합니다. 개인정보 없이 동선 데이터만 수집합니다.',
       ),
       PRODUCT_STEPS.storeinsight(
         '동선 패턴 및 구역 방문률 분석',
