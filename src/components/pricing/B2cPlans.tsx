@@ -76,7 +76,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       title: 'store care',
       price: (
         <>
-          <span className="text-3xl font-bold text-gray-900">10,000원</span>
+          <span className="text-3xl font-bold text-gray-900">{B2C_PRICING.storeCare.basic.toLocaleString('ko-KR')}원</span>
           <span className="text-sm text-gray-500">{t.carePerMonth}</span>
         </>
       ),
