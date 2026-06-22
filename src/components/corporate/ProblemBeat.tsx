@@ -158,7 +158,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
             );
           })}
         </StaggerContainer>
-        <p className="mt-10 text-xl sm:text-2xl font-bold text-gray-900 break-keep font-display">
+        <p className="mt-10 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
           {t.bridge}
         </p>
 
