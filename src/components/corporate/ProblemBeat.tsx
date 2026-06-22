@@ -11,8 +11,9 @@ import { signature, operatingLoop } from '@/lib/brand-canon';
 
 /**
  * ProblemBeat — the tension before the solution (home #2).
- * Gives the rest of the page stakes: the store is a stage, not a warehouse —
- * but most of what happens on it goes unseen. Pain language lifted from the
+ * Gives the rest of the page stakes, grounded in the funnel: between walking in
+ * and checking out, most of what happens in the store goes unseen. Pain language
+ * lifted from the
  * launch film (00:4–00:7, 01:2): POS only keeps who paid, the funnel of the
  * invisible majority who browse and leave, and the answer waiting in the space.
  * The funnel is drawn from the copy's own numbers (language-neutral, all locales).
@@ -28,8 +29,8 @@ const dict: Record<Locale, {
   methodTagline: string;
 }> = {
   ko: {
-    eyebrow: '무대 위를, 보고 있나요?',
-    heading: '매장은 창고가 아니라 무대입니다 — 그런데 무대 위에서 무슨 일이 일어나는지, 보고 계신가요?',
+    eyebrow: '매장 안, 무슨 일이 있었을까요?',
+    heading: '들어온 손님이 결제까지 가는 사이, 매장에서 무슨 일이 있었는지 — 알고 계신가요?',
     funnelTitle: '어제, 우리 매장 안에서',
     funnel: [
       { n: '382', pct: 100, label: '입장' },
@@ -49,8 +50,8 @@ const dict: Record<Locale, {
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
   },
   en: {
-    eyebrow: 'Are you watching the stage?',
-    heading: 'Your store is a stage, not a warehouse — so are you watching what happens on it?',
+    eyebrow: 'What happened inside your store?',
+    heading: 'Between walking in and checking out, do you know what happened on your floor?',
     funnelTitle: 'Yesterday, inside your store',
     funnel: [
       { n: '382', pct: 100, label: 'entered' },
@@ -70,8 +71,8 @@ const dict: Record<Locale, {
     methodTagline: 'We don’t stop at seeing — we act.',
   },
   jp: {
-    eyebrow: '舞台の上を、見ていますか?',
-    heading: '店舗は倉庫ではなく、舞台です — その舞台で何が起きているか、見ていますか?',
+    eyebrow: '店内で、何が起きていた?',
+    heading: '入店から決済までの間、店舗で何が起きていたか — ご存知ですか?',
     funnelTitle: '昨日、店内で',
     funnel: [
       { n: '382', pct: 100, label: '入店' },
