@@ -221,7 +221,8 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight break-keep">
             {t.heroTitleA}
-            <br />
+            <br className="hidden sm:block" />
+            {' '}
             <span className="text-primary-light">{t.heroTitleB}</span>
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10 break-keep">
@@ -400,7 +401,8 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 tracking-tight break-keep">
             {t.ctaTitleA}
-            <br />
+            <br className="hidden sm:block" />
+            {' '}
             {t.ctaTitleB}
           </h2>
           <p className="text-lg text-gray-300 mb-10">
