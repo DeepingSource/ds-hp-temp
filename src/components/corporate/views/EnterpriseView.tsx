@@ -305,6 +305,7 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
               {t.dashboardSub1}<br className="hidden sm:block" />
+              {' '}
               {t.dashboardSub2}
             </p>
           </div>

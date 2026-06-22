@@ -256,9 +256,9 @@ export default function KakaoAlertMockup({
               </div>
             </div>
 
-            {/* Alert feed */}
+            {/* Alert feed — anchored to bottom so bubbles fill bottom-up like a real chat */}
             <ul
-              className="relative z-10 flex-1 min-h-0 overflow-y-auto px-3 py-3 space-y-2.5"
+              className="relative z-10 flex flex-col justify-end flex-1 min-h-0 overflow-y-auto px-3 py-3 space-y-2.5"
               aria-label={t.appName}
               role="log"
               aria-live="polite"

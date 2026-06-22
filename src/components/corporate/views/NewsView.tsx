@@ -189,7 +189,12 @@ export default function NewsView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ── 카테고리 필터 안내 ── */}
+      {/*
+        ── 카테고리 필터 안내 ──
+        TEMPORARILY HIDDEN: these category chips filter the coverage list, which is
+        itself hidden pending real press coverage. Dead controls over an empty list,
+        so hide until articles exist — restore alongside the coverage block below.
+
       <AnimatedSection className="py-12 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 mb-4 text-gray-500 text-sm">
@@ -212,6 +217,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </AnimatedSection>
+      */}
 
       {/*
         ── 대표 미디어 커버리지 리스트 ──
