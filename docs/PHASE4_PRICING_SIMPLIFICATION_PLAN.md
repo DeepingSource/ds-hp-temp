@@ -40,3 +40,43 @@
 - pricing 파일은 상호 의존(공유 `t`/`Content` 타입, `PricingClientView`가 하위 시뮬레이터에 props 전달) → 부분 제거 시 타입/렌더 회귀 주의.
 - 단일 소스 마이그레이션은 숫자 이동 리스크 — 이전/이후 표시 가격 diff를 명시적으로 대조할 것.
 - "고정 3티어"가 무엇인지(B2cPlans 현 3티어 유지) 및 "간단 추정 입력 1개"의 입력 항목은 제품 결정 — 착수 전 확인 권장.
+
+---
+
+## 부록 — 잔여 작업 상세 실행계획 (2026-06-22 정찰 기반)
+
+> 정찰 2건 완료: (1) 가격 숫자 분산 감사, (2) CameraSimulator state 맵.
+
+### ✅ 결정됨 (2026-06-22) — store insight 가격 = **공식 `29,000 + 15,000×카메라수`** 정답
+> Step B에서 B2cPlans 표기(현 100,000원 고정)를 공식 기반(예: "8대 149,000원~")으로 수정해 통일. CameraSimulator 공식은 그대로 유지.
+
+### ⛔ (해소됨) store insight 가격 불일치 — 기록용
+- `B2cPlans.tsx:93` = **100,000원** (8대 기준 고정 표기).
+- `CameraSimulator.tsx:17-18` = `INSIGHT_BASE 29,000 + INSIGHT_PER_CAM 15,000 × 카메라수` → 8대 = **149,000원**.
+- 두 값이 화면마다 다름. **단일소스화 전에 정답 숫자(또는 공식)를 확정**해야 함. 가능한 해법: (a) 100,000 고정을 정답으로 → CameraSimulator 공식을 100k에 맞게 보정, (b) 공식(29k+15k×n)을 정답으로 → B2cPlans 표기를 공식 기반으로, (c) 실제 사업 숫자 별도 제공.
+- 그 외 숫자는 대체로 정합(care basic 14,900 / plus 24,500 / agent std 15,000 / prem 25,000 / 일 500·833원).
+
+### 현 상태 정정
+- `pricing-data.ts`는 4플랜(free/standard/premium/enterprise) 보유, **테스트 통과**(이전 메모 "4↔3 불일치"는 오기). 단 이 파일은 **홈 `PricingSection.tsx`에서만** 사용 — /pricing 계산기들은 자체 상수 사용(= drift 원인).
+
+### Step A — CameraSimulator state 13→3 (저위험, 결정 불필요) ⬅ 먼저 가능
+- 13 useState → **3 객체**: `preset{cameraCount,fridgeCount,activePreset}` · `product{useCare,useInsight,useAgent,carePlan,agentPlan,showAdvanced}` · `email{quoteEmail,quoteSubmitted,isSubmitting,error}`.
+- **냉장고 슬라이더(446-469) + Step3 플랜 선택(570-648)** → `<details>` 「고급 옵션」으로 이동(`showAdvanced` 토글).
+- `estimate`(316) · `selectedProducts`(356) memo의 deps 배열을 새 객체 경로로 갱신. `noneSelected`(354)·`handlePreset`(299-314, 카메라+냉장고 원자적 기록) 참조 일괄 수정.
+- **불변식**: 동일 입력 → 동일 estimate 숫자. 가격 상수/공식은 그대로(이 단계는 순수 state 구조 변경). 리팩터 전후 대표 입력 3종의 monthly/oneTime 수치 대조.
+- 검증: tsc + build + /pricing/simulator 수동 동작(프리셋 클릭→슬라이더 동기, 고급옵션 접힘/펼침, 합계 일치).
+
+### Step B — 가격 단일소스화 (Step A 후, 선결 결정 필요)
+- `pricing-data.ts`에 `B2C_PRICING`/`B2B_PRICING`/스케일링 상수 추가(정찰 §5 스키마 참고).
+- `CameraSimulator`·`B2cPlans`·`B2bQuoteSimulator`가 인라인 리터럴 대신 import. store insight 충돌은 선결 결정값으로 통일.
+- `pricing-data.test.ts`에 신규 상수 검증 추가.
+- 검증: 모든 화면 가격이 단일 소스와 일치(수동 대조).
+
+### Step C — 고아 정리
+- `InlinePricingSimulator.tsx`(참조 0) 삭제. `PricingClientView` C dict의 ROI/inline 전용 키 정리.
+
+### Step D — Enterprise 카피 (주관, 선택)
+- benefits 중복 카피 1줄 압축, 불필요 `<br>`(224/403 등 무조건 줄바꿈) 제거.
+
+### 권장 순서
+A(지금) → [store insight 가격 결정] → B → C → D. A는 결정과 무관하므로 즉시 착수 가능.
