@@ -25,7 +25,7 @@ export const technologyImages = {
   anonBeforeAfter: { src: '/images/technology/tech-anon-before-after.webp', alt: '익명화 전/후 비교 — 좌: 원본 CCTV, 우: PII 제거 후' },
   mtmcTracking:    { src: '/images/technology/tech-mtmc-tracking.webp',     alt: '3대 카메라가 동일 인물의 동선을 연속 연결하는 CCTV 화면' },
   edgeDevice:      { src: '/images/technology/tech-edge-device.webp',       alt: '매장 천장에 설치된 CCTV와 엣지 AI 디바이스' },
-  mtmcWide:        { src: '/images/technology/tech-mtmc-wide.webp',         alt: '편의점 전체 CCTV — 5명 고객의 동선 감지' },
+  mtmcWide:        { src: '/images/technology/tech-mtmc-wide.webp',         alt: '매장 전체 CCTV — 5명 고객의 동선 감지' },
 } as const;
 
 // ── 제품 페이지 이미지 ───────────────────────────────────────────────────────

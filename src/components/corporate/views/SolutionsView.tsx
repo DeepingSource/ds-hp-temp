@@ -35,7 +35,7 @@ const C: Record<Locale, {
   ko: {
     badge: '문제-해결 가이드',
     heroTitle: ['현장 문제에', '검증된 해결책'],
-    heroSub: '편의점 야간 도난부터 물류센터 안전 관리까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.',
+    heroSub: '매장 야간 도난부터 물류센터 안전 관리까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.',
     total: (n) => `총 ${n}개 문제-해결 가이드`,
     perIndustry: (label, n) => `${label} ${n}건`,
     industryDetail: '업종 상세',
@@ -49,7 +49,7 @@ const C: Record<Locale, {
   en: {
     badge: 'Problem–solution guide',
     heroTitle: ['Proven answers', 'to on-site problems'],
-    heroSub: 'From overnight theft at convenience stores to safety in logistics centers. See how SAAI solves the real problems of each industry.',
+    heroSub: 'From overnight theft at retail stores to safety in logistics centers. See how SAAI solves the real problems of each industry.',
     total: (n) => `${n} problem–solution guides`,
     perIndustry: (label, n) => `${label} ${n}`,
     industryDetail: 'Industry detail',
@@ -63,7 +63,7 @@ const C: Record<Locale, {
   jp: {
     badge: '課題解決ガイド',
     heroTitle: ['現場の課題に', '実証された解決策'],
-    heroSub: 'コンビニの夜間盗難から物流センターの安全管理まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。',
+    heroSub: '店舗の夜間盗難から物流センターの安全管理まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。',
     total: (n) => `全 ${n} 件の課題解決ガイド`,
     perIndustry: (label, n) => `${label} ${n} 件`,
     industryDetail: '業種の詳細',
