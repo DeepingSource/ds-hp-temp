@@ -231,7 +231,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
       </Section>
 
       {/* ── 기술 기반 (SEED) 한 줄 ── */}
-      <Section variant="default">
+      <Section variant="default" pad="compact">
         <Container>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-5">
             <div className="w-11 h-11 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0">
@@ -250,14 +250,14 @@ export default function ProductsView({ locale }: { locale: Locale }) {
       </Section>
 
       {/* ── CTA ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-gray-50">
+      <AnimatedSection className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <Link
             href={localeHref(locale, '/contact')}
-            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary-dark transition-colors"
+            className="btn-primary btn-lg inline-flex items-center gap-2"
           >
             {t.cta}
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
       </AnimatedSection>
