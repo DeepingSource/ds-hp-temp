@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeepingSource 사이트 피드백 도구</title>
+<style>
+  :root{ --bg:#0f1115; --panel:#171a21; --line:#262a33; --txt:#e6e8ec; --mut:#9aa3b2; --acc:#376AE2; --rose:#E11D48; --ok:#16a34a; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; height:100%; background:var(--bg); color:var(--txt); font:14px/1.5 -apple-system,"Pretendard",system-ui,sans-serif; }
+  header{ position:sticky; top:0; z-index:10; display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+    padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--line); }
+  header h1{ font-size:15px; margin:0; font-weight:700; }
+  header .sp{ flex:1; }
+  select,button{ font:inherit; color:var(--txt); background:#222633; border:1px solid var(--line); border-radius:8px; padding:7px 11px; cursor:pointer; }
+  select{ min-width:230px; }
+  button:hover{ border-color:var(--acc); }
+  button.primary{ background:var(--acc); border-color:var(--acc); font-weight:700; }
+  button.ghost{ background:transparent; }
+  .count{ color:var(--mut); font-size:12px; }
+  main{ display:grid; grid-template-columns:1fr 1fr; gap:0; height:calc(100vh - 53px); }
+  .shot{ overflow:auto; border-right:1px solid var(--line); background:#0b0d11; padding:0; }
+  .shotbar{ position:sticky; top:0; z-index:5; display:flex; gap:8px; align-items:center; padding:8px 12px;
+    background:rgba(15,17,21,.94); backdrop-filter:blur(4px); border-bottom:1px solid var(--line); font-size:12px; color:var(--mut); }
+  .shotbar button{ padding:4px 9px; }
+  .shotbar a{ color:var(--acc); text-decoration:none; }
+  .shotwrap{ padding:14px; }
+  .shot img{ display:block; height:auto; max-width:none; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,.5); cursor:zoom-in; }
+  .shot .hint{ color:var(--mut); font-size:12px; margin:0 0 10px; }
+  .items{ overflow:auto; padding:14px 16px; }
+  .items .meta{ color:var(--mut); font-size:12px; margin:0 0 12px; }
+  .item{ border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin-bottom:10px; background:var(--panel); }
+  .item.filled{ border-color:var(--ok); }
+  .item .lbl{ display:flex; gap:8px; align-items:baseline; margin-bottom:7px; }
+  .item .num{ flex:none; min-width:24px; height:22px; padding:0 6px; display:inline-flex; align-items:center; justify-content:center;
+    background:var(--rose); color:#fff; font-weight:700; font-size:12px; border-radius:6px; }
+  .item .typ{ flex:none; color:var(--mut); font-size:11px; border:1px solid var(--line); border-radius:5px; padding:1px 6px; }
+  .item .txt{ color:var(--txt); font-size:13px; }
+  .item textarea{ width:100%; min-height:48px; resize:vertical; background:#0e1117; color:var(--txt);
+    border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; }
+  .item textarea:focus{ outline:none; border-color:var(--acc); }
+  .empty{ color:var(--mut); padding:40px; text-align:center; }
+  dialog{ background:var(--panel); color:var(--txt); border:1px solid var(--line); border-radius:12px; width:min(820px,92vw); max-height:84vh; }
+  dialog textarea{ width:100%; height:48vh; background:#0e1117; color:var(--txt); border:1px solid var(--line); border-radius:8px; padding:10px; font:12px/1.5 ui-monospace,monospace; }
+  dialog .row{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px; }
+  .toast{ position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--ok); color:#fff; padding:9px 16px; border-radius:8px; opacity:0; transition:opacity .2s; z-index:50; }
+  .toast.show{ opacity:1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏷️ 사이트 피드백</h1>
+  <select id="pageSel"></select>
+  <span class="count" id="pageCount"></span>
+  <span class="sp"></span>
+  <span class="count" id="totalCount"></span>
+  <button class="ghost" id="btnClear">초기화</button>
+  <button id="btnJson">JSON</button>
+  <button class="primary" id="btnExport">내보내기(MD)</button>
+</header>
+<main>
+  <div class="shot" id="shot"><p class="hint">불러오는 중…</p></div>
+  <div class="items" id="items"></div>
+</main>
+
+<dialog id="dlg">
+  <div style="font-weight:700;margin-bottom:8px" id="dlgTitle">내보내기</div>
+  <textarea id="dlgText" readonly></textarea>
+  <div class="row">
+    <button id="dlgCopy" class="primary">클립보드 복사</button>
+    <button id="dlgDownload">파일 다운로드</button>
+    <button id="dlgClose" class="ghost">닫기</button>
+  </div>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+const LS_KEY = 'ds-feedback-v1';
+let DATA = null, cur = null;
+const store = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); // { slug: { n: comment } }
+
+const $ = s => document.querySelector(s);
+function save(){ localStorage.setItem(LS_KEY, JSON.stringify(store)); refreshCounts(); }
+function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1400); }
+
+function filledCount(slug){ const o=store[slug]||{}; return Object.values(o).filter(v=>v&&v.trim()).length; }
+function totalFilled(){ return Object.keys(store).reduce((a,s)=>a+filledCount(s),0); }
+
+function refreshCounts(){
+  const p = DATA.pages.find(p=>p.slug===cur);
+  $('#pageCount').textContent = p ? `이 페이지 ${filledCount(cur)}/${p.items.length} 작성` : '';
+  $('#totalCount').textContent = `총 ${totalFilled()}개 코멘트`;
+  // mark filled
+  document.querySelectorAll('.item').forEach(el=>{
+    const n = el.dataset.n; const v=(store[cur]&&store[cur][n])||'';
+    el.classList.toggle('filled', !!v.trim());
+  });
+}
+
+function renderPage(slug){
+  cur = slug;
+  const p = DATA.pages.find(p=>p.slug===slug);
+  $('#shot').innerHTML = `
+    <div class="shotbar">
+      <span>${p.route}</span>
+      <button data-z="out">− 축소</button>
+      <button data-z="fit">너비맞춤</button>
+      <button data-z="in">확대 +</button>
+      <span id="zlbl"></span>
+      <span style="flex:1"></span>
+      <a href="screens/${p.slug}.png" target="_blank" rel="noopener">🔍 새 탭에서 원본</a>
+    </div>
+    <div class="shotwrap"><img id="shotImg" src="screens/${p.slug}.png" alt="${p.slug}" /></div>`;
+  $('#shot').scrollTop = 0;
+  applyZoom();
+  const box = $('#items');
+  if(!p.items.length){ box.innerHTML = `<div class="empty">이 페이지는 캡처된 항목이 없습니다${p.error?(' ('+p.error+')'):''}.</div>`; refreshCounts(); return; }
+  box.innerHTML = `<p class="meta">${p.title}</p>` + p.items.map(it=>{
+    const v = (store[slug]&&store[slug][it.n])||'';
+    return `<div class="item" data-n="${it.n}">
+      <div class="lbl"><span class="num">${it.n}</span><span class="typ">${it.type}</span><span class="txt">${esc(it.text)}</span></div>
+      <textarea data-n="${it.n}" placeholder="이 항목 피드백…">${esc(v)}</textarea>
+    </div>`;
+  }).join('');
+  box.scrollTop = 0;
+  box.querySelectorAll('textarea').forEach(ta=>{
+    ta.addEventListener('input', e=>{
+      store[slug] = store[slug]||{};
+      store[slug][ta.dataset.n] = ta.value;
+      if(!ta.value.trim()) delete store[slug][ta.dataset.n];
+      save();
+    });
+  });
+  refreshCounts();
+}
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildMD(){
+  let out = `# DeepingSource 사이트 피드백\n\n총 ${totalFilled()}개 코멘트\n`;
+  DATA.pages.forEach(p=>{
+    const o = store[p.slug]||{};
+    const lines = p.items.filter(it=>o[it.n]&&o[it.n].trim())
+      .map(it=>`- **${it.n}** [${it.type}] ${it.text} → ${o[it.n].trim()}`);
+    if(lines.length){ out += `\n## ${p.slug} (${p.route})\n${lines.join('\n')}\n`; }
+  });
+  return out;
+}
+function buildJSON(){
+  const obj = {};
+  DATA.pages.forEach(p=>{ const o=store[p.slug]||{}; const items=p.items.filter(it=>o[it.n]&&o[it.n].trim()).map(it=>({n:it.n,type:it.type,text:it.text,comment:o[it.n].trim()})); if(items.length) obj[p.slug]={route:p.route,items}; });
+  return JSON.stringify(obj,null,2);
+}
+function openDlg(title, text){ $('#dlgTitle').textContent=title; $('#dlgText').value=text; $('#dlg').showModal(); $('#dlg').dataset.fmt = title.includes('JSON')?'json':'md'; }
+
+$('#btnExport').onclick = ()=> openDlg('내보내기 (Markdown)', buildMD());
+$('#btnJson').onclick = ()=> openDlg('내보내기 (JSON)', buildJSON());
+$('#dlgClose').onclick = ()=> $('#dlg').close();
+$('#dlgCopy').onclick = async ()=>{ try{ await navigator.clipboard.writeText($('#dlgText').value); toast('클립보드에 복사됨'); }catch(e){ $('#dlgText').select(); document.execCommand('copy'); toast('복사됨'); } };
+$('#dlgDownload').onclick = ()=>{ const fmt=$('#dlg').dataset.fmt; const blob=new Blob([$('#dlgText').value],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download = fmt==='json'?'feedback.json':'feedback.md'; a.click(); };
+$('#btnClear').onclick = ()=>{ if(confirm('저장된 모든 피드백을 지울까요?')){ localStorage.removeItem(LS_KEY); for(const k in store) delete store[k]; renderPage(cur); toast('초기화됨'); } };
+$('#pageSel').onchange = e=> renderPage(e.target.value);
+
+// ── 스크린샷 줌 (기본 100% = 원본 캡처 1:1, 너비맞춤/확대/축소) ──
+let zoomPct = 100; const NAT = 1440;
+function applyZoom(){
+  const img = document.getElementById('shotImg'); if(!img) return;
+  if(zoomPct==='fit'){ img.style.width='100%'; img.style.cursor='zoom-in'; }
+  else { img.style.width = Math.round(NAT*zoomPct/100)+'px'; img.style.cursor = zoomPct<=100?'zoom-in':'zoom-out'; }
+  const lbl=document.getElementById('zlbl'); if(lbl) lbl.textContent = (zoomPct==='fit')?'너비맞춤':zoomPct+'%';
+}
+$('#shot').addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-z]');
+  if(btn){ const z=btn.dataset.z;
+    if(z==='fit') zoomPct='fit';
+    else { const base = zoomPct==='fit'?100:zoomPct; zoomPct = z==='in'? Math.min(300, Math.round(base*1.25)) : Math.max(40, Math.round(base*0.8)); }
+    applyZoom(); return;
+  }
+  if(e.target.id==='shotImg'){ zoomPct = (zoomPct==='fit')?150:'fit'; applyZoom(); }
+});
+
+fetch('./legend.json').then(r=>r.json()).then(d=>{
+  DATA = d;
+  $('#pageSel').innerHTML = d.pages.map(p=>`<option value="${p.slug}">${p.slug} · ${p.items.length}항목 (${p.route})</option>`).join('');
+  renderPage(d.pages[0].slug);
+}).catch(err=>{
+  $('#shot').innerHTML = `<div class="empty">legend.json을 불러오지 못했습니다.<br/>이 파일은 로컬 서버로 열어야 합니다 (file://는 차단됨).<br/><br/><code>cd feedback &amp;&amp; python3 -m http.server 8080</code><br/>후 http://localhost:8080/feedback.html</div>`;
+});
+</script>
+</body>
+</html>
