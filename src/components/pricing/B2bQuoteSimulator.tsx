@@ -7,11 +7,12 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import Spinner from '@/components/ui/Spinner';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { B2B_PRICING } from '@/lib/pricing-data';
 import { type Content } from './PricingClientView';
 
 // StoreCare Plus is priced per camera; 6,125/cam keeps the default (4 cams) at the
 // prior 24,500/store figure while making the "cameras per store" slider drive the estimate.
-const B2B_PER_CAMERA = 6125;
+const B2B_PER_CAMERA = B2B_PRICING.perCamera;
 
 export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Content; locale: Locale; onBackToB2c: () => void }) {
   /* ── B2B multi-store simulator ── */
@@ -46,13 +47,8 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
   };
 
   /* ── B2B 할인율 계산 ── */
-  const getDiscount = (count: number) => {
-    if (count >= 50) return 30;
-    if (count >= 20) return 20;
-    if (count >= 10) return 15;
-    if (count >= 5) return 10;
-    return 0;
-  };
+  const getDiscount = (count: number) =>
+    B2B_PRICING.discountTiers.find(tg => count >= tg.minStores)?.percent ?? 0;
 
   const discount = getDiscount(b2bStoreCount);
 

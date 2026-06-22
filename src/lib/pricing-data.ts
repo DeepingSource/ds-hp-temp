@@ -95,3 +95,23 @@ export const valueAnchors: Record<string, string> = {
   standard: '하루 500원',
   premium: '하루 833원',
 };
+
+/** B2C 매장 단위 가격 (원/월). 단일 소스 — 계산기·플랜 카드가 모두 여기서 읽는다. */
+export const B2C_PRICING = {
+  storeCare: { basic: 14_900, plus: 24_500 },
+  tempMonitoring: { base: 10_000, extraPer5: 5_000 }, // base=냉장고 5대까지, extra=추가 5대마다
+  deviceCost: 50_000,                                  // AI 분석 장치 1회, 카메라 4대당 1대
+  storeInsight: { base: 29_000, perCamera: 15_000 },   // 월 = base + perCamera × 카메라수
+  storeAgent: { free: 0, standard: 15_000, premium: 25_000 },
+} as const;
+
+/** B2B 견적 (프랜차이즈 본사) */
+export const B2B_PRICING = {
+  perCamera: 6_125,                                    // StoreCare Plus 카메라당 환산
+  discountTiers: [                                     // minStores 내림차순
+    { minStores: 50, percent: 30 },
+    { minStores: 20, percent: 20 },
+    { minStores: 10, percent: 15 },
+    { minStores: 5,  percent: 10 },
+  ],
+} as const;

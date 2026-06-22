@@ -5,20 +5,21 @@ import Link from 'next/link';
 import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle, ChevronDown } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { submitQuoteRequest } from '@/lib/contact-lead';
+import { B2C_PRICING } from '@/lib/pricing-data';
 import Spinner from '@/components/ui/Spinner';
 
 /* ─── 요금 기준 ─── */
-const STORECARE_BASIC = 14_900;
-const STORECARE_PLUS = 24_500;
-const TEMP_BASE = 10_000;       // 냉장고 5대까지
-const TEMP_EXTRA_PER_5 = 5_000; // 추가 5대마다
-const DEVICE_COST = 50_000;     // AI 분석 장치 (1회, 카메라 4대당 1대)
+const STORECARE_BASIC = B2C_PRICING.storeCare.basic;
+const STORECARE_PLUS = B2C_PRICING.storeCare.plus;
+const TEMP_BASE = B2C_PRICING.tempMonitoring.base;       // 냉장고 5대까지
+const TEMP_EXTRA_PER_5 = B2C_PRICING.tempMonitoring.extraPer5; // 추가 5대마다
+const DEVICE_COST = B2C_PRICING.deviceCost;     // AI 분석 장치 (1회, 카메라 4대당 1대)
 
-const INSIGHT_BASE = 29_000;
-const INSIGHT_PER_CAM = 15_000;
+const INSIGHT_BASE = B2C_PRICING.storeInsight.base;
+const INSIGHT_PER_CAM = B2C_PRICING.storeInsight.perCamera;
 
-const AGENT_STANDARD = 15_000;
-const AGENT_PREMIUM = 25_000;
+const AGENT_STANDARD = B2C_PRICING.storeAgent.standard;
+const AGENT_PREMIUM = B2C_PRICING.storeAgent.premium;
 
 type CarePlan = 'basic' | 'plus';
 type AgentPlan = 'free' | 'standard' | 'premium';

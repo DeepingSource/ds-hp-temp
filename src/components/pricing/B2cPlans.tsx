@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Check, Eye, LayoutGrid, Zap, Calculator, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { B2C_PRICING } from '@/lib/pricing-data';
 import { type Content } from './PricingClientView';
 
 interface PlanCardDescriptor {
@@ -90,7 +91,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       title: 'store insight',
       price: (
         <>
-          <span className="text-3xl font-bold text-gray-900">100,000원</span>
+          <span className="text-3xl font-bold text-gray-900">{(B2C_PRICING.storeInsight.base + B2C_PRICING.storeInsight.perCamera * 8).toLocaleString('ko-KR')}원</span>
           <span className="text-sm text-gray-500">{t.insightPerMonth}</span>
           <span className="text-xs text-gray-500 block mt-1">{t.insightBasis}</span>
         </>
