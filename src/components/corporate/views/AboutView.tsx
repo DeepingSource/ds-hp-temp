@@ -41,7 +41,6 @@ type Copy = {
   milestones: { year: string; label: string; desc: string }[];
   leadershipEyebrow: string;
   leadershipHeading: string;
-  leadershipNote: string;
   leadership: { role: string; focus: string }[];
   partnersEyebrow: string;
   partnersHeading: string;
@@ -78,7 +77,6 @@ const C: Record<Locale, Copy> = {
     ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: '공간을 다시 만드는 사람들',
-    leadershipNote: '※ 아래는 조직 역할을 나타내는 예시 구성입니다. 실제 구성원 정보는 추후 업데이트됩니다.',
     leadership: [
       { role: '경영 리더십 (CEO)', focus: '비전 · 전략 · 사업 전반' },
       { role: '기술 리더십 (CTO)', focus: '익명화 · 공간 지능 · 에이전트 AI' },
@@ -118,7 +116,6 @@ const C: Record<Locale, Copy> = {
     ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: 'The people remaking space',
-    leadershipNote: '※ The roles below are an illustrative organizational structure. Actual member information will be updated later.',
     leadership: [
       { role: 'Executive Leadership (CEO)', focus: 'Vision · strategy · overall business' },
       { role: 'Technology Leadership (CTO)', focus: 'Anonymization · spatial AI · agentic AI' },
@@ -158,7 +155,6 @@ const C: Record<Locale, Copy> = {
     ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: '空間を作り直す人々',
-    leadershipNote: '※ 以下は組織の役割を示す参考構成です。実際のメンバー情報は今後更新されます。',
     leadership: [
       { role: '経営リーダーシップ (CEO)', focus: 'ビジョン · 戦略 · 事業全般' },
       { role: '技術リーダーシップ (CTO)', focus: '匿名化 · 空間知能 · エージェントAI' },
@@ -364,9 +360,6 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="text-center mb-16">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.leadershipEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.leadershipHeading}</h2>
-            <p className="text-sm text-gray-500 max-w-xl mx-auto break-keep">
-              {t.leadershipNote}
-            </p>
           </div>
 
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
