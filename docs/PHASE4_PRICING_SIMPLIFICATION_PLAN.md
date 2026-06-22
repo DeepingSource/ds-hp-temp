@@ -63,7 +63,9 @@
 - Step A 완료(`22e082c`): CameraSimulator 13→3 + 고급옵션. Playwright 검증(추정 불변·프리셋 동기).
 - Step B 완료(`126a208`): pricing-data.ts 단일소스(B2C_PRICING/B2B_PRICING), 계산기 import, B2cPlans insight 100,000→149,000(공식). vitest 6/6.
 - Step C 완료(`5e53be9`): 고아 InlinePricingSimulator 삭제.
-- ⏳ 잔여: **B2cPlans care '10,000원~' 결정**(실제 basic 14,900보다 낮음 — 공개가 인상 승인 필요), Step D(Enterprise 카피, 주관).
+- Step B+ 완료(`fee000a`): B2cPlans care 10,000→**14,900원**(basic, 단일소스). 결정=정확하게.
+- Step D 완료(`3b6536c`): Enterprise hero·CTA 제목 무조건 `<br/>` → 반응형(`hidden sm:block` + `{' '}`). benefits 카피는 명확한 중복 없어 보류.
+- **Phase 4 종료.** 잔여 후속(선택): Enterprise benefits 카피 톤다운(원하면), 홈/솔루션은 Phase 5/6(에셋).
 
 ### Step A — CameraSimulator state 13→3 (저위험, 결정 불필요) ⬅ 먼저 가능
 - 13 useState → **3 객체**: `preset{cameraCount,fridgeCount,activePreset}` · `product{useCare,useInsight,useAgent,carePlan,agentPlan,showAdvanced}` · `email{quoteEmail,quoteSubmitted,isSubmitting,error}`.
