@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle } from 'lucide-react';
+import { Calculator, Store, Camera, Thermometer, CheckCircle2, ArrowRight, Mail, Check, AlertCircle, ChevronDown } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 import Spinner from '@/components/ui/Spinner';
@@ -266,6 +266,12 @@ const C: Record<Locale, SimContent> = {
   },
 };
 
+const ADVANCED_LABEL: Record<Locale, string> = {
+  ko: '고급 옵션',
+  en: 'Advanced options',
+  jp: '詳細オプション',
+};
+
 export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) {
   const t = C[locale];
 
@@ -276,41 +282,26 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
     { label: t.presets[2].label, range: t.presets[2].range, cameras: 8, fridges: 8 },
   ], [t]);
 
-  // Step 1: 매장 규모
-  const [cameraCount, setCameraCount] = useState(4);
-  const [fridgeCount, setFridgeCount] = useState(5);
-  const [activePreset, setActivePreset] = useState<number | null>(1); // 중형 default
+  // Step 1: 매장 규모 (중형 default)
+  const [preset, setPreset] = useState({ cameraCount: 4, fridgeCount: 5, activePreset: 1 as number | null });
 
-  // Step 2: 제품 선택 (독립)
-  const [useCare, setUseCare] = useState(true);
-  const [useInsight, setUseInsight] = useState(false);
-  const [useAgent, setUseAgent] = useState(false);
-
-  // Step 3: 각 제품 플랜
-  const [carePlan, setCarePlan] = useState<CarePlan>('plus');
-  const [agentPlan, setAgentPlan] = useState<AgentPlan>('standard');
+  // Step 2 제품 선택 + Step 3 플랜 + 고급 옵션 토글
+  const [product, setProduct] = useState({ useCare: true, useInsight: false, useAgent: false, carePlan: 'plus' as CarePlan, agentPlan: 'standard' as AgentPlan, showAdvanced: false });
 
   // 이메일 견적
-  const [quoteEmail, setQuoteEmail] = useState('');
-  const [quoteSubmitted, setQuoteSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState({ quoteEmail: '', quoteSubmitted: false, isSubmitting: false, error: null as string | null });
 
   const handlePreset = useCallback((index: number) => {
-    const preset = storeSizePresets[index];
-    setActivePreset(index);
-    setCameraCount(preset.cameras);
-    setFridgeCount(preset.fridges);
+    const sp = storeSizePresets[index];
+    setPreset(s => ({ ...s, cameraCount: sp.cameras, fridgeCount: sp.fridges, activePreset: index }));
   }, [storeSizePresets]);
 
   const handleCameraChange = useCallback((value: number) => {
-    setCameraCount(value);
-    setActivePreset(null);
+    setPreset(s => ({ ...s, cameraCount: value, activePreset: null }));
   }, []);
 
   const handleFridgeChange = useCallback((value: number) => {
-    setFridgeCount(value);
-    setActivePreset(null);
+    setPreset(s => ({ ...s, fridgeCount: value, activePreset: null }));
   }, []);
 
   const estimate = useMemo(() => {
@@ -320,70 +311,69 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
     let insightMonthly = 0;
     let agentMonthly = 0;
 
-    if (useCare) {
-      careMonthly = carePlan === 'plus' ? STORECARE_PLUS : STORECARE_BASIC;
-      careDevice = DEVICE_COST * Math.max(1, Math.ceil(cameraCount / 4));
+    if (product.useCare) {
+      careMonthly = product.carePlan === 'plus' ? STORECARE_PLUS : STORECARE_BASIC;
+      careDevice = DEVICE_COST * Math.max(1, Math.ceil(preset.cameraCount / 4));
 
-      if (carePlan === 'plus' && fridgeCount > 5) {
-        tempMonthly = Math.ceil((fridgeCount - 5) / 5) * TEMP_EXTRA_PER_5;
-      } else if (carePlan === 'basic' && fridgeCount > 0) {
+      if (product.carePlan === 'plus' && preset.fridgeCount > 5) {
+        tempMonthly = Math.ceil((preset.fridgeCount - 5) / 5) * TEMP_EXTRA_PER_5;
+      } else if (product.carePlan === 'basic' && preset.fridgeCount > 0) {
         tempMonthly = TEMP_BASE;
-        if (fridgeCount > 5) {
-          tempMonthly += Math.ceil((fridgeCount - 5) / 5) * TEMP_EXTRA_PER_5;
+        if (preset.fridgeCount > 5) {
+          tempMonthly += Math.ceil((preset.fridgeCount - 5) / 5) * TEMP_EXTRA_PER_5;
         }
       }
     }
 
-    if (useInsight) {
-      insightMonthly = INSIGHT_BASE + INSIGHT_PER_CAM * cameraCount;
+    if (product.useInsight) {
+      insightMonthly = INSIGHT_BASE + INSIGHT_PER_CAM * preset.cameraCount;
     }
 
-    if (useAgent) {
-      agentMonthly = agentPlan === 'premium' ? AGENT_PREMIUM : agentPlan === 'standard' ? AGENT_STANDARD : 0;
+    if (product.useAgent) {
+      agentMonthly = product.agentPlan === 'premium' ? AGENT_PREMIUM : product.agentPlan === 'standard' ? AGENT_STANDARD : 0;
     }
 
     const monthly = careMonthly + tempMonthly + insightMonthly + agentMonthly;
-    const oneTime = useCare ? careDevice : 0;
+    const oneTime = product.useCare ? careDevice : 0;
     const suggestUpgrade =
-      useCare && carePlan === 'basic' && fridgeCount > 0 && (careMonthly + tempMonthly) >= STORECARE_PLUS;
+      product.useCare && product.carePlan === 'basic' && preset.fridgeCount > 0 && (careMonthly + tempMonthly) >= STORECARE_PLUS;
 
     return { careMonthly, tempMonthly, insightMonthly, agentMonthly, monthly, oneTime, suggestUpgrade };
-  }, [useCare, useInsight, useAgent, carePlan, agentPlan, cameraCount, fridgeCount]);
+  }, [preset.cameraCount, preset.fridgeCount, product.useCare, product.useInsight, product.useAgent, product.carePlan, product.agentPlan]);
 
   const fmt = (n: number) => n.toLocaleString('ko-KR');
-  const noneSelected = !useCare && !useInsight && !useAgent;
+  const noneSelected = !product.useCare && !product.useInsight && !product.useAgent;
 
   const selectedProducts = useMemo(
-    () => [useCare && 'StoreCare', useInsight && 'StoreInsight', useAgent && 'StoreAgent'].filter(Boolean).join('+'),
-    [useCare, useInsight, useAgent]
+    () => [product.useCare && 'StoreCare', product.useInsight && 'StoreInsight', product.useAgent && 'StoreAgent'].filter(Boolean).join('+'),
+    [product.useCare, product.useInsight, product.useAgent]
   );
 
   const handleQuoteSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!quoteEmail || noneSelected || isSubmitting) return;
-    setIsSubmitting(true);
-    setError(null);
+    if (!email.quoteEmail || noneSelected || email.isSubmitting) return;
+    setEmail(e => ({ ...e, isSubmitting: true, error: null }));
     try {
       const ok = await submitQuoteRequest({
         name: t.reqName,
-        contact: quoteEmail,
+        contact: email.quoteEmail,
         storeCount: '1',
         inquiryType: t.reqInquiry,
         message: t.reqMessage({
           products: selectedProducts,
-          cam: cameraCount,
-          fridge: fridgeCount,
+          cam: preset.cameraCount,
+          fridge: preset.fridgeCount,
           monthly: fmt(estimate.monthly),
           oneTime: fmt(estimate.oneTime),
         }),
       });
       if (ok) {
-        setQuoteSubmitted(true);
+        setEmail(e => ({ ...e, quoteSubmitted: true }));
       } else {
-        setError(t.errSubmitFailed);
+        setEmail(e => ({ ...e, error: t.errSubmitFailed }));
       }
     } finally {
-      setIsSubmitting(false);
+      setEmail(e => ({ ...e, isSubmitting: false }));
     }
   };
 
@@ -399,19 +389,19 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
 
         {/* 프리셋 */}
         <div className="grid grid-cols-3 gap-3 mb-6">
-          {storeSizePresets.map((preset, i) => (
+          {storeSizePresets.map((sp, i) => (
             <button
-              key={preset.label}
+              key={sp.label}
               type="button"
               onClick={() => handlePreset(i)}
               className={`p-3 rounded-xl text-center border cursor-pointer transition-colors ${
-                activePreset === i
+                preset.activePreset === i
                   ? 'border-primary bg-primary/5 text-primary'
                   : 'border-gray-200 text-gray-700 hover:border-gray-300'
               }`}
             >
-              <p className="text-sm font-bold">{preset.label}</p>
-              <p className={`text-xs mt-0.5 ${activePreset === i ? 'text-primary/70' : 'text-gray-500'}`}>{preset.range}</p>
+              <p className="text-sm font-bold">{sp.label}</p>
+              <p className={`text-xs mt-0.5 ${preset.activePreset === i ? 'text-primary/70' : 'text-gray-500'}`}>{sp.range}</p>
             </button>
           ))}
         </div>
@@ -423,16 +413,16 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               <Camera className="w-4 h-4 text-gray-500" />
               {t.cameraLabel}
             </label>
-            <span className="text-sm font-bold text-gray-900 bg-gray-100 px-2.5 py-0.5 rounded-lg">{cameraCount}{t.unitDevice}</span>
+            <span className="text-sm font-bold text-gray-900 bg-gray-100 px-2.5 py-0.5 rounded-lg">{preset.cameraCount}{t.unitDevice}</span>
           </div>
           <input
             id="sim-cameras"
             type="range"
             min={1}
             max={20}
-            value={cameraCount}
+            value={preset.cameraCount}
             onChange={(e) => handleCameraChange(Number(e.target.value))}
-            aria-valuetext={`${cameraCount}${t.unitDevice}`}
+            aria-valuetext={`${preset.cameraCount}${t.unitDevice}`}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <div className="flex justify-between text-xs text-gray-500 mt-1">
@@ -442,31 +432,44 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           </div>
         </div>
 
-        {/* 냉장/냉동고 슬라이더 */}
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label htmlFor="sim-fridges" className="text-sm font-medium text-gray-700 flex items-center gap-1.5">
-              <Thermometer className="w-4 h-4 text-gray-500" />
-              {t.fridgeLabel}
-            </label>
-            <span className="text-sm font-bold text-gray-900 bg-gray-100 px-2.5 py-0.5 rounded-lg">{fridgeCount}{t.unitDevice}</span>
+        {/* 고급 옵션 토글 */}
+        <button
+          type="button"
+          onClick={() => setProduct(p => ({ ...p, showAdvanced: !p.showAdvanced }))}
+          aria-expanded={product.showAdvanced}
+          className="mt-5 flex items-center gap-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 cursor-pointer transition-colors"
+        >
+          <ChevronDown className={`w-4 h-4 transition-transform ${product.showAdvanced ? 'rotate-180' : ''}`} />
+          {ADVANCED_LABEL[locale]}
+        </button>
+
+        {/* 냉장/냉동고 슬라이더 (고급 옵션) */}
+        {product.showAdvanced && (
+          <div className="mt-5">
+            <div className="flex items-center justify-between mb-2">
+              <label htmlFor="sim-fridges" className="text-sm font-medium text-gray-700 flex items-center gap-1.5">
+                <Thermometer className="w-4 h-4 text-gray-500" />
+                {t.fridgeLabel}
+              </label>
+              <span className="text-sm font-bold text-gray-900 bg-gray-100 px-2.5 py-0.5 rounded-lg">{preset.fridgeCount}{t.unitDevice}</span>
+            </div>
+            <input
+              id="sim-fridges"
+              type="range"
+              min={0}
+              max={20}
+              value={preset.fridgeCount}
+              onChange={(e) => handleFridgeChange(Number(e.target.value))}
+              aria-valuetext={`${preset.fridgeCount}${t.unitDevice}`}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+            />
+            <div className="flex justify-between text-xs text-gray-500 mt-1">
+              <span>{t.fri0}</span>
+              <span>{t.fri10}</span>
+              <span>{t.fri20}</span>
+            </div>
           </div>
-          <input
-            id="sim-fridges"
-            type="range"
-            min={0}
-            max={20}
-            value={fridgeCount}
-            onChange={(e) => handleFridgeChange(Number(e.target.value))}
-            aria-valuetext={`${fridgeCount}${t.unitDevice}`}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-          />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
-            <span>{t.fri0}</span>
-            <span>{t.fri10}</span>
-            <span>{t.fri20}</span>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* ── Step 2: 제품 선택 (독립 선택) ── */}
@@ -481,15 +484,15 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           {/* StoreCare */}
           <button
             type="button"
-            onClick={() => setUseCare((v) => !v)}
+            onClick={() => setProduct(p => ({ ...p, useCare: !p.useCare }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              useCare ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useCare ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              useCare ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useCare ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
             }`}>
-              {useCare && <Check className="w-3 h-3 text-white" />}
+              {product.useCare && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
@@ -507,15 +510,15 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           {/* StoreInsight */}
           <button
             type="button"
-            onClick={() => setUseInsight((v) => !v)}
+            onClick={() => setProduct(p => ({ ...p, useInsight: !p.useInsight }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              useInsight ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useInsight ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              useInsight ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useInsight ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
             }`}>
-              {useInsight && <Check className="w-3 h-3 text-white" />}
+              {product.useInsight && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
@@ -525,23 +528,23 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               <p className="text-xs text-gray-500 mt-0.5">{t.insightDesc}</p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-sm font-bold text-blue-600">{fmt(INSIGHT_BASE + INSIGHT_PER_CAM * cameraCount)}{t.won}</p>
-              <p className="text-3xs text-gray-500">{t.insightUnit(cameraCount)}</p>
+              <p className="text-sm font-bold text-blue-600">{fmt(INSIGHT_BASE + INSIGHT_PER_CAM * preset.cameraCount)}{t.won}</p>
+              <p className="text-3xs text-gray-500">{t.insightUnit(preset.cameraCount)}</p>
             </div>
           </button>
 
           {/* StoreAgent */}
           <button
             type="button"
-            onClick={() => setUseAgent((v) => !v)}
+            onClick={() => setProduct(p => ({ ...p, useAgent: !p.useAgent }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              useAgent ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useAgent ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              useAgent ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useAgent ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
             }`}>
-              {useAgent && <Check className="w-3 h-3 text-white" />}
+              {product.useAgent && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
@@ -558,16 +561,17 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
         </div>
       </div>
 
-      {/* ── Step 3: 플랜 선택 (선택된 제품만 표시) ── */}
-      {(useCare || useAgent) && (
+      {/* ── Step 3: 플랜 선택 (고급 옵션 · 선택된 제품만 표시) ── */}
+      {product.showAdvanced && (product.useCare || product.useAgent) && (
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-6">
           <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
             <span className="w-5 h-5 bg-primary/10 rounded flex items-center justify-center text-3xs font-bold text-primary">3</span>
             {t.step3Title}
+            <span className="ml-1 text-3xs font-medium px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500">{ADVANCED_LABEL[locale]}</span>
           </h3>
 
           {/* StoreCare 플랜 */}
-          {useCare && (
+          {product.useCare && (
             <div>
               <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
@@ -576,9 +580,9 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
-                  onClick={() => setCarePlan('basic')}
+                  onClick={() => setProduct(p => ({ ...p, carePlan: 'basic' }))}
                   className={`p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-                    carePlan === 'basic' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.carePlan === 'basic' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-sm font-bold text-gray-900">{t.careBasic}</p>
@@ -587,9 +591,9 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 </button>
                 <button
                   type="button"
-                  onClick={() => setCarePlan('plus')}
+                  onClick={() => setProduct(p => ({ ...p, carePlan: 'plus' }))}
                   className={`p-4 rounded-xl border text-left cursor-pointer transition-colors relative ${
-                    carePlan === 'plus' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.carePlan === 'plus' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <span className="absolute -top-2 right-3 px-2 py-0.5 bg-blue-600 text-white text-3xs font-bold rounded-full">{t.recommended}</span>
@@ -602,7 +606,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           )}
 
           {/* StoreAgent 플랜 */}
-          {useAgent && (
+          {product.useAgent && (
             <div>
               <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
@@ -611,9 +615,9 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
-                  onClick={() => setAgentPlan('free')}
+                  onClick={() => setProduct(p => ({ ...p, agentPlan: 'free' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors ${
-                    agentPlan === 'free' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'free' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-xs font-bold text-gray-900">{t.agentFreeName}</p>
@@ -622,9 +626,9 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 </button>
                 <button
                   type="button"
-                  onClick={() => setAgentPlan('standard')}
+                  onClick={() => setProduct(p => ({ ...p, agentPlan: 'standard' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors relative ${
-                    agentPlan === 'standard' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'standard' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <span className="absolute -top-2 right-2 px-1.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full">{t.recommended}</span>
@@ -634,9 +638,9 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 </button>
                 <button
                   type="button"
-                  onClick={() => setAgentPlan('premium')}
+                  onClick={() => setProduct(p => ({ ...p, agentPlan: 'premium' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors ${
-                    agentPlan === 'premium' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'premium' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-xs font-bold text-gray-900">{t.agentPremName}</p>
@@ -673,39 +677,39 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           <>
             {/* 비용 상세 내역 */}
             <div className="space-y-2.5 mb-5">
-              {useCare && (
+              {product.useCare && (
                 <>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600 flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
-                      store care {carePlan === 'plus' ? t.careLinePlus : t.careLineBasic}
+                      store care {product.carePlan === 'plus' ? t.careLinePlus : t.careLineBasic}
                     </span>
                     <span className="text-sm font-medium text-gray-900">{fmt(estimate.careMonthly)}{t.won}{t.perMonth}</span>
                   </div>
                   {estimate.tempMonthly > 0 && (
                     <div className="flex items-center justify-between pl-3.5">
                       <span className="text-xs text-gray-500">
-                        {carePlan === 'basic' ? t.tempAddBasic : t.tempAddPlus}
+                        {product.carePlan === 'basic' ? t.tempAddBasic : t.tempAddPlus}
                       </span>
                       <span className="text-xs font-medium text-gray-700">+{fmt(estimate.tempMonthly)}{t.won}{t.perMonth}</span>
                     </div>
                   )}
                 </>
               )}
-              {useInsight && (
+              {product.useInsight && (
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
-                    {t.insightLine(cameraCount)}
+                    {t.insightLine(preset.cameraCount)}
                   </span>
                   <span className="text-sm font-medium text-gray-900">{fmt(estimate.insightMonthly)}{t.won}{t.perMonth}</span>
                 </div>
               )}
-              {useAgent && (
+              {product.useAgent && (
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
-                    store agent {agentPlan === 'free' ? t.agentLineFree : agentPlan === 'standard' ? t.agentLineStd : t.agentLinePrem}
+                    store agent {product.agentPlan === 'free' ? t.agentLineFree : product.agentPlan === 'standard' ? t.agentLineStd : t.agentLinePrem}
                   </span>
                   <span className="text-sm font-medium text-gray-900">
                     {estimate.agentMonthly === 0 ? t.free : `${fmt(estimate.agentMonthly)}${t.won}${t.perMonth}`}
@@ -744,7 +748,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <div className="pt-4 border-t border-gray-100">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">{t.selectedFeatures}</p>
               <div className="grid grid-cols-2 gap-2">
-                {useCare && (
+                {product.useCare && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
@@ -758,7 +762,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                       {t.featNight}
                     </div>
-                    {carePlan === 'plus' && (
+                    {product.carePlan === 'plus' && (
                       <div className="flex items-center gap-1.5 text-xs text-gray-600">
                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                         {t.featTemp}
@@ -766,7 +770,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                     )}
                   </>
                 )}
-                {useInsight && (
+                {product.useInsight && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
@@ -778,16 +782,16 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                     </div>
                   </>
                 )}
-                {useAgent && (
+                {product.useAgent && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                       {t.featBriefing}
                     </div>
-                    {agentPlan !== 'free' && (
+                    {product.agentPlan !== 'free' && (
                       <div className="flex items-center gap-1.5 text-xs text-gray-600">
                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                        {agentPlan === 'premium' ? t.featAgentPrem : t.featAgentStd}
+                        {product.agentPlan === 'premium' ? t.featAgentPrem : t.featAgentStd}
                       </div>
                     )}
                   </>
@@ -812,7 +816,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           <Mail className="w-4 h-4 text-primary" />
           {t.emailTitle}
         </h3>
-        {!quoteSubmitted ? (
+        {!email.quoteSubmitted ? (
           <form onSubmit={handleQuoteSubmit}>
             <div className="flex gap-2">
               <div className="flex items-center flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-[border-color,box-shadow]">
@@ -821,24 +825,24 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                   type="email"
                   required
                   placeholder={t.emailPlaceholder}
-                  value={quoteEmail}
-                  onChange={(e) => setQuoteEmail(e.target.value)}
+                  value={email.quoteEmail}
+                  onChange={(e) => setEmail(prev => ({ ...prev, quoteEmail: e.target.value }))}
                   className="w-full pl-2.5 py-3 bg-transparent text-sm focus:outline-none"
                 />
               </div>
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={email.isSubmitting}
                 className="btn-primary py-3 px-5 shrink-0 shadow-md text-sm disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
               >
-                {isSubmitting && <Spinner />}
+                {email.isSubmitting && <Spinner />}
                 {t.emailBtn}
               </button>
             </div>
-            {error && (
+            {email.error && (
               <p className="flex items-center gap-1.5 text-xs text-error mt-2" role="alert">
                 <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                {error}
+                {email.error}
               </p>
             )}
             <p className="text-xs text-gray-500 mt-2">{t.emailNote}</p>
@@ -847,7 +851,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           <div className="p-4 bg-blue-50 rounded-xl border border-blue-100 text-center">
             <Check className="w-7 h-7 text-blue-500 mx-auto mb-1.5" />
             <p className="text-blue-800 font-bold text-sm">{t.submittedTitle}</p>
-            <button type="button" onClick={() => setQuoteSubmitted(false)} className="text-xs text-blue-600 underline mt-2 hover:text-blue-700 cursor-pointer">{t.recalc}</button>
+            <button type="button" onClick={() => setEmail(e => ({ ...e, quoteSubmitted: false }))} className="text-xs text-blue-600 underline mt-2 hover:text-blue-700 cursor-pointer">{t.recalc}</button>
           </div>
         )}
       </div>
