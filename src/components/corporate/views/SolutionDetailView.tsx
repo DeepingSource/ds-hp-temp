@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react';
 import { solutionsBySlug, solutionsByIndustry, type SolutionPage } from '@/data/solutionsData';
 import { glossaryBySlug, type GlossaryTerm } from '@/data/glossaryTerms';
@@ -102,6 +103,34 @@ const C: Record<
 
 const blue = { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500' };
 
+/**
+ * 솔루션 슬러그별 히어로 배경 — 문제 상황을 보여주는 CCTV 컷(저투명도 배경).
+ * 전시(exhibition)는 CCTV 컷이 없어 실제 전시장 사진으로 대체.
+ */
+const SCENARIO_IMG: Record<string, string> = {
+  'convenience-night-theft': '/images/cctv/cctv-intrusion-night-ir.webp',
+  'convenience-inventory-loss': '/images/cctv/cctv-display-shelf-empty-wide.webp',
+  'convenience-planogram': '/images/cctv/cctv-cvs-fridge.webp',
+  'cafe-low-seat-turnover': '/images/cctv/cctv-cafe-hall.webp',
+  'cafe-peak-hour-management': '/images/cctv/cctv-hero-cafe-detection.webp',
+  'cafe-customer-wait-time': '/images/cctv/cctv-cafe-counter.webp',
+  'unmanned-theft-prevention': '/images/cctv/cctv-intrusion-unmanned-dawn.webp',
+  'unmanned-anomaly-detection': '/images/cctv/cctv-unmanned-night.webp',
+  'unmanned-remote-monitoring': '/images/cctv/cctv-intrusion-counter-empty.webp',
+  'drugstore-vmd-optimization': '/images/cctv/cctv-drugstore-aisle.webp',
+  'drugstore-zone-performance': '/images/cctv/cctv-display-price-label-missing.webp',
+  'drugstore-tester-interaction': '/images/cctv/cctv-display-shelf-rotated.webp',
+  'mart-checkout-congestion': '/images/cctv/cctv-mart-checkout.webp',
+  'mart-cart-path-optimization': '/images/cctv/cctv-supermarket-produce.webp',
+  'mart-zone-conversion': '/images/cctv/cctv-mall-corridor.webp',
+  'exhibition-visitor-dwell-time': '/images/industries/exhibition-hero-hall.webp',
+  'exhibition-booth-performance': '/images/industries/exhibition-hero.webp',
+  'exhibition-crowd-flow': '/images/industries/exhibition-hero-atrium.webp',
+  'logistics-worker-safety': '/images/cctv/cctv-intrusion-warehouse.webp',
+  'logistics-efficiency-zones': '/images/cctv/cctv-warehouse-aisle.webp',
+  'logistics-ppe-compliance': '/images/cctv/cctv-warehouse-loading.webp',
+};
+
 export default function SolutionDetailView({
   sol,
   locale,
@@ -123,6 +152,7 @@ export default function SolutionDetailView({
   const industryLabel = (!isKo && industryLabelI18n[sol.industry]?.[locale]) || sol.industryLabel;
   const backgroundHeading = (!isKo && detail?.backgroundHeading) || sol.background.heading;
 
+  const scenarioImg = SCENARIO_IMG[sol.slug];
   const industryMeta = industryList.find((i) => i.slug === sol.industry);
   const industryColors = industryColorMap[industryMeta?.color ?? 'slate'] ?? industryColorMap.slate;
   const industryMetaLabel = (!isKo && industryLabelI18n[sol.industry]?.[locale]) || industryMeta?.label;
@@ -155,6 +185,19 @@ export default function SolutionDetailView({
 
       {/* ── 히어로 ── */}
       <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden bg-surface-dark">
+        {scenarioImg && (
+          <div className="absolute inset-0" aria-hidden="true">
+            <Image
+              src={scenarioImg}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-[0.18]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/80 via-surface-dark/85 to-surface-dark" />
+          </div>
+        )}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
