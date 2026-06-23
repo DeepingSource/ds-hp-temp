@@ -18,6 +18,7 @@ html {
   /* Dark surface (section-dark base) — single source for dark backgrounds + scrims */
   --surface-dark: #0B1220;
   --surface-dark-2: #0E1730;
+  --surface-navy: #172D5F; /* mid-navy band (store-count CTA/HQ bands) */
 
   /* Semantic Colors */
   --success: #4CAF50;
@@ -68,6 +69,7 @@ html {
   --color-primary-lighter: var(--primary-lighter);
   --color-surface-dark: var(--surface-dark);
   --color-surface-dark-2: var(--surface-dark-2);
+  --color-surface-navy: var(--surface-navy);
 
   /* Semantic Colors */
   --color-success: var(--success);

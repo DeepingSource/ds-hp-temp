@@ -34,7 +34,10 @@ npm-debug.log*
 # See CLEANUP_REVIEW.md §7. Remove this line to version-control them.
 /assets
 public/feedback/
-new-image-generated/
-new-image-generated_2/
+# image-generation scratch (source PNGs, converted to webp under public/images)
+new-image-generated*/
+asset-prompts/
+# internal business/pricing strategy doc — kept local, not in repo
+docs/BIZ_SERVICE_PLAN_v1.md
 # local visual-verification screenshots
 /*.jpeg

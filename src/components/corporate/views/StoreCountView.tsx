@@ -313,7 +313,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
       {/* ── The turn ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="rounded-3xl bg-[#172D5F] text-white px-8 py-12 lg:px-12 lg:py-16 text-center">
+          <div className="rounded-3xl bg-surface-navy text-white px-8 py-12 lg:px-12 lg:py-16 text-center">
             <p className="text-xs sm:text-sm font-bold tracking-[0.18em] uppercase text-primary-light mb-3">{t.turnKicker}</p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight break-keep mb-5">
               {t.turnTitle[0]}<br /><span className="text-white">{t.turnTitle[1]}</span>
