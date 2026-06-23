@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreCareMockup from '@/components/mockups/StoreCareMockup';
 import { KakaoAlertMockup } from '@/components/mockups';
@@ -24,6 +25,9 @@ const C: Record<Locale, {
   mockupHeading: string;
   mockupSub: string;
   mockupNote: string;
+  scenariosHeading: string;
+  scenariosSub: string;
+  scenarios: string[];
   values: { title: string; desc: string }[];
   valueCta: string;
   valueNote: [string, string];
@@ -37,6 +41,9 @@ const C: Record<Locale, {
     mockupHeading: '필요한 순간만, 손안으로',
     mockupSub: '하루 1,247건 쏟아지는 알림 대신 — 정작 필요한 세 건만 골라 휴대폰으로 바로 알려드려요.',
     mockupNote: '* AI 분석 예시 화면이에요.',
+    scenariosHeading: '이런 순간을, 놓치지 않아요',
+    scenariosSub: '직원이 못 본 사이에도 — store care는 매대·위생·설비·보안을 한눈에 살핍니다.',
+    scenarios: ['빈 매대', '냉장고 문 열림', '바닥 오염', '심야 이상행동'],
     values: [
       { title: '24시간, 직원 한 명 더', desc: '매장을 비워도 괜찮아요. store care가 곳곳을 대신 지켜봅니다.' },
       { title: '필요한 세 건만', desc: '빈 매대·바닥 오염·냉장고 문 열림·심야 이상행동까지, 손쓸 순간만 콕 짚어 알려줘요.' },
@@ -54,6 +61,9 @@ const C: Record<Locale, {
     mockupHeading: 'Only the moments that matter — in your hand',
     mockupSub: 'Most tools flood you with 1,247 alerts a day. store care surfaces the three that actually need you, straight to your phone.',
     mockupNote: '* Sample AI analysis screen.',
+    scenariosHeading: 'It won’t miss moments like these',
+    scenariosSub: 'Even when no one’s looking — store care watches shelves, hygiene, equipment, and security at once.',
+    scenarios: ['Empty shelf', 'Fridge door open', 'Floor spill', 'After-hours anomaly'],
     values: [
       { title: 'One more employee, 24/7', desc: 'Leave the floor with confidence. store care keeps watch across the whole store.' },
       { title: 'Just the three that matter', desc: 'Empty shelves, a dirty aisle, an open fridge door, after-hours anomalies — it flags the moment to act, and only that.' },
@@ -71,6 +81,9 @@ const C: Record<Locale, {
     mockupHeading: '必要な瞬間だけ、手のひらに',
     mockupSub: '1日1,247件あふれる通知ではなく — 本当に必要な3件だけを選んで、スマートフォンへすぐにお知らせします。',
     mockupNote: '※ AI分析のサンプル画面です。',
+    scenariosHeading: 'こんな瞬間を、見逃しません',
+    scenariosSub: 'スタッフが見ていない間も — store care は棚・衛生・設備・防犯をひと目で見守ります。',
+    scenarios: ['空いた棚', '冷蔵庫の扉開き', '床の汚れ', '深夜の異常'],
     values: [
       { title: '24時間、もう一人のスタッフ', desc: '店舗を離れても大丈夫。store care がすみずみを代わりに見守ります。' },
       { title: '必要な3件だけ', desc: '空いた棚・床の汚れ・冷蔵庫の扉開き・深夜の異常まで、手を打つべき瞬間だけを的確にお知らせします。' },
@@ -81,6 +94,14 @@ const C: Record<Locale, {
     otherProducts: '他の製品を見る',
   },
 };
+
+/** 탐지 시나리오 대표 CCTV 컷 (로케일 무관) — 라벨 순서와 1:1 대응 */
+const SCENARIO_IMGS = [
+  '/images/cctv/cctv-hero-shelf-empty.webp',
+  '/images/cctv/cctv-hero-fridge-open.webp',
+  '/images/cctv/cctv-contam-floor-spill.webp',
+  '/images/cctv/cctv-intrusion-night-ir.webp',
+];
 
 export default function StoreCareView({ locale }: { locale: Locale }) {
   const t = C[locale];
@@ -146,8 +167,34 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
+      {/* ── 탐지 시나리오 (무엇을 잡아내는가) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{t.scenariosHeading}</h2>
+            <p className="text-base text-gray-500 leading-relaxed break-keep">{t.scenariosSub}</p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {t.scenarios.map((label, i) => (
+              <div key={label} className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+                <div className="relative aspect-[16/9] w-full bg-slate-900">
+                  <Image
+                    src={SCENARIO_IMGS[i]}
+                    alt={label}
+                    fill
+                    sizes="(min-width:1024px) 25vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <p className="px-4 py-3 text-sm font-bold text-gray-900 break-keep">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* ── Value (3 cards) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-gray-50">
+      <AnimatedSection className="py-16 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid sm:grid-cols-3 gap-6">
             {t.values.map((v, i) => {
