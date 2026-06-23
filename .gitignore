@@ -33,3 +33,5 @@ npm-debug.log*
 # editable source-of-record design assets (151MB) — kept on disk, not tracked.
 # See CLEANUP_REVIEW.md §7. Remove this line to version-control them.
 /assets
+public/feedback/
+new-image-generated/
