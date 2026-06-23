@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Store, Coffee, Pill, Warehouse, Landmark, MonitorOff, ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
@@ -17,6 +18,16 @@ import { localeHref, type Locale } from '@/lib/i18n';
  */
 
 type SpaceCard = { key: string; href: string; icon: typeof Store; label: string; desc: string };
+
+/** 공간별 대표 사진 (로케일 무관) — industries 히어로 에셋과 매핑 */
+const SPACE_IMG: Record<string, string> = {
+  retail: '/images/industries/convenience-hero-interior.webp',
+  food: '/images/industries/cafe-hero.webp',
+  drug: '/images/industries/drugstore-hero.webp',
+  large: '/images/industries/mart-hero.webp',
+  exhibit: '/images/industries/exhibition-hero.webp',
+  unmanned: '/images/industries/unmanned-hero-interior.webp',
+};
 
 const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allLabel: string; spaces: SpaceCard[] }> = {
   ko: {
@@ -82,17 +93,28 @@ export default function SpacesShowcase({ locale }: { locale: Locale }) {
                   as={Link}
                   hover
                   href={localeHref(locale, s.href)}
-                  className="group relative flex h-full flex-col p-7"
+                  className="group relative flex h-full flex-col overflow-hidden p-0"
                 >
-                  <IconChip className="mb-5">
-                    <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </IconChip>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{s.label}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1 break-keep">{s.desc}</p>
-                  <ArrowRight
-                    className="mt-5 w-4 h-4 text-primary transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                    <Image
+                      src={SPACE_IMG[s.key]}
+                      alt=""
+                      fill
+                      sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <IconChip className="absolute left-4 top-4 bg-white/90 shadow-card backdrop-blur">
+                      <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
+                    </IconChip>
+                  </div>
+                  <div className="flex flex-1 flex-col p-7">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{s.label}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed flex-1 break-keep">{s.desc}</p>
+                    <ArrowRight
+                      className="mt-5 w-4 h-4 text-primary transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </Card>
               </StaggerItem>
             );
