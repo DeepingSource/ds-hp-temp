@@ -119,16 +119,16 @@ export default function StoreAgentContent({
         </>
       ) : (
         <>
-          {/* ── S4 · 로드맵 — 리테일 OS ── */}
+          {/* ── S4 · 로드맵 — 단계적 자동화 ── */}
           <AnimatedSection className="py-20 lg:py-28 bg-white relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-primary/20" />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight break-keep">
-                  매장 운영의 자율 주행,
+                  알림에서 실행까지,
                   <br className="hidden sm:block" />
-                  <span className="text-blue-600">리테일 OS로 진화합니다</span>
+                  <span className="text-blue-600">한 단계씩 자동화합니다</span>
                 </h2>
                 <p className="text-lg text-gray-500 max-w-2xl mx-auto font-medium">
                   지금은 알림·추천부터, 곧 운영 전체를 자동화합니다
