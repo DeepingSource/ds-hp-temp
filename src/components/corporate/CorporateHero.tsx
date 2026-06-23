@@ -85,6 +85,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
                 src={technologyImages.mtmcWide.src}
                 alt={img.alt}
                 fill
+                priority
                 sizes="(min-width: 1024px) 540px, 100vw"
                 className="object-cover"
               />

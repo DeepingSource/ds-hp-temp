@@ -178,7 +178,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                       className="object-cover"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/55 to-slate-900/20" aria-hidden="true" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/85 via-surface-dark/55 to-surface-dark/20" aria-hidden="true" />
                   <div className="absolute inset-0 flex items-center justify-between gap-3 px-5 sm:px-7">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center flex-shrink-0">

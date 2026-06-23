@@ -744,8 +744,8 @@ select[aria-invalid="true"]:focus-visible {
   to { background-position: 0 8px; }
 }
 @keyframes visionPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 20px 4px rgba(59, 130, 246, 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgb(var(--primary-rgb) / 0.3); }
+  50% { box-shadow: 0 0 20px 4px rgb(var(--primary-rgb) / 0.15); }
 }
 
 @media (prefers-reduced-motion: reduce) {

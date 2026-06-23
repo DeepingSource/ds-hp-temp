@@ -412,7 +412,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
               <div className="text-5xl lg:text-6xl font-bold text-primary tracking-tight leading-none">{t.accBig}</div>
               <div className="text-sm text-gray-600 font-medium mt-3 break-keep">{t.accBigCap}</div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {t.accTiles.map((tile) => (
                 <div key={tile.label} className="rounded-2xl border border-gray-200 bg-white p-5 text-center">
                   <div className="text-2xl font-bold text-primary tracking-tight">{tile.v}</div>
