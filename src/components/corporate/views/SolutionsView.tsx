@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Lightbulb } from 'lucide-react';
 import { solutionsData } from '@/data/solutionsData';
 import { industryList, industryColorMap } from '@/data/industryList';
@@ -166,19 +167,32 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
             const Icon = industry.icon;
             return (
               <div key={industry.slug} id={`industry-${industry.slug}`} className="scroll-mt-24">
-                {/* 업종 헤더 */}
-                <div className="flex items-center gap-3 mb-8">
-                  <div className={`w-9 h-9 rounded-xl ${colors.bg} flex items-center justify-center flex-shrink-0`}>
-                    <Icon className={`w-5 h-5 ${colors.text}`} />
+                {/* 업종 헤더 — 사진 배너 */}
+                <div className="relative mb-8 h-36 sm:h-44 overflow-hidden rounded-2xl bg-slate-900">
+                  {industry.heroImage && (
+                    <Image
+                      src={industry.heroImage}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 1024px, 100vw"
+                      className="object-cover"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/55 to-slate-900/20" aria-hidden="true" />
+                  <div className="absolute inset-0 flex items-center justify-between gap-3 px-5 sm:px-7">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white break-keep">{indLabel(industry.slug, industry.label)}</h3>
+                    </div>
+                    <Link
+                      href={`/industries/${industry.slug}`}
+                      className="inline-flex items-center gap-1 text-xs font-medium text-white/90 hover:text-white transition-colors shrink-0"
+                    >
+                      {t.industryDetail} <ArrowRight className="w-3 h-3" />
+                    </Link>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">{indLabel(industry.slug, industry.label)}</h3>
-                  <div className="h-px flex-1 bg-gray-100" />
-                  <Link
-                    href={`/industries/${industry.slug}`}
-                    className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} hover:opacity-70 transition-opacity`}
-                  >
-                    {t.industryDetail} <ArrowRight className="w-3 h-3" />
-                  </Link>
                 </div>
 
                 {/* 솔루션 카드 */}
