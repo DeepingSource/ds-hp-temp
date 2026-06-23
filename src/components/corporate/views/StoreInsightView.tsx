@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreInsightDesktopMockup from '@/components/mockups/StoreInsightDesktopMockup';
 import dynamic from 'next/dynamic';
@@ -309,10 +310,21 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
       {/* ── Before / After ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
               {t.baHeading}
             </h2>
+          </div>
+          <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src="/images/storeinsight-pathway-beforeafter.webp"
+                alt={t.baHeading}
+                fill
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="card bg-white">
