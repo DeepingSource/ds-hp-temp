@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { Layers, Map, Grid3x3, Route, ArrowRight } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -111,17 +112,31 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
       <section className="relative pt-28 pb-20 lg:pt-36 bg-slate-50 border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <Breadcrumb items={[{ name: crumb('technology', locale), path: '/technology' }, { name: crumb('spatial-ai', locale), path: '/technology/spatial-ai' }]} locale={locale} tone="light" className="mb-6" />
-          <HeroBadge tone="light">
-            <Layers className="w-3.5 h-3.5" />
-            {t.heroBadge}
-          </HeroBadge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-6 break-keep">
-            {t.heroTitleA}<br className="hidden sm:block" />
-            {t.heroTitleB}
-          </h1>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl break-keep">
-            {t.heroSub}
-          </p>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <div>
+              <HeroBadge tone="light">
+                <Layers className="w-3.5 h-3.5" />
+                {t.heroBadge}
+              </HeroBadge>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-6 break-keep">
+                {t.heroTitleA}<br className="hidden sm:block" />
+                {t.heroTitleB}
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed break-keep">
+                {t.heroSub}
+              </p>
+            </div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+              <Image
+                src="/images/diagrams/spatial-ai-concept.webp"
+                alt={t.heroBadge}
+                fill
+                priority
+                sizes="(min-width:1024px) 50vw, 100vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
