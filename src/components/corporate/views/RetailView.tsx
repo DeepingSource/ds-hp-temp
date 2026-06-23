@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   PackageX,
@@ -19,6 +20,14 @@ import { JsonLd, service } from '@/lib/structured-data';
  * Rendered by `/solutions/retail` (en), `/ko/solutions/retail`, `/jp/solutions/retail`
  * with the locale prop (PLAN_v1.1 D6 path-prefix i18n).
  */
+
+const HERO_IMG = '/images/industries/convenience-hero-interior.webp';
+const SCENARIO_IMGS = [
+  '/images/cctv/cctv-display-shelf-empty-wide.webp',
+  '/images/cctv/cctv-cvs-entrance.webp',
+  '/images/cctv/cctv-intrusion-night-ir.webp',
+];
+const DASH_IMG = '/images/industries/convenience-dashboard.webp';
 
 const C: Record<Locale, {
   badge: string;
@@ -142,6 +151,10 @@ export default function RetailView({ locale }: { locale: Locale }) {
 
       {/* ── 히어로 ── */}
       <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-surface-dark">
+        <div className="absolute inset-0" aria-hidden="true">
+          <Image src={HERO_IMG} alt="" fill priority sizes="100vw" className="object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/75 via-surface-dark/85 to-surface-dark" />
+        </div>
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -192,22 +205,29 @@ export default function RetailView({ locale }: { locale: Locale }) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {scenarios.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.tag} className="card flex flex-col gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <span className="self-start px-2.5 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary">
-                    {s.tag}
-                  </span>
+            {scenarios.map((s, i) => (
+              <div key={s.tag} className="card overflow-hidden p-0 flex flex-col">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image src={SCENARIO_IMGS[i]} alt={s.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover" />
+                </div>
+                <div className="flex flex-col gap-3 p-5">
+                  <span className="self-start px-2.5 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary">{s.tag}</span>
                   <h3 className="text-lg font-bold text-gray-900 break-keep">{s.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed break-keep">{s.body}</p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 분석 대시보드 ── */}
+      <AnimatedSection className="py-12 lg:py-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-gray-200 shadow-card bg-slate-50">
+            <Image src={DASH_IMG} alt={`${t.badge} 분석 대시보드 예시`} fill sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
+          </div>
+          <p className="mt-3 text-xs text-gray-400 text-center">* 분석 화면 예시</p>
         </div>
       </AnimatedSection>
 
