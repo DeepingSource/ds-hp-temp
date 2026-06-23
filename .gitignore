@@ -35,3 +35,6 @@ npm-debug.log*
 /assets
 public/feedback/
 new-image-generated/
+new-image-generated_2/
+# local visual-verification screenshots
+/*.jpeg

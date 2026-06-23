@@ -12,6 +12,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/products', priority: 0.9, freq: 'weekly' },
   { path: '/products/store-insight', priority: 0.8, freq: 'monthly' },
   { path: '/products/store-agent', priority: 0.8, freq: 'monthly' },
+  { path: '/products/store-count', priority: 0.7, freq: 'monthly' },
   { path: '/products/store-care', priority: 0.7, freq: 'monthly' },
   { path: '/products/saai', priority: 0.7, freq: 'monthly' },
   { path: '/technology', priority: 0.8, freq: 'monthly' },

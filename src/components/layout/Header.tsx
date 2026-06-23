@@ -21,7 +21,7 @@ const NAV: NavItem[] = [
       { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight'), desc: L('어제를 읽다 · 공간 분석', 'Reads yesterday · analytics', '昨日を読む · 空間分析') },
       { href: '/products/store-care', label: L('store care', 'store care', 'store care'), desc: L('지금을 알리다 · 이상 감지', 'Flags the now · detection', '今を知らせる · 異常検知') },
       { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음을 실행하다 · 운영 제안', 'Acts on next · ops copilot', '次を動かす · 運営提案') },
-      { href: '/products#store-count', label: L('store count', 'store count', 'store count'), desc: L('곧 출시 · 상권·유입', 'Coming soon · footfall', '近日公開 · 商圏・流入') },
+      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('상권·유입 · 카운팅', 'Footfall · capture rate', '商圏・流入 · カウント') },
       { href: '/products/saai', label: L('AI POP', 'AI POP', 'AI POP'), desc: L('POP·콘텐츠 생성', 'POP & content', 'POP・コンテンツ生成') },
       { href: '/products#trend-fit', label: L('trend fit', 'trend fit', 'trend fit'), desc: L('곧 출시 · 발주·트렌드', 'Coming soon · ordering', '近日公開 · 発注・トレンド') },
     ],

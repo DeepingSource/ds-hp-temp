@@ -1,0 +1,26 @@
+import type { Metadata } from 'next';
+import StoreCountView from '@/components/corporate/views/StoreCountView';
+
+export const metadata: Metadata = {
+  title: 'store count | DeepingSource — Trade-area analysis from one camera',
+  description:
+    'Count the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
+  keywords: ['store count', 'footfall counting', 'trade area analysis', 'people counting', 'capture rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
+  alternates: {
+    canonical: '/products/store-count',
+    languages: {
+      en: '/products/store-count',
+      ko: '/ko/products/store-count',
+      ja: '/jp/products/store-count',
+    },
+  },
+  openGraph: {
+    title: 'store count | DeepingSource',
+    description: 'Trade-area analysis you knew you needed, from one camera — every day, no staff.',
+    type: 'website',
+  },
+};
+
+export default function Page() {
+  return <StoreCountView locale="en" />;
+}

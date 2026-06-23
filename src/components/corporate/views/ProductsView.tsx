@@ -53,7 +53,7 @@ const C: Record<Locale, {
     detail: '자세히 보기',
     visit: '바로가기',
     tools: [
-      { id: 'store-count', name: 'store count', desc: '카메라 한 대로, 상권과 유입을 매일.' },
+      { id: 'store-count', name: 'store count', desc: '카메라 한 대로, 상권과 유입을 매일.', live: true, href: '/products/store-count' },
       { id: 'ai-pop', name: 'AI POP', desc: '이 매장에 맞춘 POP·시즌 콘텐츠를 1분 만에.', live: true, href: '/products/saai' },
       { id: 'trend-fit', name: 'trend fit', desc: '트렌드 적합도로 다음 발주를 돕습니다.' },
     ],
@@ -77,7 +77,7 @@ const C: Record<Locale, {
     detail: 'Learn more',
     visit: 'Visit',
     tools: [
-      { id: 'store-count', name: 'store count', desc: 'Trade area and footfall, daily, from one camera.' },
+      { id: 'store-count', name: 'store count', desc: 'Trade area and footfall, daily, from one camera.', live: true, href: '/products/store-count' },
       { id: 'ai-pop', name: 'AI POP', desc: 'On-brand POP and seasonal content for this store in a minute.', live: true, href: '/products/saai' },
       { id: 'trend-fit', name: 'trend fit', desc: 'Trend-fit scoring to guide your next order.' },
     ],
@@ -101,7 +101,7 @@ const C: Record<Locale, {
     detail: '詳しく見る',
     visit: '開く',
     tools: [
-      { id: 'store-count', name: 'store count', desc: 'カメラ1台で、商圏と流入を毎日。' },
+      { id: 'store-count', name: 'store count', desc: 'カメラ1台で、商圏と流入を毎日。', live: true, href: '/products/store-count' },
       { id: 'ai-pop', name: 'AI POP', desc: 'この店舗に合わせたPOP・季節コンテンツを1分で。', live: true, href: '/products/saai' },
       { id: 'trend-fit', name: 'trend fit', desc: 'トレンド適合度で次の発注をサポート。' },
     ],

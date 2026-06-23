@@ -32,6 +32,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/products/store-insight',
   '/products/store-agent',
   '/products/store-care',
+  '/products/store-count',
   '/products/saai',
   '/technology',
   '/technology/anonymizer',

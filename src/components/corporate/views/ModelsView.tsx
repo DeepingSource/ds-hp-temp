@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { Boxes, ArrowRight } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -171,6 +172,15 @@ export default function ModelsView({ locale }: { locale: Locale }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {t.models.map((m) => (
               <div key={m.name} className="card p-6 h-full flex flex-col">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-gray-100 mb-4 bg-gray-900">
+                  <Image
+                    src={`/images/models/${m.name}.webp`}
+                    alt={`${m.name} — ${m.promise}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <code className="text-sm font-mono font-medium text-gray-900">{m.name}</code>
                   <span className={`text-2xs font-medium px-2 py-0.5 rounded-full ${stageStyle[m.stage]}`}>
