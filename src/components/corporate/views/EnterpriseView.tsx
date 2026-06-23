@@ -58,7 +58,7 @@ const ko: Copy = {
   benefitsTitle: '딥핑소스가 해결합니다',
   benefits: [
     { title: '전 매장 실시간 AI 상황 감지', description: '전 매장 설비·위생·진열을 실시간 파악하고 이상 시 알림을 받습니다.' },
-    { title: '매장 간 성과 비교·분석', description: '매장별 동선·매출 패턴을 비교 분석하고 성공 패턴을 확산합니다.' },
+    { title: '성공 매장의 패턴을 전 매장에', description: '매장별 동선·매출 패턴을 비교 분석하고, 잘되는 매장의 방식을 모든 매장에 적용합니다.' },
     { title: '운영 표준화 자동화', description: 'AI가 검증된 운영 패턴을 매장별로 맞춤 제안합니다.' },
     { title: '프라이버시 철저 보호', description: `${COMPANY.patents}개 특허 기반 익명화 기술로 개인정보를 원천 보호합니다.` },
   ],
@@ -110,7 +110,7 @@ const en: Copy = {
   benefitsTitle: 'How DeepingSource solves it',
   benefits: [
     { title: 'Real-time AI situation sensing across every store', description: 'Track equipment, hygiene, and merchandising across all stores in real time, with alerts the moment something is off.' },
-    { title: 'Cross-store performance benchmarking', description: 'Compare traffic-flow and sales patterns store by store, then scale the winning patterns.' },
+    { title: 'Roll the winning store’s playbook out to all', description: 'Compare traffic-flow and sales patterns store by store, then apply what the best stores do across every location.' },
     { title: 'Automated operational standardization', description: 'AI recommends verified operating patterns tailored to each store.' },
     { title: 'Rigorous privacy protection', description: `Anonymization technology built on ${COMPANY.patents} patents protects personal data at the source.` },
   ],
@@ -162,7 +162,7 @@ const jp: Copy = {
   benefitsTitle: 'DeepingSourceが解決します',
   benefits: [
     { title: '全店舗のリアルタイムAI状況検知', description: '全店舗の設備・衛生・陳列をリアルタイムで把握し、異常時には通知を受け取れます。' },
-    { title: '店舗間の成果比較・分析', description: '店舗ごとの動線・売上パターンを比較分析し、成功パターンを横展開します。' },
+    { title: '成功店舗のパターンを全店舗へ', description: '店舗ごとの動線・売上パターンを比較分析し、うまくいく店舗のやり方を全店舗に適用します。' },
     { title: '運営標準化の自動化', description: 'AIが検証済みの運営パターンを店舗ごとに合わせて提案します。' },
     { title: '徹底したプライバシー保護', description: `${COMPANY.patents}件の特許に基づく匿名化技術で、個人情報を根本から保護します。` },
   ],

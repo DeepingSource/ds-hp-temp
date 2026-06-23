@@ -16,6 +16,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+import { perfectSpace } from '@/lib/brand-canon';
 
 /**
  * StoreCountView — store count product-detail composition.
@@ -100,21 +101,21 @@ const C: Record<Locale, Copy> = {
       { no: '02', h: '빠르고, 여럿 동시에', d: '한 매장이 아니라 전국 매장을 같은 날, 같은 기준으로.', meta: '표본 며칠이 아니라 매일 — 상시 측정. 매장이 늘어도 기준은 하나.' },
       { no: '03', h: '결정의 근거가 됩니다', d: '매장이 잘 되고 있는지, 상권이 이상해지진 않았는지 — 본사 화면에서.', meta: '번거롭고 비싼 외부 조사 대신, 상시 데이터로 다음 한 수를 정합니다.' },
     ],
-    hqKicker: 'From Store to Site · 의사결정',
+    hqKicker: '모든 매장을 한 매장처럼 · From Store to Site',
     hqTitle: ['상권의 변화를 읽고,', '다음 매장 전략을.'],
     hqDesc: '관심 매장의 주변 상권이 예전 대비 어떻게 변했는지 — 통행량·연령·성별의 추이를 봅니다. 그 위에서 출점·리뉴얼·타겟 조정까지, 흩어진 매장을 한 매장처럼 결정합니다.',
     hqVizLabel: '전국 매장 — 매일·동시 측정',
     hqVizDash: '본사 대시보드 · 통행량 · 연령 · 성별 추이',
     accHeading: '검증된 정확도',
-    accSub: '자체 육안검사(ground truth) 대비 카운팅 정확도입니다.',
+    accSub: '사람이 직접 센 결과와 비교한 카운팅 정확도입니다.',
     accBig: '95~96%',
-    accBigCap: '자체 육안검사 대비 카운팅 정확도',
+    accBigCap: '사람이 직접 센 결과 대비 카운팅 정확도',
     accTiles: [
       { v: '95.8%', label: '편의점', when: '2025 Q1' },
       { v: '96.6%', label: '차량전시장', when: '2025 Q3' },
       { v: '95.1%', label: '복합문화공간', when: '2025 Q2' },
     ],
-    accNote: '* 자체 육안검사(ground truth) 대비 카운팅 정확도 · 각 현장 검증 기준 · 측정 시점은 타일별 표기. 현장 조건에 따라 결과가 달라질 수 있습니다.',
+    accNote: '* 사람이 직접 센 결과 대비 카운팅 정확도 · 각 현장 검증 기준 · 측정 시점은 타일별 표기. 현장 조건에 따라 결과가 달라질 수 있습니다.',
     privacyTitle: 'Privacy by Design',
     privacySub: '익명화가 1번입니다 — SEAL 엔진',
     privacy: [
@@ -157,21 +158,21 @@ const C: Record<Locale, Copy> = {
       { no: '02', h: 'Fast, many at once', d: 'Not one store but every store, same day, same standard.', meta: 'Not a few days of sampling but daily, always-on. One standard, however many stores.' },
       { no: '03', h: 'A basis for decisions', d: 'Whether a store is doing well, whether its trade area is shifting — on the HQ screen.', meta: 'Instead of costly one-off surveys, decide the next move on always-on data.' },
     ],
-    hqKicker: 'From Store to Site · decisions',
+    hqKicker: 'Every store as one · From Store to Site',
     hqTitle: ['Read how the trade area shifts,', 'set the next-store strategy.'],
     hqDesc: 'See how a store’s surrounding trade area has changed versus before — trends in footfall, age, and gender. On top of that, decide openings, renewals, and targeting, running scattered stores as one.',
     hqVizLabel: 'Every store — measured daily, together',
     hqVizDash: 'HQ dashboard · footfall · age · gender trends',
     accHeading: 'Proven accuracy',
-    accSub: 'Counting accuracy against our own visual ground-truth inspection.',
+    accSub: 'Counting accuracy compared against a manual hand count.',
     accBig: '95–96%',
-    accBigCap: 'Counting accuracy vs. visual ground truth',
+    accBigCap: 'Counting accuracy vs. a manual hand count',
     accTiles: [
       { v: '95.8%', label: 'Convenience store', when: '2025 Q1' },
       { v: '96.6%', label: 'Car showroom', when: '2025 Q3' },
       { v: '95.1%', label: 'Cultural complex', when: '2025 Q2' },
     ],
-    accNote: '* Counting accuracy vs. our own visual ground truth · per-site verification · measurement period noted per tile. Results may vary with on-site conditions.',
+    accNote: '* Counting accuracy vs. our own manual hand count · per-site verification · measurement period noted per tile. Results may vary with on-site conditions.',
     privacyTitle: 'Privacy by Design',
     privacySub: 'Anonymization comes first — the SEAL engine',
     privacy: [
@@ -214,21 +215,21 @@ const C: Record<Locale, Copy> = {
       { no: '02', h: '速く、同時に多数', d: '一店舗ではなく全国店舗を、同じ日に、同じ基準で。', meta: '数日のサンプルではなく毎日 — 常時測定。店舗が増えても基準は一つ。' },
       { no: '03', h: '意思決定の根拠に', d: '店舗が好調か、商圏が変調していないか — 本部の画面で。', meta: '面倒で高い外部調査の代わりに、常時データで次の一手を決めます。' },
     ],
-    hqKicker: 'From Store to Site · 意思決定',
+    hqKicker: 'すべての店舗をひとつの店舗のように · From Store to Site',
     hqTitle: ['商圏の変化を読み、', '次の出店戦略を。'],
     hqDesc: '注目店舗の周辺商圏が以前と比べどう変わったか — 通行量・年齢・性別の推移を見ます。その上で出店・リニューアル・ターゲット調整まで、散らばった店舗を一店舗のように決めます。',
     hqVizLabel: '全国店舗 — 毎日・同時測定',
     hqVizDash: '本部ダッシュボード · 通行量 · 年齢 · 性別の推移',
     accHeading: '検証済みの精度',
-    accSub: '自社の目視検査(ground truth)に対するカウント精度です。',
+    accSub: '人が直接数えた結果と比較したカウント精度です。',
     accBig: '95〜96%',
-    accBigCap: '目視検査に対するカウント精度',
+    accBigCap: '人が直接数えた結果に対するカウント精度',
     accTiles: [
       { v: '95.8%', label: 'コンビニ', when: '2025 Q1' },
       { v: '96.6%', label: '自動車ショールーム', when: '2025 Q3' },
       { v: '95.1%', label: '複合文化空間', when: '2025 Q2' },
     ],
-    accNote: '* 自社の目視検査(ground truth)に対するカウント精度 · 各現場の検証基準 · 測定時点はタイル別に表記。現場条件により結果は変わり得ます。',
+    accNote: '* 人が直接数えた結果に対するカウント精度 · 各現場の検証基準 · 測定時点はタイル別に表記。現場条件により結果は変わり得ます。',
     privacyTitle: 'Privacy by Design',
     privacySub: '匿名化が1番です — SEAL エンジン',
     privacy: [
@@ -318,7 +319,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight break-keep mb-5">
               {t.turnTitle[0]}<br /><span className="text-white">{t.turnTitle[1]}</span>
             </h2>
-            <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed max-w-2xl mx-auto break-keep">{t.turnDesc}</p>
+            <p className="text-base sm:text-lg text-primary-lighter/90 leading-relaxed max-w-2xl mx-auto break-keep">{t.turnDesc}</p>
           </div>
         </div>
       </AnimatedSection>
@@ -452,6 +453,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
       {/* ── Final CTA ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-sm font-bold tracking-[0.18em] uppercase text-primary mb-3">{perfectSpace.your[locale]}</p>
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.finalTitle}</h2>
           <p className="text-gray-500 text-lg mb-9 break-keep">{t.finalSub}</p>
           <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2">

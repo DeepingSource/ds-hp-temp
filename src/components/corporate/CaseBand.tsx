@@ -27,7 +27,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
         img: '/images/storeinsight-case1-beforeafter.webp',
         alt: '진열 동선 변경 전후 비교',
         title: '학원가 편의점 — 동선 하나 바꿔',
-        result: '주력 매대 위치를 옮겨 수익 +10%',
+        result: '가장 잘 팔리는 자리를 옮겨 매출 +10%',
       },
       {
         img: '/images/storeinsight-case2-action.webp',
@@ -52,7 +52,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
         img: '/images/storeinsight-case1-beforeafter.webp',
         alt: 'Before-and-after of a changed shelf path',
         title: 'Convenience store near campuses — one path changed',
-        result: 'Moved the hero shelf, lifted revenue +10%',
+        result: 'Moved the best-seller, lifted revenue +10%',
       },
       {
         img: '/images/storeinsight-case2-action.webp',
@@ -77,7 +77,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
         img: '/images/storeinsight-case1-beforeafter.webp',
         alt: '陳列動線の変更前後の比較',
         title: '学生街のコンビニ — 動線を一つ変えて',
-        result: '主力棚の位置を移し、売上 +10%',
+        result: '一番売れる棚を移し、売上 +10%',
       },
       {
         img: '/images/storeinsight-case2-action.webp',

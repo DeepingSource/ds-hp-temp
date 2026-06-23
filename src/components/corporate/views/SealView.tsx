@@ -96,7 +96,7 @@ const en: Copy = {
   promise: [
     { letter: 'S', word: 'Secure', desc: 'Identity is removed at the moment of input. The original footage is left nowhere in the system, and identity cannot be recovered from anonymized data.' },
     { letter: 'E', word: 'Embeddable', desc: 'Embed it as discrete modules in edge devices, on-prem servers, and existing apps. The video never leaves your environment.' },
-    { letter: 'A', word: 'Adaptable', desc: 'Protect many people at once, with no individual consent required. Tune input sources and protection strength to the site.' },
+    { letter: 'A', word: 'Adaptable', desc: 'Protect everyone in frame — privacy by design, no individual opt-in needed. Tune input sources and protection strength to the site.' },
     { letter: 'L', word: 'Lightweight', desc: 'A lightweight runtime that anonymizes live streams in place — running even in constrained environments.' },
   ],
 

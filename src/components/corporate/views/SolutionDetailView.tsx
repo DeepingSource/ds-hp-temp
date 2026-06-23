@@ -46,6 +46,7 @@ const C: Record<
     viewDetail: string;
     backToList: string;
     industryDetailSuffix: (label: string) => string;
+    resultsNote: string;
   }
 > = {
   ko: {
@@ -64,6 +65,7 @@ const C: Record<
     viewDetail: '자세히 보기',
     backToList: '전체 솔루션 보기',
     industryDetailSuffix: (label) => `${label} 업종 상세`,
+    resultsNote: '* 위 수치는 실제 운영 사례를 설명하기 위한 예시이며, 현장 조건에 따라 달라질 수 있습니다.',
   },
   en: {
     breadcrumbHome: 'Solutions',
@@ -81,6 +83,7 @@ const C: Record<
     viewDetail: 'View detail',
     backToList: 'View all solutions',
     industryDetailSuffix: (label) => `${label} industry detail`,
+    resultsNote: '* Figures above are illustrative examples of real deployments; actual results vary by site.',
   },
   jp: {
     breadcrumbHome: 'ソリューション',
@@ -98,6 +101,7 @@ const C: Record<
     viewDetail: '詳しく見る',
     backToList: 'すべてのソリューションを見る',
     industryDetailSuffix: (label) => `${label}の業種詳細`,
+    resultsNote: '* 上記の数値は実際の運用事例を説明するための例であり、現場条件により異なります。',
   },
 };
 
@@ -329,6 +333,7 @@ export default function SolutionDetailView({
                 </div>
               ))}
             </div>
+            <p className="text-xs text-gray-400 mt-4 break-keep">{t.resultsNote}</p>
           </div>
 
           {/* CTA 인라인 */}

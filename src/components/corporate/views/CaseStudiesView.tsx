@@ -219,7 +219,7 @@ const C: Record<Locale, {
     ],
     ctaEyebrow: '상담 문의',
     ctaHeading: '우리 조직의 첫 Golden Case를 함께 찾아보세요',
-    ctaButton: '도입 문의하기',
+    ctaButton: '우리 첫 Golden Case 시작하기',
   },
   en: {
     eyebrow: 'Case Studies',
@@ -355,7 +355,7 @@ const C: Record<Locale, {
     ],
     ctaEyebrow: 'Get in touch',
     ctaHeading: 'Let’s find your organization’s first Golden Case together',
-    ctaButton: 'Contact us',
+    ctaButton: 'Start our first Golden Case',
   },
   jp: {
     eyebrow: 'Case Studies',
@@ -491,7 +491,7 @@ const C: Record<Locale, {
     ],
     ctaEyebrow: 'お問い合わせ',
     ctaHeading: '貴社にとって最初のGolden Caseを、一緒に見つけましょう',
-    ctaButton: '導入のお問い合わせ',
+    ctaButton: '最初のGolden Caseを始める',
   },
 };
 

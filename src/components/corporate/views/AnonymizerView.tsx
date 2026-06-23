@@ -102,7 +102,7 @@ const en: Copy = {
   heroTitleA: 'Erase the identity.',
   heroTitleB: 'Keep the analysis. Anonymized on input.',
   heroSub:
-    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, while keeping the signals analysis needs: movement, posture, dwell. It protects many people at once, without consent — and keeps no original behind.',
+    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, while keeping the signals analysis needs: movement, posture, dwell. It protects everyone in frame — privacy by design, with no individual opt-in needed — and keeps no original behind.',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: 'Four steps that erase identity',
