@@ -64,7 +64,7 @@ const C: Record<Locale, {
     dashTitle: '어제의 매장을 한 화면에서 읽습니다',
     dashSub: '방문·동선·체류·전환을 한 화면으로. 손님이 어디서 멈추고 무엇을 놓쳤는지, 어제의 매장이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',
-    hypHeading: '매출이 미처 보지 못한 것을 봅니다',
+    hypHeading: '매출이 미처 보지 못한 것을 읽습니다',
     hypSub: '매출만으로는 알 수 없던 질문에, store insight가 답합니다.',
     hypotheses: [
       { claim: 'POS는 결제한 65명만 압니다.', answer: 'store insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },

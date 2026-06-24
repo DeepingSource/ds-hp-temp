@@ -73,7 +73,7 @@ const C: Record<Locale, Content> = {
     cards: [
       { label: 'store care', desc: '매장을 빠짐없이 기록합니다' },
       { label: 'store insight', desc: '매출이 새는 곳을 찾아드립니다' },
-      { label: 'store agent', desc: 'AI가 정리하고, 사장님은 확인만' },
+      { label: 'store agent', desc: 'AI가 정리하고, 점주는 확인만' },
     ],
     provenLabel: '입증된 도입 효과',
     provenText: '도입 첫 달부터 야간 인건비 평균 80만 원 절감 효과 달성',
@@ -131,9 +131,9 @@ const C: Record<Locale, Content> = {
       affiliationType: '소속 유형을 선택해주세요',
     },
     planLabels: {
-      standard: '기본형 플랜',
-      premium: 'POS연동 플랜',
-      enterprise: '케어·인사이트',
+      standard: 'POS 연동 플랜',
+      premium: 'AI 비서 플랜',
+      enterprise: '엔터프라이즈',
     },
     productLabels: {
       StoreAgent: 'store agent',
@@ -211,9 +211,9 @@ const C: Record<Locale, Content> = {
       affiliationType: 'Please select your role',
     },
     planLabels: {
-      standard: 'Standard Plan',
-      premium: 'POS Integration Plan',
-      enterprise: 'Care & Insight',
+      standard: 'POS Integration Plan',
+      premium: 'AI Assistant Plan',
+      enterprise: 'Enterprise',
     },
     productLabels: {
       StoreAgent: 'store agent',
@@ -291,9 +291,9 @@ const C: Record<Locale, Content> = {
       affiliationType: 'ご所属の種別を選択してください',
     },
     planLabels: {
-      standard: 'スタンダードプラン',
-      premium: 'POS連携プラン',
-      enterprise: 'ケア・インサイト',
+      standard: 'POS連携プラン',
+      premium: 'AIアシスタントプラン',
+      enterprise: 'エンタープライズ',
     },
     productLabels: {
       StoreAgent: 'store agent',

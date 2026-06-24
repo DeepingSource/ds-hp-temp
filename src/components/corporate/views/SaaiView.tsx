@@ -57,7 +57,7 @@ const C: Record<Locale, Copy> = {
     heroNote: 'saai.store에서 무료로 운영돼요 · 카드 등록 없이',
     stageLabels: { live: '운영 중', soon: '출시 예정', research: '연구 중' },
     loopEyebrow: '제품의 본질 · 5단계 주간 운영 루프',
-    loopHeading: '4개 도구가 아니라, 하나의 흐름입니다',
+    loopHeading: '여러 도구가 아니라, 하나의 흐름입니다',
     loopSub: '각 단계의 산출물이 다음 단계의 입력이 됩니다. 밀 상품이 정해진 점주는 ①②를 건너뛰고 POP부터 시작하고, 마지막 챗이 모든 맥락을 기억한 채 루프를 닫습니다.',
     loopFootnote: '카메라 없이 동작하는 SW. POS가 없으면 적합·품질 추정으로 라벨하고, 챗은 근거가 없으면 답하지 않습니다.',
     loop: [
@@ -99,7 +99,7 @@ const C: Record<Locale, Copy> = {
     heroNote: 'Operated free on saai.store · no card required',
     stageLabels: { live: 'Live', soon: 'Coming soon', research: 'In research' },
     loopEyebrow: 'The core · 5-step weekly loop',
-    loopHeading: 'Not four tools — one flow',
+    loopHeading: 'Not separate tools — one flow',
     loopSub: 'Each step’s output is the next step’s input. Owners who already know what to push skip ① ② and start at POP; the closing chat remembers all the context and closes the loop.',
     loopFootnote: 'A camera-less app. Without POS it labels with fit/quality estimates, and the chat won’t answer without a basis.',
     loop: [
@@ -141,7 +141,7 @@ const C: Record<Locale, Copy> = {
     heroNote: 'saai.store で無料運営 · カード登録なし',
     stageLabels: { live: '運営中', soon: '公開予定', research: '研究中' },
     loopEyebrow: '製品の本質 · 5段階の週次運営ループ',
-    loopHeading: '4つの道具ではなく、ひとつの流れ',
+    loopHeading: '別々の道具ではなく、ひとつの流れ',
     loopSub: '各段階の成果物が次の段階の入力になります。推す商品が決まっている店主は①②を飛ばしてPOPから。最後のチャットがすべての文脈を覚えたままループを閉じます。',
     loopFootnote: 'カメラなしで動くアプリ。POSがなければ適合・品質の推定でラベルし、チャットは根拠がなければ答えません。',
     loop: [
