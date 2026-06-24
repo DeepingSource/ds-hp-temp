@@ -345,7 +345,7 @@ function BlogContent() {
                         <h3 className="text-lg font-bold mb-1">
                           {isMinisite ? '매주 이런 인사이트를 이메일로' : 'AI 도입, 어디서부터 시작할까요?'}
                         </h3>
-                        <p className="text-sm text-blue-100 leading-relaxed">
+                        <p className="text-sm text-primary-lighter leading-relaxed">
                           {isMinisite
                             ? '편의점 운영에 바로 쓸 수 있는 브리핑을 무료로 받아보세요.'
                             : '우리 매장에 맞는 솔루션을 전문가에게 직접 물어보세요. 무료입니다.'}

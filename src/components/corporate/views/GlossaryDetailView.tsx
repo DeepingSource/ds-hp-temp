@@ -109,7 +109,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
             className="mb-3"
           />
           <div className="mb-4">
-            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-lighter text-primary-dark">
               {categoryLabel}
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
 
           {/* 핵심 정의 박스 */}
-          <div className="p-6 rounded-2xl bg-blue-50 border border-blue-100 mb-10">
+          <div className="p-6 rounded-2xl bg-primary-lighter border border-primary-light mb-10">
             <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">{c.coreDefinition}</p>
             <p className="text-base text-gray-800 leading-relaxed break-keep">{definition}</p>
           </div>

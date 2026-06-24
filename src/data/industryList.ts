@@ -110,11 +110,11 @@ export const industryColorMap: Record<string, {
     glow: 'hover:shadow-[0_8px_30px_rgba(245,158,11,0.12)]',
   },
   blue: {
-    bg: 'bg-blue-50',
-    text: 'text-blue-600',
-    border: 'border-blue-100 hover:border-blue-300',
-    badge: 'bg-blue-100 text-blue-700',
-    glow: 'hover:shadow-[0_8px_30px_rgba(59,130,246,0.12)]',
+    bg: 'bg-primary-lighter',
+    text: 'text-primary',
+    border: 'border-primary-lighter hover:border-primary-light',
+    badge: 'bg-primary-lighter text-primary-dark',
+    glow: 'hover:shadow-[0_8px_30px_rgb(var(--primary-rgb)_/_0.12)]',
   },
   rose: {
     bg: 'bg-rose-50',

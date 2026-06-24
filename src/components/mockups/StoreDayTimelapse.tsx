@@ -27,17 +27,17 @@ const LOOP_MS = 30_000; // 30s per full day
 // ── Kind → color ─────────────────────────────────────────────────────────────
 const KIND_DOT: Record<DayEventKind, string> = {
   care: 'bg-emerald-500',
-  agent: 'bg-blue-500',
+  agent: 'bg-primary',
   insight: 'bg-violet-500',
 };
 const KIND_RING: Record<DayEventKind, string> = {
   care: 'ring-emerald-400',
-  agent: 'ring-blue-400',
+  agent: 'ring-primary',
   insight: 'ring-violet-400',
 };
 const KIND_MARK: Record<DayEventKind, string> = {
   care: '#10b981',
-  agent: '#3b82f6',
+  agent: '#376AE2',
   insight: '#8b5cf6',
 };
 

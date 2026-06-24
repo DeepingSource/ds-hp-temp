@@ -70,7 +70,7 @@ export const statusMeta: Record<StoreStatus, StatusMeta> = {
 
 export const kpiConfigs: KpiConfig[] = [
   { iconName: 'BarChart3',  label: '일 매출',  field: 'revenue',  unit: '만', color: 'text-violet-600', bg: 'bg-violet-50',  countUpDuration: 700, deltaType: 'pct' },
-  { iconName: 'Users',      label: '방문자',   field: 'visitors', unit: '명', color: 'text-blue-600',   bg: 'bg-blue-50',    countUpDuration: 700, deltaType: 'pct' },
+  { iconName: 'Users',      label: '방문자',   field: 'visitors', unit: '명', color: 'text-primary',   bg: 'bg-primary-lighter',    countUpDuration: 700, deltaType: 'pct' },
   { iconName: 'Bell',       label: '알림',     field: 'alerts',   unit: '건', color: 'text-red-500',    bg: 'bg-red-50',     countUpDuration: 400, deltaType: 'count', invert: true },
   { iconName: 'TrendingUp', label: '성과점수', field: 'perf',     unit: '점', color: 'text-emerald-600',bg: 'bg-emerald-50', countUpDuration: 700, deltaType: 'pts' },
 ];

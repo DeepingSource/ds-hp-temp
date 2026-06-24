@@ -202,8 +202,8 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
       {/* Chat Header */}
       <div className={`shrink-0 ${S.headerBg} ${D.headerPadding} border-b-2 ${P.headerBorder}`}>
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-            <Bot className="w-5 h-5 text-blue-600" aria-hidden="true" />
+          <div className="w-9 h-9 bg-primary-lighter rounded-full flex items-center justify-center shrink-0">
+            <Bot className="w-5 h-5 text-primary" aria-hidden="true" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className={`${S.textPrimary} ${D.headerTitle} flex items-center gap-1.5`}>

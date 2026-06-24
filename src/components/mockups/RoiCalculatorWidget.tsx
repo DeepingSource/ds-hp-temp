@@ -148,7 +148,7 @@ function Slider({ id, label, value, min, max, step, display, onChange }: SliderP
         onChange={(e) => onChange(Number(e.target.value))}
         className="roi-range w-full"
         style={{
-          background: `linear-gradient(to right, var(--color-primary, #2563eb) ${pct}%, #e5e7eb ${pct}%)`,
+          background: `linear-gradient(to right, var(--color-primary, #376AE2) ${pct}%, #e5e7eb ${pct}%)`,
         }}
       />
     </div>
@@ -251,7 +251,7 @@ export default function RoiCalculatorWidget({
           width: 18px;
           height: 18px;
           border-radius: 9999px;
-          background: var(--color-primary, #2563eb);
+          background: var(--color-primary, #376AE2);
           border: 2px solid #fff;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
@@ -259,11 +259,11 @@ export default function RoiCalculatorWidget({
           width: 18px;
           height: 18px;
           border-radius: 9999px;
-          background: var(--color-primary, #2563eb);
+          background: var(--color-primary, #376AE2);
           border: 2px solid #fff;
         }
         .roi-range:focus-visible {
-          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+          box-shadow: 0 0 0 3px rgb(var(--primary-rgb) / 0.35);
         }
       `}</style>
 

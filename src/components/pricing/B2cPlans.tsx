@@ -23,8 +23,8 @@ interface PlanCardDescriptor {
 function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel, featured }: PlanCardDescriptor) {
   return (
     <div className={featured
-      ? 'flex flex-col p-7 bg-white border border-blue-200 rounded-2xl shadow-[0_4px_20px_-4px_rgba(59,130,246,0.15)] relative overflow-hidden'
-      : 'flex flex-col p-7 bg-white border border-blue-100 rounded-2xl hover:border-blue-300 transition-colors shadow-sm'}>
+      ? 'flex flex-col p-7 bg-white border border-primary-light rounded-2xl shadow-[0_4px_20px_-4px_rgb(var(--primary-rgb)_/_0.15)] relative overflow-hidden'
+      : 'flex flex-col p-7 bg-white border border-primary-lighter rounded-2xl hover:border-primary-light transition-colors shadow-sm'}>
       {featured && (
         <div className="absolute top-0 right-0 w-14 h-14 bg-primary rounded-bl-[32px] flex items-start justify-end p-2.5">
           <Zap className="w-4 h-4 text-white" />
@@ -32,11 +32,11 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
       )}
 
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0">
           {icon}
         </div>
         <div>
-          <span className="text-xs font-bold text-blue-600">{step}</span>
+          <span className="text-xs font-bold text-primary">{step}</span>
           <h3 className="text-lg font-bold text-gray-900">{title}</h3>
         </div>
       </div>
@@ -50,7 +50,7 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
       <ul className="space-y-2.5 mb-6 flex-1">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2 text-sm text-gray-700">
-            <Check className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />{f}
+            <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />{f}
           </li>
         ))}
       </ul>
@@ -60,7 +60,7 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
           {ctaLabel}
         </Link>
       ) : (
-        <Link href={ctaHref} className="btn-secondary w-full text-center text-blue-700 hover:bg-blue-50 hover:border-blue-200">
+        <Link href={ctaHref} className="btn-secondary w-full text-center text-primary-dark hover:bg-primary-lighter hover:border-primary-light">
           {ctaLabel}
         </Link>
       )}
@@ -71,7 +71,7 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
 export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) {
   const cards: PlanCardDescriptor[] = [
     {
-      icon: <Eye className="w-5 h-5 text-blue-600" />,
+      icon: <Eye className="w-5 h-5 text-primary" />,
       step: t.careStep,
       title: 'store care',
       price: (
@@ -86,7 +86,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       ctaLabel: t.freeConsult,
     },
     {
-      icon: <LayoutGrid className="w-5 h-5 text-blue-600" />,
+      icon: <LayoutGrid className="w-5 h-5 text-primary" />,
       step: t.insightStep,
       title: 'store insight',
       price: (
@@ -102,7 +102,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       ctaLabel: t.freeConsult,
     },
     {
-      icon: <Zap className="w-5 h-5 text-blue-600" />,
+      icon: <Zap className="w-5 h-5 text-primary" />,
       step: t.agentStep,
       title: 'store agent',
       price: (
@@ -146,27 +146,27 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="bg-white rounded-xl p-4 border border-gray-100">
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-bold rounded">{t.freeBadge}</span>
+                <span className="px-2 py-0.5 bg-primary-lighter text-primary-dark text-xs font-bold rounded">{t.freeBadge}</span>
                 <span className="font-bold text-gray-900">{t.saaiBasic}</span>
               </div>
               <ul className="space-y-1.5 text-xs text-gray-600">
                 {t.saaiFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-1.5">
-                    <Check className="w-3 h-3 text-blue-500 shrink-0 mt-0.5" />
+                    <Check className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-4 border border-blue-100">
+            <div className="bg-white rounded-xl p-4 border border-primary-lighter">
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-bold rounded">{t.paidBadge}</span>
+                <span className="px-2 py-0.5 bg-primary-lighter text-primary-dark text-xs font-bold rounded">{t.paidBadge}</span>
                 <span className="font-bold text-gray-900">{t.storeCare}</span>
               </div>
               <ul className="space-y-1.5 text-xs text-gray-600">
                 {t.careDiffFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-1.5">
-                    <Check className="w-3 h-3 text-blue-500 shrink-0 mt-0.5" />
+                    <Check className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}

@@ -39,7 +39,7 @@ function formatDate(dateStr: string): string {
 
 const categoryAccent: Record<string, { dot: string; iconBg: string; hoverBorder: string }> = {
   guide: { dot: 'bg-emerald-500', iconBg: 'bg-emerald-50', hoverBorder: 'group-hover:border-emerald-200' },
-  'case-study': { dot: 'bg-blue-500', iconBg: 'bg-blue-50', hoverBorder: 'group-hover:border-blue-200' },
+  'case-study': { dot: 'bg-primary', iconBg: 'bg-primary-lighter', hoverBorder: 'group-hover:border-primary-light' },
   insight: { dot: 'bg-violet-500', iconBg: 'bg-violet-50', hoverBorder: 'group-hover:border-violet-200' },
   weekly: { dot: 'bg-gray-400', iconBg: 'bg-gray-50', hoverBorder: 'group-hover:border-gray-200' },
 };

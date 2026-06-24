@@ -193,7 +193,7 @@ export default function MockupImage({ active = true }: { active?: boolean }) {
               className={`${S.cardClass} ${D.cardRadius} ${D.cardPadding}`}
             >
               <div className="flex items-center gap-2 mb-2">
-                <MapPin className="w-4 h-4 text-blue-500" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
                 <span className={`font-medium text-gray-800 ${D.body}`}>주변 이벤트</span>
               </div>
               <p className={`text-gray-600 ${D.body}`}>{content.event.text}</p>

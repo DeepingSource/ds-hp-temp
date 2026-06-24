@@ -105,7 +105,7 @@ const C: Record<
   },
 };
 
-const blue = { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500' };
+const blue = { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-light', dot: 'bg-primary' };
 
 /**
  * 솔루션 슬러그별 히어로 배경 — 문제 상황을 보여주는 CCTV 컷(저투명도 배경).

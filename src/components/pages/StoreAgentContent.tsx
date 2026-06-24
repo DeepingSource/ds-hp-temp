@@ -45,7 +45,7 @@ const roadmap = [
     stage: '반자동 실행',
     status: '곧',
     statusIcon: Clock,
-    statusColor: 'text-blue-600 bg-blue-50',
+    statusColor: 'text-primary bg-primary-lighter',
     description: '승인 한 번으로 최적화된 운영 가이드가 현장 담당자에게 바로 전달',
   },
   {
@@ -128,7 +128,7 @@ export default function StoreAgentContent({
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight break-keep">
                   알림에서 실행까지,
                   <br className="hidden sm:block" />
-                  <span className="text-blue-600">한 단계씩 자동화합니다</span>
+                  <span className="text-primary">한 단계씩 자동화합니다</span>
                 </h2>
                 <p className="text-lg text-gray-500 max-w-2xl mx-auto font-medium">
                   지금은 알림·추천부터, 곧 운영 전체를 자동화합니다
@@ -175,12 +175,12 @@ export default function StoreAgentContent({
       {/* ── S7 · CTA ── */}
       <AnimatedSection className="relative py-20 lg:py-28 bg-slate-900 noise-overlay overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-blue-500/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
           {ctaVariant === 'newsletter' ? (
             <>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-sm text-blue-400 font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm text-primary-light font-medium mb-8">
                 <Mail className="w-4 h-4" />
                 매주 무료 발송
               </div>
@@ -204,7 +204,7 @@ export default function StoreAgentContent({
                 <p className="text-sm sm:text-base text-gray-300 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
                   <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold">STORECARE</span> 가 관찰하고,
                   <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400 font-bold">STOREINSIGHT</span> 가 분석하고,
-                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 font-bold">STOREAGENT</span> 가 실행합니다
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-primary/10 border border-primary/20 text-primary-light font-bold">STOREAGENT</span> 가 실행합니다
                 </p>
               </div>
 
@@ -217,7 +217,7 @@ export default function StoreAgentContent({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact?product=StoreAgent"
-                  className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-bold text-slate-900 bg-blue-500 hover:bg-blue-400 rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-[background-color,box-shadow] cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-bold text-slate-900 bg-primary hover:bg-primary-light rounded-xl shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[background-color,box-shadow] cursor-pointer"
                 >
                   무료 상담 신청
                   <ArrowRight className="w-5 h-5 ml-1" />

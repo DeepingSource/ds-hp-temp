@@ -90,7 +90,7 @@ function Quote({ author, children }: { author: string; children: React.ReactNode
 }
 
 const calloutStyles = {
-  info: { bg: 'bg-blue-50 border-blue-200', Icon: Info, iconColor: 'text-blue-600' },
+  info: { bg: 'bg-primary-lighter border-primary-light', Icon: Info, iconColor: 'text-primary' },
   warning: { bg: 'bg-amber-50 border-amber-200', Icon: AlertTriangle, iconColor: 'text-amber-600' },
   success: { bg: 'bg-emerald-50 border-emerald-200', Icon: CheckCircle, iconColor: 'text-emerald-600' },
 };

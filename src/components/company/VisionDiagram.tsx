@@ -70,7 +70,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-14 h-14 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-3">
               <Shield className="w-7 h-7 text-primary-light" />
             </div>
-            <p className="text-xs text-blue-200 font-medium">{t.shieldTitle}</p>
+            <p className="text-xs text-primary-light font-medium">{t.shieldTitle}</p>
             <p className="text-3xs text-slate-400 mt-1">{t.shieldSub}</p>
           </div>
         </div>
@@ -83,12 +83,12 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* AI Engine */}
         <div className="flex-1 max-w-[220px]">
-          <div className="rounded-2xl border border-blue-500/30 bg-primary/10 backdrop-blur-sm p-6 text-center">
-            <p className="text-3xs font-bold text-blue-400 uppercase tracking-widest mb-3">Spatial AI</p>
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-3 vision-pulse">
-              <Brain className="w-7 h-7 text-blue-400" />
+          <div className="rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur-sm p-6 text-center">
+            <p className="text-3xs font-bold text-primary-light uppercase tracking-widest mb-3">Spatial AI</p>
+            <div className="w-14 h-14 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-3 vision-pulse">
+              <Brain className="w-7 h-7 text-primary-light" />
             </div>
-            <p className="text-xs text-blue-300 font-medium">Agentic AI</p>
+            <p className="text-xs text-primary-light font-medium">Agentic AI</p>
             <p className="text-3xs text-slate-400 mt-1">{t.aiLoop}</p>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
             <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-2">
               <Shield className="w-6 h-6 text-primary-light" />
             </div>
-            <p className="text-xs text-blue-200 font-medium">{t.shieldTitle}</p>
+            <p className="text-xs text-primary-light font-medium">{t.shieldTitle}</p>
           </div>
         </div>
 
@@ -141,12 +141,12 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* AI Engine */}
         <div className="w-full max-w-[260px]">
-          <div className="rounded-2xl border border-blue-500/30 bg-primary/10 backdrop-blur-sm p-5 text-center">
-            <p className="text-3xs font-bold text-blue-400 uppercase tracking-widest mb-2">Spatial AI</p>
-            <div className="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-2 vision-pulse">
-              <Brain className="w-6 h-6 text-blue-400" />
+          <div className="rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur-sm p-5 text-center">
+            <p className="text-3xs font-bold text-primary-light uppercase tracking-widest mb-2">Spatial AI</p>
+            <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-2 vision-pulse">
+              <Brain className="w-6 h-6 text-primary-light" />
             </div>
-            <p className="text-xs text-blue-300 font-medium">Agentic AI</p>
+            <p className="text-xs text-primary-light font-medium">Agentic AI</p>
             <p className="text-3xs text-slate-400 mt-1">{t.aiLoop}</p>
           </div>
         </div>

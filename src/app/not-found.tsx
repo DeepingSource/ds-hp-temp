@@ -54,7 +54,7 @@ export default function NotFound() {
           {[
             { href: '/products/store-care', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
             { href: '/products/store-insight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
-            { href: '/products/store-agent', label: 'STOREAGENT', icon: Zap, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+            { href: '/products/store-agent', label: 'STOREAGENT', icon: Zap, color: 'text-primary-light bg-primary/10 border-primary/20' },
           ].map((item) => {
             const Icon = item.icon;
             return (

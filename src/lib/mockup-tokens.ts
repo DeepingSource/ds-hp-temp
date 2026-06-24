@@ -37,12 +37,12 @@ export const PRODUCT_THEME: Record<ProductName, {
     accent: 'violet',
   },
   StoreAgent: {
-    bg: 'bg-blue-500',
-    bgLight: 'bg-blue-50',
-    text: 'text-blue-600',
-    border: 'border-blue-200',
-    headerBorder: 'border-blue-500',
-    dot: 'bg-blue-500',
+    bg: 'bg-primary',
+    bgLight: 'bg-primary-lighter',
+    text: 'text-primary',
+    border: 'border-primary-light',
+    headerBorder: 'border-primary',
+    dot: 'bg-primary',
     accent: 'blue',
   },
 } as const;

@@ -4,7 +4,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 const previews = [
   {
     icon: Package,
-    color: 'text-blue-600 bg-blue-50',
+    color: 'text-primary bg-primary-lighter',
     title: '이번 주 발주 추천',
     description: '날씨·요일·재고 데이터를 분석해 이번 주 발주량을 제안합니다',
   },

@@ -23,7 +23,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ copy, ctaVariant = 'contact' }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-blue-50">
+    <section className="relative overflow-hidden bg-primary-lighter">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />

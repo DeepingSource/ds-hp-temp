@@ -72,7 +72,7 @@ export const desktopMetrics: DesktopMetric[] = [
 /** Color utility classes for desktop metric icon containers */
 export const desktopColorMap: Record<string, string> = {
   violet:  'bg-violet-50  text-violet-600',
-  blue:    'bg-blue-50    text-blue-600',
+  blue:    'bg-primary-lighter    text-primary',
   emerald: 'bg-emerald-50 text-emerald-600',
   amber:   'bg-amber-50   text-amber-600',
 };

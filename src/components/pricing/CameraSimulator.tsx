@@ -487,23 +487,23 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             type="button"
             onClick={() => setProduct(p => ({ ...p, useCare: !p.useCare }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              product.useCare ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useCare ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              product.useCare ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useCare ? 'bg-primary border-primary' : 'border-gray-300 bg-white'
             }`}>
               {product.useCare && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">store care</p>
-                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.careTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-primary-lighter text-primary-dark">{t.careTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.careDesc}</p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-sm font-bold text-blue-600">{fmt(STORECARE_BASIC)}{t.won}~</p>
+              <p className="text-sm font-bold text-primary">{fmt(STORECARE_BASIC)}{t.won}~</p>
               <p className="text-3xs text-gray-500">{t.perMonth}</p>
             </div>
           </button>
@@ -513,23 +513,23 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             type="button"
             onClick={() => setProduct(p => ({ ...p, useInsight: !p.useInsight }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              product.useInsight ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useInsight ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              product.useInsight ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useInsight ? 'bg-primary border-primary' : 'border-gray-300 bg-white'
             }`}>
               {product.useInsight && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">store insight</p>
-                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.insightTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-primary-lighter text-primary-dark">{t.insightTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.insightDesc}</p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-sm font-bold text-blue-600">{fmt(INSIGHT_BASE + INSIGHT_PER_CAM * preset.cameraCount)}{t.won}</p>
+              <p className="text-sm font-bold text-primary">{fmt(INSIGHT_BASE + INSIGHT_PER_CAM * preset.cameraCount)}{t.won}</p>
               <p className="text-3xs text-gray-500">{t.insightUnit(preset.cameraCount)}</p>
             </div>
           </button>
@@ -539,23 +539,23 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             type="button"
             onClick={() => setProduct(p => ({ ...p, useAgent: !p.useAgent }))}
             className={`flex items-center gap-3 p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-              product.useAgent ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              product.useAgent ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
-              product.useAgent ? 'bg-blue-500 border-blue-500' : 'border-gray-300 bg-white'
+              product.useAgent ? 'bg-primary border-primary' : 'border-gray-300 bg-white'
             }`}>
               {product.useAgent && <Check className="w-3 h-3 text-white" />}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-gray-900">store agent</p>
-                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">{t.agentTag}</span>
+                <span className="text-3xs font-medium px-1.5 py-0.5 rounded-full bg-primary-lighter text-primary-dark">{t.agentTag}</span>
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{t.agentDesc}</p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-sm font-bold text-blue-600">{t.agentFromFree}</p>
+              <p className="text-sm font-bold text-primary">{t.agentFromFree}</p>
               <p className="text-3xs text-gray-500">{t.agentPickPlan}</p>
             </div>
           </button>
@@ -574,8 +574,8 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           {/* StoreCare 플랜 */}
           {product.useCare && (
             <div>
-              <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-blue-500" />
+              <p className="text-xs font-bold text-primary-dark mb-2 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-primary" />
                 store care
               </p>
               <div className="grid grid-cols-2 gap-3">
@@ -583,24 +583,24 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                   type="button"
                   onClick={() => setProduct(p => ({ ...p, carePlan: 'basic' }))}
                   className={`p-4 rounded-xl border text-left cursor-pointer transition-colors ${
-                    product.carePlan === 'basic' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.carePlan === 'basic' ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-sm font-bold text-gray-900">{t.careBasic}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{t.careBasicDesc}</p>
-                  <p className="text-base font-bold text-blue-600 mt-2">{fmt(STORECARE_BASIC)}{t.won}<span className="text-xs font-normal text-gray-500">{t.perMonth}</span></p>
+                  <p className="text-base font-bold text-primary mt-2">{fmt(STORECARE_BASIC)}{t.won}<span className="text-xs font-normal text-gray-500">{t.perMonth}</span></p>
                 </button>
                 <button
                   type="button"
                   onClick={() => setProduct(p => ({ ...p, carePlan: 'plus' }))}
                   className={`p-4 rounded-xl border text-left cursor-pointer transition-colors relative ${
-                    product.carePlan === 'plus' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.carePlan === 'plus' ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <span className="absolute -top-2 right-3 px-2 py-0.5 bg-blue-600 text-white text-3xs font-bold rounded-full">{t.recommended}</span>
+                  <span className="absolute -top-2 right-3 px-2 py-0.5 bg-primary text-white text-3xs font-bold rounded-full">{t.recommended}</span>
                   <p className="text-sm font-bold text-gray-900">{t.carePlus}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{t.carePlusDesc}</p>
-                  <p className="text-base font-bold text-blue-600 mt-2">{fmt(STORECARE_PLUS)}{t.won}<span className="text-xs font-normal text-gray-500">{t.perMonth}</span></p>
+                  <p className="text-base font-bold text-primary mt-2">{fmt(STORECARE_PLUS)}{t.won}<span className="text-xs font-normal text-gray-500">{t.perMonth}</span></p>
                 </button>
               </div>
             </div>
@@ -609,8 +609,8 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
           {/* StoreAgent 플랜 */}
           {product.useAgent && (
             <div>
-              <p className="text-xs font-bold text-blue-700 mb-2 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-blue-500" />
+              <p className="text-xs font-bold text-primary-dark mb-2 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-primary" />
                 store agent
               </p>
               <div className="grid grid-cols-3 gap-2">
@@ -618,35 +618,35 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                   type="button"
                   onClick={() => setProduct(p => ({ ...p, agentPlan: 'free' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors ${
-                    product.agentPlan === 'free' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'free' ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-xs font-bold text-gray-900">{t.agentFreeName}</p>
                   <p className="text-3xs text-gray-500 mt-0.5">{t.agentFreeDesc}</p>
-                  <p className="text-sm font-bold text-blue-600 mt-1.5">{t.agentFreeFree}</p>
+                  <p className="text-sm font-bold text-primary mt-1.5">{t.agentFreeFree}</p>
                 </button>
                 <button
                   type="button"
                   onClick={() => setProduct(p => ({ ...p, agentPlan: 'standard' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors relative ${
-                    product.agentPlan === 'standard' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'standard' ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <span className="absolute -top-2 right-2 px-1.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full">{t.recommended}</span>
+                  <span className="absolute -top-2 right-2 px-1.5 py-0.5 bg-primary text-white text-[9px] font-bold rounded-full">{t.recommended}</span>
                   <p className="text-xs font-bold text-gray-900">{t.agentStdName}</p>
                   <p className="text-3xs text-gray-500 mt-0.5">{t.agentStdDesc}</p>
-                  <p className="text-sm font-bold text-blue-600 mt-1.5">{fmt(AGENT_STANDARD)}{t.won}<span className="text-[9px] font-normal text-gray-500">{t.perMonth}</span></p>
+                  <p className="text-sm font-bold text-primary mt-1.5">{fmt(AGENT_STANDARD)}{t.won}<span className="text-[9px] font-normal text-gray-500">{t.perMonth}</span></p>
                 </button>
                 <button
                   type="button"
                   onClick={() => setProduct(p => ({ ...p, agentPlan: 'premium' }))}
                   className={`p-3 rounded-xl border text-left cursor-pointer transition-colors ${
-                    product.agentPlan === 'premium' ? 'border-blue-300 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                    product.agentPlan === 'premium' ? 'border-primary-light bg-primary-lighter' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <p className="text-xs font-bold text-gray-900">{t.agentPremName}</p>
                   <p className="text-3xs text-gray-500 mt-0.5">{t.agentPremDesc}</p>
-                  <p className="text-sm font-bold text-blue-600 mt-1.5">{fmt(AGENT_PREMIUM)}{t.won}<span className="text-[9px] font-normal text-gray-500">{t.perMonth}</span></p>
+                  <p className="text-sm font-bold text-primary mt-1.5">{fmt(AGENT_PREMIUM)}{t.won}<span className="text-[9px] font-normal text-gray-500">{t.perMonth}</span></p>
                 </button>
               </div>
             </div>
@@ -682,7 +682,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 <>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
                       store care {product.carePlan === 'plus' ? t.careLinePlus : t.careLineBasic}
                     </span>
                     <span className="text-sm font-medium text-gray-900">{fmt(estimate.careMonthly)}{t.won}{t.perMonth}</span>
@@ -700,7 +700,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               {product.useInsight && (
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
                     {t.insightLine(preset.cameraCount)}
                   </span>
                   <span className="text-sm font-medium text-gray-900">{fmt(estimate.insightMonthly)}{t.won}{t.perMonth}</span>
@@ -709,7 +709,7 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
               {product.useAgent && (
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
                     store agent {product.agentPlan === 'free' ? t.agentLineFree : product.agentPlan === 'standard' ? t.agentLineStd : t.agentLinePrem}
                   </span>
                   <span className="text-sm font-medium text-gray-900">
@@ -752,20 +752,20 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 {product.useCare && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featDirt}
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featStay}
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featNight}
                     </div>
                     {product.carePlan === 'plus' && (
                       <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                         {t.featTemp}
                       </div>
                     )}
@@ -774,11 +774,11 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 {product.useInsight && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featFlow}
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featDash}
                     </div>
                   </>
@@ -786,12 +786,12 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
                 {product.useAgent && (
                   <>
                     <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {t.featBriefing}
                     </div>
                     {product.agentPlan !== 'free' && (
                       <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                         {product.agentPlan === 'premium' ? t.featAgentPrem : t.featAgentStd}
                       </div>
                     )}
@@ -801,8 +801,8 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             </div>
 
             {estimate.suggestUpgrade && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-700 font-medium">
+              <div className="mt-4 p-3 bg-primary-lighter border border-primary-light rounded-lg">
+                <p className="text-xs text-primary-dark font-medium">
                   {t.upgradeMsg(fmt(STORECARE_PLUS))}
                 </p>
               </div>
@@ -849,10 +849,10 @@ export default function CameraSimulator({ locale = 'en' }: { locale?: Locale }) 
             <p className="text-xs text-gray-500 mt-2">{t.emailNote}</p>
           </form>
         ) : (
-          <div className="p-4 bg-blue-50 rounded-xl border border-blue-100 text-center">
-            <Check className="w-7 h-7 text-blue-500 mx-auto mb-1.5" />
-            <p className="text-blue-800 font-bold text-sm">{t.submittedTitle}</p>
-            <button type="button" onClick={() => setEmail(e => ({ ...e, quoteSubmitted: false }))} className="text-xs text-blue-600 underline mt-2 hover:text-blue-700 cursor-pointer">{t.recalc}</button>
+          <div className="p-4 bg-primary-lighter rounded-xl border border-primary-light text-center">
+            <Check className="w-7 h-7 text-primary mx-auto mb-1.5" />
+            <p className="text-primary-dark font-bold text-sm">{t.submittedTitle}</p>
+            <button type="button" onClick={() => setEmail(e => ({ ...e, quoteSubmitted: false }))} className="text-xs text-primary underline mt-2 hover:text-primary-dark cursor-pointer">{t.recalc}</button>
           </div>
         )}
       </div>

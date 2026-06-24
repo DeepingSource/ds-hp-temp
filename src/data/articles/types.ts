@@ -20,7 +20,7 @@ export type ArticleMeta = Omit<Article, 'body'>;
 
 export const categoryMeta: Record<ArticleCategory, { label: string; color: string; bgColor: string }> = {
   guide: { label: '가이드', color: 'text-emerald-700', bgColor: 'bg-emerald-50' },
-  'case-study': { label: '케이스스터디', color: 'text-blue-700', bgColor: 'bg-blue-50' },
+  'case-study': { label: '케이스스터디', color: 'text-primary-dark', bgColor: 'bg-primary-lighter' },
   insight: { label: '인사이트', color: 'text-violet-700', bgColor: 'bg-violet-50' },
   weekly: { label: '주간 브리핑', color: 'text-gray-600', bgColor: 'bg-gray-50' },
 };

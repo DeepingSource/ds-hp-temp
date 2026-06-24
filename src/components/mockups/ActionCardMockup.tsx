@@ -151,8 +151,8 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
             <p className={`${S.textSecondary} ${D.headerSub}`}>{resolvedStoreName} · {t.headerSub}</p>
           </div>
           <div className="relative">
-            <div className="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center">
-              <Bell className="w-4 h-4 text-blue-600" aria-hidden="true" />
+            <div className="w-9 h-9 bg-primary-lighter rounded-xl flex items-center justify-center">
+              <Bell className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-3xs font-bold text-white flex items-center justify-center" aria-hidden="true">5</span>
           </div>

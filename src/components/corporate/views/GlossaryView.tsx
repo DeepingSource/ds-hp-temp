@@ -33,10 +33,10 @@ const C: Record<Locale, { eyebrow: string; heading: string; sub: (n: number) => 
 };
 
 const categoryColors: Record<GlossaryCategory, { bg: string; text: string; border: string }> = {
-  ai: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-100' },
-  analytics: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-100' },
-  retail: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-100' },
-  operations: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-100' },
+  ai: { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-lighter' },
+  analytics: { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-lighter' },
+  retail: { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-lighter' },
+  operations: { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-lighter' },
 };
 
 const grouped = Object.entries(glossaryCategoryLabel).map(([cat, label]) => ({

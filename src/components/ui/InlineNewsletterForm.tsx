@@ -121,7 +121,7 @@ export default function InlineNewsletterForm({ variant = 'light', sampleHref }: 
           disabled={isSubmitting}
           className={`px-6 py-3 text-sm whitespace-nowrap inline-flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-bold transition-colors ${
             isDark
-              ? 'bg-blue-500 hover:bg-blue-400 text-slate-900'
+              ? 'bg-primary hover:bg-primary-light text-slate-900'
               : 'btn-primary'
           }`}
         >

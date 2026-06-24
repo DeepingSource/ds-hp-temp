@@ -12,7 +12,7 @@ const StoreInsightMockup   = dynamic(() => import('@/components/mockups/StoreIns
 const PRODUCT_META = {
   StoreCare:    { color: 'emerald', dotCls: 'bg-emerald-500', activeCls: 'border-emerald-300 bg-emerald-50', textCls: 'text-emerald-700' },
   StoreInsight: { color: 'violet',  dotCls: 'bg-violet-500',  activeCls: 'border-violet-300 bg-violet-50',  textCls: 'text-violet-700'  },
-  StoreAgent:   { color: 'blue',    dotCls: 'bg-blue-500',    activeCls: 'border-blue-300 bg-blue-50',      textCls: 'text-blue-700'    },
+  StoreAgent:   { color: 'blue',    dotCls: 'bg-primary',    activeCls: 'border-primary-light bg-primary-lighter',      textCls: 'text-primary-dark'    },
 } as const;
 
 /** Display labels — the keys above stay as logic identifiers (SolutionStep['product']). */
@@ -131,7 +131,7 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
               <div key={i} className={`p-5 rounded-2xl border ${
                 activeProduct === 'StoreCare'    ? 'border-emerald-100 bg-emerald-50/50' :
                 activeProduct === 'StoreInsight' ? 'border-violet-100 bg-violet-50/50' :
-                                                    'border-blue-100 bg-blue-50/50'
+                                                    'border-primary-lighter bg-primary-lighter/50'
               }`}>
                 <p className={`text-xs font-bold mb-2 ${meta.textCls}`}>{step.productLabel}</p>
                 <p className="font-bold text-gray-900 mb-2 break-keep">{step.title}</p>

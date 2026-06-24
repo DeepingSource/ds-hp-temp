@@ -130,7 +130,7 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.discountLabel}</p>
                   <p className="text-2xl font-bold text-primary">{discount}%</p>
                 </div>
-                <div className="p-4 bg-blue-50 rounded-xl text-center">
+                <div className="p-4 bg-primary-lighter rounded-xl text-center">
                   <p className="text-xs font-medium text-gray-500 mb-1">{t.perStoreCost}</p>
                   <p className="text-2xl font-bold text-gray-900">
                     ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
@@ -199,11 +199,11 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                   <p className="text-xs text-gray-500 mt-2">{t.b2bEmailNote}</p>
                 </form>
               ) : (
-                <div className="p-5 bg-blue-50 rounded-xl border border-blue-100 text-center">
-                  <Check className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                  <p className="text-blue-800 font-bold text-sm">{t.submittedTitle}</p>
-                  <p className="text-xs text-blue-600 mt-1">{t.submittedSub}</p>
-                  <button type="button" onClick={() => setB2bSubmitted(false)} className="text-xs text-blue-600 underline mt-3 hover:text-blue-700 cursor-pointer">{t.recalc}</button>
+                <div className="p-5 bg-primary-lighter rounded-xl border border-primary-light text-center">
+                  <Check className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <p className="text-primary-dark font-bold text-sm">{t.submittedTitle}</p>
+                  <p className="text-xs text-primary mt-1">{t.submittedSub}</p>
+                  <button type="button" onClick={() => setB2bSubmitted(false)} className="text-xs text-primary underline mt-3 hover:text-primary-dark cursor-pointer">{t.recalc}</button>
                 </div>
               )}
             </div>
