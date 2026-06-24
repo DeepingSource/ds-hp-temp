@@ -53,14 +53,14 @@ const ko: Copy = {
   challenges: [
     { title: '운영 편차', desc: '같은 매뉴얼을 줘도 매장마다 결과가 다릅니다. 원인을 파악하기 어렵습니다.' },
     { title: '현장 파악 지연', desc: 'SV가 직접 방문하지 않으면 매장 상태를 알 수 없습니다.' },
-    { title: '의사결정 감 의존', desc: '데이터 없이 경험에 의존하는 의사결정이 반복됩니다.' },
+    { title: '감에 의존하는 의사결정', desc: '데이터 없이 경험에 의존하는 의사결정이 반복됩니다.' },
   ],
   benefitsTitle: '딥핑소스가 해결합니다',
   benefits: [
     { title: '전 매장 실시간 AI 상황 감지', description: '전 매장 설비·위생·진열을 실시간 파악하고 이상 시 알림을 받습니다.' },
     { title: '성공 매장의 패턴을 전 매장에', description: '매장별 동선·매출 패턴을 비교 분석하고, 잘되는 매장의 방식을 모든 매장에 적용합니다.' },
     { title: '운영 표준화 자동화', description: 'AI가 검증된 운영 패턴을 매장별로 맞춤 제안합니다.' },
-    { title: '프라이버시 철저 보호', description: `${COMPANY.patents}개 특허 기반 익명화 기술로 개인정보를 원천 보호합니다.` },
+    { title: '프라이버시 철저 보호', description: `${COMPANY.patents}개 특허 기반 익명화 기술로 개인정보를 입력 단계에서 보호합니다.` },
   ],
   dashboardEyebrow: 'Live Dashboard',
   dashboardTitle: '전 매장을, 한눈에',

@@ -60,7 +60,7 @@ const C: Record<Locale, Copy> = {
     heroMasterCompany: '측정으로\n최적화됐다',
     heroEyebrowOwner: '현장은',
     heroMasterOwner: '거의\n그대로였다',
-    companyIntro: '온라인은 지난 20년, 끊임없이 측정하고 개선하며 최적화됐습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.',
+    companyIntro: '온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.',
     companyIntro2: '딥핑소스는 그 현장을 다시 만듭니다.',
     vmEyebrow: 'Vision & Mission',
     vision: '당신의 공간에서, 모든 공간으로',

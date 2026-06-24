@@ -59,7 +59,7 @@ const C: Record<Locale, {
     scenarios: [
       { tag: '혼잡 관리', title: '넓은 공간의 흐름을 한눈에', body: '넓고 층이 많은 공간일수록 어디가 붐비는지 파악하기 어렵습니다. 구역별 혼잡 흐름을 한 화면에서 살펴, 인력 배치와 안내를 미리 준비하도록 돕습니다.' },
       { tag: '동선 분석', title: '방문객 동선을 공간 운영에', body: '입구부터 매장, 편의시설까지 이어지는 동선의 흐름을 살핍니다. 머무는 구역과 비는 구역을 파악해 배치와 안내 동선을 다듬는 근거로 활용하도록 돕습니다.' },
-      { tag: '이상 감지', title: '사각지대 없는 안전 확인', body: '넓은 공간일수록 사람이 모든 곳을 지켜보기 어렵습니다. 혼잡 과밀, 낙상, 비정상 상황 같은 신호를 살펴 담당자에게 즉시 전달, 빠른 대응을 돕습니다.' },
+      { tag: '이상 감지', title: '사각지대를 줄이는 이상 감지', body: '넓은 공간일수록 사람이 모든 곳을 지켜보기 어렵습니다. 혼잡 과밀, 낙상, 비정상 상황 같은 신호를 살펴 담당자에게 즉시 전달, 빠른 대응을 돕습니다.' },
     ],
     scenariosEyebrow: '대형 공간의 운영 과제',
     scenariosHeading: '넓은 공간도, 하나의 흐름으로',
@@ -88,7 +88,7 @@ const C: Record<Locale, {
     scenarios: [
       { tag: 'Crowd management', title: 'See the flow of a vast space at a glance', body: 'The larger and more multi-level a space, the harder it is to tell where it’s crowded. Watch zone-by-zone crowd flow on one screen, and prepare staffing and guidance in advance.' },
       { tag: 'Flow analysis', title: 'Bring visitor flow into space operations', body: 'We watch the flow from entrance to stores to amenities. Identify where people linger and where they don’t — a basis for refining layout and guidance routes.' },
-      { tag: 'Anomaly detection', title: 'Safety checks with no blind spots', body: 'The larger the space, the harder for people to watch everywhere. We watch signals like overcrowding, falls, and abnormal situations, and send them to the right person at once for a fast response.' },
+      { tag: 'Anomaly detection', title: 'Anomaly detection with fewer blind spots', body: 'The larger the space, the harder for people to watch everywhere. We watch signals like overcrowding, falls, and abnormal situations, and send them to the right person at once for a fast response.' },
     ],
     scenariosEyebrow: 'Operating challenges of large spaces',
     scenariosHeading: 'Even a vast space, one flow',
@@ -117,7 +117,7 @@ const C: Record<Locale, {
     scenarios: [
       { tag: '混雑管理', title: '広い空間の流れをひと目で', body: '広く階数の多い空間ほど、どこが混んでいるか把握しにくくなります。区域ごとの混雑の流れを一つの画面で見守り、人員配置と案内を前もって準備できるよう支援します。' },
       { tag: '動線分析', title: '来訪者の動線を空間運営に', body: '入口から店舗、付帯施設まで続く動線の流れを見守ります。留まる区域と空く区域を把握し、配置と案内動線を整える根拠として活用できるよう支援します。' },
-      { tag: '異常検知', title: '死角のない安全確認', body: '広い空間ほど、人がすべての場所を見守るのは困難です。過密、転倒、異常な状況といったサインを見守り、担当者へただちにお伝えして迅速な対応を支援します。' },
+      { tag: '異常検知', title: '死角を減らす異常検知', body: '広い空間ほど、人がすべての場所を見守るのは困難です。過密、転倒、異常な状況といったサインを見守り、担当者へただちにお伝えして迅速な対応を支援します。' },
     ],
     scenariosEyebrow: '大型空間の運営課題',
     scenariosHeading: '広い空間も、ひとつの流れで',

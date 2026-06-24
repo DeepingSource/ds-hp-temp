@@ -65,7 +65,7 @@ const C: Record<Locale, {
     beforeAfter: [
       { before: '매대가 빈 줄 모르고 지나가다 뒤늦게 발견', after: '결품 신호를 받아 채워야 할 매대를 먼저 확인' },
       { before: '매장마다 제각각인 운영 수준', after: '같은 기준으로 비교되는, 한 매장처럼 일관된 운영' },
-      { before: '사람이 종일 모니터를 지켜봐야 하는 감시', after: '이상 상황만 골라 알려주는 선택적 확인' },
+      { before: '사람이 종일 모니터를 지켜봐야 하는 일', after: '이상 상황만 골라 알려주는 선택적 확인' },
     ],
     quote: '"매대가 비는 걸 손님보다 먼저 알게 되니까, 채워야 할 타이밍을 놓치지 않게 됐어요. 여러 매장을 같은 눈으로 보는 느낌입니다."',
     quoteName: '편의점 운영 점주',
@@ -92,7 +92,7 @@ const C: Record<Locale, {
     beforeAfter: [
       { before: 'Walking past an empty shelf, noticing too late', after: 'Getting an out-of-stock signal and checking the shelf first' },
       { before: 'Operating standards that differ store by store', after: 'Compared by one standard — consistent, run as one store' },
-      { before: 'Surveillance that needs someone watching the monitor all day', after: 'Selective review — only anomalies are surfaced' },
+      { before: 'Someone watching the monitor all day', after: 'Selective review — only anomalies are surfaced' },
     ],
     quote: '"I find out a shelf is empty before the customer does, so I never miss the moment to restock. It feels like seeing every store through one set of eyes."',
     quoteName: 'Convenience store owner',
@@ -119,7 +119,7 @@ const C: Record<Locale, {
     beforeAfter: [
       { before: '棚が空いたことに気づかず通り過ぎ、後から発見', after: '欠品のサインを受け取り、補充すべき棚を先に確認' },
       { before: '店舗ごとにばらばらな運営水準', after: '同じ基準で比較される、ひとつの店舗のような一貫した運営' },
-      { before: '人が一日中モニターを見守る監視', after: '異常な状況だけを選んでお知らせする選択的な確認' },
+      { before: '人が一日中モニターを見守る作業', after: '異常な状況だけを選んでお知らせする選択的な確認' },
     ],
     quote: '「棚が空くのをお客様より先に気づけるので、補充すべきタイミングを逃さなくなりました。複数の店舗を同じ目で見ている感覚です。」',
     quoteName: 'コンビニ運営の店主',

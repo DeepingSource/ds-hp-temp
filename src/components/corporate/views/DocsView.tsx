@@ -28,8 +28,8 @@ const C: Record<Locale, {
 }> = {
   ko: {
     eyebrow: 'Docs',
-    heroTitle: '제품 매뉴얼',
-    heroSub: 'DeepingSource 제품의 설치, 연동, 운영에 필요한 기술 문서를 제공합니다. 아래 섹션에서 필요한 주제를 선택해 시작하세요.',
+    heroTitle: '제품 문서',
+    heroSub: 'DeepingSource 제품의 설치, 연동, 운영에 필요한 기술 문서를 제공합니다. 아래에서 필요한 주제를 골라 시작하세요.',
     sidebarLabel: '제품 문서',
     noticeBefore: '상세 문서는 순차적으로 공개 예정입니다. 지금 필요한 자료가 있다면 ',
     noticeLink: '문의',
@@ -52,7 +52,7 @@ const C: Record<Locale, {
   },
   en: {
     eyebrow: 'Docs',
-    heroTitle: 'Product Manuals',
+    heroTitle: 'Product Docs',
     heroSub: 'Technical documentation for installing, integrating, and operating DeepingSource products. Pick a topic below to get started.',
     sidebarLabel: 'Product Docs',
     noticeBefore: 'Detailed docs are rolling out in stages. If you need something now, ',
@@ -76,8 +76,8 @@ const C: Record<Locale, {
   },
   jp: {
     eyebrow: 'Docs',
-    heroTitle: '製品マニュアル',
-    heroSub: 'DeepingSource 製品の導入、連携、運用に必要な技術文書をご提供します。下のセクションから必要なトピックを選んで始めてください。',
+    heroTitle: '製品ドキュメント',
+    heroSub: 'DeepingSource 製品の導入、連携、運用に必要な技術文書をご提供します。下から必要なトピックを選んで始めてください。',
     sidebarLabel: '製品ドキュメント',
     noticeBefore: '詳細なドキュメントは順次公開予定です。今すぐ必要な資料がございましたら、',
     noticeLink: 'お問い合わせ',

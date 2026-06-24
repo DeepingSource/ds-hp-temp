@@ -34,7 +34,7 @@ const C: Record<Locale, {
     resources: [
       { href: '/resources/blog', title: '블로그', description: '프라이버시 AI, 영상 익명화, 다점포 운영 표준화에 대한 인사이트와 실무 가이드를 정기적으로 발행합니다.', label: '인사이트 · 가이드' },
       { href: '/resources/case-studies', title: '케이스 스터디', description: '편의점 53개 매장 실측부터 본사 100점포 전파, 드럭스토어·카페·대형 공간까지 — Golden Case 5단계로 읽는 도입 사례.', label: '도입 사례' },
-      { href: '/resources/docs', title: '제품 문서', description: 'store insight 사용자 매뉴얼을 비롯해 설치·연동·보안·분석 활용에 필요한 기술 문서를 제공합니다.', label: '기술 문서' },
+      { href: '/resources/docs', title: '제품 문서', description: 'store insight 사용자 매뉴얼을 비롯해 설치·연동·보안·분석에 필요한 기술 문서를 제공합니다.', label: '기술 문서' },
       { href: '/resources/glossary', title: '용어 사전', description: '히트맵, 익명화 CCTV, 체류 시간, 구매 전환율 등 핵심 용어를 현장 언어로 쉽게 설명합니다.', label: '용어 정리' },
       { href: '/resources/faq', title: 'FAQ', description: '도입 절차, 요금, 데이터 보안과 익명화 동작 원리 등 자주 묻는 질문에 대한 답변을 모았습니다.', label: '자주 묻는 질문' },
     ],
