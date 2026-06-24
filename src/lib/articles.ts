@@ -34,6 +34,20 @@ export function getArticlesByCategory(category: ArticleCategory): Article[] {
   return getAllArticles().filter((a) => a.category === category);
 }
 
+/** Categories shown on the corporate /resources/blog (excludes weekly + case-study). */
+const RESOURCE_BLOG_CATEGORIES: ArticleCategory[] = ['insight', 'guide'];
+
+/**
+ * Articles for the corporate blog, scoped to one content language.
+ * Each locale's /resources/blog shows only its own `lang` articles — no
+ * cross-locale fallback (en/jp are empty until their content is authored).
+ */
+export function getBlogArticles(lang: 'en' | 'ko' | 'jp'): Article[] {
+  return getAllArticles().filter(
+    (a) => a.lang === lang && RESOURCE_BLOG_CATEGORIES.includes(a.category),
+  );
+}
+
 export function getRelatedArticles(article: Article, limit = 3): ArticleMeta[] {
   const explicit = (article.relatedSlugs ?? [])
     .map(getArticleBySlug)

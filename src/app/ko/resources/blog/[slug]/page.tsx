@@ -3,13 +3,13 @@ import { blogStaticParams, blogArticleMetadata, BlogArticlePage } from '@/compon
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return blogStaticParams('en');
+  return blogStaticParams('ko');
 }
 
 export function generateMetadata({ params }: Props) {
-  return blogArticleMetadata('en', params);
+  return blogArticleMetadata('ko', params);
 }
 
 export default function Page({ params }: Props) {
-  return BlogArticlePage('en', params);
+  return BlogArticlePage('ko', params);
 }

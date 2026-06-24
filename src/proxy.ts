@@ -111,7 +111,8 @@ export function proxy(request: NextRequest) {
       // Translated = exact Tier set OR dynamic detail prefixes (glossary/solutions [slug])
       const isTranslated = TRANSLATED_PATHS.has(base)
         || base.startsWith('/glossary/')
-        || base.startsWith('/solutions/');
+        || base.startsWith('/solutions/')
+        || base.startsWith('/resources/blog/');
       if (!isTranslated) {
         const url = request.nextUrl.clone();
         url.pathname = base;

@@ -84,18 +84,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: langAlts(`/solutions/${s.slug}`),
   }));
 
-  // Company blog articles (insight/guide) → /resources/blog/[slug]
+  // Company blog articles (insight/guide). Each article exists only in its own
+  // content language, served at that locale's path (/resources/blog · /ko · /jp);
+  // no cross-locale hreflang alternates since there is no translated variant.
   let articlePages: MetadataRoute.Sitemap = [];
   try {
     articlePages = getAllArticlesMeta()
       .filter((m) => m.category === 'insight' || m.category === 'guide')
-      .map((m) => ({
-        url: `${baseUrl}/resources/blog/${m.slug}`,
-        lastModified: m.date ? new Date(m.date) : STABLE_LAST_MODIFIED,
-        changeFrequency: 'monthly' as const,
-        priority: 0.5,
-        alternates: langAlts(`/resources/blog/${m.slug}`),
-      }));
+      .map((m) => {
+        const prefix = m.lang === 'en' ? '' : `/${m.lang}`;
+        return {
+          url: `${baseUrl}${prefix}/resources/blog/${m.slug}`,
+          lastModified: m.date ? new Date(m.date) : STABLE_LAST_MODIFIED,
+          changeFrequency: 'monthly' as const,
+          priority: 0.5,
+        };
+      });
   } catch {
     articlePages = [];
   }
