@@ -58,6 +58,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/resources/docs',
   '/resources/glossary',
   '/resources/faq',
+  '/resources/blog',
 ]);
 
 /** When FORCE_MINISITE=true, treat every request as minisite (for standalone deployment) */
