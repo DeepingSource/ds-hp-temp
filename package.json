@@ -5,6 +5,9 @@
   "description": "Deeping Source corporate website (deepingsource.io) — products, technology, and STOREAGENT mockups",
   "author": "Deeping Source",
   "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "gen:content": "node scripts/gen-site-content.mjs",
     "predev": "npm run gen:content",
