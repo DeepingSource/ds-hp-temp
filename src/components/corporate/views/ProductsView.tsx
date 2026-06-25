@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { ComponentType } from 'react';
 import { ArrowRight, ArrowUpRight, BarChart3, Megaphone, TrendingUp, Cpu } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
@@ -9,6 +10,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * ProductsView — product hub (Brand Map v3.0 IA).
@@ -16,105 +18,43 @@ import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
  *   SOLUTION (Live)  — store insight · store care · store agent  (어제·지금·다음)
  *   SOURCE  (Building) — store count · AI POP · trend fit         (곧 출시)
  * SEED (tech foundation) is summarized with a link to /technology.
+ *
+ * Copy is CMS-editable (content/site/products.yaml → generated JSON); structure
+ * (links, images, icons, flags) stays in code and is merged with copy by id.
  */
 
-type LiveItem = { name: string; kicker: string; func: string; desc: string; href: string; external?: boolean; badge?: string; img: string; alt: string };
-type ToolItem = { id: string; name: string; desc: string; live?: boolean; href?: string };
-
-const C: Record<Locale, {
-  eyebrow: string;
-  heroTitle: string;
-  umbrella: string;
-  solutionEyebrow: string;
-  live: LiveItem[];
-  toolEyebrow: string;
-  toolBadge: string;
-  toolLive: string;
-  detail: string;
-  visit: string;
-  tools: ToolItem[];
-  seedLine: string;
-  seedCta: string;
-  cta: string;
-}> = {
-  ko: {
-    eyebrow: 'PRODUCTS',
-    heroTitle: '관찰 · 분석 · 제안 · 학습',
-    umbrella: '모든 제품은 익명화 공간 AI, SAAI 아래에서 하나로 움직입니다.',
-    solutionEyebrow: '매일 받는 답 · SOLUTION',
-    live: [
-      { name: 'store insight', kicker: '어제를 읽다', func: '공간 분석 AI', desc: 'POS가 못 센 것까지 — 어제 매장에서 무슨 일이 있었는지 데이터로 읽습니다.', href: '/products/store-insight', img: '/images/storeinsight-heatmap.webp', alt: 'store insight 히트맵 — 고객 체류·동선 분석' },
-      { name: 'store care', kicker: '지금을 알리다', func: '이상 감지 AI', desc: '24시간 매장을 대신 보는 눈 — 정작 필요한 순간만 골라 실시간으로 알립니다.', href: 'https://storecare.ai', external: true, badge: 'storecare.ai', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 매장 이상 상황 실시간 감지 (익명화)' },
-      { name: 'store agent', kicker: '다음을 실행하다', func: '운영 제안 AI', desc: '다음 한 수를 권고하고 발주까지 — 권고는 AI가, 결정은 사람이.', href: '/products/store-agent', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 다음 한 수 제안 화면' },
-    ],
-    toolEyebrow: '확장 도구 · SOURCE',
-    toolBadge: '곧 출시',
-    toolLive: '운영 중',
-    detail: '자세히 보기',
-    visit: '바로가기',
-    tools: [
-      { id: 'store-count', name: 'store count', desc: '카메라 한 대로, 상권과 유입을 매일.', live: true, href: '/products/store-count' },
-      { id: 'ai-pop', name: 'AI POP', desc: '이 매장에 맞춘 POP·시즌 콘텐츠를 1분 만에.', live: true, href: '/products/saai' },
-      { id: 'trend-fit', name: 'trend fit', desc: '트렌드 적합도로 다음 발주를 돕습니다.' },
-    ],
-    seedLine: 'SEAL · anonymizer · spatial AI · vision models — 모든 제품을 떠받치는 익명화 기술 기반.',
-    seedCta: '기술 보기',
-    cta: '어떤 제품이 맞을지 상담하기',
-  },
-  en: {
-    eyebrow: 'PRODUCTS',
-    heroTitle: 'Observe · Analyze · Suggest · Learn',
-    umbrella: 'Every product moves as one — under SAAI, anonymized spatial AI.',
-    solutionEyebrow: 'Your daily answer · SOLUTION',
-    live: [
-      { name: 'store insight', kicker: 'Reads yesterday', func: 'Spatial analytics AI', desc: 'Beyond what the POS counted — it reads what happened in your store yesterday, as data.', href: '/products/store-insight', img: '/images/storeinsight-heatmap.webp', alt: 'store insight heatmap — dwell and pathway analysis' },
-      { name: 'store care', kicker: 'Flags the now', func: 'Anomaly detection AI', desc: 'A pair of eyes on your store 24/7 — only the moments that matter, flagged in real time.', href: 'https://storecare.ai', external: true, badge: 'storecare.ai', img: '/images/storecare-contamination-detection.webp', alt: 'store care — real-time detection of store issues (anonymized)' },
-      { name: 'store agent', kicker: 'Acts on next', func: 'Operations copilot AI', desc: 'Recommends the next move and turns it into orders — AI recommends, you decide.', href: '/products/store-agent', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — next-move proposal screen' },
-    ],
-    toolEyebrow: 'Expansion tools · SOURCE',
-    toolBadge: 'Coming soon',
-    toolLive: 'Live',
-    detail: 'Learn more',
-    visit: 'Visit',
-    tools: [
-      { id: 'store-count', name: 'store count', desc: 'Trade area and footfall, daily, from one camera.', live: true, href: '/products/store-count' },
-      { id: 'ai-pop', name: 'AI POP', desc: 'On-brand POP and seasonal content for this store in a minute.', live: true, href: '/products/saai' },
-      { id: 'trend-fit', name: 'trend fit', desc: 'Trend-fit scoring to guide your next order.' },
-    ],
-    seedLine: 'SEAL · anonymizer · spatial AI · vision models — the anonymization tech that powers every product.',
-    seedCta: 'See the tech',
-    cta: 'Talk to us about the right product',
-  },
-  jp: {
-    eyebrow: 'PRODUCTS',
-    heroTitle: '観察 · 分析 · 提案 · 学習',
-    umbrella: 'すべての製品は、匿名化空間AI・SAAIの下でひとつに動きます。',
-    solutionEyebrow: '毎日受け取る答え · SOLUTION',
-    live: [
-      { name: 'store insight', kicker: '昨日を読む', func: '空間分析AI', desc: 'POSが数え切れなかったものまで — 昨日の店舗で何が起きたかをデータで読み解きます。', href: '/products/store-insight', img: '/images/storeinsight-heatmap.webp', alt: 'store insight ヒートマップ — 滞在・動線分析' },
-      { name: 'store care', kicker: '今を知らせる', func: '異常検知AI', desc: '24時間、店舗を代わりに見守る目 — 本当に必要な瞬間だけをリアルタイムでお知らせ。', href: 'https://storecare.ai', external: true, badge: 'storecare.ai', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 店舗の異常をリアルタイム検知（匿名化）' },
-      { name: 'store agent', kicker: '次を動かす', func: '運営提案AI', desc: '次の一手を提案し、発注まで — 提案はAI、決定は人。', href: '/products/store-agent', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 次の一手の提案画面' },
-    ],
-    toolEyebrow: '拡張ツール · SOURCE',
-    toolBadge: '近日公開',
-    toolLive: '運営中',
-    detail: '詳しく見る',
-    visit: '開く',
-    tools: [
-      { id: 'store-count', name: 'store count', desc: 'カメラ1台で、商圏と流入を毎日。', live: true, href: '/products/store-count' },
-      { id: 'ai-pop', name: 'AI POP', desc: 'この店舗に合わせたPOP・季節コンテンツを1分で。', live: true, href: '/products/saai' },
-      { id: 'trend-fit', name: 'trend fit', desc: 'トレンド適合度で次の発注をサポート。' },
-    ],
-    seedLine: 'SEAL · anonymizer · spatial AI · vision models — すべての製品を支える匿名化技術基盤。',
-    seedCta: '技術を見る',
-    cta: 'どの製品が最適かご相談する',
-  },
+type LiveCopy = { kicker: string; func: string; desc: string; alt: string };
+type ToolCopy = { desc: string };
+type ProductsCopy = {
+  eyebrow: string; heroTitle: string; umbrella: string; solutionEyebrow: string;
+  toolEyebrow: string; toolBadge: string; toolLive: string; detail: string; visit: string;
+  seedLine: string; seedCta: string; cta: string;
+  live: Record<string, LiveCopy>;
+  tools: Record<string, ToolCopy>;
 };
+const PRODUCTS = siteContent.products as Record<Locale, ProductsCopy>;
 
-const toolIcons = [BarChart3, Megaphone, TrendingUp] as const;
+type LiveStruct = { id: string; name: string; href: string; img: string; external?: boolean; badge?: string };
+const LIVE_STRUCT: LiveStruct[] = [
+  { id: 'store-insight', name: 'store insight', href: '/products/store-insight', img: '/images/storeinsight-heatmap.webp' },
+  { id: 'store-care', name: 'store care', href: 'https://storecare.ai', external: true, badge: 'storecare.ai', img: '/images/storecare-contamination-detection.webp' },
+  { id: 'store-agent', name: 'store agent', href: '/products/store-agent', img: '/images/storeagent-ai-pop-mockup.webp' },
+];
+
+type ToolStruct = { id: string; name: string; icon: ComponentType<{ className?: string }>; live?: boolean; href?: string };
+const TOOL_STRUCT: ToolStruct[] = [
+  { id: 'store-count', name: 'store count', icon: BarChart3, live: true, href: '/products/store-count' },
+  { id: 'ai-pop', name: 'AI POP', icon: Megaphone, live: true, href: '/products/saai' },
+  { id: 'trend-fit', name: 'trend fit', icon: TrendingUp },
+];
 
 export default function ProductsView({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const c = PRODUCTS[locale];
+  const t = {
+    ...c,
+    live: LIVE_STRUCT.map((s) => ({ ...s, ...c.live[s.id] })),
+    tools: TOOL_STRUCT.map((s) => ({ ...s, ...c.tools[s.id] })),
+  };
   const livePaths = ['/products/store-insight', 'https://storecare.ai', '/products/store-agent'];
 
   return (
@@ -193,8 +133,8 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         <Container>
           <Eyebrow className="mb-7">{t.toolEyebrow}</Eyebrow>
           <div className="grid sm:grid-cols-3 gap-5">
-            {t.tools.map((tool, i) => {
-              const Icon = toolIcons[i];
+            {t.tools.map((tool) => {
+              const Icon = tool.icon;
               const inner = (
                 <>
                   <div className="flex items-start justify-between mb-5">

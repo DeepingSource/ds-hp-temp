@@ -9,7 +9,8 @@ import yaml from 'js-yaml';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT_DIR = path.join(ROOT, 'src/data/generated');
 const LOCALES = ['en', 'ko', 'jp'];
-const HOME_FIELDS = ['masterCompany', 'masterOwner', 'heroSub', 'ctaPrimary', 'ctaSecondary'];
+
+const load = (rel) => yaml.load(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
 /** field-major { f: {ko,en,jp} } → locale-major { en: {f}, ko: {f}, jp: {f} }. */
 function toLocaleMajor(data, fields) {
@@ -21,12 +22,41 @@ function toLocaleMajor(data, fields) {
   return out;
 }
 
-const homeYaml = yaml.load(fs.readFileSync(path.join(ROOT, 'content/site/home.yaml'), 'utf8'));
-const homeCopy = toLocaleMajor(homeYaml, HOME_FIELDS);
+/** [{ id, f:{ko,en,jp} }] → locale-major { en: { [id]: {f} }, ko: …, jp: … }. */
+function arrayByIdLocaleMajor(arr, fields) {
+  const out = {};
+  for (const loc of LOCALES) {
+    out[loc] = {};
+    for (const item of arr ?? []) {
+      const entry = {};
+      for (const f of fields) entry[f] = item?.[f]?.[loc] ?? '';
+      out[loc][item.id] = entry;
+    }
+  }
+  return out;
+}
+
+// ── home — flat master copy ──────────────────────────────────────────────────
+const HOME_FIELDS = ['masterCompany', 'masterOwner', 'heroSub', 'ctaPrimary', 'ctaSecondary'];
+const homeCopy = toLocaleMajor(load('content/site/home.yaml'), HOME_FIELDS);
+
+// ── products — flat copy + id-keyed nested arrays (structure stays in code) ───
+const PRODUCTS_FLAT = [
+  'eyebrow', 'heroTitle', 'umbrella', 'solutionEyebrow', 'toolEyebrow',
+  'toolBadge', 'toolLive', 'detail', 'visit', 'seedLine', 'seedCta', 'cta',
+];
+const productsYaml = load('content/site/products.yaml');
+const productsFlat = toLocaleMajor(productsYaml, PRODUCTS_FLAT);
+const productsLive = arrayByIdLocaleMajor(productsYaml.live, ['kicker', 'func', 'desc', 'alt']);
+const productsTools = arrayByIdLocaleMajor(productsYaml.tools, ['desc']);
+const products = {};
+for (const loc of LOCALES) {
+  products[loc] = { ...productsFlat[loc], live: productsLive[loc], tools: productsTools[loc] };
+}
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products)');

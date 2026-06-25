@@ -21,5 +21,142 @@
       "ctaPrimary": "導入のご相談",
       "ctaSecondary": "製品を見る"
     }
+  },
+  "products": {
+    "en": {
+      "eyebrow": "PRODUCTS",
+      "heroTitle": "Observe · Analyze · Suggest · Learn",
+      "umbrella": "Every product moves as one — under SAAI, anonymized spatial AI.",
+      "solutionEyebrow": "Your daily answer · SOLUTION",
+      "toolEyebrow": "Expansion tools · SOURCE",
+      "toolBadge": "Coming soon",
+      "toolLive": "Live",
+      "detail": "Learn more",
+      "visit": "Visit",
+      "seedLine": "SEAL · anonymizer · spatial AI · vision models — the anonymization tech that powers every product.",
+      "seedCta": "See the tech",
+      "cta": "Talk to us about the right product",
+      "live": {
+        "store-insight": {
+          "kicker": "Reads yesterday",
+          "func": "Spatial analytics AI",
+          "desc": "Beyond what the POS counted — it reads what happened in your store yesterday, as data.",
+          "alt": "store insight heatmap — dwell and pathway analysis"
+        },
+        "store-care": {
+          "kicker": "Flags the now",
+          "func": "Anomaly detection AI",
+          "desc": "A pair of eyes on your store 24/7 — only the moments that matter, flagged in real time.",
+          "alt": "store care — real-time detection of store issues (anonymized)"
+        },
+        "store-agent": {
+          "kicker": "Acts on next",
+          "func": "Operations copilot AI",
+          "desc": "Recommends the next move and turns it into orders — AI recommends, you decide.",
+          "alt": "store agent — next-move proposal screen"
+        }
+      },
+      "tools": {
+        "store-count": {
+          "desc": "Trade area and footfall, daily, from one camera."
+        },
+        "ai-pop": {
+          "desc": "On-brand POP and seasonal content for this store in a minute."
+        },
+        "trend-fit": {
+          "desc": "Trend-fit scoring to guide your next order."
+        }
+      }
+    },
+    "ko": {
+      "eyebrow": "PRODUCTS",
+      "heroTitle": "관찰 · 분석 · 제안 · 학습",
+      "umbrella": "모든 제품은 익명화 공간 AI, SAAI 아래에서 하나로 움직입니다.",
+      "solutionEyebrow": "매일 받는 답 · SOLUTION",
+      "toolEyebrow": "확장 도구 · SOURCE",
+      "toolBadge": "곧 출시",
+      "toolLive": "운영 중",
+      "detail": "자세히 보기",
+      "visit": "바로가기",
+      "seedLine": "SEAL · anonymizer · spatial AI · vision models — 모든 제품을 떠받치는 익명화 기술 기반.",
+      "seedCta": "기술 보기",
+      "cta": "어떤 제품이 맞을지 상담하기",
+      "live": {
+        "store-insight": {
+          "kicker": "어제를 읽다",
+          "func": "공간 분석 AI",
+          "desc": "POS가 못 센 것까지 — 어제 매장에서 무슨 일이 있었는지 데이터로 읽습니다.",
+          "alt": "store insight 히트맵 — 고객 체류·동선 분석"
+        },
+        "store-care": {
+          "kicker": "지금을 알리다",
+          "func": "이상 감지 AI",
+          "desc": "24시간 매장을 대신 보는 눈 — 정작 필요한 순간만 골라 실시간으로 알립니다.",
+          "alt": "store care — 매장 이상 상황 실시간 감지 (익명화)"
+        },
+        "store-agent": {
+          "kicker": "다음을 실행하다",
+          "func": "운영 제안 AI",
+          "desc": "다음 한 수를 권고하고 발주까지 — 권고는 AI가, 결정은 사람이.",
+          "alt": "store agent — 다음 한 수 제안 화면"
+        }
+      },
+      "tools": {
+        "store-count": {
+          "desc": "카메라 한 대로, 상권과 유입을 매일."
+        },
+        "ai-pop": {
+          "desc": "이 매장에 맞춘 POP·시즌 콘텐츠를 1분 만에."
+        },
+        "trend-fit": {
+          "desc": "트렌드 적합도로 다음 발주를 돕습니다."
+        }
+      }
+    },
+    "jp": {
+      "eyebrow": "PRODUCTS",
+      "heroTitle": "観察 · 分析 · 提案 · 学習",
+      "umbrella": "すべての製品は、匿名化空間AI・SAAIの下でひとつに動きます。",
+      "solutionEyebrow": "毎日受け取る答え · SOLUTION",
+      "toolEyebrow": "拡張ツール · SOURCE",
+      "toolBadge": "近日公開",
+      "toolLive": "運営中",
+      "detail": "詳しく見る",
+      "visit": "開く",
+      "seedLine": "SEAL · anonymizer · spatial AI · vision models — すべての製品を支える匿名化技術基盤。",
+      "seedCta": "技術を見る",
+      "cta": "どの製品が最適かご相談する",
+      "live": {
+        "store-insight": {
+          "kicker": "昨日を読む",
+          "func": "空間分析AI",
+          "desc": "POSが数え切れなかったものまで — 昨日の店舗で何が起きたかをデータで読み解きます。",
+          "alt": "store insight ヒートマップ — 滞在・動線分析"
+        },
+        "store-care": {
+          "kicker": "今を知らせる",
+          "func": "異常検知AI",
+          "desc": "24時間、店舗を代わりに見守る目 — 本当に必要な瞬間だけをリアルタイムでお知らせ。",
+          "alt": "store care — 店舗の異常をリアルタイム検知（匿名化）"
+        },
+        "store-agent": {
+          "kicker": "次を動かす",
+          "func": "運営提案AI",
+          "desc": "次の一手を提案し、発注まで — 提案はAI、決定は人。",
+          "alt": "store agent — 次の一手の提案画面"
+        }
+      },
+      "tools": {
+        "store-count": {
+          "desc": "カメラ1台で、商圏と流入を毎日。"
+        },
+        "ai-pop": {
+          "desc": "この店舗に合わせたPOP・季節コンテンツを1分で。"
+        },
+        "trend-fit": {
+          "desc": "トレンド適合度で次の発注をサポート。"
+        }
+      }
+    }
   }
 }
