@@ -1,0 +1,20 @@
+masterCompany:
+  ko: 모든 매장을 한 매장처럼
+  en: Every store, like one.
+  jp: すべての店舗を、ひとつの店舗のように。
+masterOwner:
+  ko: 우리 매장이 대표 매장처럼
+  en: Our store, like the best.
+  jp: 私たちの店が、代表店のように。
+heroSub:
+  ko: 이미 달린 CCTV 위에서 — 누구가 아니라 무엇을 어떻게. 영상은 남기지 않는, 익명화 공간 AI입니다.
+  en: On the CCTV you already have — not who, but what and how. Anonymized Spatial AI that keeps no footage.
+  jp: すでにあるCCTVの上で — 誰かではなく、何をどう。映像は残さない、匿名化された空間AIです。
+ctaPrimary:
+  ko: 도입 상담
+  en: Talk to us
+  jp: 導入のご相談
+ctaSecondary:
+  ko: 제품 보기
+  en: Explore products
+  jp: 製品を見る

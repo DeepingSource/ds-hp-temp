@@ -9,6 +9,7 @@ cd "$ROOT"
 
 STASH=(
   "src/app/api"
+  "src/app/keystatic"
   "src/proxy.ts"
   "src/app/robots.ts"
   "src/app/sitemap.ts"
