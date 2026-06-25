@@ -38,6 +38,7 @@ for p in "${STASH[@]}"; do
   fi
 done
 
+node "$ROOT/scripts/gen-site-content.mjs"
 GH_PAGES=1 NEXT_PUBLIC_BASE_PATH="${NEXT_PUBLIC_BASE_PATH-/ds-hp-temp}" npx next build
 
 # GitHub Pages must not run Jekyll (it would drop the _next/ asset folder).

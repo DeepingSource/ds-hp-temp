@@ -6,7 +6,10 @@
   "author": "Deeping Source",
   "license": "UNLICENSED",
   "scripts": {
+    "gen:content": "node scripts/gen-site-content.mjs",
+    "predev": "npm run gen:content",
     "dev": "next dev",
+    "prebuild": "npm run gen:content",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
