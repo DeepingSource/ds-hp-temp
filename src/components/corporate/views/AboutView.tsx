@@ -6,9 +6,8 @@ import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
 import MasterPair from '@/components/corporate/MasterPair';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
-import FiveQuestionsMockup from '@/components/mockups/FiveQuestionsMockup';
 import {
-  ArrowRight, Lock, Maximize, Calendar, Award, Handshake,
+  ArrowRight, Lock, Maximize, Calendar, Award, Handshake, ShieldCheck, Cpu,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { milestoneHighlights } from '@/lib/company-milestones';
@@ -49,6 +48,8 @@ type Copy = {
   partnersSub: string;
   partnerStatLabels: string[];
   partnerStatsNote: string;
+  certsLabel: string;
+  certs: { label: string; sub: string }[];
   ctaHeading: string;
   ctaSub: string;
   ctaButton: string;
@@ -79,6 +80,12 @@ const C: Record<Locale, Copy> = {
     partnersSub: `${COMPANY.industries}개 업종에서 검증된 SAAI. ${COMPANY.nvidiaPartner}로서 글로벌 표준을 따릅니다.`,
     partnerStatLabels: ['파트너 브랜드', '지원 업종', '특허', '규제 준수'],
     partnerStatsNote: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.',
+    certsLabel: 'Awards & Credentials',
+    certs: [
+      { label: 'SOC 2', sub: '정보보안 통제 인증 (2024)' },
+      { label: 'NextRise 2024', sub: '‘Top Innovator’ 수상' },
+      { label: COMPANY.nvidiaPartner, sub: '글로벌 AI 스타트업 프로그램' },
+    ],
     ctaHeading: '데이터센터가 아니라,\n사람이 사는 세상을',
     ctaSub: '도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요',
     ctaButton: '문의하기',
@@ -107,6 +114,12 @@ const C: Record<Locale, Copy> = {
     partnersSub: `SAAI proven across ${COMPANY.industries} industries. As an ${COMPANY.nvidiaPartner}, we follow the global standard.`,
     partnerStatLabels: ['Partner brands', 'Industries served', 'Patents', 'Compliance'],
     partnerStatsNote: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.',
+    certsLabel: 'Awards & Credentials',
+    certs: [
+      { label: 'SOC 2', sub: 'Security controls certification (2024)' },
+      { label: 'NextRise 2024', sub: '‘Top Innovator’ award' },
+      { label: COMPANY.nvidiaPartner, sub: 'Global AI startup program' },
+    ],
     ctaHeading: 'Not a world in a data center —\nthe world people live in',
     ctaSub: 'From adoption inquiries to partnership proposals, reach out anytime.',
     ctaButton: 'Get in touch',
@@ -135,6 +148,12 @@ const C: Record<Locale, Copy> = {
     partnersSub: `${COMPANY.industries}業種で実証されたSAAI。${COMPANY.nvidiaPartner}として、グローバル標準に準拠します。`,
     partnerStatLabels: ['パートナーブランド', '対応業種', '特許', '規制準拠'],
     partnerStatsNote: '* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。',
+    certsLabel: 'Awards & Credentials',
+    certs: [
+      { label: 'SOC 2', sub: '情報セキュリティ統制認証 (2024)' },
+      { label: 'NextRise 2024', sub: '「Top Innovator」受賞' },
+      { label: COMPANY.nvidiaPartner, sub: 'グローバルAIスタートアップ・プログラム' },
+    ],
     ctaHeading: 'データセンターの中ではなく、\n人が暮らす世界を',
     ctaSub: '導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。',
     ctaButton: 'お問い合わせ',
@@ -178,6 +197,8 @@ const methodCopy: Record<Locale, { eyebrow: string; heading: string; intro: stri
     closing: purpose.jp.closing,
   },
 };
+
+const certIcons = [ShieldCheck, Award, Cpu];
 
 export default function AboutView({ locale }: { locale: Locale }) {
   const t = C[locale];
@@ -287,13 +308,6 @@ export default function AboutView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 행동 강령 · 다섯 질문 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <FiveQuestionsMockup locale={locale} />
-        </div>
-      </AnimatedSection>
-
       {/* ── 연혁 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -374,6 +388,24 @@ export default function AboutView({ locale }: { locale: Locale }) {
             ))}
           </div>
           <p className="text-2xs text-gray-400 mt-5 break-keep">{t.partnerStatsNote}</p>
+
+          <p className="text-xs font-bold text-primary mt-12 mb-5 tracking-wider uppercase">{t.certsLabel}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {t.certs.map((c, i) => {
+              const Icon = certIcons[i];
+              return (
+                <div key={c.label} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-gray-100 text-left">
+                  <span className="shrink-0 w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </span>
+                  <span>
+                    <span className="block text-sm font-bold text-gray-900 break-keep">{c.label}</span>
+                    <span className="block text-xs text-gray-500 break-keep">{c.sub}</span>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </AnimatedSection>
 

@@ -3,9 +3,10 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import {
-  ArrowRight, Briefcase, Heart, Compass, Sparkles, Mail,
+  ArrowRight, Briefcase, Mail, ShieldCheck, Award,
   Coffee, GraduationCap, Home, Users, Cpu,
 } from 'lucide-react';
+import FiveQuestionsMockup from '@/components/mockups/FiveQuestionsMockup';
 import { COMPANY } from '@/lib/company-data';
 import { roleFamilies } from '@/lib/careers';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -52,14 +53,14 @@ const C: Record<Locale, Copy> = {
     heroMaster: '모든 매장을 한 매장처럼 —',
     heroMasterAccent: '그 한 회사를 함께 짜는 자리',
     heroSub: '지금 공개된 채용 공고는 없습니다. 함께하고 싶은 마음이 있다면 언제든 먼저 이야기를 들려주세요.',
-    cultureEyebrow: 'How We Work',
-    cultureHeading: '우리가 일하는 법',
-    cultureSub: `“${COMPANY.vision}” — 비전과 프라이버시 원칙이 일상의 의사결정으로 이어집니다.`,
+    cultureEyebrow: 'Why DeepingSource',
+    cultureHeading: '왜 우리와 일하는가',
+    cultureSub: '복지 목록이 아니라, 여기서만 할 수 있는 일을 먼저 말합니다.',
     culture: [
-      { title: '문제에서 출발', desc: '기술이 아니라 현장의 진짜 문제에서 시작합니다. 점주의 질문 하나가 우리의 출발점이었습니다.' },
-      { title: '원칙을 지키는 기술', desc: `${COMPANY.privacyPrinciple} 타협하지 않는 프라이버시 원칙 위에서 일합니다.` },
-      { title: '실행으로 증명', desc: '분석에서 멈추지 않고 실행과 결과로 증명합니다. 학습 루프가 일하는 방식입니다.' },
-      { title: '한 팀, 한 매장처럼', desc: '경계를 나누지 않고 같은 목표를 봅니다. 모든 매장을 한 매장처럼 — 우리 팀도 한 팀처럼 움직입니다.' },
+      { title: '익명화라는 미션', desc: '신원을 지운 위에서만 분석합니다. 프라이버시가 제약이 아니라 제품인 회사에서, 미룰 수 없는 문제를 풉니다.' },
+      { title: 'NVIDIA Inception 컴퓨팅', desc: `${COMPANY.nvidiaPartner}로서 비전 AI 개발에 필요한 컴퓨팅과 도구를 갖추고, 모델을 직접 학습시킵니다.` },
+      { title: '특허 기반 R&D', desc: `${COMPANY.patents}건의 특허로 보호되는 기술 위에서, 논문이 아니라 현장에 나가는 연구를 합니다.` },
+      { title: '권고는 AI, 결정은 사람', desc: '자동화가 사람을 대체하지 않습니다. AI는 다음 한 수를 권하고, 마지막 결정은 사람이 내리는 방식으로 일합니다.' },
     ],
     benefitsEyebrow: 'Benefits & Culture',
     benefitsHeading: '잘 일하기 위한 환경',
@@ -67,7 +68,7 @@ const C: Record<Locale, Copy> = {
     benefits: [
       { title: '유연한 근무', desc: '자율 출퇴근과 집중 근무 환경. 결과로 신뢰하는 문화입니다.' },
       { title: '성장 지원', desc: '컨퍼런스 · 도서 · 교육 지원으로 기술과 시야를 함께 키웁니다.' },
-      { title: '개발 도구', desc: 'NVIDIA Inception 파트너로서 AI 개발에 필요한 컴퓨팅과 도구를 갖춥니다.' },
+      { title: '최고의 장비', desc: '고사양 워크스테이션 · GPU · 라이선스 등 막힘 없이 일할 도구를 제공합니다.' },
       { title: '일하기 좋은 환경', desc: '강남 본사, 집중과 협업이 균형을 이루는 업무 공간.' },
     ],
     rolesEyebrow: 'Open Roles',
@@ -94,14 +95,14 @@ const C: Record<Locale, Copy> = {
     heroMaster: 'Every store, like one —',
     heroMasterAccent: 'the role of weaving that one company',
     heroSub: 'We have no open roles right now. If you’d like to work with us, reach out anytime — we’d love to hear from you.',
-    cultureEyebrow: 'How We Work',
-    cultureHeading: 'How we work',
-    cultureSub: `“${COMPANY.vision}” — our vision and privacy principle carry through to everyday decisions.`,
+    cultureEyebrow: 'Why DeepingSource',
+    cultureHeading: 'Why work with us',
+    cultureSub: 'Not a list of perks — first, the work you can only do here.',
     culture: [
-      { title: 'Start from the problem', desc: 'We start from real on-site problems, not technology. A single store owner’s question was our starting point.' },
-      { title: 'Technology that keeps its principles', desc: `${COMPANY.privacyPrinciple} We work on an uncompromising privacy principle.` },
-      { title: 'Prove it through execution', desc: 'We don’t stop at analysis — we prove it through execution and results. The learning loop is how we work.' },
-      { title: 'One team, like one store', desc: 'We share the same goal without drawing boundaries. Every store, like one — and our team moves like one team, too.' },
+      { title: 'Anonymization as the mission', desc: 'We analyze only on top of erased identity. At a company where privacy is the product, not a constraint, you solve problems that can’t wait.' },
+      { title: 'NVIDIA Inception compute', desc: `As an ${COMPANY.nvidiaPartner}, we have the compute and tools for vision-AI development and train our own models.` },
+      { title: 'Patent-backed R&D', desc: `On technology protected by ${COMPANY.patents} patents, we do research that ships to the field — not just to a paper.` },
+      { title: 'AI advises, people decide', desc: 'Automation doesn’t replace people. AI recommends the next move; the final call is always a person’s.' },
     ],
     benefitsEyebrow: 'Benefits & Culture',
     benefitsHeading: 'An environment to do great work',
@@ -109,7 +110,7 @@ const C: Record<Locale, Copy> = {
     benefits: [
       { title: 'Flexible work', desc: 'Flexible hours and a focused work environment. A culture that trusts results.' },
       { title: 'Growth support', desc: 'Conference, book, and education support to grow both your skills and your perspective.' },
-      { title: 'Best-in-class tools', desc: 'As an NVIDIA Inception partner, we provide the compute and tools needed for AI development.' },
+      { title: 'Top-tier equipment', desc: 'High-spec workstations, GPUs, and licenses — the tools to work without friction.' },
       { title: 'A great place to work', desc: 'A Gangnam headquarters where focus and collaboration are in balance.' },
     ],
     rolesEyebrow: 'Open Roles',
@@ -136,14 +137,14 @@ const C: Record<Locale, Copy> = {
     heroMaster: 'すべての店舗を、ひとつの店舗のように —',
     heroMasterAccent: 'そのひとつの会社をともに織りなす場所',
     heroSub: '現在、公開中の募集はありません。一緒に働きたい方は、いつでもまずはお声がけください。',
-    cultureEyebrow: 'How We Work',
-    cultureHeading: '私たちの働き方',
-    cultureSub: `「${COMPANY.vision}」 — ビジョンとプライバシー原則が、日々の意思決定につながります。`,
+    cultureEyebrow: 'Why DeepingSource',
+    cultureHeading: 'なぜ私たちと働くのか',
+    cultureSub: '福利厚生のリストではなく、ここでしかできない仕事を、まずお話しします。',
     culture: [
-      { title: '問題から出発する', desc: '技術ではなく、現場の本当の問題から始めます。店主の一つの問いが、私たちの出発点でした。' },
-      { title: '原則を守る技術', desc: `${COMPANY.privacyPrinciple} 妥協しないプライバシー原則の上で働きます。` },
-      { title: '実行で証明する', desc: '分析で止まらず、実行と結果で証明します。学習ループが私たちの働き方です。' },
-      { title: 'ひとつのチーム、ひとつの店舗のように', desc: '境界を分けず、同じ目標を見ます。すべての店舗を、ひとつの店舗のように — 私たちのチームもひとつのチームとして動きます。' },
+      { title: '匿名化というミッション', desc: '身元を消した上でのみ分析します。プライバシーが制約ではなく製品である会社で、先送りできない課題を解きます。' },
+      { title: 'NVIDIA Inception コンピューティング', desc: `${COMPANY.nvidiaPartner}として、ビジョンAI開発に必要なコンピューティングとツールを備え、モデルを自ら学習させます。` },
+      { title: '特許に基づくR&D', desc: `${COMPANY.patents}件の特許で保護された技術の上で、論文ではなく現場に出る研究を行います。` },
+      { title: '推奨はAI、決定は人', desc: '自動化が人を置き換えることはありません。AIが次の一手を提案し、最後の決定は人が下す働き方です。' },
     ],
     benefitsEyebrow: 'Benefits & Culture',
     benefitsHeading: 'よい仕事のための環境',
@@ -151,7 +152,7 @@ const C: Record<Locale, Copy> = {
     benefits: [
       { title: '柔軟な働き方', desc: '自律的な勤務時間と集中できる環境。結果で信頼する文化です。' },
       { title: '成長支援', desc: 'カンファレンス · 書籍 · 教育の支援で、技術と視野をともに育てます。' },
-      { title: '最高のツール', desc: 'NVIDIA Inceptionパートナーとして、AI開発に必要なコンピューティングとツールを備えます。' },
+      { title: '最高の設備', desc: '高スペックのワークステーション · GPU · ライセンスなど、滞りなく働ける道具を用意します。' },
       { title: '働きやすい環境', desc: '江南本社、集中と協働がバランスする業務空間。' },
     ],
     rolesEyebrow: 'Open Roles',
@@ -175,7 +176,7 @@ const C: Record<Locale, Copy> = {
   },
 };
 
-const cultureIcons = [Compass, Heart, Sparkles, Users];
+const cultureIcons = [ShieldCheck, Cpu, Award, Users];
 const benefitIcons = [Home, GraduationCap, Cpu, Coffee];
 
 export default function CareerView({ locale }: { locale: Locale }) {
@@ -230,6 +231,13 @@ export default function CareerView({ locale }: { locale: Locale }) {
               );
             })}
           </StaggerContainer>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 일하는 법 · 행동 강령(다섯 질문) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <FiveQuestionsMockup locale={locale} />
         </div>
       </AnimatedSection>
 
