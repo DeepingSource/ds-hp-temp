@@ -236,7 +236,7 @@ export default function VisionCoordinatesMockup({
             <span className="absolute bottom-6 left-4 rounded-full bg-white/10 px-2 py-0.5 text-2xs text-slate-200 break-keep">{copy.axes.space}</span>
             <span className="absolute bottom-6 right-4 rounded-full bg-white/10 px-2 py-0.5 text-2xs text-slate-200 break-keep">{copy.axes.ops}</span>
             <span className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-primary/15 px-2 py-1 text-2xs font-medium text-primary-light break-keep">{copy.destinationTag}</span>
-            <span className="absolute bottom-2 left-4 text-2xs text-slate-500 break-keep">{copy.origin}</span>
+            <span className="absolute bottom-2 left-4 text-2xs text-slate-400 break-keep">{copy.origin}</span>
           </div>
 
           {/* PANEL B — trajectory rail: 01→05 stations, 05 is the terminal destination */}

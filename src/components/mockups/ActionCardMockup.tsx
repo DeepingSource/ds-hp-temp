@@ -179,7 +179,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
       </div>
 
       {/* Action Cards */}
-      <div ref={bodyRef} className={`flex-1 min-h-0 overflow-y-auto p-4 space-y-3 ${S.bodyBg}`}>
+      <div ref={bodyRef} className={`relative flex-1 min-h-0 overflow-y-auto p-4 space-y-3 ${S.bodyBg}`}>
         <AnimatePresence initial={false}>
           {/* Review summary — 3 approved · 1 hold · 1 pending */}
           {reviewResolved && (

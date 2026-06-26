@@ -221,7 +221,7 @@ export default function KakaoAlertMockup({
                           <p className="text-[13px] font-medium text-gray-900 leading-snug">{a.body}</p>
                           {a.action && (
                             <div className="mt-2.5 flex justify-end">
-                              <button type="button" className={actionButtonClass(a.action)}>
+                              <button type="button" tabIndex={-1} className={actionButtonClass(a.action)}>
                                 {t.actions[a.action]}
                               </button>
                             </div>
@@ -281,7 +281,7 @@ export default function KakaoAlertMockup({
                       </div>
                       {a.action && (
                         <div className="mt-2.5 flex justify-end">
-                          <button type="button" className={actionButtonClass(a.action)}>
+                          <button type="button" tabIndex={-1} className={actionButtonClass(a.action)}>
                             {t.actions[a.action]}
                           </button>
                         </div>
