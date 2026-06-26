@@ -5,8 +5,6 @@ import CorporateHero from './CorporateHero';
 import ProblemBeat from './ProblemBeat';
 import ProductPreview from './ProductPreview';
 import CaseBand from './CaseBand';
-import ComparisonPrinciple from './ComparisonPrinciple';
-import HubDataBand from './HubDataBand';
 import TrustCharter from './TrustCharter';
 import CtaBand from './CtaBand';
 import SolutionTimeline from './SolutionTimeline';
@@ -107,12 +105,6 @@ export default function HomeView({ locale }: { locale: Locale }) {
 
       {/* 3b — Field scenarios: what changes on the floor (illustrative proof) */}
       <CaseBand locale={locale} />
-
-      {/* 3c — How to read the numbers: period · peer(σ) · source (PRD P0, the proof engine) */}
-      <ComparisonPrinciple locale={locale} />
-
-      {/* 3d — The hub completes with HQ revenue: dwell + sales on one axis (PRD P0) */}
-      <HubDataBand locale={locale} />
 
       {/* 4 — Trust: anonymization is the first step (the #1 differentiator, surfaced early) */}
       <TrustCharter locale={locale} />

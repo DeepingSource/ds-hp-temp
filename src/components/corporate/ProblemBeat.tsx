@@ -27,10 +27,15 @@ const dict: Record<Locale, {
   eyebrow: string; heading: string; pains: Pain[]; bridge: string;
   funnelTitle: string; funnel: FunnelStep[]; leak: { n: string; label: string };
   methodTagline: string;
+  posTag: string; legendInvisible: string; legendPos: string; funnelAria: string;
 }> = {
   ko: {
-    eyebrow: '매장 안, 무슨 일이 있었을까요?',
+    eyebrow: '보이지 않는 다수',
     heading: '들어온 손님이 결제까지 가는 사이, 매장에서 무슨 일이 있었는지 — 알고 계신가요?',
+    posTag: 'POS 기록',
+    legendInvisible: '보이지 않음',
+    legendPos: 'POS 기록',
+    funnelAria: '어제 입장 382명 중 결제까지 17%만 도달한 전환 퍼널',
     funnelTitle: '어제, 우리 매장 안에서',
     funnel: [
       { n: '382', pct: 100, label: '입장' },
@@ -50,8 +55,12 @@ const dict: Record<Locale, {
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
   },
   en: {
-    eyebrow: 'What happened inside your store?',
+    eyebrow: 'The invisible majority',
     heading: 'Between walking in and checking out, do you know what happened on your floor?',
+    posTag: 'In POS',
+    legendInvisible: 'Invisible',
+    legendPos: 'In POS',
+    funnelAria: 'Yesterday: of 382 who entered, only 17% reached checkout',
     funnelTitle: 'Yesterday, inside your store',
     funnel: [
       { n: '382', pct: 100, label: 'entered' },
@@ -71,8 +80,12 @@ const dict: Record<Locale, {
     methodTagline: 'We don’t stop at seeing — we act.',
   },
   jp: {
-    eyebrow: '店内で、何が起きていた?',
+    eyebrow: '見えない多数',
     heading: '入店から決済までの間、店舗で何が起きていたか — ご存知ですか?',
+    posTag: 'POS記録',
+    legendInvisible: '見えない',
+    legendPos: 'POS記録',
+    funnelAria: '昨日入店382人のうち会計まで到達した転換ファネル',
     funnelTitle: '昨日、店内で',
     funnel: [
       { n: '382', pct: 100, label: '入店' },
@@ -116,48 +129,66 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
     <Section variant="alt">
       <Container>
         <div className="mb-10 max-w-3xl">
-          <Eyebrow tone="muted" className="mb-3">{t.eyebrow}</Eyebrow>
+          <Eyebrow tone="primary" className="mb-3">{t.eyebrow}</Eyebrow>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display">{t.heading}</h2>
         </div>
 
-        {/* Funnel of the invisible majority — built from the copy's own numbers (language-neutral) */}
-        <div className="mb-12 rounded-2xl border border-gray-200 bg-white p-6 sm:p-9 shadow-card">
-          <p className="mb-6 text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-3 items-end">
-            {t.funnel.map((s, i) => (
-              <div key={s.label} className="text-center">
-                <div className="flex items-end justify-center h-20 sm:h-28">
-                  <div
-                    className="w-full rounded-t-md bg-primary"
-                    style={{ height: `${Math.max(s.pct, 8)}%`, opacity: 1 - i * 0.12 }}
-                  />
+        {/* Evidence band — funnel (the invisible majority) beside its consequence (−317 + why POS can't tell you) */}
+        <StaggerContainer className="grid gap-6 lg:grid-cols-12 items-start">
+          {/* LEFT — funnel hero: horizontal bars narrowing top→bottom; the last row is the only one POS keeps */}
+          <StaggerItem className="lg:col-span-7">
+            <Card className="p-6 sm:p-8">
+              <div className="mb-5 flex items-center justify-between gap-3">
+                <p className="text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
+                <div className="flex items-center gap-3 text-2xs text-gray-400">
+                  <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-primary/20" aria-hidden="true" />{t.legendInvisible}</span>
+                  <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-primary" aria-hidden="true" />{t.legendPos}</span>
                 </div>
-                <p className="mt-2 sm:mt-3 text-base sm:text-2xl font-bold text-gray-900 tabular-nums">{s.n}</p>
-                <p className="text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</p>
               </div>
-            ))}
-          </div>
-          <p className="mt-7 flex items-baseline gap-2.5 border-t border-gray-100 pt-5 break-keep">
-            <span className="text-2xl sm:text-3xl font-bold text-primary tabular-nums shrink-0">−{t.leak.n}</span>
-            <span className="text-sm sm:text-base text-gray-600">{t.leak.label}</span>
-          </p>
-        </div>
+              <ul className="space-y-2" aria-label={t.funnelAria}>
+                {t.funnel.map((s, i) => {
+                  const paid = i === t.funnel.length - 1;
+                  return (
+                    <li key={s.label} className="flex items-center gap-3 sm:gap-4">
+                      <span className="w-9 sm:w-12 shrink-0 text-right text-base sm:text-lg font-bold text-gray-900 tabular-nums">{s.n}</span>
+                      <span className="w-12 sm:w-16 shrink-0 text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</span>
+                      <div className="relative h-7 flex-1 overflow-hidden rounded-md bg-gray-100">
+                        <div
+                          className={`absolute inset-y-0 left-0 rounded-md ${paid ? 'bg-primary' : 'bg-primary/20'}`}
+                          style={{ width: `${Math.max(s.pct, 6)}%` }}
+                        />
+                        {paid && <span className="absolute inset-y-0 right-2 flex items-center text-2xs font-bold text-primary">{t.posTag}</span>}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Card>
+          </StaggerItem>
 
-        <StaggerContainer className="grid sm:grid-cols-3 gap-5">
-          {t.pains.map((p) => {
-            const Icon = p.icon;
-            return (
-              <StaggerItem key={p.title} className="h-full">
-                <Card className="h-full p-7">
-                  <IconChip className="mb-5">
-                    <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </IconChip>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
-                </Card>
-              </StaggerItem>
-            );
-          })}
+          {/* RIGHT — consequence: the −317 leak + the 3 reasons POS can't tell you */}
+          <StaggerItem className="lg:col-span-5">
+            <div className="rounded-2xl border border-primary/15 bg-primary-lighter/50 p-6">
+              <p className="text-5xl font-bold text-primary tabular-nums leading-none">−{t.leak.n}</p>
+              <p className="mt-3 text-sm text-gray-700 break-keep leading-relaxed">{t.leak.label}</p>
+            </div>
+            <ul className="mt-5 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
+              {t.pains.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <li key={p.title} className="flex gap-4 p-5">
+                    <IconChip size="sm">
+                      <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
+                    </IconChip>
+                    <div>
+                      <h3 className="text-sm font-bold text-gray-900 break-keep">{p.title}</h3>
+                      <p className="mt-1 text-xs text-gray-500 leading-relaxed break-keep">{p.desc}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </StaggerItem>
         </StaggerContainer>
         <p className="mt-10 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
           {t.bridge}

@@ -3,6 +3,8 @@ import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import DoorSplitDiagram from '@/components/mockups/DoorSplitDiagram';
 import StoreInsightDesktopMockup from '@/components/mockups/StoreInsightDesktopMockup';
+import ComparisonPrinciple from '@/components/corporate/ComparisonPrinciple';
+import HubDataBand from '@/components/corporate/HubDataBand';
 import dynamic from 'next/dynamic';
 import {
   BarChart3,
@@ -383,6 +385,12 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           </p>
         </div>
       </AnimatedSection>
+
+      {/* ── 숫자를 읽는 법 (period · peer · source) — 홈에서 이관 ── */}
+      <ComparisonPrinciple locale={locale} />
+
+      {/* ── 매출을 끌어다 놓으면: 체류 + 매출 한 축에서 — 홈에서 이관 ── */}
+      <HubDataBand locale={locale} />
 
       {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
