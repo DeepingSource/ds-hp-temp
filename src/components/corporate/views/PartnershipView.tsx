@@ -76,8 +76,8 @@ const C: Record<Locale, Copy> = {
   },
   en: {
     badge: 'Partnership',
-    heroMaster: 'Your store, partner,',
-    heroMasterAccent: 'like one too',
+    heroMaster: 'Your partner’s stores too,',
+    heroMasterAccent: 'like one',
     heroSub: 'As reseller, channel, and technology partners, we grow the offline spatial AI market together. We’ll find the way to collaborate that fits your role.',
     tiersEyebrow: 'Partner Program',
     tiersHeading: 'Three paths to grow together',
@@ -89,7 +89,7 @@ const C: Record<Locale, Copy> = {
     ],
     benefitsEyebrow: 'Why Partner',
     benefitsHeading: 'What partners gain',
-    benefitsSub: 'With a product and support we provide together, we help your business grow steadily.',
+    benefitsSub: 'We provide both the product and the support, so your business can grow steadily.',
     partnerBenefits: [
       { title: 'A market we grow together', desc: 'Open new revenue opportunities in offline spatial AI with SAAI.' },
       { title: 'Training · certification', desc: 'Build expertise fast through product, installation, and sales training plus partner certification.' },
