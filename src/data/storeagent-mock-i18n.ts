@@ -144,6 +144,7 @@ interface ChatSet {
   assistant: string;
   subBriefing: string;
   subPeak: string;
+  subEvening: string;
   inputPlaceholder: string;
   later: string;
   sendLabel: string;
@@ -156,6 +157,7 @@ const CHAT: Record<Locale, ChatSet> = {
     assistant: 'SAAI 어시스턴트',
     subBriefing: '오늘의 브리핑',
     subPeak: '피크타임 분석',
+    subEvening: '저녁 재고 점검',
     inputPlaceholder: '사장님, 무엇이 궁금하세요?',
     later: '나중에',
     sendLabel: '메시지 전송',
@@ -187,6 +189,7 @@ const CHAT: Record<Locale, ChatSet> = {
     assistant: 'SAAI Assistant',
     subBriefing: 'today’s briefing',
     subPeak: 'peak-time analysis',
+    subEvening: 'evening stock check',
     inputPlaceholder: 'What can I help you with?',
     later: 'Later',
     sendLabel: 'Send message',
@@ -218,6 +221,7 @@ const CHAT: Record<Locale, ChatSet> = {
     assistant: 'SAAI アシスタント',
     subBriefing: '今日のブリーフィング',
     subPeak: 'ピーク時間分析',
+    subEvening: '夜の在庫チェック',
     inputPlaceholder: 'どのようなことをお探しですか？',
     later: '後で',
     sendLabel: 'メッセージを送信',

@@ -153,7 +153,7 @@ export default function PushNotificationMockup({
               initial={{ opacity: 0, y: -32, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96, transition: { duration: 0.16 } }}
-              transition={{ ...springNotif, delay: i * 0.08 }}
+              transition={springNotif}
             >
               {/* Priority indicator bar */}
               <div className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl ${notif.priorityBar}`} aria-hidden="true" />

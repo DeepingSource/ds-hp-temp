@@ -169,7 +169,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
       <AgentMockupShowcase locale={locale} />
 
       {/* ── Pricing teaser ── */}
-      <AnimatedSection className="py-16 lg:py-20 bg-gray-50">
+      <AnimatedSection className="py-16 lg:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">
             {t.pricingHeading}

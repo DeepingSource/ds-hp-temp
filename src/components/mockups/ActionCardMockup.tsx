@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Check, CloudRain, ShoppingCart, Palette, TrendingUp, Bell, CheckCircle2, Users, Tag, Pause } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -58,6 +58,17 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
   }));
   const [phases, setPhases] = useState<CardPhase[]>(['hidden', 'hidden', 'hidden', 'hidden', 'hidden']);
   const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  // Keep the card currently acting (approving / holding) scrolled into view inside the
+  // phone body, so its entrance/exit beats aren't lost below the fold.
+  useEffect(() => {
+    const idx = phases.findIndex((p) => p === 'approving' || p === 'holding');
+    const body = bodyRef.current;
+    if (idx === -1 || !body) return;
+    const el = body.querySelector<HTMLElement>(`[data-card="${idx}"]`);
+    if (el) body.scrollTo({ top: Math.max(0, el.offsetTop - 8), behavior: reducedMotion ? 'auto' : 'smooth' });
+  }, [phases, reducedMotion]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -168,7 +179,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
       </div>
 
       {/* Action Cards */}
-      <div className={`flex-1 min-h-0 overflow-y-auto p-4 space-y-3 ${S.bodyBg}`}>
+      <div ref={bodyRef} className={`flex-1 min-h-0 overflow-y-auto p-4 space-y-3 ${S.bodyBg}`}>
         <AnimatePresence initial={false}>
           {/* Review summary — 3 approved · 1 hold · 1 pending */}
           {reviewResolved && (
@@ -199,13 +210,13 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
                     <div key={item.label} className="flex items-center gap-2">
                       <div
                         className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
-                          status === 'approved' ? 'bg-emerald-50' : 'bg-gray-100'
+                          status === 'approved' ? 'bg-emerald-50' : status === 'held' ? 'bg-amber-50' : 'bg-gray-100'
                         }`}
                       >
                         {status === 'approved' ? (
                           <Check className="w-3 h-3 text-emerald-500" />
                         ) : (
-                          <Pause className="w-3 h-3 text-gray-400" />
+                          <Pause className={`w-3 h-3 ${status === 'held' ? 'text-amber-500' : 'text-gray-400'}`} />
                         )}
                       </div>
                       <Icon
@@ -246,6 +257,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
             return (
               <motion.div
                 key={card.title}
+                data-card={i}
                 aria-hidden="true"
                 initial={{ opacity: 0, y: 14, scale: 0.93 }}
                 animate={isHidden ? { opacity: 0, y: 14, scale: 0.93 } : { opacity: 1, y: 0, scale: 1 }}

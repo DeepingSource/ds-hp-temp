@@ -48,7 +48,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
   }, [tabs]);
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-white">
+    <section ref={ref} className="py-20 lg:py-28 bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* 섹션 헤더 */}
         <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
@@ -64,7 +64,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
         <div className={`flex flex-col lg:flex-row gap-6 lg:gap-10 ${isVisible ? 'scroll-visible delay-200' : 'scroll-hidden'}`}>
 
           {/* ── 왼쪽: 탭 선택 + 확장 설명 ── */}
-          <div className="flex-1 flex flex-col justify-between">
+          <div className="flex-1 flex flex-col justify-center gap-8">
             <div
               role="tablist"
               aria-label={c.tablistLabel}
@@ -151,7 +151,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
             })}
 
             </div>
-            <p className="text-xs text-gray-500 px-1 pt-4">
+            <p className="text-xs text-gray-500 px-1">
               {c.disclaimer}
             </p>
           </div>

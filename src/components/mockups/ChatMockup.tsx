@@ -211,7 +211,7 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
               <Sparkles className="w-3.5 h-3.5 text-yellow-500" aria-hidden="true" />
             </h3>
             <p className={`${S.textSecondary} ${D.headerSub}`}>
-              {scenarioIdx === 0 ? `${resolvedStoreName} · ${t.subBriefing}` : `${resolvedStoreName} · ${t.subPeak}`}
+              {`${resolvedStoreName} · ${[t.subBriefing, t.subPeak, t.subEvening][scenarioIdx] ?? t.subBriefing}`}
             </p>
           </div>
           <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse motion-reduce:animate-none shrink-0" aria-hidden="true" />

@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import StoreCareMockup from '@/components/mockups/StoreCareMockup';
-import { KakaoAlertMockup } from '@/components/mockups';
+import StoreCareDeviceTabs from '@/components/corporate/views/StoreCareDeviceTabs';
 import HqRollupDashboardMockup from '@/components/mockups/HqRollupDashboardMockup';
 import { Store, ArrowUpRight, ShieldCheck, Eye, Bell } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
@@ -26,6 +25,7 @@ const C: Record<Locale, {
   mockupHeading: string;
   mockupSub: string;
   mockupNote: string;
+  mockupTabs: { store: string; phone: string };
   scenariosHeading: string;
   scenariosSub: string;
   scenarios: string[];
@@ -50,6 +50,7 @@ const C: Record<Locale, {
     mockupHeading: '필요한 순간만, 손안으로',
     mockupSub: '하루 1,247건 쏟아지는 알림 대신 — 정작 필요한 세 건만 골라 휴대폰으로 바로 알려드려요.',
     mockupNote: '* AI 분석 예시 화면이에요.',
+    mockupTabs: { store: '매장이 보는 것', phone: '내 손에 오는 것' },
     scenariosHeading: '이런 순간을, 놓치지 않아요',
     scenariosSub: '직원이 못 본 사이에도 — store care는 매대·위생·설비·보안을 한눈에 살핍니다.',
     scenarios: ['빈 매대', '냉장고 문 열림', '바닥 오염', '심야 이상 상황'],
@@ -82,6 +83,7 @@ const C: Record<Locale, {
     mockupHeading: 'Only the moments that matter — in your hand',
     mockupSub: 'Most tools flood you with 1,247 alerts a day. store care surfaces the three that actually need you, straight to your phone.',
     mockupNote: '* Sample AI analysis screen.',
+    mockupTabs: { store: 'What the store sees', phone: 'What reaches you' },
     scenariosHeading: 'It won’t miss moments like these',
     scenariosSub: 'Even when no one’s looking — store care watches shelves, hygiene, equipment, and security at once.',
     scenarios: ['Empty shelf', 'Fridge door open', 'Floor spill', 'After-hours anomaly'],
@@ -114,6 +116,7 @@ const C: Record<Locale, {
     mockupHeading: '必要な瞬間だけ、手のひらに',
     mockupSub: '1日1,247件あふれる通知ではなく — 本当に必要な3件だけを選んで、スマートフォンへすぐにお知らせします。',
     mockupNote: '※ AI分析のサンプル画面です。',
+    mockupTabs: { store: '店舗が見ているもの', phone: '手元に届くもの' },
     scenariosHeading: 'こんな瞬間を、見逃しません',
     scenariosSub: 'スタッフが見ていない間も — store care は棚・衛生・設備・防犯をひと目で見守ります。',
     scenarios: ['空いた棚', '冷蔵庫の扉開き', '床の汚れ', '深夜の異常'],
@@ -245,15 +248,10 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               {t.mockupSub}
             </p>
           </div>
-          <div className="max-w-[300px] mx-auto">
-            <StoreCareMockup locale={locale} />
-          </div>
+          <StoreCareDeviceTabs locale={locale} labels={t.mockupTabs} />
           <p className="mt-6 text-center text-xs text-gray-500 break-keep">
             {t.mockupNote}
           </p>
-          <div className="mx-auto max-w-md px-4 mt-12">
-            <KakaoAlertMockup locale={locale} />
-          </div>
         </div>
       </AnimatedSection>
 
