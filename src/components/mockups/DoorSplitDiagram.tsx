@@ -69,7 +69,7 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
           <div className="relative mb-3 h-24 overflow-hidden rounded-lg bg-white">
             <svg viewBox="0 0 100 100" className="h-full w-full" preserveAspectRatio="none" aria-hidden="true">
               {DOTS.map((d, i) => (
-                <circle key={i} cx={d.x} cy={d.y} r="1.6" fill="var(--color-primary, #376AE2)" fillOpacity={d.on ? 0.85 : 0.2} />
+                <circle key={i} cx={d.x} cy={d.y} r="1.6" fill="var(--color-primary)" fillOpacity={d.on ? 0.85 : 0.2} />
               ))}
             </svg>
             <span className="absolute bottom-1 left-2 text-2xs text-gray-400">{t.passersby} {t.passersbyN}</span>
@@ -90,7 +90,7 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
           <p className="text-xs text-gray-500 mb-3 break-keep">{t.insideTitle}</p>
           <div className="mb-3 grid grid-cols-3 gap-1" aria-label={t.heatLabel}>
             {HEAT.map((v, i) => (
-              <span key={i} className="h-6 rounded" style={{ backgroundColor: `color-mix(in oklab, var(--color-primary, #376AE2) ${Math.round(v * 100)}%, white)` }} />
+              <span key={i} className="h-6 rounded" style={{ backgroundColor: `color-mix(in oklab, var(--color-primary) ${Math.round(v * 100)}%, white)` }} />
             ))}
           </div>
           <div className="flex items-end gap-1.5">

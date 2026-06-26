@@ -138,13 +138,13 @@ export default function ComparisonPrinciple({ locale }: { locale: Locale }) {
             {/* distribution curve */}
             <path
               d="M30,110 C110,110 145,40 210,40 C275,40 310,110 390,110 Z"
-              fill="var(--color-primary, #376AE2)"
+              fill="var(--color-primary)"
               fillOpacity="0.08"
             />
             <path
               d="M30,110 C110,110 145,40 210,40 C275,40 310,110 390,110"
               fill="none"
-              stroke="var(--color-primary, #376AE2)"
+              stroke="var(--color-primary)"
               strokeOpacity="0.35"
               strokeWidth="2"
             />
@@ -152,8 +152,8 @@ export default function ComparisonPrinciple({ locale }: { locale: Locale }) {
             <line x1="210" y1="40" x2="210" y2="118" stroke="#9CA3AF" strokeWidth="1" strokeDasharray="3 3" />
             <text x="210" y="132" textAnchor="middle" className="fill-gray-400" fontSize="11">{t.peerAvg}</text>
             {/* this store marker (above average) */}
-            <line x1="312" y1="78" x2="312" y2="110" stroke="var(--color-primary, #376AE2)" strokeWidth="1.5" />
-            <circle cx="312" cy="78" r="5" fill="var(--color-primary, #376AE2)" />
+            <line x1="312" y1="78" x2="312" y2="110" stroke="var(--color-primary)" strokeWidth="1.5" />
+            <circle cx="312" cy="78" r="5" fill="var(--color-primary)" />
             <text x="312" y="68" textAnchor="middle" className="fill-primary" fontSize="11" fontWeight="700">{t.thisStore}</text>
           </svg>
           <p className="mt-3 text-xs text-gray-500 text-center break-keep">{t.caption}</p>

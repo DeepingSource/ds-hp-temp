@@ -53,7 +53,7 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
       {/* Desktop — circular cycle */}
       <div className="relative mx-auto hidden aspect-square w-full max-w-xl sm:block">
         <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="33" fill="none" stroke="var(--color-primary, #376AE2)" strokeOpacity="0.25" strokeWidth="0.5" strokeDasharray="1.5 2" />
+          <circle cx="50" cy="50" r="33" fill="none" stroke="var(--color-primary)" strokeOpacity="0.25" strokeWidth="0.5" strokeDasharray="1.5 2" />
           {/* clockwise chevrons at the 4 diagonals (tangent direction) */}
           {[
             { x: 73.3, y: 26.7, r: 45 },
@@ -65,7 +65,7 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
               key={i}
               d="M -2 -2 L 0 0 L -2 2"
               fill="none"
-              stroke="var(--color-primary, #376AE2)"
+              stroke="var(--color-primary)"
               strokeOpacity="0.5"
               strokeWidth="0.7"
               strokeLinecap="round"

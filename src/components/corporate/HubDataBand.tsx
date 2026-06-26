@@ -118,12 +118,12 @@ export default function HubDataBand({ locale }: { locale: Locale }) {
               {/* time axis */}
               <line x1="40" y1="200" x2="410" y2="200" stroke="#E5E7EB" strokeWidth="1.5" />
               {/* divergence highlight band */}
-              <rect x="300" y="40" width="110" height="160" fill="var(--color-primary, #376AE2)" fillOpacity="0.04" />
+              <rect x="300" y="40" width="110" height="160" fill="var(--color-primary)" fillOpacity="0.04" />
               {/* dwell — measured (holds) */}
               <polyline
                 points="40,90 100,80 160,86 220,78 280,84 340,92 410,98"
                 fill="none"
-                stroke="var(--color-primary, #376AE2)"
+                stroke="var(--color-primary)"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
