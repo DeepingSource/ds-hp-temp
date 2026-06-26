@@ -16,27 +16,29 @@ const STAGES: Stage[] = [
   { no: '03', stage: 'Detect', name: 'store care', Icon: Radar },
   { no: '04', stage: 'Act', name: 'store agent', Icon: ClipboardCheck, emphasis: true },
 ];
-// desktop ring positions: top → right → bottom → left (clockwise)
+// desktop ring positions: icon CENTER seated on the r=34 ring at top/right/bottom/left (clockwise)
 const POS = [
-  'top-0 left-1/2 -translate-x-1/2 -translate-y-1/2',
-  'top-1/2 right-0 translate-x-1/2 -translate-y-1/2',
-  'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2',
-  'top-1/2 left-0 -translate-x-1/2 -translate-y-1/2',
+  'left-1/2 top-[16%] -translate-x-1/2 -translate-y-1/2', // 01 top
+  'left-[84%] top-1/2 -translate-x-1/2 -translate-y-1/2', // 02 right
+  'left-1/2 top-[84%] -translate-x-1/2 -translate-y-1/2', // 03 bottom
+  'left-[16%] top-1/2 -translate-x-1/2 -translate-y-1/2', // 04 left
 ];
 
 function Node({ s }: { s: Stage }) {
   const { Icon } = s;
   return (
-    <div className="flex flex-col items-center gap-1.5 w-32 text-center">
+    <div className="relative">
       <span
-        className={`flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-card ${
-          s.emphasis ? 'ring-2 ring-primary/30 ring-offset-2' : ''
+        className={`flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-card ring-2 ring-white ${
+          s.emphasis ? 'ring-primary/30 ring-offset-2' : ''
         }`}
       >
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
-      <span className="text-2xs font-mono font-medium text-gray-400">{s.no} · {s.stage}</span>
-      <span className="text-sm font-bold text-gray-900">{s.name}</span>
+      <span className="absolute left-1/2 top-full mt-2 w-32 -translate-x-1/2 text-center">
+        <span className="block text-2xs font-mono font-medium text-gray-400 whitespace-nowrap">{s.no} · {s.stage}</span>
+        <span className="block text-sm font-bold text-gray-900">{s.name}</span>
+      </span>
     </div>
   );
 }
@@ -53,13 +55,13 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
       {/* Desktop — circular cycle */}
       <div className="relative mx-auto hidden aspect-square w-full max-w-xl sm:block">
         <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="33" fill="none" stroke="var(--color-primary)" strokeOpacity="0.25" strokeWidth="0.5" strokeDasharray="1.5 2" />
-          {/* clockwise chevrons at the 4 diagonals (tangent direction) */}
+          <circle cx="50" cy="50" r="34" fill="none" stroke="var(--color-primary)" strokeOpacity="0.3" strokeWidth="0.5" strokeDasharray="1.5 2" />
+          {/* clockwise chevrons at the 4 diagonals between nodes (tangent direction) */}
           {[
-            { x: 73.3, y: 26.7, r: 45 },
-            { x: 73.3, y: 73.3, r: 135 },
-            { x: 26.7, y: 73.3, r: 225 },
-            { x: 26.7, y: 26.7, r: 315 },
+            { x: 74, y: 26, r: 45 },
+            { x: 74, y: 74, r: 135 },
+            { x: 26, y: 74, r: 225 },
+            { x: 26, y: 26, r: 315 },
           ].map((c, i) => (
             <path
               key={i}

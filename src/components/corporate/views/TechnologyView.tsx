@@ -5,13 +5,12 @@ import { StaggerItem } from '@/components/ui/StaggerItem';
 import { CountUp } from '@/components/ui/CountUp';
 import { AnonymizationPipeline } from '@/components/technology/AnonymizationPipeline';
 import LoopVideo from '@/components/ui/LoopVideo';
-import { PrivacyJourneyMockup } from '@/components/mockups';
-import AutonomyLadderTimeline from '@/components/mockups/AutonomyLadderTimeline';
 import IntegratedLoopDiagram from '@/components/mockups/IntegratedLoopDiagram';
 import {
   Fingerprint, ShieldCheck, Grid3x3, Shield, ArrowRight,
-  CheckCircle2, AlertCircle,
+  CheckCircle2, AlertCircle, Zap,
 } from 'lucide-react';
+import { PRIVACY_COPY } from '@/data/mockup-scenarios/technology';
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -325,6 +324,7 @@ const C: Record<Locale, Copy> = { ko, en, jp };
 
 export default function TechnologyView({ locale }: { locale: Locale }) {
   const t = C[locale];
+  const pj = PRIVACY_COPY[locale];
 
   const stack = t.stack.map((s, i) => ({ ...s, icon: stackIcons[i], href: stackHrefs[i] }));
   const poweredProducts = t.poweredProducts.map((p, i) => ({ ...p, href: poweredHrefs[i] }));
@@ -433,28 +433,28 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── Anonymizer 데모 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
+      {/* ── Anonymizer 데모 (Privacy by Design proof 통합) ── */}
+      <AnimatedSection className="py-20 lg:py-28 section-dark bg-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.demoEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
-            <p className="text-lg text-gray-500 leading-relaxed mb-6 break-keep">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-light mb-3">{t.demoEyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 break-keep">{t.demoTitle}</h2>
+            <p className="text-lg text-slate-300 leading-relaxed mb-6 break-keep">
               {t.demoSub}
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
               {t.demoItems.map((item) => (
                 <div key={item.label} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{item.label}</p>
-                    <p className="text-sm text-gray-500">{item.desc}</p>
+                    <p className="text-sm font-medium text-white">{item.label}</p>
+                    <p className="text-sm text-slate-400">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <figure className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+          <figure className="rounded-2xl overflow-hidden border border-white/10 bg-gray-900 shadow-card">
             <div className="overflow-x-auto">
               <LoopVideo
                 mp4="/videos/anon-3panel-demo.mp4"
@@ -463,15 +463,15 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
                 className="block h-auto w-full min-w-[680px]"
               />
             </div>
-            <figcaption className="px-5 py-3 text-xs text-gray-300 break-keep">{t.demoCaption}</figcaption>
+            {/* PROOF BAR — 0.03s erase + no original kept (merged from the retired Privacy Journey) */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 px-5 py-3.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-bold text-emerald-300 tabular-nums">
+                <Zap className="w-3.5 h-3.5" aria-hidden="true" />&lt; {pj.procChip}
+              </span>
+              <p className="text-sm font-medium text-white break-keep">{pj.heading}</p>
+            </div>
+            <figcaption className="px-5 py-3 text-xs text-slate-400 break-keep border-t border-white/10">{t.demoCaption}</figcaption>
           </figure>
-        </div>
-      </AnimatedSection>
-
-      {/* ── Privacy Journey (원본은 절대 남지 않는다) ── */}
-      <AnimatedSection className="py-20 lg:py-28 section-dark bg-slate-900">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <PrivacyJourneyMockup locale={locale} />
         </div>
       </AnimatedSection>
 
@@ -504,13 +504,6 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               );
             })}
           </StaggerContainer>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 자율성 사다리 (성숙 단계) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <AutonomyLadderTimeline locale={locale} />
         </div>
       </AnimatedSection>
 

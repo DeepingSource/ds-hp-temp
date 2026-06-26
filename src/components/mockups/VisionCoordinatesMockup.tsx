@@ -5,7 +5,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
-import type { Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 
 interface Props {
   active?: boolean;
@@ -26,6 +26,9 @@ type Copy = {
   coordinates: Coordinate[];
   cta: string;
   badge: string;
+  axes: { anon: string; space: string; ops: string };
+  origin: string;
+  destinationTag: string;
 };
 
 const COPY: Record<Locale, Copy> = {
@@ -62,6 +65,9 @@ const COPY: Record<Locale, Copy> = {
     ],
     cta: '5년 좌표의 상세 →',
     badge: '예시 화면',
+    axes: { anon: '익명화', space: '공간', ops: '운영' },
+    origin: '2025 · 오늘',
+    destinationTag: '2031 · 거의 유일한 위치',
   },
   en: {
     eyebrow: "Vision 2031 — where we're heading",
@@ -96,6 +102,9 @@ const COPY: Record<Locale, Copy> = {
     ],
     cta: 'The five-year coordinates in detail →',
     badge: 'Sample screen',
+    axes: { anon: 'Anonymization', space: 'Space', ops: 'Operations' },
+    origin: '2025 · Today',
+    destinationTag: '2031 · An almost singular position',
   },
   jp: {
     eyebrow: 'Vision 2031 — 私たちが目指す座標',
@@ -130,6 +139,9 @@ const COPY: Record<Locale, Copy> = {
     ],
     cta: '5年座標の詳細 →',
     badge: 'サンプル画面',
+    axes: { anon: '匿名化', space: '空間', ops: '運用' },
+    origin: '2025 · 現在',
+    destinationTag: '2031 · ほぼ唯一の座標',
   },
 };
 
@@ -143,10 +155,6 @@ export default function VisionCoordinatesMockup({
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const animate = active && isVisible && !reducedMotion;
 
-  // First four cards live in the grid; card 05 is the conclusion (last on mobile).
-  const gridCards = copy.coordinates.slice(0, 4);
-  const conclusion = copy.coordinates[4];
-
   const cardVariants = {
     hidden: { opacity: 0, y: 16 },
     visible: { opacity: 1, y: 0 },
@@ -155,19 +163,8 @@ export default function VisionCoordinatesMockup({
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c1018] p-6 text-slate-100 sm:p-8 ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-surface-dark p-6 text-slate-100 sm:p-8 ${className}`}
     >
-      {/* Subtle coordinate-grid backdrop for the vision tone */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
-
       <div className="relative">
         <SaaiHeader name="saai" tone="dark" className="mb-1.5" />
         <div className="mb-1 flex items-center justify-between gap-3">
@@ -184,84 +181,104 @@ export default function VisionCoordinatesMockup({
           {copy.lead}
         </p>
 
-        {/* Coordinate cards: 2x2 grid (desktop) + full-width conclusion below.
-            Mobile stacks vertically with card 05 last. */}
-        <ul className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {gridCards.map((c, i) => {
-            const isBlue = c.n === '04';
-            return (
-              <motion.li
-                key={c.n}
-                custom={i}
-                variants={cardVariants}
-                initial={animate ? 'hidden' : false}
-                animate={animate ? 'visible' : undefined}
-                transition={{ duration: 0.45, delay: animate ? i * 0.08 : 0 }}
-                className={`group relative rounded-xl border p-5 transition-colors ${
-                  isBlue
-                    ? 'border-primary/50 bg-primary/10'
-                    : 'border-white/10 bg-white/[0.03] hover:border-white/20'
-                }`}
-              >
-                <div className="flex items-start gap-4">
-                  <span
-                    aria-hidden
-                    className={`shrink-0 font-mono text-3xl font-bold leading-none tabular-nums ${
-                      isBlue ? 'text-primary' : 'text-slate-600'
-                    }`}
+        {/* Positioning map (left) + trajectory rail (right) — make the coordinate metaphor literal */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          {/* PANEL A — positioning map: 익명화·공간·운영 intersection + 2025→2031 trajectory */}
+          <div className="relative aspect-[5/4] overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] p-4">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.10]"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.6) 1px, transparent 1px)',
+                backgroundSize: '28px 28px',
+              }}
+            />
+            <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full" aria-hidden="true">
+              <defs>
+                <radialGradient id="vc-blob" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <g style={{ mixBlendMode: 'screen' }}>
+                <circle cx="100" cy="72" r="56" fill="url(#vc-blob)" />
+                <circle cx="70" cy="124" r="56" fill="rgba(91,134,234,0.45)" />
+                <circle cx="130" cy="124" r="56" fill="rgba(255,255,255,0.16)" />
+              </g>
+              <motion.path
+                d="M48 168 C 80 150, 92 130, 100 108"
+                fill="none"
+                stroke="var(--color-primary-light)"
+                strokeWidth="1.5"
+                strokeDasharray="3 4"
+                initial={animate ? { pathLength: 0 } : false}
+                animate={animate ? { pathLength: 1 } : undefined}
+                transition={{ duration: 1.1, ease: 'easeInOut' }}
+              />
+              <circle cx="48" cy="168" r="3" fill="rgba(255,255,255,0.7)" />
+              {animate && (
+                <motion.circle
+                  cx="100"
+                  cy="106"
+                  r="10"
+                  fill="none"
+                  stroke="var(--color-primary)"
+                  initial={{ scale: 0.6, opacity: 0.5 }}
+                  animate={{ scale: 1.6, opacity: 0 }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  style={{ transformOrigin: '100px 106px' }}
+                />
+              )}
+              <circle cx="100" cy="106" r="6" fill="var(--color-primary)" stroke="rgba(255,255,255,0.8)" />
+            </svg>
+            <span className="absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-white/10 px-2 py-0.5 text-2xs text-slate-200 break-keep">{copy.axes.anon}</span>
+            <span className="absolute bottom-6 left-4 rounded-full bg-white/10 px-2 py-0.5 text-2xs text-slate-200 break-keep">{copy.axes.space}</span>
+            <span className="absolute bottom-6 right-4 rounded-full bg-white/10 px-2 py-0.5 text-2xs text-slate-200 break-keep">{copy.axes.ops}</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-primary/15 px-2 py-1 text-2xs font-medium text-primary-light break-keep">{copy.destinationTag}</span>
+            <span className="absolute bottom-2 left-4 text-2xs text-slate-500 break-keep">{copy.origin}</span>
+          </div>
+
+          {/* PANEL B — trajectory rail: 01→05 stations, 05 is the terminal destination */}
+          <div className="relative">
+            <div aria-hidden className="absolute bottom-2 left-[15px] top-2 w-px bg-gradient-to-b from-white/15 via-white/10 to-primary/50" />
+            <ul className="space-y-5">
+              {copy.coordinates.map((c, i) => {
+                const last = c.n === '05';
+                return (
+                  <motion.li
+                    key={c.n}
+                    variants={cardVariants}
+                    initial={animate ? 'hidden' : false}
+                    animate={animate ? 'visible' : undefined}
+                    transition={{ duration: 0.4, delay: animate ? i * 0.08 : 0 }}
+                    className="relative flex gap-4"
                   >
-                    {c.n}
-                  </span>
-                  <div>
-                    <h3
-                      className={`text-base font-medium ${
-                        isBlue ? 'text-primary-light' : 'text-white'
+                    <span
+                      aria-hidden
+                      className={`relative z-10 grid shrink-0 place-items-center rounded-full font-mono tabular-nums ${
+                        last
+                          ? 'h-9 w-9 bg-primary text-sm text-white ring-4 ring-primary/20'
+                          : 'h-8 w-8 border border-white/15 bg-surface-dark text-xs text-slate-400'
                       }`}
                     >
-                      {c.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
-                      {c.body}
-                    </p>
-                  </div>
-                </div>
-              </motion.li>
-            );
-          })}
-        </ul>
-
-        {/* Card 05 — the conclusion. Larger visual weight; always last. */}
-        <motion.div
-          variants={cardVariants}
-          initial={animate ? 'hidden' : false}
-          animate={animate ? 'visible' : undefined}
-          transition={{ duration: 0.5, delay: animate ? 0.4 : 0 }}
-          className="mt-4"
-        >
-          <div className="relative overflow-hidden rounded-xl border border-white/15 bg-white/[0.04] p-6 sm:p-7">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <span
-                aria-hidden
-                className="shrink-0 font-mono text-5xl font-bold leading-none tabular-nums text-slate-500 sm:text-6xl"
-              >
-                {conclusion.n}
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-white sm:text-xl">
-                  {conclusion.title}
-                </h3>
-                <p className="mt-2 text-base leading-relaxed text-slate-300 sm:text-lg">
-                  {conclusion.body}
-                </p>
-              </div>
-            </div>
+                      {c.n}
+                    </span>
+                    <div className="pt-0.5">
+                      <h3 className={`text-sm break-keep ${last ? 'font-bold text-primary-light' : 'font-medium text-white'}`}>{c.title}</h3>
+                      <p className={`mt-1 text-sm leading-relaxed break-keep ${last ? 'text-slate-300' : 'text-slate-400'}`}>{c.body}</p>
+                    </div>
+                  </motion.li>
+                );
+              })}
+            </ul>
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA — subtle light/blue text link (dark surface) */}
-        <div className="mt-5">
+        <div className="mt-8">
           <a
-            href="/company"
+            href={localeHref(locale, '/company')}
             className="inline-flex items-center text-sm font-medium text-primary-light underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {copy.cta}

@@ -50,6 +50,12 @@ const FEEDBACK: Record<Locale, string> = {
   jp: '結果が再び入力へ',
 };
 
+const HUB: Record<Locale, string> = {
+  ko: 'SAAI 허브',
+  en: 'SAAI hub',
+  jp: 'SAAIハブ',
+};
+
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
   const loop = LOOP_STRUCT.map((s) => ({ ...s, desc: c.loop[s.id]?.desc ?? '' }));
@@ -77,7 +83,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto break-keep mb-12 lg:mb-14">
             {c.heroSub}
           </p>
-          <OperatingLoopGraphic locale={locale} hub={c.heroTitle} feedback={FEEDBACK[locale]} />
+          <OperatingLoopGraphic locale={locale} hub={HUB[locale]} feedback={FEEDBACK[locale]} />
         </div>
       </section>
 
