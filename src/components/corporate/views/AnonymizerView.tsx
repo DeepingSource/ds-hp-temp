@@ -10,6 +10,8 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { EdgePerfMonitorMockup } from '@/components/mockups';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import LoopVideo from '@/components/ui/LoopVideo';
 
 type Step = { title: string; desc: string };
 type SpecRow = { feature: string; detail: string; note: string };
@@ -28,6 +30,17 @@ type Copy = {
   mechanismSub: string;
   mechanismSteps: Step[];
   pipelineNodes: string[];
+
+  sliderBefore: string;
+  sliderAfter: string;
+  sliderCaption: string;
+  sliderAlt: string;
+
+  demoEyebrow: string;
+  demoTitle: string;
+  demoBody: string;
+  demoCaption: string;
+  demoAria: string;
 
   limitEyebrow: string;
   limitTitle: string;
@@ -74,6 +87,18 @@ const ko: Copy = {
     { title: '분석 신호 전달', desc: '익명화된 스트림과 분석 신호를 공간 지능·에이전트 단계로 넘깁니다. 분석은 끝까지 이어지지만, 원본 영상은 어디에도 저장되지 않습니다.' },
   ],
   pipelineNodes: ['입력', '신원 영역 검출', '입력 시점 익명화', '분석 신호 전달'],
+
+  sliderBefore: '원본',
+  sliderAfter: '익명화',
+  sliderCaption: '손잡이를 끌어 보세요 — 첫 단계에서 익명화. 원본은 시스템 어디에도 남지 않습니다.',
+  sliderAlt: '같은 인물의 익명화 전과 후 비교',
+
+  demoEyebrow: '신원이 아니라, 정보를 읽습니다',
+  demoTitle: '얼굴은 지워도, 맥락은 읽습니다.',
+  demoBody:
+    '신원은 되돌릴 수 없게 지우고, AI가 장면을 이해하는 데 필요한 최소 특징만 남깁니다. 그래서 익명화된 영상에서도 성별·연령대, 동선과 자세, 관심과 체류를 읽습니다 — 누구인지는 모른 채로.',
+  demoCaption: '얼굴은 노이즈. 그래도 읽히는 것 — 연령대·시선·발화. 신원은 없습니다.',
+  demoAria: '얼굴이 노이즈로 익명화된 인물에서 나이·성별·시선·발화 같은 속성을 읽어내는 데모 영상',
 
   limitEyebrow: 'Why not the usual way',
   limitTitle: '기존 비식별화의 딜레마',
@@ -140,6 +165,18 @@ const en: Copy = {
   ],
   pipelineNodes: ['Input', 'Detect identity', 'Anonymize on input', 'Forward signal'],
 
+  sliderBefore: 'Original',
+  sliderAfter: 'Anonymized',
+  sliderCaption: "Drag the handle — anonymized at the first step. The original is left nowhere in the system.",
+  sliderAlt: 'Before-and-after comparison of the same person, anonymized',
+
+  demoEyebrow: 'We read information, not identity',
+  demoTitle: 'The face is erased; the context is read.',
+  demoBody:
+    'Identity is erased beyond recovery; only the minimum features the AI needs to understand the scene are kept. So even on anonymized footage we read gender and age range, movement and posture, attention and dwell — without ever knowing who.',
+  demoCaption: 'The face is noise. Still readable — age range, gaze, speaking. No identity.',
+  demoAria: 'A demo reading attributes like age, gender, gaze, and speech from a person whose face is anonymized to noise',
+
   limitEyebrow: 'Why not the usual way',
   limitTitle: 'The dilemma of conventional de-identification',
   limitSub:
@@ -204,6 +241,18 @@ const jp: Copy = {
     { title: '分析信号の受け渡し', desc: '匿名化されたストリームと分析信号を、空間知能・エージェントのステップへ受け渡します。分析は最後まで続きますが、原本映像はどこにも保存されません。' },
   ],
   pipelineNodes: ['入力', '身元領域の検出', '入力時点で匿名化', '分析信号の伝達'],
+
+  sliderBefore: '原本',
+  sliderAfter: '匿名化',
+  sliderCaption: 'ハンドルを動かしてください——最初の段階で匿名化。原本はシステムのどこにも残しません。',
+  sliderAlt: '同じ人物の匿名化前と後の比較',
+
+  demoEyebrow: '身元ではなく、情報を読みます',
+  demoTitle: '顔は消しても、文脈は読みます。',
+  demoBody:
+    '身元は復元できないように消し、AIが場面を理解するのに必要な最小限の特徴だけを残します。だから匿名化された映像でも、性別・年代、動線と姿勢、関心と滞在を読みます——誰かは分からないまま。',
+  demoCaption: '顔はノイズ。それでも読めるもの——年代・視線・発話。身元はありません。',
+  demoAria: '顔がノイズに匿名化された人物から、年齢・性別・視線・発話などの属性を読み取るデモ映像',
 
   limitEyebrow: 'Why not the usual way',
   limitTitle: '従来の非識別化のジレンマ',
@@ -331,6 +380,18 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
             })}
           </ol>
 
+          {/* See it: drag-to-reveal before↔after (real product output) */}
+          <div className="mb-12 mx-auto max-w-xl">
+            <BeforeAfterSlider
+              beforeSrc="/images/technology/tech-anon-slider-before.webp"
+              afterSrc="/images/technology/tech-anon-slider-after.webp"
+              beforeLabel={t.sliderBefore}
+              afterLabel={t.sliderAfter}
+              caption={t.sliderCaption}
+              alt={t.sliderAlt}
+            />
+          </div>
+
           <div className="grid sm:grid-cols-2 gap-5">
             {mechanismSteps.map((step, i) => {
               const Icon = step.icon;
@@ -349,6 +410,35 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Demo — anonymized face, attributes still read (the brand thesis, shown) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+              <LoopVideo
+                mp4="/videos/pete-anon-demo.mp4"
+                webm="/videos/pete-anon-demo.webm"
+                poster="/images/technology/pete-anon-poster.webp"
+                ariaLabel={t.demoAria}
+                className="w-full h-auto block"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.demoEyebrow}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
+                {t.demoTitle}
+              </h2>
+              <p className="text-gray-600 leading-relaxed break-keep mb-6">
+                {t.demoBody}
+              </p>
+              <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">
+                {t.demoCaption}
+              </p>
+            </div>
           </div>
         </div>
       </AnimatedSection>

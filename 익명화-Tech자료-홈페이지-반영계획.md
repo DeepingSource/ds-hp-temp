@@ -4,7 +4,9 @@
 > 대상: 홈(`TrustCharter`·Hero) + `/technology/anonymizer` · `/technology/seal` · `/technology/spatial-ai`
 > 작성: 2026-06-26 · 상태: 검토용 초안
 
-> **구현 현황 (2026-06-26).** 권리·영상 무관 + 정직성 OK인 **AnonymizerView 시각화 2종 출하 완료** — (1) Mechanism 섹션에 **파이프라인 다이어그램**(입력→신원 영역 검출→입력 시점 익명화[강조]→분석 신호 전달), (2) **"기존 비식별화의 딜레마" 비교표**(원본/마스킹·블러/얼굴교체/SEAL × 법준수·활용도·비식별정확성, SEAL 행 하이라이트). PPTX 내러티브 §4 이식, KO/EN/JP. 인라인 SVG/표·실인물 0·영상 0. "AnonymizerView 시각 자료 0건"(§B) 일부 해소. **나머지는 보류** — before↔after 슬라이더·Pete 데모·3분할/전체부분 비교 영상은 모두 **법무(L1 iStock·L2 초상권/모델 릴리스) + 코덱 변환(A1 ffmpeg) 게이트** 의존. §F-6 원칙(익명화 출력은 실자료만, 합성 위조 금지)에 따라 실자료 확보 후 진행.
+> **구현 현황 (2026-06-26).** 권리·영상 무관 + 정직성 OK인 **AnonymizerView 시각화 2종 출하 완료** — (1) Mechanism 섹션에 **파이프라인 다이어그램**(입력→신원 영역 검출→입력 시점 익명화[강조]→분석 신호 전달), (2) **"기존 비식별화의 딜레마" 비교표**(원본/마스킹·블러/얼굴교체/SEAL × 법준수·활용도·비식별정확성, SEAL 행 하이라이트). PPTX 내러티브 §4 이식, KO/EN/JP. 인라인 SVG/표·실인물 0·영상 0. "AnonymizerView 시각 자료 0건"(§B) 일부 해소.
+>
+> **2차 — 실자산 반영 (법무 게이트 해소 후).** 보유 영상·이미지가 **stock 구매·처리본**이라 L1/L2 권리 해소됨(사용자 확인). 웹 처리(ffmpeg 8.1/cwebp) 후 AnonymizerView에 실자료 2종 투입: (1) **before↔after 드래그 슬라이더** — `face-before/after.png`→webp(4.5/11KB), 재사용 컴포넌트 `ui/BeforeAfterSlider.tsx`(pointer/range 접근성), Mechanism 파이프라인 아래. 실제 노이즈 출력 노출. (2) **Pete 킬러 데모** — `pete_face_anonymized2.mov`→`pete-anon-demo.mp4`(1.34MB)+`.webm`(1.47MB)+poster.webp, 재사용 컴포넌트 `ui/LoopVideo.tsx`(IntersectionObserver lazy + reduced-motion), "얼굴은 지워도 맥락은 읽습니다" 밴드(Mechanism↔Limitation). 카피 Part 1 §2/§3, KO/EN/JP. **나머지 보류** — 3분할 `anonymizer_demo`(3840×720, 모바일 세로분할 처리 필요)·SealView full/partial 비교(mpeg4 변환)·home TrustCharter 슬라이더·spatial-ai iStock는 다음 증분. ⚠️ Pete 영상 속 속성 말풍선은 영어(A3 현지화 미해결) — 인접 캡션은 로케일별 제공으로 보완.
 
 ---
 
