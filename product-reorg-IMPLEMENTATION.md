@@ -2,7 +2,9 @@
 
 > 스펙: `product-reorg-MASTER.md` (v14, 트랙 A·B 전 단계 확정).
 > 이 문서: 확정 스펙을 **실제 코드에 적용하는 순차 구현 플랜**. 각 Phase는 독립적으로 빌드-그린·배포 가능한 단위.
-> 작성: 2026-06-26 · 상태: 준비(매핑 완료, 미착수)
+> 작성: 2026-06-26 · 상태: **전체 6단계 구현 완료 (SHIPPED)**
+>
+> 구현 결과: P1 네비 2그룹(`163dabbb7`) · P2 /products 2-Tier+루프 그래픽(`b5c5555a5`) · P3 insight 핸드오프(`30a5b3a12`) · P4 care 엔터프라이즈+HQ 대시보드(`9fdd33b74`) · P5 count↔insight 문 분할(`2ad4b392a`) · P6 saai.store 리라벨+"AI POP" 정리(`6bcda8aec`). 신규 컴포넌트 3종: `OperatingLoopGraphic`·`HqRollupDashboardMockup`·`DoorSplitDiagram`. 전 단계 빌드그린·lint클린·Playwright 검증·KO/EN/JP. 잔여: §8 오픈이슈(가격 표기 통일)만.
 
 ## 확인된 전제 (블로커 해소)
 - ✅ 외부 사이트 `https://saai.store`·`https://storecare.ai` 이미 코드에서 참조(layout sameAs, SolutionTimeline, ProductsView) → nav "For owners" 외부링크(↗) 안전.
