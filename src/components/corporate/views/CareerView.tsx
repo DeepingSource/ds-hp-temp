@@ -7,6 +7,7 @@ import {
   Coffee, GraduationCap, Home, Users, Cpu,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
+import { roleFamilies } from '@/lib/careers';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -30,6 +31,14 @@ type Copy = {
   benefitsHeading: string;
   benefitsSub: string;
   benefits: { title: string; desc: string }[];
+  rolesEyebrow: string;
+  rolesHeading: string;
+  rolesSub: string;
+  rolesApply: string;
+  processEyebrow: string;
+  processHeading: string;
+  processSub: string;
+  process: { step: string; title: string; desc: string }[];
   mailSubject: string;
   ctaHeading: string;
   ctaSub: string;
@@ -61,6 +70,19 @@ const C: Record<Locale, Copy> = {
       { title: '개발 도구', desc: 'NVIDIA Inception 파트너로서 AI 개발에 필요한 컴퓨팅과 도구를 갖춥니다.' },
       { title: '일하기 좋은 환경', desc: '강남 본사, 집중과 협업이 균형을 이루는 업무 공간.' },
     ],
+    rolesEyebrow: 'Open Roles',
+    rolesHeading: '상시 영입 직군',
+    rolesSub: '지금 정해진 공고는 없지만, 아래 직군은 늘 좋은 동료를 기다립니다. 관심 직군으로 먼저 이야기를 들려주세요.',
+    rolesApply: '이 직군으로 지원',
+    processEyebrow: 'Process',
+    processHeading: '채용은 이렇게 진행됩니다',
+    processSub: '복잡하지 않게, 서로를 충분히 알 수 있도록.',
+    process: [
+      { step: '01', title: '지원', desc: '이력서·포트폴리오를 메일로 보내 주세요. 직군이 정해지지 않아도 괜찮습니다.' },
+      { step: '02', title: '대화', desc: '직무·팀과의 인터뷰로 서로의 방향을 맞춥니다 (보통 1~2회).' },
+      { step: '03', title: '과제 · 심층', desc: '직무에 따라 과제 또는 심층 인터뷰로 함께 일하는 모습을 그려 봅니다.' },
+      { step: '04', title: '오퍼 · 합류', desc: '처우를 협의하고, 한 팀으로 합류합니다.' },
+    ],
     mailSubject: '채용 문의',
     ctaHeading: '맞는 자리가 없어도 괜찮습니다',
     ctaSub: '함께하고 싶은 마음이 있다면, 먼저 이야기를 들려주세요',
@@ -90,6 +112,19 @@ const C: Record<Locale, Copy> = {
       { title: 'Best-in-class tools', desc: 'As an NVIDIA Inception partner, we provide the compute and tools needed for AI development.' },
       { title: 'A great place to work', desc: 'A Gangnam headquarters where focus and collaboration are in balance.' },
     ],
+    rolesEyebrow: 'Open Roles',
+    rolesHeading: 'Roles we’re always hiring for',
+    rolesSub: 'No specific opening right now, but these families are always open to great people. Reach out about the one that fits you.',
+    rolesApply: 'Apply for this role',
+    processEyebrow: 'Process',
+    processHeading: 'How hiring works',
+    processSub: 'Simple, with enough room for both sides to get to know each other.',
+    process: [
+      { step: '01', title: 'Apply', desc: 'Send your résumé/portfolio by email — even if you’re not sure which role fits.' },
+      { step: '02', title: 'Conversations', desc: 'Interviews with the role and team to align on direction (usually 1–2 rounds).' },
+      { step: '03', title: 'Assignment · deep dive', desc: 'Depending on the role, a take-home or deep-dive to picture working together.' },
+      { step: '04', title: 'Offer · join', desc: 'We agree on terms and you join the team.' },
+    ],
     mailSubject: 'Careers inquiry',
     ctaHeading: 'No matching role? That’s okay',
     ctaSub: 'If you’d like to join us, tell us your story first.',
@@ -118,6 +153,19 @@ const C: Record<Locale, Copy> = {
       { title: '成長支援', desc: 'カンファレンス · 書籍 · 教育の支援で、技術と視野をともに育てます。' },
       { title: '最高のツール', desc: 'NVIDIA Inceptionパートナーとして、AI開発に必要なコンピューティングとツールを備えます。' },
       { title: '働きやすい環境', desc: '江南本社、集中と協働がバランスする業務空間。' },
+    ],
+    rolesEyebrow: 'Open Roles',
+    rolesHeading: '通年で募集している職種',
+    rolesSub: '今は特定の公募はありませんが、以下の職種はいつでも良い仲間を待っています。気になる職種でまずはお声がけください。',
+    rolesApply: 'この職種で応募',
+    processEyebrow: 'Process',
+    processHeading: '採用の進め方',
+    processSub: '複雑にせず、お互いを十分に知れるように。',
+    process: [
+      { step: '01', title: '応募', desc: '履歴書・ポートフォリオをメールでお送りください。職種が決まっていなくても大丈夫です。' },
+      { step: '02', title: '対話', desc: '職務・チームとのインタビューで方向性をすり合わせます（通常1〜2回）。' },
+      { step: '03', title: '課題 · 深掘り', desc: '職務に応じて課題または深掘りインタビューで、一緒に働く姿を描きます。' },
+      { step: '04', title: 'オファー · 参加', desc: '条件を協議し、ひとつのチームとして参加いただきます。' },
     ],
     mailSubject: '採用のお問い合わせ',
     ctaHeading: '合うポジションがなくても大丈夫です',
@@ -185,8 +233,39 @@ export default function CareerView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 복지 · 문화 ── */}
+      {/* ── 상시 영입 직군 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.rolesHeading}</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">
+              {t.rolesSub}
+            </p>
+          </div>
+          <StaggerContainer className="grid sm:grid-cols-2 gap-5">
+            {roleFamilies[locale].map((r) => (
+              <StaggerItem key={r.key}>
+                <a
+                  href={`mailto:${COMPANY.contactEmail}?subject=${encodeURIComponent(`${t.mailSubject} — ${r.title}`)}`}
+                  className="group flex items-start gap-4 p-7 rounded-3xl border border-gray-100 bg-white h-full hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] duration-300"
+                >
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep group-hover:text-primary transition-colors">{r.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed break-keep mb-4">{r.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                      {t.rolesApply} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 복지 · 문화 ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.benefitsEyebrow}</p>
@@ -200,7 +279,7 @@ export default function CareerView({ locale }: { locale: Locale }) {
               const Icon = benefitIcons[i];
               return (
                 <StaggerItem key={b.title}>
-                  <div className="p-7 rounded-3xl border border-gray-100 bg-white h-full">
+                  <div className="p-7 rounded-3xl border border-gray-100 bg-slate-50 h-full">
                     <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
@@ -210,6 +289,30 @@ export default function CareerView({ locale }: { locale: Locale }) {
                 </StaggerItem>
               );
             })}
+          </StaggerContainer>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 채용 절차 ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.processEyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.processHeading}</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">
+              {t.processSub}
+            </p>
+          </div>
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {t.process.map((p) => (
+              <StaggerItem key={p.step}>
+                <div className="p-7 rounded-3xl border border-gray-100 bg-white h-full">
+                  <span className="text-2xl font-bold text-gray-200 tabular-nums">{p.step}</span>
+                  <h3 className="mt-3 text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
         </div>
       </AnimatedSection>

@@ -7,6 +7,7 @@ import {
   ArrowRight, TrendingUp, Cpu, Mail, Target, Building2, Map,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
+import { milestones } from '@/lib/company-milestones';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -36,7 +37,6 @@ type Copy = {
   tractionFootnote: string;
   milestonesEyebrow: string;
   milestonesHeading: string;
-  milestones: { year: string; title: string; desc: string }[];
   mailSubject: string;
   ctaHeading: string;
   ctaSub: string;
@@ -70,14 +70,6 @@ const C: Record<Locale, Copy> = {
     tractionFootnote: `${COMPANY.nvidiaPartner} · 설립 ${COMPANY.foundingYear}년`,
     milestonesEyebrow: 'Milestones',
     milestonesHeading: '한 점주의 질문에서 표준까지',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, title: '창업', desc: '한 점주의 질문에서 출발 — 익명화 AI로 오프라인 공간을 이해하다.' },
-      { year: '2020', title: COMPANY.nvidiaPartner, desc: '글로벌 AI 스타트업 프로그램 합류로 기술 생태계 기반 확보.' },
-      { year: '2023', title: '파트너 · 업종 확장', desc: `${COMPANY.partnerBrands}개 파트너 브랜드와 ${COMPANY.industries}개 업종으로 적용 범위 확대.` },
-      { year: '2024', title: `특허 ${COMPANY.patents}건`, desc: `${COMPANY.patentsLabel} — 익명화 · 공간 이해 기술 포트폴리오 고도화.` },
-      { year: '2025', title: 'SAAI 플랫폼', desc: '리테일 Spatial Agentic AI 플랫폼으로 운영 자동화 본격화.' },
-      { year: '2031', title: '비전', desc: COMPANY.vision },
-    ],
     mailSubject: 'IR 문의',
     ctaHeading: 'IR 문의',
     ctaSub: 'IR Deck·브랜드 자료는 개별 요청에 한해 제공합니다. 투자·IR 문의는 아래로 연락 주세요.',
@@ -109,14 +101,6 @@ const C: Record<Locale, Copy> = {
     tractionFootnote: `${COMPANY.nvidiaPartner} · Founded ${COMPANY.foundingYear}`,
     milestonesEyebrow: 'Milestones',
     milestonesHeading: 'From one store owner’s question to the standard',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, title: 'Founded', desc: 'Born from one store owner’s question — understanding offline spaces with anonymization AI.' },
-      { year: '2020', title: COMPANY.nvidiaPartner, desc: 'Secured a technology-ecosystem foundation by joining the global AI startup program.' },
-      { year: '2023', title: 'Partner · industry expansion', desc: `Expanded reach to ${COMPANY.partnerBrands} partner brands across ${COMPANY.industries} industries.` },
-      { year: '2024', title: `${COMPANY.patents} patents`, desc: 'Registered 66 · Pending 37 — advancing our anonymization and spatial-understanding portfolio.' },
-      { year: '2025', title: 'SAAI platform', desc: 'Scaling operational automation as a retail Spatial Agentic AI platform.' },
-      { year: '2031', title: 'Vision', desc: 'All the world’s data, kept safe — all the world’s spaces, made perfect.' },
-    ],
     mailSubject: 'IR inquiry',
     ctaHeading: 'IR inquiries',
     ctaSub: 'The IR Deck and brand materials are provided on an individual-request basis. For investment and IR inquiries, reach us below.',
@@ -148,14 +132,6 @@ const C: Record<Locale, Copy> = {
     tractionFootnote: `${COMPANY.nvidiaPartner} · 設立${COMPANY.foundingYear}年`,
     milestonesEyebrow: 'Milestones',
     milestonesHeading: '一軒の店主の問いから標準まで',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, title: '創業', desc: '一軒の店主の問いから出発 — 匿名化AIでオフライン空間を理解する。' },
-      { year: '2020', title: COMPANY.nvidiaPartner, desc: 'グローバルAIスタートアッププログラム参加で技術エコシステムの基盤を確保。' },
-      { year: '2023', title: 'パートナー · 業種の拡大', desc: `${COMPANY.partnerBrands}社のパートナーブランドと${COMPANY.industries}業種へ適用範囲を拡大。` },
-      { year: '2024', title: `特許${COMPANY.patents}件`, desc: '登録66件 · 出願37件 — 匿名化 · 空間理解の技術ポートフォリオを高度化。' },
-      { year: '2025', title: 'SAAIプラットフォーム', desc: 'リテールSpatial Agentic AIプラットフォームとして運営自動化を本格化。' },
-      { year: '2031', title: 'ビジョン', desc: '世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。' },
-    ],
     mailSubject: 'IRのお問い合わせ',
     ctaHeading: 'IRのお問い合わせ',
     ctaSub: 'IR Deck · ブランド資料は個別のご要望に応じて提供します。投資 · IRのお問い合わせは下記までご連絡ください。',
@@ -277,7 +253,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
           <div className="relative">
             <div className="absolute left-[7px] top-1 bottom-1 w-px bg-gray-200" aria-hidden="true" />
             <StaggerContainer className="space-y-8">
-              {t.milestones.map((m) => (
+              {milestones[locale].map((m) => (
                 <StaggerItem key={m.year}>
                   <div className="relative pl-8">
                     <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-slate-50" aria-hidden="true" />

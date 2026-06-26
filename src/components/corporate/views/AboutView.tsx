@@ -8,9 +8,11 @@ import MasterPair from '@/components/corporate/MasterPair';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
 import FiveQuestionsMockup from '@/components/mockups/FiveQuestionsMockup';
 import {
-  ArrowRight, Lock, Maximize, Calendar, Award, Users, Handshake,
+  ArrowRight, Lock, Maximize, Calendar, Award, Handshake,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
+import { milestoneHighlights } from '@/lib/company-milestones';
+import { leadership } from '@/lib/leadership';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -39,10 +41,9 @@ type Copy = {
   storyEyebrow: string;
   storyHeading: string;
   storySub: string;
-  milestones: { year: string; label: string; desc: string }[];
   leadershipEyebrow: string;
   leadershipHeading: string;
-  leadership: { role: string; focus: string }[];
+  leadershipSub: string;
   partnersEyebrow: string;
   partnersHeading: string;
   partnersSub: string;
@@ -70,20 +71,9 @@ const C: Record<Locale, Copy> = {
     storyEyebrow: 'Our Story',
     storyHeading: '익명화에서, 물리 세계로',
     storySub: '우리는 익명화에서 시작했습니다. 비전 AI로 공간을 읽다가, 사람이 일하는 물리 세계를 만났습니다.',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, label: '설립', desc: '영상의 익명화를 다듬기 시작' },
-      { year: '2020', label: 'NVIDIA Inception', desc: 'Inception Partner 합류 · Series A1' },
-      { year: '2021', label: '100+ 매장', desc: '공간을 읽는 AI 상용화' },
-      { year: '현재', label: `특허 ${COMPANY.patents}건`, desc: COMPANY.patentsLabel },
-    ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: '공간을 다시 만드는 사람들',
-    leadership: [
-      { role: '경영 리더십 (CEO)', focus: '비전 · 전략 · 사업 전반' },
-      { role: '기술 리더십 (CTO)', focus: '익명화 · 공간 지능 · 에이전트 AI' },
-      { role: '제품 리더십 (CPO)', focus: 'SAAI 제품군 · 사용자 경험' },
-      { role: '연구 리더십 (Research)', focus: '컴퓨터 비전 · 모델 연구' },
-    ],
+    leadershipSub: '익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.',
     partnersEyebrow: 'Trusted Partners',
     partnersHeading: `${COMPANY.partnerBrands}개 파트너 브랜드가 함께합니다`,
     partnersSub: `${COMPANY.industries}개 업종에서 검증된 SAAI. ${COMPANY.nvidiaPartner}로서 글로벌 표준을 따릅니다.`,
@@ -109,20 +99,9 @@ const C: Record<Locale, Copy> = {
     storyEyebrow: 'Our Story',
     storyHeading: 'From anonymization to the physical world',
     storySub: 'We started with anonymization. Reading space with vision AI, we met the physical world — where people work and live.',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, label: 'Founded', desc: 'Began honing video anonymization' },
-      { year: '2020', label: 'NVIDIA Inception', desc: 'Joined as Inception Partner · Series A1' },
-      { year: '2021', label: '100+ stores', desc: 'Space-reading AI goes commercial' },
-      { year: 'Today', label: `${COMPANY.patents} patents`, desc: 'Registered 66 · Pending 37' },
-    ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: 'The people remaking space',
-    leadership: [
-      { role: 'Executive Leadership (CEO)', focus: 'Vision · strategy · overall business' },
-      { role: 'Technology Leadership (CTO)', focus: 'Anonymization · spatial AI · agentic AI' },
-      { role: 'Product Leadership (CPO)', focus: 'SAAI product · user experience' },
-      { role: 'Research Leadership', focus: 'Computer vision · model research' },
-    ],
+    leadershipSub: 'Roots in anonymization, global business, and engineering execution — three axes, one goal.',
     partnersEyebrow: 'Trusted Partners',
     partnersHeading: `${COMPANY.partnerBrands} partner brands work with us`,
     partnersSub: `SAAI proven across ${COMPANY.industries} industries. As an ${COMPANY.nvidiaPartner}, we follow the global standard.`,
@@ -148,20 +127,9 @@ const C: Record<Locale, Copy> = {
     storyEyebrow: 'Our Story',
     storyHeading: '匿名化から、物理世界へ',
     storySub: '私たちは匿名化から始めました。ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。',
-    milestones: [
-      { year: `${COMPANY.foundingYear}`, label: '設立', desc: '映像の匿名化を磨き始めました' },
-      { year: '2020', label: 'NVIDIA Inception', desc: 'Inception Partnerに参加 · Series A1' },
-      { year: '2021', label: '100+ 店舗', desc: '空間を読むAIを商用化' },
-      { year: '現在', label: `特許${COMPANY.patents}件`, desc: '登録66件 · 出願37件' },
-    ],
     leadershipEyebrow: 'Leadership',
     leadershipHeading: '空間を作り直す人々',
-    leadership: [
-      { role: '経営リーダーシップ (CEO)', focus: 'ビジョン · 戦略 · 事業全般' },
-      { role: '技術リーダーシップ (CTO)', focus: '匿名化 · 空間知能 · エージェントAI' },
-      { role: '製品リーダーシップ (CPO)', focus: 'SAAI製品 · ユーザー体験' },
-      { role: '研究リーダーシップ (Research)', focus: 'コンピュータビジョン · モデル研究' },
-    ],
+    leadershipSub: '匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。',
     partnersEyebrow: 'Trusted Partners',
     partnersHeading: `${COMPANY.partnerBrands}社のパートナーブランドがともにあります`,
     partnersSub: `${COMPANY.industries}業種で実証されたSAAI。${COMPANY.nvidiaPartner}として、グローバル標準に準拠します。`,
@@ -344,12 +312,12 @@ export default function AboutView({ locale }: { locale: Locale }) {
           </div>
 
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {t.milestones.map((m) => (
+            {milestoneHighlights(locale).map((m) => (
               <StaggerItem key={m.year}>
                 <div className="p-6 bg-white rounded-2xl border border-gray-100 h-full text-center">
                   <Calendar className="w-5 h-5 text-primary mx-auto mb-3" />
                   <p className="text-2xl font-bold text-gray-900 mb-1">{m.year}</p>
-                  <p className="text-sm font-bold text-primary mb-2">{m.label}</p>
+                  <p className="text-sm font-bold text-primary mb-2 break-keep">{m.title}</p>
                   <p className="text-xs text-gray-500 leading-relaxed break-keep">{m.desc}</p>
                 </div>
               </StaggerItem>
@@ -364,17 +332,19 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="text-center mb-16">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.leadershipEyebrow}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.leadershipHeading}</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{t.leadershipSub}</p>
           </div>
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.leadership.map((l) => (
-              <StaggerItem key={l.role}>
-                <div className="p-6 rounded-3xl border border-gray-100 bg-slate-50 h-full text-center">
-                  <div className="w-16 h-16 rounded-full bg-slate-200 mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-7 h-7 text-slate-500" />
+          <StaggerContainer className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {leadership[locale].map((l) => (
+              <StaggerItem key={l.key}>
+                <div className="p-7 rounded-3xl border border-gray-100 bg-slate-50 h-full text-center">
+                  <div className="w-20 h-20 rounded-full bg-primary/10 mx-auto mb-5 flex items-center justify-center" aria-hidden="true">
+                    <span className="text-2xl font-bold text-primary">{l.initials}</span>
                   </div>
-                  <p className="text-base font-bold text-gray-900 mb-1 break-keep">{l.role}</p>
-                  <p className="text-sm text-gray-500 leading-relaxed break-keep">{l.focus}</p>
+                  <p className="text-lg font-bold text-gray-900 mb-0.5 break-keep">{l.name}</p>
+                  <p className="text-sm font-bold text-primary mb-3 break-keep">{l.role}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed break-keep text-left">{l.bio}</p>
                 </div>
               </StaggerItem>
             ))}
