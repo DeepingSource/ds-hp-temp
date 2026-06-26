@@ -63,7 +63,7 @@ export const leadership: Record<Locale, Leader[]> = {
     },
     {
       key: 'cbo',
-      name: 'Sang-ho Kim',
+      name: 'Sang-ho Geum',
       role: 'Chief Business Officer (CBO)',
       focus: 'Business strategy · global partnerships',
       bio: 'Led B2B business strategy, sales, and new ventures at SK Broadband for 26 years, scaling a cloud CCTV service to ₩10B in annual revenue within four years. He drives DeepingSource’s domestic and global expansion.',
@@ -89,7 +89,7 @@ export const leadership: Record<Locale, Leader[]> = {
     },
     {
       key: 'cbo',
-      name: 'Sang-ho Kim (クム・サンホ)',
+      name: 'Sang-ho Geum (クム・サンホ)',
       role: '最高事業責任者 (CBO)',
       focus: '事業戦略 · グローバルパートナーシップ',
       bio: 'SKブロードバンドで26年間、B2Bの事業戦略・営業・新規事業を統括。クラウドCCTVサービスを4年で年商100億ウォン規模に成長させた経験で、国内外の事業拡大を導きます。',

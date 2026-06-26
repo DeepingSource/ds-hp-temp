@@ -50,6 +50,7 @@ type Copy = {
   demoSub: string;
   demoItems: DemoItem[];
   demoCaption: string;
+  demoAria: string;
 
   coreEyebrow: string;
   coreTitle: (n: number) => string;
@@ -127,6 +128,7 @@ const ko: Copy = {
     { label: '원본 미보존', desc: '원본은 시스템 어디에도 남기지 않습니다' },
   ],
   demoCaption: '실제 출력입니다 — 합성 일러스트가 아니라, 제품이 만든 익명화 영상. 원본 → 익명화 → 익명 상태로 추적.',
+  demoAria: '원본·익명화·익명 추적 3분할로 보여주는 실제 익명화 출력 영상',
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => '공간을 운영하는, 세 개의 기술 축',
@@ -204,6 +206,7 @@ const en: Copy = {
     { label: 'No original kept', desc: 'The original is left nowhere in the system' },
   ],
   demoCaption: "This is real output — the product's own anonymized footage, not a synthetic illustration. Original → anonymized → tracked while anonymized.",
+  demoAria: 'A three-panel clip showing real anonymization output — original, anonymized, and tracked while anonymized',
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => 'Three technical axes that operate space',
@@ -281,6 +284,7 @@ const jp: Copy = {
     { label: '原本を残さない', desc: '原本はシステムのどこにも残しません' },
   ],
   demoCaption: '実際の出力です——合成イラストではなく、製品が生成した匿名化映像。原本 → 匿名化 → 匿名のまま追跡。',
+  demoAria: '原本・匿名化・匿名追跡の3分割で示す実際の匿名化出力映像',
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => '空間を運営する、三つの技術の軸',
@@ -430,7 +434,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* ── Anonymizer 데모 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
+      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.demoEyebrow}</p>
@@ -455,7 +459,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               <LoopVideo
                 mp4="/videos/anon-3panel-demo.mp4"
                 poster="/images/technology/anon-3panel-poster.webp"
-                ariaLabel={t.demoCaption}
+                ariaLabel={t.demoAria}
                 className="block h-auto w-full min-w-[680px]"
               />
             </div>

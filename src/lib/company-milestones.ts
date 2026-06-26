@@ -47,7 +47,7 @@ export const milestones: Record<Locale, Milestone[]> = {
     { year: '2024', title: 'SOC 2 · Top Innovator', desc: 'SOC 2 認証を取得、NextRise 2024「Top Innovator」を受賞。', highlight: true },
     { year: '2025', title: 'KDDI 戦略投資 · グローバル', desc: 'KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。' },
     { year: '現在', title: `特許${COMPANY.patents}件`, desc: '登録66件 · 出願37件', highlight: true },
-    { year: '2031', title: 'ビジョン', desc: COMPANY.vision },
+    { year: '2031', title: 'ビジョン', desc: '世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。' },
   ],
 };
 

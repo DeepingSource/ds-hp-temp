@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 /**
  * LoopVideo — a poster-first, lazy, autoplaying loop clip for product demos.
- * Sources load only when the element nears the viewport (IntersectionObserver),
- * protecting LCP/bandwidth below the fold. Honors prefers-reduced-motion by
- * staying on the poster (no autoplay). Always muted + playsInline for mobile.
+ * Sources are always present (so the browser knows what to fetch) but `preload`
+ * is "none", so nothing downloads until the clip nears the viewport, where an
+ * IntersectionObserver calls play() (which triggers the load). It pauses when
+ * scrolled away. Honors prefers-reduced-motion by staying on the poster.
+ * Always muted + playsInline for mobile autoplay policies.
  */
 export default function LoopVideo({
   mp4,
@@ -22,21 +24,22 @@ export default function LoopVideo({
   className?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return; // stay on poster
     const el = ref.current;
     if (!el) return;
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setLoad(true);
-          io.disconnect();
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            if (!reduce) el.play().catch(() => {});
+          } else {
+            el.pause();
+          }
         }
       },
-      { rootMargin: '200px' },
+      { rootMargin: '100px' },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -51,11 +54,10 @@ export default function LoopVideo({
       muted
       loop
       playsInline
-      autoPlay={load}
       preload="none"
     >
-      {load && webm && <source src={webm} type="video/webm" />}
-      {load && <source src={mp4} type="video/mp4" />}
+      {webm && <source src={webm} type="video/webm" />}
+      <source src={mp4} type="video/mp4" />
     </video>
   );
 }

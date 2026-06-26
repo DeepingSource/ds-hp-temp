@@ -247,7 +247,7 @@ export default function SealView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* S/E/A/L promise */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-2xl">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.promiseEyebrow}</p>

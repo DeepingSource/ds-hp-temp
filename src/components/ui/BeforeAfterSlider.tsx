@@ -45,7 +45,7 @@ export default function BeforeAfterSlider({
         ref={frameRef}
         className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-card select-none touch-none"
         onPointerDown={(e) => {
-          (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
           setFromClientX(e.clientX);
         }}
         onPointerMove={(e) => {
