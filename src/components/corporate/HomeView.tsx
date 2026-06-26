@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CorporateHero from './CorporateHero';
 import ProblemBeat from './ProblemBeat';
-import ProductPreview from './ProductPreview';
+import FeatureCarousel from './FeatureCarousel';
 import CaseBand from './CaseBand';
 import TrustCharter from './TrustCharter';
 import CtaBand from './CtaBand';
@@ -100,8 +100,8 @@ export default function HomeView({ locale }: { locale: Locale }) {
       {/* 2 — Problem / tension */}
       <ProblemBeat locale={locale} />
 
-      {/* 3 — Product at a glance (device proof) */}
-      <ProductPreview locale={locale} />
+      {/* 3 — Products at a glance: 4-product spotlight carousel (count→insight→care→agent) */}
+      <FeatureCarousel locale={locale} />
 
       {/* 3b — Field scenarios: what changes on the floor (illustrative proof) */}
       <CaseBand locale={locale} />
