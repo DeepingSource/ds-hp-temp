@@ -1,9 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * HubDataBand — "the hub completes when you drop in revenue" (home, P0 per PRD
@@ -76,6 +80,8 @@ const dict: Record<
 
 export default function HubDataBand({ locale }: { locale: Locale }) {
   const t = dict[locale];
+  const { ref: chartRef, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.4 });
+  const reduced = usePrefersReducedMotion();
   return (
     <Section variant="alt">
       <Container>
@@ -108,8 +114,8 @@ export default function HubDataBand({ locale }: { locale: Locale }) {
             </Link>
           </div>
 
-          {/* Right — dual-line timeline mockup (dwell vs revenue diverge) */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-card">
+          {/* Right — dual-line timeline mockup (dwell holds, then revenue drops — drawn on scroll) */}
+          <div ref={chartRef} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-card">
             <svg viewBox="0 0 440 240" role="img" aria-label={t.svgLabel} className="w-full h-auto">
               {/* horizontal gridlines */}
               {[60, 110, 160].map((y) => (
@@ -117,9 +123,12 @@ export default function HubDataBand({ locale }: { locale: Locale }) {
               ))}
               {/* time axis */}
               <line x1="40" y1="200" x2="410" y2="200" stroke="#E5E7EB" strokeWidth="1.5" />
-              {/* divergence highlight band */}
-              <rect x="300" y="40" width="110" height="160" fill="var(--color-primary)" fillOpacity="0.04" />
-              {/* dwell — measured (holds) */}
+              {/* divergence highlight band — fades in once both lines have drawn */}
+              <rect
+                x="300" y="40" width="110" height="160" fill="var(--color-primary)" fillOpacity="0.04"
+                style={{ opacity: show ? 1 : 0, transition: reduced ? undefined : 'opacity 0.5s var(--ease-out-cubic)', transitionDelay: reduced ? undefined : '1.6s' }}
+              />
+              {/* dwell — measured (holds): draws first */}
               <polyline
                 points="40,90 100,80 160,86 220,78 280,84 340,92 410,98"
                 fill="none"
@@ -127,8 +136,10 @@ export default function HubDataBand({ locale }: { locale: Locale }) {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeDasharray="420"
+                style={{ strokeDashoffset: show ? 0 : 420, transition: reduced ? undefined : 'stroke-dashoffset 0.9s var(--ease-out-cubic)' }}
               />
-              {/* revenue — provided (drops late) */}
+              {/* revenue — provided (drops late): draws after dwell, so the divergence reads */}
               <polyline
                 points="40,98 100,88 160,94 220,86 280,98 340,134 410,168"
                 fill="none"
@@ -136,6 +147,8 @@ export default function HubDataBand({ locale }: { locale: Locale }) {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeDasharray="420"
+                style={{ strokeDashoffset: show ? 0 : 420, transition: reduced ? undefined : 'stroke-dashoffset 0.9s var(--ease-out-cubic)', transitionDelay: reduced ? undefined : '0.85s' }}
               />
             </svg>
             <div className="mt-4 flex items-center justify-center gap-6 text-xs text-gray-500">

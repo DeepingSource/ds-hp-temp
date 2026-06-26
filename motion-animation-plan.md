@@ -41,6 +41,8 @@
 | **A5** | **`useParallax` 훅** | `useScroll` + `useTransform`(+`useSpring`) | `src/hooks/useParallax.ts`(신규) | 사이트 첫 scroll-linked 모션 기반. [M] |
 | A6 | (선택) 번들 다이어트 | `LazyMotion` + `m` | root + 40 파일 | `motion.*`→`m.*`, SSG 마케팅 사이트 JS 축소. [L · P1로 분류 가능] |
 
+> ⚠️ **구현 노트 (PR2에서 발견):** 이 스택(Next 16 / React 19 / framer-motion v12)에서 **`motion.*` SVG 엘리먼트(circle/path/polyline/rect/g)는 클라이언트 하이드레이션이 안 붙어** SSR 정적 상태(drawn)로 고정된다(inline style 미적용 확인). framer **HTML 모션(div/span: opacity/scale/scaleY)은 정상**. → **SVG draw/fade는 CSS로**(`strokeDasharray`+`strokeDashoffset` transition, `opacity` transition, `--ease-out-cubic` var) 처리하고 `useScrollAnimation`의 `isVisible`로 토글한다. HTML 모션만 framer 사용. 모든 Phase B~D의 SVG 작업에 적용.
+
 > Phase A는 **1개 PR**로 묶고, 기존 동작을 깨지 않는 추가/리팩터만(시각 변화 최소). A4/A5는 이후 모든 Phase가 소비.
 
 ---

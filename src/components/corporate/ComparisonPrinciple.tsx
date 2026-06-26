@@ -1,3 +1,5 @@
+'use client';
+
 import { CalendarRange, Users, Layers } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
@@ -7,6 +9,8 @@ import IconChip from '@/components/ui/IconChip';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { type Locale } from '@/lib/i18n';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * ComparisonPrinciple — "how to read the numbers" (home, P0 per PRD saai insight).
@@ -104,6 +108,8 @@ const dict: Record<
 
 export default function ComparisonPrinciple({ locale }: { locale: Locale }) {
   const t = dict[locale];
+  const { ref: svgRef, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.5 });
+  const reduced = usePrefersReducedMotion();
   return (
     <Section variant="default">
       <Container>
@@ -130,16 +136,17 @@ export default function ComparisonPrinciple({ locale }: { locale: Locale }) {
           })}
         </StaggerContainer>
 
-        {/* Peer-distribution visual — where one store sits in its peer group */}
-        <div className="mx-auto max-w-xl">
+        {/* Peer-distribution visual — curve draws on scroll, then the store marker pops */}
+        <div ref={svgRef} className="mx-auto max-w-xl">
           <svg viewBox="0 0 420 140" role="img" aria-label={t.svgLabel} className="w-full h-auto">
             {/* baseline */}
             <line x1="30" y1="110" x2="390" y2="110" stroke="#E5E7EB" strokeWidth="1.5" />
-            {/* distribution curve */}
+            {/* distribution curve — fill fades, stroke draws */}
             <path
               d="M30,110 C110,110 145,40 210,40 C275,40 310,110 390,110 Z"
               fill="var(--color-primary)"
               fillOpacity="0.08"
+              style={{ opacity: show ? 1 : 0, transition: reduced ? undefined : 'opacity 0.6s var(--ease-out-cubic)', transitionDelay: reduced ? undefined : '0.4s' }}
             />
             <path
               d="M30,110 C110,110 145,40 210,40 C275,40 310,110 390,110"
@@ -147,14 +154,18 @@ export default function ComparisonPrinciple({ locale }: { locale: Locale }) {
               stroke="var(--color-primary)"
               strokeOpacity="0.35"
               strokeWidth="2"
+              strokeDasharray="450"
+              style={{ strokeDashoffset: show ? 0 : 450, transition: reduced ? undefined : 'stroke-dashoffset 1s var(--ease-out-cubic)' }}
             />
             {/* peer average tick */}
             <line x1="210" y1="40" x2="210" y2="118" stroke="#9CA3AF" strokeWidth="1" strokeDasharray="3 3" />
             <text x="210" y="132" textAnchor="middle" className="fill-gray-400" fontSize="11">{t.peerAvg}</text>
-            {/* this store marker (above average) */}
-            <line x1="312" y1="78" x2="312" y2="110" stroke="var(--color-primary)" strokeWidth="1.5" />
-            <circle cx="312" cy="78" r="5" fill="var(--color-primary)" />
-            <text x="312" y="68" textAnchor="middle" className="fill-primary" fontSize="11" fontWeight="700">{t.thisStore}</text>
+            {/* this store marker (above average) — fades in after the curve draws */}
+            <g style={{ opacity: show ? 1 : 0, transition: reduced ? undefined : 'opacity 0.45s var(--ease-out-cubic)', transitionDelay: reduced ? undefined : '1.05s' }}>
+              <line x1="312" y1="78" x2="312" y2="110" stroke="var(--color-primary)" strokeWidth="1.5" />
+              <circle cx="312" cy="78" r="5" fill="var(--color-primary)" />
+              <text x="312" y="68" textAnchor="middle" className="fill-primary" fontSize="11" fontWeight="700">{t.thisStore}</text>
+            </g>
           </svg>
           <p className="mt-3 text-xs text-gray-500 text-center break-keep">{t.caption}</p>
         </div>

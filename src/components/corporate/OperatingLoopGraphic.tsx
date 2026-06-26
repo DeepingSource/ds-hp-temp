@@ -1,5 +1,10 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { DoorOpen, Grid3x3, Radar, ClipboardCheck, RotateCw } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * OperatingLoopGraphic — the /products hero visual (product-reorg D2, §10.5).
@@ -44,6 +49,8 @@ function Node({ s }: { s: Stage }) {
 }
 
 export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale: Locale; hub: string; feedback: string }) {
+  const { ref, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const reduced = usePrefersReducedMotion();
   const label = locale === 'ko'
     ? 'store count·insight·care·agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
     : locale === 'jp'
@@ -52,10 +59,13 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
 
   return (
     <div role="img" aria-label={label}>
-      {/* Desktop — circular cycle */}
-      <div className="relative mx-auto hidden aspect-square w-full max-w-xl sm:block">
+      {/* Desktop — circular cycle (ring draws on scroll, then nodes pop clockwise) */}
+      <div ref={ref} className="relative mx-auto hidden aspect-square w-full max-w-xl sm:block">
         <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="34" fill="none" stroke="var(--color-primary)" strokeOpacity="0.3" strokeWidth="0.5" strokeDasharray="1.5 2" />
+          <circle
+            cx="50" cy="50" r="34" fill="none" stroke="var(--color-primary)" strokeOpacity="0.3" strokeWidth="0.5" strokeDasharray="1.5 2"
+            style={{ opacity: show ? 1 : 0, transition: reduced ? undefined : 'opacity 0.8s var(--ease-out-cubic)' }}
+          />
           {/* clockwise chevrons at the 4 diagonals between nodes (tangent direction) */}
           {[
             { x: 74, y: 26, r: 45 },
@@ -73,6 +83,7 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
               strokeLinecap="round"
               strokeLinejoin="round"
               transform={`translate(${c.x} ${c.y}) rotate(${c.r})`}
+              style={{ opacity: show ? 1 : 0, transition: reduced ? undefined : 'opacity 0.4s var(--ease-out-cubic)', transitionDelay: reduced ? undefined : `${0.5 + i * 0.08}s` }}
             />
           ))}
         </svg>
@@ -86,11 +97,17 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
           </p>
         </div>
 
-        {/* 4 nodes */}
+        {/* 4 nodes — fade in clockwise after the ring draws */}
         {STAGES.map((s, i) => (
-          <div key={s.name} className={`absolute ${POS[i]}`}>
+          <motion.div
+            key={s.name}
+            className={`absolute ${POS[i]}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: show ? 1 : 0 }}
+            transition={{ duration: reduced ? 0 : 0.4, delay: reduced ? 0 : 0.4 + i * 0.13 }}
+          >
             <Node s={s} />
-          </div>
+          </motion.div>
         ))}
       </div>
 

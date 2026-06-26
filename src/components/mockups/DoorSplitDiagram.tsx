@@ -1,5 +1,11 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { DoorOpen, ArrowRight } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { ease } from '@/lib/easing';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
@@ -59,8 +65,10 @@ const HEAT = [0.2, 0.5, 0.9, 0.4, 0.8, 0.6, 0.3, 0.7, 0.5];
 
 export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale; ariaLabel?: string }) {
   const t = dict[locale];
+  const { ref, isVisible: show } = useScrollAnimation<HTMLElement>({ threshold: 0.4 });
+  const reduced = usePrefersReducedMotion();
   return (
-    <figure role="img" aria-label={ariaLabel ?? `${t.outsideTag} ↔ ${t.insideTag}`} className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-card">
+    <figure ref={ref} role="img" aria-label={ariaLabel ?? `${t.outsideTag} ↔ ${t.insideTag}`} className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-card">
       <div className="grid items-stretch gap-4 sm:grid-cols-[1fr_auto_1fr]">
         {/* Outside — store count */}
         <div className="rounded-xl border border-gray-100 bg-gray-50 p-4">
@@ -90,13 +98,26 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
           <p className="text-xs text-gray-500 mb-3 break-keep">{t.insideTitle}</p>
           <div className="mb-3 grid grid-cols-3 gap-1" aria-label={t.heatLabel}>
             {HEAT.map((v, i) => (
-              <span key={i} className="h-6 rounded" style={{ backgroundColor: `color-mix(in oklab, var(--color-primary) ${Math.round(v * 100)}%, white)` }} />
+              <motion.span
+                key={i}
+                className="h-6 rounded"
+                style={{ backgroundColor: `color-mix(in oklab, var(--color-primary) ${Math.round(v * 100)}%, white)` }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: show ? 1 : 0 }}
+                transition={{ duration: reduced ? 0 : 0.3, delay: reduced ? 0 : (i % 3) * 0.05 + Math.floor(i / 3) * 0.08 }}
+              />
             ))}
           </div>
           <div className="flex items-end gap-1.5">
-            {t.funnel.map((f) => (
+            {t.funnel.map((f, i) => (
               <span key={f.label} className="flex-1 text-center">
-                <span className="block rounded-t bg-primary/80" style={{ height: `${(Number(f.n) / 382) * 36 + 8}px` }} />
+                <motion.span
+                  className="block origin-bottom rounded-t bg-primary/80"
+                  style={{ height: `${(Number(f.n) / 382) * 36 + 8}px` }}
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: show ? 1 : 0 }}
+                  transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.3 + i * 0.12, ease: ease.outCubic }}
+                />
                 <span className="mt-1 block text-2xs font-bold text-gray-900 tabular-nums">{f.n}</span>
                 <span className="block text-2xs text-gray-400 break-keep">{f.label}</span>
               </span>
