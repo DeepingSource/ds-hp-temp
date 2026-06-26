@@ -1,6 +1,8 @@
 # docs/ — 길잡이 (orientation)
 
 > 📌 **2026-06-19 정리.** 이 폴더는 **history 보존용 계획 산출물**과 **참조 스냅샷**을 담는다. 여기 문서들은 사이트의 *현행 기준*이 아니다 — **라이브 SOT 는 아래 "라이브 SOT" 절을 본다.**
+>
+> 🚀 로컬 개발·빌드·**배포(Vercel/GitHub Pages)·환경변수**는 repo-root [`/README.md`](../README.md) 참고.
 
 ---
 
