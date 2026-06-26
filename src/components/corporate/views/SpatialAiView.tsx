@@ -24,6 +24,12 @@ type Copy = {
   demoCaption: string;
   demoAria: string;
 
+  landmarkEyebrow: string;
+  landmarkTitle: string;
+  landmarkBody: string;
+  landmarkCaption: string;
+  landmarkAria: string;
+
   sections: Section[];
 
   referencesEyebrow: string;
@@ -49,6 +55,13 @@ const ko: Copy = {
     '신원은 되돌릴 수 없게 지우고, AI가 장면을 이해하는 데 필요한 최소 특징만 남깁니다. 그래서 익명화된 영상에서도 성별·연령대, 동선과 자세, 관심과 체류를 읽습니다 — 누구인지는 모른 채로.',
   demoCaption: '얼굴은 노이즈. 그래도 읽히는 것 — 연령대·시선·발화. 신원은 없습니다.',
   demoAria: '얼굴이 노이즈로 익명화된 인물에서 나이·성별·시선·발화 같은 속성을 읽어내는 데모 영상',
+
+  landmarkEyebrow: '비전 모델 · 얼굴 검출',
+  landmarkTitle: '찾아내는 건, 지우기 위해서입니다',
+  landmarkBody:
+    '비전 모델은 얼굴의 특징점을 정밀하게 찾아냅니다 — 누구인지 알아내기 위해서가 아니라, 어디를 지워야 하는지 짚기 위해서입니다. 검출은 그대로 익명화의 첫 단계로 이어집니다.',
+  landmarkCaption: '얼굴 특징점 검출. 찾은 자리는 곧 익명화됩니다 — 신원은 남지 않습니다.',
+  landmarkAria: '식탁의 두 인물 얼굴에 특징점 메시가 표시되는 얼굴 검출 데모 영상',
 
   sections: [
     { label: 'Spatial AI', title: '누구인지가 아니라, 무엇을 어떻게', body: '비전 AI는 결국 사람을 봅니다. 공간 지능은 그 시선을 바꿉니다 — 누구인지를 가려내는 대신, 사람들이 무엇을 어떻게 하는지를 읽습니다. 신원은 익명화 단계에서 이미 지워졌고, 남은 건 공간의 흐름뿐입니다.' },
@@ -80,6 +93,13 @@ const en: Copy = {
   demoCaption: 'The face is noise. Still readable — age range, gaze, speaking. No identity.',
   demoAria: 'A demo reading attributes like age, gender, gaze, and speech from a person whose face is anonymized to noise',
 
+  landmarkEyebrow: 'Vision Models · Face detection',
+  landmarkTitle: 'We find it only to erase it',
+  landmarkBody:
+    'Vision models locate facial keypoints precisely — not to learn who someone is, but to mark exactly what must be erased. Detection feeds straight into the first anonymization step.',
+  landmarkCaption: "Face-keypoint detection. What's found is then anonymized — no identity remains.",
+  landmarkAria: "A face-detection demo with a keypoint mesh over two people's faces at a table",
+
   sections: [
     { label: 'Spatial AI', title: 'Not who, but what and how', body: 'Vision AI ultimately looks at people. Spatial intelligence changes what it looks for: instead of singling out who someone is, it reads what people do and how they move. Identity is already erased at the anonymization stage — all that remains is the flow of the space.' },
     { label: 'Vision Models', title: 'State-of-the-art vision models', body: 'Person detection, pose estimation, re-identification, crowd density — a stack of SOTA vision models reads all of this from a single feed. Where people pause, how they move, how densely they gather. Everything happening on the floor, read on the cameras already mounted in your store.' },
@@ -109,6 +129,13 @@ const jp: Copy = {
     '身元は復元できないように消し、AIが場面を理解するのに必要な最小限の特徴だけを残します。だから匿名化された映像でも、性別・年代、動線と姿勢、関心と滞在を読みます——誰かは分からないまま。',
   demoCaption: '顔はノイズ。それでも読めるもの——年代・視線・発話。身元はありません。',
   demoAria: '顔がノイズに匿名化された人物から、年齢・性別・視線・発話などの属性を読み取るデモ映像',
+
+  landmarkEyebrow: 'ビジョンモデル · 顔検出',
+  landmarkTitle: '見つけるのは、消すためです',
+  landmarkBody:
+    'ビジョンモデルは顔の特徴点を精密に見つけます——誰かを知るためではなく、どこを消すべきかを捉えるためです。検出はそのまま匿名化の最初の段階へつながります。',
+  landmarkCaption: '顔特徴点の検出。見つけた場所はすぐ匿名化されます——身元は残りません。',
+  landmarkAria: '食卓の二人の顔に特徴点メッシュが表示される顔検出のデモ映像',
 
   sections: [
     { label: 'Spatial AI', title: '誰かではなく、何をどう', body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定するのではなく、人々が何をどう動いているのかを読みます。身元は匿名化の段階ですでに消されており、残るのは空間の流れだけです。' },
@@ -193,6 +220,29 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
               <p className="text-gray-600 leading-relaxed break-keep mb-6">{t.demoBody}</p>
               <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.demoCaption}</p>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Face detection — landmark mesh, framed as "find in order to erase" */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.landmarkEyebrow}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.landmarkTitle}</h2>
+              <p className="text-gray-600 leading-relaxed break-keep mb-6">{t.landmarkBody}</p>
+              <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.landmarkCaption}</p>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+              <LoopVideo
+                mp4="/videos/face-landmark-demo.mp4"
+                webm="/videos/face-landmark-demo.webm"
+                poster="/images/technology/face-landmark-poster.webp"
+                ariaLabel={t.landmarkAria}
+                className="w-full h-auto block"
+              />
             </div>
           </div>
         </div>
