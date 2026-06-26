@@ -42,16 +42,16 @@ const homeCopy = toLocaleMajor(load('content/site/home.yaml'), HOME_FIELDS);
 
 // ── products — flat copy + id-keyed nested arrays (structure stays in code) ───
 const PRODUCTS_FLAT = [
-  'eyebrow', 'heroTitle', 'umbrella', 'solutionEyebrow', 'toolEyebrow',
-  'toolBadge', 'toolLive', 'detail', 'visit', 'seedLine', 'seedCta', 'cta',
+  'eyebrow', 'heroTitle', 'heroSub', 'loopEyebrow', 'ownersEyebrow',
+  'detail', 'visit', 'seedLine', 'seedCta', 'cta',
 ];
 const productsYaml = load('content/site/products.yaml');
 const productsFlat = toLocaleMajor(productsYaml, PRODUCTS_FLAT);
-const productsLive = arrayByIdLocaleMajor(productsYaml.live, ['kicker', 'func', 'desc', 'alt']);
-const productsTools = arrayByIdLocaleMajor(productsYaml.tools, ['desc']);
+const productsLoop = arrayByIdLocaleMajor(productsYaml.loop, ['desc']);
+const productsOwners = arrayByIdLocaleMajor(productsYaml.owners, ['desc']);
 const products = {};
 for (const loc of LOCALES) {
-  products[loc] = { ...productsFlat[loc], live: productsLive[loc], tools: productsTools[loc] };
+  products[loc] = { ...productsFlat[loc], loop: productsLoop[loc], owners: productsOwners[loc] };
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });

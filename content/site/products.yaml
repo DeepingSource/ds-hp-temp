@@ -3,29 +3,21 @@ eyebrow:
   en: PRODUCTS
   jp: PRODUCTS
 heroTitle:
-  ko: 관찰 · 분석 · 제안 · 학습
-  en: Observe · Analyze · Suggest · Learn
-  jp: 観察 · 分析 · 提案 · 学習
-umbrella:
-  ko: 모든 제품은 익명화 공간 AI, SAAI 아래에서 하나로 움직입니다.
-  en: Every product moves as one — under SAAI, anonymized spatial AI.
-  jp: すべての製品は、匿名化空間AI・SAAIの下でひとつに動きます。
-solutionEyebrow:
-  ko: 매일 받는 답 · SOLUTION
-  en: Your daily answer · SOLUTION
-  jp: 毎日受け取る答え · SOLUTION
-toolEyebrow:
-  ko: 확장 도구 · SOURCE
-  en: Expansion tools · SOURCE
-  jp: 拡張ツール · SOURCE
-toolBadge:
-  ko: 곧 출시
-  en: Coming soon
-  jp: 近日公開
-toolLive:
-  ko: 운영 중
-  en: Live
-  jp: 運営中
+  ko: 모든 매장을 한 매장처럼
+  en: Every store, like one.
+  jp: すべての店舗を、一つの店舗のように。
+heroSub:
+  ko: 네 개의 제품, 하나의 운영 루프 — 문 밖의 통행부터 다음 한 수까지. SAAI로 익명화.
+  en: Four products, one operating loop — from the footfall outside to the next move. Anonymized by SAAI.
+  jp: 4つのプロダクト、ひとつのオペレーションループ — 店の外の通行から、次の一手まで。SAAIで匿名化。
+loopEyebrow:
+  ko: 엔터프라이즈 · 매장 운영 루프
+  en: Enterprise · the operating loop
+  jp: エンタープライズ · 店舗オペレーションループ
+ownersEyebrow:
+  ko: 점주를 위한 · B2C (별도 사이트)
+  en: For owners · B2C (separate sites)
+  jp: 店長向け · B2C（別サイト）
 detail:
   ko: 자세히 보기
   en: Learn more
@@ -46,71 +38,35 @@ cta:
   ko: 어떤 제품이 맞을지 상담하기
   en: Talk to us about the right product
   jp: どの製品が最適かご相談する
-live:
-  - id: store-insight
-    kicker:
-      ko: 어제를 읽다
-      en: Reads yesterday
-      jp: 昨日を読む
-    func:
-      ko: 공간 분석 AI
-      en: Spatial analytics AI
-      jp: 空間分析AI
-    desc:
-      ko: POS가 못 센 것까지 — 어제 매장에서 무슨 일이 있었는지 데이터로 읽습니다.
-      en: Beyond what the POS counted — it reads what happened in your store yesterday, as data.
-      jp: POSが数え切れなかったものまで — 昨日の店舗で何が起きたかをデータで読み解きます。
-    alt:
-      ko: store insight 히트맵 — 고객 체류·동선 분석
-      en: store insight heatmap — dwell and pathway analysis
-      jp: store insight ヒートマップ — 滞在・動線分析
-  - id: store-care
-    kicker:
-      ko: 지금을 알리다
-      en: Flags the now
-      jp: 今を知らせる
-    func:
-      ko: 이상 감지 AI
-      en: Anomaly detection AI
-      jp: 異常検知AI
-    desc:
-      ko: 24시간 매장을 대신 보는 눈 — 정작 필요한 순간만 골라 실시간으로 알립니다.
-      en: A pair of eyes on your store 24/7 — only the moments that matter, flagged in real time.
-      jp: 24時間、店舗を代わりに見守る目 — 本当に必要な瞬間だけをリアルタイムでお知らせ。
-    alt:
-      ko: store care — 매장 이상 상황 실시간 감지 (익명화)
-      en: store care — real-time detection of store issues (anonymized)
-      jp: store care — 店舗の異常をリアルタイム検知（匿名化）
-  - id: store-agent
-    kicker:
-      ko: 다음을 실행하다
-      en: Acts on next
-      jp: 次を動かす
-    func:
-      ko: 운영 제안 AI
-      en: Operations copilot AI
-      jp: 運営提案AI
-    desc:
-      ko: 다음 한 수를 권고하고 발주까지 — 권고는 AI가, 결정은 사람이.
-      en: Recommends the next move and turns it into orders — AI recommends, you decide.
-      jp: 次の一手を提案し、発注まで — 提案はAI、決定は人。
-    alt:
-      ko: store agent — 다음 한 수 제안 화면
-      en: store agent — next-move proposal screen
-      jp: store agent — 次の一手の提案画面
-tools:
+loop:
   - id: store-count
     desc:
-      ko: 카메라 한 대로, 상권과 유입을 매일.
-      en: Trade area and footfall, daily, from one camera.
-      jp: カメラ1台で、商圏と流入を毎日。
-  - id: ai-pop
+      ko: 문 밖을 읽다 — 상권·통행량·흡인율.
+      en: Reads the footfall outside — trade area, footfall, capture rate.
+      jp: 店の外を読む — 商圏・通行量・捕捉率。
+  - id: store-insight
     desc:
-      ko: 이 매장에 맞춘 POP·시즌 콘텐츠를 1분 만에.
-      en: On-brand POP and seasonal content for this store in a minute.
-      jp: この店舗に合わせたPOP・季節コンテンツを1分で。
-  - id: trend-fit
+      ko: 문 안을 읽다 — 동선·체류·전환. 어제, 그리고 왜.
+      en: Reads inside — flow, dwell, conversion. Yesterday, and why.
+      jp: 店の中を読む — 動線・滞在・転換。昨日と、その理由。
+  - id: store-care
     desc:
-      ko: 트렌드 적합도로 다음 발주를 돕습니다.
-      en: Trend-fit scoring to guide your next order.
-      jp: トレンド適合度で次の発注をサポート。
+      ko: 지금을 지키다 — 도난·위생·설비를 전 매장에서.
+      en: Watches now — theft, hygiene, equipment, across every store.
+      jp: いまを守る — 防損・衛生・設備を全店で。
+  - id: store-agent
+    desc:
+      ko: 다음을 정하다 — 모든 추천과 발주를 하나의 엔진에서.
+      en: Decides next — one engine for every recommendation and order.
+      jp: 次を決める — すべての推奨と発注をひとつのエンジンで。
+owners:
+  - id: saai-store
+    desc:
+      ko: 카메라리스 점주 suite — 발주부터 POP까지.
+      en: Camera-less suite for store owners — ordering to POP.
+      jp: 店長のためのカメラレススイート — 発注からPOPまで。
+  - id: storecare-ai
+    desc:
+      ko: 한 매장을 위한 보안·이상 알림.
+      en: Security and anomaly alerts for a single store.
+      jp: 一店舗のためのセキュリティ・異常アラート。

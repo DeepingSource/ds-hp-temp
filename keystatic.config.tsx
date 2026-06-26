@@ -54,24 +54,19 @@ export default config({
       schema: {
         eyebrow: localized('Eyebrow'),
         heroTitle: localized('Hero 제목 (heroTitle)'),
-        umbrella: localized('우산 한 줄 (umbrella)'),
-        solutionEyebrow: localized('SOLUTION Eyebrow'),
-        toolEyebrow: localized('SOURCE Eyebrow'),
-        toolBadge: localized('도구 배지 · 곧 출시 (toolBadge)'),
-        toolLive: localized('도구 배지 · 운영 중 (toolLive)'),
+        heroSub: localized('Hero 서브 (heroSub)'),
+        loopEyebrow: localized('운영 루프 Eyebrow (loopEyebrow)'),
+        ownersEyebrow: localized('점주용 Eyebrow (ownersEyebrow)'),
         detail: localized('“자세히 보기” 라벨 (detail)'),
         visit: localized('“바로가기” 라벨 (visit)'),
         seedLine: localized('SEED 기술 한 줄 (seedLine)'),
         seedCta: localized('SEED CTA (seedCta)'),
         cta: localized('하단 CTA (cta)'),
-        live: idItem('SOLUTION 제품 (live)', 'product', {
-          kicker: localized('Kicker'),
-          func: localized('기능 태그 (func)'),
-          desc: localized('설명 (desc)'),
-          alt: localized('이미지 대체텍스트 (alt)'),
+        loop: idItem('운영 루프 제품 (loop)', 'product', {
+          desc: localized('카드 한 줄 (desc)'),
         }),
-        tools: idItem('SOURCE 도구 (tools)', 'tool', {
-          desc: localized('설명 (desc)'),
+        owners: idItem('점주용 사이트 (owners)', 'site', {
+          desc: localized('카드 한 줄 (desc)'),
         }),
       },
     }),
