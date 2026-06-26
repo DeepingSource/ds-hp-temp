@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * LoopVideo — a poster-first, lazy, autoplaying loop clip for product demos.
@@ -24,11 +25,11 @@ export default function LoopVideo({
   className?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const reduce = usePrefersReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -43,7 +44,7 @@ export default function LoopVideo({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [reduce]);
 
   return (
     <video

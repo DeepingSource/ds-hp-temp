@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 
 interface UseScrollAnimationOptions {
   threshold?: number;
@@ -13,10 +14,11 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
   const { threshold = 0.15, once = true } = options;
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     // prefers-reduced-motion이면 즉시 visible — observer 불필요
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion) {
       setIsVisible(true);
       return;
     }
@@ -50,7 +52,7 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
       observer.disconnect();
       clearTimeout(timeout);
     };
-  }, [threshold, once]);
+  }, [threshold, once, reducedMotion]);
 
   return { ref, isVisible };
 }

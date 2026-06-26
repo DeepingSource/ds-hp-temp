@@ -7,6 +7,7 @@ import MobileStickyBar from "@/components/ui/MobileStickyBar";
 import HeaderWrapper from "@/components/layout/HeaderWrapper";
 import FooterWrapper from "@/components/layout/FooterWrapper";
 import LandingStickyCta from "@/components/layout/LandingStickyCta";
+import MotionProvider from "@/components/providers/MotionProvider";
 import HtmlLangSync from "@/components/layout/HtmlLangSync";
 import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
@@ -128,7 +129,7 @@ export default function RootLayout({
           <HeaderWrapper />
         </Suspense>
         <main id="main-content" className="pt-16">
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </main>
         {/* ?lp=1 → footer/mobileStickyBar hidden; otherwise → shown */}
         <Suspense fallback={<><Footer /><MobileStickyBar /></>}>
