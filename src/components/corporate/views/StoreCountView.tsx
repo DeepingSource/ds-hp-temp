@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import DoorSplitDiagram from '@/components/mockups/DoorSplitDiagram';
 import {
   Clock,
   Users,
@@ -294,6 +295,13 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <DoorSplitDiagram locale={locale} />
+        </div>
+      </AnimatedSection>
 
       {/* ── Problem: two stuck states ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">

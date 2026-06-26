@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import DoorSplitDiagram from '@/components/mockups/DoorSplitDiagram';
 import StoreInsightDesktopMockup from '@/components/mockups/StoreInsightDesktopMockup';
 import dynamic from 'next/dynamic';
 import {
@@ -380,6 +381,13 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           <p className="mt-6 text-center text-xs text-gray-500 break-keep">
             {t.baNote}
           </p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <DoorSplitDiagram locale={locale} />
         </div>
       </AnimatedSection>
 
