@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
+import ProcessStepper from '@/components/ui/ProcessStepper';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
 import MasterPair from '@/components/corporate/MasterPair';
@@ -292,15 +293,10 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{method.intro}</p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5">
-            {method.steps.map((s, i) => (
-              <div key={s.key} className="relative p-7 bg-white rounded-2xl border border-gray-100 h-full">
-                <span className="text-2xl font-bold text-gray-200 tabular-nums">{`0${i + 1}`}</span>
-                <p className="mt-3 text-base font-bold text-gray-900 break-keep">{s.term}</p>
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed break-keep">{s.promise}</p>
-              </div>
-            ))}
-          </div>
+          <ProcessStepper
+            ariaLabel={method.heading}
+            steps={method.steps.map((s, i) => ({ label: `0${i + 1}`, title: s.term, desc: s.promise }))}
+          />
 
           <p className="mt-12 text-center text-base sm:text-lg text-gray-500 italic break-keep">
             {method.closing}

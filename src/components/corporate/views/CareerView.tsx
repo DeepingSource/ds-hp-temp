@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
+import ProcessStepper from '@/components/ui/ProcessStepper';
 import {
   ArrowRight, Briefcase, Mail, ShieldCheck, Award,
   Coffee, GraduationCap, Home, Users, Cpu,
@@ -288,17 +289,10 @@ export default function CareerView({ locale }: { locale: Locale }) {
               {t.processSub}
             </p>
           </div>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.process.map((p) => (
-              <StaggerItem key={p.step}>
-                <div className="p-7 rounded-3xl border border-gray-100 bg-white h-full">
-                  <span className="text-2xl font-bold text-gray-200 tabular-nums">{p.step}</span>
-                  <h3 className="mt-3 text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <ProcessStepper
+            ariaLabel={t.processHeading}
+            steps={t.process.map((p) => ({ label: p.step, title: p.title, desc: p.desc }))}
+          />
         </div>
       </AnimatedSection>
 

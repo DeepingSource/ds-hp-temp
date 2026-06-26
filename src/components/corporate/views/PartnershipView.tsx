@@ -2,9 +2,10 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
+import ProcessStepper from '@/components/ui/ProcessStepper';
 import {
   ArrowRight, Handshake, Store, Building2, Globe, Check,
-  TrendingUp, BookOpen, LifeBuoy, Megaphone, ClipboardList, GraduationCap, Rocket, Repeat,
+  TrendingUp, BookOpen, LifeBuoy, Megaphone,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -148,7 +149,7 @@ const C: Record<Locale, Copy> = {
 
 const tierIcons = [Store, Building2, Globe];
 const benefitIcons = [TrendingUp, BookOpen, LifeBuoy, Megaphone];
-const onboardingIcons = [ClipboardList, GraduationCap, Rocket, Repeat];
+const onboardingIcons = ['ClipboardList', 'GraduationCap', 'Rocket', 'Repeat'] as const;
 
 export default function PartnershipView({ locale }: { locale: Locale }) {
   const t = C[locale];
@@ -252,25 +253,10 @@ export default function PartnershipView({ locale }: { locale: Locale }) {
               {t.onboardingSub}
             </p>
           </div>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.onboarding.map((o, i) => {
-              const Icon = onboardingIcons[i];
-              return (
-                <StaggerItem key={o.step}>
-                  <div className="p-7 rounded-3xl border border-gray-100 bg-slate-50 h-full">
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="text-2xl font-bold text-gray-200">{o.step}</span>
-                    </div>
-                    <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{o.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{o.desc}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+          <ProcessStepper
+            ariaLabel={t.onboardingHeading}
+            steps={t.onboarding.map((o, i) => ({ label: o.step, title: o.title, desc: o.desc, icon: onboardingIcons[i] }))}
+          />
         </div>
       </AnimatedSection>
 

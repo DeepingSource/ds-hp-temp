@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AgentMockupShowcase from '@/components/sections/AgentMockupShowcase';
+import ProcessStepper from '@/components/ui/ProcessStepper';
 import {
   BrainCircuit,
   ArrowRight,
-  ClipboardCheck,
-  Lightbulb,
-  TrendingUp,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
@@ -97,7 +95,7 @@ const C: Record<Locale, {
 export default function StoreAgentView({ locale }: { locale: Locale }) {
   const t = C[locale];
 
-  const stepIcons = [ClipboardCheck, Lightbulb, TrendingUp];
+  const stepIcons = ['ClipboardCheck', 'Lightbulb', 'TrendingUp'] as const;
 
   return (
     <>
@@ -145,23 +143,10 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
               {t.stepsSub}
             </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {t.steps.map((s, i) => {
-              const Icon = stepIcons[i];
-              return (
-                <div key={s.title} className="card flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-11 h-11 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-sm font-bold text-gray-500">0{i + 1}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
-                  <p className="text-base text-gray-500 leading-relaxed break-keep">{s.desc}</p>
-                </div>
-              );
-            })}
-          </div>
+          <ProcessStepper
+            ariaLabel={t.stepsHeading}
+            steps={t.steps.map((s, i) => ({ label: `0${i + 1}`, title: s.title, desc: s.desc, icon: stepIcons[i] }))}
+          />
         </div>
       </AnimatedSection>
 
