@@ -2,7 +2,7 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Accordion from '@/components/ui/Accordion';
 import {
-  Fingerprint, ArrowRight, ShieldCheck, Cpu, Eye, Database, Check, Minus, X,
+  Fingerprint, ArrowRight, ShieldCheck, Cpu, Eye, Database, Check, X, Minus,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
@@ -14,8 +14,8 @@ import { EdgePerfMonitorMockup } from '@/components/mockups';
 type Step = { title: string; desc: string };
 type SpecRow = { feature: string; detail: string; note: string };
 type FaqItem = { question: string; answer: string };
-type Rating = 'good' | 'partial' | 'bad';
-type LimitRow = { method: string; desc: string; legal: Rating; utility: Rating; reid: Rating; highlight?: boolean };
+type Mark = 'yes' | 'no' | 'partial';
+type LimitRow = { label: string; marks: Mark[]; seal?: boolean };
 
 type Copy = {
   heroBadge: string;
@@ -27,15 +27,14 @@ type Copy = {
   mechanismTitle: string;
   mechanismSub: string;
   mechanismSteps: Step[];
+  pipelineNodes: string[];
 
   limitEyebrow: string;
   limitTitle: string;
   limitSub: string;
-  limitColMethod: string;
-  limitColLegal: string;
-  limitColUtility: string;
-  limitColReid: string;
+  limitCols: string[];
   limitRows: LimitRow[];
+  markLabel: Record<Mark, string>;
 
   specEyebrow: string;
   specTitle: string;
@@ -74,20 +73,20 @@ const ko: Copy = {
     { title: '온디바이스 처리', desc: '연산은 엣지 장치나 로컬에서 끝낼 수 있습니다. 원본 프레임을 밖으로 내보내지 않고, 이미 익명화된 결과만 다음 단계로 넘깁니다.' },
     { title: '분석 신호 전달', desc: '익명화된 스트림과 분석 신호를 공간 지능·에이전트 단계로 넘깁니다. 분석은 끝까지 이어지지만, 원본 영상은 어디에도 저장되지 않습니다.' },
   ],
+  pipelineNodes: ['입력', '신원 영역 검출', '입력 시점 익명화', '분석 신호 전달'],
 
-  limitEyebrow: 'Why a new approach',
+  limitEyebrow: 'Why not the usual way',
   limitTitle: '기존 비식별화의 딜레마',
-  limitSub: '마스킹·블러는 데이터 가치를 파괴하고, 얼굴 교체는 비식별 여부를 확인하기 어렵습니다. 원본을 그냥 쓰면 위험이 남습니다. 익명화는 셋 다 피합니다 — 식별은 불가능하게, 분석은 원본 수준으로.',
-  limitColMethod: '방식',
-  limitColLegal: '법적 안전성',
-  limitColUtility: '데이터 활용도',
-  limitColReid: '재식별 불가',
+  limitSub:
+    '마스킹·블러는 데이터 가치를 파괴하고, 얼굴 교체는 비식별 여부를 확인하기 어렵습니다. 원본을 그냥 쓰면 위험이 남습니다. SEAL은 셋 다 피합니다 — 식별은 불가능하게, 분석은 원본 수준으로.',
+  limitCols: ['법 준수', '데이터 활용도', '비식별 정확성'],
   limitRows: [
-    { method: '원본 그대로 사용', desc: '위험을 안고 그냥 씁니다.', legal: 'bad', utility: 'good', reid: 'bad' },
-    { method: '마스킹 · 블러', desc: '가리면 분석에 쓸 데이터 가치가 사라집니다.', legal: 'partial', utility: 'bad', reid: 'partial' },
-    { method: '얼굴 교체 · 합성', desc: '바꿔도 비식별이 됐는지 확인하기 어렵습니다.', legal: 'partial', utility: 'partial', reid: 'bad' },
-    { method: '익명화 (SEAL)', desc: '식별은 불가능하게, 분석은 원본 수준으로.', legal: 'good', utility: 'good', reid: 'good', highlight: true },
+    { label: '원본 사용', marks: ['no', 'yes', 'no'] },
+    { label: '마스킹·블러', marks: ['partial', 'no', 'partial'] },
+    { label: '얼굴 교체', marks: ['partial', 'partial', 'no'] },
+    { label: 'SEAL', marks: ['yes', 'yes', 'yes'], seal: true },
   ],
+  markLabel: { yes: '충족', no: '미흡', partial: '부분' },
 
   specEyebrow: 'Specification',
   specTitle: '사양 개요',
@@ -139,20 +138,20 @@ const en: Copy = {
     { title: 'On-device processing', desc: 'Computation can finish on edge devices or locally. Raw frames never leave the premises; only the already-anonymized result moves to the next step.' },
     { title: 'Forward the signal', desc: 'The anonymized stream and its analytical signals pass to the spatial-intelligence and agent stages. Analysis runs all the way through — the original footage is stored nowhere.' },
   ],
+  pipelineNodes: ['Input', 'Detect identity', 'Anonymize on input', 'Forward signal'],
 
-  limitEyebrow: 'Why a new approach',
-  limitTitle: 'The dilemma of prior anonymization',
-  limitSub: 'Masking and blur destroy the data’s value; face-swapping makes it hard to confirm anything was truly de-identified. Using the original leaves the risk in place. Anonymization avoids all three — impossible to identify, yet analyzable at original quality.',
-  limitColMethod: 'Method',
-  limitColLegal: 'Legal safety',
-  limitColUtility: 'Data utility',
-  limitColReid: 'Non-reID',
+  limitEyebrow: 'Why not the usual way',
+  limitTitle: 'The dilemma of conventional de-identification',
+  limitSub:
+    "Masking and blur destroy the data's value; face-swapping is hard to verify; using the original leaves risk behind. SEAL avoids all three — identification made impossible, analysis kept at original-grade.",
+  limitCols: ['Legal compliance', 'Data utility', 'De-ID accuracy'],
   limitRows: [
-    { method: 'Use the original', desc: 'You carry the risk and use it as-is.', legal: 'bad', utility: 'good', reid: 'bad' },
-    { method: 'Masking · blur', desc: 'Cover it up and the data loses its analytical value.', legal: 'partial', utility: 'bad', reid: 'partial' },
-    { method: 'Face swap · synthesis', desc: 'Even swapped, it’s hard to confirm de-identification.', legal: 'partial', utility: 'partial', reid: 'bad' },
-    { method: 'Anonymization (SEAL)', desc: 'Impossible to identify, analyzable at original quality.', legal: 'good', utility: 'good', reid: 'good', highlight: true },
+    { label: 'Use original', marks: ['no', 'yes', 'no'] },
+    { label: 'Masking & blur', marks: ['partial', 'no', 'partial'] },
+    { label: 'Face swap', marks: ['partial', 'partial', 'no'] },
+    { label: 'SEAL', marks: ['yes', 'yes', 'yes'], seal: true },
   ],
+  markLabel: { yes: 'Meets', no: 'Falls short', partial: 'Partial' },
 
   specEyebrow: 'Specification',
   specTitle: 'Specification overview',
@@ -204,20 +203,20 @@ const jp: Copy = {
     { title: 'オンデバイス処理', desc: '演算はエッジ機器やローカルで完結できます。原本フレームを外部へ送らず、すでに匿名化された結果だけを次のステップへ渡します。' },
     { title: '分析信号の受け渡し', desc: '匿名化されたストリームと分析信号を、空間知能・エージェントのステップへ受け渡します。分析は最後まで続きますが、原本映像はどこにも保存されません。' },
   ],
+  pipelineNodes: ['入力', '身元領域の検出', '入力時点で匿名化', '分析信号の伝達'],
 
-  limitEyebrow: 'Why a new approach',
+  limitEyebrow: 'Why not the usual way',
   limitTitle: '従来の非識別化のジレンマ',
-  limitSub: 'マスキングやブラーはデータの価値を壊し、顔の置き換えは非識別化されたかを確認しにくい。原本をそのまま使えばリスクが残ります。匿名化はその三つすべてを避けます — 識別は不可能に、分析は原本水準で。',
-  limitColMethod: '方式',
-  limitColLegal: '法的安全性',
-  limitColUtility: 'データ活用度',
-  limitColReid: '再識別不可',
+  limitSub:
+    'マスキング・ぼかしはデータの価値を壊し、顔の置き換えは確認が難しく、原本のまま使えばリスクが残ります。SEALはその三つを避けます——識別は不可能に、分析は原本水準で。',
+  limitCols: ['法令遵守', 'データ活用度', '非識別の正確性'],
   limitRows: [
-    { method: '原本をそのまま使用', desc: 'リスクを抱えたまま使います。', legal: 'bad', utility: 'good', reid: 'bad' },
-    { method: 'マスキング · ブラー', desc: '覆うと、分析に使えるデータ価値が失われます。', legal: 'partial', utility: 'bad', reid: 'partial' },
-    { method: '顔の置き換え · 合成', desc: '置き換えても、非識別化されたか確認しにくい。', legal: 'partial', utility: 'partial', reid: 'bad' },
-    { method: '匿名化 (SEAL)', desc: '識別は不可能に、分析は原本水準で。', legal: 'good', utility: 'good', reid: 'good', highlight: true },
+    { label: '原本使用', marks: ['no', 'yes', 'no'] },
+    { label: 'マスキング・ぼかし', marks: ['partial', 'no', 'partial'] },
+    { label: '顔の置き換え', marks: ['partial', 'partial', 'no'] },
+    { label: 'SEAL', marks: ['yes', 'yes', 'yes'], seal: true },
   ],
+  markLabel: { yes: '充足', no: '不足', partial: '部分' },
 
   specEyebrow: 'Specification',
   specTitle: '仕様の概要',
@@ -254,10 +253,19 @@ const jp: Copy = {
 
 const C: Record<Locale, Copy> = { ko, en, jp };
 
-function RatingIcon({ rating }: { rating: Rating }) {
-  if (rating === 'good') return <Check className="w-5 h-5 text-primary" aria-label="good" />;
-  if (rating === 'partial') return <Minus className="w-5 h-5 text-amber-500" aria-label="partial" />;
-  return <X className="w-5 h-5 text-gray-300" aria-label="poor" />;
+function MarkIcon({ mark, label }: { mark: Mark; label: string }) {
+  const map = {
+    yes: { Icon: Check, cls: 'text-primary' },
+    no: { Icon: X, cls: 'text-gray-300' },
+    partial: { Icon: Minus, cls: 'text-amber-500' },
+  } as const;
+  const { Icon, cls } = map[mark];
+  return (
+    <span className="inline-flex items-center justify-center" title={label}>
+      <Icon className={`w-5 h-5 ${cls}`} aria-hidden="true" />
+      <span className="sr-only">{label}</span>
+    </span>
+  );
 }
 
 export default function AnonymizerView({ locale }: { locale: Locale }) {
@@ -299,6 +307,30 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
             </p>
           </div>
 
+          {/* Pipeline flow — anonymization is the gated middle step (03, highlighted) */}
+          <ol className="mb-12 flex flex-col sm:flex-row items-stretch gap-2 sm:gap-0" aria-label={t.mechanismTitle}>
+            {t.pipelineNodes.map((node, i) => {
+              const isAnon = i === 2;
+              return (
+                <li key={node} className="flex flex-col sm:flex-row items-stretch sm:items-center sm:flex-1">
+                  <div
+                    className={`flex-1 rounded-xl px-4 py-3 text-center text-sm font-semibold break-keep border ${
+                      isAnon
+                        ? 'bg-primary text-white border-primary shadow-card'
+                        : 'bg-primary-lighter/50 text-primary border-primary/15'
+                    }`}
+                  >
+                    <span className="block text-[10px] font-mono font-normal opacity-60 mb-0.5">0{i + 1}</span>
+                    {node}
+                  </div>
+                  {i < t.pipelineNodes.length - 1 && (
+                    <ArrowRight className="w-4 h-4 text-primary/40 shrink-0 mx-auto my-1 rotate-90 sm:rotate-0 sm:mx-1.5 sm:my-0" aria-hidden="true" />
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+
           <div className="grid sm:grid-cols-2 gap-5">
             {mechanismSteps.map((step, i) => {
               const Icon = step.icon;
@@ -321,38 +353,38 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* Prior-method comparison (PPTX narrative — concept only, no faces/figures) */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white border-t border-gray-100">
+      {/* Limitation — why conventional de-identification falls short (PPTX legacy comparison) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-12 max-w-2xl">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.limitEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.limitTitle}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.limitSub}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
+              {t.limitTitle}
+            </h2>
+            <p className="text-gray-600 leading-relaxed break-keep">
+              {t.limitSub}
+            </p>
           </div>
 
           <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide">{t.limitColMethod}</th>
-                  <th className="px-4 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide text-center">{t.limitColLegal}</th>
-                  <th className="px-4 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide text-center">{t.limitColUtility}</th>
-                  <th className="px-4 py-4 text-xs font-medium text-gray-500 uppercase tracking-wide text-center">{t.limitColReid}</th>
+                  <th className="px-6 py-4" />
+                  {t.limitCols.map((c) => (
+                    <th key={c} className="px-4 py-4 text-xs font-medium text-gray-500 tracking-wide text-center whitespace-nowrap">{c}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {t.limitRows.map((row) => (
-                  <tr
-                    key={row.method}
-                    className={`border-b border-gray-100 last:border-b-0 ${row.highlight ? 'bg-primary-lighter/40' : ''}`}
-                  >
-                    <td className="px-6 py-4">
-                      <p className={`text-sm font-bold break-keep ${row.highlight ? 'text-primary' : 'text-gray-900'}`}>{row.method}</p>
-                      <p className="text-xs text-gray-500 mt-0.5 break-keep">{row.desc}</p>
-                    </td>
-                    <td className="px-4 py-4"><div className="flex justify-center"><RatingIcon rating={row.legal} /></div></td>
-                    <td className="px-4 py-4"><div className="flex justify-center"><RatingIcon rating={row.utility} /></div></td>
-                    <td className="px-4 py-4"><div className="flex justify-center"><RatingIcon rating={row.reid} /></div></td>
+                  <tr key={row.label} className={`border-b border-gray-100 last:border-b-0 ${row.seal ? 'bg-primary-lighter/40' : ''}`}>
+                    <th scope="row" className={`px-6 py-4 text-sm font-bold whitespace-nowrap ${row.seal ? 'text-primary' : 'text-gray-900'}`}>{row.label}</th>
+                    {row.marks.map((m, i) => (
+                      <td key={i} className="px-4 py-4 text-center">
+                        <MarkIcon mark={m} label={t.markLabel[m]} />
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
