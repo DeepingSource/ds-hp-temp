@@ -163,43 +163,54 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
           {t.bridge}
         </p>
 
-        {/* Operating-loop ribbon — Observe·Analyze·Suggest·Learn (close the loop, then learn) */}
-        <div className="mt-6">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+        {/* Operating loop — Observe·Analyze·Suggest·Learn (close the loop, then learn) */}
+        <div className="mt-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {methodSteps(locale).map((s, i) => {
               const Icon = s.icon;
               return (
-                <div key={s.label} className="flex items-center gap-2 sm:gap-3">
+                <div
+                  key={s.label}
+                  className={[
+                    'relative flex flex-col gap-4 rounded-2xl border p-5 sm:p-7',
+                    s.emphasis
+                      ? 'border-primary/30 bg-primary text-white shadow-card'
+                      : 'border-gray-200 bg-white text-gray-900',
+                  ].join(' ')}
+                >
                   <span
                     className={[
-                      'inline-flex items-center gap-2 rounded-full border px-3.5 py-2',
-                      s.emphasis
-                        ? 'border-primary/30 bg-primary text-white shadow-card'
-                        : 'border-gray-200 bg-white text-gray-700',
+                      'inline-flex h-12 w-12 items-center justify-center rounded-xl',
+                      s.emphasis ? 'bg-white/15' : 'bg-primary/10',
                     ].join(' ')}
                   >
                     <Icon
-                      className={['w-4 h-4 shrink-0', s.emphasis ? 'text-white' : 'text-primary'].join(' ')}
+                      className={['h-6 w-6', s.emphasis ? 'text-white' : 'text-primary'].join(' ')}
                       aria-hidden="true"
                     />
-                    <span className="text-sm font-bold break-keep">{s.label}</span>
-                    <span
+                  </span>
+                  <div>
+                    <p
                       className={[
-                        'text-2xs break-keep',
-                        s.emphasis ? 'text-white/80' : 'text-gray-500',
+                        'text-2xs font-bold uppercase tracking-[0.15em]',
+                        s.emphasis ? 'text-white/70' : 'text-gray-400',
                       ].join(' ')}
                     >
-                      {s.phase}
-                    </span>
-                  </span>
+                      {`0${i + 1} · ${s.phase}`}
+                    </p>
+                    <p className="mt-1 text-xl font-bold break-keep">{s.label}</p>
+                  </div>
                   {i < 3 && (
-                    <ArrowRight className="w-4 h-4 shrink-0 text-gray-300" aria-hidden="true" />
+                    <ArrowRight
+                      className="absolute -right-3 top-1/2 hidden -translate-y-1/2 lg:block w-6 h-6 text-gray-300"
+                      aria-hidden="true"
+                    />
                   )}
                 </div>
               );
             })}
           </div>
-          <p className="mt-3 text-sm text-gray-500 break-keep">{t.methodTagline}</p>
+          <p className="mt-5 text-base text-gray-500 break-keep">{t.methodTagline}</p>
         </div>
       </Container>
     </Section>
