@@ -6,6 +6,7 @@ import { type Locale } from '@/lib/i18n';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { ease } from '@/lib/easing';
+import { CountUp } from '@/components/ui/CountUp';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
@@ -17,7 +18,7 @@ import { ease } from '@/lib/easing';
 
 const dict: Record<Locale, {
   outsideTag: string; outsideTitle: string; passersby: string; passersbyN: string;
-  captureLabel: string; captureSub: string;
+  captureLabel: string; captureRate: number; captureSub: string;
   insideTag: string; insideTitle: string; heatLabel: string;
   funnel: { label: string; n: string }[];
   boundary: string; caption: string;
@@ -25,7 +26,7 @@ const dict: Record<Locale, {
   ko: {
     outsideTag: '문 밖 · store count', outsideTitle: '상권·통행·흡인율',
     passersby: '지나감', passersbyN: '1,160',
-    captureLabel: '흡인율 33%', captureSub: '입장 382 ÷ 지나감 1,160',
+    captureLabel: '흡인율', captureRate: 33, captureSub: '입장 382 ÷ 지나감 1,160',
     insideTag: '문 안 · store insight', insideTitle: '동선·체류·전환',
     heatLabel: '체류 히트맵',
     funnel: [{ label: '입장', n: '382' }, { label: '체류', n: '317' }, { label: '구매', n: '65' }],
@@ -35,7 +36,7 @@ const dict: Record<Locale, {
   en: {
     outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · capture',
     passersby: 'Passing by', passersbyN: '1,160',
-    captureLabel: 'Capture rate 33%', captureSub: 'Entered 382 ÷ passing 1,160',
+    captureLabel: 'Capture rate', captureRate: 33, captureSub: 'Entered 382 ÷ passing 1,160',
     insideTag: 'Inside · store insight', insideTitle: 'Flow · dwell · conversion',
     heatLabel: 'Dwell heatmap',
     funnel: [{ label: 'Entered', n: '382' }, { label: 'Dwell', n: '317' }, { label: 'Bought', n: '65' }],
@@ -45,7 +46,7 @@ const dict: Record<Locale, {
   jp: {
     outsideTag: '店の外 · store count', outsideTitle: '商圏・通行・捕捉率',
     passersby: '通行', passersbyN: '1,160',
-    captureLabel: '捕捉率 33%', captureSub: '入店 382 ÷ 通行 1,160',
+    captureLabel: '捕捉率', captureRate: 33, captureSub: '入店 382 ÷ 通行 1,160',
     insideTag: '店の中 · store insight', insideTitle: '動線・滞在・転換',
     heatLabel: '滞在ヒートマップ',
     funnel: [{ label: '入店', n: '382' }, { label: '滞在', n: '317' }, { label: '購入', n: '65' }],
@@ -82,7 +83,7 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
             </svg>
             <span className="absolute bottom-1 left-2 text-2xs text-gray-400">{t.passersby} {t.passersbyN}</span>
           </div>
-          <p className="text-lg font-bold text-gray-900">{t.captureLabel}</p>
+          <p className="text-lg font-bold text-gray-900">{t.captureLabel} <CountUp to={t.captureRate} suffix="%" /></p>
           <p className="text-2xs text-gray-500 tabular-nums">{t.captureSub}</p>
         </div>
 

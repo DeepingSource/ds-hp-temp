@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import ProcessStepper from '@/components/ui/ProcessStepper';
+import { CountUp } from '@/components/ui/CountUp';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
 import MasterPair from '@/components/corporate/MasterPair';
@@ -376,7 +377,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, 'PIPA'].map((stat, i) => (
               <div key={i} className="p-5 bg-white rounded-2xl border border-gray-100">
-                <p className="text-2xl font-bold text-gray-900 mb-1">{stat}</p>
+                <p className="text-2xl font-bold text-gray-900 mb-1">{i < 3 ? <CountUp to={Number(stat)} /> : stat}</p>
                 <p className="text-xs text-gray-500 font-medium">
                   {t.partnerStatLabels[i]}
                 </p>

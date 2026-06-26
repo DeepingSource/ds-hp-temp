@@ -1,13 +1,18 @@
+'use client';
+
 import { Receipt, LineChart, Lock, Eye, BellRing, RefreshCw, ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import Card from '@/components/ui/Card';
 import IconChip from '@/components/ui/IconChip';
+import { CountUp } from '@/components/ui/CountUp';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { type Locale } from '@/lib/i18n';
 import { signature, operatingLoop } from '@/lib/brand-canon';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * ProblemBeat — the tension before the solution (home #2).
@@ -125,6 +130,8 @@ function methodSteps(locale: Locale) {
 
 export default function ProblemBeat({ locale }: { locale: Locale }) {
   const t = dict[locale];
+  const { ref: funnelRef, isVisible: barsShow } = useScrollAnimation<HTMLUListElement>({ threshold: 0.4 });
+  const reduced = usePrefersReducedMotion();
   return (
     <Section variant="alt">
       <Container>
@@ -145,17 +152,24 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                   <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-primary" aria-hidden="true" />{t.legendPos}</span>
                 </div>
               </div>
-              <ul className="space-y-2" aria-label={t.funnelAria}>
+              <ul ref={funnelRef} className="space-y-2" aria-label={t.funnelAria}>
                 {t.funnel.map((s, i) => {
                   const paid = i === t.funnel.length - 1;
                   return (
                     <li key={s.label} className="flex items-center gap-3 sm:gap-4">
-                      <span className="w-9 sm:w-12 shrink-0 text-right text-base sm:text-lg font-bold text-gray-900 tabular-nums">{s.n}</span>
+                      <span className="w-9 sm:w-12 shrink-0 text-right text-base sm:text-lg font-bold text-gray-900 tabular-nums">
+                        <CountUp to={Number(s.n)} />
+                      </span>
                       <span className="w-12 sm:w-16 shrink-0 text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</span>
                       <div className="relative h-7 flex-1 overflow-hidden rounded-md bg-gray-100">
                         <div
-                          className={`absolute inset-y-0 left-0 rounded-md ${paid ? 'bg-primary' : 'bg-primary/20'}`}
-                          style={{ width: `${Math.max(s.pct, 6)}%` }}
+                          className={`absolute inset-y-0 left-0 origin-left rounded-md ${paid ? 'bg-primary' : 'bg-primary/20'}`}
+                          style={{
+                            width: `${Math.max(s.pct, 6)}%`,
+                            transform: barsShow ? 'scaleX(1)' : 'scaleX(0)',
+                            transition: reduced ? undefined : 'transform 0.5s var(--ease-out-cubic)',
+                            transitionDelay: reduced ? undefined : `${0.1 + i * 0.08}s`,
+                          }}
                         />
                         {paid && <span className="absolute inset-y-0 right-2 flex items-center text-2xs font-bold text-primary">{t.posTag}</span>}
                       </div>
@@ -169,7 +183,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
           {/* RIGHT — consequence: the −317 leak + the 3 reasons POS can't tell you */}
           <StaggerItem className="lg:col-span-5">
             <div className="rounded-2xl border border-primary/15 bg-primary-lighter/50 p-6">
-              <p className="text-5xl font-bold text-primary tabular-nums leading-none">−{t.leak.n}</p>
+              <p className="text-5xl font-bold text-primary tabular-nums leading-none">−<CountUp to={Number(t.leak.n)} /></p>
               <p className="mt-3 text-sm text-gray-700 break-keep leading-relaxed">{t.leak.label}</p>
             </div>
             <ul className="mt-5 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
