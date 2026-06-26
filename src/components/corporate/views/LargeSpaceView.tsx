@@ -215,9 +215,9 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {scenarios.map((s, i) => (
-              <div key={s.tag} className="card overflow-hidden p-0 flex flex-col">
+              <div key={s.tag} className="stagger-child group card overflow-hidden p-0 flex flex-col transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10] w-full">
-                  <Image src={SCENARIO_IMGS[i]} alt={s.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover" />
+                  <Image src={SCENARIO_IMGS[i]} alt={s.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="flex flex-col gap-3 p-5">
                   <span className="self-start px-2.5 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary">{s.tag}</span>

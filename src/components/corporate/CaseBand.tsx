@@ -108,14 +108,14 @@ export default function CaseBand({ locale }: { locale: Locale }) {
         <StaggerContainer className="grid sm:grid-cols-3 gap-5">
           {t.cases.map((c) => (
             <StaggerItem key={c.title} className="h-full">
-              <Card hover className="h-full overflow-hidden">
-                <div className="relative aspect-[16/10] shadow-card">
+              <Card hover className="group h-full overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden shadow-card">
                   <Image
                     src={c.img}
                     alt={c.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6">

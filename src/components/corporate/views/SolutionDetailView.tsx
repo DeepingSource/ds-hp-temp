@@ -12,6 +12,7 @@ import {
 import { type Locale } from '@/lib/i18n';
 import { JsonLd, breadcrumbList } from '@/lib/structured-data';
 import SolutionMockupPreview from '@/components/solutions/SolutionMockupPreview';
+import { RevealStagger, RevealItem } from '@/components/ui/Reveal';
 
 const homeCrumb: Record<Locale, string> = { ko: '홈', en: 'Home', jp: 'ホーム' };
 
@@ -293,26 +294,28 @@ export default function SolutionDetailView({
           <div>
             <p className="text-sm font-medium text-primary mb-5 tracking-wider uppercase">{t.solutionEyebrow}</p>
             <h2 className="text-2xl font-bold text-gray-900 mb-8 break-keep">{t.solutionHeading}</h2>
-            <div className="space-y-4">
+            <RevealStagger className="space-y-4">
               {sol.steps.map((step, i) => {
                 const productLabel = (!isKo && detail?.steps[i]?.productLabel) || step.productLabel;
                 const stepTitle = (!isKo && detail?.steps[i]?.title) || step.title;
                 return (
-                  <div key={i} className={`flex gap-5 p-6 rounded-2xl border ${blue.border} bg-white`}>
-                    <div className="flex-shrink-0">
-                      <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${blue.bg} mb-2`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${blue.dot}`} />
-                        <span className={`text-xs font-bold ${blue.text}`}>{productLabel}</span>
+                  <RevealItem key={i}>
+                    <div className={`flex gap-5 p-6 rounded-2xl border ${blue.border} bg-white`}>
+                      <div className="flex-shrink-0">
+                        <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${blue.bg} mb-2`}>
+                          <span className={`w-1.5 h-1.5 rounded-full ${blue.dot}`} />
+                          <span className={`text-xs font-bold ${blue.text}`}>{productLabel}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-bold text-gray-900 mb-1.5 break-keep">{stepTitle}</p>
+                        <p className="text-sm text-gray-500 leading-relaxed break-keep">{step.desc}</p>
                       </div>
                     </div>
-                    <div>
-                      <p className="font-bold text-gray-900 mb-1.5 break-keep">{stepTitle}</p>
-                      <p className="text-sm text-gray-500 leading-relaxed break-keep">{step.desc}</p>
-                    </div>
-                  </div>
+                  </RevealItem>
                 );
               })}
-            </div>
+            </RevealStagger>
           </div>
 
           {/* 실제 화면 목업 프리뷰 */}
