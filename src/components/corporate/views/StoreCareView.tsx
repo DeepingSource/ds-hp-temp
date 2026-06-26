@@ -3,6 +3,7 @@ import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreCareMockup from '@/components/mockups/StoreCareMockup';
 import { KakaoAlertMockup } from '@/components/mockups';
+import HqRollupDashboardMockup from '@/components/mockups/HqRollupDashboardMockup';
 import { Store, ArrowUpRight, ShieldCheck, Eye, Bell } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
@@ -32,6 +33,14 @@ const C: Record<Locale, {
   valueCta: string;
   valueNote: [string, string];
   otherProducts: string;
+  entEyebrow: string;
+  entHeadline: string;
+  entSub: string;
+  entPillars: { title: string; desc: string }[];
+  entPrivacy: string;
+  entCtaHq: string;
+  entCtaOwner: string;
+  entDashAria: string;
 }> = {
   ko: {
     heroTitle: '누가 일해도, 언제나 완벽한 매장.',
@@ -52,6 +61,18 @@ const C: Record<Locale, {
     valueCta: 'storecare.ai 바로가기',
     valueNote: ['store care는 DeepingSource의 점주용 서비스로, 별도 사이트 storecare.ai에서 운영됩니다.', ''],
     otherProducts: '다른 제품 보기',
+    entEyebrow: '다점포 본사를 위한 · 손실예방 & 컴플라이언스',
+    entHeadline: '모든 매장을 같은 기준으로 지켜봅니다 — 한 화면에서.',
+    entSub: 'store care는 도난·위생·설비를 모든 매장에서 같은 눈으로 살피고, 모든 알림을 본사로 모읍니다. 원본 영상은 남기지 않습니다.',
+    entPillars: [
+      { title: '표준화된 손실예방', desc: '도난과 영업 외 시간 이상 징후를, 그날 누가 근무하든 같은 기준으로 감지합니다. 여러 매장에서 반복되는 패턴은 본사 화면에 떠오릅니다. 개별 사건이 아니라 추세에 대응하세요.' },
+      { title: '위생·설비, 기록으로', desc: '냉장 온도, 바닥 누수, 막힌 비상구, 열린 문 — 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
+      { title: '전 매장을 한 화면에', desc: 'store count·store insight처럼 store care도 본사로 모입니다. 사고 건수로 매장을 정렬하고, 방문이 필요한 곳을 가려내고, 작은 실수가 리콜이 되기 전에 개입하세요.' },
+    ],
+    entPrivacy: 'SEAL이 촬영하는 순간 익명화합니다. 원본은 저장하지 않고 신원은 즉시 지워지며, 사건만 남습니다. 프라이버시를 내주지 않고도 지켜내는 컴플라이언스.',
+    entCtaHq: '다점포 도입 상담하기',
+    entCtaOwner: '한 매장만 운영하세요? storecare.ai에서 시작',
+    entDashAria: '전국 매장의 이상 감지·위생/온도 컴플라이언스·매장 랭킹·실시간 알림을 한 화면에 보여주는 store care 본사 대시보드',
   },
   en: {
     heroTitle: 'Always the perfect store — no matter who’s on shift.',
@@ -72,6 +93,18 @@ const C: Record<Locale, {
     valueCta: 'Go to storecare.ai',
     valueNote: ['store care is DeepingSource’s service for store owners, operated on the separate site storecare.ai.', ''],
     otherProducts: 'See other products',
+    entEyebrow: 'For multi-store HQ · loss prevention & compliance',
+    entHeadline: 'Every store watched to the same standard — from one screen.',
+    entSub: 'store care puts the same trained eye on theft, hygiene, and equipment in every location — and rolls every alert up to headquarters. No raw footage, ever.',
+    entPillars: [
+      { title: 'Loss prevention, standardized', desc: "Theft and after-hours anomalies caught by one consistent standard in every store — not the judgment of whoever's on shift. Patterns that repeat across locations surface on the HQ screen, so you act on the trend, not just the incident." },
+      { title: 'Hygiene & equipment, on the record', desc: 'Fridge temperatures, floor spills, blocked exits, doors left open — checked around the clock and time-stamped. Turn "we\'re pretty sure it\'s fine" into an audit trail you can show.' },
+      { title: 'The whole fleet, one screen', desc: 'Like store count and store insight, store care rolls up to HQ. Rank stores by incidents, see which sites need a visit, and step in before a small lapse becomes a recall.' },
+    ],
+    entPrivacy: 'Anonymized at the point of capture by SEAL. No footage is stored and identities are erased on the spot — only the events are kept. Compliance you can defend, without trading away privacy to get it.',
+    entCtaHq: 'Talk to us about a fleet rollout',
+    entCtaOwner: 'Running a single store? Start on storecare.ai',
+    entDashAria: 'store care HQ dashboard: fleet-wide incidents, hygiene and temperature compliance, store ranking and a live alert feed across stores.',
   },
   jp: {
     heroTitle: '誰が働いても、いつも完璧な店舗。',
@@ -92,6 +125,18 @@ const C: Record<Locale, {
     valueCta: 'storecare.ai へ',
     valueNote: ['store care は DeepingSource の店主向けサービスで、別サイトの storecare.ai で運営しています。', ''],
     otherProducts: '他の製品を見る',
+    entEyebrow: '多店舗本部向け · 防損 & コンプライアンス',
+    entHeadline: 'すべての店舗を同じ基準で見守る — ひとつの画面で。',
+    entSub: 'store care は盗難・衛生・設備をすべての店舗で同じ目で見張り、すべてのアラートを本部に集約します。元映像は残しません。',
+    entPillars: [
+      { title: '標準化された防損', desc: '盗難や営業時間外の異常の兆候を、その日に誰が勤務していても同じ基準で検知します。複数店舗で繰り返すパターンは本部の画面に浮かび上がります。個別の事件ではなく、傾向に対応してください。' },
+      { title: '衛生・設備を記録に', desc: '冷蔵温度、床の水漏れ、塞がれた非常口、開いたままの扉 — 24時間点検し、時刻を残します。「たぶん大丈夫」を、提示できる監査証跡に変えます。' },
+      { title: '全店舗をひとつの画面に', desc: 'store count・store insight と同じく、store care も本部に集約します。事故件数で店舗を並べ、訪問が必要な場所を見極め、小さな見落としがリコールになる前に対処してください。' },
+    ],
+    entPrivacy: 'SEAL が撮影する瞬間に匿名化します。原本は保存せず、身元は即座に消え、事象だけが残ります。プライバシーを手放さずに守るコンプライアンス。',
+    entCtaHq: '多店舗導入のご相談',
+    entCtaOwner: '一店舗のみの運営ですか? storecare.ai で開始',
+    entDashAria: '全国店舗の異常検知・衛生/温度コンプライアンス・店舗ランキング・リアルタイムアラートをひとつの画面で示す store care 本部ダッシュボード',
   },
 };
 
@@ -143,6 +188,51 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
           <p className="mt-4 text-sm text-gray-500">{t.heroPrice}</p>
         </div>
       </section>
+
+      {/* ── 엔터프라이즈 — 다점포 본사 (HQ 롤업, dual-face) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase break-keep">{t.entEyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.entHeadline}</h2>
+            <p className="text-lg text-gray-600 leading-relaxed break-keep">{t.entSub}</p>
+          </div>
+
+          <div className="mb-10">
+            <HqRollupDashboardMockup locale={locale} ariaLabel={t.entDashAria} />
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-5 mb-8">
+            {t.entPillars.map((p, i) => (
+              <div key={i} className="rounded-2xl border border-gray-200 bg-white p-6">
+                <span className="text-2xs font-mono font-medium text-gray-400">0{i + 1}</span>
+                <h3 className="mt-2 text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="flex items-start gap-3 rounded-2xl border border-primary/20 bg-white p-5 text-sm text-gray-600 leading-relaxed break-keep mb-8">
+            <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+            {t.entPrivacy}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link href={localeHref(locale, '/contact') + '?product=StoreCare'} className="btn-primary">
+              {t.entCtaHq}
+            </Link>
+            <a
+              href="https://storecare.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 px-6 py-3 text-sm font-bold text-gray-700 border border-gray-300 rounded-xl hover:border-primary hover:text-primary transition-colors"
+            >
+              {t.entCtaOwner}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </AnimatedSection>
 
       {/* ── 목업 미리보기 (실시간 알림 화면) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white overflow-hidden">
