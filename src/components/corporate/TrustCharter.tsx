@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ShieldCheck, FileX2, EyeOff, Fingerprint } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import IconChip from '@/components/ui/IconChip';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { sealCharter } from '@/lib/brand-canon';
 
@@ -20,27 +20,33 @@ const promiseIcons: Record<string, typeof ShieldCheck> = {
   'no-reid': Fingerprint,
 };
 
-const dict: Record<Locale, { eyebrow: string; heading: string; link: string; imgAlt: string; caption: string }> = {
+const dict: Record<Locale, { eyebrow: string; heading: string; link: string; imgAlt: string; sliderBefore: string; sliderAfter: string; caption: string }> = {
   ko: {
     eyebrow: 'SEAL · 익명화 신뢰 헌장',
     heading: '영상은 남기지 않습니다',
     link: 'SEAL 기술 보기',
-    imgAlt: '익명화 시각화 — 사람의 신원이 익명 데이터 포인트로 흩어집니다',
-    caption: '누구가 아니라, 무엇을 어떻게 — 신원은 입력 시점에 지우고, 흐름만 남깁니다.',
+    imgAlt: '같은 인물의 익명화 전과 후 비교',
+    sliderBefore: '원본',
+    sliderAfter: '익명화',
+    caption: '손잡이를 끌어 보세요 — 첫 단계에서 익명화됩니다. 원본은 어디에도 남지 않습니다.',
   },
   en: {
     eyebrow: 'SEAL · Anonymization charter',
     heading: 'We never keep the footage',
     link: 'See the SEAL technology',
-    imgAlt: 'Anonymization visualized — a person dissolves into anonymous data points',
-    caption: 'Not who, but what and how — identity is erased the moment it enters; only the flow remains.',
+    imgAlt: 'Before-and-after comparison of the same person, anonymized',
+    sliderBefore: 'Original',
+    sliderAfter: 'Anonymized',
+    caption: "Drag the handle — it's anonymized at the first step. The original is left nowhere.",
   },
   jp: {
     eyebrow: 'SEAL · 匿名化の信頼憲章',
     heading: '映像は残しません',
     link: 'SEAL技術を見る',
-    imgAlt: '匿名化のビジュアル — 人物が匿名のデータ点へと解けていきます',
-    caption: '誰かではなく、何をどう — 身元は入力時点で消し、流れだけを残します。',
+    imgAlt: '同じ人物の匿名化前と後の比較',
+    sliderBefore: '原本',
+    sliderAfter: '匿名化',
+    caption: 'ハンドルを動かしてください——最初の段階で匿名化されます。原本はどこにも残りません。',
   },
 };
 
@@ -66,18 +72,14 @@ export default function TrustCharter({ locale }: { locale: Locale }) {
               <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <figure>
-            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-gray-200 shadow-card bg-gray-950">
-              <Image
-                src="/images/nextrise/anonymize-dissolve.webp"
-                alt={t.imgAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 560px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 text-xs text-gray-500 break-keep">{t.caption}</figcaption>
-          </figure>
+          <BeforeAfterSlider
+            beforeSrc="/images/technology/tech-anon-slider-before.webp"
+            afterSrc="/images/technology/tech-anon-slider-after.webp"
+            beforeLabel={t.sliderBefore}
+            afterLabel={t.sliderAfter}
+            caption={t.caption}
+            alt={t.imgAlt}
+          />
         </div>
         <ul className="grid sm:grid-cols-3 gap-5">
           {charter.promises.map((p) => {

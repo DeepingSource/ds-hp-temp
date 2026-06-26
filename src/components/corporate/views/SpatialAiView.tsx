@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { SpatialTrajectoryMockup } from '@/components/mockups';
+import LoopVideo from '@/components/ui/LoopVideo';
 
 type Section = { label: string; title: string; body: string };
 
@@ -16,6 +17,12 @@ type Copy = {
   heroTitleA: string;
   heroTitleB: string;
   heroSub: string;
+
+  demoEyebrow: string;
+  demoTitle: string;
+  demoBody: string;
+  demoCaption: string;
+  demoAria: string;
 
   sections: Section[];
 
@@ -35,6 +42,13 @@ const ko: Copy = {
   heroTitleB: '먼저입니다',
   heroSub:
     '물리 공간에서 일하려면, 먼저 그 공간을 읽고 흐름을 이해해야 합니다. 익명화 위에서 공간 지능이 일합니다 — 누구인지가 아니라, 무엇을 어떻게 하는지를.',
+
+  demoEyebrow: '신원이 아니라, 정보를 읽습니다',
+  demoTitle: '얼굴은 지워도, 맥락은 읽습니다.',
+  demoBody:
+    '신원은 되돌릴 수 없게 지우고, AI가 장면을 이해하는 데 필요한 최소 특징만 남깁니다. 그래서 익명화된 영상에서도 성별·연령대, 동선과 자세, 관심과 체류를 읽습니다 — 누구인지는 모른 채로.',
+  demoCaption: '얼굴은 노이즈. 그래도 읽히는 것 — 연령대·시선·발화. 신원은 없습니다.',
+  demoAria: '얼굴이 노이즈로 익명화된 인물에서 나이·성별·시선·발화 같은 속성을 읽어내는 데모 영상',
 
   sections: [
     { label: 'Spatial AI', title: '누구인지가 아니라, 무엇을 어떻게', body: '비전 AI는 결국 사람을 봅니다. 공간 지능은 그 시선을 바꿉니다 — 누구인지를 가려내는 대신, 사람들이 무엇을 어떻게 하는지를 읽습니다. 신원은 익명화 단계에서 이미 지워졌고, 남은 건 공간의 흐름뿐입니다.' },
@@ -59,6 +73,13 @@ const en: Copy = {
   heroSub:
     'To work in the physical world, you first have to read the space and understand how it flows. Spatial AI works on top of anonymization — not who is there, but what people do and how.',
 
+  demoEyebrow: 'We read information, not identity',
+  demoTitle: 'The face is erased; the context is read.',
+  demoBody:
+    'Identity is erased beyond recovery; only the minimum features the AI needs to understand the scene are kept. So even on anonymized footage we read gender and age range, movement and posture, attention and dwell — without ever knowing who.',
+  demoCaption: 'The face is noise. Still readable — age range, gaze, speaking. No identity.',
+  demoAria: 'A demo reading attributes like age, gender, gaze, and speech from a person whose face is anonymized to noise',
+
   sections: [
     { label: 'Spatial AI', title: 'Not who, but what and how', body: 'Vision AI ultimately looks at people. Spatial intelligence changes what it looks for: instead of singling out who someone is, it reads what people do and how they move. Identity is already erased at the anonymization stage — all that remains is the flow of the space.' },
     { label: 'Vision Models', title: 'State-of-the-art vision models', body: 'Person detection, pose estimation, re-identification, crowd density — a stack of SOTA vision models reads all of this from a single feed. Where people pause, how they move, how densely they gather. Everything happening on the floor, read on the cameras already mounted in your store.' },
@@ -81,6 +102,13 @@ const jp: Copy = {
   heroTitleB: '先です',
   heroSub:
     '物理空間で働くには、まずその空間を読み、流れを理解する必要があります。匿名化の上で空間知能が働きます——誰かではなく、何をどうしているのかを。',
+
+  demoEyebrow: '身元ではなく、情報を読みます',
+  demoTitle: '顔は消しても、文脈は読みます。',
+  demoBody:
+    '身元は復元できないように消し、AIが場面を理解するのに必要な最小限の特徴だけを残します。だから匿名化された映像でも、性別・年代、動線と姿勢、関心と滞在を読みます——誰かは分からないまま。',
+  demoCaption: '顔はノイズ。それでも読めるもの——年代・視線・発話。身元はありません。',
+  demoAria: '顔がノイズに匿名化された人物から、年齢・性別・視線・発話などの属性を読み取るデモ映像',
 
   sections: [
     { label: 'Spatial AI', title: '誰かではなく、何をどう', body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定するのではなく、人々が何をどう動いているのかを読みます。身元は匿名化の段階ですでに消されており、残るのは空間の流れだけです。' },
@@ -144,6 +172,29 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-slate-900">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <SpatialTrajectoryMockup locale={locale} />
+        </div>
+      </AnimatedSection>
+
+      {/* Demo — anonymized face, attributes still read (what-not-who, shown) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+              <LoopVideo
+                mp4="/videos/pete-anon-demo.mp4"
+                webm="/videos/pete-anon-demo.webm"
+                poster="/images/technology/pete-anon-poster.webp"
+                ariaLabel={t.demoAria}
+                className="w-full h-auto block"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.demoEyebrow}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
+              <p className="text-gray-600 leading-relaxed break-keep mb-6">{t.demoBody}</p>
+              <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.demoCaption}</p>
+            </div>
+          </div>
         </div>
       </AnimatedSection>
 

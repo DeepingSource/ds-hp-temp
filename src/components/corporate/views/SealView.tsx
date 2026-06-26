@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { SealSdkMockup } from '@/components/mockups';
+import LoopVideo from '@/components/ui/LoopVideo';
 
 type Promise = { letter: string; word: string; desc: string };
 type Step = { title: string; desc: string };
@@ -22,6 +23,14 @@ type Copy = {
   promiseEyebrow: string;
   promiseTitle: string;
   promise: Promise[];
+
+  compareEyebrow: string;
+  compareTitle: string;
+  compareBody: string;
+  fullLabel: string;
+  partialLabel: string;
+  fullAria: string;
+  partialAria: string;
 
   integrationEyebrow: string;
   integrationTitle: string;
@@ -82,6 +91,15 @@ const ko: Copy = {
   ctaTitle: '익명화를 처음부터, 설계에 넣습니다',
   ctaSub: '운영 환경과 연동 요건을 공유해 주시면, 신원 보호를 내장한 적합한 구성을 함께 설계합니다.',
   ctaPrimary: 'SDK 도입 문의',
+
+  compareEyebrow: '전체 vs 부분 익명화',
+  compareTitle: '안전이 먼저냐, 활용이 먼저냐 — 둘 다입니다.',
+  compareBody:
+    '전체 익명화는 장면 전체를 지워 안전을 극대화합니다. 부분 익명화(SEAL)는 신원만 강하게 지우고 분석에 필요한 신호는 남겨, 같은 영상을 개인정보 침해 없이 계속 활용합니다.',
+  fullLabel: '전체 익명화 · 안전 중심',
+  partialLabel: '부분 익명화 · 활용성 중심',
+  fullAria: '장면 전체를 노이즈로 익명화한 영상',
+  partialAria: '신원 영역만 익명화하고 분석 신호는 남긴 부분 익명화 영상',
 };
 
 const en: Copy = {
@@ -128,6 +146,15 @@ const en: Copy = {
   ctaTitle: 'We design anonymization in from the start',
   ctaSub: 'Share your operating environment and integration requirements, and we’ll design a fit with identity protection built in.',
   ctaPrimary: 'Inquire about SDK adoption',
+
+  compareEyebrow: 'Full vs partial anonymization',
+  compareTitle: 'Safety first or utility first — both.',
+  compareBody:
+    'Full anonymization erases the whole scene for maximum safety. Partial anonymization (SEAL) strips only identity while keeping the signals analysis needs — so the same footage stays usable, with no privacy breach.',
+  fullLabel: 'Full · safety-first',
+  partialLabel: 'Partial · utility-first',
+  fullAria: 'Footage with the entire scene anonymized to noise',
+  partialAria: 'Partial anonymization — only identity regions erased, analysis signals kept',
 };
 
 const jp: Copy = {
@@ -174,6 +201,15 @@ const jp: Copy = {
   ctaTitle: '匿名化を、最初から設計に組み込みます',
   ctaSub: '運用環境と連携要件を共有いただければ、身元保護を内蔵した適切な構成を一緒に設計します。',
   ctaPrimary: 'SDK導入のお問い合わせ',
+
+  compareEyebrow: '全体 vs 部分匿名化',
+  compareTitle: '安全が先か、活用が先か——どちらもです。',
+  compareBody:
+    '全体匿名化は場面全体を消して安全を最大化します。部分匿名化（SEAL）は身元だけを強く消し、分析に必要な信号は残すため、同じ映像をプライバシー侵害なく使い続けられます。',
+  fullLabel: '全体・安全重視',
+  partialLabel: '部分・活用重視',
+  fullAria: '場面全体をノイズで匿名化した映像',
+  partialAria: '身元領域だけを匿名化し、分析信号は残した部分匿名化の映像',
 };
 
 const C: Record<Locale, Copy> = { ko, en, jp };
@@ -230,6 +266,31 @@ export default function SealView({ locale }: { locale: Locale }) {
                 <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Full vs partial anonymization — two real clips side by side (PPTX slide 4) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.compareEyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.compareTitle}</h2>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.compareBody}</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <figure>
+              <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+                <LoopVideo mp4="/videos/seal-full-anon.mp4" poster="/images/technology/seal-full-poster.webp" ariaLabel={t.fullAria} className="block h-auto w-full" />
+              </div>
+              <figcaption className="mt-3 text-sm font-medium text-gray-900 break-keep">{t.fullLabel}</figcaption>
+            </figure>
+            <figure>
+              <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+                <LoopVideo mp4="/videos/seal-partial-anon.mp4" poster="/images/technology/seal-partial-poster.webp" ariaLabel={t.partialAria} className="block h-auto w-full" />
+              </div>
+              <figcaption className="mt-3 text-sm font-medium text-primary break-keep">{t.partialLabel}</figcaption>
+            </figure>
           </div>
         </div>
       </AnimatedSection>

@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { ModelCatalogMockup } from '@/components/mockups';
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
 
 type Stage = 'Live' | 'Building' | 'Planned';
 
@@ -24,6 +25,12 @@ type Copy = {
   heroTitle: string;
   heroSub: string;
   categoryNote: string;
+  realEyebrow: string;
+  realTitle: string;
+  sliderBefore: string;
+  sliderAfter: string;
+  sliderCaption: string;
+  sliderAlt: string;
   models: ModelCopy[];
   catalogFootnote: string;
   ctaTitle: string;
@@ -38,6 +45,12 @@ const ko: Copy = {
     '사람 검출, 자세 추정, 재식별, 군중 밀도 — SOTA급 비전 모델들이 이미 달린 CCTV 한 대에서 공간을 읽습니다. 누구가 아니라, 무엇을 어떻게.',
   categoryNote:
     '익명화 위에서 인식 · 공간 · 흐름 · 변화 · 생성으로 — 각 모델은 단독으로, 또는 파이프라인 단계로 조합해 공간 지능을 만듭니다.',
+  realEyebrow: '실제 출력',
+  realTitle: 'face-anon — 합성이 아니라, 제품의 실제 출력',
+  sliderBefore: '원본',
+  sliderAfter: '익명화',
+  sliderCaption: '같은 인물, 익명화 전과 후. 우측은 제품의 실제 출력입니다.',
+  sliderAlt: '같은 인물의 익명화 전과 후 비교',
   models: [
     { name: 'face-anon', promise: '프레임 내 얼굴 영역 익명화', stage: 'Live' },
     { name: 'body-anon', promise: '체형 식별 신호 익명화', stage: 'Live' },
@@ -71,6 +84,12 @@ const en: Copy = {
     'Person detection, pose estimation, re-identification, crowd density — SOTA vision models read your space from a camera you already have. Not who, but what and how.',
   categoryNote:
     'On top of anonymization: recognition, space, flow, change, generation. Each model runs on its own or stacks as a pipeline stage to build spatial intelligence.',
+  realEyebrow: 'Real output',
+  realTitle: 'face-anon — real product output, not a synthetic render',
+  sliderBefore: 'Original',
+  sliderAfter: 'Anonymized',
+  sliderCaption: "The same person, before and after anonymization. The right is the product's real output.",
+  sliderAlt: 'Before-and-after comparison of the same person, anonymized',
   models: [
     { name: 'face-anon', promise: 'Anonymizes face regions within a frame', stage: 'Live' },
     { name: 'body-anon', promise: 'Anonymizes body-shape identifying signals', stage: 'Live' },
@@ -104,6 +123,12 @@ const jp: Copy = {
     '人物検出、姿勢推定、再識別、群衆密度 — SOTA級のビジョンモデルが、すでにあるCCTV一台から空間を読みます。誰かではなく、何をどう。',
   categoryNote:
     '匿名化の上で、認識・空間・フロー・変化・生成へ。各モデルは単独で、またはパイプライン段階として組み合わせ、空間知能を形づくります。',
+  realEyebrow: '実際の出力',
+  realTitle: 'face-anon — 合成ではなく、製品の実際の出力',
+  sliderBefore: '原本',
+  sliderAfter: '匿名化',
+  sliderCaption: '同じ人物の匿名化前と後。右は製品の実際の出力です。',
+  sliderAlt: '同じ人物の匿名化前と後の比較',
   models: [
     { name: 'face-anon', promise: 'フレーム内の顔領域を匿名化', stage: 'Live' },
     { name: 'body-anon', promise: '体型の識別信号を匿名化', stage: 'Live' },
@@ -163,6 +188,26 @@ export default function ModelsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white border-b border-gray-100">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ModelCatalogMockup locale={locale} />
+        </div>
+      </AnimatedSection>
+
+      {/* Real output — face-anon before↔after (honesty: not a synthetic render) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.realEyebrow}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.realTitle}</h2>
+              <p className="text-gray-600 leading-relaxed break-keep">{t.sliderCaption}</p>
+            </div>
+            <BeforeAfterSlider
+              beforeSrc="/images/technology/tech-anon-slider-before.webp"
+              afterSrc="/images/technology/tech-anon-slider-after.webp"
+              beforeLabel={t.sliderBefore}
+              afterLabel={t.sliderAfter}
+              alt={t.sliderAlt}
+            />
+          </div>
         </div>
       </AnimatedSection>
 

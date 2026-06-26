@@ -4,7 +4,7 @@ import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import { CountUp } from '@/components/ui/CountUp';
 import { AnonymizationPipeline } from '@/components/technology/AnonymizationPipeline';
-import AnonymizationMockup from '@/components/mockups/AnonymizationMockup';
+import LoopVideo from '@/components/ui/LoopVideo';
 import { PrivacyJourneyMockup } from '@/components/mockups';
 import AutonomyLadderTimeline from '@/components/mockups/AutonomyLadderTimeline';
 import IntegratedLoopDiagram from '@/components/mockups/IntegratedLoopDiagram';
@@ -49,6 +49,7 @@ type Copy = {
   demoTitle: string;
   demoSub: string;
   demoItems: DemoItem[];
+  demoCaption: string;
 
   coreEyebrow: string;
   coreTitle: (n: number) => string;
@@ -125,6 +126,7 @@ const ko: Copy = {
     { label: '동의 없이도 보호', desc: '여러 사람을 동시에 익명화' },
     { label: '원본 미보존', desc: '원본은 시스템 어디에도 남기지 않습니다' },
   ],
+  demoCaption: '실제 출력입니다 — 합성 일러스트가 아니라, 제품이 만든 익명화 영상. 원본 → 익명화 → 익명 상태로 추적.',
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => '공간을 운영하는, 세 개의 기술 축',
@@ -201,6 +203,7 @@ const en: Copy = {
     { label: 'Protected without consent', desc: 'Many people de-identified at once' },
     { label: 'No original kept', desc: 'The original is left nowhere in the system' },
   ],
+  demoCaption: "This is real output — the product's own anonymized footage, not a synthetic illustration. Original → anonymized → tracked while anonymized.",
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => 'Three technical axes that operate space',
@@ -277,6 +280,7 @@ const jp: Copy = {
     { label: '同意がなくても保護', desc: '多数の人を同時に匿名化' },
     { label: '原本を残さない', desc: '原本はシステムのどこにも残しません' },
   ],
+  demoCaption: '実際の出力です——合成イラストではなく、製品が生成した匿名化映像。原本 → 匿名化 → 匿名のまま追跡。',
 
   coreEyebrow: 'Three Axes',
   coreTitle: () => '空間を運営する、三つの技術の軸',
@@ -428,31 +432,35 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
       {/* ── Anonymizer 데모 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.demoEyebrow}</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
-              <p className="text-lg text-gray-500 leading-relaxed mb-6 break-keep">
-                {t.demoSub}
-              </p>
-              <div className="space-y-3">
-                {t.demoItems.map((item) => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">{item.label}</p>
-                      <p className="text-sm text-gray-500">{item.desc}</p>
-                    </div>
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.demoEyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
+            <p className="text-lg text-gray-500 leading-relaxed mb-6 break-keep">
+              {t.demoSub}
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4">
+              {t.demoItems.map((item) => (
+                <div key={item.label} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{item.label}</p>
+                    <p className="text-sm text-gray-500">{item.desc}</p>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="w-full max-w-xs">
-                <AnonymizationMockup locale={locale} />
-              </div>
+                </div>
+              ))}
             </div>
           </div>
+          <figure className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
+            <div className="overflow-x-auto">
+              <LoopVideo
+                mp4="/videos/anon-3panel-demo.mp4"
+                poster="/images/technology/anon-3panel-poster.webp"
+                ariaLabel={t.demoCaption}
+                className="block h-auto w-full min-w-[680px]"
+              />
+            </div>
+            <figcaption className="px-5 py-3 text-xs text-gray-300 break-keep">{t.demoCaption}</figcaption>
+          </figure>
         </div>
       </AnimatedSection>
 
