@@ -3,7 +3,6 @@ import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreInsightDesktopMockup from '@/components/mockups/StoreInsightDesktopMockup';
 import dynamic from 'next/dynamic';
-import POSAnalysisSection from '@/components/sections/POSAnalysisSection';
 import {
   BarChart3,
   ArrowRight,
@@ -48,6 +47,13 @@ const C: Record<Locale, {
   before: string[];
   after: string[];
   baNote: string;
+  handoffEyebrow: string;
+  handoffHeading: string;
+  handoffSub: string;
+  cardTitle: string;
+  cardBody: string;
+  cardCta: string;
+  boundaryLine: string;
   finalHeading: string;
   finalSub: string;
   finalCta: string;
@@ -89,6 +95,13 @@ const C: Record<Locale, {
       '동선 하나 바꿔 수익 +10%, 체류 +25% — 어제와 "왜"에 매일 답합니다.',
     ],
     baNote: '* 수치는 학원가 편의점·시립 전시관 등 실제 운영 사례를 설명하기 위한 예시입니다.',
+    handoffEyebrow: '분석에서 실행으로',
+    handoffHeading: '이유는 insight가, 무엇을 할지는 store agent가 정합니다.',
+    handoffSub: 'store insight는 어제를 읽고 그 이유를 설명합니다. 무엇을 채우고, 보충하고, 누구를 배치할지 정해야 하는 순간 — 그건 store agent의 일입니다. 모든 추천은 하나의 엔진에서.',
+    cardTitle: '인사이트를 액션 카드로',
+    cardBody: '음료 체류가 2배? store insight가 원인을 짚으면, store agent가 발주량·공급처·시점까지 담아 승인용 카드로 만듭니다. 어떤 인사이트에서든 클릭 한 번.',
+    cardCta: 'store agent 보기',
+    boundaryLine: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를, store agent는 다음에 무엇을 할지를 — 각각 맡습니다.',
     finalHeading: '어제와 "왜"에, 매일 아침 답을 받으세요',
     finalSub: '이미 달린 CCTV 위에서 바로 시작할 수 있습니다.',
     finalCta: '도입 상담 신청',
@@ -130,6 +143,13 @@ const C: Record<Locale, {
       'One flow change lifted revenue +10% and dwell +25% — answering yesterday and "why," every day.',
     ],
     baNote: '* Figures illustrate real cases — a campus convenience store and a city exhibition hall.',
+    handoffEyebrow: 'From insight to action',
+    handoffHeading: 'We show you why. store agent decides what to do.',
+    handoffSub: "store insight reads yesterday and explains it. The moment it's time to decide what to stock, restock, or staff, that's store agent — one engine for every recommendation.",
+    cardTitle: 'Turn an insight into an action card',
+    cardBody: 'Beverage dwell up 2×? store insight flags the cause. store agent drafts the move — order quantity, supplier, timing — for your approval. One click from any insight.',
+    cardCta: 'See store agent',
+    boundaryLine: 'store count reads the footfall outside. store insight explains what happened inside, and why. store agent decides what to do next.',
     finalHeading: 'Get the answer to yesterday and "why," every morning',
     finalSub: 'Start right on the CCTV you already have.',
     finalCta: 'Request a consultation',
@@ -171,6 +191,13 @@ const C: Record<Locale, {
       '動線を一つ変えるだけで売上 +10%、滞在 +25% — 昨日と「なぜ」に毎日お答えします。',
     ],
     baNote: '※ 数値は学習塾街のコンビニ・市立展示館などの実例を説明するための一例です。',
+    handoffEyebrow: '分析から実行へ',
+    handoffHeading: '理由は insight が、次の一手は store agent が決めます。',
+    handoffSub: 'store insight は昨日を読み、その理由を説明します。何を仕入れ、補充し、誰を配置するか — それは store agent の役割。すべての推奨はひとつのエンジンから。',
+    cardTitle: 'インサイトをアクションカードに',
+    cardBody: '飲料の滞在が2倍? store insight が原因を示すと、store agent が発注量・仕入先・タイミングまで含めて承認用カードにします。どのインサイトからもワンクリック。',
+    cardCta: 'store agent を見る',
+    boundaryLine: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを、store agent は次に何をするかを — それぞれ担います。',
     finalHeading: '昨日と「なぜ」への答えを、毎朝お受け取りください',
     finalSub: 'すでにある CCTV の上で、すぐに始められます。',
     finalCta: '導入のご相談',
@@ -356,8 +383,26 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── POS 교차 분석 ── */}
-      <POSAnalysisSection locale={locale} />
+      {/* ── insight → store agent 핸드오프 (경계: insight=원인, agent=행동) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.handoffEyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.handoffHeading}</h2>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.handoffSub}</p>
+          </div>
+          <div className="rounded-2xl border border-primary/20 bg-white p-6 sm:p-8 shadow-card">
+            <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-2">Powered by store agent</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{t.cardTitle}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">{t.cardBody}</p>
+            <Link href={localeHref(locale, '/products/store-agent')} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
+              {t.cardCta}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <p className="mt-8 max-w-3xl text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.boundaryLine}</p>
+        </div>
+      </AnimatedSection>
 
       {/* ── CTA ── */}
       <AnimatedSection className="section-dark relative py-20 lg:py-28 overflow-hidden">
