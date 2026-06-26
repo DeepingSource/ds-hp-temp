@@ -8,13 +8,15 @@ import { stripLocale, localeHref, type Locale } from '@/lib/i18n';
 
 type Tri = Record<Locale, string>;
 const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
-type FLink = { href: string; label: Tri };
+type FLink = { href: string; label: Tri; external?: boolean };
 
 const productLinks: FLink[] = [
+  { href: '/products/store-count', label: L('store count', 'store count', 'store count') },
   { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight') },
-  { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent') },
   { href: '/products/store-care', label: L('store care', 'store care', 'store care') },
-  { href: '/products#ai-pop', label: L('AI POP', 'AI POP', 'AI POP') },
+  { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent') },
+  { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store') },
+  { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai') },
 ];
 
 const techLinks: FLink[] = [
@@ -93,10 +95,12 @@ export default function Footer() {
                   {col.links.map((link) => (
                     <Link
                       key={link.href}
-                      href={localeHref(locale, link.href)}
+                      href={link.external ? link.href : localeHref(locale, link.href)}
+                      {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="text-sm text-gray-300 hover:text-white hover:underline transition-colors"
                     >
                       {link.label[locale]}
+                      {link.external && <span aria-hidden="true"> ↗</span>}
                     </Link>
                   ))}
                 </nav>

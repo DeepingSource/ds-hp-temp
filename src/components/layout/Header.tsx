@@ -9,7 +9,9 @@ import LocaleSwitcher from './LocaleSwitcher';
 
 type Tri = Record<Locale, string>;
 const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
-type NavLeaf = { href: string; label: Tri; desc?: Tri };
+type NavLeaf =
+  | { header: Tri }
+  | { href: string; label: Tri; desc?: Tri; external?: boolean };
 type NavItem =
   | { type: 'link'; href: string; label: Tri }
   | { type: 'menu'; key: string; label: Tri; base: string; items: NavLeaf[] };
@@ -17,13 +19,15 @@ type NavItem =
 const NAV: NavItem[] = [
   {
     type: 'menu', key: 'products', label: L('제품', 'Products', '製品'), base: '/products', items: [
-      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('SAAI 우산 아래 전 제품', 'Everything under SAAI', 'SAAI傘下の全製品') },
-      { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight'), desc: L('어제를 읽다 · 공간 분석', 'Reads yesterday · analytics', '昨日を読む · 空間分析') },
-      { href: '/products/store-care', label: L('store care', 'store care', 'store care'), desc: L('지금을 알리다 · 이상 감지', 'Flags the now · detection', '今を知らせる · 異常検知') },
-      { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음을 실행하다 · 운영 제안', 'Acts on next · ops copilot', '次を動かす · 運営提案') },
-      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('상권·유입 · 카운팅', 'Footfall · capture rate', '商圏・流入 · カウント') },
-      { href: '/products/saai', label: L('AI POP', 'AI POP', 'AI POP'), desc: L('POP·콘텐츠 생성', 'POP & content', 'POP・コンテンツ生成') },
-      { href: '/products#trend-fit', label: L('trend fit', 'trend fit', 'trend fit'), desc: L('곧 출시 · 발주·트렌드', 'Coming soon · ordering', '近日公開 · 発注・トレンド') },
+      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('운영 루프 한눈에', 'The operating loop at a glance', 'オペレーションループを一望') },
+      { header: L('엔터프라이즈 — 매장 운영 루프', 'Enterprise — operating loop', 'エンタープライズ — 店舗オペレーションループ') },
+      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('문 밖 · 상권·통행·흡인율', 'Measure · footfall outside', '店の外 · 商圏・通行・捕捉率') },
+      { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight'), desc: L('문 안 · 동선·체류·전환', 'Analyze · flow·dwell·conversion', '店の中 · 動線・滞在・転換') },
+      { href: '/products/store-care', label: L('store care', 'store care', 'store care'), desc: L('지금 · 손실예방·컴플라이언스', 'Detect · loss prevention·compliance', 'いま · 防損・コンプライアンス') },
+      { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음 · 추천·발주·자율운영', 'Act · recommend·order', '次の一手 · 推奨・発注・自律運営') },
+      { header: L('점주를 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
+      { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 점주 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
+      { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('점주용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
     ],
   },
   {
@@ -181,18 +185,29 @@ export default function Header() {
                   }`}
                 >
                   <div className="w-64 bg-white rounded-xl border border-gray-100 shadow-lg shadow-gray-200/60 py-2">
-                    {item.items.map((leaf) => {
-                      const leafActive = path === leaf.href;
+                    {item.items.map((leaf, i) => {
+                      if ('header' in leaf) {
+                        return (
+                          <p key={i} className="px-4 pt-3 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
+                            {leaf.header[locale]}
+                          </p>
+                        );
+                      }
+                      const leafActive = !leaf.external && path === leaf.href;
                       return (
                         <Link
                           key={leaf.href}
-                          href={localeHref(locale, leaf.href)}
+                          href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
+                          {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                           className={`block px-4 py-2.5 text-sm transition-colors ${
                             leafActive ? 'text-primary bg-primary-lighter font-medium' : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                           }`}
                           aria-current={leafActive ? 'page' : undefined}
                         >
-                          <span className="block font-medium">{leaf.label[locale]}</span>
+                          <span className="block font-medium">
+                            {leaf.label[locale]}
+                            {leaf.external && <span aria-hidden="true"> ↗</span>}
+                          </span>
                           {leaf.desc && <span className="block text-xs text-gray-500">{leaf.desc[locale]}</span>}
                         </Link>
                       );
@@ -267,16 +282,27 @@ export default function Header() {
                   <div className={`grid transition-[grid-template-rows] duration-200 ease-in-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                     <div className="overflow-hidden">
                       <div className="pl-3 pr-1 py-1 space-y-0.5">
-                        {item.items.map((leaf) => (
-                          <Link
-                            key={leaf.href}
-                            href={localeHref(locale, leaf.href)}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors"
-                          >
-                            {leaf.label[locale]}
-                          </Link>
-                        ))}
+                        {item.items.map((leaf, i) => {
+                          if ('header' in leaf) {
+                            return (
+                              <p key={i} className="px-3 pt-2 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
+                                {leaf.header[locale]}
+                              </p>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={leaf.href}
+                              href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
+                              {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors"
+                            >
+                              {leaf.label[locale]}
+                              {leaf.external && <span aria-hidden="true"> ↗</span>}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
