@@ -13,7 +13,8 @@ import { IntegratedLoopDiagram } from '@/components/mockups';
  * Reorganized per the SA-team AHM deck (2026-07-03): the product is ONE flow —
  * a 5-step weekly operating loop (trend-fit → letter → POP → planogram → chat),
  * a daily layer (daily coach), an operating-guide archive, and a Free/Pro/premium model.
- * AI POP is the live flagship tool within this suite. Operated on saai.store.
+ * POP maker is one tool within the suite (the "AI POP" name = the POP-maker
+ * feature only, not the product identity). Operated on saai.store.
  */
 
 type Stage = 'live' | 'soon' | 'research';
@@ -37,6 +38,7 @@ type Copy = {
   toolsEyebrow: string;
   toolsHeading: string;
   toolsSub: string;
+  trendNote: string;
   tools: Tool[];
   planEyebrow: string;
   planHeading: string;
@@ -70,6 +72,7 @@ const C: Record<Locale, Copy> = {
     toolsEyebrow: '도구 · saai.store',
     toolsHeading: '점주의 반복되는 고민을, 각각 받아내는 도구',
     toolsSub: '실제 점주 인터뷰에서 출발한 도구들. 주간 루프 위에 일상 레이어를 얹어 매일 여는 이유를 만듭니다.',
+    trendNote: 'trend fit은 saai.store 안의 발주 단계입니다 — 별도 제품이 아닙니다.',
     tools: [
       { name: 'POP 메이커', desc: '상품·가격·이벤트만 입력하면 1분 만에 포스터·배지·가격표·띠지. 월 무료 크레딧, 카드 등록 없이.', stage: 'live' },
       { name: '스토어레터', desc: '매주 수요일, 신상 HOT·날씨 진열 TIP·이벤트 캘린더를 한 통에. 무료 구독.', stage: 'live' },
@@ -112,6 +115,7 @@ const C: Record<Locale, Copy> = {
     toolsEyebrow: 'Tools · saai.store',
     toolsHeading: 'A tool for each recurring worry',
     toolsSub: 'Tools that started from real owner interviews. A daily layer sits on the weekly loop to create a reason to open it every day.',
+    trendNote: 'trend fit is the ordering step inside saai.store — not a separate product.',
     tools: [
       { name: 'POP maker', desc: 'Enter product, price, and promo — get posters, badges, price tags, and shelf strips in a minute. Free monthly credits, no card.', stage: 'live' },
       { name: 'store letter', desc: 'Every Wednesday: HOT new arrivals, weather-based display tips, and an event calendar in one email. Free.', stage: 'live' },
@@ -154,6 +158,7 @@ const C: Record<Locale, Copy> = {
     toolsEyebrow: '道具 · saai.store',
     toolsHeading: '店主の繰り返す悩みを、それぞれ受けとめる道具',
     toolsSub: '実際の店主インタビューから出発した道具。週次ループの上に日常レイヤーを重ね、毎日開く理由をつくります。',
+    trendNote: 'trend fit は saai.store 内の発注ステップ — 単独プロダクトではありません。',
     tools: [
       { name: 'POPメーカー', desc: '商品・価格・イベントを入力するだけで1分でポスター・バッジ・価格表・띠지。月の無料クレジット、カード登録なし。', stage: 'live' },
       { name: 'ストアレター', desc: '毎週水曜、新商品HOT・天気の陳列TIP・イベントカレンダーを1通に。無料購読。', stage: 'live' },
@@ -266,6 +271,7 @@ export default function SaaiView({ locale }: { locale: Locale }) {
             <p className="text-xs font-bold tracking-[0.18em] uppercase text-primary mb-3">{t.toolsEyebrow}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{t.toolsHeading}</h2>
             <p className="text-base text-gray-500 leading-relaxed break-keep">{t.toolsSub}</p>
+            <p className="mt-4 text-sm text-gray-500 italic break-keep border-l-2 border-primary/40 pl-3">{t.trendNote}</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {t.tools.map((tool, i) => {

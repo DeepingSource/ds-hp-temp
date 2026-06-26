@@ -67,19 +67,19 @@ const productDict: Record<Locale, { name: string; description: string; path: str
     { name: 'store insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해 매출 변화의 원인을 짚어냅니다.', path: '/products/store-insight' },
     { name: 'store care', description: '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 점주용 안심 솔루션입니다.', path: '/products/store-care' },
     { name: 'store agent', description: '데이터를 넘어 결정으로. 오늘 무엇을, 얼마나, 어디에 둘지 매장 운영의 다음 한 수를 제안합니다.', path: '/products/store-agent' },
-    { name: 'AI POP', description: 'POP과 시즌 콘텐츠를 매장에 맞춰 1분 만에 생성하는 매장 콘텐츠 제작 도구입니다.', path: '/products#ai-pop' },
+    { name: 'store count', description: '카메라 한 대로 문 밖의 상권·통행·흡인율을 매일 읽는 매장 카운팅 제품입니다.', path: '/products/store-count' },
   ],
   en: [
     { name: 'store insight', description: 'Read what happens in your stores as data. Cross-analyze flow, dwell, and conversion to pinpoint what moves revenue.', path: '/products/store-insight' },
     { name: 'store care', description: 'A reliable extra eye, even for small stores. Watches for incidents, theft, and anomalies, and alerts owners.', path: '/products/store-care' },
     { name: 'store agent', description: 'Beyond data, to decisions. What to stock, how much, and where — your next move in store operations.', path: '/products/store-agent' },
-    { name: 'AI POP', description: 'A store-content tool that generates POP and seasonal content tuned to each store in under a minute.', path: '/products#ai-pop' },
+    { name: 'store count', description: 'A store-counting product that reads trade area, footfall, and capture rate outside the door, daily, from one camera.', path: '/products/store-count' },
   ],
   jp: [
     { name: 'store insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせて分析し、売上変化の要因を突き止めます。', path: '/products/store-insight' },
     { name: 'store care', description: '小さな店舗にも頼れる目をひとつ。事故・盗難・異常を見守り、お知らせする店主向けの安心ソリューションです。', path: '/products/store-care' },
     { name: 'store agent', description: 'データから意思決定へ。今日、何を、どれだけ、どこに置くか。店舗運営における次の一手をご提案します。', path: '/products/store-agent' },
-    { name: 'AI POP', description: 'POPや季節コンテンツを店舗に合わせて1分で生成する、店舗コンテンツ制作ツールです。', path: '/products#ai-pop' },
+    { name: 'store count', description: 'カメラ1台で、店の外の商圏・通行・捕捉率を毎日読み取る店舗カウント製品です。', path: '/products/store-count' },
   ],
 };
 

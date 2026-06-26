@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import SaaiView from '@/components/corporate/views/SaaiView';
 
 export const metadata: Metadata = {
-  title: 'AI POP | DeepingSource — Content for your store',
+  title: 'saai.store | DeepingSource — Camera-less owner suite',
   description:
-    'From POP to seasonal campaigns, create the content that makes a store stand out — effortlessly. AI POP is the content product within SAAI, operated on saai.store.',
-  keywords: ['AI POP', 'SAAI', 'store content', 'POP maker', 'content archive', 'seasonal content', 'saai.store'],
+    'A camera-less suite for store owners — from ordering to POP, in one flow. saai.store is the owner-facing B2C product within SAAI. (POP maker is one tool in the suite.)',
+  keywords: ['saai.store', 'SAAI', 'store owner suite', 'POP maker', 'content archive', 'seasonal content'],
   alternates: {
     canonical: '/products/saai',
     languages: {
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'AI POP | DeepingSource',
-    description: 'Content for your store. From POP to seasonal campaigns, effortlessly.',
+    title: 'saai.store | DeepingSource',
+    description: 'Camera-less suite for store owners — from ordering to POP, in one flow.',
     type: 'website',
   },
 };
