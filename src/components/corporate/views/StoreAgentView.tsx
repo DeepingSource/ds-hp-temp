@@ -13,7 +13,6 @@ import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import { AutonomyLadderTimeline } from '@/components/mockups';
 
 /**
  * StoreAgentView — shared store agent product-detail composition.
@@ -29,10 +28,6 @@ const C: Record<Locale, {
   stepsHeading: string;
   stepsSub: string;
   steps: { title: string; desc: string }[];
-  ladderHeading: string;
-  ladderSub: string;
-  levels: { name: string; desc: string }[];
-  ladderNote: string;
   pricingHeading: string;
   pricingSub: string;
   pricingCta: string;
@@ -52,17 +47,6 @@ const C: Record<Locale, {
       { title: '말이 아니라, 발주서로', desc: '반복되는 패턴은 발주로 잇습니다. 내일 점심 수요까지 내다보고 삼각김밥 40개를 오픈 전 입고로 — 발주서를 바로 만들어 드립니다.' },
       { title: '권고는 AI, 결정은 사람', desc: '권고하고, 승인받고, 실행하고, 결과로 학습합니다. 권고는 AI가, 결정은 언제나 사람이.' },
     ],
-    ladderHeading: '매장 자율 운영의 사다리',
-    ladderSub: '권고에서 시작해, 매장이 스스로 운영하는 단계까지 함께 올라갑니다. 권고는 AI가, 결정은 사람이.',
-    levels: [
-      { name: '수동', desc: '사람이 모든 결정을 내립니다.' },
-      { name: '제안', desc: 'AI가 데이터를 보여주고 사람이 판단합니다.' },
-      { name: '권고', desc: 'AI가 근거와 함께 다음 한 수를 제안합니다.' },
-      { name: '조건부 실행', desc: '승인 범위 안에서 AI가 일부를 실행합니다.' },
-      { name: '감독 자율', desc: '사람은 예외만 확인, 나머지는 AI가 운영합니다.' },
-      { name: '완전 자율', desc: '매장이 스스로 판단하고 운영합니다.' },
-    ],
-    ladderNote: '* 단계는 개념적 모델이며, 도입 매장의 환경에 맞춰 조정됩니다.',
     pricingHeading: '한 매장이 아니라, 브랜드 전체가',
     pricingSub: '본부에서는 전국 모든 매장이 한 화면에 — 방문·구매·전환율로, 실시간으로. 단일 매장부터 다점포 본사까지 운영 규모에 맞춰 구성합니다.',
     pricingCta: '요금 안내 보기',
@@ -82,17 +66,6 @@ const C: Record<Locale, {
       { title: 'Not a note — a PO', desc: 'Recurring patterns become orders. Looking ahead to tomorrow’s lunch demand, 40 rice balls in before open — the purchase order is drafted for you.' },
       { title: 'AI recommends, people decide', desc: 'Recommend, approve, act, learn from the outcome. The AI advises; the call is always yours.' },
     ],
-    ladderHeading: 'The ladder of autonomous store operations',
-    ladderSub: 'Start with recommendations and climb together to a store that runs itself. The AI advises; people decide.',
-    levels: [
-      { name: 'Manual', desc: 'People make every decision.' },
-      { name: 'Suggest', desc: 'AI surfaces the data; people decide.' },
-      { name: 'Recommend', desc: 'AI proposes the next move, with reasoning.' },
-      { name: 'Conditional action', desc: 'Within approved limits, AI executes part of it.' },
-      { name: 'Supervised autonomy', desc: 'People review only exceptions; AI runs the rest.' },
-      { name: 'Full autonomy', desc: 'The store decides and operates on its own.' },
-    ],
-    ladderNote: '* The levels are a conceptual model, adjusted to each store’s environment.',
     pricingHeading: 'Not one store — your whole brand',
     pricingSub: 'At HQ, every store across the country on one screen — footfall, purchases, and conversion, in real time. From a single store to a multi-location headquarters, configured to your scale.',
     pricingCta: 'See pricing',
@@ -112,17 +85,6 @@ const C: Record<Locale, {
       { title: '言葉ではなく、発注書で', desc: '繰り返すパターンは発注へつなげます。明日のランチ需要まで見越して、おにぎり40個を開店前入荷に — 発注書をその場で作成します。' },
       { title: '推奨はAI、決定は人', desc: '推奨し、承認を受け、実行し、結果から学びます。推奨はAIが、決定はいつも人が。' },
     ],
-    ladderHeading: '店舗の自律運営のはしご',
-    ladderSub: '推奨から始め、店舗が自ら運営する段階まで、ともに上っていきます。推奨はAIが、決定は人が。',
-    levels: [
-      { name: '手動', desc: '人がすべての決定を下します。' },
-      { name: '提案', desc: 'AI がデータを示し、人が判断します。' },
-      { name: '推奨', desc: 'AI が根拠とともに次の一手をご提案します。' },
-      { name: '条件付き実行', desc: '承認の範囲内で、AI が一部を実行します。' },
-      { name: '監督下の自律', desc: '人は例外のみを確認し、残りは AI が運営します。' },
-      { name: '完全自律', desc: '店舗が自ら判断し、運営します。' },
-    ],
-    ladderNote: '※ 段階は概念的なモデルであり、導入店舗の環境に合わせて調整されます。',
     pricingHeading: '一店舗ではなく、ブランド全体が',
     pricingSub: '本部では、全国すべての店舗を一画面に — 来店・購入・転換率を、リアルタイムで。単一店舗から多店舗の本部まで、運営規模に合わせて構成します。',
     pricingCta: '料金のご案内を見る',
@@ -200,23 +162,6 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
               );
             })}
           </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── Autonomy Ladder L0→L5 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.ladderHeading}
-            </h2>
-            <p className="text-lg text-gray-500 break-keep">
-              {t.ladderSub}
-            </p>
-          </div>
-
-          {/* L0→L5 인터랙티브 타임라인 (인라인 사다리 대체 — 노드 클릭 시 대표 카테고리·진화 조건) */}
-          <AutonomyLadderTimeline locale={locale} />
         </div>
       </AnimatedSection>
 

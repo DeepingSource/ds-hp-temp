@@ -6,9 +6,7 @@ import {
   ArrowRight, Briefcase, Mail, ShieldCheck, Award,
   Coffee, GraduationCap, Home, Users, Cpu,
 } from 'lucide-react';
-import FiveQuestionsMockup from '@/components/mockups/FiveQuestionsMockup';
 import { COMPANY } from '@/lib/company-data';
-import { roleFamilies } from '@/lib/careers';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -71,10 +69,10 @@ const C: Record<Locale, Copy> = {
       { title: '최고의 장비', desc: '고사양 워크스테이션 · GPU · 라이선스 등 막힘 없이 일할 도구를 제공합니다.' },
       { title: '일하기 좋은 환경', desc: '강남 본사, 집중과 협업이 균형을 이루는 업무 공간.' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: '상시 영입 직군',
-    rolesSub: '지금 정해진 공고는 없지만, 아래 직군은 늘 좋은 동료를 기다립니다. 관심 직군으로 먼저 이야기를 들려주세요.',
-    rolesApply: '이 직군으로 지원',
+    rolesEyebrow: 'Talent Pool',
+    rolesHeading: '인재 풀에 등록하세요',
+    rolesSub: '지금은 공개된 공고가 없습니다. 하지만 좋은 동료는 늘 찾고 있습니다. 인재 풀에 등록해 두시면, 맞는 자리가 열릴 때 가장 먼저 연락드립니다.',
+    rolesApply: '인재 풀 등록',
     processEyebrow: 'Process',
     processHeading: '채용은 이렇게 진행됩니다',
     processSub: '복잡하지 않게, 서로를 충분히 알 수 있도록.',
@@ -113,10 +111,10 @@ const C: Record<Locale, Copy> = {
       { title: 'Top-tier equipment', desc: 'High-spec workstations, GPUs, and licenses — the tools to work without friction.' },
       { title: 'A great place to work', desc: 'A Gangnam headquarters where focus and collaboration are in balance.' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: 'Roles we’re always hiring for',
-    rolesSub: 'No specific opening right now, but these families are always open to great people. Reach out about the one that fits you.',
-    rolesApply: 'Apply for this role',
+    rolesEyebrow: 'Talent Pool',
+    rolesHeading: 'Join our talent pool',
+    rolesSub: 'We have no open roles right now, but we’re always looking for great people. Register your interest and we’ll reach out first when a fitting role opens.',
+    rolesApply: 'Register your interest',
     processEyebrow: 'Process',
     processHeading: 'How hiring works',
     processSub: 'Simple, with enough room for both sides to get to know each other.',
@@ -155,10 +153,10 @@ const C: Record<Locale, Copy> = {
       { title: '最高の設備', desc: '高スペックのワークステーション · GPU · ライセンスなど、滞りなく働ける道具を用意します。' },
       { title: '働きやすい環境', desc: '江南本社、集中と協働がバランスする業務空間。' },
     ],
-    rolesEyebrow: 'Open Roles',
-    rolesHeading: '通年で募集している職種',
-    rolesSub: '今は特定の公募はありませんが、以下の職種はいつでも良い仲間を待っています。気になる職種でまずはお声がけください。',
-    rolesApply: 'この職種で応募',
+    rolesEyebrow: 'Talent Pool',
+    rolesHeading: '人材プールに登録',
+    rolesSub: '現在、公開中の募集はありません。ですが、よい仲間はいつでも探しています。人材プールにご登録いただければ、合うポジションが開いた際に最初にご連絡します。',
+    rolesApply: '人材プールに登録',
     processEyebrow: 'Process',
     processHeading: '採用の進め方',
     processSub: '複雑にせず、お互いを十分に知れるように。',
@@ -234,41 +232,20 @@ export default function CareerView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 일하는 법 · 행동 강령(다섯 질문) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <FiveQuestionsMockup locale={locale} />
-        </div>
-      </AnimatedSection>
-
-      {/* ── 상시 영입 직군 ── */}
+      {/* ── 인재 풀 등록 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.rolesHeading}</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">
-              {t.rolesSub}
-            </p>
-          </div>
-          <StaggerContainer className="grid sm:grid-cols-2 gap-5">
-            {roleFamilies[locale].map((r) => (
-              <StaggerItem key={r.key}>
-                <a
-                  href={`mailto:${COMPANY.contactEmail}?subject=${encodeURIComponent(`${t.mailSubject} — ${r.title}`)}`}
-                  className="group flex items-start gap-4 p-7 rounded-3xl border border-gray-100 bg-white h-full hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] duration-300"
-                >
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep group-hover:text-primary transition-colors">{r.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed break-keep mb-4">{r.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                      {t.rolesApply} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </span>
-                  </div>
-                </a>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.rolesEyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.rolesHeading}</h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep mb-10">
+            {t.rolesSub}
+          </p>
+          <a
+            href={`mailto:${COMPANY.contactEmail}?subject=${encodeURIComponent(t.rolesApply)}`}
+            className="btn-primary btn-lg gap-2 rounded-xl"
+          >
+            {t.rolesApply} <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </AnimatedSection>
 

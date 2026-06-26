@@ -73,7 +73,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="max-w-xs">
             <Link href={localeHref(locale, '/')} className="inline-block mb-2">
-              <span className="text-xl font-bold text-white tracking-tight">DeepingSource</span>
+              <span className="font-brand text-xl font-bold text-white tracking-wide">DEEPINGSOURCE</span>
             </Link>
             <p className="text-sm text-gray-300 break-keep">{footerIntro[locale]}</p>
             <div className="flex items-center gap-3 mt-4">

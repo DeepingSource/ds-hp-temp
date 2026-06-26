@@ -24,7 +24,7 @@ const NAV: NavItem[] = [
       { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('문 밖 · 상권·통행·흡인율', 'Measure · footfall outside', '店の外 · 商圏・通行・捕捉率') },
       { href: '/products/store-insight', label: L('store insight', 'store insight', 'store insight'), desc: L('문 안 · 동선·체류·전환', 'Analyze · flow·dwell·conversion', '店の中 · 動線・滞在・転換') },
       { href: '/products/store-care', label: L('store care', 'store care', 'store care'), desc: L('지금 · 손실예방·컴플라이언스', 'Detect · loss prevention·compliance', 'いま · 防損・コンプライアンス') },
-      { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음 · 추천·발주·자율운영', 'Act · recommend·order', '次の一手 · 推奨・発注・自律運営') },
+      { href: '/products/store-agent', label: L('store agent', 'store agent', 'store agent'), desc: L('다음 · 추천·발주·실행', 'Act · recommend·order', '次の一手 · 推奨・発注・実行') },
       { header: L('점주를 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
       { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 점주 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
       { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('점주용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
@@ -135,7 +135,7 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link href={localeHref(locale, '/')} className="flex items-center gap-2 shrink-0">
-          <span className="text-xl font-bold tracking-tight text-gray-900">DeepingSource</span>
+          <span className="font-brand text-xl font-bold tracking-wide text-gray-900">DEEPINGSOURCE</span>
         </Link>
 
         {/* Desktop nav */}
