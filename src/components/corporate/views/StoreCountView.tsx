@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { perfectSpace } from '@/lib/brand-canon';
@@ -266,7 +267,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
             store count · {t.heroEyebrow}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
-            {t.heroTitle[0]}<br /><span className="text-primary">{t.heroTitle[1]}</span>
+            <WordRise text={t.heroTitle[0]} /><br /><WordRise text={t.heroTitle[1]} className="text-primary" />
           </h1>
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto break-keep mb-10">
             {t.heroSub}

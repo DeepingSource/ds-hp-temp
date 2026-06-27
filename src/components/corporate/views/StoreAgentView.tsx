@@ -9,6 +9,7 @@ import {
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 
@@ -112,7 +113,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
             store agent
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight break-keep mb-6">
-            {t.heroTitle}
+            <WordRise text={t.heroTitle} />
           </h1>
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary-light mb-4">
             {solutionTaglines.agent[locale]}

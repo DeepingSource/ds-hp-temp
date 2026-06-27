@@ -8,6 +8,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import OperatingLoopGraphic from '@/components/corporate/OperatingLoopGraphic';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 import siteContent from '@/data/generated/site-content.json';
@@ -78,7 +79,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }]} locale={locale} tone="light" className="mb-6 justify-center" />
           <p className="text-sm font-medium text-primary mb-4 tracking-wide">{c.eyebrow}</p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-5 font-display">
-            {c.heroTitle}
+            <WordRise text={c.heroTitle} />
           </h1>
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto break-keep mb-12 lg:mb-14">
             {c.heroSub}

@@ -16,6 +16,7 @@ import {
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 
@@ -231,9 +232,9 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             store insight
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
-            {t.heroTitle[0]}
+            <WordRise text={t.heroTitle[0]} />
             <br className="hidden sm:block" />
-            <span className="text-primary">{t.heroTitle[1]}</span>
+            <WordRise text={t.heroTitle[1]} className="text-primary" />
           </h1>
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">
             {solutionTaglines.insight[locale]}

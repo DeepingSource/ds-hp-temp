@@ -7,6 +7,7 @@ import { industryLabelI18n, solutionCardI18n } from '@/data/solutions-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 /**
@@ -117,10 +118,8 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           </HeroBadge>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
-            {t.heroTitle[0]}<br />
-            <span className="text-primary-light">
-              {t.heroTitle[1]}
-            </span>
+            <WordRise text={t.heroTitle[0]} /><br />
+            <WordRise text={t.heroTitle[1]} className="text-primary-light" />
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto break-keep">

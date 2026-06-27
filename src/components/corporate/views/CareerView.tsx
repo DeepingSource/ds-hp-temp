@@ -11,6 +11,7 @@ import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 /**
@@ -193,10 +194,8 @@ export default function CareerView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-6 break-keep">
-            {t.heroMaster}<br />
-            <span className="text-primary-light">
-              {t.heroMasterAccent}
-            </span>
+            <WordRise text={t.heroMaster} /><br />
+            <WordRise text={t.heroMasterAccent} className="text-primary-light" />
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.heroSub}

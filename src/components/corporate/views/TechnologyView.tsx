@@ -15,6 +15,7 @@ import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 type StackItem = { tag: string; title: string; desc: string };
@@ -342,8 +343,8 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               {t.heroBadge}
             </HeroBadge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-6 break-keep">
-              {t.heroTitleA}<br className="hidden sm:block" />
-              <span className="text-primary-light">{t.heroTitleB}</span>
+              <WordRise text={t.heroTitleA} /><br className="hidden sm:block" />
+              <WordRise text={t.heroTitleB} className="text-primary-light" />
             </h1>
             <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl break-keep">
               {t.heroSub}

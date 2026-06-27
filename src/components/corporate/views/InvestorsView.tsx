@@ -11,6 +11,7 @@ import { milestones } from '@/lib/company-milestones';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 /**
@@ -156,10 +157,8 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
-            {t.heroMaster}<br />
-            <span className="text-primary-light">
-              {t.heroMasterAccent}
-            </span>
+            <WordRise text={t.heroMaster} /><br />
+            <WordRise text={t.heroMasterAccent} className="text-primary-light" />
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.heroSub}
