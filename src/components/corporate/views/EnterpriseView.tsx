@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Building2, BarChart3, Shield, Eye, LayoutGrid, Zap, Users, CheckCircle2, Search, SearchCheck, Languages, Share2, RefreshCw } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 import AnimatedSection from '@/components/ui/AnimatedSection';
@@ -220,10 +221,10 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
             {t.badge}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight break-keep">
-            {t.heroTitleA}
+            <WordRise text={t.heroTitleA} />
             <br className="hidden sm:block" />
             {' '}
-            <span className="text-primary-light">{t.heroTitleB}</span>
+            <WordRise text={t.heroTitleB} className="text-primary-light" />
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10 break-keep">
             {t.heroSub1}

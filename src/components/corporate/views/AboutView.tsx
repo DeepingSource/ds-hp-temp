@@ -4,6 +4,7 @@ import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import ProcessStepper from '@/components/ui/ProcessStepper';
 import { CountUp } from '@/components/ui/CountUp';
+import WordRise from '@/components/ui/WordRise';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
 import MasterPair from '@/components/corporate/MasterPair';
@@ -234,7 +235,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
           </div>
 
           <h1 className="mt-10 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
-            {companyLine[locale]}
+            <WordRise text={companyLine[locale]} />
           </h1>
           <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.companyIntro}

@@ -6,6 +6,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { ModelCatalogMockup } from '@/components/mockups';
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
@@ -173,7 +174,7 @@ export default function ModelsView({ locale }: { locale: Locale }) {
             {t.heroBadge}
           </HeroBadge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-6 break-keep">
-            {t.heroTitle}
+            <WordRise text={t.heroTitle} />
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl break-keep mb-4">
             {t.heroSub}

@@ -6,6 +6,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { SealSdkMockup } from '@/components/mockups';
 import LoopVideo from '@/components/ui/LoopVideo';
@@ -230,8 +231,8 @@ export default function SealView({ locale }: { locale: Locale }) {
             {t.heroBadge}
           </HeroBadge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-[1.15] mb-6 break-keep">
-            {t.heroTitleA}<br className="hidden sm:block" />
-            {t.heroTitleB}
+            <WordRise text={t.heroTitleA} /><br className="hidden sm:block" />
+            <WordRise text={t.heroTitleB} />
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl break-keep">
             {t.heroSub}

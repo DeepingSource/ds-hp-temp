@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Newspaper, Building2, BookOpen, Library, HelpCircle, ArrowRight, BarChart3 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { type Locale, localeHref } from '@/lib/i18n';
 
@@ -89,7 +90,7 @@ export default function ResourcesView({ locale }: { locale: Locale }) {
           <Breadcrumb items={[{ name: crumb('resources', locale), path: '/resources' }]} locale={locale} tone="dark" className="mb-6" />
           <p className="text-sm font-medium text-primary mb-4 tracking-wider uppercase">{t.eyebrow}</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
-            {t.heroTitle}
+            <WordRise text={t.heroTitle} />
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.heroSub}
