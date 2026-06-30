@@ -99,6 +99,17 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
 
       {/* ── 히어로 ── */}
       <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-surface-dark">
+        {/* photo background — anonymized shoppers in detection brackets (the SAAI brand visual) */}
+        <Image
+          src="/images/solutions-hero.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* dark scrim keeps the centered white text legible over the bright scene */}
+        <div className="absolute inset-0 bg-surface-dark/80" aria-hidden="true" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
