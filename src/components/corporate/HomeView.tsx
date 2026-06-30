@@ -7,6 +7,7 @@ import FeatureCarousel from './FeatureCarousel';
 import CaseBand from './CaseBand';
 import TrustCharter from './TrustCharter';
 import CtaBand from './CtaBand';
+import ParallaxWatermark from './ParallaxWatermark';
 import SolutionTimeline from './SolutionTimeline';
 import SpacesShowcase from './SpacesShowcase';
 import PartnerGrid from './PartnerGrid';
@@ -137,12 +138,8 @@ export default function HomeView({ locale }: { locale: Locale }) {
           style={{ backgroundImage: `url(${BASE}/images/nextrise/funnel-floor-projection.webp)` }}
         />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-surface-dark/80" />
-        {/* SAAI symbol watermark — the endcard signature (nextrise-motion) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none bg-contain bg-center bg-no-repeat opacity-[0.07]"
-          style={{ backgroundImage: `url(${BASE}/images/saai-symbol.svg)`, position: 'absolute', left: '50%', top: '48%', width: 'min(560px, 86%)', aspectRatio: '534.51 / 267.36', transform: 'translate(-50%, -50%)' }}
-        />
+        {/* SAAI symbol watermark — the endcard signature (nextrise-motion), drifting on scroll */}
+        <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">{purpose[locale].statement}</p>
           <p className="text-xs font-medium tracking-[0.25em] text-primary-light mb-4">{seam[locale]}</p>

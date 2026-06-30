@@ -79,6 +79,7 @@ export default function TrustCharter({ locale }: { locale: Locale }) {
             afterLabel={t.sliderAfter}
             caption={t.caption}
             alt={t.imgAlt}
+            nudge
           />
         </div>
         <ul className="grid sm:grid-cols-3 gap-5">

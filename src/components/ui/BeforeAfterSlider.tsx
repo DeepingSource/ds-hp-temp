@@ -1,7 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { animate } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import TapIndicator from '@/components/ui/TapIndicator';
 
 /**
  * BeforeAfterSlider — a drag-to-reveal comparison of two stacked images.
@@ -9,6 +12,10 @@ import { useId, useRef, useState } from 'react';
  * dragging wipes it back to the "before". Accessible: an overlaid range input
  * carries focus + arrow-key control; pointer/touch drag updates the same value.
  * No external library. Reduced-motion safe (it's user-driven, no autoplay).
+ *
+ * `nudge` (opt-in): the first time the slider scrolls into view it peeks the wipe
+ * both ways once + flashes a TapIndicator, hinting it's draggable. Cancelled the
+ * moment the user interacts, and skipped under prefers-reduced-motion.
  */
 export default function BeforeAfterSlider({
   beforeSrc,
@@ -18,6 +25,7 @@ export default function BeforeAfterSlider({
   caption,
   alt,
   className = '',
+  nudge = false,
 }: {
   beforeSrc: string;
   afterSrc: string;
@@ -26,10 +34,53 @@ export default function BeforeAfterSlider({
   caption?: string;
   alt: string;
   className?: string;
+  nudge?: boolean;
 }) {
   const [pos, setPos] = useState(50); // 0..100, % revealed of the "after" layer
+  const [showTap, setShowTap] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
   const id = useId();
+  const reduced = usePrefersReducedMotion();
+  const interactedRef = useRef(false);
+  const nudgedRef = useRef(false);
+  const nudgeControlsRef = useRef<ReturnType<typeof animate> | null>(null);
+
+  const stopNudge = () => {
+    interactedRef.current = true;
+    nudgeControlsRef.current?.stop();
+    setShowTap(false);
+  };
+
+  // One-time hint: peek the wipe + flash a tap when first scrolled into view.
+  useEffect(() => {
+    if (!nudge || reduced) return;
+    const el = frameRef.current;
+    if (!el) return;
+    let tapTimer: ReturnType<typeof setTimeout> | undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || nudgedRef.current || interactedRef.current) return;
+        nudgedRef.current = true;
+        io.disconnect();
+        nudgeControlsRef.current = animate(50, [50, 30, 70, 50], {
+          duration: 1.7,
+          ease: 'easeInOut',
+          onUpdate: (v) => {
+            if (!interactedRef.current) setPos(v);
+          },
+        });
+        setShowTap(true);
+        tapTimer = setTimeout(() => setShowTap(false), 900);
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      nudgeControlsRef.current?.stop();
+      if (tapTimer) clearTimeout(tapTimer);
+    };
+  }, [nudge, reduced]);
 
   const setFromClientX = (clientX: number) => {
     const el = frameRef.current;
@@ -45,6 +96,7 @@ export default function BeforeAfterSlider({
         ref={frameRef}
         className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-card select-none touch-none"
         onPointerDown={(e) => {
+          stopNudge();
           (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
           setFromClientX(e.clientX);
         }}
@@ -81,10 +133,13 @@ export default function BeforeAfterSlider({
           min={0}
           max={100}
           value={pos}
-          onChange={(e) => setPos(Number(e.target.value))}
+          onChange={(e) => { stopNudge(); setPos(Number(e.target.value)); }}
           aria-label={`${beforeLabel} ↔ ${afterLabel}`}
           className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
         />
+
+        {/* draggability hint — flashes at the handle on first view (opt-in via `nudge`) */}
+        <TapIndicator visible={showTap} x={pos} y={50} size={48} />
       </div>
       {caption && <figcaption className="mt-3 text-xs text-gray-500 break-keep">{caption}</figcaption>}
     </figure>
