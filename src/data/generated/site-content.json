@@ -519,5 +519,76 @@
         }
       }
     }
+  },
+  "solutions": {
+    "en": {
+      "badge": "Problem–solution guide",
+      "heroTitle": [
+        "Proven answers",
+        "to on-site problems"
+      ],
+      "heroSub": "From overnight theft at retail stores to hazard detection in logistics centers. See how SAAI solves the real problems of each industry.",
+      "total": "{n} problem–solution guides",
+      "perIndustry": "{label} {n}",
+      "industryDetail": "Industry detail",
+      "viewSolution": "View solution",
+      "ctaEyebrow": "Free consultation",
+      "ctaTitle": [
+        "Could it solve",
+        "your store’s problem too?"
+      ],
+      "ctaSub": [
+        "Tell us your industry and situation, and we’ll guide you",
+        "to a tailored solution — free of charge."
+      ],
+      "ctaPrimary": "Request a free consultation",
+      "ctaSecondary": "View solutions by industry"
+    },
+    "ko": {
+      "badge": "문제-해결 가이드",
+      "heroTitle": [
+        "현장 문제에",
+        "검증된 해결책"
+      ],
+      "heroSub": "매장 야간 도난부터 물류센터 위험 감지까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.",
+      "total": "총 {n}개 문제-해결 가이드",
+      "perIndustry": "{label} {n}건",
+      "industryDetail": "업종 상세",
+      "viewSolution": "솔루션 보기",
+      "ctaEyebrow": "무료 상담",
+      "ctaTitle": [
+        "우리 매장의 문제도",
+        "해결할 수 있을까요?"
+      ],
+      "ctaSub": [
+        "업종과 현황을 알려주시면",
+        "맞춤 해결 방안을 안내해 드립니다."
+      ],
+      "ctaPrimary": "무료 상담 신청",
+      "ctaSecondary": "업종별 솔루션 보기"
+    },
+    "jp": {
+      "badge": "課題解決ガイド",
+      "heroTitle": [
+        "現場の課題に",
+        "実証された解決策"
+      ],
+      "heroSub": "店舗の夜間盗難から物流センターの危険検知まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。",
+      "total": "全 {n} 件の課題解決ガイド",
+      "perIndustry": "{label} {n} 件",
+      "industryDetail": "業種の詳細",
+      "viewSolution": "ソリューションを見る",
+      "ctaEyebrow": "無料相談",
+      "ctaTitle": [
+        "あなたの店舗の課題も",
+        "解決できるでしょうか?"
+      ],
+      "ctaSub": [
+        "業種と状況をお知らせいただければ、最適な解決策を",
+        "無料でご案内します。"
+      ],
+      "ctaPrimary": "無料相談を申し込む",
+      "ctaSecondary": "業種別ソリューションを見る"
+    }
   }
 }

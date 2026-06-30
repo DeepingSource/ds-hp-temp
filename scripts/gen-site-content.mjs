@@ -86,9 +86,18 @@ for (const loc of LOCALES) {
   saai[loc] = { ...saaiFlat[loc], loop: saaiLoop[loc], tools: saaiTools[loc], plans: saaiPlans[loc] };
 }
 
+// ── solutions — flat copy; heroTitle/ctaTitle/ctaSub are 2-line arrays, and
+//    total/perIndustry are interpolation templates ({n}/{label}) rebuilt in code. ──
+const SOLUTIONS_FLAT = [
+  'badge', 'heroTitle', 'heroSub', 'total', 'perIndustry',
+  'industryDetail', 'viewSolution', 'ctaEyebrow', 'ctaTitle', 'ctaSub',
+  'ctaPrimary', 'ctaSecondary',
+];
+const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_FLAT);
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions)');

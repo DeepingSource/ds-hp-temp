@@ -9,6 +9,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * SolutionsView — shared problem-solution catalog (index) composition.
@@ -20,63 +21,24 @@ import { crumb } from '@/lib/breadcrumb-labels';
  * Korean and are left as-is per the i18n plan. Only page-authored copy is localized.
  */
 
-const C: Record<Locale, {
+type SolutionsCopy = {
   badge: string;
-  heroTitle: [string, string];
+  heroTitle: string[];
   heroSub: string;
-  total: (n: number) => string;
-  perIndustry: (label: string, n: number) => string;
+  total: string;        // interpolation template — {n}
+  perIndustry: string;  // interpolation template — {label} {n}
   industryDetail: string;
   viewSolution: string;
   ctaEyebrow: string;
-  ctaTitle: [string, string];
-  ctaSub: [string, string];
+  ctaTitle: string[];
+  ctaSub: string[];
   ctaPrimary: string;
   ctaSecondary: string;
-}> = {
-  ko: {
-    badge: '문제-해결 가이드',
-    heroTitle: ['현장 문제에', '검증된 해결책'],
-    heroSub: '매장 야간 도난부터 물류센터 위험 감지까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.',
-    total: (n) => `총 ${n}개 문제-해결 가이드`,
-    perIndustry: (label, n) => `${label} ${n}건`,
-    industryDetail: '업종 상세',
-    viewSolution: '솔루션 보기',
-    ctaEyebrow: '무료 상담',
-    ctaTitle: ['우리 매장의 문제도', '해결할 수 있을까요?'],
-    ctaSub: ['업종과 현황을 알려주시면', '맞춤 해결 방안을 안내해 드립니다.'],
-    ctaPrimary: '무료 상담 신청',
-    ctaSecondary: '업종별 솔루션 보기',
-  },
-  en: {
-    badge: 'Problem–solution guide',
-    heroTitle: ['Proven answers', 'to on-site problems'],
-    heroSub: 'From overnight theft at retail stores to hazard detection in logistics centers. See how SAAI solves the real problems of each industry.',
-    total: (n) => `${n} problem–solution guides`,
-    perIndustry: (label, n) => `${label} ${n}`,
-    industryDetail: 'Industry detail',
-    viewSolution: 'View solution',
-    ctaEyebrow: 'Free consultation',
-    ctaTitle: ['Could it solve', 'your store’s problem too?'],
-    ctaSub: ['Tell us your industry and situation, and we’ll guide you', 'to a tailored solution — free of charge.'],
-    ctaPrimary: 'Request a free consultation',
-    ctaSecondary: 'View solutions by industry',
-  },
-  jp: {
-    badge: '課題解決ガイド',
-    heroTitle: ['現場の課題に', '実証された解決策'],
-    heroSub: '店舗の夜間盗難から物流センターの危険検知まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。',
-    total: (n) => `全 ${n} 件の課題解決ガイド`,
-    perIndustry: (label, n) => `${label} ${n} 件`,
-    industryDetail: '業種の詳細',
-    viewSolution: 'ソリューションを見る',
-    ctaEyebrow: '無料相談',
-    ctaTitle: ['あなたの店舗の課題も', '解決できるでしょうか?'],
-    ctaSub: ['業種と状況をお知らせいただければ、最適な解決策を', '無料でご案内します。'],
-    ctaPrimary: '無料相談を申し込む',
-    ctaSecondary: '業種別ソリューションを見る',
-  },
 };
+
+// Copy lives in the CMS (content/site/solutions.yaml → generated JSON); the count
+// interpolations are stored as {n}/{label} templates and rebuilt below.
+const SOLUTIONS = siteContent.solutions as Record<Locale, SolutionsCopy>;
 
 // 업종별 그룹핑
 const grouped = industryList.map((ind) => ({
@@ -85,7 +47,11 @@ const grouped = industryList.map((ind) => ({
 })).filter((g) => g.solutions.length > 0);
 
 export default function SolutionsView({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const t = SOLUTIONS[locale];
+  // rebuild the count interpolations from their CMS templates
+  const total = (n: number) => t.total.replace('{n}', String(n));
+  const perIndustry = (label: string, n: number) =>
+    t.perIndustry.replace('{label}', label).replace('{n}', String(n));
 
   // i18n overlay: Korean uses the shared data values as-is; other locales use the
   // overlay and fall back to the Korean data value when an entry is missing.
@@ -159,10 +125,10 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
       <div className="border-b border-gray-100 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 flex items-center gap-3 text-sm text-gray-500">
           <span>
-            <strong className="text-gray-900">{t.total(solutionsData.length)}</strong> ·&nbsp;
+            <strong className="text-gray-900">{total(solutionsData.length)}</strong> ·&nbsp;
             {grouped.map((g, i) => (
               <span key={g.industry.slug}>
-                {t.perIndustry(indLabel(g.industry.slug, g.industry.label), g.solutions.length)}{i < grouped.length - 1 ? ' · ' : ''}
+                {perIndustry(indLabel(g.industry.slug, g.industry.label), g.solutions.length)}{i < grouped.length - 1 ? ' · ' : ''}
               </span>
             ))}
           </span>
