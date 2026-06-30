@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
+import MasterPairCards from '@/components/corporate/MasterPairCards';
 import { ownerCta } from '@/lib/brand-canon';
 
 /**
@@ -28,32 +29,36 @@ export default function MasterPair({ locale }: { locale: Locale }) {
       </div>
       <Container size="medium" className="relative text-center">
         <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-primary-light mb-10">{d.bridge}</h2>
-        <div className="grid md:grid-cols-2 gap-6 md:gap-4 items-stretch">
-          <div className="flex flex-col justify-center p-10 rounded-2xl bg-white/[0.04] border border-white/10">
-            <p className="text-2xs font-bold uppercase tracking-wider text-gray-400 mb-4">{d.companyLabel}</p>
-            <p className="text-2xl sm:text-3xl font-bold text-white break-keep font-display">{t.masterCompany}</p>
-            <a
-              href={localeHref(locale, '/contact')}
-              className="mt-6 inline-flex items-center justify-center gap-1.5 self-center px-6 py-3 text-sm font-bold text-white border border-white/20 hover:bg-white/10 rounded-xl transition-colors"
-            >
-              {t.ctaPrimary}
-            </a>
-          </div>
-          <div className="flex flex-col justify-center p-10 rounded-2xl bg-primary/15 border border-primary/30">
-            <p className="text-2xs font-bold uppercase tracking-wider text-primary-light mb-4">{d.ownerLabel}</p>
-            <p className="text-2xl sm:text-3xl font-bold text-white break-keep font-display">{t.masterOwner}</p>
-            <a
-              href="https://storecare.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center gap-1.5 self-center px-6 py-3 text-sm font-bold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors"
-            >
-              {ownerCta[locale]}
-              <span className="sr-only">{d.newTab}</span>
-              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
+        <MasterPairCards
+          left={
+            <>
+              <p className="text-2xs font-bold uppercase tracking-wider text-gray-400 mb-4">{d.companyLabel}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white break-keep font-display">{t.masterCompany}</p>
+              <a
+                href={localeHref(locale, '/contact')}
+                className="mt-6 inline-flex items-center justify-center gap-1.5 self-center px-6 py-3 text-sm font-bold text-white border border-white/20 hover:bg-white/10 rounded-xl transition-colors"
+              >
+                {t.ctaPrimary}
+              </a>
+            </>
+          }
+          right={
+            <>
+              <p className="text-2xs font-bold uppercase tracking-wider text-primary-light mb-4">{d.ownerLabel}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white break-keep font-display">{t.masterOwner}</p>
+              <a
+                href="https://storecare.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center justify-center gap-1.5 self-center px-6 py-3 text-sm font-bold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors"
+              >
+                {ownerCta[locale]}
+                <span className="sr-only">{d.newTab}</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </>
+          }
+        />
       </Container>
     </Section>
   );
