@@ -4,7 +4,7 @@ import { useCallback, type MouseEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  AnimatePresence, motion, useMotionTemplate, useMotionValue,
+  AnimatePresence, motion, useMotionTemplate, useMotionValue, type PanInfo,
 } from 'framer-motion';
 import { DoorOpen, Grid3x3, Radar, ClipboardCheck, Check, ArrowRight, type LucideIcon } from 'lucide-react';
 import Section from '@/components/ui/Section';
@@ -164,7 +164,15 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           ref={ref}
           onMouseMove={handleMouseMove}
           {...hoverProps}
-          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-6 shadow-card sm:p-10"
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.12}
+          onDragEnd={(_e, info: PanInfo) => {
+            const { offset, velocity } = info;
+            if (offset.x < -60 || velocity.x < -400) goTo((step + 1) % PRODUCTS.length);
+            else if (offset.x > 60 || velocity.x > 400) goTo((step - 1 + PRODUCTS.length) % PRODUCTS.length);
+          }}
+          className="group relative touch-pan-y overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-6 shadow-card sm:p-10"
         >
           {/* mouse spotlight (desktop hover only) */}
           <motion.div
