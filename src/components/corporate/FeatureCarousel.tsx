@@ -15,6 +15,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
+import { springTabPill } from '@/lib/spring-config';
 import { cn } from '@/lib/cn';
 
 /**
@@ -185,14 +186,22 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                   onClick={() => goTo(i)}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
-                    'inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-bold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60',
-                    isActive ? 'bg-primary text-white' : isDone ? 'bg-white/10 text-white' : 'bg-white/5 text-slate-400 hover:text-slate-200',
+                    'relative inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-bold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60',
+                    isActive ? 'text-white' : isDone ? 'bg-white/10 text-white' : 'bg-white/5 text-slate-400 hover:text-slate-200',
                   )}
                 >
-                  <span className="flex h-4 w-4 items-center justify-center">
+                  {isActive && (
+                    <motion.span
+                      layoutId="carousel-pill"
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full bg-primary"
+                      transition={springTabPill}
+                    />
+                  )}
+                  <span className="relative z-10 flex h-4 w-4 items-center justify-center">
                     {isDone ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <Icon className="h-3.5 w-3.5" aria-hidden="true" />}
                   </span>
-                  {p.name}
+                  <span className="relative z-10">{p.name}</span>
                 </button>
               );
             })}

@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { Eye, Bell } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { springTabPill } from '@/lib/spring-config';
 import StoreCareMockup from '@/components/mockups/StoreCareMockup';
 import { KakaoAlertMockup } from '@/components/mockups';
 import { type Locale } from '@/lib/i18n';
@@ -65,12 +67,20 @@ export default function StoreCareDeviceTabs({
                 }
               }}
               className={`relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold break-keep transition-colors ${
-                on ? 'bg-white text-primary shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                on ? 'text-primary' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
-              <Icon className="w-4 h-4" aria-hidden="true" />
-              {labels[tab.key]}
-              <span className={`text-2xs font-mono tabular-nums ${on ? 'text-primary' : 'text-gray-400'}`}>{tab.count}</span>
+              {on && (
+                <motion.span
+                  layoutId="care-tab-pill"
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-white shadow-sm"
+                  transition={springTabPill}
+                />
+              )}
+              <Icon className="relative z-10 w-4 h-4" aria-hidden="true" />
+              <span className="relative z-10">{labels[tab.key]}</span>
+              <span className={`relative z-10 text-2xs font-mono tabular-nums ${on ? 'text-primary' : 'text-gray-400'}`}>{tab.count}</span>
             </button>
           );
         })}

@@ -8,7 +8,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import ChatMockup from '@/components/mockups/ChatMockup';
 import PushNotificationMockup from '@/components/mockups/PushNotificationMockup';
 import ActionCardMockup from '@/components/mockups/ActionCardMockup';
-import { springGentle, springSnappy } from '@/lib/spring-config';
+import { springGentle, springTabPill } from '@/lib/spring-config';
 import { type Locale } from '@/lib/i18n';
 import { showcaseCopy } from '@/data/storeagent-mock-i18n';
 
@@ -84,12 +84,21 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveTab(tab.key)}
                   onKeyDown={(e) => handleTabKeyDown(e, index)}
-                  className={`w-full text-left rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300 cursor-pointer overflow-hidden ${
+                  className={`relative w-full text-left rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300 cursor-pointer overflow-hidden ${
                     isActive
                       ? 'bg-white border-primary/20 shadow-lg'
                       : 'bg-transparent border-transparent hover:bg-white/60 hover:border-gray-100'
                   }`}
                 >
+                  {/* 슬라이딩 액티브 바 (좌측 레일, 탭 간 글라이딩) */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="agent-tab-bar"
+                      aria-hidden="true"
+                      className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full bg-primary"
+                      transition={springTabPill}
+                    />
+                  )}
                   {/* 탭 헤더 (항상 표시) */}
                   <div className="flex items-center gap-4 p-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
@@ -105,18 +114,6 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
                         {tab.tagline}
                       </p>
                     </div>
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          className="w-2 h-2 rounded-full bg-primary shrink-0"
-                          aria-hidden="true"
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          transition={reducedMotion ? { duration: 0 } : springSnappy}
-                        />
-                      )}
-                    </AnimatePresence>
                   </div>
 
                   {/* 확장 영역 (선택된 탭만 표시) */}
