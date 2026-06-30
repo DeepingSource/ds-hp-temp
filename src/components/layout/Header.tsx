@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { stripLocale, localeHref, homeCopy, type Locale } from '@/lib/i18n';
 import { springTabPill } from '@/lib/spring-config';
@@ -81,6 +81,8 @@ export default function Header() {
   const { locale, path } = stripLocale(pathname);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  // reading-progress bar — scroll-linked (user-driven, no autonomous motion)
+  const { scrollYProgress } = useScroll();
 
   const handleEnter = useCallback((key: string) => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
@@ -259,6 +261,13 @@ export default function Header() {
           </svg>
         </button>
       </div>
+
+      {/* Reading-progress bar — fills left→right with scroll position */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute top-16 left-0 right-0 h-0.5 origin-left bg-primary"
+        style={{ scaleX: scrollYProgress }}
+      />
 
       {/* Mobile menu */}
       <div
