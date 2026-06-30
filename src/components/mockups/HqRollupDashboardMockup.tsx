@@ -1,4 +1,12 @@
+'use client';
+
+import { AnimatePresence, motion } from 'framer-motion';
 import { ShieldCheck, AlertTriangle, Thermometer, Bell, MapPin } from 'lucide-react';
+import { CountUp } from '@/components/ui/CountUp';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useMockupLoop } from '@/hooks/useMockupLoop';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { springGentle } from '@/lib/spring-config';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -134,8 +142,18 @@ function Pill({ sev, label }: { sev: Sev; label: string }) {
 export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale: Locale; ariaLabel?: string }) {
   const t = dict[locale];
   const kpiIcons = [AlertTriangle, Thermometer, Bell, MapPin];
+  const reduced = usePrefersReducedMotion();
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.3 });
+  // live alert feed — rotate the newest to the top while in view (pause on hover)
+  const { step: feedStep, hoverProps } = useMockupLoop({
+    steps: t.feed.length,
+    interval: 2800,
+    active: isVisible,
+    pauseOnHover: true,
+  });
+  const feed = [...t.feed.slice(feedStep), ...t.feed.slice(0, feedStep)];
   return (
-    <figure role="img" aria-label={ariaLabel ?? t.brand} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-elevated">
+    <figure ref={ref} {...hoverProps} role="img" aria-label={ariaLabel ?? t.brand} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-elevated">
       {/* chrome header */}
       <div className="flex items-center justify-between gap-3 border-b border-gray-100 bg-gray-900 px-5 py-3">
         <div className="flex items-center gap-2 text-white">
@@ -156,10 +174,13 @@ export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale:
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {t.kpis.map((k, i) => {
             const Icon = kpiIcons[i];
+            const m = k.value.match(/^(\d+)(.*)$/);
             return (
               <div key={k.label} className="rounded-xl border border-gray-100 bg-gray-50 p-3">
                 <Icon className="mb-2 h-4 w-4 text-primary" aria-hidden="true" />
-                <p className="text-xl font-bold text-gray-900 tabular-nums">{k.value}</p>
+                <p className="text-xl font-bold text-gray-900 tabular-nums">
+                  {m ? <CountUp to={Number(m[1])} suffix={m[2]} /> : k.value}
+                </p>
                 <p className="text-2xs text-gray-500 break-keep">{k.label}</p>
               </div>
             );
@@ -180,8 +201,17 @@ export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale:
                   </tr>
                 </thead>
                 <tbody>
-                  {t.rows.map((r) => (
-                    <tr key={r.store} className="border-t border-gray-100">
+                  {t.rows.map((r, i) => (
+                    <tr
+                      key={r.store}
+                      className="border-t border-gray-100"
+                      style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateX(0)' : 'translateX(-8px)',
+                        transition: reduced ? undefined : 'opacity 0.4s var(--ease-out-cubic), transform 0.4s var(--ease-out-cubic)',
+                        transitionDelay: reduced ? undefined : `${0.15 + i * 0.1}s`,
+                      }}
+                    >
                       <td className="px-3 py-2 text-xs font-medium text-gray-900 whitespace-nowrap">{r.store}</td>
                       <td className="px-3 py-2 text-xs text-gray-700 tabular-nums">{r.n}</td>
                       <td className="px-3 py-2"><Pill sev={r.sev} label={r.status} /></td>
@@ -196,16 +226,26 @@ export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale:
           <div>
             <p className="mb-2 text-xs font-bold text-gray-700">{t.feedTitle}</p>
             <ul className="space-y-2">
-              {t.feed.map((f, i) => (
-                <li key={i} className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white px-3 py-2.5">
-                  <span className={`h-8 w-1 rounded-full ${f.sev === 'risk' ? 'bg-red-500' : f.sev === 'warn' ? 'bg-amber-500' : 'bg-emerald-500'}`} aria-hidden="true" />
-                  <span className="flex-1">
-                    <span className="block text-xs font-medium text-gray-900 break-keep">{f.type}</span>
-                    <span className="block text-2xs text-gray-500">{f.store}</span>
-                  </span>
-                  <Pill sev={f.sev} label={t.sevLegend[f.sev]} />
-                </li>
-              ))}
+              <AnimatePresence initial={false} mode="popLayout">
+                {feed.map((f) => (
+                  <motion.li
+                    key={f.type}
+                    layout={!reduced}
+                    initial={reduced ? false : { opacity: 0, y: -12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
+                    transition={reduced ? { duration: 0.15 } : springGentle}
+                    className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white px-3 py-2.5"
+                  >
+                    <span className={`h-8 w-1 rounded-full ${f.sev === 'risk' ? 'bg-red-500' : f.sev === 'warn' ? 'bg-amber-500' : 'bg-emerald-500'}`} aria-hidden="true" />
+                    <span className="flex-1">
+                      <span className="block text-xs font-medium text-gray-900 break-keep">{f.type}</span>
+                      <span className="block text-2xs text-gray-500">{f.store}</span>
+                    </span>
+                    <Pill sev={f.sev} label={t.sevLegend[f.sev]} />
+                  </motion.li>
+                ))}
+              </AnimatePresence>
             </ul>
           </div>
         </div>
@@ -214,11 +254,18 @@ export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale:
         <div>
           <p className="mb-2 text-xs font-bold text-gray-700">{t.barsTitle}</p>
           <div className="space-y-2">
-            {t.bars.map((b) => (
+            {t.bars.map((b, i) => (
               <div key={b.label} className="flex items-center gap-3">
                 <span className="w-20 shrink-0 text-2xs text-gray-500 break-keep">{b.label}</span>
                 <span className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
-                  <span className="block h-full rounded-full bg-primary" style={{ width: `${b.pct}%` }} />
+                  <span
+                    className="block h-full rounded-full bg-primary"
+                    style={{
+                      width: isVisible ? `${b.pct}%` : '0%',
+                      transition: reduced ? undefined : 'width 0.7s var(--ease-out-cubic)',
+                      transitionDelay: reduced ? undefined : `${0.2 + i * 0.1}s`,
+                    }}
+                  />
                 </span>
                 <span className="w-8 shrink-0 text-right text-2xs text-gray-400 tabular-nums">{b.pct}%</span>
               </div>
