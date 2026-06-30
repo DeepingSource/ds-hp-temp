@@ -5,6 +5,7 @@ import type { LucideIcon } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { AnimatePresence, motion } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
 import PhoneFrame from './PhoneFrame';
@@ -85,34 +86,16 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
   const scrollRef = useRef<HTMLDivElement>(null);
   const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
 
-  useEffect(() => {
-    if (!isVisible) return;
-    if (!active) {
-      setVisibleCount(0);
-      return;
-    }
-
-    if (reducedMotion) {
-      setVisibleCount(scenarios[0].length);
-      return;
-    }
-
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const sched = (fn: () => void, ms: number) => {
-      const t = setTimeout(() => { if (!cancelled) fn(); }, ms);
-      timers.push(t);
-    };
-
-    const EXIT_MS = 320;
-    // User-turn typing simulation timing (deterministic, SSR-safe).
-    const TYPE_CHAR_MS = 38;   // per-character interval while "typing" into the input
-    const TYPE_MAX_MS = 1500;  // cap on total typing time for long messages
-    const SEND_PRESS_MS = 260; // send-button press + tap indicator duration
-
-    const runLoop = () => {
-      if (cancelled) return;
-      timers.splice(0).forEach(clearTimeout);
+  // One pass of the conversation: a localized scenario plays out message by message,
+  // user turns simulating typing → send-press → bubble. Timer/cancel/visibility/loop
+  // scaffolding lives in useSequencedLoop; this just schedules the steps.
+  useSequencedLoop(
+    (sched) => {
+      const EXIT_MS = 320;
+      // User-turn typing simulation timing (deterministic, SSR-safe).
+      const TYPE_CHAR_MS = 38;   // per-character interval while "typing" into the input
+      const TYPE_MAX_MS = 1500;  // cap on total typing time for long messages
+      const SEND_PRESS_MS = 260; // send-button press + tap indicator duration
 
       setVisibleCount(0);
       setInputText('');
@@ -159,27 +142,16 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
         }
       });
 
-      sched(runLoop, cursor + PAUSE_MS);
-    };
-
-    runLoop();
-
-    const handleVisibility = () => {
-      if (!document.hidden) {
-        cancelled = true;
-        timers.splice(0).forEach(clearTimeout);
-        cancelled = false;
-        runLoop();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-
-    return () => {
-      cancelled = true;
-      timers.forEach(clearTimeout);
-      document.removeEventListener('visibilitychange', handleVisibility);
-    };
-  }, [active, isVisible, reducedMotion, scenarios]);
+      return cursor;
+    },
+    {
+      active: active && isVisible,
+      reducedMotion,
+      onStatic: () => setVisibleCount(scenarios[0].length),
+      pauseMs: PAUSE_MS,
+      deps: [scenarios],
+    },
+  );
 
   // Auto-scroll
   useEffect(() => {
