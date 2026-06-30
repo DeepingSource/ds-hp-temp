@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
+import TimelineSpine from '@/components/ui/TimelineSpine';
 import { CountUp } from '@/components/ui/CountUp';
 import {
   ArrowRight, TrendingUp, Cpu, Mail, Target, Building2, Map,
@@ -250,7 +251,7 @@ export default function InvestorsView({ locale }: { locale: Locale }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">{t.milestonesHeading}</h2>
           </div>
           <div className="relative">
-            <div className="absolute left-[7px] top-1 bottom-1 w-px bg-gray-200" aria-hidden="true" />
+            <TimelineSpine className="absolute left-[7px] top-1 bottom-1 w-px" lineClassName="bg-gray-200" />
             <StaggerContainer className="space-y-8">
               {milestones[locale].map((m) => (
                 <StaggerItem key={m.year}>

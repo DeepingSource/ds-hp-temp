@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import TimelineSpine from '@/components/ui/TimelineSpine';
 import { type Locale } from '@/lib/i18n';
 
 type Item = { phase: string; title: string; description: string; year: string };
@@ -193,11 +194,8 @@ export function OriginStoryTimeline({ locale = 'en' }: { locale?: Locale }) {
 
   return (
     <div className="relative">
-      {/* 수직 라인 */}
-      <div
-        className="absolute left-5 top-5 bottom-5 w-px bg-gray-100 hidden sm:block"
-        aria-hidden="true"
-      />
+      {/* 수직 라인 — scroll-in 시 위→아래로 draw */}
+      <TimelineSpine className="absolute left-5 top-5 bottom-5 w-px hidden sm:block" lineClassName="bg-gray-100" />
       <div className="space-y-6">
         {items.map((item, i) => (
           <TimelineItem key={item.year} item={item} index={i} />

@@ -59,7 +59,9 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Arrow 1 */}
         <div className="flex items-center px-2">
-          <div className="w-10 h-px bg-primary/50 vision-dash-h" />
+          <div className="relative w-10 h-px bg-primary/50 vision-dash-h">
+            <span className="vision-packet vision-packet-h" aria-hidden="true" />
+          </div>
           <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-primary/60" />
         </div>
 
@@ -77,7 +79,9 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Arrow 2 */}
         <div className="flex items-center px-2">
-          <div className="w-10 h-px bg-primary/50 vision-dash-h" />
+          <div className="relative w-10 h-px bg-primary/50 vision-dash-h">
+            <span className="vision-packet vision-packet-h" aria-hidden="true" />
+          </div>
           <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[7px] border-l-primary/60" />
         </div>
 
@@ -118,7 +122,9 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Vertical arrow */}
         <div className="flex flex-col items-center py-1">
-          <div className="w-px h-6 bg-primary/50 vision-dash-v" />
+          <div className="relative w-px h-6 bg-primary/50 vision-dash-v">
+            <span className="vision-packet vision-packet-v" aria-hidden="true" />
+          </div>
           <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-primary/60" />
         </div>
 
@@ -135,7 +141,9 @@ export default function VisionDiagram({ locale = 'en' }: { locale?: Locale }) {
 
         {/* Vertical arrow */}
         <div className="flex flex-col items-center py-1">
-          <div className="w-px h-6 bg-primary/50 vision-dash-v" />
+          <div className="relative w-px h-6 bg-primary/50 vision-dash-v">
+            <span className="vision-packet vision-packet-v" aria-hidden="true" />
+          </div>
           <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[7px] border-t-primary/60" />
         </div>
 

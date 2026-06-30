@@ -760,6 +760,38 @@ select[aria-invalid="true"]:focus-visible {
 @keyframes dashMoveV {
   to { background-position: 0 8px; }
 }
+/* VisionDiagram data packet — a dot that travels along each connector (C5). */
+.vision-packet {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgb(var(--primary-rgb));
+  box-shadow: 0 0 6px 1px rgb(var(--primary-rgb) / 0.6);
+  opacity: 0;
+}
+.vision-packet-h {
+  top: 50%;
+  margin-top: -2px;
+  animation: packetH 1.8s ease-in-out infinite;
+}
+.vision-packet-v {
+  left: 50%;
+  margin-left: -2px;
+  animation: packetV 1.8s ease-in-out infinite;
+}
+@keyframes packetH {
+  0% { left: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes packetV {
+  0% { top: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
 @keyframes visionPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgb(var(--primary-rgb) / 0.3); }
   50% { box-shadow: 0 0 20px 4px rgb(var(--primary-rgb) / 0.15); }
@@ -796,6 +828,11 @@ select[aria-invalid="true"]:focus-visible {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .vision-packet {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
 
