@@ -29,6 +29,17 @@ const localized = (label: string) =>
     { label },
   );
 
+/** A KO/EN/JP list of strings (e.g. a plan's bullet items). */
+const localizedList = (label: string) =>
+  fields.object(
+    {
+      ko: fields.array(fields.text({ label: 'KO' }), { label: 'KO', itemLabel: (p) => p.value }),
+      en: fields.array(fields.text({ label: 'EN' }), { label: 'EN', itemLabel: (p) => p.value }),
+      jp: fields.array(fields.text({ label: 'JP' }), { label: 'JP', itemLabel: (p) => p.value }),
+    },
+    { label },
+  );
+
 export default config({
   storage: { kind: 'local' },
   ui: {
@@ -90,6 +101,47 @@ export default config({
         steps: idItem('운영 단계 (steps)', 'step', {
           title: localized('단계 제목 (title)'),
           desc: localized('단계 설명 (desc)'),
+        }),
+      },
+    }),
+    saai: singleton({
+      label: 'saai.store — B2C 제품 카피',
+      path: 'content/site/saai',
+      format: { data: 'yaml' },
+      schema: {
+        heroBadge: localized('Hero 배지 (heroBadge)'),
+        heroTitle: localized('Hero 제목 (heroTitle)'),
+        heroSub: localized('Hero 서브 (heroSub)'),
+        heroCta: localized('Hero CTA (heroCta)'),
+        heroNote: localized('Hero 보조문구 (heroNote)'),
+        loopEyebrow: localized('루프 Eyebrow (loopEyebrow)'),
+        loopHeading: localized('루프 제목 (loopHeading)'),
+        loopSub: localized('루프 서브 (loopSub)'),
+        loopFootnote: localized('루프 각주 (loopFootnote)'),
+        toolsEyebrow: localized('도구 Eyebrow (toolsEyebrow)'),
+        toolsHeading: localized('도구 제목 (toolsHeading)'),
+        toolsSub: localized('도구 서브 (toolsSub)'),
+        trendNote: localized('trend fit 주석 (trendNote)'),
+        planEyebrow: localized('요금 Eyebrow (planEyebrow)'),
+        planHeading: localized('요금 제목 (planHeading)'),
+        planSub: localized('요금 서브 (planSub)'),
+        planNote: localized('요금 각주 (planNote)'),
+        featureCta: localized('하단 CTA (featureCta)'),
+        featureNote: localized('하단 보조문구 (featureNote)'),
+        otherProducts: localized('“다른 제품” 링크 (otherProducts)'),
+        loop: idItem('주간 운영 루프 (loop)', 'step', {
+          name: localized('단계 이름 (name)'),
+          role: localized('단계 역할 (role)'),
+        }),
+        tools: idItem('도구 (tools)', 'tool', {
+          name: localized('도구 이름 (name)'),
+          desc: localized('도구 설명 (desc)'),
+        }),
+        plans: idItem('요금제 (plans)', 'plan', {
+          tier: localized('티어 (tier)'),
+          price: localized('가격 (price)'),
+          desc: localized('한 줄 설명 (desc)'),
+          items: localizedList('포함 항목 (items)'),
         }),
       },
     }),

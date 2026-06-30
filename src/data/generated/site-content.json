@@ -211,5 +211,313 @@
         }
       }
     }
+  },
+  "saai": {
+    "en": {
+      "heroBadge": "saai.store · AI for store owners",
+      "heroTitle": "From ordering to POP, in one flow.",
+      "heroSub": "Decide what to push, get the trends, make the POP, check the planogram, and ask anything — a camera-less app that strings a store owner’s whole week into one flow. Start free, no card required.",
+      "heroCta": "Get started on saai.store",
+      "heroNote": "Operated free on saai.store · no card required",
+      "loopEyebrow": "The core · 5-step weekly loop",
+      "loopHeading": "Not separate tools — one flow",
+      "loopSub": "Each step’s output is the next step’s input. Owners who already know what to push skip ① ② and start at POP; the closing chat remembers all the context and closes the loop.",
+      "loopFootnote": "A camera-less app. Without POS it labels with fit/quality estimates, and the chat won’t answer without a basis.",
+      "toolsEyebrow": "Tools · saai.store",
+      "toolsHeading": "A tool for each recurring worry",
+      "toolsSub": "Tools that started from real owner interviews. A daily layer sits on the weekly loop to create a reason to open it every day.",
+      "trendNote": "trend fit is the ordering step inside saai.store — not a separate product.",
+      "planEyebrow": "Pricing",
+      "planHeading": "Start free, add what you need",
+      "planSub": "Start free with no card required, then add only the features your store needs.",
+      "planNote": "* Pricing is in beta and the lineup may change.",
+      "featureCta": "Go to saai.store",
+      "featureNote": "saai.store is SAAI’s (anonymized spatial AI) B2C suite for store owners, operated on a separate site.",
+      "otherProducts": "See other products",
+      "loop": {
+        "trendfit": {
+          "name": "trend fit",
+          "role": "What to push — a 0–100 fit score for your store"
+        },
+        "letter": {
+          "name": "store letter",
+          "role": "Trends, new arrivals, weather on one page"
+        },
+        "pop": {
+          "name": "POP maker",
+          "role": "Four POP types, prefilled with product, price, copy"
+        },
+        "planogram": {
+          "name": "planogram guide",
+          "role": "4-zone, adjacency and food-safety checks"
+        },
+        "chat": {
+          "name": "chat",
+          "role": "Context memory and cited answers close the loop"
+        }
+      },
+      "tools": {
+        "popmaker": {
+          "name": "POP maker",
+          "desc": "Enter product, price, and promo — get posters, badges, price tags, and shelf strips in a minute. Free monthly credits, no card."
+        },
+        "letter": {
+          "name": "store letter",
+          "desc": "Every Wednesday: HOT new arrivals, weather-based display tips, and an event calendar in one email. Free."
+        },
+        "trendfit": {
+          "name": "trend fit",
+          "desc": "A 0–100 fit score for new products based on your 500m trade area and customer mix — with reasons and the competitive picture."
+        },
+        "planogram": {
+          "name": "planogram guide",
+          "desc": "Lay out 4-zone and adjacency planograms and score them. One shelf photo surfaces gaps and fixes."
+        },
+        "chat": {
+          "name": "AI chat · ops coach",
+          "desc": "Ask anything and get cited answers; on a rain forecast it suggests umbrellas and hot snacks up front for the day."
+        },
+        "archive": {
+          "name": "Operating-guide archive",
+          "desc": "36 hands-on guides from ordering to tax, labor, and store transfer — started from owners’ questions, always growing."
+        }
+      },
+      "plans": {
+        "free": {
+          "tier": "Free",
+          "price": "₩0",
+          "desc": "Start for free",
+          "items": [
+            "Unlimited template POP · free monthly credits",
+            "Daily chat · daily coach",
+            "Free store-letter subscription"
+          ]
+        },
+        "pro": {
+          "tier": "Pro",
+          "price": "₩9,900+",
+          "desc": "Run the full week",
+          "items": [
+            "AI posters · planogram check · letter pool",
+            "Always-on POS analysis · higher chat limits",
+            "The full 5-step loop"
+          ]
+        },
+        "premium": {
+          "tier": "Premium · sister products",
+          "price": "₩14,900+",
+          "desc": "Security and analytics, together",
+          "items": [
+            "store care — CCTV theft/anomaly & temperature alerts",
+            "store insight — dashboards & regular reports",
+            "store care & insight for end-to-end store operations"
+          ]
+        }
+      }
+    },
+    "ko": {
+      "heroBadge": "saai.store · 편의점 점주를 위한 AI",
+      "heroTitle": "발주부터 POP까지, 한 흐름으로.",
+      "heroSub": "무엇을 밀지 정하고, 트렌드를 받고, POP을 만들고, 진열을 점검하고, 무엇이든 물어보세요 — 카메라 없이 동작하는 SW로, 점주의 한 주를 한 흐름으로 잇습니다. 카드 등록 없이 무료로 시작합니다.",
+      "heroCta": "saai.store 시작하기",
+      "heroNote": "saai.store에서 무료로 운영돼요 · 카드 등록 없이",
+      "loopEyebrow": "제품의 본질 · 5단계 주간 운영 루프",
+      "loopHeading": "여러 도구가 아니라, 하나의 흐름입니다",
+      "loopSub": "각 단계의 산출물이 다음 단계의 입력이 됩니다. 밀 상품이 정해진 점주는 ①②를 건너뛰고 POP부터 시작하고, 마지막 챗이 모든 맥락을 기억한 채 루프를 닫습니다.",
+      "loopFootnote": "카메라 없이 동작하는 SW. POS가 없으면 적합·품질 추정으로 라벨하고, 챗은 근거가 없으면 답하지 않습니다.",
+      "toolsEyebrow": "도구 · saai.store",
+      "toolsHeading": "점주의 반복되는 고민을, 각각 받아내는 도구",
+      "toolsSub": "실제 점주 인터뷰에서 출발한 도구들. 주간 루프 위에 일상 레이어를 얹어 매일 여는 이유를 만듭니다.",
+      "trendNote": "trend fit은 saai.store 안의 발주 단계입니다 — 별도 제품이 아닙니다.",
+      "planEyebrow": "요금",
+      "planHeading": "무료로 시작하고, 필요한 만큼 더하세요",
+      "planSub": "카드 등록 없이 무료로 시작해, 매장 운영에 필요한 기능만 더합니다.",
+      "planNote": "* 요금은 베타 운영 중이며, 실제 구성은 달라질 수 있습니다.",
+      "featureCta": "saai.store 바로가기",
+      "featureNote": "saai.store는 SAAI(익명화 공간 AI)의 점주용 B2C 제품군으로, 별도 사이트에서 운영됩니다.",
+      "otherProducts": "다른 제품 보기",
+      "loop": {
+        "trendfit": {
+          "name": "트렌드핏",
+          "role": "무엇을 밀지 — 우리 매장 적합도 0–100점"
+        },
+        "letter": {
+          "name": "스토어레터",
+          "role": "트렌드·신상·날씨를 한 페이지로"
+        },
+        "pop": {
+          "name": "POP 제작",
+          "role": "상품·가격·문구가 프리필된 POP 4종"
+        },
+        "planogram": {
+          "name": "진열 가이드",
+          "role": "4존·연관 진열·식품안전 검증"
+        },
+        "chat": {
+          "name": "챗",
+          "role": "맥락 기억·근거 인용으로 루프 종료"
+        }
+      },
+      "tools": {
+        "popmaker": {
+          "name": "POP 메이커",
+          "desc": "상품·가격·이벤트만 입력하면 1분 만에 포스터·배지·가격표·띠지. 월 무료 크레딧, 카드 등록 없이."
+        },
+        "letter": {
+          "name": "스토어레터",
+          "desc": "매주 수요일, 신상 HOT·날씨 진열 TIP·이벤트 캘린더를 한 통에. 무료 구독."
+        },
+        "trendfit": {
+          "name": "트렌드핏",
+          "desc": "반경 500m 상권·고객층 기반으로 신상 적합도를 0–100점으로. 근거와 경쟁 환경까지."
+        },
+        "planogram": {
+          "name": "진열 가이드",
+          "desc": "4존·연관 진열을 직접 짜고 점수로 평가. 매대 사진 한 장으로 빈칸·개선점까지."
+        },
+        "chat": {
+          "name": "AI 챗 · 운영 코치",
+          "desc": "무엇이든 물어보면 근거와 함께 답하고, 비 예보엔 우산·핫바 전면을 그날그날 제안."
+        },
+        "archive": {
+          "name": "운영 가이드 아카이브",
+          "desc": "발주·세무·노무·양수도까지 36개 실무 가이드. 점주의 질문에서 출발해 상시 축적."
+        }
+      },
+      "plans": {
+        "free": {
+          "tier": "Free",
+          "price": "₩0",
+          "desc": "무료로 시작",
+          "items": [
+            "템플릿 POP 무제한 · 월 무료 크레딧",
+            "일상 챗 · 데일리 코치",
+            "스토어레터 무료 구독"
+          ]
+        },
+        "pro": {
+          "tier": "Pro",
+          "price": "₩9,900~",
+          "desc": "한 주 운영을 끝까지",
+          "items": [
+            "AI 포스터 · 진열 점검 · 레터 풀",
+            "POS 상시 분석 · 챗 한도 상향",
+            "5단계 루프 전체"
+          ]
+        },
+        "premium": {
+          "tier": "프리미엄 · 자매 제품",
+          "price": "₩14,900~",
+          "desc": "보안·분석까지 한 번에",
+          "items": [
+            "store care — CCTV 도난·이상 감지·온도 알림",
+            "store insight — 대시보드·정기 리포트",
+            "store care·insight로 매장 운영 전반까지"
+          ]
+        }
+      }
+    },
+    "jp": {
+      "heroBadge": "saai.store · 店主のためのAI",
+      "heroTitle": "発注からPOPまで、ひとつの流れで。",
+      "heroSub": "何を推すか決め、トレンドを受け取り、POPを作り、陳列を点検し、何でも聞く — カメラなしで動くアプリが、店主の一週間をひとつの流れにつなぎます。カード登録なしで無料で開始。",
+      "heroCta": "saai.store を始める",
+      "heroNote": "saai.store で無料運営 · カード登録なし",
+      "loopEyebrow": "製品の本質 · 5段階の週次運営ループ",
+      "loopHeading": "別々の道具ではなく、ひとつの流れ",
+      "loopSub": "各段階の成果物が次の段階の入力になります。推す商品が決まっている店主は①②を飛ばしてPOPから。最後のチャットがすべての文脈を覚えたままループを閉じます。",
+      "loopFootnote": "カメラなしで動くアプリ。POSがなければ適合・品質の推定でラベルし、チャットは根拠がなければ答えません。",
+      "toolsEyebrow": "道具 · saai.store",
+      "toolsHeading": "店主の繰り返す悩みを、それぞれ受けとめる道具",
+      "toolsSub": "実際の店主インタビューから出発した道具。週次ループの上に日常レイヤーを重ね、毎日開く理由をつくります。",
+      "trendNote": "trend fit は saai.store 内の発注ステップ — 単独プロダクトではありません。",
+      "planEyebrow": "料金",
+      "planHeading": "無料で始め、必要な分だけ追加",
+      "planSub": "カード登録なしで無料で始め、店舗運営に必要な機能だけ追加します。",
+      "planNote": "* 料金はベータ運用中で、構成は変わり得ます。",
+      "featureCta": "saai.store へ",
+      "featureNote": "saai.store は SAAI（匿名化空間AI）の店主向けB2C製品群で、別サイトで運営しています。",
+      "otherProducts": "他の製品を見る",
+      "loop": {
+        "trendfit": {
+          "name": "トレンドフィット",
+          "role": "何を推すか — 自店適合度 0〜100点"
+        },
+        "letter": {
+          "name": "ストアレター",
+          "role": "トレンド・新商品・天気を1ページに"
+        },
+        "pop": {
+          "name": "POP制作",
+          "role": "商品・価格・文言をプリフィルしたPOP4種"
+        },
+        "planogram": {
+          "name": "陳列ガイド",
+          "role": "4ゾーン・関連陳列・食品安全の検証"
+        },
+        "chat": {
+          "name": "チャット",
+          "role": "文脈記憶・根拠引用でループを終了"
+        }
+      },
+      "tools": {
+        "popmaker": {
+          "name": "POPメーカー",
+          "desc": "商品・価格・イベントを入力するだけで1分でポスター・バッジ・価格表・띠지。月の無料クレジット、カード登録なし。"
+        },
+        "letter": {
+          "name": "ストアレター",
+          "desc": "毎週水曜、新商品HOT・天気の陳列TIP・イベントカレンダーを1通に。無料購読。"
+        },
+        "trendfit": {
+          "name": "トレンドフィット",
+          "desc": "半径500mの商圏・客層をもとに新商品の適合度を0〜100点で。根拠と競合環境まで。"
+        },
+        "planogram": {
+          "name": "陳列ガイド",
+          "desc": "4ゾーン・関連陳列を自分で組み、点数で評価。棚の写真1枚で空き・改善点まで。"
+        },
+        "chat": {
+          "name": "AIチャット · 運営コーチ",
+          "desc": "何でも聞けば根拠とともに回答し、雨予報には傘・ホットスナックの前面陳列をその日ごとに提案。"
+        },
+        "archive": {
+          "name": "運営ガイドアーカイブ",
+          "desc": "発注・税務・労務・譲渡まで36の実務ガイド。店主の質問から出発し常時蓄積。"
+        }
+      },
+      "plans": {
+        "free": {
+          "tier": "Free",
+          "price": "₩0",
+          "desc": "無料で開始",
+          "items": [
+            "テンプレPOP無制限 · 月の無料クレジット",
+            "日常チャット · デイリーコーチ",
+            "ストアレター無料購読"
+          ]
+        },
+        "pro": {
+          "tier": "Pro",
+          "price": "₩9,900〜",
+          "desc": "一週間の運営を最後まで",
+          "items": [
+            "AIポスター · 陳列点検 · レタープール",
+            "POS常時分析 · チャット上限引き上げ",
+            "5段階ループ全体"
+          ]
+        },
+        "premium": {
+          "tier": "プレミアム · 姉妹製品",
+          "price": "₩14,900〜",
+          "desc": "セキュリティと分析をまとめて",
+          "items": [
+            "store care — CCTV盗難・異常検知・温度アラート",
+            "store insight — ダッシュボード・定期レポート",
+            "store care・insightで店舗運営の全体まで"
+          ]
+        }
+      }
+    }
   }
 }

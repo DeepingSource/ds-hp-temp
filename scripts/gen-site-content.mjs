@@ -68,9 +68,27 @@ for (const loc of LOCALES) {
   storeAgent[loc] = { ...storeAgentFlat[loc], steps: storeAgentSteps[loc] };
 }
 
+// ── saai — flat copy + id-keyed loop/tools/plans (stage/icon/highlight in code) ─
+const SAAI_FLAT = [
+  'heroBadge', 'heroTitle', 'heroSub', 'heroCta', 'heroNote',
+  'loopEyebrow', 'loopHeading', 'loopSub', 'loopFootnote',
+  'toolsEyebrow', 'toolsHeading', 'toolsSub', 'trendNote',
+  'planEyebrow', 'planHeading', 'planSub', 'planNote',
+  'featureCta', 'featureNote', 'otherProducts',
+];
+const saaiYaml = load('content/site/saai.yaml');
+const saaiFlat = toLocaleMajor(saaiYaml, SAAI_FLAT);
+const saaiLoop = arrayByIdLocaleMajor(saaiYaml.loop, ['name', 'role']);
+const saaiTools = arrayByIdLocaleMajor(saaiYaml.tools, ['name', 'desc']);
+const saaiPlans = arrayByIdLocaleMajor(saaiYaml.plans, ['tier', 'price', 'desc', 'items']);
+const saai = {};
+for (const loc of LOCALES) {
+  saai[loc] = { ...saaiFlat[loc], loop: saaiLoop[loc], tools: saaiTools[loc], plans: saaiPlans[loc] };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai)');

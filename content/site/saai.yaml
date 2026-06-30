@@ -1,0 +1,260 @@
+heroBadge:
+  ko: saai.store · 편의점 점주를 위한 AI
+  en: saai.store · AI for store owners
+  jp: saai.store · 店主のためのAI
+heroTitle:
+  ko: 발주부터 POP까지, 한 흐름으로.
+  en: From ordering to POP, in one flow.
+  jp: 発注からPOPまで、ひとつの流れで。
+heroSub:
+  ko: 무엇을 밀지 정하고, 트렌드를 받고, POP을 만들고, 진열을 점검하고, 무엇이든 물어보세요 — 카메라 없이 동작하는 SW로, 점주의 한 주를 한 흐름으로 잇습니다. 카드 등록 없이 무료로 시작합니다.
+  en: Decide what to push, get the trends, make the POP, check the planogram, and ask anything — a camera-less app that strings a store owner’s whole week into one flow. Start free, no card required.
+  jp: 何を推すか決め、トレンドを受け取り、POPを作り、陳列を点検し、何でも聞く — カメラなしで動くアプリが、店主の一週間をひとつの流れにつなぎます。カード登録なしで無料で開始。
+heroCta:
+  ko: saai.store 시작하기
+  en: Get started on saai.store
+  jp: saai.store を始める
+heroNote:
+  ko: saai.store에서 무료로 운영돼요 · 카드 등록 없이
+  en: Operated free on saai.store · no card required
+  jp: saai.store で無料運営 · カード登録なし
+loopEyebrow:
+  ko: 제품의 본질 · 5단계 주간 운영 루프
+  en: The core · 5-step weekly loop
+  jp: 製品の本質 · 5段階の週次運営ループ
+loopHeading:
+  ko: 여러 도구가 아니라, 하나의 흐름입니다
+  en: Not separate tools — one flow
+  jp: 別々の道具ではなく、ひとつの流れ
+loopSub:
+  ko: 각 단계의 산출물이 다음 단계의 입력이 됩니다. 밀 상품이 정해진 점주는 ①②를 건너뛰고 POP부터 시작하고, 마지막 챗이 모든 맥락을 기억한 채 루프를 닫습니다.
+  en: Each step’s output is the next step’s input. Owners who already know what to push skip ① ② and start at POP; the closing chat remembers all the context and closes the loop.
+  jp: 各段階の成果物が次の段階の入力になります。推す商品が決まっている店主は①②を飛ばしてPOPから。最後のチャットがすべての文脈を覚えたままループを閉じます。
+loopFootnote:
+  ko: 카메라 없이 동작하는 SW. POS가 없으면 적합·품질 추정으로 라벨하고, 챗은 근거가 없으면 답하지 않습니다.
+  en: A camera-less app. Without POS it labels with fit/quality estimates, and the chat won’t answer without a basis.
+  jp: カメラなしで動くアプリ。POSがなければ適合・品質の推定でラベルし、チャットは根拠がなければ答えません。
+toolsEyebrow:
+  ko: 도구 · saai.store
+  en: Tools · saai.store
+  jp: 道具 · saai.store
+toolsHeading:
+  ko: 점주의 반복되는 고민을, 각각 받아내는 도구
+  en: A tool for each recurring worry
+  jp: 店主の繰り返す悩みを、それぞれ受けとめる道具
+toolsSub:
+  ko: 실제 점주 인터뷰에서 출발한 도구들. 주간 루프 위에 일상 레이어를 얹어 매일 여는 이유를 만듭니다.
+  en: Tools that started from real owner interviews. A daily layer sits on the weekly loop to create a reason to open it every day.
+  jp: 実際の店主インタビューから出発した道具。週次ループの上に日常レイヤーを重ね、毎日開く理由をつくります。
+trendNote:
+  ko: trend fit은 saai.store 안의 발주 단계입니다 — 별도 제품이 아닙니다.
+  en: trend fit is the ordering step inside saai.store — not a separate product.
+  jp: trend fit は saai.store 内の発注ステップ — 単独プロダクトではありません。
+planEyebrow:
+  ko: 요금
+  en: Pricing
+  jp: 料金
+planHeading:
+  ko: 무료로 시작하고, 필요한 만큼 더하세요
+  en: Start free, add what you need
+  jp: 無料で始め、必要な分だけ追加
+planSub:
+  ko: 카드 등록 없이 무료로 시작해, 매장 운영에 필요한 기능만 더합니다.
+  en: Start free with no card required, then add only the features your store needs.
+  jp: カード登録なしで無料で始め、店舗運営に必要な機能だけ追加します。
+planNote:
+  ko: '* 요금은 베타 운영 중이며, 실제 구성은 달라질 수 있습니다.'
+  en: '* Pricing is in beta and the lineup may change.'
+  jp: '* 料金はベータ運用中で、構成は変わり得ます。'
+featureCta:
+  ko: saai.store 바로가기
+  en: Go to saai.store
+  jp: saai.store へ
+featureNote:
+  ko: saai.store는 SAAI(익명화 공간 AI)의 점주용 B2C 제품군으로, 별도 사이트에서 운영됩니다.
+  en: saai.store is SAAI’s (anonymized spatial AI) B2C suite for store owners, operated on a separate site.
+  jp: saai.store は SAAI（匿名化空間AI）の店主向けB2C製品群で、別サイトで運営しています。
+otherProducts:
+  ko: 다른 제품 보기
+  en: See other products
+  jp: 他の製品を見る
+loop:
+  - id: trendfit
+    name:
+      ko: 트렌드핏
+      en: trend fit
+      jp: トレンドフィット
+    role:
+      ko: 무엇을 밀지 — 우리 매장 적합도 0–100점
+      en: What to push — a 0–100 fit score for your store
+      jp: 何を推すか — 自店適合度 0〜100点
+  - id: letter
+    name:
+      ko: 스토어레터
+      en: store letter
+      jp: ストアレター
+    role:
+      ko: 트렌드·신상·날씨를 한 페이지로
+      en: Trends, new arrivals, weather on one page
+      jp: トレンド・新商品・天気を1ページに
+  - id: pop
+    name:
+      ko: POP 제작
+      en: POP maker
+      jp: POP制作
+    role:
+      ko: 상품·가격·문구가 프리필된 POP 4종
+      en: Four POP types, prefilled with product, price, copy
+      jp: 商品・価格・文言をプリフィルしたPOP4種
+  - id: planogram
+    name:
+      ko: 진열 가이드
+      en: planogram guide
+      jp: 陳列ガイド
+    role:
+      ko: 4존·연관 진열·식품안전 검증
+      en: 4-zone, adjacency and food-safety checks
+      jp: 4ゾーン・関連陳列・食品安全の検証
+  - id: chat
+    name:
+      ko: 챗
+      en: chat
+      jp: チャット
+    role:
+      ko: 맥락 기억·근거 인용으로 루프 종료
+      en: Context memory and cited answers close the loop
+      jp: 文脈記憶・根拠引用でループを終了
+tools:
+  - id: popmaker
+    name:
+      ko: POP 메이커
+      en: POP maker
+      jp: POPメーカー
+    desc:
+      ko: 상품·가격·이벤트만 입력하면 1분 만에 포스터·배지·가격표·띠지. 월 무료 크레딧, 카드 등록 없이.
+      en: Enter product, price, and promo — get posters, badges, price tags, and shelf strips in a minute. Free monthly credits, no card.
+      jp: 商品・価格・イベントを入力するだけで1分でポスター・バッジ・価格表・띠지。月の無料クレジット、カード登録なし。
+  - id: letter
+    name:
+      ko: 스토어레터
+      en: store letter
+      jp: ストアレター
+    desc:
+      ko: 매주 수요일, 신상 HOT·날씨 진열 TIP·이벤트 캘린더를 한 통에. 무료 구독.
+      en: "Every Wednesday: HOT new arrivals, weather-based display tips, and an event calendar in one email. Free."
+      jp: 毎週水曜、新商品HOT・天気の陳列TIP・イベントカレンダーを1通に。無料購読。
+  - id: trendfit
+    name:
+      ko: 트렌드핏
+      en: trend fit
+      jp: トレンドフィット
+    desc:
+      ko: 반경 500m 상권·고객층 기반으로 신상 적합도를 0–100점으로. 근거와 경쟁 환경까지.
+      en: A 0–100 fit score for new products based on your 500m trade area and customer mix — with reasons and the competitive picture.
+      jp: 半径500mの商圏・客層をもとに新商品の適合度を0〜100点で。根拠と競合環境まで。
+  - id: planogram
+    name:
+      ko: 진열 가이드
+      en: planogram guide
+      jp: 陳列ガイド
+    desc:
+      ko: 4존·연관 진열을 직접 짜고 점수로 평가. 매대 사진 한 장으로 빈칸·개선점까지.
+      en: Lay out 4-zone and adjacency planograms and score them. One shelf photo surfaces gaps and fixes.
+      jp: 4ゾーン・関連陳列を自分で組み、点数で評価。棚の写真1枚で空き・改善点まで。
+  - id: chat
+    name:
+      ko: AI 챗 · 운영 코치
+      en: AI chat · ops coach
+      jp: AIチャット · 運営コーチ
+    desc:
+      ko: 무엇이든 물어보면 근거와 함께 답하고, 비 예보엔 우산·핫바 전면을 그날그날 제안.
+      en: Ask anything and get cited answers; on a rain forecast it suggests umbrellas and hot snacks up front for the day.
+      jp: 何でも聞けば根拠とともに回答し、雨予報には傘・ホットスナックの前面陳列をその日ごとに提案。
+  - id: archive
+    name:
+      ko: 운영 가이드 아카이브
+      en: Operating-guide archive
+      jp: 運営ガイドアーカイブ
+    desc:
+      ko: 발주·세무·노무·양수도까지 36개 실무 가이드. 점주의 질문에서 출발해 상시 축적.
+      en: 36 hands-on guides from ordering to tax, labor, and store transfer — started from owners’ questions, always growing.
+      jp: 発注・税務・労務・譲渡まで36の実務ガイド。店主の質問から出発し常時蓄積。
+plans:
+  - id: free
+    tier:
+      ko: Free
+      en: Free
+      jp: Free
+    price:
+      ko: ₩0
+      en: ₩0
+      jp: ₩0
+    desc:
+      ko: 무료로 시작
+      en: Start for free
+      jp: 無料で開始
+    items:
+      ko:
+        - 템플릿 POP 무제한 · 월 무료 크레딧
+        - 일상 챗 · 데일리 코치
+        - 스토어레터 무료 구독
+      en:
+        - Unlimited template POP · free monthly credits
+        - Daily chat · daily coach
+        - Free store-letter subscription
+      jp:
+        - テンプレPOP無制限 · 月の無料クレジット
+        - 日常チャット · デイリーコーチ
+        - ストアレター無料購読
+  - id: pro
+    tier:
+      ko: Pro
+      en: Pro
+      jp: Pro
+    price:
+      ko: ₩9,900~
+      en: ₩9,900+
+      jp: ₩9,900〜
+    desc:
+      ko: 한 주 운영을 끝까지
+      en: Run the full week
+      jp: 一週間の運営を最後まで
+    items:
+      ko:
+        - AI 포스터 · 진열 점검 · 레터 풀
+        - POS 상시 분석 · 챗 한도 상향
+        - 5단계 루프 전체
+      en:
+        - AI posters · planogram check · letter pool
+        - Always-on POS analysis · higher chat limits
+        - The full 5-step loop
+      jp:
+        - AIポスター · 陳列点検 · レタープール
+        - POS常時分析 · チャット上限引き上げ
+        - 5段階ループ全体
+  - id: premium
+    tier:
+      ko: 프리미엄 · 자매 제품
+      en: Premium · sister products
+      jp: プレミアム · 姉妹製品
+    price:
+      ko: ₩14,900~
+      en: ₩14,900+
+      jp: ₩14,900〜
+    desc:
+      ko: 보안·분석까지 한 번에
+      en: Security and analytics, together
+      jp: セキュリティと分析をまとめて
+    items:
+      ko:
+        - store care — CCTV 도난·이상 감지·온도 알림
+        - store insight — 대시보드·정기 리포트
+        - store care·insight로 매장 운영 전반까지
+      en:
+        - store care — CCTV theft/anomaly & temperature alerts
+        - store insight — dashboards & regular reports
+        - store care & insight for end-to-end store operations
+      jp:
+        - store care — CCTV盗難・異常検知・温度アラート
+        - store insight — ダッシュボード・定期レポート
+        - store care・insightで店舗運営の全体まで
