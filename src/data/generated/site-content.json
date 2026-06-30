@@ -590,5 +590,193 @@
       "ctaPrimary": "無料相談を申し込む",
       "ctaSecondary": "業種別ソリューションを見る"
     }
+  },
+  "about": {
+    "en": {
+      "badge": "About DeepingSource",
+      "heroEyebrowCompany": "Online",
+      "heroMasterCompany": "got optimized\nby measurement.",
+      "heroEyebrowOwner": "The physical world",
+      "heroMasterOwner": "stayed\nlargely the same.",
+      "companyIntro": "For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.",
+      "companyIntro2": "DeepingSource is here to reinvent it.",
+      "vmEyebrow": "Vision & Mission",
+      "vision": "From your space — to every space.",
+      "visionLabel": "Vision",
+      "missionLabel": "Mission",
+      "mission": "If you can measure it, you can improve it. We bring the force that remade online to the physical world.",
+      "storyEyebrow": "Our Story",
+      "storyHeading": "From anonymization to the physical world",
+      "storySub": "We started with anonymization. Reading space with vision AI, we met the physical world — where people work and live.",
+      "leadershipEyebrow": "Leadership",
+      "leadershipHeading": "The people remaking space",
+      "leadershipSub": "Roots in anonymization, global business, and engineering execution — three axes, one goal.",
+      "partnersEyebrow": "Trusted Partners",
+      "partnersHeading": "{partnerBrands} partner brands work with us",
+      "partnersSub": "SAAI proven across {industries} industries. As an {nvidiaPartner}, we follow the global standard.",
+      "partnerStatsNote": "* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.",
+      "certsLabel": "Awards & Credentials",
+      "ctaHeading": "Not a world in a data center —\nthe world people live in",
+      "ctaSub": "From adoption inquiries to partnership proposals, reach out anytime.",
+      "ctaButton": "Get in touch",
+      "partnerStatLabels": [
+        "Partner brands",
+        "Industries served",
+        "Patents",
+        "Compliance"
+      ],
+      "methodEyebrow": "How we work",
+      "methodHeading": "Spatial AI on anonymization, agents on top",
+      "methodIntro": "Vision AI ultimately looks at people. We start with anonymization, then read and run the space across three layers.",
+      "certs": {
+        "soc2": {
+          "sub": "Security controls certification (2024)"
+        },
+        "nextrise": {
+          "sub": "‘Top Innovator’ award"
+        },
+        "nvidia": {
+          "sub": "Global AI startup program"
+        }
+      },
+      "methodSteps": {
+        "anonymizer": {
+          "term": "① Anonymizer",
+          "promise": "Identity is erased at the moment of input. Never who — only what and how."
+        },
+        "spatial": {
+          "term": "② Spatial AI",
+          "promise": "Where people pause, how they flow, what they touch — vision models map the space onto coordinates."
+        },
+        "agentic": {
+          "term": "③ Agentic AI",
+          "promise": "It does not stop at seeing. It recommends the next move — AI advises, people decide."
+        }
+      }
+    },
+    "ko": {
+      "badge": "About DeepingSource",
+      "heroEyebrowCompany": "온라인은",
+      "heroMasterCompany": "측정으로\n최적화됐다",
+      "heroEyebrowOwner": "현장은",
+      "heroMasterOwner": "거의\n그대로였다",
+      "companyIntro": "온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.",
+      "companyIntro2": "딥핑소스는 그 현장을 다시 만듭니다.",
+      "vmEyebrow": "Vision & Mission",
+      "vision": "당신의 공간에서, 모든 공간으로",
+      "visionLabel": "Vision",
+      "missionLabel": "Mission",
+      "mission": "측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.",
+      "storyEyebrow": "Our Story",
+      "storyHeading": "익명화에서, 물리 세계로",
+      "storySub": "우리는 익명화에서 시작했습니다. 비전 AI로 공간을 읽다가, 사람이 일하는 물리 세계를 만났습니다.",
+      "leadershipEyebrow": "Leadership",
+      "leadershipHeading": "공간을 다시 만드는 사람들",
+      "leadershipSub": "익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.",
+      "partnersEyebrow": "Trusted Partners",
+      "partnersHeading": "{partnerBrands}개 파트너 브랜드가 함께합니다",
+      "partnersSub": "{industries}개 업종에서 검증된 SAAI. {nvidiaPartner}로서 글로벌 표준을 따릅니다.",
+      "partnerStatsNote": "* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.",
+      "certsLabel": "Awards & Credentials",
+      "ctaHeading": "데이터센터가 아니라,\n사람이 사는 세상을",
+      "ctaSub": "도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요",
+      "ctaButton": "문의하기",
+      "partnerStatLabels": [
+        "파트너 브랜드",
+        "지원 업종",
+        "특허",
+        "규제 준수"
+      ],
+      "methodEyebrow": "How we work",
+      "methodHeading": "익명화 위에 공간 지능, 그 위에 에이전트 AI",
+      "methodIntro": "비전 AI는 결국 사람을 봅니다. 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.",
+      "certs": {
+        "soc2": {
+          "sub": "정보보안 통제 인증 (2024)"
+        },
+        "nextrise": {
+          "sub": "‘Top Innovator’ 수상"
+        },
+        "nvidia": {
+          "sub": "글로벌 AI 스타트업 프로그램"
+        }
+      },
+      "methodSteps": {
+        "anonymizer": {
+          "term": "① 익명화 · Anonymizer",
+          "promise": "입력 시점에 신원을 지웁니다. 누구인지는 남기지 않고, 무엇을 어떻게만 봅니다."
+        },
+        "spatial": {
+          "term": "② 공간 지능 · Spatial AI",
+          "promise": "머문 곳, 흐른 길, 닿은 손길까지 — 비전 모델로 공간을 좌표 위에 읽어냅니다."
+        },
+        "agentic": {
+          "term": "③ 에이전트 AI · Agentic AI",
+          "promise": "보는 데서 그치지 않고 다음 한 수를 권합니다. 권고는 AI가, 결정은 사람이."
+        }
+      }
+    },
+    "jp": {
+      "badge": "About DeepingSource",
+      "heroEyebrowCompany": "オンラインは",
+      "heroMasterCompany": "測定で\n最適化された。",
+      "heroEyebrowOwner": "現場は",
+      "heroMasterOwner": "ほぼ\nそのままだった。",
+      "companyIntro": "オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。",
+      "companyIntro2": "ディーピングソースは、その現場を作り直します。",
+      "vmEyebrow": "Vision & Mission",
+      "vision": "あなたの空間から、すべての空間へ。",
+      "visionLabel": "Vision",
+      "missionLabel": "Mission",
+      "mission": "測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。",
+      "storyEyebrow": "Our Story",
+      "storyHeading": "匿名化から、物理世界へ",
+      "storySub": "私たちは匿名化から始めました。ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。",
+      "leadershipEyebrow": "Leadership",
+      "leadershipHeading": "空間を作り直す人々",
+      "leadershipSub": "匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。",
+      "partnersEyebrow": "Trusted Partners",
+      "partnersHeading": "{partnerBrands}社のパートナーブランドがともにあります",
+      "partnersSub": "{industries}業種で実証されたSAAI。{nvidiaPartner}として、グローバル標準に準拠します。",
+      "partnerStatsNote": "* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。",
+      "certsLabel": "Awards & Credentials",
+      "ctaHeading": "データセンターの中ではなく、\n人が暮らす世界を",
+      "ctaSub": "導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。",
+      "ctaButton": "お問い合わせ",
+      "partnerStatLabels": [
+        "パートナーブランド",
+        "対応業種",
+        "特許",
+        "規制準拠"
+      ],
+      "methodEyebrow": "How we work",
+      "methodHeading": "匿名化の上に空間知能、その上にエージェントAI",
+      "methodIntro": "ビジョンAIは結局、人を見ます。私たちは匿名化から始め、三つの軸で空間を読み、運営します。",
+      "certs": {
+        "soc2": {
+          "sub": "情報セキュリティ統制認証 (2024)"
+        },
+        "nextrise": {
+          "sub": "「Top Innovator」受賞"
+        },
+        "nvidia": {
+          "sub": "グローバルAIスタートアップ・プログラム"
+        }
+      },
+      "methodSteps": {
+        "anonymizer": {
+          "term": "① 匿名化 · Anonymizer",
+          "promise": "入力の時点で身元を消します。誰かではなく、何をどうだけを見ます。"
+        },
+        "spatial": {
+          "term": "② 空間知能 · Spatial AI",
+          "promise": "滞留した場所、流れた道、触れた手まで — ビジョンモデルが空間を座標の上に読み解きます。"
+        },
+        "agentic": {
+          "term": "③ エージェントAI · Agentic AI",
+          "promise": "見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。"
+        }
+      }
+    }
   }
 }

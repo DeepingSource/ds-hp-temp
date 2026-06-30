@@ -95,9 +95,29 @@ const SOLUTIONS_FLAT = [
 ];
 const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_FLAT);
 
+// ── about — flat copy (partnersHeading/Sub are {…} templates, partnerStatLabels is
+//    an array) + id-keyed certs/methodSteps. Cert labels/icons + the closing line
+//    (a brand-canon SOT value) stay in code. ──
+const ABOUT_FLAT = [
+  'badge', 'heroEyebrowCompany', 'heroMasterCompany', 'heroEyebrowOwner', 'heroMasterOwner',
+  'companyIntro', 'companyIntro2', 'vmEyebrow', 'vision', 'visionLabel', 'missionLabel', 'mission',
+  'storyEyebrow', 'storyHeading', 'storySub', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
+  'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
+  'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
+  'methodEyebrow', 'methodHeading', 'methodIntro',
+];
+const aboutYaml = load('content/site/about.yaml');
+const aboutFlat = toLocaleMajor(aboutYaml, ABOUT_FLAT);
+const aboutCerts = arrayByIdLocaleMajor(aboutYaml.certs, ['sub']);
+const aboutMethodSteps = arrayByIdLocaleMajor(aboutYaml.methodSteps, ['term', 'promise']);
+const about = {};
+for (const loc of LOCALES) {
+  about[loc] = { ...aboutFlat[loc], certs: aboutCerts[loc], methodSteps: aboutMethodSteps[loc] };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about)');
