@@ -37,6 +37,7 @@ public/feedback/
 # image-generation scratch (source PNGs/MOVs, converted to webp under public/images)
 new-image-generated*/
 new_image_*/
+new-images/
 _frames_tmp/
 asset-prompts/
 # internal business/pricing strategy doc — kept local, not in repo
