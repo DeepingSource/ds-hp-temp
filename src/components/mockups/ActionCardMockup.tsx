@@ -73,8 +73,10 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
 
   // Sequenced approve/hold choreography (animation plan C10 — shared loop
   // scaffolding; cancel/timer/restart/visibility bookkeeping lives in the hook).
-  // While inactive the mockup sits in a hidden tab, so freezing (vs. resetting to
-  // hidden) is not visible; the hook replays from the reset when reactivated.
+  // On active=false the loop freezes the current frame (it does NOT reset to all-
+  // hidden, unlike the pre-C10 effect). In the tabbed showcases the panel is hidden
+  // so this is invisible; under the /demo global pause it reads as freeze-on-pause,
+  // which is intended. The hook replays from the reset when reactivated.
   useSequencedLoop(
     (sched) => {
       const update = (next: CardPhase[]) => setPhases(next);

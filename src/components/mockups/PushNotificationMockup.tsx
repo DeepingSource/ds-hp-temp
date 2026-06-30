@@ -65,7 +65,9 @@ export default function PushNotificationMockup({
 
   // Lock-screen notifications slide in, then the stack clears and replays
   // (animation plan C10 — shared loop scaffolding; cancel/timer/restart/visibility
-  // bookkeeping lives in the hook).
+  // bookkeeping lives in the hook). On active=false the loop freezes the current
+  // frame (it no longer resets visibleCount to 0); under the /demo global pause that
+  // reads as freeze-on-pause, which is intended. Replays from reset when reactivated.
   useSequencedLoop(
     (sched) => {
       const EXIT_MS = 300;
