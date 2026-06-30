@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { stripLocale, localeHref, homeCopy, type Locale } from '@/lib/i18n';
+import { springTabPill } from '@/lib/spring-config';
 import LocaleSwitcher from './LocaleSwitcher';
 
 type Tri = Record<Locale, string>;
@@ -147,12 +149,20 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={localeHref(locale, item.href)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                    active ? 'text-primary bg-primary-lighter' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    active ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
                   {item.label[locale]}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      aria-hidden="true"
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary"
+                      transition={springTabPill}
+                    />
+                  )}
                 </Link>
               );
             }
@@ -168,14 +178,22 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setOpenKey(open ? null : item.key)}
-                  className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
-                    active || open ? 'text-primary bg-primary-lighter' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
+                  className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
+                    active || open ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  } ${open ? 'bg-gray-50' : ''}`}
                   aria-expanded={open}
                   aria-haspopup="true"
                 >
                   {item.label[locale]}
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      aria-hidden="true"
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary"
+                      transition={springTabPill}
+                    />
+                  )}
                 </button>
                 <div
                   aria-hidden={!open}
