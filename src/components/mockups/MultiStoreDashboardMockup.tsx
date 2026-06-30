@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart3, Users, Bell, TrendingUp, Sparkles, Store, Lock, Clock } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -104,37 +105,34 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
   const [selIdx, setSelIdx] = useState(0);
   const [kpiActive, setKpiActive] = useState(false);
   const [barsKey, setBarsKey] = useState(0);
-  const [loopKey, setLoopKey] = useState(0);
   const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
-  useEffect(() => {
-    if (!isVisible || !active) return;
-    if (reducedMotion) { setSelIdx(0); setKpiActive(true); return; }
+  // Cycle through stores, replaying KPIs/bars per store (animation plan C10 —
+  // shared loop scaffolding; cancel/timer/restart/visibility bookkeeping lives in
+  // the hook, which also replaces the old loopKey-driven restart).
+  useSequencedLoop(
+    (sched) => {
+      setSelIdx(0);
+      setKpiActive(false);
+      setBarsKey(0);
 
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const sched = (fn: () => void, ms: number) => {
-      const t = setTimeout(() => { if (!cancelled) fn(); }, ms);
-      timers.push(t);
-    };
+      sched(() => { setKpiActive(true); setBarsKey(k => k + 1); }, 300);
 
-    setSelIdx(0);
-    setKpiActive(false);
-    setBarsKey(0);
+      stores.forEach((_, i) => {
+        if (i === 0) return;
+        const ms = 300 + i * 2200;
+        sched(() => setKpiActive(false), ms - 180);
+        sched(() => { setSelIdx(i); setKpiActive(true); setBarsKey(k => k + 1); }, ms);
+      });
 
-    sched(() => { setKpiActive(true); setBarsKey(k => k + 1); }, 300);
-
-    stores.forEach((_, i) => {
-      if (i === 0) return;
-      const ms = 300 + i * 2200;
-      sched(() => setKpiActive(false), ms - 180);
-      sched(() => { setSelIdx(i); setKpiActive(true); setBarsKey(k => k + 1); }, ms);
-    });
-
-    sched(() => setLoopKey(k => k + 1), 300 + stores.length * 2200 + 1200);
-
-    return () => { cancelled = true; timers.forEach(clearTimeout); };
-  }, [isVisible, active, loopKey]);
+      return 300 + stores.length * 2200 + 1200;
+    },
+    {
+      active: isVisible && active,
+      reducedMotion,
+      onStatic: () => { setSelIdx(0); setKpiActive(true); },
+    },
+  );
 
   const store = stores[selIdx] ?? stores[0];
   const chartData = chartSets[store.id];

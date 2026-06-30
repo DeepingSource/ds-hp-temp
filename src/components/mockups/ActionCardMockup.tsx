@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, memo } from 'react';
 import { Check, CloudRain, ShoppingCart, Palette, TrendingUp, Bell, CheckCircle2, Users, Tag, Pause } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { AnimatePresence, motion } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
 import PhoneFrame from './PhoneFrame';
@@ -70,38 +71,22 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
     if (el) body.scrollTo({ top: Math.max(0, el.offsetTop - 8), behavior: reducedMotion ? 'auto' : 'smooth' });
   }, [phases, reducedMotion]);
 
-  useEffect(() => {
-    if (!isVisible) return;
-    if (!active) {
-      setPhases(['hidden', 'hidden', 'hidden', 'hidden', 'hidden']);
-      return;
-    }
-    if (reducedMotion) {
-      setPhases(['visible', 'visible', 'visible', 'visible', 'visible']);
-      return;
-    }
+  // Sequenced approve/hold choreography (animation plan C10 — shared loop
+  // scaffolding; cancel/timer/restart/visibility bookkeeping lives in the hook).
+  // While inactive the mockup sits in a hidden tab, so freezing (vs. resetting to
+  // hidden) is not visible; the hook replays from the reset when reactivated.
+  useSequencedLoop(
+    (sched) => {
+      const update = (next: CardPhase[]) => setPhases(next);
+      const H = 'hidden' as const;
+      const V = 'visible' as const;
+      const A = 'approving' as const;
+      const P = 'pressed' as const;
+      const DIS = 'dismissed' as const;
+      const HOLD = 'holding' as const;     // pointing at the hold action
+      const HP = 'heldPressed' as const;   // hold button pressed (gray flash)
+      const HELD = 'held' as const;        // exits LEFT, muted
 
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
-    const sched = (fn: () => void, ms: number) => {
-      const t = setTimeout(() => { if (!cancelled) fn(); }, ms);
-      timers.push(t);
-    };
-
-    const update = (next: CardPhase[]) => setPhases(next);
-    const H = 'hidden' as const;
-    const V = 'visible' as const;
-    const A = 'approving' as const;
-    const P = 'pressed' as const;
-    const DIS = 'dismissed' as const;
-    const HOLD = 'holding' as const;     // pointing at the hold action
-    const HP = 'heldPressed' as const;   // hold button pressed (gray flash)
-    const HELD = 'held' as const;        // exits LEFT, muted
-
-    const runLoop = () => {
-      if (cancelled) return;
-      timers.splice(0).forEach(clearTimeout);
       update([H, H, H, H, H]);
 
       // Cards appear with stagger
@@ -134,16 +119,14 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
       // Card 4 REMAINS visible — the AI proposes, it doesn't force.
       // Completed summary surfaces alongside the lingering card before reset.
 
-      sched(runLoop, 10200);
-    };
-
-    runLoop();
-
-    return () => {
-      cancelled = true;
-      timers.forEach(clearTimeout);
-    };
-  }, [active, isVisible, reducedMotion]);
+      return 10200;
+    },
+    {
+      active: isVisible && active,
+      reducedMotion,
+      onStatic: () => setPhases(['visible', 'visible', 'visible', 'visible', 'visible']),
+    },
+  );
 
   // Cards 0–3 resolved (approved → dismissed, or held), card 4 lingers on screen.
   const reviewResolved =

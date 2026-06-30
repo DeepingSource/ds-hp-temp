@@ -3,6 +3,7 @@
 import { memo, useEffect, useState } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { AlertTriangle, Lightbulb, MapPin, CheckSquare, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
@@ -47,50 +48,33 @@ export const BriefingMockup = memo(function BriefingMockup({ area, scenario, dat
     setTime(timeOverride ?? c.briefingTimes[ts]);
   }, [dateOverride, timeOverride, c]);
 
-  useEffect(() => {
-    if (!isVisible) return;
-
-    if (reducedMotion) {
-      setVisibleCards(5);
-      setCheckedCount(scenario.checklist.length);
-      return;
-    }
-
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const sched = (fn: () => void, ms: number) => {
-      const t = setTimeout(() => { if (!cancelled) fn(); }, ms);
-      timers.push(t);
-    };
-
-    const N = scenario.checklist.length;
-    // 5 cards stagger in, then checklist checks
-    const CARD_STAGGER = 180;
-    const CHECKLIST_DELAY = 5 * CARD_STAGGER + 600;
-    const totalMs = CHECKLIST_DELAY + N * 1100 + 2000;
-
-    const runLoop = () => {
-      if (cancelled) return;
-      timers.splice(0).forEach(clearTimeout);
+  // 5 cards stagger in, then checklist checks (animation plan C10 — shared loop
+  // scaffolding; cancel/timer/restart/visibility bookkeeping lives in the hook).
+  useSequencedLoop(
+    (sched) => {
       setVisibleCards(0);
       setCheckedCount(0);
-
+      const N = scenario.checklist.length;
+      const CARD_STAGGER = 180;
+      const CHECKLIST_DELAY = 5 * CARD_STAGGER + 600;
       for (let c = 1; c <= 5; c++) {
         sched(() => setVisibleCards(c), c * CARD_STAGGER);
       }
       for (let i = 0; i < N; i++) {
         sched(() => setCheckedCount(i + 1), CHECKLIST_DELAY + i * 1100);
       }
-      sched(runLoop, totalMs);
-    };
-
-    sched(runLoop, 400);
-
-    return () => {
-      cancelled = true;
-      timers.forEach(clearTimeout);
-    };
-  }, [isVisible, scenario]);
+      return CHECKLIST_DELAY + N * 1100 + 2000;
+    },
+    {
+      active: isVisible,
+      reducedMotion,
+      onStatic: () => {
+        setVisibleCards(5);
+        setCheckedCount(scenario.checklist.length);
+      },
+      deps: [scenario],
+    },
+  );
 
   return (
     <div ref={containerRef}>

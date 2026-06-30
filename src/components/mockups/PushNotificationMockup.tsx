@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AlertTriangle, BarChart2, CloudRain, TrendingUp } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { BaseMockupProps } from './types';
 import PhoneFrame from './PhoneFrame';
@@ -62,63 +63,27 @@ export default function PushNotificationMockup({
   const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const { raw: now } = useCurrentTime({ interval: 60000, active });
 
-  useEffect(() => {
-    if (!isVisible) return;
-    if (!active) {
-      setVisibleCount(0);
-      return;
-    }
-
-    if (reducedMotion) {
-      setVisibleCount(notifications.length);
-      return;
-    }
-
-    let cancelled = false;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const sched = (fn: () => void, ms: number) => {
-      const t = setTimeout(() => { if (!cancelled) fn(); }, ms);
-      timers.push(t);
-    };
-
-    const EXIT_MS = 300;
-
-    const runLoop = () => {
-      if (cancelled) return;
-      timers.splice(0).forEach(clearTimeout);
-
+  // Lock-screen notifications slide in, then the stack clears and replays
+  // (animation plan C10 — shared loop scaffolding; cancel/timer/restart/visibility
+  // bookkeeping lives in the hook).
+  useSequencedLoop(
+    (sched) => {
+      const EXIT_MS = 300;
       // Step 1: exit 애니메이션 시작
       setVisibleCount(0);
-
       // Step 2: exit 완료 후 loopKey 변경
       sched(() => setLoopKey(k => k + 1), EXIT_MS);
-
       notifications.forEach((_, i) => {
         sched(() => setVisibleCount(i + 1), EXIT_MS + (i + 1) * INTERVAL_MS);
       });
-
-      sched(runLoop, EXIT_MS + notifications.length * INTERVAL_MS + PAUSE_MS);
-    };
-
-    runLoop();
-
-    // 탭 복귀 시 throttle된 타이머 burst 방지 — 루프를 클린 재시작
-    const handleVisibility = () => {
-      if (!document.hidden) {
-        cancelled = true;
-        timers.splice(0).forEach(clearTimeout);
-        cancelled = false;
-        runLoop();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-
-    return () => {
-      cancelled = true;
-      timers.forEach(clearTimeout);
-      document.removeEventListener('visibilitychange', handleVisibility);
-    };
-  }, [active, isVisible, reducedMotion]);
+      return EXIT_MS + notifications.length * INTERVAL_MS + PAUSE_MS;
+    },
+    {
+      active: isVisible && active,
+      reducedMotion,
+      onStatic: () => setVisibleCount(notifications.length),
+    },
+  );
 
   const lockDate = tPush.lockDate(tPush.weekdays[now.getDay()], now.getMonth() + 1, now.getDate());
 
