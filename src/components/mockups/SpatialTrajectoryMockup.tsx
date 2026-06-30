@@ -192,6 +192,8 @@ export default function SpatialTrajectoryMockup({
   });
 
   const animate = isVisible && active && !reducedMotion;
+  // The trajectory path wipes in once the mockup is revealed (clip width/height grows).
+  const drawn = isVisible;
   const idx = animate ? pathStep : RESTING;
   const point = PATH_POINTS[idx];
   const vpoint = VPATH_POINTS[idx];
@@ -306,7 +308,20 @@ export default function SpatialTrajectoryMockup({
             <AnonFigure key={i} cx={c.cx} cy={c.cy} dim />
           ))}
 
-          {/* dotted trajectory across all three cams */}
+          {/* dotted trajectory across all three cams — draws in on reveal (left→right clip wipe) */}
+          <defs>
+            <clipPath id="st-draw-h">
+              <rect
+                x="0"
+                y="0"
+                height="70"
+                style={{
+                  width: drawn ? 300 : 0,
+                  transition: reducedMotion ? 'none' : 'width 1s var(--ease-out-cubic)',
+                }}
+              />
+            </clipPath>
+          </defs>
           <path
             d={PATH_D}
             fill="none"
@@ -315,42 +330,24 @@ export default function SpatialTrajectoryMockup({
             strokeDasharray="3 3"
             strokeLinecap="round"
             opacity="0.7"
+            clipPath="url(#st-draw-h)"
           />
 
-          {/* the tracked person at current position (anonymized, highlighted) */}
-          <AnonFigure cx={point.x} cy={point.y} />
-
-          {/* tracking ring + shared ID label traveling with the point */}
-          <g aria-hidden="true">
-            <rect
-              x={point.x - 9}
-              y={point.y - 11}
-              width="18"
-              height="32"
-              rx="3"
-              fill="none"
-              stroke="#376AE2"
-              strokeWidth="1"
-              strokeDasharray="2 1.5"
-            />
-            <rect
-              x={point.x - 8}
-              y={point.y - 18}
-              width="16"
-              height="6"
-              rx="1.5"
-              fill="#376AE2"
-            />
-            <text
-              x={point.x}
-              y={point.y - 13.5}
-              textAnchor="middle"
-              fontSize="4"
-              fontFamily="monospace"
-              fill="#ffffff"
-            >
-              {t.idLabel}
-            </text>
+          {/* the tracked person + shared ID, gliding continuously between path points */}
+          <g
+            style={{
+              transform: `translate(${point.x}px, ${point.y}px)`,
+              transition: animate && idx !== 0 ? 'transform 0.9s linear' : 'none',
+            }}
+          >
+            <AnonFigure cx={0} cy={0} />
+            <g aria-hidden="true">
+              <rect x={-9} y={-11} width="18" height="32" rx="3" fill="none" stroke="#376AE2" strokeWidth="1" strokeDasharray="2 1.5" />
+              <rect x={-8} y={-18} width="16" height="6" rx="1.5" fill="#376AE2" />
+              <text x={0} y={-13.5} textAnchor="middle" fontSize="4" fontFamily="monospace" fill="#ffffff">
+                {t.idLabel}
+              </text>
+            </g>
           </g>
         </svg>
 
@@ -375,7 +372,20 @@ export default function SpatialTrajectoryMockup({
             <AnonFigure key={i} cx={c.cx} cy={c.cy} dim />
           ))}
 
-          {/* dotted trajectory down all three cams */}
+          {/* dotted trajectory down all three cams — draws in on reveal (top→bottom clip wipe) */}
+          <defs>
+            <clipPath id="st-draw-v">
+              <rect
+                x="0"
+                y="0"
+                width="100"
+                style={{
+                  height: drawn ? 230 : 0,
+                  transition: reducedMotion ? 'none' : 'height 1s var(--ease-out-cubic)',
+                }}
+              />
+            </clipPath>
+          </defs>
           <path
             d={VPATH_D}
             fill="none"
@@ -384,42 +394,24 @@ export default function SpatialTrajectoryMockup({
             strokeDasharray="3 3"
             strokeLinecap="round"
             opacity="0.7"
+            clipPath="url(#st-draw-v)"
           />
 
-          {/* the tracked person at current position (anonymized, highlighted) */}
-          <AnonFigure cx={vpoint.x} cy={vpoint.y} />
-
-          {/* tracking ring + shared ID label traveling with the point */}
-          <g aria-hidden="true">
-            <rect
-              x={vpoint.x - 9}
-              y={vpoint.y - 11}
-              width="18"
-              height="32"
-              rx="3"
-              fill="none"
-              stroke="#376AE2"
-              strokeWidth="1"
-              strokeDasharray="2 1.5"
-            />
-            <rect
-              x={vpoint.x - 8}
-              y={vpoint.y - 18}
-              width="16"
-              height="6"
-              rx="1.5"
-              fill="#376AE2"
-            />
-            <text
-              x={vpoint.x}
-              y={vpoint.y - 13.5}
-              textAnchor="middle"
-              fontSize="4"
-              fontFamily="monospace"
-              fill="#ffffff"
-            >
-              {t.idLabel}
-            </text>
+          {/* the tracked person + shared ID, gliding continuously between path points */}
+          <g
+            style={{
+              transform: `translate(${vpoint.x}px, ${vpoint.y}px)`,
+              transition: animate && idx !== 0 ? 'transform 0.9s linear' : 'none',
+            }}
+          >
+            <AnonFigure cx={0} cy={0} />
+            <g aria-hidden="true">
+              <rect x={-9} y={-11} width="18" height="32" rx="3" fill="none" stroke="#376AE2" strokeWidth="1" strokeDasharray="2 1.5" />
+              <rect x={-8} y={-18} width="16" height="6" rx="1.5" fill="#376AE2" />
+              <text x={0} y={-13.5} textAnchor="middle" fontSize="4" fontFamily="monospace" fill="#ffffff">
+                {t.idLabel}
+              </text>
+            </g>
           </g>
         </svg>
       </div>
