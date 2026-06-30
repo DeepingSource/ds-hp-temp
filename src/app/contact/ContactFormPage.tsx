@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Spinner from '@/components/ui/Spinner';
+import siteContent from '@/data/generated/site-content.json';
 
 type Content = {
   loading: string;
@@ -60,41 +61,28 @@ type Content = {
   productLabels: Record<string, string>;
 };
 
-const C: Record<Locale, Content> = {
+// Display prose comes from the CMS (content/site/contact.yaml → generated JSON);
+// form options, validation, the URL-param label maps, the ReactNode headings, and the
+// title interpolations stay in code, merged with the copy by contactCopy().
+type CodeContent = Pick<
+  Content,
+  | 'contextHeading' | 'noticeIssue' | 'storeCountOptions' | 'affiliationTypeOptions'
+  | 'planLabels' | 'productLabels' | 'formTitleWith' | 'successTitleWith' | 'validation'
+>;
+type ContactCms = Omit<Content, keyof CodeContent | 'cards'> & {
+  cards: Record<string, { label: string; desc: string }>;
+};
+const CONTACT = siteContent.contact as Record<Locale, ContactCms>;
+
+const CODE: Record<Locale, CodeContent> = {
   ko: {
-    loading: '로딩 중...',
-    eyebrow: 'SAAI 도입 상담',
     contextHeading: (
       <>
         1개 매장부터 수백 개까지,<br />
         매장에 맞게 시작합니다
       </>
     ),
-    cards: [
-      { label: 'store care', desc: '매장을 빠짐없이 기록합니다' },
-      { label: 'store insight', desc: '매출이 새는 곳을 찾아드립니다' },
-      { label: 'store agent', desc: 'AI가 정리하고, 점주는 확인만' },
-    ],
-    provenLabel: '입증된 도입 효과',
-    provenText: '도입 첫 달부터 야간 인건비 평균 80만 원 절감 효과 달성',
-    partnerLabel: '신뢰받는 파트너',
-    partnerText: '올리브영, BGF CU, 코리아세븐, CJ푸드빌 등 주요 브랜드가 먼저 선택했습니다.',
-    contextFooter: '궁금한 점은 상담 신청 후 담당자에게 문의하세요.',
-    mobileTrustLabel: '신뢰받는 브랜드와 함께합니다',
-    mobileTrustBrands: '올리브영 · BGF CU · 코리아세븐 · CJ푸드빌',
-    formTitle: '맞춤 무료 상담',
     formTitleWith: (label) => `${label} 맞춤 무료 상담`,
-    formSubtitle: '담당자가 연락드려 자세히 안내해 드립니다.',
-    nameLabel: '이름',
-    namePlaceholder: '홍길동',
-    contactLabel: '연락처',
-    contactPlaceholder: '전화번호 또는 이메일',
-    storeCountLabel: '운영 중인 매장 수',
-    affiliationLabel: '소속 유형',
-    brandLabel: '브랜드명',
-    brandOptional: '(선택)',
-    brandPlaceholder: '예: CU, 올리브영',
-    selectPlaceholder: '선택해주세요',
     storeCountOptions: [
       { value: '1', label: '1개' },
       { value: '2-3', label: '2-3개' },
@@ -107,23 +95,12 @@ const C: Record<Locale, Content> = {
       { value: 'sv', label: 'SV (슈퍼바이저)' },
       { value: 'other', label: '기타' },
     ],
-    submit: '상담 신청하기',
-    submitting: '신청 중...',
-    noticeBold: '신청서를 확인한 후 담당자가 연락드립니다.',
     noticeIssue: (
       <>
         폼 제출에 문제가 있나요? <a href="mailto:SAAI@deepingsource.io" className="text-primary font-medium hover:underline">SAAI@deepingsource.io</a>로 직접 문의해 주세요.
       </>
     ),
-    backToHome: '← 메인으로 돌아가기',
-    successTitle: '상담 신청이 완료되었습니다!',
     successTitleWith: (label) => `${label} 상담 신청이 완료되었습니다!`,
-    successSubtitle: '영업일 기준 1-2일 내로 담당자가 연락드리겠습니다.',
-    insightPrompt: '그 동안 인사이트 레터를 둘러보세요',
-    insightLink: '인사이트 레터 보기',
-    errSubmitFailed: '상담 신청에 실패했습니다. 다시 시도해주세요.',
-    errTimeout: '요청 시간이 초과되었습니다. 다시 시도해주세요.',
-    errGeneric: '일시적인 오류입니다. 잠시 후 다시 시도해 주세요.',
     validation: {
       name: '이름을 입력해주세요',
       contact: '연락처를 정확히 입력해주세요',
@@ -142,39 +119,13 @@ const C: Record<Locale, Content> = {
     },
   },
   en: {
-    loading: 'Loading...',
-    eyebrow: 'Talk to us about SAAI',
     contextHeading: (
       <>
         From a single store to hundreds,<br />
         we start where your business is
       </>
     ),
-    cards: [
-      { label: 'store care', desc: 'Captures everything happening in your store' },
-      { label: 'store insight', desc: 'Pinpoints where revenue is leaking' },
-      { label: 'store agent', desc: 'AI handles the work; you simply review' },
-    ],
-    provenLabel: 'Proven impact',
-    provenText: 'Owners cut overnight labor costs by an average of ₩800,000 in the first month.',
-    partnerLabel: 'Trusted partners',
-    partnerText: 'Leading brands chose us first, including Olive Young, BGF CU, Korea Seven, and CJ Foodville.',
-    contextFooter: 'Have questions? Submit the form and our team will follow up.',
-    mobileTrustLabel: 'Trusted by leading brands',
-    mobileTrustBrands: 'Olive Young · BGF CU · Korea Seven · CJ Foodville',
-    formTitle: 'Request a free consultation',
     formTitleWith: (label) => `Request a free ${label} consultation`,
-    formSubtitle: 'Our team will reach out with the details.',
-    nameLabel: 'Name',
-    namePlaceholder: 'John Doe',
-    contactLabel: 'Contact',
-    contactPlaceholder: 'Phone number or email',
-    storeCountLabel: 'Number of stores you operate',
-    affiliationLabel: 'Your role',
-    brandLabel: 'Brand name',
-    brandOptional: '(optional)',
-    brandPlaceholder: 'e.g., CU, Olive Young',
-    selectPlaceholder: 'Please select',
     storeCountOptions: [
       { value: '1', label: '1' },
       { value: '2-3', label: '2-3' },
@@ -187,23 +138,12 @@ const C: Record<Locale, Content> = {
       { value: 'sv', label: 'SV (Supervisor)' },
       { value: 'other', label: 'Other' },
     ],
-    submit: 'Submit request',
-    submitting: 'Submitting...',
-    noticeBold: 'We review every request and reach out personally.',
     noticeIssue: (
       <>
         Trouble submitting the form? Email us directly at <a href="mailto:SAAI@deepingsource.io" className="text-primary font-medium hover:underline">SAAI@deepingsource.io</a>.
       </>
     ),
-    backToHome: '← Back to home',
-    successTitle: 'Your request has been submitted!',
     successTitleWith: (label) => `Your ${label} request has been submitted!`,
-    successSubtitle: 'Our team will get in touch within 1-2 business days.',
-    insightPrompt: 'In the meantime, explore our Insight Letter',
-    insightLink: 'Read the Insight Letter',
-    errSubmitFailed: 'Submission failed. Please try again.',
-    errTimeout: 'The request timed out. Please try again.',
-    errGeneric: 'A temporary error occurred. Please try again shortly.',
     validation: {
       name: 'Please enter your name',
       contact: 'Please enter a valid contact',
@@ -222,39 +162,13 @@ const C: Record<Locale, Content> = {
     },
   },
   jp: {
-    loading: '読み込み中...',
-    eyebrow: 'SAAI 導入のご相談',
     contextHeading: (
       <>
         1店舗から数百店舗まで、<br />
         店舗に合わせて始められます
       </>
     ),
-    cards: [
-      { label: 'store care', desc: '店舗の出来事をもれなく記録します' },
-      { label: 'store insight', desc: '売上が漏れている箇所を見つけます' },
-      { label: 'store agent', desc: 'AIが整理し、オーナーは確認するだけ' },
-    ],
-    provenLabel: '実証された導入効果',
-    provenText: '導入初月から、夜間人件費を平均80万ウォン削減する効果を達成しました。',
-    partnerLabel: '信頼されるパートナー',
-    partnerText: 'オリーブヤング、BGF CU、コリアセブン、CJフードビルなどの主要ブランドにいち早く選ばれています。',
-    contextFooter: 'ご不明な点は、ご相談のお申し込み後に担当者へお問い合わせください。',
-    mobileTrustLabel: '信頼されるブランドとともに',
-    mobileTrustBrands: 'オリーブヤング · BGF CU · コリアセブン · CJフードビル',
-    formTitle: '無料相談のお申し込み',
     formTitleWith: (label) => `${label} の無料相談お申し込み`,
-    formSubtitle: '担当者がご連絡し、詳しくご案内いたします。',
-    nameLabel: 'お名前',
-    namePlaceholder: '山田 太郎',
-    contactLabel: 'ご連絡先',
-    contactPlaceholder: '電話番号またはメールアドレス',
-    storeCountLabel: '運営中の店舗数',
-    affiliationLabel: 'ご所属の種別',
-    brandLabel: 'ブランド名',
-    brandOptional: '（任意）',
-    brandPlaceholder: '例：CU、オリーブヤング',
-    selectPlaceholder: '選択してください',
     storeCountOptions: [
       { value: '1', label: '1店舗' },
       { value: '2-3', label: '2-3店舗' },
@@ -267,23 +181,12 @@ const C: Record<Locale, Content> = {
       { value: 'sv', label: 'SV（スーパーバイザー）' },
       { value: 'other', label: 'その他' },
     ],
-    submit: 'ご相談を申し込む',
-    submitting: '送信中...',
-    noticeBold: 'お申し込み内容を確認のうえ、担当者よりご連絡いたします。',
     noticeIssue: (
       <>
         フォームの送信に問題がありますか？ <a href="mailto:SAAI@deepingsource.io" className="text-primary font-medium hover:underline">SAAI@deepingsource.io</a> まで直接お問い合わせください。
       </>
     ),
-    backToHome: '← トップへ戻る',
-    successTitle: 'ご相談のお申し込みが完了しました！',
     successTitleWith: (label) => `${label} のご相談お申し込みが完了しました！`,
-    successSubtitle: '営業日ベースで1-2日以内に担当者よりご連絡いたします。',
-    insightPrompt: 'その間に、インサイトレターをご覧ください',
-    insightLink: 'インサイトレターを見る',
-    errSubmitFailed: 'お申し込みに失敗しました。もう一度お試しください。',
-    errTimeout: 'リクエストがタイムアウトしました。もう一度お試しください。',
-    errGeneric: '一時的なエラーが発生しました。しばらくしてからもう一度お試しください。',
     validation: {
       name: 'お名前を入力してください',
       contact: 'ご連絡先を正しく入力してください',
@@ -303,6 +206,15 @@ const C: Record<Locale, Content> = {
   },
 };
 
+function contactCopy(locale: Locale): Content {
+  const c = CONTACT[locale];
+  return {
+    ...CODE[locale],
+    ...c,
+    cards: [c.cards.care, c.cards.insight, c.cards.agent],
+  };
+}
+
 function buildSchema(t: Content) {
   return z.object({
     name: z.string().min(1, t.validation.name),
@@ -316,7 +228,7 @@ function buildSchema(t: Content) {
 type FormData = z.infer<ReturnType<typeof buildSchema>>;
 
 export default function ContactFormPage({ locale = 'en' }: { locale?: Locale }) {
-  const t = C[locale];
+  const t = contactCopy(locale);
   return (
     <Suspense fallback={
       <div className="min-h-[80vh] flex items-center justify-center">
@@ -329,7 +241,7 @@ export default function ContactFormPage({ locale = 'en' }: { locale?: Locale }) 
 }
 
 function ContactForm({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const t = contactCopy(locale);
   const searchParams = useSearchParams();
   const planParam = searchParams.get('plan');
   const productParam = searchParams.get('product');

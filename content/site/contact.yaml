@@ -1,0 +1,156 @@
+loading:
+  ko: 로딩 중...
+  en: Loading...
+  jp: 読み込み中...
+eyebrow:
+  ko: SAAI 도입 상담
+  en: Talk to us about SAAI
+  jp: SAAI 導入のご相談
+provenLabel:
+  ko: 입증된 도입 효과
+  en: Proven impact
+  jp: 実証された導入効果
+provenText:
+  ko: 도입 첫 달부터 야간 인건비 평균 80만 원 절감 효과 달성
+  en: Owners cut overnight labor costs by an average of ₩800,000 in the first month.
+  jp: 導入初月から、夜間人件費を平均80万ウォン削減する効果を達成しました。
+partnerLabel:
+  ko: 신뢰받는 파트너
+  en: Trusted partners
+  jp: 信頼されるパートナー
+partnerText:
+  ko: 올리브영, BGF CU, 코리아세븐, CJ푸드빌 등 주요 브랜드가 먼저 선택했습니다.
+  en: Leading brands chose us first, including Olive Young, BGF CU, Korea Seven, and CJ Foodville.
+  jp: オリーブヤング、BGF CU、コリアセブン、CJフードビルなどの主要ブランドにいち早く選ばれています。
+contextFooter:
+  ko: 궁금한 점은 상담 신청 후 담당자에게 문의하세요.
+  en: Have questions? Submit the form and our team will follow up.
+  jp: ご不明な点は、ご相談のお申し込み後に担当者へお問い合わせください。
+mobileTrustLabel:
+  ko: 신뢰받는 브랜드와 함께합니다
+  en: Trusted by leading brands
+  jp: 信頼されるブランドとともに
+mobileTrustBrands:
+  ko: 올리브영 · BGF CU · 코리아세븐 · CJ푸드빌
+  en: Olive Young · BGF CU · Korea Seven · CJ Foodville
+  jp: オリーブヤング · BGF CU · コリアセブン · CJフードビル
+formTitle:
+  ko: 맞춤 무료 상담
+  en: Request a free consultation
+  jp: 無料相談のお申し込み
+formSubtitle:
+  ko: 담당자가 연락드려 자세히 안내해 드립니다.
+  en: Our team will reach out with the details.
+  jp: 担当者がご連絡し、詳しくご案内いたします。
+nameLabel:
+  ko: 이름
+  en: Name
+  jp: お名前
+namePlaceholder:
+  ko: 홍길동
+  en: John Doe
+  jp: 山田 太郎
+contactLabel:
+  ko: 연락처
+  en: Contact
+  jp: ご連絡先
+contactPlaceholder:
+  ko: 전화번호 또는 이메일
+  en: Phone number or email
+  jp: 電話番号またはメールアドレス
+storeCountLabel:
+  ko: 운영 중인 매장 수
+  en: Number of stores you operate
+  jp: 運営中の店舗数
+affiliationLabel:
+  ko: 소속 유형
+  en: Your role
+  jp: ご所属の種別
+brandLabel:
+  ko: 브랜드명
+  en: Brand name
+  jp: ブランド名
+brandOptional:
+  ko: (선택)
+  en: (optional)
+  jp: （任意）
+brandPlaceholder:
+  ko: "예: CU, 올리브영"
+  en: e.g., CU, Olive Young
+  jp: 例：CU、オリーブヤング
+selectPlaceholder:
+  ko: 선택해주세요
+  en: Please select
+  jp: 選択してください
+submit:
+  ko: 상담 신청하기
+  en: Submit request
+  jp: ご相談を申し込む
+submitting:
+  ko: 신청 중...
+  en: Submitting...
+  jp: 送信中...
+noticeBold:
+  ko: 신청서를 확인한 후 담당자가 연락드립니다.
+  en: We review every request and reach out personally.
+  jp: お申し込み内容を確認のうえ、担当者よりご連絡いたします。
+backToHome:
+  ko: ← 메인으로 돌아가기
+  en: ← Back to home
+  jp: ← トップへ戻る
+successTitle:
+  ko: 상담 신청이 완료되었습니다!
+  en: Your request has been submitted!
+  jp: ご相談のお申し込みが完了しました！
+successSubtitle:
+  ko: 영업일 기준 1-2일 내로 담당자가 연락드리겠습니다.
+  en: Our team will get in touch within 1-2 business days.
+  jp: 営業日ベースで1-2日以内に担当者よりご連絡いたします。
+insightPrompt:
+  ko: 그 동안 인사이트 레터를 둘러보세요
+  en: In the meantime, explore our Insight Letter
+  jp: その間に、インサイトレターをご覧ください
+insightLink:
+  ko: 인사이트 레터 보기
+  en: Read the Insight Letter
+  jp: インサイトレターを見る
+errSubmitFailed:
+  ko: 상담 신청에 실패했습니다. 다시 시도해주세요.
+  en: Submission failed. Please try again.
+  jp: お申し込みに失敗しました。もう一度お試しください。
+errTimeout:
+  ko: 요청 시간이 초과되었습니다. 다시 시도해주세요.
+  en: The request timed out. Please try again.
+  jp: リクエストがタイムアウトしました。もう一度お試しください。
+errGeneric:
+  ko: 일시적인 오류입니다. 잠시 후 다시 시도해 주세요.
+  en: A temporary error occurred. Please try again shortly.
+  jp: 一時的なエラーが発生しました。しばらくしてからもう一度お試しください。
+cards:
+  - id: care
+    label:
+      ko: store care
+      en: store care
+      jp: store care
+    desc:
+      ko: 매장을 빠짐없이 기록합니다
+      en: Captures everything happening in your store
+      jp: 店舗の出来事をもれなく記録します
+  - id: insight
+    label:
+      ko: store insight
+      en: store insight
+      jp: store insight
+    desc:
+      ko: 매출이 새는 곳을 찾아드립니다
+      en: Pinpoints where revenue is leaking
+      jp: 売上が漏れている箇所を見つけます
+  - id: agent
+    label:
+      ko: store agent
+      en: store agent
+      jp: store agent
+    desc:
+      ko: AI가 정리하고, 점주는 확인만
+      en: AI handles the work; you simply review
+      jp: AIが整理し、オーナーは確認するだけ

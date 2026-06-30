@@ -115,9 +115,27 @@ for (const loc of LOCALES) {
   about[loc] = { ...aboutFlat[loc], certs: aboutCerts[loc], methodSteps: aboutMethodSteps[loc] };
 }
 
+// ── contact — display prose only (form options/validation/label-maps/ReactNodes
+//    and the title interpolations stay in code). ──
+const CONTACT_FLAT = [
+  'loading', 'eyebrow', 'provenLabel', 'provenText', 'partnerLabel', 'partnerText',
+  'contextFooter', 'mobileTrustLabel', 'mobileTrustBrands', 'formTitle', 'formSubtitle',
+  'nameLabel', 'namePlaceholder', 'contactLabel', 'contactPlaceholder', 'storeCountLabel',
+  'affiliationLabel', 'brandLabel', 'brandOptional', 'brandPlaceholder', 'selectPlaceholder',
+  'submit', 'submitting', 'noticeBold', 'backToHome', 'successTitle', 'successSubtitle',
+  'insightPrompt', 'insightLink', 'errSubmitFailed', 'errTimeout', 'errGeneric',
+];
+const contactYaml = load('content/site/contact.yaml');
+const contactFlat = toLocaleMajor(contactYaml, CONTACT_FLAT);
+const contactCards = arrayByIdLocaleMajor(contactYaml.cards, ['label', 'desc']);
+const contact = {};
+for (const loc of LOCALES) {
+  contact[loc] = { ...contactFlat[loc], cards: contactCards[loc] };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact)');
