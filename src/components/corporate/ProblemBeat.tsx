@@ -131,6 +131,7 @@ function methodSteps(locale: Locale) {
 export default function ProblemBeat({ locale }: { locale: Locale }) {
   const t = dict[locale];
   const { ref: funnelRef, isVisible: barsShow } = useScrollAnimation<HTMLUListElement>({ threshold: 0.4 });
+  const { ref: loopRef, isVisible: loopShow } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const reduced = usePrefersReducedMotion();
   return (
     <Section variant="alt">
@@ -210,7 +211,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
 
         {/* Operating loop — Observe·Analyze·Suggest·Learn (close the loop, then learn) */}
         <div className="mt-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div ref={loopRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {methodSteps(locale).map((s, i) => {
               const Icon = s.icon;
               return (
@@ -222,6 +223,12 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                       ? 'border-primary/30 bg-primary text-white shadow-card'
                       : 'border-gray-200 bg-white text-gray-900',
                   ].join(' ')}
+                  style={{
+                    opacity: loopShow ? 1 : 0,
+                    transform: loopShow ? 'translateX(0)' : 'translateX(-12px)',
+                    transition: reduced ? undefined : 'opacity 0.5s var(--ease-out-cubic), transform 0.5s var(--ease-out-cubic)',
+                    transitionDelay: reduced ? undefined : `${i * 0.12}s`,
+                  }}
                 >
                   <span
                     className={[
@@ -249,6 +256,11 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
                     <ArrowRight
                       className="absolute -right-3 top-1/2 hidden -translate-y-1/2 lg:block w-6 h-6 text-gray-300"
                       aria-hidden="true"
+                      style={{
+                        opacity: loopShow ? 1 : 0,
+                        transition: reduced ? undefined : 'opacity 0.4s var(--ease-out-cubic)',
+                        transitionDelay: reduced ? undefined : `${i * 0.12 + 0.32}s`,
+                      }}
                     />
                   )}
                 </div>
