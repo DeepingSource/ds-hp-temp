@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Cpu, Award, Users } from 'lucide-react';
 import WordRise from '@/components/ui/WordRise';
+import CorporateHeroFigure from '@/components/corporate/CorporateHeroFigure';
 import Container from '@/components/ui/Container';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
@@ -80,36 +80,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
             </ul>
           </div>
           <figure className="animate-fade-in-up delay-200">
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-gray-200 shadow-elevated">
-              <Image
-                src={technologyImages.mtmcWide.src}
-                alt={img.alt}
-                fill
-                priority
-                sizes="(min-width: 1024px) 540px, 100vw"
-                className="object-cover"
-              />
-              {/* Face-free detection overlay — proves anonymized tracking (shown, not told). Illustrative boxes. */}
-              <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-                {[
-                  { left: '25%', top: '40%', width: '13%', height: '34%', id: '01', delay: '0s' },
-                  { left: '50%', top: '36%', width: '12%', height: '36%', id: '02', delay: '0.7s' },
-                  { left: '70%', top: '46%', width: '11%', height: '30%', id: '03', delay: '1.4s' },
-                ].map((b) => (
-                  <span
-                    key={b.id}
-                    className="absolute rounded-md border-2 border-primary-light bg-primary-light/10 animate-pulse"
-                    style={{ left: b.left, top: b.top, width: b.width, height: b.height, animationDelay: b.delay }}
-                  >
-                    <span className="absolute -top-[18px] left-0 rounded bg-primary px-1 py-0.5 text-[9px] font-bold leading-none text-white tabular-nums">ID·{b.id}</span>
-                  </span>
-                ))}
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gray-950/70 px-2.5 py-1 text-2xs font-medium text-white backdrop-blur-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
-                  {trackChip[locale]}
-                </span>
-              </div>
-            </div>
+            <CorporateHeroFigure src={technologyImages.mtmcWide.src} alt={img.alt} trackLabel={trackChip[locale]} />
             <figcaption className="mt-3 flex items-center gap-2 text-xs text-gray-500">
               <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
               <span className="break-keep">{img.caption}</span>
