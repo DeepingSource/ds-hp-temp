@@ -41,6 +41,12 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
   return (
     <section className="relative overflow-hidden bg-[var(--layer-bg-hero,#FCFCFE)] border-b border-gray-100">
       <div className="absolute inset-0 bg-dot-light opacity-60 pointer-events-none" aria-hidden="true" />
+      {/* ambient brand-blue glow behind the headline (decorative) */}
+      <div
+        aria-hidden="true"
+        className="hero-glow pointer-events-none absolute -top-32 -left-24 h-[34rem] w-[34rem] rounded-full"
+        style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--color-primary) 16%, transparent), transparent 70%)' }}
+      />
       <Container className="relative py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">

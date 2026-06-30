@@ -792,6 +792,14 @@ select[aria-invalid="true"]:focus-visible {
   85% { opacity: 1; }
   100% { top: 100%; opacity: 0; }
 }
+/* CorporateHero ambient glow — a slow brand-blue breathe behind the headline (D5). */
+.hero-glow {
+  animation: heroGlow 9s ease-in-out infinite;
+}
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
 @keyframes visionPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgb(var(--primary-rgb) / 0.3); }
   50% { box-shadow: 0 0 20px 4px rgb(var(--primary-rgb) / 0.15); }

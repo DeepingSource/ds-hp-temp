@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowUpRight, History, Radio, Sparkles } from 'lucide-react';
+import ParallaxThumb from '@/components/corporate/ParallaxThumb';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -87,15 +87,7 @@ export default function SolutionTimeline({ locale }: { locale: Locale }) {
                     {solutionTaglines[n.key][locale]}
                   </span>
                 </div>
-                <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-white/10 mb-5 bg-white/[0.03]">
-                  <Image
-                    src={n.img}
-                    alt={n.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 360px"
-                    className="object-cover"
-                  />
-                </div>
+                <ParallaxThumb src={n.img} alt={n.alt} />
                 <p className="text-xl font-bold text-white mb-2 inline-flex items-center gap-1.5 font-display">
                   {n.product}
                   <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-primary-light transition-colors" aria-hidden="true" />
