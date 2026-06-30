@@ -8,6 +8,8 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
+import { Reveal, RevealStagger, RevealItem } from '@/components/ui/Reveal';
+import ParallaxBannerImage from '@/components/corporate/ParallaxBannerImage';
 import { crumb } from '@/lib/breadcrumb-labels';
 import siteContent from '@/data/generated/site-content.json';
 
@@ -144,16 +146,8 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
             return (
               <div key={industry.slug} id={`industry-${industry.slug}`} className="scroll-mt-24">
                 {/* 업종 헤더 — 사진 배너 */}
-                <div className="relative mb-8 h-36 sm:h-44 overflow-hidden rounded-2xl bg-slate-900">
-                  {industry.heroImage && (
-                    <Image
-                      src={industry.heroImage}
-                      alt=""
-                      fill
-                      sizes="(min-width: 1024px) 1024px, 100vw"
-                      className="object-cover"
-                    />
-                  )}
+                <Reveal className="relative mb-8 h-36 sm:h-44 overflow-hidden rounded-2xl bg-slate-900">
+                  {industry.heroImage && <ParallaxBannerImage src={industry.heroImage} />}
                   <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/85 via-surface-dark/55 to-surface-dark/20" aria-hidden="true" />
                   <div className="absolute inset-0 flex items-center justify-between gap-3 px-5 sm:px-7">
                     <div className="flex items-center gap-3">
@@ -169,17 +163,17 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                       {t.industryDetail} <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
-                </div>
+                </Reveal>
 
                 {/* 솔루션 카드 */}
-                <div className="grid sm:grid-cols-3 gap-4">
+                <RevealStagger className="grid sm:grid-cols-3 gap-4">
                   {solutions.map((sol) => {
                     const c = card(sol.slug);
                     return (
+                    <RevealItem key={sol.slug} className="h-full">
                     <Link
-                      key={sol.slug}
                       href={`/solutions/${sol.slug}`}
-                      className="group flex flex-col gap-3 p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
+                      className="group flex flex-col gap-3 h-full p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                     >
                       {/* 임팩트 수치 */}
                       <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-bold ${colors.bg} ${colors.text}`}>
@@ -199,9 +193,10 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </div>
                     </Link>
+                    </RevealItem>
                     );
                   })}
-                </div>
+                </RevealStagger>
               </div>
             );
           })}
