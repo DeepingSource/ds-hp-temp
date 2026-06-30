@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { stripLocale, localeHref, homeCopy, type Locale } from '@/lib/i18n';
-import { springTabPill } from '@/lib/spring-config';
+import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import LocaleSwitcher from './LocaleSwitcher';
 
 type Tri = Record<Locale, string>;
@@ -158,12 +158,7 @@ export default function Header() {
                 >
                   {item.label[locale]}
                   {active && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      aria-hidden="true"
-                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary"
-                      transition={springTabPill}
-                    />
+                    <SlidingIndicator layoutId="nav-underline" className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
                   )}
                 </Link>
               );
@@ -189,12 +184,7 @@ export default function Header() {
                   {item.label[locale]}
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
                   {active && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      aria-hidden="true"
-                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary"
-                      transition={springTabPill}
-                    />
+                    <SlidingIndicator layoutId="nav-underline" className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
                   )}
                 </button>
                 <div

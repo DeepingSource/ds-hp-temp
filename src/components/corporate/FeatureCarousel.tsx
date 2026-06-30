@@ -15,7 +15,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines } from '@/lib/brand-canon';
-import { springTabPill } from '@/lib/spring-config';
+import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { cn } from '@/lib/cn';
 
 /**
@@ -198,14 +198,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                     isActive ? 'text-white' : isDone ? 'bg-white/10 text-white' : 'bg-white/5 text-slate-400 hover:text-slate-200',
                   )}
                 >
-                  {isActive && (
-                    <motion.span
-                      layoutId="carousel-pill"
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full bg-primary"
-                      transition={springTabPill}
-                    />
-                  )}
+                  {isActive && <SlidingIndicator layoutId="carousel-pill" className="absolute inset-0 rounded-full bg-primary" />}
                   <span className="relative z-10 flex h-4 w-4 items-center justify-center">
                     {isDone ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <Icon className="h-3.5 w-3.5" aria-hidden="true" />}
                   </span>

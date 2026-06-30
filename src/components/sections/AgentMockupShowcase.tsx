@@ -8,7 +8,8 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import ChatMockup from '@/components/mockups/ChatMockup';
 import PushNotificationMockup from '@/components/mockups/PushNotificationMockup';
 import ActionCardMockup from '@/components/mockups/ActionCardMockup';
-import { springGentle, springTabPill } from '@/lib/spring-config';
+import { springGentle } from '@/lib/spring-config';
+import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { type Locale } from '@/lib/i18n';
 import { showcaseCopy } from '@/data/storeagent-mock-i18n';
 
@@ -91,14 +92,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
                   }`}
                 >
                   {/* 슬라이딩 액티브 바 (좌측 레일, 탭 간 글라이딩) */}
-                  {isActive && (
-                    <motion.span
-                      layoutId="agent-tab-bar"
-                      aria-hidden="true"
-                      className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full bg-primary"
-                      transition={springTabPill}
-                    />
-                  )}
+                  {isActive && <SlidingIndicator layoutId="agent-tab-bar" className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full bg-primary" />}
                   {/* 탭 헤더 (항상 표시) */}
                   <div className="flex items-center gap-4 p-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
