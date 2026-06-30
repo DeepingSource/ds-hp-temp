@@ -54,9 +54,23 @@ for (const loc of LOCALES) {
   products[loc] = { ...productsFlat[loc], loop: productsLoop[loc], owners: productsOwners[loc] };
 }
 
+// ── store-agent — flat copy + id-keyed steps (icons/labels stay in code) ──────
+const STORE_AGENT_FLAT = [
+  'heroTitle', 'heroSub', 'ctaPrimary', 'ctaSecondary',
+  'stepsHeading', 'stepsSub', 'pricingHeading', 'pricingSub', 'pricingCta',
+  'finalHeading', 'finalSub', 'finalCta',
+];
+const storeAgentYaml = load('content/site/store-agent.yaml');
+const storeAgentFlat = toLocaleMajor(storeAgentYaml, STORE_AGENT_FLAT);
+const storeAgentSteps = arrayByIdLocaleMajor(storeAgentYaml.steps, ['title', 'desc']);
+const storeAgent = {};
+for (const loc of LOCALES) {
+  storeAgent[loc] = { ...storeAgentFlat[loc], steps: storeAgentSteps[loc] };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent)');

@@ -70,5 +70,28 @@ export default config({
         }),
       },
     }),
+    storeAgent: singleton({
+      label: 'store agent — 제품 상세 카피',
+      path: 'content/site/store-agent',
+      format: { data: 'yaml' },
+      schema: {
+        heroTitle: localized('Hero 제목 (heroTitle)'),
+        heroSub: localized('Hero 서브 (heroSub)'),
+        ctaPrimary: localized('CTA · Primary (ctaPrimary)'),
+        ctaSecondary: localized('CTA · Secondary (ctaSecondary)'),
+        stepsHeading: localized('How-it-works 제목 (stepsHeading)'),
+        stepsSub: localized('How-it-works 서브 (stepsSub)'),
+        pricingHeading: localized('요금 티저 제목 (pricingHeading)'),
+        pricingSub: localized('요금 티저 서브 (pricingSub)'),
+        pricingCta: localized('요금 티저 CTA (pricingCta)'),
+        finalHeading: localized('하단 CTA 제목 (finalHeading)'),
+        finalSub: localized('하단 CTA 서브 (finalSub)'),
+        finalCta: localized('하단 CTA 버튼 (finalCta)'),
+        steps: idItem('운영 단계 (steps)', 'step', {
+          title: localized('단계 제목 (title)'),
+          desc: localized('단계 설명 (desc)'),
+        }),
+      },
+    }),
   },
 });
