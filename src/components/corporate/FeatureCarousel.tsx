@@ -29,8 +29,11 @@ import { cn } from '@/lib/cn';
 
 type ProductStruct = {
   key: 'count' | 'insight' | 'care' | 'agent';
-  name: string;        // brand name (locale-invariant, lowercase)
-  stage: string;       // operating-loop stage (locale-invariant)
+  name: string;        // domain implementation — store {value} (locale-invariant, lowercase)
+  saaiName?: string;   // value-brand — saai {value}, the primary label (naming option B).
+                       // Absent for store count: a SOURCE tool (verb), not a SOLUTION (value),
+                       // so it keeps its store name (lineup reorg §12.B / §15).
+  stage: string;       // operating-loop stage — canon labels (brand-canon operatingLoop, §5)
   icon: LucideIcon;
   href: string;
   images: { src: string; primary?: boolean }[];
@@ -38,19 +41,19 @@ type ProductStruct = {
 
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'count', name: 'store count', stage: 'Measure', icon: DoorOpen, href: '/products/store-count',
+    key: 'count', name: 'store count', stage: 'Observe', icon: DoorOpen, href: '/products/store-count',
     images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {
-    key: 'insight', name: 'store insight', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight',
+    key: 'insight', name: 'store insight', saaiName: 'saai insight', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight',
     images: [{ src: '/images/storeinsight-heatmap.webp', primary: true }, { src: '/images/storeinsight-case1-chart.webp' }],
   },
   {
-    key: 'care', name: 'store care', stage: 'Detect', icon: Radar, href: '/products/store-care',
+    key: 'care', name: 'store care', saaiName: 'saai care', stage: 'Suggest', icon: Radar, href: '/products/store-care',
     images: [{ src: '/images/storecare-contamination-detection.webp', primary: true }, { src: '/images/storecare-fridge-door-open.webp' }],
   },
   {
-    key: 'agent', name: 'store agent', stage: 'Act', icon: ClipboardCheck, href: '/products/store-agent',
+    key: 'agent', name: 'store agent', saaiName: 'saai agent', stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent',
     images: [{ src: '/images/storeagent-ai-pop-mockup.webp', primary: true }],
   },
 ];
@@ -236,7 +239,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                   <span className="relative z-10 flex h-4 w-4 items-center justify-center">
                     {isDone ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <Icon className="h-3.5 w-3.5" aria-hidden="true" />}
                   </span>
-                  <span className="relative z-10">{p.name}</span>
+                  <span className="relative z-10">{p.saaiName ?? p.name}</span>
                 </button>
               );
             })}
@@ -250,14 +253,19 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                   <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-2xs font-bold uppercase tracking-wider text-primary-light">
                     {active.stage}
                   </p>
-                  <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">{active.name}</h3>
+                  <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">{active.saaiName ?? active.name}</h3>
+                  {active.saaiName && (
+                    <p className="mt-1.5">
+                      <span className="inline-block rounded bg-white/10 px-2 py-0.5 text-2xs font-medium lowercase text-slate-300">{active.name}</span>
+                    </p>
+                  )}
                   <p className="mt-2 text-lg font-medium text-primary-light break-keep">{t.taglines[active.key]}</p>
                   <p className="mt-4 max-w-md text-base leading-relaxed text-slate-300 break-keep">{t.desc[active.key]}</p>
                   <Link
                     href={localeHref(locale, active.href)}
                     className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-white underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                   >
-                    {active.name} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    {active.saaiName ?? active.name} <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </motion.div>
               </AnimatePresence>
