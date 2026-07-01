@@ -52,6 +52,7 @@ export function definedTerm(opts: {
 /** SoftwareApplication — product pages. */
 export function softwareApplication(opts: {
   name: string;
+  alternateName?: string;
   description: string;
   path: string;
   locale: Locale;
@@ -61,6 +62,7 @@ export function softwareApplication(opts: {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: opts.name,
+    ...(opts.alternateName ? { alternateName: opts.alternateName } : {}),
     description: opts.description,
     applicationCategory: opts.category ?? 'BusinessApplication',
     operatingSystem: 'Web',

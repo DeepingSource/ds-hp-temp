@@ -14,7 +14,7 @@ import {
   Repeat,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines } from '@/lib/brand-canon';
+import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -219,17 +219,18 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: 'store insight', description: t.heroSub, path: '/products/store-insight', locale })} />
+      <JsonLd data={softwareApplication({ name: productPrimary('insight'), alternateName: productNaming.insight.store, description: t.heroSub, path: '/products/store-insight', locale })} />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-24 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store insight', path: '/products/store-insight' }]} locale={locale} tone="light" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('insight'), path: '/products/store-insight' }]} locale={locale} tone="light" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <BarChart3 className="w-4 h-4" />
-            store insight
+            {productPrimary('insight')}
+            <span className="font-normal text-primary/55">· {productNaming.insight.store}</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             <WordRise text={t.heroTitle[0]} />

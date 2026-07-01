@@ -14,7 +14,7 @@ import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, saaiPromiseLayer } from '@/lib/brand-canon';
+import { solutionTaglines, saaiPromiseLayer, productNaming } from '@/lib/brand-canon';
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { cn } from '@/lib/cn';
 
@@ -41,19 +41,19 @@ type ProductStruct = {
 
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'count', name: 'store count', stage: 'Observe', icon: DoorOpen, href: '/products/store-count',
+    key: 'count', name: productNaming.count.store, stage: 'Observe', icon: DoorOpen, href: '/products/store-count',
     images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {
-    key: 'insight', name: 'store insight', saaiName: 'saai insight', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight',
+    key: 'insight', name: productNaming.insight.store, saaiName: productNaming.insight.saai, stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight',
     images: [{ src: '/images/storeinsight-heatmap.webp', primary: true }, { src: '/images/storeinsight-case1-chart.webp' }],
   },
   {
-    key: 'care', name: 'store care', saaiName: 'saai care', stage: 'Suggest', icon: Radar, href: '/products/store-care',
+    key: 'care', name: productNaming.care.store, saaiName: productNaming.care.saai, stage: 'Suggest', icon: Radar, href: '/products/store-care',
     images: [{ src: '/images/storecare-contamination-detection.webp', primary: true }, { src: '/images/storecare-fridge-door-open.webp' }],
   },
   {
-    key: 'agent', name: 'store agent', saaiName: 'saai agent', stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent',
+    key: 'agent', name: productNaming.agent.store, saaiName: productNaming.agent.saai, stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent',
     images: [{ src: '/images/storeagent-ai-pop-mockup.webp', primary: true }],
   },
 ];

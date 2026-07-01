@@ -5,7 +5,7 @@ import StoreCareDeviceTabs from '@/components/corporate/views/StoreCareDeviceTab
 import HqRollupDashboardMockup from '@/components/mockups/HqRollupDashboardMockup';
 import { Store, ArrowUpRight, ShieldCheck, Eye, Bell } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines } from '@/lib/brand-canon';
+import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -159,17 +159,18 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: 'store care', description: t.heroSub, path: '/products/store-care', locale })} />
+      <JsonLd data={softwareApplication({ name: productPrimary('care'), alternateName: productNaming.care.store, description: t.heroSub, path: '/products/store-care', locale })} />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-40 lg:pb-20 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store care', path: '/products/store-care' }]} locale={locale} tone="light" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('care'), path: '/products/store-care' }]} locale={locale} tone="light" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <Store className="w-4 h-4" />
-            store care · storecare.ai
+            {productPrimary('care')}
+            <span className="font-normal text-primary/55">· {productNaming.care.store} · storecare.ai</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             <WordRise text={t.heroTitle} />

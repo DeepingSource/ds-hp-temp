@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import StoreCareView from '@/components/corporate/views/StoreCareView';
 
 export const metadata: Metadata = {
-  title: 'store care | DeepingSource — Peace of mind, by the hour',
+  title: 'saai care — store care | DeepingSource — Peace of mind, by the hour',
   description:
     'A reliable extra eye, even for small stores. A peace-of-mind solution for owners that watches for incidents, theft, and anomalies and alerts you. From ₩34 an hour, ₩14,900 a month. Operated on storecare.ai.',
-  keywords: ['store care', 'store owners', 'store peace of mind', 'theft prevention', 'CCTV AI', 'SMB', 'storecare.ai'],
+  keywords: ['saai care', 'store care', 'store owners', 'store peace of mind', 'theft prevention', 'CCTV AI', 'SMB', 'storecare.ai'],
   alternates: {
     canonical: '/products/store-care',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'store care | DeepingSource',
+    title: 'saai care — store care | DeepingSource',
     description: 'Peace of mind, by the hour. An owner’s solution that protects small stores.',
     type: 'website',
   },

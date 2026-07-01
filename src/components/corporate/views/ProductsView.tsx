@@ -11,6 +11,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
+import { productNaming, productSecondary, type ProductKey } from '@/lib/brand-canon';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
@@ -31,12 +32,12 @@ type ProductsCopy = {
 };
 const PRODUCTS = siteContent.products as Record<Locale, ProductsCopy>;
 
-type LoopStruct = { id: string; name: string; stageNo: string; stage: string; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
+type LoopStruct = { id: string; key: ProductKey; stageNo: string; stage: string; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
 const LOOP_STRUCT: LoopStruct[] = [
-  { id: 'store-count', name: 'store count', stageNo: '01', stage: 'Measure', icon: DoorOpen, href: '/products/store-count' },
-  { id: 'store-insight', name: 'store insight', stageNo: '02', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight' },
-  { id: 'store-care', name: 'store care', stageNo: '03', stage: 'Detect', icon: Radar, href: '/products/store-care' },
-  { id: 'store-agent', name: 'store agent', stageNo: '04', stage: 'Act', icon: ClipboardCheck, href: '/products/store-agent', emphasis: true },
+  { id: 'store-count', key: 'count', stageNo: '01', stage: 'Observe', icon: DoorOpen, href: '/products/store-count' },
+  { id: 'store-insight', key: 'insight', stageNo: '02', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight' },
+  { id: 'store-care', key: 'care', stageNo: '03', stage: 'Suggest', icon: Radar, href: '/products/store-care' },
+  { id: 'store-agent', key: 'agent', stageNo: '04', stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent', emphasis: true },
 ];
 
 type OwnerStruct = { id: string; name: string; href: string };
@@ -59,14 +60,20 @@ const HUB: Record<Locale, string> = {
 
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
-  const loop = LOOP_STRUCT.map((s) => ({ ...s, desc: c.loop[s.id]?.desc ?? '' }));
+  const loop = LOOP_STRUCT.map((s) => ({
+    ...s,
+    name: productNaming[s.key].store,
+    saaiName: productNaming[s.key].saai,
+    secondary: productSecondary(s.key),
+    desc: c.loop[s.id]?.desc ?? '',
+  }));
   const owners = OWNER_STRUCT.map((s) => ({ ...s, desc: c.owners[s.id]?.desc ?? '' }));
 
   return (
     <>
       <JsonLd
         data={itemList(
-          loop.map((p) => softwareApplication({ name: p.name, description: p.desc, path: p.href, locale })),
+          loop.map((p) => softwareApplication({ name: p.saaiName ?? p.name, alternateName: p.secondary ?? undefined, description: p.desc, path: p.href, locale })),
         )}
       />
 
@@ -106,7 +113,8 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                         <Icon className="w-5 h-5" aria-hidden="true" />
                       </span>
                       <p className="text-2xs font-mono font-medium text-gray-400 mb-1">{p.stageNo} · {p.stage}</p>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{p.name}</h3>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">{p.saaiName ?? p.name}</h3>
+                      {p.secondary && <p className="text-xs font-medium text-gray-400 lowercase mb-2">{p.secondary}</p>}
                       <p className="text-sm text-gray-500 leading-relaxed break-keep mb-5">{p.desc}</p>
                       <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                         {c.detail}

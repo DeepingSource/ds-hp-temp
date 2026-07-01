@@ -172,6 +172,27 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
 };
 
 /**
+ * Product naming — single source for how the four products are named on the surface
+ * (naming reorg §14/§15, option B). `saai` = value brand = the PRIMARY public label;
+ * `store` = domain implementation (the URL slug's name) = the secondary. store count
+ * has NO `saai` — it's a SOURCE tool (verb), not a SOLUTION (§12.B), so it keeps its
+ * store name. Names are locale-invariant (lowercase). URLs (/products/store-*) are
+ * unchanged — this is surface labels only.
+ */
+export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
+export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {
+  count: { store: 'store count' },
+  insight: { store: 'store insight', saai: 'saai insight' },
+  care: { store: 'store care', saai: 'saai care' },
+  agent: { store: 'store agent', saai: 'saai agent' },
+};
+/** Primary public label — the value brand where it exists, else the store name. */
+export const productPrimary = (k: ProductKey): string => productNaming[k].saai ?? productNaming[k].store;
+/** Secondary (store) label — null when the primary already IS the store name (count). */
+export const productSecondary = (k: ProductKey): string | null =>
+  productNaming[k].saai ? productNaming[k].store : null;
+
+/**
  * 점주/SMB 척추 CTA (Master Copy Decision §7 · D4).
  * D4=(b): 본문 중립 CTA 유지, 점주 섹션에만 사용.
  */

@@ -7,7 +7,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines } from '@/lib/brand-canon';
+import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -51,17 +51,18 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: 'store agent', description: t.heroSub, path: '/products/store-agent', locale })} />
+      <JsonLd data={softwareApplication({ name: productPrimary('agent'), alternateName: productNaming.agent.store, description: t.heroSub, path: '/products/store-agent', locale })} />
       {/* ── Hero (Executive 판단체) ── */}
       <section className="section-dark relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-28 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store agent', path: '/products/store-agent' }]} locale={locale} tone="dark" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('agent'), path: '/products/store-agent' }]} locale={locale} tone="dark" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-primary-light font-medium mb-6">
             <BrainCircuit className="w-4 h-4" />
-            store agent
+            {productPrimary('agent')}
+            <span className="font-normal text-primary-light/55">· {productNaming.agent.store}</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight break-keep mb-6">
             <WordRise text={t.heroTitle} />
