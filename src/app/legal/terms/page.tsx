@@ -4,6 +4,7 @@ import TermsPage from '../../terms/page';
 export const metadata: Metadata = {
   title: '이용약관 | DeepingSource',
   description: 'SAAI 서비스 이용약관',
+  alternates: { canonical: '/legal/terms' },
 };
 
 export default function LegalTermsPage() {

@@ -6,6 +6,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 export const metadata: Metadata = {
   title: '약관 및 정책 | DeepingSource',
   description: 'SAAI 이용약관 및 개인정보 처리방침 안내',
+  alternates: { canonical: '/legal' },
 };
 
 const documents = [
