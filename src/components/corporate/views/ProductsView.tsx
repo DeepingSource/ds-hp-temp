@@ -16,7 +16,7 @@ import siteContent from '@/data/generated/site-content.json';
 
 /**
  * ProductsView — product hub (product-reorg 2-Tier, §7.4).
- * Tier 1 = the enterprise operating loop (count→insight→care→agent, M→A→D→A);
+ * Tier 1 = the enterprise operating loop (count→insight→care→agent, Observe→Analyze→Suggest→Learn);
  * Tier 2 = for owners, the camera-less B2C sites (saai.store / storecare.ai ↗).
  * Copy is CMS-editable (content/site/products.yaml → generated JSON); structure
  * (stage, icon, href, external) stays in code and is merged with copy by id.

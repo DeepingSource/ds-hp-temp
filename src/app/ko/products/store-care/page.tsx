@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import StoreCareView from '@/components/corporate/views/StoreCareView';
 
 export const metadata: Metadata = {
-  title: 'store care | DeepingSource — 시급 34원의 안심',
+  title: 'saai care — store care | DeepingSource — 시급 34원의 안심',
   description:
     '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 점주용 안심 솔루션. 시급 34원, 월 14,900원부터. storecare.ai에서 운영됩니다.',
-  keywords: ['store care', '점주', '매장 안심', '도난 방지', 'CCTV AI', 'SMB', 'storecare.ai'],
+  keywords: ['saai care', 'store care', '점주', '매장 안심', '도난 방지', 'CCTV AI', 'SMB', 'storecare.ai'],
   alternates: {
     canonical: '/ko/products/store-care',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'store care | DeepingSource',
+    title: 'saai care — store care | DeepingSource',
     description: '시급 34원의 안심. 작은 매장을 지켜주는 점주용 솔루션.',
     type: 'website',
   },

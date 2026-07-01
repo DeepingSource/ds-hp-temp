@@ -13,19 +13,19 @@ const C: Record<Locale, {
     spaces: ['매장', '빌딩', '공공', '레저'],
     shieldTitle: '완전 익명화',
     shieldSub: '개인정보 제거',
-    aiLoop: '관찰 → 분석 → 실행 → 학습',
+    aiLoop: '관찰 → 분석 → 제안 → 학습',
   },
   en: {
     spaces: ['Retail', 'Buildings', 'Public', 'Leisure'],
     shieldTitle: 'Full Anonymization',
     shieldSub: 'PII removed',
-    aiLoop: 'Observe → Analyze → Act → Learn',
+    aiLoop: 'Observe → Analyze → Suggest → Learn',
   },
   jp: {
     spaces: ['店舗', 'ビル', '公共', 'レジャー'],
     shieldTitle: '完全匿名化',
     shieldSub: '個人情報を除去',
-    aiLoop: '観察 → 分析 → 実行 → 学習',
+    aiLoop: '観察 → 分析 → 提案 → 学習',
   },
 };
 

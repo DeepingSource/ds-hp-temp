@@ -3,23 +3,25 @@
 import { motion } from 'framer-motion';
 import { DoorOpen, Grid3x3, Radar, ClipboardCheck, RotateCw } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
+import { productPrimary, type ProductKey } from '@/lib/brand-canon';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * OperatingLoopGraphic — the /products hero visual (product-reorg D2, §10.5).
  * The four Tier-1 products as a clockwise cycle around the SAAI hub —
- * count(Measure)→insight(Analyze)→care(Detect)→agent(Act), output feeding back
- * to input. Brand-blue single color + stage icons (no rainbow), Act emphasized.
+ * count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn), output feeding back
+ * to input. Names lead with the value brand (saai …); store count keeps its name.
+ * Brand-blue single color + stage icons (no rainbow), agent emphasized.
  * Desktop = circular; mobile = vertical stack. Inline SVG ring, no raster.
  */
 
-type Stage = { no: string; stage: string; name: string; Icon: typeof DoorOpen; emphasis?: boolean };
+type Stage = { no: string; key: ProductKey; stage: string; Icon: typeof DoorOpen; emphasis?: boolean };
 const STAGES: Stage[] = [
-  { no: '01', stage: 'Measure', name: 'store count', Icon: DoorOpen },
-  { no: '02', stage: 'Analyze', name: 'store insight', Icon: Grid3x3 },
-  { no: '03', stage: 'Detect', name: 'store care', Icon: Radar },
-  { no: '04', stage: 'Act', name: 'store agent', Icon: ClipboardCheck, emphasis: true },
+  { no: '01', key: 'count', stage: 'Observe', Icon: DoorOpen },
+  { no: '02', key: 'insight', stage: 'Analyze', Icon: Grid3x3 },
+  { no: '03', key: 'care', stage: 'Suggest', Icon: Radar },
+  { no: '04', key: 'agent', stage: 'Learn', Icon: ClipboardCheck, emphasis: true },
 ];
 // desktop ring positions: icon CENTER seated on the r=34 ring at top/right/bottom/left (clockwise)
 const POS = [
@@ -42,7 +44,7 @@ function Node({ s }: { s: Stage }) {
       </span>
       <span className="absolute left-1/2 top-full mt-2 w-32 -translate-x-1/2 text-center">
         <span className="block text-2xs font-mono font-medium text-gray-400 whitespace-nowrap">{s.no} · {s.stage}</span>
-        <span className="block text-sm font-bold text-gray-900">{s.name}</span>
+        <span className="block text-sm font-bold text-gray-900">{productPrimary(s.key)}</span>
       </span>
     </div>
   );
@@ -52,10 +54,10 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
   const { ref, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const reduced = usePrefersReducedMotion();
   const label = locale === 'ko'
-    ? 'store count·insight·care·agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
+    ? 'store count·saai insight·saai care·saai agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
     : locale === 'jp'
-    ? 'store count・insight・care・agentがSAAIハブを中心に時計回りに循環するオペレーションループ'
-    : 'DeepingSource operating loop: store count, insight, care and agent as a clockwise cycle around the SAAI hub';
+    ? 'store count・saai insight・saai care・saai agentがSAAIハブを中心に時計回りに循環するオペレーションループ'
+    : 'DeepingSource operating loop: store count, saai insight, saai care and saai agent as a clockwise cycle around the SAAI hub';
 
   return (
     <div role="img" aria-label={label}>
@@ -100,7 +102,7 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
         {/* 4 nodes — fade in clockwise after the ring draws */}
         {STAGES.map((s, i) => (
           <motion.div
-            key={s.name}
+            key={s.key}
             className={`absolute ${POS[i]}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: show ? 1 : 0 }}
@@ -114,13 +116,13 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
       {/* Mobile — vertical stack */}
       <ol className="mx-auto flex max-w-xs flex-col gap-2 sm:hidden">
         {STAGES.map((s) => (
-          <li key={s.name} className="flex items-center gap-3 rounded-xl border border-primary/15 bg-primary-lighter/40 px-4 py-3">
+          <li key={s.key} className="flex items-center gap-3 rounded-xl border border-primary/15 bg-primary-lighter/40 px-4 py-3">
             <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white ${s.emphasis ? 'ring-2 ring-primary/30 ring-offset-1' : ''}`}>
               <s.Icon className="h-4 w-4" aria-hidden="true" />
             </span>
             <span>
               <span className="block text-2xs font-mono font-medium text-gray-400">{s.no} · {s.stage}</span>
-              <span className="block text-sm font-bold text-gray-900">{s.name}</span>
+              <span className="block text-sm font-bold text-gray-900">{productPrimary(s.key)}</span>
             </span>
           </li>
         ))}

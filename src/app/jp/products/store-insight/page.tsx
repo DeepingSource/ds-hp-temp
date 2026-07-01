@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import StoreInsightView from '@/components/corporate/views/StoreInsightView';
 
 export const metadata: Metadata = {
-  title: 'store insight | DeepingSource — 店舗を読み解く空間分析',
+  title: 'saai insight — store insight | DeepingSource — 店舗を読み解く空間分析',
   description:
     'アナリストの冷静さで店舗を読み解きます。動線・滞在・転換を掛け合わせて分析し、売上変化の要因を突き止めるエンタープライズ空間分析。POS は売れたものしか分かりません。store insight は売れかけたものも分かります。',
-  keywords: ['store insight', '空間分析', '店舗データ', '動線分析', '転換率', '売上要因分析', 'DeepingSource'],
+  keywords: ['saai insight', 'store insight', '空間分析', '店舗データ', '動線分析', '転換率', '売上要因分析', 'DeepingSource'],
   alternates: {
     canonical: '/jp/products/store-insight',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'store insight | DeepingSource',
+    title: 'saai insight — store insight | DeepingSource',
     description: 'アナリストの冷静さで店舗を読み解きます。売上変化の要因を、データで。',
     type: 'website',
   },

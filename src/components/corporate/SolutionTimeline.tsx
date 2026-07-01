@@ -9,8 +9,9 @@ import { solutionTaglines, productFunction } from '@/lib/brand-canon';
 
 /**
  * SolutionTimeline — the 3 SOLUTION products as one flow (NEXTRISE launch film 00:11–14).
- * store insight reads yesterday · store care flags the now · store agent acts on next.
- * Read · Alert · Act; taglines lifted from brand-canon.
+ * store insight reads yesterday · store care flags the now · store agent acts on next
+ * (taglines lifted from brand-canon). Product labels intentionally keep the "store"
+ * framing here — this section's narrative anchor is "three stores, one flow".
  * Each card carries a functional product thumbnail (show-don't-tell).
  */
 
