@@ -14,7 +14,7 @@ import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines } from '@/lib/brand-canon';
+import { solutionTaglines, saaiPromiseLayer } from '@/lib/brand-canon';
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { cn } from '@/lib/cn';
 
@@ -127,6 +127,7 @@ const COPY: Record<Locale, Copy> = {
 
 export default function FeatureCarousel({ locale }: { locale: Locale }) {
   const t = COPY[locale];
+  const promise = saaiPromiseLayer[locale];
   const reduced = usePrefersReducedMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -154,6 +155,39 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
   return (
     <Section variant="default" className="overflow-hidden">
       <Container>
+        {/* Promise layer — S·A·A·I four pillars (lineup reorg §4). The common foundation
+            every product stands on (a parallel "asset map", distinct from the ordered
+            operating loop below); each pillar links to the tech that proves it (§13). */}
+        <div className="mx-auto mb-12 max-w-4xl text-center">
+          <Eyebrow className="mb-3">{promise.eyebrow}</Eyebrow>
+          <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">{promise.heading}</h2>
+          <p className="text-base leading-relaxed text-gray-600 break-keep">{promise.sub}</p>
+          <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {promise.pillars.map((pil) => (
+              <Link
+                key={pil.key}
+                href={localeHref(locale, pil.tech)}
+                className="group/pill flex flex-col rounded-2xl border border-gray-200 bg-white p-5 text-left transition-colors hover:border-primary-light hover:bg-primary-lighter/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+              >
+                <span className="mb-2 inline-flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold text-primary">{pil.letter}</span>
+                  <span className="text-sm font-bold text-gray-900">{pil.label}</span>
+                </span>
+                <span className="text-xs leading-relaxed text-gray-500 break-keep">{pil.promise}</span>
+                <ArrowRight
+                  className="mt-3 h-3.5 w-3.5 text-primary opacity-0 transition-opacity group-hover/pill:opacity-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Bridge — promise layer → product layer (§6) */}
+        <p className="mx-auto mb-12 max-w-xl text-center text-sm font-semibold tracking-wide text-primary break-keep">
+          {promise.bridge}
+        </p>
+
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <Eyebrow className="mb-3">{t.eyebrow}</Eyebrow>
           <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">{t.heading}</h2>

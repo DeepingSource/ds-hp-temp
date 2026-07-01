@@ -74,6 +74,68 @@ export const operatingLoop: Record<Locale, { label: string; phase: string }[]> =
   ],
 };
 
+/**
+ * 약속 층 — SAAI 네 기둥 (제품 라인업 재정비안 §4·§8). Spatial·Anonymized·Agentic·
+ * Intelligence = 우산 브랜드 SAAI의 네 글자 = 모든 제품이 딛는 공통 토대(무순서 병렬,
+ * 운영 루프와는 성격이 다른 "자산 지도"). 각 기둥은 이를 증명하는 tech(SEED) 페이지로
+ * 연결된다(§13). anonymized-first: 익명화가 "먼저 서는 자리"임을 sub에 명시(§4.1).
+ * NOTE: 카피는 재정비안 §8 초안 — 브랜드 카운슬 사인오프 대기(풀어쓰기 표기 §9-1 미확정
+ * 이므로 선형 "Spatial Anonymized Agentic Intelligence"는 노출하지 않고 4-up이 스펠아웃).
+ * jp = KO/EN 기준 렌더(검수 대상).
+ */
+export type SaaiPillar = {
+  key: 'spatial' | 'anonymized' | 'agentic' | 'intelligence';
+  letter: string;
+  label: string;
+  promise: string;
+  tech: string;
+};
+
+export const saaiPromiseLayer: Record<Locale, {
+  eyebrow: string;
+  heading: string;
+  sub: string;
+  pillars: SaaiPillar[];
+  bridge: string;
+}> = {
+  ko: {
+    eyebrow: 'SAAI',
+    heading: '네 글자에 담은 약속',
+    sub: '익명화 공간 AI — 모든 것은 익명화 위에서 시작합니다.',
+    pillars: [
+      { key: 'spatial', letter: 'S', label: 'Spatial', promise: '공간을 읽습니다. POS 너머 흐름까지.', tech: '/technology/spatial-ai' },
+      { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '얼굴을 남기지 않습니다. 모든 것의 시작.', tech: '/technology/seal' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '다음 한 수를 제안합니다. 결정은 사람이.', tech: '/technology/models' },
+      { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '학습으로 기준을 높입니다.', tech: '/technology' },
+    ],
+    bridge: '네 개의 근거가, 하나의 루프로 돌아갑니다.',
+  },
+  en: {
+    eyebrow: 'SAAI',
+    heading: 'Four letters, one promise',
+    sub: 'Anonymized Spatial AI — everything begins on anonymization.',
+    pillars: [
+      { key: 'spatial', letter: 'S', label: 'Spatial', promise: 'Reads the space, beyond the POS.', tech: '/technology/spatial-ai' },
+      { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: 'Leaves no faces. Where everything begins.', tech: '/technology/seal' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: 'Proposes the next move. People decide.', tech: '/technology/models' },
+      { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: 'Learns, and raises the bar.', tech: '/technology' },
+    ],
+    bridge: 'Four foundations, one loop.',
+  },
+  jp: {
+    eyebrow: 'SAAI',
+    heading: '四文字に込めた約束',
+    sub: '匿名化空間AI — すべては匿名化の上から始まります。',
+    pillars: [
+      { key: 'spatial', letter: 'S', label: 'Spatial', promise: '空間を読みます。POSの先の流れまで。', tech: '/technology/spatial-ai' },
+      { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '顔を残しません。すべての始まり。', tech: '/technology/seal' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '次の一手を提案します。決めるのは人。', tech: '/technology/models' },
+      { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '学習で基準を高めます。', tech: '/technology' },
+    ],
+    bridge: '四つの根拠が、ひとつのループへ。',
+  },
+};
+
 /** 회사 한 줄 — 창업 서사 (SAAI_AI_Handoff.md · Copy_Decision_v1 회사 한 줄). */
 export const companyLine: Record<Locale, string> = {
   ko: '2018년부터 영상의 익명화를 깎아 온 회사.',
