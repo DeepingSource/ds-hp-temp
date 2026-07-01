@@ -79,7 +79,7 @@ export default function CorporateHeroFigure({
               style={{ left: b.left, top: b.top, width: b.width, height: b.height }}
               initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 1.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={reduced ? { duration: 0.2, delay: 0.1 * i } : { ...springGentle, delay: 0.6 + i * 0.4 }}
+              transition={reduced ? { duration: 0.2, delay: 0.1 * i } : { ...springGentle, delay: 0.2 + i * 0.18 }}
             >
               <span className="absolute -top-[18px] left-0 rounded bg-primary px-1 py-0.5 text-[9px] font-bold leading-none text-white tabular-nums">
                 ID·{b.id}

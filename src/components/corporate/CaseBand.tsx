@@ -11,8 +11,8 @@ import { type Locale } from '@/lib/i18n';
  * CaseBand — a compact proof band (home). Three field scenarios that show what
  * changes on the floor once the space can be read: read · alert · act. Each card
  * pairs a real screen capture with a one-line illustrative result. Results are NOT
- * attributed to any named partner; every card carries an "예시 / Illustrative"
- * marker per honesty rules.
+ * attributed to any named partner; every card carries a locale-appropriate
+ * "Illustrative" marker per honesty rules.
  */
 
 type Case = { img: string; alt: string; title: string; result: string };
@@ -21,7 +21,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
   ko: {
     eyebrow: 'Field scenarios',
     heading: '현장에서 일어나는 변화',
-    note: '예시 / Illustrative',
+    note: '예시',
     cases: [
       {
         img: '/images/storeinsight-case1-beforeafter.webp',
@@ -46,7 +46,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
   en: {
     eyebrow: 'Field scenarios',
     heading: 'What changes on the floor',
-    note: '예시 / Illustrative',
+    note: 'Illustrative',
     cases: [
       {
         img: '/images/storeinsight-case1-beforeafter.webp',
@@ -71,7 +71,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; note: string; cas
   jp: {
     eyebrow: 'Field scenarios',
     heading: '現場で起きる変化',
-    note: '例 / Illustrative',
+    note: '例',
     cases: [
       {
         img: '/images/storeinsight-case1-beforeafter.webp',

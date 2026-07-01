@@ -13,6 +13,9 @@ import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
 // import Analytics from "@/components/Analytics"; // Umami Analytics 적용 시 주석 해제
 
+// Preview/staging deploys stay out of the index — only production sets this flag.
+const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://deepingsource.io"),
   title: "DeepingSource | Anonymized Spatial AI — 모든 매장을 한 매장처럼",
@@ -50,8 +53,8 @@ export const metadata: Metadata = {
     images: ["/twitter-image"],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: allowIndexing,
+    follow: allowIndexing,
   },
   other: {
     "theme-color": "#376AE2",
