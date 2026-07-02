@@ -42,5 +42,7 @@ _frames_tmp/
 asset-prompts/
 # internal business/pricing strategy doc — kept local, not in repo
 docs/BIZ_SERVICE_PLAN_v1.md
+# session planning / evaluation reference docs (dropped in root, kept local)
+/DeepingSource_*.md
 # local visual-verification screenshots
 /*.jpeg
