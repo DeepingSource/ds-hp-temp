@@ -155,4 +155,17 @@ export const mdxComponents: MDXComponents = {
     <p className="text-gray-700 leading-[1.9]">{children}</p>
   ),
   hr: () => <hr className="border-gray-100" />,
+  // Body images — markdown ![alt](/images/blog/x.webp) becomes a responsive image.
+  // Must stay phrasing content (bare <img>, not <figure>) because MDX wraps the image
+  // in a <p>; a block <figure> inside <p> is invalid HTML and breaks hydration.
+  // Plain <img> (lazy) also keeps it robust for the static export / unknown dimensions.
+  img: ({ src, alt }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={typeof src === 'string' ? src : ''}
+      alt={alt ?? ''}
+      loading="lazy"
+      className="my-6 block w-full rounded-xl border border-gray-100"
+    />
+  ),
 };

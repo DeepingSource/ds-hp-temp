@@ -12,6 +12,8 @@ export interface Article {
   readTime: number;
   tags: string[];
   icon: string; // Lucide icon name
+  cover?: string; // public path, e.g. /images/blog/my-post.webp
+  coverAlt?: string;
   body: string; // raw MDX content
   relatedSlugs?: string[];
   lang: 'en' | 'ko' | 'jp'; // content language (Velite frontmatter, default 'ko')

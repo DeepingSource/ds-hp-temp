@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Clock } from 'lucide-react';
 import type { Article } from '@/data/articles/types';
 import { categoryMeta, categoryLabelI18n } from '@/data/articles/types';
@@ -94,6 +95,19 @@ export default function BlogArticleView({ locale, article }: { locale: Locale; a
               {article.title}
             </h1>
             <p className="text-gray-500 mt-3 leading-relaxed">{article.excerpt}</p>
+
+            {article.cover && (
+              <div className="relative mt-6 aspect-[2/1] w-full overflow-hidden rounded-2xl bg-gray-100">
+                <Image
+                  src={article.cover}
+                  alt={article.coverAlt ?? article.title}
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 42rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>
