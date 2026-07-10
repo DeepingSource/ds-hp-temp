@@ -15,6 +15,9 @@
 .env
 .env*.local
 
+# secrets — GitHub App private keys, never commit
+*.pem
+
 # logs
 *.log
 npm-debug.log*
