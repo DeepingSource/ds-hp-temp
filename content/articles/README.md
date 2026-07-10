@@ -1,7 +1,7 @@
 # 블로그 글 작성 가이드 (Phase 1)
 
-블로그 글은 `content/articles/<카테고리>/<slug>.mdx` 파일입니다. Velite가 빌드 때 읽어
-`/resources/blog`(및 `/ko`·`/jp`)에 렌더합니다.
+블로그 글은 `content/articles/<slug>.mdx` 파일입니다(플랫 구조 — 카테고리는 프론트매터에만).
+Velite가 빌드 때 읽어 `/resources/blog`(및 `/ko`·`/jp`)에 렌더합니다.
 
 ## 새 글 만들기
 

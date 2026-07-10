@@ -37,7 +37,8 @@ if (!CATEGORIES.includes(category)) {
 
 const today = new Date().toISOString().slice(0, 10);
 const title = flags.title ?? slug.replace(/-/g, ' ');
-const filePath = path.join('content', 'articles', category, `${slug}.mdx`);
+// Flat layout: content/articles/<slug>.mdx (category lives in frontmatter only).
+const filePath = path.join('content', 'articles', `${slug}.mdx`);
 
 try {
   await access(filePath);
