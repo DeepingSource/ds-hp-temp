@@ -1,4 +1,82 @@
-import { config, fields, singleton } from '@keystatic/core';
+import { config, fields, singleton, collection } from '@keystatic/core';
+import { wrapper, block } from '@keystatic/core/content-components';
+
+/**
+ * 블로그 본문 커스텀 블록 — src/components/blog/mdx-components.tsx 와 1:1 매핑.
+ * Stat = block(children 없음 → self-closing), 나머지 = wrapper(children 있음).
+ * ContentView 는 Keystatic 에디터 내 프리뷰 표시용(렌더 자체는 사이트가 담당).
+ * 직렬화 충실도는 Phase B-S 스파이크에서 검증됨(docs/blog-keystatic-spike-B-S-findings.md).
+ */
+const blogComponents = {
+  Stat: block({
+    label: 'Stat (통계 셀)',
+    schema: {
+      label: fields.text({ label: '라벨' }),
+      value: fields.text({ label: '값' }),
+      change: fields.text({ label: '변화 (선택)' }),
+    },
+    ContentView: ({ value }) => (
+      <div>
+        <strong>{value.value}</strong> — {value.label}
+        {value.change ? ` (${value.change})` : ''}
+      </div>
+    ),
+  }),
+  StatGroup: wrapper({
+    label: 'StatGroup (통계 묶음)',
+    schema: {},
+    ContentView: ({ children }) => <div>{children}</div>,
+  }),
+  Tip: wrapper({
+    label: 'Tip',
+    schema: { title: fields.text({ label: '제목' }) },
+    ContentView: ({ value, children }) => (
+      <div>
+        <strong>{value.title}</strong>
+        {children}
+      </div>
+    ),
+  }),
+  Checklist: wrapper({
+    label: 'Checklist',
+    schema: {},
+    ContentView: ({ children }) => <div>{children}</div>,
+  }),
+  Callout: wrapper({
+    label: 'Callout',
+    schema: {
+      variant: fields.select({
+        label: '유형',
+        options: [
+          { label: 'Info', value: 'info' },
+          { label: 'Warning', value: 'warning' },
+          { label: 'Success', value: 'success' },
+        ],
+        defaultValue: 'info',
+      }),
+    },
+    ContentView: ({ children }) => <div>{children}</div>,
+  }),
+  Quote: wrapper({
+    label: 'Quote',
+    schema: { author: fields.text({ label: '저자' }) },
+    ContentView: ({ value, children }) => (
+      <div>
+        {children} — {value.author}
+      </div>
+    ),
+  }),
+  Source: wrapper({
+    label: 'Source (출처)',
+    schema: {},
+    ContentView: ({ children }) => <div>{children}</div>,
+  }),
+  PrivacyNote: wrapper({
+    label: 'PrivacyNote',
+    schema: {},
+    ContentView: ({ children }) => <div>{children}</div>,
+  }),
+};
 
 /** An id-keyed array item: a fixed id (structure lives in code) + localized copy fields. */
 const idItem = (
@@ -44,6 +122,63 @@ export default config({
   storage: { kind: 'local' },
   ui: {
     brand: { name: 'DeepingSource' },
+  },
+  collections: {
+    // 블로그 글 — Velite 가 읽는 것과 같은 content/articles/*.mdx 를 직접 편집.
+    // 플랫 구조(Phase B-1)라 path 의 * 가 곧 slug/파일명. 중간 싱크 불필요.
+    articles: collection({
+      label: '블로그 글',
+      path: 'content/articles/*',
+      slugField: 'slug',
+      format: { contentField: 'body' },
+      columns: ['title', 'date'],
+      schema: {
+        title: fields.text({ label: '제목', validation: { isRequired: true } }),
+        slug: fields.slug({ name: { label: 'URL 슬러그 (파일명 = URL 경로)' } }),
+        excerpt: fields.text({ label: '요약 (목록·OG용 한 줄)', multiline: true }),
+        category: fields.select({
+          label: '카테고리',
+          options: [
+            { label: '가이드', value: 'guide' },
+            { label: '케이스스터디', value: 'case-study' },
+            { label: '인사이트', value: 'insight' },
+            { label: '주간', value: 'weekly' },
+          ],
+          defaultValue: 'insight',
+        }),
+        date: fields.date({ label: '게시일' }),
+        readTime: fields.integer({ label: '읽기 시간(분) — 비우면 자동 계산' }),
+        tags: fields.array(fields.text({ label: '태그' }), {
+          label: '태그',
+          itemLabel: (p) => p.value,
+        }),
+        icon: fields.text({ label: 'Lucide 아이콘', defaultValue: 'Newspaper' }),
+        cover: fields.image({
+          label: '커버 이미지',
+          directory: 'public/images/blog',
+          publicPath: '/images/blog/',
+        }),
+        coverAlt: fields.text({ label: '커버 대체텍스트' }),
+        lang: fields.select({
+          label: '언어',
+          options: [
+            { label: '한국어', value: 'ko' },
+            { label: 'English', value: 'en' },
+            { label: '日本語', value: 'jp' },
+          ],
+          defaultValue: 'ko',
+        }),
+        target: fields.select({
+          label: '타깃',
+          options: [
+            { label: 'company (회사 블로그)', value: 'company' },
+            { label: 'saai (이관 큐)', value: 'saai' },
+          ],
+          defaultValue: 'company',
+        }),
+        body: fields.mdx({ label: '본문', components: blogComponents }),
+      },
+    }),
   },
   singletons: {
     home: singleton({
