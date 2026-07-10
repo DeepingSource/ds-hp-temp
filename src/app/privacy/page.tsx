@@ -46,6 +46,13 @@ export default function PrivacyPage() {
                 <p><strong>Safari 모바일:</strong> Safari App &gt; 방문기록 및 웹사이트 데이터 지우기 &gt; 확인</p>
                 <p><strong>Naver 모바일:</strong> Naver App &gt; 설정 &gt; 캐시삭제 + 인터넷 사용 기록 &gt; 쿠키삭제</p>
               </div>
+
+              <p className="font-medium text-gray-700 mt-6">웹 분석 도구 이용 안내:</p>
+              <p>회사는 서비스 개선 및 이용 현황 분석을 위해 아래의 웹 분석 도구를 이용하고 있습니다.</p>
+              <ul className="list-disc pl-5 space-y-2 mt-2 text-gray-600">
+                <li><strong>Google Analytics 4 (Google LLC):</strong> 페이지 방문 등 이용 통계를 수집하기 위해 쿠키를 사용합니다. 수집 정보는 개인을 식별하지 않는 통계 목적에 한해 이용됩니다. 이용자는 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-primary underline">Google Analytics 차단 브라우저 부가기능</a> 설치 또는 위 쿠키 거부 설정을 통해 수집을 거부할 수 있습니다.</li>
+                <li><strong>Umami:</strong> 쿠키를 사용하지 않고 개인을 식별하지 않는 방식으로 익명 이용 통계만 집계합니다.</li>
+              </ul>
             </section>
 
             <section className="space-y-4">
