@@ -83,8 +83,6 @@ if (isGhPages) {
       { source: '/user-account', destination: 'https://app.deepingsource.io/user-account', permanent: false, basePath: false },
       { source: '/reset-password', destination: 'https://app.deepingsource.io/reset-password', permanent: false, basePath: false },
       { source: '/update-password', destination: 'https://app.deepingsource.io/update-password', permanent: false, basePath: false },
-
-      { source: '/admin', destination: '/admin/', permanent: true },
     ];
   };
   nextConfig.headers = async () => {
@@ -105,19 +103,7 @@ if (isGhPages) {
         ],
       },
       {
-        source: "/admin/:path*",
-        headers: [
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
-          {
-            key: "Content-Security-Policy",
-            value: "default-src 'self' https://unpkg.com https://api.github.com https://github.com; font-src 'self' https://unpkg.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://github.com; object-src 'none';",
-          },
-        ],
-      },
-      {
-        source: "/((?!admin|keystatic).*)",
+        source: "/((?!keystatic).*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },

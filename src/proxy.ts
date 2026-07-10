@@ -82,7 +82,7 @@ export function proxy(request: NextRequest) {
   if (
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/') ||
-    pathname.startsWith('/admin') ||
+    pathname.startsWith('/keystatic') ||
     pathname.includes('.')
   ) {
     return NextResponse.next();
