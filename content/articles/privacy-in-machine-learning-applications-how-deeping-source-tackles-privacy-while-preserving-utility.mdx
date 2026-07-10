@@ -1,0 +1,88 @@
+---
+slug: privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility
+title: "Privacy in Machine Learning Applications: How Deeping Source Tackles Privacy While Preserving Utility"
+excerpt: "Introduction In the dynamic landscape of deep learning applications, the emergence of machine learning as a service MLaaS stands out. However, as we navigate th"
+category: insight
+date: '2024-03-20'
+tags:
+  - Tech
+icon: Newspaper
+lang: en
+target: company
+---
+
+# Introduction
+
+In the dynamic landscape of deep learning applications, the emergence of machine learning as a service (MLaaS) stands out. However, as we navigate the intricacies of client-server inference, a crucial concern surfaces: privacy. This concern becomes especially prominent in scenarios where servers handle raw data from user devices.
+
+Here at Deeping Source, we've been diligently tackling this challenge. We introduce a cutting-edge solution: the integration of an _obfuscator_ function directly onto the client device. Our approach not only enhances privacy but also ensures efficient and effective data processing.
+
+To validate our method, we rigorously evaluated it across various datasets, meticulously comparing it with existing techniques. The results speak volumes: our method consistently outperforms alternatives in terms of accuracy, computational efficiency, memory usage, and resilience against information leakage and reconstruction attacks.
+
+With these encouraging results, we believe our approach represents a significant step forward in the pursuit of privacy-preserving machine learning. By empowering clients to protect their data without sacrificing performance, we're forging a path toward a more secure and reliable MLaaS ecosystem. At Deeping Source, we remain steadfast in our commitment to pushing boundaries while maintaining the utmost standards of privacy and security.
+
+‍
+
+# Confronting Adversarial Threats: Safeguarding Privacy in Edge Devices
+
+We assume an attacker who is in control of an edge device such as a CCTV camera or an IoT device. The device holds an _obfuscator_ model and transforms the raw data before data transmission. It allows attackers to generate their own datasets to train an adversary model, e.g. original input and obfuscated representation pairs. Further, we assume that the attackers are also aware of the original training dataset and the architecture of the service provider’s models. Note that this constitutes a strong threat model, which makes it difficult to protect privacy for the service provider. We show that our method protects privacy even under severe conditions.
+
+In our research, we confront a tough adversary—a scenario where attackers wield control over edge devices like CCTV cameras or IoT devices. These devices possess an _obfuscator_ model, enabling them to manipulate raw data before transmission. This capability empowers attackers to craft their own datasets, leveraging pairs of original input and obfuscated representations to train adversary models.
+
+Compounding the challenge, we operate under the assumption that attackers possess intimate knowledge of both the original training dataset and the architecture of the service provider's models. This aggressive threat model presents a significant hurdle in safeguarding privacy for the service provider.
+
+‍
+
+# Privacy-Preserving Data Transmission: An Overview of **Deeping Source's Approach**
+
+![](/images/blog/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility/img-1.png)
+
+Figure 1: (Top) The training scheme of our method. (Bottom) Inference scenario with possible adversary attack.
+
+In our approach, we utilize a common type of neural network called a convolutional neural network (CNN). We divide this network into two parts: the earlier layers act as an encoder on the client side, while the later layers function as a model for the server to perform tasks.
+
+The client-side encoder processes the input data and produces a simplified representation of it. We then add a random noise to this representation. This noise is like adding a little static to the signal, making it harder for anyone snooping on the data to understand it.
+
+The resulting modified representation is sent from the client to the server. This process helps keep the original data private while still allowing the server to perform its tasks effectively.
+
+‍
+
+# Defending Privacy: Insights from Visual Reconstruction Evaluation
+
+![](/images/blog/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility/img-2.png)
+
+Figure 2: Except for our method and MaxEnt, all other methods failed to defend the reconstruction attack. While a few methods (e.g. ‘Image Noise’, No Noise (RN18\_4)) have successfully defended revealing the exact identity of the person, they failed to remove the private attribute (‘Gender’).
+
+In our recent analysis, as illustrated in Figure 2, we delved into the visual assessment of various methods under a reconstruction attack.
+
+Upon close inspection, the reconstruction outcomes of DeepObfs., DISCO, and 'Image Noise' revealed some interesting hints. While they exhibited a slightly altered identity compared to the original images, a discernible difference persisted, especially concerning the private attribute, in this case, 'Gender'.
+
+Interestingly, the 'No Noise' method seemed to have effectively erased the identity and background context. However, it still left traces of the distinguishable 'Gender' attribute.
+
+Our method and MaxEnt stood out as the only ones capable of effectively defending against the reconstruction attack, successfully preserving both identity and private attributes amidst the adversarial attacks.
+
+‍
+
+# Human Perception and Privacy Protection: Insights from User Study
+
+![](/images/blog/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility/img-3.png)
+
+Figure 3: Results for user study on reconstructed images.
+
+We've also conducted a user study to provide further insights into the robustness of our method against reconstruction attacks, aligning it with human perception.
+
+In this study, we employed each obfuscation technique illustrated in Figure 3 to obscure images. Subsequently, we subjected these obfuscated images to attacks. We enlisted the feedback of 30 participants tasked with discerning whether the individuals depicted in the images were smiling, addressing the "Smiling" utility task, or determining their gender, tackling the "Gender" privacy task.
+
+The results were impressive. Our approach effectively concealed sensitive information from human observers showcasing superior performance compared to previous methods. This study underscores the effectiveness of our method in preserving privacy, validating its alignment with human vision and perception.
+
+‍
+
+# Conclusion
+
+Our exploration of privacy-preserving techniques in machine learning has proven both enlightening and rewarding. Through rigorous evaluations and user studies, we've delved into the methods of safeguarding sensitive information amidst adversarial attacks.
+
+Our findings paint a promising picture: our method not only stands resilient against such attacks but also aligns closely with human perception. By successfully obscuring sensitive attributes from human observers, even under the scrutiny of reconstruction attempts, we've demonstrated the robustness and efficacy of our approach.
+
+From theoretical benchmarks to real-world user studies, our method has consistently outperformed previous techniques, offering a beacon of hope in the quest for privacy in machine learning applications. With our approach, organizations can confidently deploy machine learning solutions while upholding the highest standards of privacy and security.
+
+As we continue to navigate the ever-evolving landscape of technology and privacy concerns, we remain committed to pushing the boundaries of innovation, ensuring that privacy remains a cornerstone in the development and deployment of machine learning solutions.

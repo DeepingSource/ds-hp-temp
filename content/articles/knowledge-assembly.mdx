@@ -1,0 +1,69 @@
+---
+slug: knowledge-assembly
+title: "Knowledge Assembly"
+excerpt: "Overview Our work \"Knowledge Assembly: Semi-Supervised Multi-Task Learning from Multiple Datasets with Disjoint Labels\" presents a new approach to machine learn"
+category: insight
+date: '2024-03-20'
+tags:
+  - Tech
+icon: Newspaper
+lang: en
+target: company
+---
+
+# Overview
+
+Our work "Knowledge Assembly: Semi-Supervised Multi-Task Learning from Multiple Datasets with Disjoint Labels" presents a new approach to machine learning, particularly useful in real-world applications where data for multiple tasks is often incomplete or partially labeled. The paper focuses on leveraging these disjoint datasets effectively within a Multi-Task Learning (MTL) framework.
+
+The key innovation is the 'Knowledge Assembly' model training method, which effectively combines data from different sources, each labeled for distinct tasks. This method applies Semi-Supervised Learning (SSL) techniques that use additionnal unlabeled data to enhance learning. More precisely, it employs a model augmentation strategy to pseudo-supervise scarcely labeled data. The approach is tested on tasks like person re-identification and pedestrian attribute recognition, demonstrating significant improvements over traditional single-task learning methods.
+
+The results show that our method is adaptable and effective in real-world scenarios where data may be scarce or incomplete. This research has various applications, particularly for fields like surveillance and autonomous driving, where predicting multiple tasks from a visual input is crucial.
+
+‍
+
+# Motivation
+
+In the growing field of machine learning, the challenge often lies in leveraging the full potential of available data. In many cases, models only extract image information relevant to the specific task, leaving a lot of data unused. For example, if we train a depth estimator on outdoor scene, we will only be interested in knowing the relative distance of objects to the camera, but we will ignore the class of the objects (e.g. car, building, tree, person, …). This paper introduces an new approach to tackle this challenge using Multi-Task Learning (MTL). MTL is particularly useful when dealing with various tasks simultaneously, as it can leverage similarities and differences across tasks to jointly improve learning efficiency and model prediction accuracy across all tasks. In the example above, learning the object’s class can help better predict depth by identifying patterns such as “trees and building tend to be behind people” or “sky and clouds are usually in the background far away”. Moreover, by sharing information between tasks and learning them jointly within a single network, MTL not only improves the performance of individual tasks but also significantly reduces overall inference time.
+
+However, a common limitation in existing MTL approaches is the reliance on a single dataset that is fully labeled for all tasks. This requirement often does not align with real-world scenarios. In most cases, available datasets are only labeled for specific tasks, leaving others without necessary annotations, as illustrated in Figure 1. Additionally, the effort and resources required to label all datasets for every task are both time-consuming and impractical.
+
+Recognizing this gap, our paper addresses the need to use partially labeled datasets within an MTL framework. This approach not only aligns with the practical limitations of data availability but also opens new pathways in machine learning by leveraging the available data more effectively and efficiently. Therefore, the method in this work proposes a useful solution to machine learning in real-world applications where data is often disjointed and incomplete.
+
+![](/images/blog/knowledge-assembly/img-1.png)
+
+Fig. 1: Problem Definition: we want to jointly learn tasks 1 and 2 but we only have dataset A with ground-truth labels for task 1 and dataset B with ground-truth labels for task 2. How can we extract information for task 2 from dataset A, and information for task 1 from dataset B? These are the questions answers in our paper.
+
+‍
+
+# How it Works
+
+Our method, 'Knowledge Assembly' (KA), is designed within a Semi-Supervised Learning (SSL) framework. An overview of our work is illustrated in Figure 2 below. It involves initializing two instances of the same network model and feeding input images from both tasks through both models. The two models are completely independent and do not share weights. For any input image, the traditional supervised loss is computed whenever the relevant ground-truth label is available. For example, the model output for an image from dataset A will be supervised by the ground-truth (GT) label of task 1.
+
+Additionally, we design a semi-supervised consistency loss such that the output from one model instance is used as pseudo-labels to supervise the output from the other instance, and vice versa. For example, when an image from dataset A does not have a label, its output from model L is supervised using the output of model R as a pseudo-label. This method is integrated within a MTL framework, allowing for the simultaneous training of multiple tasks using datasets that are partially labeled and have non-overlapping annotations.
+
+![](/images/blog/knowledge-assembly/img-2.png)
+
+Fig. 2: Method Overview: The inputs are two datasets A and B. The outputs are related to two tasks 1 and 2. Dataset A only contains labels for task 1 and dataset B only contains labels for task 2. Two models are initialized and used during training to provide pseudo-supervision when GT labels are missing. During inference, only the best model is kept.
+
+‍
+
+# Some Results
+
+The main results of our method reveal significant improvements in accuracy for both studied tasks (person re-identification and pedestrian attribute recognition):
+
+-   For person re-identification (reID), using KA improves the task’s accuracy by 4% from 72% to 76%.
+-   In pedestrian attribute recognition (PAR), using KA improves the task’s accuracy by 1% from 82% to 83%.
+
+Additionally, as illustrated in Figure 3 below, our method is capable of correctly spotting a person and accurately predicting their age and gender, in contrast to single-task-only methods.
+
+These results demonstrate that the KA method, which combines MTL and SSL, outperforms all baselines across most metrics. This indicates that jointly training related tasks and leveraging available but unlabeled data can boost task performance. The method is particularly effective in scenarios where datasets have disjoint labels, a common challenge in real-world applications.
+
+![](/images/blog/knowledge-assembly/img-3.png)
+
+Fig. 3: Some Results on Common Datasets: jointly learning person reID and PAR yields better predictions than learning the tasks separately. Green means correctly identified and red means wrongly identifies. M: male, F: female, A: adult, O: old.
+
+‍
+
+# Let’s Wrap Up
+
+To conclude, this paper presents a novel and effective approach to MTL. Moreover, it proposes a solution to tackle machine learning problems in scenarios where data is often imperfect. Its ability to integrate disjoint datasets, using semi-supervised techniques makes it a valuable model for future research and real-world applications.
