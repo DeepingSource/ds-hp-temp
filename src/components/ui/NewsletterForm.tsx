@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { Check } from 'lucide-react';
 import Spinner from '@/components/ui/Spinner';
+import { trackEvent } from '@/components/Analytics';
 
 const schema = z.object({
   email: z.string().email('올바른 이메일 주소를 입력해주세요'),
@@ -58,6 +59,7 @@ export default function NewsletterForm() {
         throw new Error('구독 신청에 실패했습니다. 다시 시도해주세요.');
       }
 
+      trackEvent('newsletter_submit', { source: 'newsletter_form' });
       setIsSuccess(true);
       redirectTimeoutRef.current = setTimeout(() => router.push('/thank-you'), 800);
     } catch (err) {

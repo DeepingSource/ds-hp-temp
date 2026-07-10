@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Spinner from '@/components/ui/Spinner';
+import { trackEvent } from '@/components/Analytics';
 import siteContent from '@/data/generated/site-content.json';
 
 type Content = {
@@ -286,6 +287,7 @@ function ContactForm({ locale }: { locale: Locale }) {
         throw new Error(data?.error ?? t.errSubmitFailed);
       }
 
+      trackEvent('contact_submit', { plan: planParam ?? '', product: productParam ?? '' });
       setIsSubmitted(true);
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {

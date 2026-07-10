@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { Check, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Spinner from '@/components/ui/Spinner';
+import { trackEvent } from '@/components/Analytics';
 
 const schema = z.object({
   email: z.string().email('올바른 이메일 주소를 입력해주세요'),
@@ -60,6 +61,7 @@ export default function InlineNewsletterForm({ variant = 'light', sampleHref }: 
 
       clearTimeout(timeoutId);
       if (!res.ok) throw new Error('구독 신청에 실패했습니다. 다시 시도해주세요.');
+      trackEvent('newsletter_submit', { source: 'inline_newsletter_form' });
       setIsSuccess(true);
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {

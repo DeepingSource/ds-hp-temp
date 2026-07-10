@@ -40,12 +40,13 @@ export default function Analytics() {
 }
 
 /**
- * 사용자 정의 이벤트 트래킹 헬퍼 함수
- * 
+ * 사용자 정의 이벤트 트래킹 헬퍼 함수 — GA4 + Umami 동시 전송.
+ * 각 대상은 스크립트가 로드됐을 때만 발화하므로, 한쪽만 설정돼 있어도 안전하다.
+ *
  * 사용 예시:
  * ```typescript
  * import { trackEvent } from '@/components/Analytics';
- * 
+ *
  * // 버튼 클릭 이벤트 트래킹
  * <button onClick={() => trackEvent('cta_click', { page: 'home', section: 'hero' })}>
  *   시작하기
@@ -53,8 +54,12 @@ export default function Analytics() {
  * ```
  */
 export function trackEvent(eventName: string, eventData?: Record<string, string | number | boolean>) {
-  if (typeof window !== 'undefined' && window.umami) {
+  if (typeof window === 'undefined') return;
+  if (window.umami) {
     window.umami.track(eventName, eventData);
+  }
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, eventData ?? {});
   }
 }
 
@@ -76,5 +81,7 @@ declare global {
       track: (eventName: string, eventData?: Record<string, string | number | boolean>) => void;
       trackView: (url: string) => void;
     };
+    // GA4 gtag — @next/third-parties의 <GoogleAnalytics />가 주입.
+    gtag?: (...args: unknown[]) => void;
   }
 }

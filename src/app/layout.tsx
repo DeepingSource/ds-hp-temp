@@ -11,10 +11,15 @@ import MotionProvider from "@/components/providers/MotionProvider";
 import HtmlLangSync from "@/components/layout/HtmlLangSync";
 import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
-// import Analytics from "@/components/Analytics"; // Umami Analytics 적용 시 주석 해제
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Analytics from "@/components/Analytics";
 
 // Preview/staging deploys stay out of the index — only production sets this flag.
 const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
+
+// Analytics is env-gated: components render only when their IDs are set.
+// Leave NEXT_PUBLIC_GA_ID unset on preview/staging deploys to keep them out of GA4.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deepingsource.io"),
@@ -142,9 +147,10 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <LandingStickyCta />
         </Suspense>
-        {/* Umami Analytics - 환경 변수 설정 후 주석 해제
+        {/* Umami — NEXT_PUBLIC_UMAMI_* 미설정 시 스스로 null 반환 */}
         <Analytics />
-        */}
+        {/* GA4 — 측정 ID 있을 때만 로드(@next/third-parties, lazy) */}
+        {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>
   );

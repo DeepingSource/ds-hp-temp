@@ -114,7 +114,10 @@ if (isGhPages) {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; font-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none';",
+            // Analytics 허용: GA4(googletagmanager/google-analytics) + Umami Cloud.
+            // Umami는 스크립트=cloud.umami.is, 비콘=gateway.umami.is 로 도메인이 다르므로
+            // *.umami.is 와일드카드로 둘 다 허용. ⚠ 자가호스팅 시 해당 도메인을 추가할 것.
+            value: "default-src 'self'; font-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.umami.is; object-src 'none';",
           },
           {
             key: "Permissions-Policy",
