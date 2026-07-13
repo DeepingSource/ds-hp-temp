@@ -119,7 +119,13 @@ const localizedList = (label: string) =>
   );
 
 export default config({
-  storage: { kind: 'local' },
+  // GitHub 모드: 편집이 DeepingSource/ds-hp-temp 에 커밋됨. 편집자는 /keystatic 에서
+  // GitHub 로그인(App: deepingsource-hp-cms). env(KEYSTATIC_GITHUB_*·KEYSTATIC_SECRET·
+  // NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG) 필요 — docs/PHASE_C_github-mode-setup.md 참고.
+  storage: {
+    kind: 'github',
+    repo: { owner: 'DeepingSource', name: 'ds-hp-temp' },
+  },
   ui: {
     brand: { name: 'DeepingSource' },
   },

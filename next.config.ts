@@ -98,7 +98,7 @@ if (isGhPages) {
           { key: "Referrer-Policy", value: "origin-when-cross-origin" },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self' https://unpkg.com https://api.github.com https://github.com; font-src 'self' https://unpkg.com https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://github.com; object-src 'none';",
+            value: "default-src 'self' https://unpkg.com https://api.github.com https://github.com; font-src 'self' https://unpkg.com https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://github.com https://*.githubusercontent.com; object-src 'none';",
           },
         ],
       },
