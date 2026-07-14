@@ -78,6 +78,20 @@ const blogComponents = {
   }),
 };
 
+// B-5: 블로그 카드 아이콘 — src/components/blog/ArticleCard.tsx 의 iconMap 키와 1:1.
+// 목록에 없는 이름을 넣으면 사이트가 조용히 Newspaper 로 폴백하므로 select 로 제한.
+// 신규 아이콘은 ArticleCard iconMap 에 추가한 뒤 이 목록에도 추가.
+const BLOG_ICON_NAMES = [
+  'Newspaper', 'Lightbulb', 'BarChart3', 'Users', 'ShieldCheck', 'Thermometer',
+  'Sun', 'Zap', 'Package', 'Moon', 'Clock', 'Building2', 'Sparkles', 'LayoutGrid',
+  'Heart', 'Gift', 'Eye', 'Coffee', 'Calendar', 'UserCheck', 'Tag', 'Rocket',
+  'Flower2', 'CloudRain', 'Umbrella', 'TrendingDown', 'Sparkle', 'Snowflake',
+  'ShoppingCart', 'PiggyBank', 'MapPin', 'Leaf', 'Handshake', 'GraduationCap',
+  'ChefHat', 'BookOpen', 'Bike', 'Trophy', 'Trash2', 'Share2', 'PartyPopper',
+  'MessageCircle', 'CreditCard', 'CalendarDays',
+] as const;
+const blogIconOptions = BLOG_ICON_NAMES.map((n) => ({ label: n, value: n }));
+
 /** An id-keyed array item: a fixed id (structure lives in code) + localized copy fields. */
 const idItem = (
   label: string,
@@ -187,7 +201,12 @@ export default config({
           description: '항목별 추가. 기존 태그를 재사용하면 묶임이 좋아집니다.',
           itemLabel: (p) => p.value,
         }),
-        icon: fields.text({ label: 'Lucide 아이콘', defaultValue: 'Newspaper' }),
+        icon: fields.select({
+          label: '아이콘 (목록 카드)',
+          description: '목록 카드에 표시되는 Lucide 아이콘. 목록에서 선택(직접 입력 시 조용히 기본 아이콘으로 대체됨).',
+          options: blogIconOptions,
+          defaultValue: 'Newspaper',
+        }),
         cover: fields.image({
           label: '커버 이미지',
           description: '2:1 비율 권장, webp·500KB 이하. 목록·글 상단·OG에 사용.',

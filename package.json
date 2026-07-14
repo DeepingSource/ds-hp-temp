@@ -18,6 +18,7 @@
     "start": "next start",
     "lint": "eslint",
     "lint:tokens": "node scripts/check-design-tokens.mjs",
+    "lint:frontmatter": "node scripts/check-article-frontmatter.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },
