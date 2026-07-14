@@ -3,7 +3,7 @@ import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: '회사 소개 — DEEPINGSOURCE Inc. | 모든 매장을 한 매장처럼',
+  title: '회사 소개 — DEEPINGSOURCE Inc. | 모든 공간을, 완벽하게',
   description: `${COMPANY.companyIntro} ${COMPANY.foundingYear}년 설립, 특허 ${COMPANY.patentsLabel}.`,
   keywords: ['DeepingSource', '딥핑소스', '회사 소개', 'About', 'AI 기업', 'Spatial Agentic AI', '익명화 AI'],
   alternates: {

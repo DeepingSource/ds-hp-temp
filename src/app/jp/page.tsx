@@ -9,7 +9,7 @@ const languages = {
 };
 
 export const metadata: Metadata = {
-  title: 'DEEPINGSOURCE | 匿名化空間AI — すべての店舗を、ひとつの店舗のように',
+  title: 'DEEPINGSOURCE | 匿名化空間AI — すべての空間を、完璧に',
   description: '匿名化された空間AIがすべての店舗を安全に読み、今日やること一行にまとめます。store insight · store care · store agent · SAAI.',
   alternates: { canonical: '/jp', languages },
   openGraph: {

@@ -44,7 +44,7 @@ type Copy = {
 const C: Record<Locale, Copy> = {
   ko: {
     badge: 'Press & Media',
-    heroMaster: '모든 매장을 한 매장처럼.',
+    heroMaster: '모든 공간을, 완벽하게.',
     heroMasterAccent: '그 여정을 언론이 기록합니다',
     heroSub: '익명화 AI와 오프라인 공간 인텔리전스에 관한 보도자료, 수상·인증, 미디어 언급을 한곳에 모았습니다.',
     coverageEyebrow: 'Coverage',
@@ -78,7 +78,7 @@ const C: Record<Locale, Copy> = {
   },
   en: {
     badge: 'Press & Media',
-    heroMaster: 'Every store, like one.',
+    heroMaster: 'Perfect every space.',
     heroMasterAccent: 'The press records the journey',
     heroSub: 'Press releases, awards and credentials, and media mentions about anonymization AI and offline spatial intelligence — gathered in one place.',
     coverageEyebrow: 'Coverage',
@@ -112,7 +112,7 @@ const C: Record<Locale, Copy> = {
   },
   jp: {
     badge: 'Press & Media',
-    heroMaster: 'すべての店舗を、ひとつの店舗のように。',
+    heroMaster: 'すべての空間を、完璧に。',
     heroMasterAccent: 'その歩みをメディアが記録します',
     heroSub: '匿名化AIとオフライン空間インテリジェンスに関するプレスリリース、受賞・認証、メディア掲載を一か所にまとめました。',
     coverageEyebrow: 'Coverage',

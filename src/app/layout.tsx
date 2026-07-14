@@ -23,7 +23,7 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deepingsource.io"),
-  title: "DEEPINGSOURCE | Anonymized Spatial AI — 모든 매장을 한 매장처럼",
+  title: "DEEPINGSOURCE | Anonymized Spatial AI — 모든 공간을, 완벽하게",
   description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. store insight · store agent · store care · SAAI.",
   alternates: {
     canonical: 'https://deepingsource.io',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "DEEPINGSOURCE | Anonymized Spatial AI",
-    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 매장을 한 매장처럼.",
+    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 공간을, 완벽하게.",
     url: "https://deepingsource.io",
     siteName: "DeepingSource",
     locale: "ko_KR",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "DEEPINGSOURCE | Anonymized Spatial AI",
-    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 매장을 한 매장처럼.",
+    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 공간을, 완벽하게.",
     images: ["/twitter-image"],
   },
   robots: {

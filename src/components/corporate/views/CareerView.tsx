@@ -50,7 +50,7 @@ type Copy = {
 const C: Record<Locale, Copy> = {
   ko: {
     badge: 'Careers',
-    heroMaster: '모든 매장을 한 매장처럼 —',
+    heroMaster: '모든 공간을, 완벽하게 —',
     heroMasterAccent: '그 한 회사를 함께 짜는 자리',
     heroSub: '지금 공개된 채용 공고는 없습니다. 함께하고 싶은 마음이 있다면 언제든 먼저 이야기를 들려주세요.',
     cultureEyebrow: 'Why DeepingSource',
@@ -92,7 +92,7 @@ const C: Record<Locale, Copy> = {
   },
   en: {
     badge: 'Careers',
-    heroMaster: 'Every store, like one —',
+    heroMaster: 'Perfect every space —',
     heroMasterAccent: 'the role of weaving that one company',
     heroSub: 'We have no open roles right now. If you’d like to work with us, reach out anytime — we’d love to hear from you.',
     cultureEyebrow: 'Why DeepingSource',
@@ -134,7 +134,7 @@ const C: Record<Locale, Copy> = {
   },
   jp: {
     badge: 'Careers',
-    heroMaster: 'すべての店舗を、ひとつの店舗のように —',
+    heroMaster: 'すべての空間を、完璧に —',
     heroMasterAccent: 'そのひとつの会社をともに織りなす場所',
     heroSub: '現在、公開中の募集はありません。一緒に働きたい方は、いつでもまずはお声がけください。',
     cultureEyebrow: 'Why DeepingSource',

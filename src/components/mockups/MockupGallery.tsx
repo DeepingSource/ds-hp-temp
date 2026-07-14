@@ -213,7 +213,7 @@ const DEMOS: DemoItem[] = [
     label: '#9 본부 200점 지도',
     product: '공통',
     device: 'desktop',
-    description: '한국 지도 200점(187/9/4) + KPI 1,247건·89%·2.4h. "모든 매장을 한 매장처럼."',
+    description: '한국 지도 200점(187/9/4) + KPI 1,247건·89%·2.4h. "모든 공간을, 완벽하게."',
     render: ({ active, locale }) => <HqMapDashboardMockup active={active} locale={locale} />,
   },
   {

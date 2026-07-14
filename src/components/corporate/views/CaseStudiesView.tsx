@@ -151,7 +151,7 @@ const C: Record<Locale, {
           { text: '여러 매장이 한 매장처럼 운영됩니다.', who: 'A편의점 본사 운영 본부장 (예시 인용)' },
           { text: '우리 점주들이 먼저 도입을 요청합니다.', who: 'A편의점 가맹사업본부장 (예시 인용)' },
         ],
-        note: '본사 마스터 “모든 매장을 한 매장처럼”이 헤드라인에 박히는 검증 단계의 원형.',
+        note: '본사 마스터 “모든 공간을, 완벽하게”가 헤드라인에 박히는 검증 단계의 원형.',
       },
       {
         stepTitle: '번역',
@@ -193,7 +193,7 @@ const C: Record<Locale, {
           { text: '본사 화면이 점주 폰과 같은 말을 합니다.', who: 'C카페 가맹사업본부장 (예시 인용)' },
           { text: '알림이 줄었는데 매장은 더 깨끗합니다.', who: 'C카페 점주 김OO · 강남 매장 (예시 인용)' },
         ],
-        note: '두 마스터 카피가 한 페이지의 다른 면에 박히는 사례 — 상단 본사 “모든 매장을 한 매장처럼”, 하단 점주 “우리 매장이 대표 매장처럼”.',
+        note: '두 마스터 카피가 한 페이지의 다른 면에 박히는 사례 — 상단 본사 “모든 공간을, 완벽하게”, 하단 점주 “우리 매장이 대표 매장처럼”.',
       },
       {
         stepTitle: '재측정',
@@ -287,7 +287,7 @@ const C: Record<Locale, {
           { text: 'Multiple stores run like one store.', who: 'HQ Operations Director, Convenience Chain A (illustrative)' },
           { text: 'Our owners are the ones asking us to adopt it first.', who: 'Franchise Business Head, Convenience Chain A (illustrative)' },
         ],
-        note: 'The archetype of the verification stage, where the HQ master copy “Every store, like one” lands in the headline.',
+        note: 'The archetype of the verification stage, where the HQ master copy “Perfect every space” lands in the headline.',
       },
       {
         stepTitle: 'Translate',
@@ -329,7 +329,7 @@ const C: Record<Locale, {
           { text: 'The HQ screen speaks the same language as the owner’s phone.', who: 'Franchise Business Head, Cafe C (illustrative)' },
           { text: 'Alerts dropped, yet the stores are cleaner.', who: 'Kim, owner · Gangnam store, Cafe C (illustrative)' },
         ],
-        note: 'A case where both master copies land on different sides of one page — HQ’s “Every store, like one” above, owner’s “Our store, like the best” below.',
+        note: 'A case where both master copies land on different sides of one page — HQ’s “Perfect every space” above, owner’s “Our store, like the best” below.',
       },
       {
         stepTitle: 'Re-measure',
@@ -423,7 +423,7 @@ const C: Record<Locale, {
           { text: '複数の店舗がひとつの店舗のように運営されます。', who: 'Aコンビニ本社 運営本部長（例として引用）' },
           { text: '当社の店主たちが、自ら導入を求めてきます。', who: 'Aコンビニ 加盟事業本部長（例として引用）' },
         ],
-        note: '本社のマスターコピー「すべての店舗を、ひとつの店舗のように。」が見出しに刻まれる、検証段階の原型。',
+        note: '本社のマスターコピー「すべての空間を、完璧に。」が見出しに刻まれる、検証段階の原型。',
       },
       {
         stepTitle: '翻訳',
@@ -465,7 +465,7 @@ const C: Record<Locale, {
           { text: '本社の画面が、店主のスマホと同じ言葉を話します。', who: 'Cカフェ 加盟事業本部長（例として引用）' },
           { text: '通知は減ったのに、店舗はもっと清潔です。', who: 'Cカフェ 店主 キム氏 · 江南店（例として引用）' },
         ],
-        note: '2つのマスターコピーが1ページの表裏に刻まれる事例 — 上部に本社「すべての店舗を、ひとつの店舗のように。」、下部に店主「私たちの店が、代表店のように。」。',
+        note: '2つのマスターコピーが1ページの表裏に刻まれる事例 — 上部に本社「すべての空間を、完璧に。」、下部に店主「私たちの店が、代表店のように。」。',
       },
       {
         stepTitle: '再測定',

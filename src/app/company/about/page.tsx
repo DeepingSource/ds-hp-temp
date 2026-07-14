@@ -3,7 +3,7 @@ import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'About — DEEPINGSOURCE Inc. | Every store, like one.',
+  title: 'About — DEEPINGSOURCE Inc. | Perfect every space.',
   description: `DeepingSource is an AI company that safely understands and optimizes every offline space through anonymization AI. Founded ${COMPANY.foundingYear}, ${COMPANY.patents} patents.`,
   keywords: ['DeepingSource', 'About', 'AI company', 'Spatial Agentic AI', 'Anonymization AI'],
   alternates: {

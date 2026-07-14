@@ -9,7 +9,7 @@ import { type Locale } from './i18n';
  *      — Copy_Decision_v1 (두 마스터)
  *
  * RULE: do not invent copy here — only lift from the SOT. The two master copies
- * (모든 매장을 한 매장처럼 / 우리 매장이 대표 매장처럼) live in i18n.ts homeCopy;
+ * (모든 공간을, 완벽하게 / 우리 매장이 대표 매장처럼) live in i18n.ts homeCopy;
  * this file holds the *texture* lines the site was missing.
  *
  * NOTE (jp): the SOT copy spine is ko/en authoritative. Japanese renderings below
