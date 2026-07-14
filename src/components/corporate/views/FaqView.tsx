@@ -26,6 +26,7 @@ const C: Record<Locale, {
   ctaTitle: string;
   ctaButton: string;
   commonLabel: string;
+  sectionCta: string;
 }> = {
   en: {
     eyebrow: 'FAQ',
@@ -35,6 +36,7 @@ const C: Record<Locale, {
     ctaTitle: 'Our team answers any remaining questions',
     ctaButton: 'Contact us',
     commonLabel: 'Common',
+    sectionCta: 'Ask us about this',
   },
   ko: {
     eyebrow: 'FAQ',
@@ -44,6 +46,7 @@ const C: Record<Locale, {
     ctaTitle: '남은 질문은 담당자가 직접 답변드립니다',
     ctaButton: '문의하기',
     commonLabel: '공통',
+    sectionCta: '이 주제로 문의하기',
   },
   jp: {
     eyebrow: 'FAQ',
@@ -53,6 +56,7 @@ const C: Record<Locale, {
     ctaTitle: '残りのご質問は担当者が直接お答えします',
     ctaButton: 'お問い合わせ',
     commonLabel: '共通',
+    sectionCta: 'この件について問い合わせる',
   },
 };
 
@@ -62,15 +66,16 @@ export default function FaqView({ locale }: { locale: Locale }) {
   const storeAgentKo = faqData.flatMap((cat) => cat.items);
 
   const sections = [
-    { id: 'common' as const, label: c.commonLabel, ko: commonFaqs },
-    { id: 'storecare' as const, label: 'store care', ko: storeCareFaqs },
-    { id: 'storeinsight' as const, label: 'store insight', ko: storeInsightFaqs },
-    { id: 'storeagent' as const, label: 'store agent', ko: storeAgentKo },
+    { id: 'common' as const, label: c.commonLabel, ko: commonFaqs, product: null },
+    { id: 'storecare' as const, label: 'store care', ko: storeCareFaqs, product: 'StoreCare' },
+    { id: 'storeinsight' as const, label: 'store insight', ko: storeInsightFaqs, product: 'StoreInsight' },
+    { id: 'storeagent' as const, label: 'store agent', ko: storeAgentKo, product: 'StoreAgent' },
   ].map((s) => {
     const source = locale === 'ko' ? s.ko : (faqI18n[s.id]?.[locale] ?? s.ko);
     return {
       id: s.id,
       label: s.label,
+      product: s.product,
       items: source.map((it) => ({
         question: it.question,
         answer: typeof it.answer === 'function' ? it.answer(locale) : it.answer,
@@ -113,6 +118,15 @@ export default function FaqView({ locale }: { locale: Locale }) {
             <div key={section.id} id={section.id} className="scroll-mt-24">
               <h2 className="text-xl font-bold text-gray-900 mb-2">{section.label}</h2>
               <Accordion items={section.items} idPrefix={`faq-${section.id}`} />
+              <div className="mt-4 text-right">
+                <Link
+                  href={localeHref(locale, '/contact') + (section.product ? `?product=${section.product}` : '')}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+                >
+                  {c.sectionCta}
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           ))}
         </div>
