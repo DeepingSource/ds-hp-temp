@@ -1,0 +1,315 @@
+# Technology page copy — edited in Keystatic (/keystatic → "Technology — 기술 카피").
+# 하위 다이어그램(AnonymizationPipeline·IntegratedLoopDiagram·PRIVACY_COPY)·라우트/아이콘·
+# 특허 수(COMPANY.patents)는 코드 유지. 객체배열의 id 순서 = 코드 아이콘/href 순서, 재정렬 금지.
+heroBadge:
+  ko: Technology
+  en: Technology
+  jp: Technology
+heroTitleA:
+  ko: SAAI를 움직이는 건,
+  en: What moves SAAI
+  jp: SAAIを動かすのは、
+heroTitleB:
+  ko: 딥핑소스의 기술입니다.
+  en: is DeepingSource technology.
+  jp: ディーピングソースの技術です。
+heroSub:
+  ko: 익명화, 공간 지능, 그리고 에이전트 AI — 세 개의 축이 공간을 읽고, 운영합니다.
+  en: Anonymization, spatial intelligence, and agentic AI — three axes that read space and operate it.
+  jp: 匿名化、空間知能、そしてエージェントAI — 三つの軸が空間を読み、運営します。
+heroPatentsLabel:
+  ko: 보유 특허
+  en: Patents
+  jp: 保有特許
+heroStackLine:
+  ko: 익명화 · 공간 지능 · 에이전트 AI
+  en: Anonymizer · Spatial AI · Agentic AI
+  jp: 匿名化 · 空間知能 · エージェントAI
+problemEyebrow:
+  ko: Layer 1 · Anonymizer
+  en: Layer 1 · Anonymizer
+  jp: Layer 1 · Anonymizer
+problemTitle:
+  ko: 비전 AI는, 결국 사람을 봅니다
+  en: Vision AI, in the end, sees people
+  jp: ビジョンAIは、結局は人を見ます
+problemSub:
+  ko: 사람을 보는 그 순간, 그건 개인정보가 됩니다. GDPR도, CCPA도, 국내 개인정보보호법도 — 얼굴과 신원을 그냥 두지 않습니다.
+  en: The moment it sees a person, that becomes personal data. GDPR, CCPA, Korea’s PIPA — none of them let faces and identities just sit there.
+  jp: 人を見たその瞬間、それは個人情報になります。GDPRも、CCPAも、韓国の個人情報保護法も — 顔と身元をそのままにはしません。
+oldTag:
+  ko: 그냥 두면
+  en: Left as-is
+  jp: そのままにすると
+oldTitle:
+  ko: 얼굴과 신원이, 그대로 남는다
+  en: Faces and identities stay in the frame
+  jp: 顔と身元が、そのまま残る
+newTag:
+  ko: Anonymizer
+  en: Anonymizer
+  jp: Anonymizer
+newTitle:
+  ko: 신원은 지우고, 분석은 그대로
+  en: Erase identity, keep the analysis
+  jp: 身元は消し、分析はそのまま
+howEyebrow:
+  ko: How It Works
+  en: How It Works
+  jp: How It Works
+howTitle:
+  ko: 입력 시점에 신원을 지웁니다
+  en: Identity is erased at the moment of input
+  jp: 入力の時点で、身元を消します
+howSub:
+  ko: 읽기 전에 먼저 지운다 — 익명화 위에서만 모든 분석이 시작됩니다.
+  en: Erase before you read — every analysis begins only on top of anonymization.
+  jp: 読む前に、まず消す — すべての分析は匿名化の上でのみ始まります。
+demoEyebrow:
+  ko: Anonymizer Demo
+  en: Anonymizer Demo
+  jp: Anonymizer Demo
+demoTitle:
+  ko: 들어오는 순간, 신원을 지웁니다
+  en: The instant it arrives, identity is gone
+  jp: 入ってきた瞬間、身元を消します
+demoSub:
+  ko: CCTV 영상이 들어오는 그 시점에 신원을 제거합니다. 여러 사람을 동시에 보호하고, 원본은 어디에도 남기지 않습니다.
+  en: Identity is removed the moment CCTV footage comes in. Many people are protected at once, and the original is left nowhere.
+  jp: CCTV映像が入ってくるその時点で身元を除去します。多数の人を同時に保護し、原本はどこにも残しません。
+demoCaption:
+  ko: 실제 출력입니다 — 합성 일러스트가 아니라, 제품이 만든 익명화 영상. 원본 → 익명화 → 익명 상태로 추적.
+  en: This is real output — the product's own anonymized footage, not a synthetic illustration. Original → anonymized → tracked while anonymized.
+  jp: 実際の出力です——合成イラストではなく、製品が生成した匿名化映像。原本 → 匿名化 → 匿名のまま追跡。
+demoAria:
+  ko: 원본·익명화·익명 추적 3분할로 보여주는 실제 익명화 출력 영상
+  en: A three-panel clip showing real anonymization output — original, anonymized, and tracked while anonymized
+  jp: 原本・匿名化・匿名追跡の3分割で示す実際の匿名化出力映像
+coreEyebrow:
+  ko: Three Axes
+  en: Three Axes
+  jp: Three Axes
+coreTitle:
+  ko: 공간을 운영하는, 세 개의 기술 축
+  en: Three technical axes that operate space
+  jp: 空間を運営する、三つの技術の軸
+coreSub:
+  ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI — 세 축이 쌓여 공간을 운영합니다.
+  en: Spatial intelligence on top of anonymization, agentic AI on top of that — three axes that stack up to operate space.
+  jp: 匿名化の上に空間知能、その上にエージェントAI — 三つの軸が積み重なって空間を運営します。
+learnMore:
+  ko: 자세히 보기
+  en: Learn more
+  jp: 詳しく見る
+complianceEyebrow:
+  ko: Privacy by Design
+  en: Privacy by Design
+  jp: Privacy by Design
+complianceTitle:
+  ko: 어디서든, 프라이버시 바이 디자인
+  en: Privacy by design, everywhere
+  jp: どこでも、プライバシー・バイ・デザイン
+complianceSub:
+  ko: 원본은 저장하지 않고, 재식별은 불가능합니다. GDPR·CCPA·국내 개인정보보호법, 그리고 SOC2 인증까지 충족합니다.
+  en: The original is never stored and re-identification is impossible. Compliant with GDPR, CCPA, Korea’s PIPA — and SOC 2 certified.
+  jp: 原本は保存せず、再識別は不可能です。GDPR・CCPA・韓国の個人情報保護法、そしてSOC2認証まで満たします。
+patentsLabel:
+  ko: 보유 특허
+  en: Patents
+  jp: 保有特許
+patentsStackLine:
+  ko: 익명화 · 공간 지능 · 에이전트 AI
+  en: Anonymizer · Spatial Intelligence · Agentic AI
+  jp: 匿名化 · 空間知能 · エージェントAI
+poweredLabel:
+  ko: 이 기술이 구동하는 제품
+  en: Products powered by this technology
+  jp: この技術が支える製品
+ctaBadge:
+  ko: 익명화 · 공간 지능 · 에이전트 AI
+  en: Anonymizer · Spatial AI · Agentic AI
+  jp: 匿名化 · 空間知能 · エージェントAI
+ctaTitle:
+  ko: 기술이, 공간을 운영합니다
+  en: The technology that operates space
+  jp: 技術が、空間を運営します
+ctaSub:
+  ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI. 도입 요건과 기술 스펙, 전문 팀이 직접 설명합니다.
+  en: Spatial intelligence on top of anonymization, agentic AI on top of that. Deployment requirements and tech specs, explained directly by our team.
+  jp: 匿名化の上に空間知能、その上にエージェントAI。導入要件と技術仕様、専門チームが直接ご説明します。
+ctaPrimary:
+  ko: 도입 검토 상담 신청
+  en: Request an adoption consultation
+  jp: 導入検討のご相談
+ctaSecondary:
+  ko: 회사 소개 보기
+  en: About the company
+  jp: 会社紹介を見る
+dilemmaOld:
+  ko:
+    - 원본 영상에 얼굴과 신원이 그대로
+    - 동의 없이 다수가 노출되는 구조
+    - 저장될수록 규제 위험은 커진다
+    - 결국 분석을 포기하거나, 원본을 떠안는다
+  en:
+    - Faces and identities remain in the raw footage
+    - Dozens of people exposed without consent
+    - The longer it’s stored, the greater the risk
+    - You abandon the analysis, or carry the raw video
+  jp:
+    - 原本映像に顔と身元がそのまま残る
+    - 同意なく多数の人がさらされる構造
+    - 保存するほど、規制リスクは大きくなる
+    - 結局、分析を断念するか、原本を抱え込む
+dilemmaNew:
+  ko:
+    - 입력 시점에 신원을 지운다
+    - 여러 사람을 동시에, 동의 없이도 보호
+    - 원본은 남기지 않는다
+    - 분석에 필요한 흐름은 원본 품질로 유지
+  en:
+    - Identity is removed at the moment of input
+    - Many people protected at once, no consent required
+    - The original is never kept
+    - The movement that analysis needs stays at original quality
+  jp:
+    - 入力の時点で身元を消す
+    - 同意がなくても、多数を同時に保護
+    - 原本は残さない
+    - 分析に必要な流れは原本品質で維持
+demoItems:
+  - id: erase
+    label:
+      ko: 입력 시점 익명화
+      en: Anonymized at input
+      jp: 入力時点で匿名化
+    desc:
+      ko: 읽기 전에 먼저 신원을 지웁니다
+      en: Identity erased before anything is read
+      jp: 読む前に、まず身元を消します
+  - id: protect
+    label:
+      ko: 동의 없이도 보호
+      en: Protected without consent
+      jp: 同意がなくても保護
+    desc:
+      ko: 여러 사람을 동시에 익명화
+      en: Many people de-identified at once
+      jp: 多数の人を同時に匿名化
+  - id: no-original
+    label:
+      ko: 원본 미보존
+      en: No original kept
+      jp: 原本を残さない
+    desc:
+      ko: 원본은 시스템 어디에도 남기지 않습니다
+      en: The original is left nowhere in the system
+      jp: 原本はシステムのどこにも残しません
+stack:
+  - id: anonymizer
+    tag:
+      ko: ① Anonymizer
+      en: ① Anonymizer
+      jp: ① Anonymizer
+    title:
+      ko: 익명화
+      en: Anonymization
+      jp: 匿名化
+    desc:
+      ko: 비전 AI는 결국 사람을 봅니다. 입력 시점에 신원을 지우고, 원본은 남기지 않습니다. 모든 분석이 그 위에서 시작됩니다.
+      en: Vision AI ultimately sees people. Identity is erased at the moment of input and the original is never kept. Every analysis begins on top of it.
+      jp: ビジョンAIは結局、人を見ます。入力の時点で身元を消し、原本は残しません。すべての分析がその上で始まります。
+  - id: spatial
+    tag:
+      ko: ② Spatial AI
+      en: ② Spatial AI
+      jp: ② Spatial AI
+    title:
+      ko: 공간 지능
+      en: Spatial intelligence
+      jp: 空間知能
+    desc:
+      ko: 누구인지가 아니라, 무엇을 어떻게. 검출·자세·재식별·군중 밀도를 하나의 영상에서 읽고, MTMC로 흩어진 카메라를 한 공간으로 정합해 카메라가 바뀌어도 한 사람으로 이어 추적합니다.
+      en: Not who, but what and how. Detection, pose, re-ID, crowd density from a single feed — and MTMC stitches scattered cameras into one space, tracking a person as one even across cameras.
+      jp: 誰かではなく、何をどう。人物検出・姿勢推定・再識別・群衆密度を一つの映像から読み取り、MTMCで散らばったカメラを一つの空間に整合し、カメラが変わっても一人として追跡し続けます。
+  - id: agentic
+    tag:
+      ko: ③ Agentic AI
+      en: ③ Agentic AI
+      jp: ③ Agentic AI
+    title:
+      ko: 에이전트 AI
+      en: Agentic AI
+      jp: エージェントAI
+    desc:
+      ko: 범용 모델이 아니라, 공간 운영에 맞게 튜닝한 AI. 보는 데서 그치지 않고, 다음 한 수까지 판단합니다.
+      en: Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges the next move.
+      jp: 汎用モデルではなく、空間運営に合わせてチューニングしたAI。見るだけで終わらず、次の一手まで判断します。
+complianceItems:
+  - id: eu
+    region:
+      ko: EU
+      en: EU
+      jp: EU
+    law:
+      ko: GDPR
+      en: GDPR
+      jp: GDPR
+    desc:
+      ko: 유럽 일반 개인정보보호법
+      en: EU General Data Protection Regulation
+      jp: EU一般データ保護規則
+  - id: us
+    region:
+      ko: US
+      en: US
+      jp: US
+    law:
+      ko: CCPA
+      en: CCPA
+      jp: CCPA
+    desc:
+      ko: 캘리포니아 소비자 개인정보보호법
+      en: California Consumer Privacy Act
+      jp: カリフォルニア州消費者プライバシー法
+  - id: kr
+    region:
+      ko: KR
+      en: KR
+      jp: KR
+    law:
+      ko: 개인정보보호법
+      en: PIPA
+      jp: PIPA
+    desc:
+      ko: 한국 개인정보보호법
+      en: Korea Personal Information Protection Act
+      jp: 韓国個人情報保護法
+poweredProducts:
+  - id: insight
+    name:
+      ko: store insight
+      en: store insight
+      jp: store insight
+    desc:
+      ko: 어제를 읽다 — 매출 너머의 공간
+      en: Reads yesterday — the space beyond sales
+      jp: 昨日を読む — 売上の先にある空間
+  - id: agent
+    name:
+      ko: store agent
+      en: store agent
+      jp: store agent
+    desc:
+      ko: 다음을 실행하다 — 권고는 AI, 결정은 사람
+      en: Acts on next — AI recommends, people decide
+      jp: 次を動かす — 推奨はAI、決定は人
+  - id: care
+    name:
+      ko: store care
+      en: store care
+      jp: store care
+    desc:
+      ko: 지금을 알리다 — 필요한 순간만 실시간
+      en: Flags the now — only the moments that matter
+      jp: 今を知らせる — 必要な瞬間だけリアルタイム

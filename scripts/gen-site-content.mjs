@@ -36,6 +36,20 @@ function arrayByIdLocaleMajor(arr, fields) {
   return out;
 }
 
+/** [{ id, f:{ko,en,jp} }] → locale-major ORDERED array { en: [{f}], ko: …, jp: … }.
+ *  id 는 편집자용 라벨로만 쓰고 출력에서 제외 — 뷰가 인덱스로 소비(순서=구조). */
+function arrayItemsLocaleMajor(arr, fields) {
+  const out = {};
+  for (const loc of LOCALES) {
+    out[loc] = (arr ?? []).map((item) => {
+      const entry = {};
+      for (const f of fields) entry[f] = item?.[f]?.[loc] ?? '';
+      return entry;
+    });
+  }
+  return out;
+}
+
 // ── home — flat master copy ──────────────────────────────────────────────────
 const HOME_FIELDS = ['masterCompany', 'masterOwner', 'heroSub', 'ctaPrimary', 'ctaSecondary'];
 const homeCopy = toLocaleMajor(load('content/site/home.yaml'), HOME_FIELDS);
@@ -151,9 +165,37 @@ const PRICING_FLAT = [
 ];
 const pricing = toLocaleMajor(load('content/site/pricing.yaml'), PRICING_FLAT);
 
+// ── technology — flat copy + 2 string lists + 4 ordered object-arrays (icons/hrefs/
+//    특허수/다이어그램 라벨은 코드 유지). coreTitle·ctaBadge 는 인자 미사용 상수라 문자열. ──
+const TECH_FLAT = [
+  'heroBadge', 'heroTitleA', 'heroTitleB', 'heroSub', 'heroPatentsLabel', 'heroStackLine',
+  'problemEyebrow', 'problemTitle', 'problemSub', 'oldTag', 'oldTitle', 'newTag',
+  'newTitle', 'howEyebrow', 'howTitle', 'howSub', 'demoEyebrow', 'demoTitle',
+  'demoSub', 'demoCaption', 'demoAria', 'coreEyebrow', 'coreTitle', 'coreSub',
+  'learnMore', 'complianceEyebrow', 'complianceTitle', 'complianceSub', 'patentsLabel', 'patentsStackLine',
+  'poweredLabel', 'ctaBadge', 'ctaTitle', 'ctaSub', 'ctaPrimary', 'ctaSecondary',
+  'dilemmaOld', 'dilemmaNew',
+];
+const technologyYaml = load('content/site/technology.yaml');
+const technologyFlat = toLocaleMajor(technologyYaml, TECH_FLAT);
+const techDemoItems = arrayItemsLocaleMajor(technologyYaml.demoItems, ['label', 'desc']);
+const techStack = arrayItemsLocaleMajor(technologyYaml.stack, ['tag', 'title', 'desc']);
+const techCompliance = arrayItemsLocaleMajor(technologyYaml.complianceItems, ['region', 'law', 'desc']);
+const techPowered = arrayItemsLocaleMajor(technologyYaml.poweredProducts, ['name', 'desc']);
+const technology = {};
+for (const loc of LOCALES) {
+  technology[loc] = {
+    ...technologyFlat[loc],
+    demoItems: techDemoItems[loc],
+    stack: techStack[loc],
+    complianceItems: techCompliance[loc],
+    poweredProducts: techPowered[loc],
+  };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology)');
