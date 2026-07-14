@@ -15,7 +15,7 @@
 | Vercel 배포 정상화 | ✅ 완료 | 이 문서 §1 |
 | Keystatic CMS — GitHub 모드 전환 | ✅ 완료 | [PHASE_C](./PHASE_C_github-mode-setup.md) |
 | Keystatic 고도화 (편집자 루프·온보딩) | 🟡 Week 1–3 완료, 대형 항목 잔여 | [KEYSTATIC_ENHANCEMENT_PLAN](./KEYSTATIC_ENHANCEMENT_PLAN_v1.md) |
-| 페이지 카피 CMS화 (Phase D) | 🟢 14 싱글톤 (legal만 잔여) | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
+| 페이지 카피 CMS화 (Phase D) | ✅ 완료 (16 싱글톤: 카피 14 + 법무 2) | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
 | 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | `피드백-반영-계획-260714.md` (repo-root) |
 | 런치 준비 | 🟡 진행 중 | [LAUNCH_PLAN](./LAUNCH_PLAN_v1.md) |
 
@@ -55,10 +55,18 @@
 
 ## 3. 페이지 카피 CMS화 (Phase D)
 
-- **완료(14)**: home · products · store-agent · saai · solutions · about · contact · pricing · technology · resources · **retail · drug · foodBeverage · largeSpace**(업종 4종, 공통 solBaseSchema + Retail beforeAfter/Large mtmc).
-- **잔여**: legal(privacy/terms) — `fields.mdx` 싱글톤 후보. 이미지 필드는 히어로/로고/팀사진 페이지에서 `fields.image`→`public/images/site/`로 도입.
-- **신규 gen 헬퍼**: `arrayItemsLocaleMajor(arr, fields)` — 순서 보존 로케일 배열(인덱스 기반 소비용, technology stack/powered 등). idItem은 순서=구조, 재정렬 금지.
-- **레시피**(재사용): View 카피 추출 → `content/site/<page>.yaml` → `gen-site-content.mjs`에 `<PAGE>_FLAT` 배열+결과객체+로그 추가 → 생성 JSON이 기존과 byte-identical 확인 → View를 `siteContent.<page>` + 코드 상수(함수·토큰·SOT) 머지로 배선.
+- **✅ 완료**: 카피 싱글톤 14(home · products · store-agent · saai · solutions · about · contact · pricing · technology · resources · retail · drug · foodBeverage · largeSpace) + **법무 mdx 2(privacyDoc · termsDoc)**. 어드민 nav 그룹: 시작하기 · 블로그 · 자주 편집 · 페이지 카피(제품/회사/업종) · 법무.
+- **잔여(선택)**: 싱글톤 이미지 필드(`fields.image`→`public/images/site/`)를 히어로/로고/팀사진 페이지에 도입.
+- **신규 gen 헬퍼**: `arrayItemsLocaleMajor(arr, fields)` — 순서 보존 로케일 배열(인덱스 소비용). idItem은 순서=구조, 재정렬 금지.
+
+### 새 "편집 가능 카피 페이지" 추가 레시피 (유지보수)
+1. View 인라인 `Record<Locale, Copy>` dict를 ground-truth로 추출(원본 대조용 ref JSON).
+2. `content/site/<page>.yaml` 생성 — field-major(`{ko,en,jp}`). flat/2줄배열/문자열리스트=그대로, 객체배열=`[{id, 필드:{ko,en,jp}}]`.
+3. `scripts/gen-site-content.mjs`: `<PAGE>_FLAT` + `toLocaleMajor`, 객체배열은 `arrayItemsLocaleMajor(arr,[필드])`(순서보존) 또는 `arrayByIdLocaleMajor`(id-keyed). 결과객체 + 콘솔로그에 키 추가.
+4. **byte-identity 게이트**: `npm run gen:content` 후 생성 JSON이 원본과 0-mismatch인지 대조.
+5. `keystatic.config.tsx`: 싱글톤 등록(flat=`localized`·리스트=`localizedList`·객체배열=`idItem`) + `navigation` 그룹에 키 추가(공통 shape는 `solBaseSchema`처럼 스프레드).
+6. View: `import siteContent` → `const CMS = siteContent.<page> as unknown as Record<Locale, Copy>` → `const t = CMS[locale]`. 코드 유지: 아이콘/href·SOT숫자·함수형·SVG·metadata.
+7. `npm run build` 그린 + 렌더 확인. **장문 문서(법무 등)는 `fields.mdx` 싱글톤 + MDXRemote 렌더**(예: `src/components/legal/LegalDoc.tsx`).
 
 ## 4. 홈페이지 피드백 반영 (`피드백-반영-계획-260714.md` · 16항목/4배치)
 

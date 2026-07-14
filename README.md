@@ -12,7 +12,7 @@ Next.js 16 (App Router) 기반 회사 사이트. 제품·기술 소개, STOREAGE
 - **Next.js 16** (App Router, React 19) — 서버 모드 (API 라우트 + proxy 미들웨어)
 - **Tailwind CSS v4** + 디자인 토큰 (`globals.css` + `tokens.ts`)
 - **Velite** — 블로그/용어집 콘텐츠 (`content/`)
-- **Keystatic** — CMS (`/keystatic`, **GitHub 모드** — `DeepingSource/ds-hp-temp`). 카피 싱글톤 9개 + `articles` 블로그 컬렉션. 편집 가이드는 `/help`.
+- **Keystatic** — CMS (`/keystatic`, **GitHub 모드** — `DeepingSource/ds-hp-temp`). `articles` 블로그 컬렉션 + **16 싱글톤**(홈·제품·기술·솔루션·업종 4종·리소스·요금·회사·상담 등 페이지 카피 + 법무 2). 편집 가이드는 사이트 `/help` 또는 CMS 「편집 가이드」. 카피는 `content/site/*.yaml` → `gen-site-content.mjs` → `src/data/generated/site-content.json`으로 컴파일된다.
 - **Vitest** — 테스트 / **ESLint** — 린트
 
 ## 빠른 시작
@@ -94,7 +94,8 @@ src/app/api/     서버 라우트 핸들러 (contact, newsletter, keystatic auth
 src/proxy.ts     미들웨어 — agent.* 호스트 미니사이트 라우팅
 src/components/  공유 View·컴포넌트
 src/data/        STOREAGENT 목업 데이터 (canonical.ts = SOT)
-content/         Velite 콘텐츠 (블로그·용어집), Keystatic content/site/
+content/articles/  블로그 MDX (Velite)         content/site/     페이지 카피 YAML (Keystatic 싱글톤)
+content/editor/    편집 가이드 MDX (/help)     content/legal/    개인정보·약관 MDX (법무 싱글톤)
 scripts/         gen-site-content, build-ghpages, check-design-tokens
 docs/            계획 산출물 (history, archive)
 ```
