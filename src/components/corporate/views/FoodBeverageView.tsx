@@ -14,6 +14,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * FoodBeverageView — shared café & F&B solution composition.
@@ -29,7 +30,7 @@ const SCENARIO_IMGS = [
 ];
 const DASH_IMG = '/images/industries/cafe-dashboard.webp';
 
-const C: Record<Locale, {
+type Copy = {
   badge: string;
   heroTitle: [string, string];
   heroSub: string;
@@ -44,71 +45,12 @@ const C: Record<Locale, {
   ctaTitle: [string, string];
   ctaSub: string;
   ctaButton: string;
-}> = {
-  ko: {
-    badge: '카페 · 음식점',
-    heroTitle: ['업종이 달라도', '한 매장처럼'],
-    heroSub: '위생, 대기와 회전, 발주 타이밍까지. 바쁜 외식 매장의 운영을 같은 기준으로 살펴 흔들림 없는 서비스를 돕습니다.',
-    heroCta: '도입 상담 신청',
-    scenarios: [
-      { tag: '위생', title: '매장 위생을 일관된 기준으로', body: '청결은 매장의 첫인상이자 신뢰입니다. 정리·청결 상태를 같은 기준으로 살펴, 바쁜 시간대에도 위생 수준이 흔들리지 않도록 돕습니다.' },
-      { tag: '대기·회전', title: '붐비는 순간을 미리 읽습니다', body: '대기 줄이 길어지면 이탈로 이어집니다. 혼잡과 좌석 상태를 살펴 붐비는 흐름을 빠르게 파악하고, 응대와 회전을 준비할 수 있도록 돕습니다.' },
-      { tag: '발주', title: '발주 타이밍을 놓치지 않게', body: '재료 소진과 매대 상태를 참고해 발주가 필요한 시점을 가늠합니다. 모자라거나 남기는 일을 줄이고 운영 리듬을 안정적으로 유지하도록 돕습니다.' },
-    ],
-    scenariosEyebrow: '외식 매장의 현장 문제',
-    scenariosHeading: '피크 타임에도 무너지지 않는 운영',
-    quote: '"피크 타임에 직접 다 챙기기 어려웠는데, 붐비는 흐름과 위생 상태를 같이 보니 미리 준비하게 됩니다. 직원이 바뀌어도 운영이 흔들리지 않아요."',
-    quoteName: '카페 운영 점주',
-    quoteRole: '외식 매장',
-    ctaEyebrow: '무료 상담',
-    ctaTitle: ['바쁜 시간에도', '흔들리지 않는 매장으로'],
-    ctaSub: '매장 운영 상황을 알려주시면 적합한 적용 방안을 안내해 드립니다.',
-    ctaButton: '도입 상담 신청',
-  },
-  en: {
-    badge: 'Café & F&B',
-    heroTitle: ['Different formats,', 'one store'],
-    heroSub: 'Hygiene, waits and turnover, and reorder timing. We watch the operations of busy food-service stores by the same standard, for service that never wavers.',
-    heroCta: 'Request a consultation',
-    scenarios: [
-      { tag: 'Hygiene', title: 'Hygiene held to one standard', body: 'Cleanliness is a store’s first impression and its trust. We watch tidiness and cleanliness by the same standard, so hygiene holds steady even at the busiest hours.' },
-      { tag: 'Waits & turnover', title: 'Read the rush before it hits', body: 'Long lines turn into walk-aways. We watch crowding and seat status to read the rush early, so you can prepare service and turnover.' },
-      { tag: 'Reordering', title: 'Never miss the reorder window', body: 'We gauge when to reorder from ingredient depletion and shelf status. Less running short, less waste — keeping your operating rhythm steady.' },
-    ],
-    scenariosEyebrow: 'On-site problems in food service',
-    scenariosHeading: 'Operations that hold through peak hours',
-    quote: '"It was hard to handle everything myself at peak time, but seeing the rush and hygiene together lets me prepare in advance. Even when staff change, operations don’t waver."',
-    quoteName: 'Café owner',
-    quoteRole: 'Food-service store',
-    ctaEyebrow: 'Free consultation',
-    ctaTitle: ['A store that holds steady', 'even at its busiest'],
-    ctaSub: 'Tell us about your operations and we will guide you to the right approach.',
-    ctaButton: 'Request a consultation',
-  },
-  jp: {
-    badge: 'カフェ · 飲食店',
-    heroTitle: ['業種が違っても', 'ひとつの店舗のように'],
-    heroSub: '衛生、待ち時間と回転、発注のタイミングまで。忙しい飲食店の運営を同じ基準で見守り、ぶれないサービスを支援します。',
-    heroCta: '導入のご相談',
-    scenarios: [
-      { tag: '衛生', title: '店舗の衛生を一貫した基準で', body: '清潔さは店舗の第一印象であり、信頼です。整理・清潔の状態を同じ基準で見守り、忙しい時間帯でも衛生水準がぶれないよう支援します。' },
-      { tag: '待ち時間・回転', title: '混み合う瞬間を先に読み取ります', body: '待ち列が長くなると離脱につながります。混雑と座席の状態を見守って混み合う流れをすばやく把握し、接客と回転を準備できるよう支援します。' },
-      { tag: '発注', title: '発注のタイミングを逃さないように', body: '材料の消費と棚の状態を参考に、発注が必要な時点を見極めます。不足や余りを減らし、運営のリズムを安定して保てるよう支援します。' },
-    ],
-    scenariosEyebrow: '飲食店の現場の課題',
-    scenariosHeading: 'ピークタイムでも崩れない運営',
-    quote: '「ピークタイムにすべてを自分で見るのは難しかったのですが、混み合う流れと衛生状態を一緒に見ることで前もって準備できます。スタッフが替わっても運営がぶれません。」',
-    quoteName: 'カフェ運営の店主',
-    quoteRole: '飲食店',
-    ctaEyebrow: '無料相談',
-    ctaTitle: ['忙しい時間でも', 'ぶれない店舗へ'],
-    ctaSub: '店舗の運営状況をお知らせいただければ、最適な導入方法をご案内します。',
-    ctaButton: '導入のご相談',
-  },
 };
 
+const CMS = siteContent.foodBeverage as unknown as Record<Locale, Copy>;
+
 export default function FoodBeverageView({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const t = CMS[locale];
 
   const icons = [Sparkles, Clock, ClipboardList];
   const scenarios = t.scenarios.map((s, i) => ({ ...s, icon: icons[i] }));

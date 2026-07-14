@@ -132,6 +132,29 @@ const localizedList = (label: string) =>
     { label },
   );
 
+/** solutions 업종 허브 4종(retail·drug·food-beverage·large-space)의 공통 베이스 스키마.
+ *  Retail(beforeAfter)·LargeSpace(mtmc)는 이 위에 추가 필드를 스프레드한다. */
+const solBaseSchema = {
+  badge: localized('업종 배지 (badge)'),
+  heroTitle: localizedList('Hero 제목 · 2줄 (heroTitle)'),
+  heroSub: localized('Hero 서브 (heroSub)'),
+  heroCta: localized('Hero CTA (heroCta)'),
+  scenariosEyebrow: localized('시나리오 eyebrow (scenariosEyebrow)'),
+  scenariosHeading: localized('시나리오 제목 (scenariosHeading)'),
+  scenarios: idItem('시나리오 (scenarios)', 'scenario', {
+    tag: localized('태그 (tag)'),
+    title: localized('제목 (title)'),
+    body: localized('본문 (body)'),
+  }),
+  quote: localized('후기 인용 (quote)'),
+  quoteName: localized('후기 이름 (quoteName)'),
+  quoteRole: localized('후기 역할 (quoteRole)'),
+  ctaEyebrow: localized('CTA eyebrow (ctaEyebrow)'),
+  ctaTitle: localizedList('CTA 제목 · 2줄 (ctaTitle)'),
+  ctaSub: localized('CTA 서브 (ctaSub)'),
+  ctaButton: localized('CTA 버튼 (ctaButton)'),
+};
+
 export default config({
   // GitHub 모드: 편집이 DeepingSource/ds-hp-temp 에 커밋됨. 편집자는 /keystatic 에서
   // GitHub 로그인(App: deepingsource-hp-cms). env(KEYSTATIC_GITHUB_*·KEYSTATIC_SECRET·
@@ -149,6 +172,7 @@ export default config({
       '자주 편집': ['home', 'pricing'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
+      '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace'],
     },
   },
   collections: {
@@ -646,6 +670,45 @@ export default config({
           description: localized('설명 (description)'),
           label: localized('라벨 (label)'),
         }),
+      },
+    }),
+    retail: singleton({
+      label: 'Retail — 리테일 카피',
+      path: 'content/site/retail',
+      format: { data: 'yaml' },
+      schema: {
+        ...solBaseSchema,
+        baEyebrow: localized('Before/After eyebrow (baEyebrow)'),
+        baHeading: localized('Before/After 제목 (baHeading)'),
+        beforeAfter: idItem('Before/After (beforeAfter)', 'pair', {
+          before: localized('Before (before)'),
+          after: localized('After (after)'),
+        }),
+      },
+    }),
+    drug: singleton({
+      label: 'Drug — 드럭스토어 카피',
+      path: 'content/site/drug',
+      format: { data: 'yaml' },
+      schema: { ...solBaseSchema },
+    }),
+    foodBeverage: singleton({
+      label: 'Food & Beverage — F&B 카피',
+      path: 'content/site/food-beverage',
+      format: { data: 'yaml' },
+      schema: { ...solBaseSchema },
+    }),
+    largeSpace: singleton({
+      label: 'Large Space — 대형공간 카피',
+      path: 'content/site/large-space',
+      format: { data: 'yaml' },
+      schema: {
+        ...solBaseSchema,
+        mtmcBadge: localized('MTMC 배지 (mtmcBadge)'),
+        mtmcHeading: localized('MTMC 제목 (mtmcHeading)'),
+        mtmcBody: localized('MTMC 본문 (mtmcBody)'),
+        mtmcLink: localized('MTMC 링크 (mtmcLink)'),
+        mtmcItems: localizedList('MTMC 항목 (mtmcItems)'),
       },
     }),
   },

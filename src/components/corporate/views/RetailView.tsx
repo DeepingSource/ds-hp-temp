@@ -14,6 +14,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * RetailView — shared retail solution composition.
@@ -29,7 +30,7 @@ const SCENARIO_IMGS = [
 ];
 const DASH_IMG = '/images/industries/convenience-dashboard.webp';
 
-const C: Record<Locale, {
+type Copy = {
   badge: string;
   heroTitle: [string, string];
   heroSub: string;
@@ -47,92 +48,12 @@ const C: Record<Locale, {
   ctaTitle: [string, string];
   ctaSub: string;
   ctaButton: string;
-}> = {
-  ko: {
-    badge: '리테일 · 편의점 · 드럭스토어',
-    heroTitle: ['업종이 달라도', '한 매장처럼'],
-    heroSub: '결품, 매장 간 운영 편차, 놓치기 쉬운 이상 상황까지. 매장 운영의 핵심 문제를 같은 기준으로 살펴 일관된 운영을 돕습니다.',
-    heroCta: '도입 상담 신청',
-    scenarios: [
-      { tag: '결품', title: '빈 매대가 매출이 됩니다', body: '잘 팔리는 상품일수록 매대가 비는 순간 매출이 빠져나갑니다. 매대 상태를 상시로 살펴 결품 신호를 빠르게 알려, 채워야 할 때를 놓치지 않도록 돕습니다.' },
-      { tag: '운영 편차', title: '매장마다 다른 운영을 하나로', body: '같은 브랜드라도 매장마다 진열, 청결, 응대 수준이 다릅니다. 매장별 운영 상태를 같은 기준으로 비교해, 잘하는 매장의 기준을 모든 매장으로 넓힙니다.' },
-      { tag: '이상 감지', title: '놓치기 쉬운 순간을 먼저', body: '혼잡, 낙상, 비정상 동선처럼 사람이 매번 지켜보기 어려운 상황을 대신 살핍니다. 이상 신호가 보이면 담당자에게 즉시 전달해 빠른 대응을 돕습니다.' },
-    ],
-    scenariosEyebrow: '자주 마주치는 현장 문제',
-    scenariosHeading: '현장의 세 가지 순간',
-    baEyebrow: '무엇이 달라지나요',
-    baHeading: '지켜보던 운영에서, 먼저 아는 운영으로',
-    beforeAfter: [
-      { before: '매대가 빈 줄 모르고 지나가다 뒤늦게 발견', after: '결품 신호를 받아 채워야 할 매대를 먼저 확인' },
-      { before: '매장마다 제각각인 운영 수준', after: '같은 기준으로 비교되는, 한 매장처럼 일관된 운영' },
-      { before: '사람이 종일 모니터를 지켜봐야 하는 일', after: '이상 상황만 골라 알려주는 선택적 확인' },
-    ],
-    quote: '"매대가 비는 걸 손님보다 먼저 알게 되니까, 채워야 할 타이밍을 놓치지 않게 됐어요. 여러 매장을 같은 눈으로 보는 느낌입니다."',
-    quoteName: '편의점 운영 점주',
-    quoteRole: '다점포 운영',
-    ctaEyebrow: '무료 상담',
-    ctaTitle: ['우리 매장에 맞는', '운영 기준을 만들어 보세요'],
-    ctaSub: '매장 현황을 알려주시면 적합한 적용 방안을 안내해 드립니다.',
-    ctaButton: '도입 상담 신청',
-  },
-  en: {
-    badge: 'Retail · Convenience · Drugstore',
-    heroTitle: ['Different formats,', 'one store'],
-    heroSub: 'Out-of-stock, store-to-store inconsistency, and easy-to-miss anomalies. We watch the core problems of store operations by the same standard, for consistent operations.',
-    heroCta: 'Request a consultation',
-    scenarios: [
-      { tag: 'Out-of-stock', title: 'An empty shelf is lost revenue', body: 'The better a product sells, the more revenue slips away the moment its shelf goes empty. We watch shelf status continuously and flag out-of-stock signals quickly, so you never miss the moment to restock.' },
-      { tag: 'Inconsistency', title: 'Many stores, run as one', body: 'Even within one brand, display, cleanliness, and service vary by store. We compare each store by the same standard, so the best stores set the bar for every store.' },
-      { tag: 'Anomaly detection', title: 'Catch the moments easily missed', body: 'Crowding, falls, abnormal movement — situations hard for people to watch every time, watched for you. When an anomaly appears, it is sent to the right person at once for a fast response.' },
-    ],
-    scenariosEyebrow: 'Common on-site problems',
-    scenariosHeading: 'Three moments on the floor',
-    baEyebrow: 'What changes',
-    baHeading: 'From watching, to knowing first',
-    beforeAfter: [
-      { before: 'Walking past an empty shelf, noticing too late', after: 'Getting an out-of-stock signal and checking the shelf first' },
-      { before: 'Operating standards that differ store by store', after: 'Compared by one standard — consistent, run as one store' },
-      { before: 'Someone watching the monitor all day', after: 'Selective review — only anomalies are surfaced' },
-    ],
-    quote: '"I find out a shelf is empty before the customer does, so I never miss the moment to restock. It feels like seeing every store through one set of eyes."',
-    quoteName: 'Convenience store owner',
-    quoteRole: 'Multi-store operation',
-    ctaEyebrow: 'Free consultation',
-    ctaTitle: ['Build the operating standard', 'that fits your store'],
-    ctaSub: 'Tell us about your store and we will guide you to the right approach.',
-    ctaButton: 'Request a consultation',
-  },
-  jp: {
-    badge: 'リテール · コンビニ · ドラッグストア',
-    heroTitle: ['業種が違っても', 'ひとつの店舗のように'],
-    heroSub: '欠品、店舗間の運営のばらつき、見逃しやすい異常まで。店舗運営の核心的な課題を同じ基準で見守り、一貫した運営を支援します。',
-    heroCta: '導入のご相談',
-    scenarios: [
-      { tag: '欠品', title: '空いた棚は売上になります', body: 'よく売れる商品ほど、棚が空いた瞬間に売上が逃げていきます。棚の状態を常時見守って欠品のサインをすばやくお知らせし、補充すべきタイミングを逃さないよう支援します。' },
-      { tag: '運営のばらつき', title: '店舗ごとに異なる運営をひとつに', body: '同じブランドでも、店舗ごとに陳列・清潔・接客の水準は異なります。店舗ごとの運営状態を同じ基準で比較し、優れた店舗の基準をすべての店舗へ広げます。' },
-      { tag: '異常検知', title: '見逃しやすい瞬間を先に', body: '混雑・転倒・異常な動線など、人が毎回見守るのが難しい状況を代わりに見守ります。異常のサインがあれば担当者へただちにお伝えし、迅速な対応を支援します。' },
-    ],
-    scenariosEyebrow: 'よく直面する現場の課題',
-    scenariosHeading: '現場の三つの瞬間',
-    baEyebrow: '何が変わるのか',
-    baHeading: '見守る運営から、先に気づく運営へ',
-    beforeAfter: [
-      { before: '棚が空いたことに気づかず通り過ぎ、後から発見', after: '欠品のサインを受け取り、補充すべき棚を先に確認' },
-      { before: '店舗ごとにばらばらな運営水準', after: '同じ基準で比較される、ひとつの店舗のような一貫した運営' },
-      { before: '人が一日中モニターを見守る作業', after: '異常な状況だけを選んでお知らせする選択的な確認' },
-    ],
-    quote: '「棚が空くのをお客様より先に気づけるので、補充すべきタイミングを逃さなくなりました。複数の店舗を同じ目で見ている感覚です。」',
-    quoteName: 'コンビニ運営の店主',
-    quoteRole: '多店舗運営',
-    ctaEyebrow: '無料相談',
-    ctaTitle: ['自店に合った', '運営基準をつくりましょう'],
-    ctaSub: '店舗の状況をお知らせいただければ、最適な導入方法をご案内します。',
-    ctaButton: '導入のご相談',
-  },
 };
 
+const CMS = siteContent.retail as unknown as Record<Locale, Copy>;
+
 export default function RetailView({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const t = CMS[locale];
 
   const icons = [PackageX, GitCompareArrows, ShieldAlert];
   const scenarios = t.scenarios.map((s, i) => ({ ...s, icon: icons[i] }));

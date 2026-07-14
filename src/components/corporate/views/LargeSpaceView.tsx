@@ -15,6 +15,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * LargeSpaceView — shared large-space solution composition.
@@ -30,7 +31,7 @@ const SCENARIO_IMGS = [
 ];
 const DASH_IMG = '/images/industries/mart-dashboard.webp';
 
-const C: Record<Locale, {
+type Copy = {
   badge: string;
   heroTitle: [string, string];
   heroSub: string;
@@ -50,98 +51,12 @@ const C: Record<Locale, {
   ctaTitle: [string, string];
   ctaSub: string;
   ctaButton: string;
-}> = {
-  ko: {
-    badge: '하이퍼마켓 · 몰 · 컨벤션',
-    heroTitle: ['모든 공간을,', '한 매장처럼'],
-    heroSub: '아무리 넓은 공간도 하나의 매장처럼. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.',
-    heroCta: '본사 도입 상담',
-    scenarios: [
-      { tag: '혼잡 관리', title: '넓은 공간의 흐름을 한눈에', body: '넓고 층이 많은 공간일수록 어디가 붐비는지 파악하기 어렵습니다. 구역별 혼잡 흐름을 한 화면에서 살펴, 인력 배치와 안내를 미리 준비하도록 돕습니다.' },
-      { tag: '동선 분석', title: '방문객 동선을 공간 운영에', body: '입구부터 매장, 편의시설까지 이어지는 동선의 흐름을 살핍니다. 머무는 구역과 비는 구역을 파악해 배치와 안내 동선을 다듬는 근거로 활용하도록 돕습니다.' },
-      { tag: '이상 감지', title: '사각지대를 줄이는 이상 감지', body: '넓은 공간일수록 사람이 모든 곳을 지켜보기 어렵습니다. 혼잡 과밀, 낙상, 비정상 상황 같은 신호를 살펴 담당자에게 즉시 전달, 빠른 대응을 돕습니다.' },
-    ],
-    scenariosEyebrow: '대형 공간의 운영 과제',
-    scenariosHeading: '넓은 공간도, 하나의 흐름으로',
-    mtmcBadge: 'Spatial AI · MTMC',
-    mtmcHeading: '여러 카메라를 하나의 공간으로',
-    mtmcBody: 'MTMC(Multi-Target Multi-Camera) 공간 AI는 흩어진 여러 카메라의 시야를 하나의 공간으로 이어 붙입니다. 넓은 매장과 층을 넘나드는 흐름도 끊김 없이 이해해, 대형 공간을 한 매장처럼 살필 수 있도록 돕습니다.',
-    mtmcLink: '공간 AI 기술 자세히 보기',
-    mtmcItems: [
-      '여러 카메라 시야를 하나의 공간 좌표로 통합',
-      '층과 구역을 넘나드는 연속된 흐름 추적',
-      '구역별 혼잡과 동선을 같은 기준으로 비교',
-    ],
-    quote: '"넓고 층이 많아 어디가 붐비는지 파악이 어려웠는데, 전체 공간을 한 화면으로 보니 인력 배치와 안내를 미리 준비할 수 있게 됐습니다."',
-    quoteName: '대형 공간 운영 담당',
-    quoteRole: '하이퍼마켓 · 몰',
-    ctaEyebrow: '본사 도입',
-    ctaTitle: ['여러 공간을', '하나의 운영 체계로'],
-    ctaSub: '운영 중인 공간 규모와 환경을 알려주시면 본사 단위 적용 방안을 안내해 드립니다.',
-    ctaButton: '본사 도입 상담',
-  },
-  en: {
-    badge: 'Hypermarket · Mall · Convention',
-    heroTitle: ['Every space,', 'like one.'],
-    heroSub: 'However large the space, run it like one store. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.',
-    heroCta: 'Enterprise consultation',
-    scenarios: [
-      { tag: 'Crowd management', title: 'See the flow of a vast space at a glance', body: 'The larger and more multi-level a space, the harder it is to tell where it’s crowded. Watch zone-by-zone crowd flow on one screen, and prepare staffing and guidance in advance.' },
-      { tag: 'Flow analysis', title: 'Bring visitor flow into space operations', body: 'We watch the flow from entrance to stores to amenities. Identify where people linger and where they don’t — a basis for refining layout and guidance routes.' },
-      { tag: 'Anomaly detection', title: 'Anomaly detection with fewer blind spots', body: 'The larger the space, the harder for people to watch everywhere. We watch signals like overcrowding, falls, and abnormal situations, and send them to the right person at once for a fast response.' },
-    ],
-    scenariosEyebrow: 'Operating challenges of large spaces',
-    scenariosHeading: 'Even a vast space, one flow',
-    mtmcBadge: 'Spatial AI · MTMC',
-    mtmcHeading: 'Many cameras, as one space',
-    mtmcBody: 'MTMC (Multi-Target Multi-Camera) Spatial AI stitches the views of scattered cameras into a single space. It follows flow seamlessly across wide floors and levels, so a large space can be watched like one store.',
-    mtmcLink: 'Explore Spatial AI technology',
-    mtmcItems: [
-      'Unify multiple camera views into one spatial coordinate system',
-      'Track continuous flow across floors and zones',
-      'Compare zone-by-zone crowding and flow by the same standard',
-    ],
-    quote: '"It was large and multi-level, so it was hard to tell where it was crowded — but seeing the whole space on one screen lets us prepare staffing and guidance in advance."',
-    quoteName: 'Large-space operations lead',
-    quoteRole: 'Hypermarket · Mall',
-    ctaEyebrow: 'Enterprise rollout',
-    ctaTitle: ['Bring many spaces', 'into one operating system'],
-    ctaSub: 'Tell us the scale and environment of the spaces you run, and we will guide you to an enterprise-wide approach.',
-    ctaButton: 'Enterprise consultation',
-  },
-  jp: {
-    badge: 'ハイパーマーケット · モール · コンベンション',
-    heroTitle: ['すべての空間を、', 'ひとつの店舗のように'],
-    heroSub: 'どれほど広い空間も、ひとつの店舗のように。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。',
-    heroCta: '本社導入のご相談',
-    scenarios: [
-      { tag: '混雑管理', title: '広い空間の流れをひと目で', body: '広く階数の多い空間ほど、どこが混んでいるか把握しにくくなります。区域ごとの混雑の流れを一つの画面で見守り、人員配置と案内を前もって準備できるよう支援します。' },
-      { tag: '動線分析', title: '来訪者の動線を空間運営に', body: '入口から店舗、付帯施設まで続く動線の流れを見守ります。留まる区域と空く区域を把握し、配置と案内動線を整える根拠として活用できるよう支援します。' },
-      { tag: '異常検知', title: '死角を減らす異常検知', body: '広い空間ほど、人がすべての場所を見守るのは困難です。過密、転倒、異常な状況といったサインを見守り、担当者へただちにお伝えして迅速な対応を支援します。' },
-    ],
-    scenariosEyebrow: '大型空間の運営課題',
-    scenariosHeading: '広い空間も、ひとつの流れで',
-    mtmcBadge: 'Spatial AI · MTMC',
-    mtmcHeading: '複数のカメラをひとつの空間へ',
-    mtmcBody: 'MTMC(Multi-Target Multi-Camera)空間AIは、散らばった複数カメラの視野をひとつの空間へとつなぎ合わせます。広い店舗や階をまたぐ流れも途切れなく理解し、大型空間をひとつの店舗のように見守れるよう支援します。',
-    mtmcLink: '空間AI技術を詳しく見る',
-    mtmcItems: [
-      '複数カメラの視野をひとつの空間座標に統合',
-      '階と区域をまたぐ連続した流れの追跡',
-      '区域ごとの混雑と動線を同じ基準で比較',
-    ],
-    quote: '「広く階数が多くどこが混んでいるか把握が難しかったのですが、空間全体を一つの画面で見ることで、人員配置と案内を前もって準備できるようになりました。」',
-    quoteName: '大型空間運営の担当者',
-    quoteRole: 'ハイパーマーケット · モール',
-    ctaEyebrow: '本社導入',
-    ctaTitle: ['複数の空間を', 'ひとつの運営体系へ'],
-    ctaSub: '運営中の空間の規模と環境をお知らせいただければ、本社単位の導入方法をご案内します。',
-    ctaButton: '本社導入のご相談',
-  },
 };
 
+const CMS = siteContent.largeSpace as unknown as Record<Locale, Copy>;
+
 export default function LargeSpaceView({ locale }: { locale: Locale }) {
-  const t = C[locale];
+  const t = CMS[locale];
 
   const icons = [Users, Route, ShieldAlert];
   const scenarios = t.scenarios.map((s, i) => ({ ...s, icon: icons[i] }));

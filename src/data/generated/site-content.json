@@ -1707,5 +1707,544 @@
         }
       ]
     }
+  },
+  "retail": {
+    "en": {
+      "badge": "Retail · Convenience · Drugstore",
+      "heroTitle": [
+        "Different formats,",
+        "one store"
+      ],
+      "heroSub": "Out-of-stock, store-to-store inconsistency, and easy-to-miss anomalies. We watch the core problems of store operations by the same standard, for consistent operations.",
+      "heroCta": "Request a consultation",
+      "scenariosEyebrow": "Common on-site problems",
+      "scenariosHeading": "Three moments on the floor",
+      "quote": "\"I find out a shelf is empty before the customer does, so I never miss the moment to restock. It feels like seeing every store through one set of eyes.\"",
+      "quoteName": "Convenience store owner",
+      "quoteRole": "Multi-store operation",
+      "ctaEyebrow": "Free consultation",
+      "ctaTitle": [
+        "Build the operating standard",
+        "that fits your store"
+      ],
+      "ctaSub": "Tell us about your store and we will guide you to the right approach.",
+      "ctaButton": "Request a consultation",
+      "baEyebrow": "What changes",
+      "baHeading": "From watching, to knowing first",
+      "scenarios": [
+        {
+          "tag": "Out-of-stock",
+          "title": "An empty shelf is lost revenue",
+          "body": "The better a product sells, the more revenue slips away the moment its shelf goes empty. We watch shelf status continuously and flag out-of-stock signals quickly, so you never miss the moment to restock."
+        },
+        {
+          "tag": "Inconsistency",
+          "title": "Many stores, run as one",
+          "body": "Even within one brand, display, cleanliness, and service vary by store. We compare each store by the same standard, so the best stores set the bar for every store."
+        },
+        {
+          "tag": "Anomaly detection",
+          "title": "Catch the moments easily missed",
+          "body": "Crowding, falls, abnormal movement — situations hard for people to watch every time, watched for you. When an anomaly appears, it is sent to the right person at once for a fast response."
+        }
+      ],
+      "beforeAfter": [
+        {
+          "before": "Walking past an empty shelf, noticing too late",
+          "after": "Getting an out-of-stock signal and checking the shelf first"
+        },
+        {
+          "before": "Operating standards that differ store by store",
+          "after": "Compared by one standard — consistent, run as one store"
+        },
+        {
+          "before": "Someone watching the monitor all day",
+          "after": "Selective review — only anomalies are surfaced"
+        }
+      ]
+    },
+    "ko": {
+      "badge": "리테일 · 편의점 · 드럭스토어",
+      "heroTitle": [
+        "업종이 달라도",
+        "한 매장처럼"
+      ],
+      "heroSub": "결품, 매장 간 운영 편차, 놓치기 쉬운 이상 상황까지. 매장 운영의 핵심 문제를 같은 기준으로 살펴 일관된 운영을 돕습니다.",
+      "heroCta": "도입 상담 신청",
+      "scenariosEyebrow": "자주 마주치는 현장 문제",
+      "scenariosHeading": "현장의 세 가지 순간",
+      "quote": "\"매대가 비는 걸 손님보다 먼저 알게 되니까, 채워야 할 타이밍을 놓치지 않게 됐어요. 여러 매장을 같은 눈으로 보는 느낌입니다.\"",
+      "quoteName": "편의점 운영 점주",
+      "quoteRole": "다점포 운영",
+      "ctaEyebrow": "무료 상담",
+      "ctaTitle": [
+        "우리 매장에 맞는",
+        "운영 기준을 만들어 보세요"
+      ],
+      "ctaSub": "매장 현황을 알려주시면 적합한 적용 방안을 안내해 드립니다.",
+      "ctaButton": "도입 상담 신청",
+      "baEyebrow": "무엇이 달라지나요",
+      "baHeading": "지켜보던 운영에서, 먼저 아는 운영으로",
+      "scenarios": [
+        {
+          "tag": "결품",
+          "title": "빈 매대가 매출이 됩니다",
+          "body": "잘 팔리는 상품일수록 매대가 비는 순간 매출이 빠져나갑니다. 매대 상태를 상시로 살펴 결품 신호를 빠르게 알려, 채워야 할 때를 놓치지 않도록 돕습니다."
+        },
+        {
+          "tag": "운영 편차",
+          "title": "매장마다 다른 운영을 하나로",
+          "body": "같은 브랜드라도 매장마다 진열, 청결, 응대 수준이 다릅니다. 매장별 운영 상태를 같은 기준으로 비교해, 잘하는 매장의 기준을 모든 매장으로 넓힙니다."
+        },
+        {
+          "tag": "이상 감지",
+          "title": "놓치기 쉬운 순간을 먼저",
+          "body": "혼잡, 낙상, 비정상 동선처럼 사람이 매번 지켜보기 어려운 상황을 대신 살핍니다. 이상 신호가 보이면 담당자에게 즉시 전달해 빠른 대응을 돕습니다."
+        }
+      ],
+      "beforeAfter": [
+        {
+          "before": "매대가 빈 줄 모르고 지나가다 뒤늦게 발견",
+          "after": "결품 신호를 받아 채워야 할 매대를 먼저 확인"
+        },
+        {
+          "before": "매장마다 제각각인 운영 수준",
+          "after": "같은 기준으로 비교되는, 한 매장처럼 일관된 운영"
+        },
+        {
+          "before": "사람이 종일 모니터를 지켜봐야 하는 일",
+          "after": "이상 상황만 골라 알려주는 선택적 확인"
+        }
+      ]
+    },
+    "jp": {
+      "badge": "リテール · コンビニ · ドラッグストア",
+      "heroTitle": [
+        "業種が違っても",
+        "ひとつの店舗のように"
+      ],
+      "heroSub": "欠品、店舗間の運営のばらつき、見逃しやすい異常まで。店舗運営の核心的な課題を同じ基準で見守り、一貫した運営を支援します。",
+      "heroCta": "導入のご相談",
+      "scenariosEyebrow": "よく直面する現場の課題",
+      "scenariosHeading": "現場の三つの瞬間",
+      "quote": "「棚が空くのをお客様より先に気づけるので、補充すべきタイミングを逃さなくなりました。複数の店舗を同じ目で見ている感覚です。」",
+      "quoteName": "コンビニ運営の店主",
+      "quoteRole": "多店舗運営",
+      "ctaEyebrow": "無料相談",
+      "ctaTitle": [
+        "自店に合った",
+        "運営基準をつくりましょう"
+      ],
+      "ctaSub": "店舗の状況をお知らせいただければ、最適な導入方法をご案内します。",
+      "ctaButton": "導入のご相談",
+      "baEyebrow": "何が変わるのか",
+      "baHeading": "見守る運営から、先に気づく運営へ",
+      "scenarios": [
+        {
+          "tag": "欠品",
+          "title": "空いた棚は売上になります",
+          "body": "よく売れる商品ほど、棚が空いた瞬間に売上が逃げていきます。棚の状態を常時見守って欠品のサインをすばやくお知らせし、補充すべきタイミングを逃さないよう支援します。"
+        },
+        {
+          "tag": "運営のばらつき",
+          "title": "店舗ごとに異なる運営をひとつに",
+          "body": "同じブランドでも、店舗ごとに陳列・清潔・接客の水準は異なります。店舗ごとの運営状態を同じ基準で比較し、優れた店舗の基準をすべての店舗へ広げます。"
+        },
+        {
+          "tag": "異常検知",
+          "title": "見逃しやすい瞬間を先に",
+          "body": "混雑・転倒・異常な動線など、人が毎回見守るのが難しい状況を代わりに見守ります。異常のサインがあれば担当者へただちにお伝えし、迅速な対応を支援します。"
+        }
+      ],
+      "beforeAfter": [
+        {
+          "before": "棚が空いたことに気づかず通り過ぎ、後から発見",
+          "after": "欠品のサインを受け取り、補充すべき棚を先に確認"
+        },
+        {
+          "before": "店舗ごとにばらばらな運営水準",
+          "after": "同じ基準で比較される、ひとつの店舗のような一貫した運営"
+        },
+        {
+          "before": "人が一日中モニターを見守る作業",
+          "after": "異常な状況だけを選んでお知らせする選択的な確認"
+        }
+      ]
+    }
+  },
+  "drug": {
+    "en": {
+      "badge": "Drugstore",
+      "heroTitle": [
+        "Different formats,",
+        "one store"
+      ],
+      "heroSub": "Display consistency, out-of-stock prevention, and customer flow. We watch the operations of category-heavy drugstores by the same standard, for clean and steady stores.",
+      "heroCta": "Request a consultation",
+      "scenariosEyebrow": "On-site problems in drugstores",
+      "scenariosHeading": "Many items, one consistent store",
+      "quote": "\"With so many items, displays often slipped out of order, but seeing every store by the same standard means each location stays neat and tidy.\"",
+      "quoteName": "Drugstore owner",
+      "quoteRole": "Multi-category store",
+      "ctaEyebrow": "Free consultation",
+      "ctaTitle": [
+        "Make every location",
+        "one consistent store"
+      ],
+      "ctaSub": "Tell us about your store and we will guide you to the right approach.",
+      "ctaButton": "Request a consultation",
+      "scenarios": [
+        {
+          "tag": "Display",
+          "title": "Display consistency in every store",
+          "body": "With many categories and fast turnover, displays slip out of order easily. We watch shelf display by the same standard, so every store keeps a clean, orderly look."
+        },
+        {
+          "tag": "Out-of-stock",
+          "title": "Catch the gaps in popular items first",
+          "body": "The more in-demand an item, the faster an empty shelf turns into a walk-away. We flag out-of-stock signals quickly, so you check the shelves to restock first."
+        },
+        {
+          "tag": "Customer flow",
+          "title": "Bring customer flow into operations",
+          "body": "We watch the flow through areas where people linger and areas they pass by — a basis for reviewing display and layout and refining the store experience."
+        }
+      ]
+    },
+    "ko": {
+      "badge": "드럭스토어",
+      "heroTitle": [
+        "업종이 달라도",
+        "한 매장처럼"
+      ],
+      "heroSub": "진열 일관성, 결품 방지, 고객 동선까지. 카테고리가 많은 드럭스토어 운영을 같은 기준으로 살펴 깔끔하고 안정적인 매장을 돕습니다.",
+      "heroCta": "도입 상담 신청",
+      "scenariosEyebrow": "드럭스토어의 현장 문제",
+      "scenariosHeading": "많은 품목도, 한결같은 매장으로",
+      "quote": "\"품목이 워낙 많아 진열이 자주 흐트러졌는데, 같은 기준으로 매장을 보게 되니 어느 지점이든 정돈된 모습을 유지하게 됐습니다.\"",
+      "quoteName": "드럭스토어 운영 점주",
+      "quoteRole": "다카테고리 매장",
+      "ctaEyebrow": "무료 상담",
+      "ctaTitle": [
+        "모든 지점을",
+        "한결같은 매장으로"
+      ],
+      "ctaSub": "매장 현황을 알려주시면 적합한 적용 방안을 안내해 드립니다.",
+      "ctaButton": "도입 상담 신청",
+      "scenarios": [
+        {
+          "tag": "진열",
+          "title": "진열의 일관성을 모든 매장에",
+          "body": "카테고리가 많고 회전이 빠른 만큼 진열이 흐트러지기 쉽습니다. 매대 진열 상태를 같은 기준으로 살펴, 어느 매장이든 깔끔한 진열이 유지되도록 돕습니다."
+        },
+        {
+          "tag": "결품",
+          "title": "인기 품목의 빈자리를 먼저",
+          "body": "찾는 손님이 많은 품목일수록 빈 매대가 곧 이탈로 이어집니다. 결품 신호를 빠르게 알려 채워야 할 매대를 먼저 확인하도록 돕습니다."
+        },
+        {
+          "tag": "동선",
+          "title": "고객 동선을 운영에 반영",
+          "body": "사람이 많이 머무는 구역과 지나치는 구역의 흐름을 살핍니다. 진열과 배치를 점검하는 근거로 활용해 매장 경험을 다듬도록 돕습니다."
+        }
+      ]
+    },
+    "jp": {
+      "badge": "ドラッグストア",
+      "heroTitle": [
+        "業種が違っても",
+        "ひとつの店舗のように"
+      ],
+      "heroSub": "陳列の一貫性、欠品の防止、顧客の動線まで。カテゴリーの多いドラッグストアの運営を同じ基準で見守り、整った安定した店舗を支援します。",
+      "heroCta": "導入のご相談",
+      "scenariosEyebrow": "ドラッグストアの現場の課題",
+      "scenariosHeading": "多くの商品でも、変わらぬ店舗へ",
+      "quote": "「商品があまりに多く陳列がよく崩れていましたが、同じ基準で店舗を見られるようになり、どの店舗でも整った状態を保てるようになりました。」",
+      "quoteName": "ドラッグストア運営の店主",
+      "quoteRole": "多カテゴリー店舗",
+      "ctaEyebrow": "無料相談",
+      "ctaTitle": [
+        "すべての店舗を",
+        "変わらぬ店舗へ"
+      ],
+      "ctaSub": "店舗の状況をお知らせいただければ、最適な導入方法をご案内します。",
+      "ctaButton": "導入のご相談",
+      "scenarios": [
+        {
+          "tag": "陳列",
+          "title": "陳列の一貫性をすべての店舗に",
+          "body": "カテゴリーが多く回転が速いほど、陳列は崩れやすくなります。棚の陳列状態を同じ基準で見守り、どの店舗でも整った陳列が保たれるよう支援します。"
+        },
+        {
+          "tag": "欠品",
+          "title": "人気商品の空きを先に",
+          "body": "求めるお客様が多い商品ほど、空いた棚はすぐ離脱につながります。欠品のサインをすばやくお知らせし、補充すべき棚を先に確認できるよう支援します。"
+        },
+        {
+          "tag": "動線",
+          "title": "顧客の動線を運営に反映",
+          "body": "人が多く留まる区域と通り過ぎる区域の流れを見守ります。陳列と配置を点検する根拠として活用し、店舗体験を整えられるよう支援します。"
+        }
+      ]
+    }
+  },
+  "foodBeverage": {
+    "en": {
+      "badge": "Café & F&B",
+      "heroTitle": [
+        "Different formats,",
+        "one store"
+      ],
+      "heroSub": "Hygiene, waits and turnover, and reorder timing. We watch the operations of busy food-service stores by the same standard, for service that never wavers.",
+      "heroCta": "Request a consultation",
+      "scenariosEyebrow": "On-site problems in food service",
+      "scenariosHeading": "Operations that hold through peak hours",
+      "quote": "\"It was hard to handle everything myself at peak time, but seeing the rush and hygiene together lets me prepare in advance. Even when staff change, operations don’t waver.\"",
+      "quoteName": "Café owner",
+      "quoteRole": "Food-service store",
+      "ctaEyebrow": "Free consultation",
+      "ctaTitle": [
+        "A store that holds steady",
+        "even at its busiest"
+      ],
+      "ctaSub": "Tell us about your operations and we will guide you to the right approach.",
+      "ctaButton": "Request a consultation",
+      "scenarios": [
+        {
+          "tag": "Hygiene",
+          "title": "Hygiene held to one standard",
+          "body": "Cleanliness is a store’s first impression and its trust. We watch tidiness and cleanliness by the same standard, so hygiene holds steady even at the busiest hours."
+        },
+        {
+          "tag": "Waits & turnover",
+          "title": "Read the rush before it hits",
+          "body": "Long lines turn into walk-aways. We watch crowding and seat status to read the rush early, so you can prepare service and turnover."
+        },
+        {
+          "tag": "Reordering",
+          "title": "Never miss the reorder window",
+          "body": "We gauge when to reorder from ingredient depletion and shelf status. Less running short, less waste — keeping your operating rhythm steady."
+        }
+      ]
+    },
+    "ko": {
+      "badge": "카페 · 음식점",
+      "heroTitle": [
+        "업종이 달라도",
+        "한 매장처럼"
+      ],
+      "heroSub": "위생, 대기와 회전, 발주 타이밍까지. 바쁜 외식 매장의 운영을 같은 기준으로 살펴 흔들림 없는 서비스를 돕습니다.",
+      "heroCta": "도입 상담 신청",
+      "scenariosEyebrow": "외식 매장의 현장 문제",
+      "scenariosHeading": "피크 타임에도 무너지지 않는 운영",
+      "quote": "\"피크 타임에 직접 다 챙기기 어려웠는데, 붐비는 흐름과 위생 상태를 같이 보니 미리 준비하게 됩니다. 직원이 바뀌어도 운영이 흔들리지 않아요.\"",
+      "quoteName": "카페 운영 점주",
+      "quoteRole": "외식 매장",
+      "ctaEyebrow": "무료 상담",
+      "ctaTitle": [
+        "바쁜 시간에도",
+        "흔들리지 않는 매장으로"
+      ],
+      "ctaSub": "매장 운영 상황을 알려주시면 적합한 적용 방안을 안내해 드립니다.",
+      "ctaButton": "도입 상담 신청",
+      "scenarios": [
+        {
+          "tag": "위생",
+          "title": "매장 위생을 일관된 기준으로",
+          "body": "청결은 매장의 첫인상이자 신뢰입니다. 정리·청결 상태를 같은 기준으로 살펴, 바쁜 시간대에도 위생 수준이 흔들리지 않도록 돕습니다."
+        },
+        {
+          "tag": "대기·회전",
+          "title": "붐비는 순간을 미리 읽습니다",
+          "body": "대기 줄이 길어지면 이탈로 이어집니다. 혼잡과 좌석 상태를 살펴 붐비는 흐름을 빠르게 파악하고, 응대와 회전을 준비할 수 있도록 돕습니다."
+        },
+        {
+          "tag": "발주",
+          "title": "발주 타이밍을 놓치지 않게",
+          "body": "재료 소진과 매대 상태를 참고해 발주가 필요한 시점을 가늠합니다. 모자라거나 남기는 일을 줄이고 운영 리듬을 안정적으로 유지하도록 돕습니다."
+        }
+      ]
+    },
+    "jp": {
+      "badge": "カフェ · 飲食店",
+      "heroTitle": [
+        "業種が違っても",
+        "ひとつの店舗のように"
+      ],
+      "heroSub": "衛生、待ち時間と回転、発注のタイミングまで。忙しい飲食店の運営を同じ基準で見守り、ぶれないサービスを支援します。",
+      "heroCta": "導入のご相談",
+      "scenariosEyebrow": "飲食店の現場の課題",
+      "scenariosHeading": "ピークタイムでも崩れない運営",
+      "quote": "「ピークタイムにすべてを自分で見るのは難しかったのですが、混み合う流れと衛生状態を一緒に見ることで前もって準備できます。スタッフが替わっても運営がぶれません。」",
+      "quoteName": "カフェ運営の店主",
+      "quoteRole": "飲食店",
+      "ctaEyebrow": "無料相談",
+      "ctaTitle": [
+        "忙しい時間でも",
+        "ぶれない店舗へ"
+      ],
+      "ctaSub": "店舗の運営状況をお知らせいただければ、最適な導入方法をご案内します。",
+      "ctaButton": "導入のご相談",
+      "scenarios": [
+        {
+          "tag": "衛生",
+          "title": "店舗の衛生を一貫した基準で",
+          "body": "清潔さは店舗の第一印象であり、信頼です。整理・清潔の状態を同じ基準で見守り、忙しい時間帯でも衛生水準がぶれないよう支援します。"
+        },
+        {
+          "tag": "待ち時間・回転",
+          "title": "混み合う瞬間を先に読み取ります",
+          "body": "待ち列が長くなると離脱につながります。混雑と座席の状態を見守って混み合う流れをすばやく把握し、接客と回転を準備できるよう支援します。"
+        },
+        {
+          "tag": "発注",
+          "title": "発注のタイミングを逃さないように",
+          "body": "材料の消費と棚の状態を参考に、発注が必要な時点を見極めます。不足や余りを減らし、運営のリズムを安定して保てるよう支援します。"
+        }
+      ]
+    }
+  },
+  "largeSpace": {
+    "en": {
+      "badge": "Hypermarket · Mall · Convention",
+      "heroTitle": [
+        "Every space,",
+        "like one."
+      ],
+      "heroSub": "However large the space, run it like one store. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.",
+      "heroCta": "Enterprise consultation",
+      "scenariosEyebrow": "Operating challenges of large spaces",
+      "scenariosHeading": "Even a vast space, one flow",
+      "quote": "\"It was large and multi-level, so it was hard to tell where it was crowded — but seeing the whole space on one screen lets us prepare staffing and guidance in advance.\"",
+      "quoteName": "Large-space operations lead",
+      "quoteRole": "Hypermarket · Mall",
+      "ctaEyebrow": "Enterprise rollout",
+      "ctaTitle": [
+        "Bring many spaces",
+        "into one operating system"
+      ],
+      "ctaSub": "Tell us the scale and environment of the spaces you run, and we will guide you to an enterprise-wide approach.",
+      "ctaButton": "Enterprise consultation",
+      "mtmcBadge": "Spatial AI · MTMC",
+      "mtmcHeading": "Many cameras, as one space",
+      "mtmcBody": "MTMC (Multi-Target Multi-Camera) Spatial AI stitches the views of scattered cameras into a single space. It follows flow seamlessly across wide floors and levels, so a large space can be watched like one store.",
+      "mtmcLink": "Explore Spatial AI technology",
+      "mtmcItems": [
+        "Unify multiple camera views into one spatial coordinate system",
+        "Track continuous flow across floors and zones",
+        "Compare zone-by-zone crowding and flow by the same standard"
+      ],
+      "scenarios": [
+        {
+          "tag": "Crowd management",
+          "title": "See the flow of a vast space at a glance",
+          "body": "The larger and more multi-level a space, the harder it is to tell where it’s crowded. Watch zone-by-zone crowd flow on one screen, and prepare staffing and guidance in advance."
+        },
+        {
+          "tag": "Flow analysis",
+          "title": "Bring visitor flow into space operations",
+          "body": "We watch the flow from entrance to stores to amenities. Identify where people linger and where they don’t — a basis for refining layout and guidance routes."
+        },
+        {
+          "tag": "Anomaly detection",
+          "title": "Anomaly detection with fewer blind spots",
+          "body": "The larger the space, the harder for people to watch everywhere. We watch signals like overcrowding, falls, and abnormal situations, and send them to the right person at once for a fast response."
+        }
+      ]
+    },
+    "ko": {
+      "badge": "하이퍼마켓 · 몰 · 컨벤션",
+      "heroTitle": [
+        "모든 공간을,",
+        "한 매장처럼"
+      ],
+      "heroSub": "아무리 넓은 공간도 하나의 매장처럼. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.",
+      "heroCta": "본사 도입 상담",
+      "scenariosEyebrow": "대형 공간의 운영 과제",
+      "scenariosHeading": "넓은 공간도, 하나의 흐름으로",
+      "quote": "\"넓고 층이 많아 어디가 붐비는지 파악이 어려웠는데, 전체 공간을 한 화면으로 보니 인력 배치와 안내를 미리 준비할 수 있게 됐습니다.\"",
+      "quoteName": "대형 공간 운영 담당",
+      "quoteRole": "하이퍼마켓 · 몰",
+      "ctaEyebrow": "본사 도입",
+      "ctaTitle": [
+        "여러 공간을",
+        "하나의 운영 체계로"
+      ],
+      "ctaSub": "운영 중인 공간 규모와 환경을 알려주시면 본사 단위 적용 방안을 안내해 드립니다.",
+      "ctaButton": "본사 도입 상담",
+      "mtmcBadge": "Spatial AI · MTMC",
+      "mtmcHeading": "여러 카메라를 하나의 공간으로",
+      "mtmcBody": "MTMC(Multi-Target Multi-Camera) 공간 AI는 흩어진 여러 카메라의 시야를 하나의 공간으로 이어 붙입니다. 넓은 매장과 층을 넘나드는 흐름도 끊김 없이 이해해, 대형 공간을 한 매장처럼 살필 수 있도록 돕습니다.",
+      "mtmcLink": "공간 AI 기술 자세히 보기",
+      "mtmcItems": [
+        "여러 카메라 시야를 하나의 공간 좌표로 통합",
+        "층과 구역을 넘나드는 연속된 흐름 추적",
+        "구역별 혼잡과 동선을 같은 기준으로 비교"
+      ],
+      "scenarios": [
+        {
+          "tag": "혼잡 관리",
+          "title": "넓은 공간의 흐름을 한눈에",
+          "body": "넓고 층이 많은 공간일수록 어디가 붐비는지 파악하기 어렵습니다. 구역별 혼잡 흐름을 한 화면에서 살펴, 인력 배치와 안내를 미리 준비하도록 돕습니다."
+        },
+        {
+          "tag": "동선 분석",
+          "title": "방문객 동선을 공간 운영에",
+          "body": "입구부터 매장, 편의시설까지 이어지는 동선의 흐름을 살핍니다. 머무는 구역과 비는 구역을 파악해 배치와 안내 동선을 다듬는 근거로 활용하도록 돕습니다."
+        },
+        {
+          "tag": "이상 감지",
+          "title": "사각지대를 줄이는 이상 감지",
+          "body": "넓은 공간일수록 사람이 모든 곳을 지켜보기 어렵습니다. 혼잡 과밀, 낙상, 비정상 상황 같은 신호를 살펴 담당자에게 즉시 전달, 빠른 대응을 돕습니다."
+        }
+      ]
+    },
+    "jp": {
+      "badge": "ハイパーマーケット · モール · コンベンション",
+      "heroTitle": [
+        "すべての空間を、",
+        "ひとつの店舗のように"
+      ],
+      "heroSub": "どれほど広い空間も、ひとつの店舗のように。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。",
+      "heroCta": "本社導入のご相談",
+      "scenariosEyebrow": "大型空間の運営課題",
+      "scenariosHeading": "広い空間も、ひとつの流れで",
+      "quote": "「広く階数が多くどこが混んでいるか把握が難しかったのですが、空間全体を一つの画面で見ることで、人員配置と案内を前もって準備できるようになりました。」",
+      "quoteName": "大型空間運営の担当者",
+      "quoteRole": "ハイパーマーケット · モール",
+      "ctaEyebrow": "本社導入",
+      "ctaTitle": [
+        "複数の空間を",
+        "ひとつの運営体系へ"
+      ],
+      "ctaSub": "運営中の空間の規模と環境をお知らせいただければ、本社単位の導入方法をご案内します。",
+      "ctaButton": "本社導入のご相談",
+      "mtmcBadge": "Spatial AI · MTMC",
+      "mtmcHeading": "複数のカメラをひとつの空間へ",
+      "mtmcBody": "MTMC(Multi-Target Multi-Camera)空間AIは、散らばった複数カメラの視野をひとつの空間へとつなぎ合わせます。広い店舗や階をまたぐ流れも途切れなく理解し、大型空間をひとつの店舗のように見守れるよう支援します。",
+      "mtmcLink": "空間AI技術を詳しく見る",
+      "mtmcItems": [
+        "複数カメラの視野をひとつの空間座標に統合",
+        "階と区域をまたぐ連続した流れの追跡",
+        "区域ごとの混雑と動線を同じ基準で比較"
+      ],
+      "scenarios": [
+        {
+          "tag": "混雑管理",
+          "title": "広い空間の流れをひと目で",
+          "body": "広く階数の多い空間ほど、どこが混んでいるか把握しにくくなります。区域ごとの混雑の流れを一つの画面で見守り、人員配置と案内を前もって準備できるよう支援します。"
+        },
+        {
+          "tag": "動線分析",
+          "title": "来訪者の動線を空間運営に",
+          "body": "入口から店舗、付帯施設まで続く動線の流れを見守ります。留まる区域と空く区域を把握し、配置と案内動線を整える根拠として活用できるよう支援します。"
+        },
+        {
+          "tag": "異常検知",
+          "title": "死角を減らす異常検知",
+          "body": "広い空間ほど、人がすべての場所を見守るのは困難です。過密、転倒、異常な状況といったサインを見守り、担当者へただちにお伝えして迅速な対応を支援します。"
+        }
+      ]
+    }
   }
 }

@@ -206,9 +206,30 @@ for (const loc of LOCALES) {
   resources[loc] = { ...resourcesFlat[loc], resources: resourceCards[loc] };
 }
 
+// ── solutions 업종 허브 4종 — 공통 베이스(flat + 2줄 heroTitle/ctaTitle + scenarios[3]) +
+//    Retail(beforeAfter[3]) · LargeSpace(mtmc* + mtmcItems 리스트). 이미지/아이콘/metadata 코드 유지. ──
+const SOL_BASE_FLAT = [
+  'badge', 'heroTitle', 'heroSub', 'heroCta', 'scenariosEyebrow', 'scenariosHeading',
+  'quote', 'quoteName', 'quoteRole', 'ctaEyebrow', 'ctaTitle', 'ctaSub', 'ctaButton',
+];
+function solBase(yamlObj, extraFlat = []) {
+  const flat = toLocaleMajor(yamlObj, [...SOL_BASE_FLAT, ...extraFlat]);
+  const scenarios = arrayItemsLocaleMajor(yamlObj.scenarios, ['tag', 'title', 'body']);
+  const out = {};
+  for (const loc of LOCALES) out[loc] = { ...flat[loc], scenarios: scenarios[loc] };
+  return out;
+}
+const retailYaml = load('content/site/retail.yaml');
+const retail = solBase(retailYaml, ['baEyebrow', 'baHeading']);
+const retailBeforeAfter = arrayItemsLocaleMajor(retailYaml.beforeAfter, ['before', 'after']);
+for (const loc of LOCALES) retail[loc].beforeAfter = retailBeforeAfter[loc];
+const drug = solBase(load('content/site/drug.yaml'));
+const foodBeverage = solBase(load('content/site/food-beverage.yaml'));
+const largeSpace = solBase(load('content/site/large-space.yaml'), ['mtmcBadge', 'mtmcHeading', 'mtmcBody', 'mtmcLink', 'mtmcItems']);
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources)');
+console.log('✓ generated src/data/generated/site-content.json (…, technology, resources, retail, drug, foodBeverage, largeSpace)');
