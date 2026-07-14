@@ -3,7 +3,7 @@ import SolutionsView from '@/components/corporate/views/SolutionsView';
 
 export const metadata: Metadata = {
   title: '業種別ソリューション — 現場の課題解決ガイド | DEEPINGSOURCE',
-  description: 'コンビニの盗難防止、カフェの回転率改善、無人店舗の異常検知など、業種別の実際の課題と SAAI ソリューションの適用事例をご確認ください。',
+  description: 'コンビニの盗難防止、カフェの回転率改善、無人店舗の異常検知など、業種別の実際の課題を SAAI の匿名化空間AIがどう解決するのかご確認ください。',
   alternates: {
     canonical: '/jp/solutions',
     languages: {

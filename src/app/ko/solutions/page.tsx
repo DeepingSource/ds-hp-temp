@@ -3,7 +3,7 @@ import SolutionsView from '@/components/corporate/views/SolutionsView';
 
 export const metadata: Metadata = {
   title: '업종별 솔루션 — 현장 문제-해결 가이드 | DEEPINGSOURCE',
-  description: '편의점 도난 방지, 카페 회전율 개선, 무인매장 이상 감지 등 업종별 실제 문제와 SAAI 솔루션 적용 사례를 확인하세요.',
+  description: '편의점 도난 방지, 카페 회전율 개선, 무인매장 이상 감지 등 업종별 실제 문제를 SAAI의 익명화 공간 AI가 어떻게 해결하는지 확인하세요.',
   alternates: {
     canonical: '/ko/solutions',
     languages: {

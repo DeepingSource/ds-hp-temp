@@ -4,8 +4,8 @@ import ProductsView from '@/components/corporate/views/ProductsView';
 export const metadata: Metadata = {
   title: 'Products | DEEPINGSOURCE — Perfect every space.',
   description:
-    'store insight · store agent · store care · SAAI. From enterprise spatial analytics to peace-of-mind tools for owners and B2C content. The DeepingSource product line that runs every store like one.',
-  keywords: ['DeepingSource', 'Products', 'store insight', 'store agent', 'store care', 'SAAI', 'store analytics', 'spatial intelligence'],
+    'Anonymized Spatial AI — store insight · store agent · store care · SAAI. From enterprise spatial analytics to owner peace-of-mind and B2C content, the DeepingSource product line that runs every store like one.',
+  keywords: ['DeepingSource', 'Products', 'store insight', 'store agent', 'store care', 'SAAI', 'store analytics', 'spatial intelligence', 'Anonymized Spatial AI'],
   alternates: {
     canonical: '/products',
     languages: {

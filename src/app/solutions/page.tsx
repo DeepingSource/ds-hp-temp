@@ -3,7 +3,7 @@ import SolutionsView from '@/components/corporate/views/SolutionsView';
 
 export const metadata: Metadata = {
   title: 'Solutions by Industry — Problem-Solution Guide | DEEPINGSOURCE',
-  description: 'Convenience-store theft prevention, café turnover, unmanned-store anomaly detection, and more. See real problems by industry and how SAAI solves them.',
+  description: 'Convenience-store theft prevention, café turnover, unmanned-store anomaly detection, and more. See how SAAI’s Anonymized Spatial AI solves real problems by industry.',
   alternates: {
     canonical: '/solutions',
     languages: {
