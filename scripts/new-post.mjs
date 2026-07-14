@@ -48,19 +48,40 @@ try {
   /* ok — file does not exist */
 }
 
-const template = `---
-slug: ${slug}
-title: ${title}
-excerpt: 한 줄 요약을 여기에 적으세요.
-category: ${category}
-date: ${today}
-tags: []
-icon: Newspaper
-# cover: /images/blog/${slug}.webp   # (선택) 커버 이미지 — /public/images/blog/ 에 두세요
-lang: ${lang}
----
+// 주간 글(G-4): 매번 빈 폼에서 시작하지 않도록 반복되는 골격을 미리 채워 둔다.
+// 편집자는 자리표시자만 교체하면 된다(골격 작업 0분).
+const weeklyBody = `<Callout variant="info">
+  이번 주 핵심 한 줄 요약을 여기에 적으세요.
+</Callout>
 
-여기에 도입 문단을 작성하세요. 본문 이미지는 아래처럼 넣습니다:
+## 이번 주 키워드
+
+<StatGroup>
+  <Stat label="지표 1" value="+00%" change="지난주 대비" />
+  <Stat label="지표 2" value="+00%" change="지난주 대비" />
+  <Stat label="지표 3" value="+00%" change="지난주 대비" />
+</StatGroup>
+
+## 진열·운영 전략
+
+<Tip title="이번 주 팁">
+  실행 가능한 팁을 한두 문장으로 적으세요.
+</Tip>
+
+## 이번 주 체크리스트
+
+<Checklist>
+- 할 일 1
+- 할 일 2
+- 할 일 3
+</Checklist>
+
+## 다음 주 미리보기
+
+다음 주 예고를 적으세요.
+`;
+
+const defaultBody = `여기에 도입 문단을 작성하세요. 본문 이미지는 아래처럼 넣습니다:
 
 ![대체 텍스트](/images/blog/${slug}-1.webp)
 
@@ -72,6 +93,20 @@ lang: ${lang}
   Stat · StatGroup · Tip · Checklist · Quote · Callout · Source · PrivacyNote 컴포넌트를 쓸 수 있습니다.
 </Tip>
 `;
+
+const template = `---
+slug: ${slug}
+title: ${title}
+excerpt: 한 줄 요약을 여기에 적으세요.
+category: ${category}
+date: ${today}
+tags: []
+icon: ${category === 'weekly' ? 'CalendarDays' : 'Newspaper'}
+# cover: /images/blog/${slug}.webp   # (선택) 커버 이미지 — /public/images/blog/ 에 두세요
+lang: ${lang}
+---
+
+${category === 'weekly' ? weeklyBody : defaultBody}`;
 
 await mkdir(path.dirname(filePath), { recursive: true });
 await writeFile(filePath, template, 'utf8');
