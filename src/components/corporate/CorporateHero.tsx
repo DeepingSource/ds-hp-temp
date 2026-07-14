@@ -5,7 +5,7 @@ import CorporateHeroFigure from '@/components/corporate/CorporateHeroFigure';
 import Container from '@/components/ui/Container';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
-import { perfectSpace } from '@/lib/brand-canon';
+import { perfectSpace, categoryKeyword } from '@/lib/brand-canon';
 import { technologyImages } from '@/data/siteImages';
 
 /** Credential badges — real, hard credentials shown as proof pills (not a sentence). */
@@ -17,14 +17,14 @@ const credentials: Record<Locale, string[]> = {
 };
 
 /**
- * Keyword subheadline (H2) — promotes the category keyword "Anonymized Spatial AI"
- * into the heading hierarchy for SEO/AEO weight. Emotional H1 stays; this carries the
- * searchable term. Derived from the eyebrow/heroSub keywords, not new master copy.
+ * Keyword subheadline (H2) — promotes the category keyword into the heading hierarchy
+ * for SEO/AEO weight. Emotional H1 stays; this carries the searchable term. The keyword
+ * itself comes from the `categoryKeyword` SOT (brand-canon); only the tail lives here.
  */
-const heroKeyword: Record<Locale, string> = {
-  ko: '익명화 공간 AI — 얼굴 없이, CCTV 위에서',
-  en: 'Anonymized Spatial AI — faceless, on the CCTV you already have',
-  jp: '匿名化空間AI — 顔なしで、すでにあるCCTVの上で',
+const heroKeywordTail: Record<Locale, string> = {
+  ko: '얼굴 없이, CCTV 위에서',
+  en: 'faceless, on the CCTV you already have',
+  jp: '顔なしで、すでにあるCCTVの上で',
 };
 
 /** Hero evidence overlay — proves face-free tracking (our anonymization moat, shown not told). */
@@ -68,7 +68,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               <WordRise text={perfectSpace.your[locale]} />
             </h1>
             <h2 className="mt-4 text-lg sm:text-xl font-semibold text-gray-700 break-keep max-w-2xl animate-fade-in-up delay-100">
-              {heroKeyword[locale]}
+              {categoryKeyword[locale]} — {heroKeywordTail[locale]}
             </h2>
             <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
               {t.heroSub}

@@ -59,6 +59,26 @@ export const categoryLine: Record<Locale, string> = {
 };
 
 /**
+ * Category keyword (SEO/AEO SOT) — the traffic-hub keyword, spelled identically on
+ * every surface so search/answer engines resolve ONE entity. Use this for headings,
+ * eyebrows, meta, and JSON-LD; free prose may lowercase ("offline spatial AI") where
+ * grammar calls for it.
+ *
+ * ROLE SEPARATION (naming reorg §14/§15 · AEO plan P1-2/1-3):
+ *   • categoryKeyword ("Anonymized Spatial AI / 익명화 공간 AI / 匿名化空間AI") = the
+ *     CATEGORY we sell — the searchable term. Front-load it in Title/H1–H2/first paragraph.
+ *   • SAAI = the UMBRELLA BRAND (Spatial·Anonymized·Agentic·Intelligence — see
+ *     `saaiPromiseLayer`). A brand, not a search term.
+ *   • `saai {insight·care·agent}` / `store {…}` = PRODUCT names (see `productNaming`):
+ *     saai = primary value brand, store = domain implementation. Not category keywords.
+ */
+export const categoryKeyword: Record<Locale, string> = {
+  ko: '익명화 공간 AI',
+  en: 'Anonymized Spatial AI',
+  jp: '匿名化空間AI',
+};
+
+/**
  * Operating loop — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
  * Replaces the retired 3-step Read·Alert·Act. phase = the time axis (어제/지금/알림/다음).
  * (KO/JP wording is a handoff-faithful draft pending brand sign-off.)

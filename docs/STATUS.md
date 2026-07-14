@@ -89,11 +89,12 @@
 | P0-1 FAQ `FAQPage` 스키마 | **이미 구현됨**(`FaqView.tsx` — 렌더 아코디언과 동일 소스로 `faqPage()` 출력). 계획서 "호출 흔적 없음"은 오탐. 빌드 3로케일 HTML에서 `"@type":"FAQPage"` 검증 완료 |
 | P0-2 홈 H1 하이브리드 | H1(감성) 아래 키워드 **H2 추가** — `CorporateHero.tsx` `heroKeyword` 딕트("익명화 공간 AI — …" 3로케일). 빌드 HTML `<h2>` 렌더 검증. 마스터 카피 불변 |
 | P0-3 메타 Title 길이 | 병기 유지 + 혜택 꼬리만 절삭(사용자 결정). 제품 12개(`store-agent/insight/care/count` × 3로케일) + `storeagent` 미니사이트 title을 `제품명 \| DEEPINGSOURCE`로. OG title은 이미 절삭형이었음 |
-| P2-2 스키마 커버리지 감사 | 빌드 산출물 실측: **제품 5(SoftwareApplication)·솔루션 4(Service)·블로그(Article)·글로서리(DefinedTerm) 전부 출력 확인 — 갭 없음.** Organization 신뢰지표 보강: `award`(특허 수)·`knowsAbout`(핵심 토픽) 구조화 필드 추가(`layout.tsx`) |
+| P2-2 스키마 커버리지 감사 | 빌드 산출물 실측: **제품 5(SoftwareApplication)·솔루션 4(Service)·블로그(Article)·글로서리(DefinedTerm) 전부 출력 확인 — 갭 없음.** Organization 신뢰지표 보강: `award`(특허 수, `categoryKeyword.en` 참조)·`knowsAbout`(핵심 토픽) 구조화 필드 추가(`layout.tsx`) |
+| P1-2/1-3 키워드·네이밍 규칙 SOT | **`brand-canon.ts`에 `categoryKeyword` SOT + 역할 분리 규칙 doc 추가** — "Anonymized Spatial AI/익명화 공간 AI/匿名化空間AI"=카테고리 키워드, SAAI=우산 브랜드, `saai/store {…}`=제품명(productNaming). 표기 감사: KO 18건·JP 10건 **100% 일관**, EN 소문자 변형은 대부분 정당한 산문(문장 중간·기술 스택 나열)이라 미변경. 정규화 2건: saai featureNote 정의 글로스, Organization award. 홈 H2를 SOT에서 파생(dogfood). **제품 네이밍 규칙(P1-3)은 이미 §14/§15 option B로 productNaming에 명문화 완료** |
 
 ### ⬜ 잔여 (P1/P2 — 카피 결정·창작 수반)
 - **P1-1** 제품 현장 사례 → Problem·Solution·Result 구조화(정량 수치 텍스트 노출). 공수 2~3일. §4 배치 D #13 도입사례 페이지화와 연계.
-- **P1-2/1-3** 메인 키워드 "Anonymized Spatial AI" 전진 배치 통일 + 제품 네이밍 규칙 문서화(saai=브랜드 / Spatial AI=카테고리 역할 분리).
+- **P1-2 허브 hero 전진 배치(선택)**: products/technology/solutions/pricing 허브 hero는 **의도적 감성/구조 프레이밍**(technology=3축 분해, products=마스터 카피 "SAAI로 익명화")이라 복합 키워드 강제 주입은 톤 리스크 → 미시행. 필요 시 **hub 메타 title/description**에만 키워드 전진 배치(감성 hero 불변, SEO 표면만)가 저위험 대안.
 - **P2-1** 본문 내부링크 앵커 키워드화(제너릭 "Learn more" → 문맥 키워드 + 글로서리 내부링크).
 - **카피 "그래서?" 다리**(P2-B): "Beyond data, to decisions." 류 추상 카피에 혜택 문장 보강 — 마스터 카피 동결, 받침 문장만. 브랜드 SOT 사인오프 필요.
 - **아웃라이어 title**: `company/partnership`(3로케일 `— DEEPINGSOURCE Inc. \| 마스터태그라인` 패턴, jp 107자) — 제품 혜택꼬리와 달리 **의도적 마스터 태그라인**이라 별도 결정 필요(미변경).

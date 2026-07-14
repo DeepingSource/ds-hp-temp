@@ -11,6 +11,7 @@ import MotionProvider from "@/components/providers/MotionProvider";
 import HtmlLangSync from "@/components/layout/HtmlLangSync";
 import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
+import { categoryKeyword } from "@/lib/brand-canon";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Analytics from "@/components/Analytics";
 
@@ -97,7 +98,7 @@ const jsonLd = [
       name: "NVIDIA Inception Program",
     },
     // Trust signals — surface hard credentials as structured fields (not just prose) for AEO.
-    award: `${COMPANY.patents} registered patents in anonymized spatial AI`,
+    award: `${COMPANY.patents} registered patents in ${categoryKeyword.en}`,
     knowsAbout: [
       "Anonymized Spatial AI",
       "Privacy-preserving video analytics",
