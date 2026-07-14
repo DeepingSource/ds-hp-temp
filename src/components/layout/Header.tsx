@@ -151,14 +151,14 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={localeHref(locale, item.href)}
-                  className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`relative isolate px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                     active ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
                   {item.label[locale]}
                   {active && (
-                    <SlidingIndicator layoutId="nav-underline" className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
+                    <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
                   )}
                 </Link>
               );
@@ -175,7 +175,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setOpenKey(open ? null : item.key)}
-                  className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
+                  className={`relative isolate flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
                     active || open ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   } ${open ? 'bg-gray-50' : ''}`}
                   aria-expanded={open}
@@ -184,7 +184,7 @@ export default function Header() {
                   {item.label[locale]}
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
                   {active && (
-                    <SlidingIndicator layoutId="nav-underline" className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary" />
+                    <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
                   )}
                 </button>
                 <div
@@ -328,7 +328,7 @@ export default function Header() {
             })}
             <hr className="border-gray-100 my-1" />
             <div className="px-3 py-2">
-              <LocaleSwitcher />
+              <LocaleSwitcher inline />
             </div>
             <div className="pt-1 pb-2">
               <Link
