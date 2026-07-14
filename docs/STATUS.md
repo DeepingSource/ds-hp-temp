@@ -15,7 +15,7 @@
 | Vercel 배포 정상화 | ✅ 완료 | 이 문서 §1 |
 | Keystatic CMS — GitHub 모드 전환 | ✅ 완료 | [PHASE_C](./PHASE_C_github-mode-setup.md) |
 | Keystatic 고도화 (편집자 루프·온보딩) | 🟡 Week 1–3 완료, 대형 항목 잔여 | [KEYSTATIC_ENHANCEMENT_PLAN](./KEYSTATIC_ENHANCEMENT_PLAN_v1.md) |
-| 페이지 카피 CMS화 (Phase D) | 🟡 8/13 싱글톤 | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
+| 페이지 카피 CMS화 (Phase D) | 🟡 9/13 싱글톤 | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
 | 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | `피드백-반영-계획-260714.md` (repo-root) |
 | 런치 준비 | 🟡 진행 중 | [LAUNCH_PLAN](./LAUNCH_PLAN_v1.md) |
 
@@ -55,8 +55,9 @@
 
 ## 3. 페이지 카피 CMS화 (Phase D)
 
-- **완료(8)**: home · products · store-agent · saai · solutions · about · contact · **pricing**(84필드, byte-identical 검증).
-- **잔여**: technology · resources · solutions 업종 서브페이지 4종 · legal. 이미지 필드는 히어로/로고/팀사진 페이지에서 `fields.image`→`public/images/site/`로 도입.
+- **완료(9)**: home · products · store-agent · saai · solutions · about · contact · pricing(84필드) · **technology**(42필드, 순서보존 객체배열 4종, byte-identical 검증).
+- **잔여**: resources · solutions 업종 서브페이지 4종 · legal. 이미지 필드는 히어로/로고/팀사진 페이지에서 `fields.image`→`public/images/site/`로 도입.
+- **신규 gen 헬퍼**: `arrayItemsLocaleMajor(arr, fields)` — 순서 보존 로케일 배열(인덱스 기반 소비용, technology stack/powered 등). idItem은 순서=구조, 재정렬 금지.
 - **레시피**(재사용): View 카피 추출 → `content/site/<page>.yaml` → `gen-site-content.mjs`에 `<PAGE>_FLAT` 배열+결과객체+로그 추가 → 생성 JSON이 기존과 byte-identical 확인 → View를 `siteContent.<page>` + 코드 상수(함수·토큰·SOT) 머지로 배선.
 
 ## 4. 홈페이지 피드백 반영 (`피드백-반영-계획-260714.md` · 16항목/4배치)
