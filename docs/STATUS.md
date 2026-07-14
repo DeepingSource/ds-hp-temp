@@ -81,6 +81,16 @@
 - **완료**: 애널리틱스 배선(GA4+Umami, env 게이트) · 블로그 CMS · Keystatic GitHub 모드 · R2(배포 stale) 해소.
 - **잔여**: 도메인 전환(`deepingsource.io`) + GitHub App callback/`NEXT_PUBLIC_SITE_URL` 갱신 · noindex 게이트 해제(`NEXT_PUBLIC_ALLOW_INDEXING=true`) · GSC sitemap · GA4/Umami 계정 발급.
 
+## 5b. 리포지토리·에셋 정리 + 카피 리뷰 (2026-07-14)
+
+- **문서 정리 ✅**: 루트 계획 문서 10개(tracked 8 + untracked 2) → `docs/`로 이동. 루트는 SOT 3개(`DESIGN.md`·`README.md`·`SAAI_AI_Handoff.md`)만 유지. STATUS·docs/README 참조 갱신.
+- **스크래치 정리 ✅**(로컬, gitignored): 이미지 생성 덤프 ~483M 삭제(`new-image-generated*`·`new_image_260626`·`_frames_tmp`) + `.DS_Store`. **보존**: `new-images`(미통합 브랜드 자산 후보)·`design-system`·`asset-prompts`·`assets`.
+- **카피 리뷰 도구 ✅**: `npm run copy:review` → `scripts/export-copy.mjs` → `copy-review/`(gitignored) 5개 md에 전체 카피 ko/en/jp ≈1400행(CMS 498·brand 26·data-i18n 192·컴포넌트 568·메타 116). 하이브리드 1단계(리뷰). **다음=고빈도 코드 카피 CMS 이관**(§3 레시피, 큰 것부터: `solutions-i18n`·`faq-i18n`·`storeagent-mock-i18n`·`glossary-i18n`).
+- **⚠️ 후속(사용자 확인 필요)**:
+  - **`deepingsource-hp-cms.2026-07-09.private-key.pem`** — 워킹디렉토리에 GitHub App 개인키 방치. **코드 미사용**(GitHub 모드는 env 인증, config는 주석만) · gitignored(비추적). 보안상 **안전한 곳(비밀번호 관리자/시크릿 스토어)에 백업 후 워킹디렉토리에서 제거 권장**. (키라서 임의 삭제 안 함)
+  - **미사용 에셋**: `public/images` 230개 미사용 탐지엔 전용 스크립트 필요 · 미참조 비디오 `public/videos/unmanned-security-alert.mp4` 1개(tracked).
+  - **/demo**: 격리 유지(noindex+미연결) — dev-gate 여부 별도 검토.
+
 ## 6. AEO/SEO 개선 (`AEO-SEO-개발계획-260714.md`)
 
 ### ✅ 완료 (2026-07-14, P0 배치 + 스키마 감사)
