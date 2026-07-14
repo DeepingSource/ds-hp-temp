@@ -1,7 +1,24 @@
-# 블로그 글 작성 가이드 (Phase 1)
+# 블로그 글 작성 가이드
 
 블로그 글은 `content/articles/<slug>.mdx` 파일입니다(플랫 구조 — 카테고리는 프론트매터에만).
 Velite가 빌드 때 읽어 `/resources/blog`(및 `/ko`·`/jp`)에 렌더합니다.
+
+## 브라우저에서 글 쓰기 (비개발자용, 권장)
+
+개발 환경 없이 브라우저만으로 작성·발행할 수 있습니다.
+
+1. **접속**: `https://ds-hp-temp.vercel.app/keystatic` (도메인 전환 후에는 `https://deepingsource.io/keystatic`)
+2. **로그인**: "Sign in with GitHub" → 본인 GitHub 계정으로 로그인.
+   - 사전 조건: GitHub 계정이 `DeepingSource/ds-hp-temp` 저장소에 **write 권한**으로 초대되어 있어야 합니다(관리자에게 요청).
+3. **글 작성**: 왼쪽 메뉴 **블로그 글** → **Create entry** → 폼 채우기.
+   - Title·Slug·Excerpt·Category·Date는 필수. Read time은 비워두면 자동 계산됩니다.
+   - **커버 이미지**: Cover 필드에서 파일 업로드(2:1 비율 권장, `.webp` 선호) + Cover alt(대체 텍스트) 입력.
+   - 본문 에디터의 `+` 메뉴에서 Stat·Tip·Checklist·Callout·Quote 등 블록을 삽입할 수 있습니다.
+4. **저장 = 발행**: 우측 상단 **Save** → GitHub `main`에 자동 커밋 → Vercel이 자동 재빌드(수 분 소요) → 라이브 반영.
+   - `date`를 미래 날짜로 두면 그 날짜까지 목록에서 숨겨집니다(예약 발행).
+5. **수정/삭제**: 목록에서 글 선택 → 수정 후 Save, 삭제는 항목 하단 Delete.
+
+아래 섹션들은 파일을 직접 편집하는 개발자용 안내입니다(같은 파일을 다루므로 두 방식은 병행 가능).
 
 ## 새 글 만들기
 

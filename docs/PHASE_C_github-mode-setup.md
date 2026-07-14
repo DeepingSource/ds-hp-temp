@@ -1,16 +1,17 @@
 # Phase C 준비 — Keystatic GitHub 모드 전환 가이드
 
 > **목표** 비개발 팀원이 브라우저(`/keystatic`)에서 편집 → 자동 커밋 → Vercel 재배포.
-> **현재** Keystatic = 로컬 모드(`storage: { kind: 'local' }`). 편집이 로컬 파일에만 반영됨.
+> **현재** Keystatic = **GitHub 모드 전환 완료**(`de5b9f6ea`, 2026-07-13 — `storage: { kind: 'github', repo: DeepingSource/ds-hp-temp }`).
+> 배포 도메인: `https://ds-hp-temp.vercel.app`. 남은 것 = 배포 파이프라인 정상화 + §5 운영 검증.
 > **전제** Phase A·B 완료(analytics 배선 · 블로그 `articles` 컬렉션 동작).
 > ⚠️ **이 전환은 GitHub App 생성·설치(사용자 GitHub 권한)가 선행돼야 함.** App/env 없이 storage만
 > `github`로 바꾸면 로컬 편집이 깨지므로, 아래 1~3을 먼저 끝낸 뒤 4(코드 전환)를 진행한다.
 
 ---
 
-## 0. 먼저: 레거시 정리 대상 (혼동 주의)
+## 0. 먼저: 레거시 정리 대상 (혼동 주의) — ✅ 완료 (`7a31d4350`)
 
-현재 리포에 **Decap CMS 잔재**가 있음 — Keystatic과 무관하니 헷갈리지 말 것:
+~~현재 리포에~~ **Decap CMS 잔재**가 있었음 — Keystatic과 무관하니 헷갈리지 말 것 (아래 항목 모두 삭제 완료):
 - `src/app/api/auth/route.ts` · `src/app/api/callback/route.ts` (Decap OAuth 프록시)
 - `.env.example`의 `GITHUB_CLIENT_ID` · `GITHUB_CLIENT_SECRET` (Decap용, Keystatic이 안 씀)
 
