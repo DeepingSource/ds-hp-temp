@@ -5,7 +5,7 @@
  */
 
 export const COMPANY = {
-  name: 'DeepingSource Inc.',
+  name: 'DEEPINGSOURCE Inc.',
   nameKo: '딥핑소스',
   platform: 'SAAI',
   foundingYear: 2018,

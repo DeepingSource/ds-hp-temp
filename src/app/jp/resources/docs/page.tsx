@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import DocsView from '@/components/corporate/views/DocsView';
 
 export const metadata: Metadata = {
-  title: '製品ドキュメント | DeepingSource',
+  title: '製品ドキュメント | DEEPINGSOURCE',
   description:
     'DeepingSource 製品の導入、連携、運用に必要な技術文書とマニュアル。はじめにからデータ連携、セキュリティ、分析まで、ひとつの場所でご確認いただけます。',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: '製品ドキュメント | DeepingSource',
+    title: '製品ドキュメント | DEEPINGSOURCE',
     description: '製品の導入、連携、運用に必要な技術文書とマニュアル。',
     url: '/jp/resources/docs',
   },

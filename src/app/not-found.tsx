@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { ArrowRight, Home, Zap, Eye, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Page not found · 페이지를 찾을 수 없습니다 | DeepingSource',
+  title: 'Page not found · 페이지를 찾을 수 없습니다 | DEEPINGSOURCE',
 };
 
 export default function NotFound() {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import GlossaryView from '@/components/corporate/views/GlossaryView';
 
 export const metadata: Metadata = {
-  title: 'Glossary | DeepingSource',
+  title: 'Glossary | DEEPINGSOURCE',
   description:
     'Plain-language explanations of the core privacy-AI and spatial-analytics terms — store heatmaps, anonymized CCTV, dwell time, conversion rate, and more.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Glossary | DeepingSource',
+    title: 'Glossary | DEEPINGSOURCE',
     description: 'Plain-language explanations of the core privacy-AI and spatial-analytics terms.',
     url: '/resources/glossary',
   },

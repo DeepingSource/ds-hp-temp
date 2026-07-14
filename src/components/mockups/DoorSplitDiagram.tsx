@@ -10,7 +10,7 @@ import { CountUp } from '@/components/ui/CountUp';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
- * Left of the door: store count reads footfall + capture rate (382 ÷ 1,160 = 33%).
+ * Left of the door: store count reads footfall + inflow rate (382 ÷ 1,160 = 33%).
  * Right of the door: store insight reads flow/dwell (heatmap) + the conversion
  * funnel (382→317→65). Shared on both product pages as a contrast pair. Inline
  * SVG/CSS, no raster. Sample values (caption marks it).
@@ -24,33 +24,33 @@ const dict: Record<Locale, {
   boundary: string; caption: string;
 }> = {
   ko: {
-    outsideTag: '문 밖 · store count', outsideTitle: '상권·통행·흡인율',
+    outsideTag: '문 밖 · store count', outsideTitle: '상권·통행·유입률',
     passersby: '지나감', passersbyN: '1,160',
-    captureLabel: '흡인율', captureRate: 33, captureSub: '입장 382 ÷ 지나감 1,160',
+    captureLabel: '유입률', captureRate: 33, captureSub: '입장 382 ÷ 지나감 1,160',
     insideTag: '문 안 · store insight', insideTitle: '동선·체류·전환',
     heatLabel: '체류 히트맵',
     funnel: [{ label: '입장', n: '382' }, { label: '체류', n: '317' }, { label: '구매', n: '65' }],
-    boundary: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를 — 흡인율이 둘을 잇습니다.',
+    boundary: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를 — 유입률이 둘을 잇습니다.',
     caption: '* 수치는 설명용 예시입니다.',
   },
   en: {
-    outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · capture',
+    outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · inflow',
     passersby: 'Passing by', passersbyN: '1,160',
-    captureLabel: 'Capture rate', captureRate: 33, captureSub: 'Entered 382 ÷ passing 1,160',
+    captureLabel: 'Inflow rate', captureRate: 33, captureSub: 'Entered 382 ÷ passing 1,160',
     insideTag: 'Inside · store insight', insideTitle: 'Flow · dwell · conversion',
     heatLabel: 'Dwell heatmap',
     funnel: [{ label: 'Entered', n: '382' }, { label: 'Dwell', n: '317' }, { label: 'Bought', n: '65' }],
-    boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — capture rate is the handoff between them.',
+    boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — inflow rate is the handoff between them.',
     caption: '* Figures are illustrative.',
   },
   jp: {
-    outsideTag: '店の外 · store count', outsideTitle: '商圏・通行・捕捉率',
+    outsideTag: '店の外 · store count', outsideTitle: '商圏・通行・流入率',
     passersby: '通行', passersbyN: '1,160',
-    captureLabel: '捕捉率', captureRate: 33, captureSub: '入店 382 ÷ 通行 1,160',
+    captureLabel: '流入率', captureRate: 33, captureSub: '入店 382 ÷ 通行 1,160',
     insideTag: '店の中 · store insight', insideTitle: '動線・滞在・転換',
     heatLabel: '滞在ヒートマップ',
     funnel: [{ label: '入店', n: '382' }, { label: '滞在', n: '317' }, { label: '購入', n: '65' }],
-    boundary: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを — 捕捉率が両者をつなぎます。',
+    boundary: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを — 流入率が両者をつなぎます。',
     caption: '* 数値は説明用の例示です。',
   },
 };

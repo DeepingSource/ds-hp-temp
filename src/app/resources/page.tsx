@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ResourcesView from '@/components/corporate/views/ResourcesView';
 
 export const metadata: Metadata = {
-  title: 'Resources | DeepingSource',
+  title: 'Resources | DEEPINGSOURCE',
   description:
     'Blog posts, case studies, product docs, a glossary, and FAQs — everything you need to understand DeepingSource privacy AI solutions, in one place.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Resources | DeepingSource',
+    title: 'Resources | DEEPINGSOURCE',
     description: 'Blog, case studies, product docs, glossary, and FAQ in one place.',
     url: '/resources',
   },

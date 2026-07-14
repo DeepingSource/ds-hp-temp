@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import FaqView from '@/components/corporate/views/FaqView';
 
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | DeepingSource',
+  title: 'Frequently Asked Questions | DEEPINGSOURCE',
   description:
     'Answers to frequently asked questions about DeepingSource product onboarding, pricing, data security, features, and more.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Frequently Asked Questions | DeepingSource',
+    title: 'Frequently Asked Questions | DEEPINGSOURCE',
     description: 'Answers to common questions about onboarding, pricing, and data security.',
     url: '/resources/faq',
   },

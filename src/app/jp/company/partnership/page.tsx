@@ -3,7 +3,7 @@ import PartnershipView from '@/components/corporate/views/PartnershipView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'パートナーシップ — DeepingSource Inc. | パートナーの店舗もひとつの店舗のように',
+  title: 'パートナーシップ — DEEPINGSOURCE Inc. | パートナーの店舗もひとつの店舗のように',
   description: `${COMPANY.name}のパートナープログラム。設置パートナー、チャネルパートナー、技術パートナーとともに、オフライン空間AIを拡張します。`,
   keywords: ['DeepingSource', 'パートナーシップ', 'パートナープログラム', 'SAAI', 'チャネルパートナー', '提携'],
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'パートナーシップ — DeepingSource Inc.',
+    title: 'パートナーシップ — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}のパートナープログラム。`,
     url: 'https://www.deepingsource.io/jp/company/partnership',
   },

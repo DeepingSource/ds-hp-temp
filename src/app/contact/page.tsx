@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ContactFormPage from './ContactFormPage';
 
 export const metadata: Metadata = {
-  title: 'Request a Consultation | DeepingSource',
+  title: 'Request a Consultation | DEEPINGSOURCE',
   description: 'Request a DeepingSource consultation. Our team will get in touch within 1-2 business days.',
   alternates: {
     canonical: '/contact',
@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Request a Consultation | DeepingSource',
+    title: 'Request a Consultation | DEEPINGSOURCE',
     description: 'Request a DeepingSource consultation. Our team will get in touch within 1-2 business days.',
     url: '/contact',
   },
   twitter: {
     card: 'summary',
-    title: 'Request a Consultation | DeepingSource',
+    title: 'Request a Consultation | DEEPINGSOURCE',
     description: 'Request a DeepingSource consultation. Our team will get in touch within 1-2 business days.',
   },
 };

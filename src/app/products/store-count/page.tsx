@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import StoreCountView from '@/components/corporate/views/StoreCountView';
 
 export const metadata: Metadata = {
-  title: 'store count | DeepingSource — Trade-area analysis from one camera',
+  title: 'store count | DEEPINGSOURCE — Trade-area analysis from one camera',
   description:
-    'Count the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
-  keywords: ['store count', 'footfall counting', 'trade area analysis', 'people counting', 'capture rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
+    'Count the footfall passing your store, the customers who walk in, and your inflow rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
+  keywords: ['store count', 'footfall counting', 'trade area analysis', 'people counting', 'inflow rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
   alternates: {
     canonical: '/products/store-count',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'store count | DeepingSource',
+    title: 'store count | DEEPINGSOURCE',
     description: 'Trade-area analysis you knew you needed, from one camera — every day, no staff.',
     type: 'website',
   },

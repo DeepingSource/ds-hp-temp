@@ -3,7 +3,7 @@ import CareerView from '@/components/corporate/views/CareerView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'Careers — DeepingSource Inc. | Weaving one company',
+  title: 'Careers — DEEPINGSOURCE Inc. | Weaving one company',
   description: `Join ${COMPANY.name} and help build the future of offline spatial AI.`,
   keywords: ['DeepingSource', 'Careers', 'Jobs', 'Hiring', 'AI careers', 'Startup jobs'],
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Careers — DeepingSource Inc.',
+    title: 'Careers — DEEPINGSOURCE Inc.',
     description: `Join ${COMPANY.name} and build offline spatial AI with us.`,
     url: 'https://www.deepingsource.io/company/career',
   },

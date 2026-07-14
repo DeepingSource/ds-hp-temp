@@ -3,7 +3,7 @@ import NewsView from '@/components/corporate/views/NewsView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'Press & Media — DeepingSource Inc.',
+  title: 'Press & Media — DEEPINGSOURCE Inc.',
   description: `Press releases, media coverage, and announcements from ${COMPANY.name}, all in one place.`,
   keywords: ['DeepingSource', 'Press', 'News', 'Media', 'Press release', 'PR'],
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Press & Media — DeepingSource Inc.',
+    title: 'Press & Media — DEEPINGSOURCE Inc.',
     description: `Press releases and media coverage from ${COMPANY.name}.`,
     url: 'https://www.deepingsource.io/company/news',
   },

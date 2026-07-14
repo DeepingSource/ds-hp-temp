@@ -3,7 +3,7 @@ import { BRAND } from '@/lib/tokens';
 
 // export const runtime = 'edge';
 
-export const alt = 'STOREAGENT - 편의점 점주를 위한 AI 브리핑';
+export const alt = 'STOREAGENT - 편의점 사장님을 위한 AI 브리핑';
 export const size = {
   width: 1200,
   height: 630,

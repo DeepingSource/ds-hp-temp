@@ -4,7 +4,7 @@ import { ArrowLeft, CheckCircle2, MailOpen, Sun, TrendingUp } from 'lucide-react
 import type { LucideIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '구독 완료 | DeepingSource',
+  title: '구독 완료 | DEEPINGSOURCE',
   description: '뉴스레터 구독이 완료되었습니다. 매주 유용한 매장 운영 인사이트를 보내드립니다.',
 };
 

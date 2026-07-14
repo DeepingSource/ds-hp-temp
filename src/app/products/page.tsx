@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ProductsView from '@/components/corporate/views/ProductsView';
 
 export const metadata: Metadata = {
-  title: 'Products | DeepingSource — Every store, like one.',
+  title: 'Products | DEEPINGSOURCE — Every store, like one.',
   description:
     'store insight · store agent · store care · SAAI. From enterprise spatial analytics to peace-of-mind tools for owners and B2C content. The DeepingSource product line that runs every store like one.',
   keywords: ['DeepingSource', 'Products', 'store insight', 'store agent', 'store care', 'SAAI', 'store analytics', 'spatial intelligence'],
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Products | DeepingSource',
+    title: 'Products | DEEPINGSOURCE',
     description: 'Every store, like one. From enterprise analytics to owner peace-of-mind and B2C content.',
     type: 'website',
   },

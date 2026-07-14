@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import SealView from '@/components/corporate/views/SealView';
 
 export const metadata: Metadata = {
-  title: 'SEAL SDK — 익명화 처리 통합 SDK | DeepingSource',
+  title: 'SEAL SDK — 익명화 처리 통합 SDK | DEEPINGSOURCE',
   description:
     'SEAL SDK는 영상 익명화·인식·공간 분석 파이프라인을 애플리케이션에 통합하기 위한 개발 키트입니다. Secure, Embeddable, Adaptable, Lightweight 4가지 설계 원칙을 정리합니다.',
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'SEAL SDK — 익명화 처리 통합 SDK | DeepingSource',
+    title: 'SEAL SDK — 익명화 처리 통합 SDK | DEEPINGSOURCE',
     description: '익명화 처리 파이프라인을 애플리케이션에 통합하기 위한 SDK.',
     url: '/ko/technology/seal',
   },

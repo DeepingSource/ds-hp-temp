@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import FaqView from '@/components/corporate/views/FaqView';
 
 export const metadata: Metadata = {
-  title: 'よくあるご質問 | DeepingSource',
+  title: 'よくあるご質問 | DEEPINGSOURCE',
   description:
     'DeepingSource製品の導入の流れ、料金、データセキュリティ、機能などに関するよくあるご質問と回答をまとめました。',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'よくあるご質問 | DeepingSource',
+    title: 'よくあるご質問 | DEEPINGSOURCE',
     description: '導入の流れ、料金、データセキュリティなど、よくあるご質問と回答。',
     url: '/jp/resources/faq',
   },

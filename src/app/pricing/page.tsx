@@ -5,7 +5,7 @@ import siteContent from '@/data/generated/site-content.json';
 const hero = siteContent.pricing.en;
 
 export const metadata: Metadata = {
-  title: 'Pricing | DeepingSource',
+  title: 'Pricing | DEEPINGSOURCE',
   description:
     'Compare store care · store insight · store agent pricing at a glance. Choose the plan that fits your store size and needs.',
   alternates: {
@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Pricing | DeepingSource',
+    title: 'Pricing | DEEPINGSOURCE',
     description: 'Compare store care · store insight · store agent pricing at a glance.',
     url: '/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Pricing | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pricing | DeepingSource',
+    title: 'Pricing | DEEPINGSOURCE',
     description: 'Compare store care · store insight · store agent pricing at a glance.',
   },
 };

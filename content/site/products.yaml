@@ -15,7 +15,7 @@ loopEyebrow:
   en: Enterprise · the operating loop
   jp: エンタープライズ · 店舗オペレーションループ
 ownersEyebrow:
-  ko: 점주를 위한 · B2C (별도 사이트)
+  ko: 사장님을 위한 · B2C (별도 사이트)
   en: For owners · B2C (separate sites)
   jp: 店長向け · B2C（別サイト）
 detail:
@@ -41,9 +41,9 @@ cta:
 loop:
   - id: store-count
     desc:
-      ko: 문 밖을 읽다 — 상권·통행량·흡인율.
-      en: Reads the footfall outside — trade area, footfall, capture rate.
-      jp: 店の外を読む — 商圏・通行量・捕捉率。
+      ko: 문 밖을 읽다 — 상권·통행량·유입률.
+      en: Reads the footfall outside — trade area, footfall, inflow rate.
+      jp: 店の外を読む — 商圏・通行量・流入率。
   - id: store-insight
     desc:
       ko: 문 안을 읽다 — 동선·체류·전환. 어제, 그리고 왜.
@@ -62,7 +62,7 @@ loop:
 owners:
   - id: saai-store
     desc:
-      ko: 카메라리스 점주 suite — 발주부터 POP까지.
+      ko: 카메라리스 사장님 suite — 발주부터 POP까지.
       en: Camera-less suite for store owners — ordering to POP.
       jp: 店長のためのカメラレススイート — 発注からPOPまで。
   - id: storecare-ai

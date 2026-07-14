@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import RetailView from '@/components/corporate/views/RetailView';
 
 export const metadata: Metadata = {
-  title: 'Retail & Convenience Solutions | DeepingSource',
+  title: 'Retail & Convenience Solutions | DEEPINGSOURCE',
   description:
     'Out-of-stock, store-to-store inconsistency, and anomalies. A retail, convenience, and drugstore solution that helps every format run like one store.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Retail & Convenience Solutions | DeepingSource',
+    title: 'Retail & Convenience Solutions | DEEPINGSOURCE',
     description:
       'Out-of-stock, inconsistency, and anomaly detection — the core problems of store operations, by the same standard. Different formats, run as one.',
     url: '/solutions/retail',

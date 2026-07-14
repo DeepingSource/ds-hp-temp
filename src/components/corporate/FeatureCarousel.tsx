@@ -76,7 +76,7 @@ const COPY: Record<Locale, Copy> = {
     cta: '제품 전체 보기',
     taglines: { count: '흐름을 재다', insight: solutionTaglines.insight.ko, care: solutionTaglines.care.ko, agent: solutionTaglines.agent.ko },
     desc: {
-      count: '문 앞을 지난 사람과 들어온 사람 — 흡인율로 상권을 읽습니다.',
+      count: '문 앞을 지난 사람과 들어온 사람 — 유입률로 상권을 읽습니다.',
       insight: '매출 너머의 공간 — 체류·동선·전환을 히트맵으로 읽습니다.',
       care: '필요한 순간만 — 이상을 감지해 실시간으로 알립니다.',
       agent: '다음 한 수까지 — 권고는 AI가, 결정은 사람이.',
@@ -95,7 +95,7 @@ const COPY: Record<Locale, Copy> = {
     cta: 'See all products',
     taglines: { count: 'Counts the flow', insight: solutionTaglines.insight.en, care: solutionTaglines.care.en, agent: solutionTaglines.agent.en },
     desc: {
-      count: 'Who passed by and who came in — capture rate reads the trade area.',
+      count: 'Who passed by and who came in — inflow rate reads the trade area.',
       insight: 'Beyond sales — dwell, flow and conversion on a heatmap.',
       care: 'Only the moments that matter — detect anomalies, alert in real time.',
       agent: 'To the next move — AI advises, people decide.',
@@ -114,7 +114,7 @@ const COPY: Record<Locale, Copy> = {
     cta: '製品をすべて見る',
     taglines: { count: '流れを数える', insight: solutionTaglines.insight.jp, care: solutionTaglines.care.jp, agent: solutionTaglines.agent.jp },
     desc: {
-      count: '店頭を通った人と入った人 — 捕捉率で商圏を読みます。',
+      count: '店頭を通った人と入った人 — 流入率で商圏を読みます。',
       insight: '売上の先 — 滞在・動線・転換をヒートマップで。',
       care: '必要な瞬間だけ — 異常を検知し、リアルタイムで通知。',
       agent: '次の一手まで — 推奨はAI、決定は人。',

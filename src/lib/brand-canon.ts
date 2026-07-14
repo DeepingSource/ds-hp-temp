@@ -14,7 +14,17 @@ import { type Locale } from './i18n';
  *
  * NOTE (jp): the SOT copy spine is ko/en authoritative. Japanese renderings below
  * are FINALIZED (2026-05-29).
+ *
+ * WORDMARK RULE (2026-07-14): the brand wordmark is written **DEEPINGSOURCE**
+ * (all-caps, matching the header logo) wherever it appears as a brand/title
+ * reference — page titles, OG/twitter titles, badges, headings. Exceptions kept
+ * as mixed-case "DeepingSource": (1) the legal entity name in structured data
+ * (JSON-LD name/legalName), (2) the etymology line "DeepingSource = Deep Learning
+ * + Source" where the mixed case carries the wordplay. Use COMPANY_WORDMARK below
+ * rather than hardcoding the string.
  */
+/** Canonical brand wordmark for display (all-caps, matches the header logo). */
+export const COMPANY_WORDMARK = 'DEEPINGSOURCE';
 
 /**
  * 시그니처 — 마스터 카피를 받치는 카테고리 정의 (SAAI_AI_Handoff.md · Voice_v2.5).

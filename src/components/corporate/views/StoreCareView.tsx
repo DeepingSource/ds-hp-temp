@@ -61,7 +61,7 @@ const C: Record<Locale, {
       { title: '대응 시간이 줄어요', desc: '진열 공백 대응 45분→15분, 오염 대응 30분→8분. 빠른 대응이 매출과 경험을 지켜요.' },
     ],
     valueCta: 'storecare.ai 바로가기',
-    valueNote: ['store care는 DeepingSource의 점주용 서비스로, 별도 사이트 storecare.ai에서 운영됩니다.', ''],
+    valueNote: ['store care는 DeepingSource의 사장님용 서비스로, 별도 사이트 storecare.ai에서 운영됩니다.', ''],
     otherProducts: '다른 제품 보기',
     entEyebrow: '다점포 본사를 위한 · 손실예방 & 컴플라이언스',
     entHeadline: '모든 매장을 같은 기준으로 지켜봅니다 — 한 화면에서.',

@@ -3,7 +3,7 @@ import TechnologyView from '@/components/corporate/views/TechnologyView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'Technology — Anonymized Spatial AI | DeepingSource',
+  title: 'Technology — Anonymized Spatial AI | DEEPINGSOURCE',
   description: `Analyze space without ever touching personal data. Explore DeepingSource’s Anonymizer, SEAL, Spatial AI, and Vision Models technology, protected by ${COMPANY.patents} patents.`,
   keywords: ['Anonymization AI', 'Anonymizer', 'SEAL', 'Spatial AI', 'MTMC', 'Vision Models', 'Privacy AI', 'GDPR AI', 'Spatial data analytics', 'PII removal'],
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Technology — Anonymized Spatial AI | DeepingSource',
+    title: 'Technology — Anonymized Spatial AI | DEEPINGSOURCE',
     description: `We never touch personal data. You never lose the data. DeepingSource technology, backed by ${COMPANY.patents} patents.`,
     url: '/technology',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'DeepingSource Anonymized Spatial AI technology' }],

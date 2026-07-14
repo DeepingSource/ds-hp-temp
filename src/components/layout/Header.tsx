@@ -23,13 +23,13 @@ const NAV: NavItem[] = [
     type: 'menu', key: 'products', label: L('제품', 'Products', '製品'), base: '/products', items: [
       { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('운영 루프 한눈에', 'The operating loop at a glance', 'オペレーションループを一望') },
       { header: L('엔터프라이즈 — 매장 운영 루프', 'Enterprise — operating loop', 'エンタープライズ — 店舗オペレーションループ') },
-      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('문 밖 · 상권·통행·흡인율', 'Observe · footfall outside', '店の外 · 商圏・通行・捕捉率') },
+      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('문 밖 · 상권·통행·유입률', 'Observe · footfall outside', '店の外 · 商圏・通行・流入率') },
       { href: '/products/store-insight', label: L('saai insight', 'saai insight', 'saai insight'), desc: L('store insight · 동선·체류·전환', 'store insight · flow·dwell·conversion', 'store insight · 動線・滞在・転換') },
       { href: '/products/store-care', label: L('saai care', 'saai care', 'saai care'), desc: L('store care · 손실예방·컴플라이언스', 'store care · loss prevention·compliance', 'store care · 防損・コンプライアンス') },
       { href: '/products/store-agent', label: L('saai agent', 'saai agent', 'saai agent'), desc: L('store agent · 추천·발주·실행', 'store agent · recommend·order', 'store agent · 推奨・発注・実行') },
-      { header: L('점주를 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
-      { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 점주 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
-      { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('점주용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
+      { header: L('사장님을 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
+      { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 사장님 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
+      { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('사장님용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
     ],
   },
   {

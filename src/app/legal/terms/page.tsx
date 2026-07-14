@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import TermsPage from '../../terms/page';
 
 export const metadata: Metadata = {
-  title: '이용약관 | DeepingSource',
+  title: '이용약관 | DEEPINGSOURCE',
   description: 'SAAI 서비스 이용약관',
   alternates: { canonical: '/legal/terms' },
 };

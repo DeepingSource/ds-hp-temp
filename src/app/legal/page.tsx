@@ -4,7 +4,7 @@ import { FileText, Shield, ArrowRight } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 export const metadata: Metadata = {
-  title: '약관 및 정책 | DeepingSource',
+  title: '약관 및 정책 | DEEPINGSOURCE',
   description: 'SAAI 이용약관 및 개인정보 처리방침 안내',
   alternates: { canonical: '/legal' },
 };

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ModelsView from '@/components/corporate/views/ModelsView';
 
 export const metadata: Metadata = {
-  title: 'Vision Models — ビジョンモデルカタログ | DeepingSource',
+  title: 'Vision Models — ビジョンモデルカタログ | DEEPINGSOURCE',
   description:
     '匿名化・認識・空間・フロー・変化・生成などのカテゴリで構成されたビジョンモデルカタログ。各モデルの役割と適用段階を整理します。',
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Vision Models — ビジョンモデルカタログ | DeepingSource',
+    title: 'Vision Models — ビジョンモデルカタログ | DEEPINGSOURCE',
     description: '匿名化・認識・空間・フロー・変化・生成カテゴリのビジョンモデルカタログ。',
     url: '/jp/technology/models',
   },

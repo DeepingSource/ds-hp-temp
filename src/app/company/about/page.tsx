@@ -3,7 +3,7 @@ import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
 
 export const metadata: Metadata = {
-  title: 'About — DeepingSource Inc. | Every store, like one.',
+  title: 'About — DEEPINGSOURCE Inc. | Every store, like one.',
   description: `DeepingSource is an AI company that safely understands and optimizes every offline space through anonymization AI. Founded ${COMPANY.foundingYear}, ${COMPANY.patents} patents.`,
   keywords: ['DeepingSource', 'About', 'AI company', 'Spatial Agentic AI', 'Anonymization AI'],
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'About — DeepingSource Inc.',
+    title: 'About — DEEPINGSOURCE Inc.',
     description: `DeepingSource is an AI company that safely understands and optimizes every offline space through anonymization AI. ${COMPANY.patents} patents.`,
     url: 'https://www.deepingsource.io/company/about',
   },

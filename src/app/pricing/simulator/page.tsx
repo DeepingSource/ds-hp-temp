@@ -5,7 +5,7 @@ import { ArrowLeft, ShieldCheck } from 'lucide-react';
 import { type Locale, localeHref } from '@/lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Pricing Simulator | DeepingSource',
+  title: 'Pricing Simulator | DEEPINGSOURCE',
   description:
     'Simulate estimated store care · store insight pricing based on your store size, camera count, and number of refrigerators.',
   alternates: {

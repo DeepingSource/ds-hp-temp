@@ -1,21 +1,21 @@
 {
   "homeCopy": {
     "en": {
-      "masterCompany": "Every store, like one.",
+      "masterCompany": "Perfect every space.",
       "masterOwner": "Our store, like the best.",
       "heroSub": "On the CCTV you already have — not who, but what and how. Anonymized Spatial AI that keeps no footage.",
       "ctaPrimary": "Talk to us",
       "ctaSecondary": "Explore products"
     },
     "ko": {
-      "masterCompany": "모든 매장을 한 매장처럼",
+      "masterCompany": "모든 공간을, 완벽하게",
       "masterOwner": "우리 매장이 대표 매장처럼",
       "heroSub": "이미 달린 CCTV 위에서 — 누구가 아니라 무엇을 어떻게. 영상은 남기지 않는, 익명화 공간 AI입니다.",
       "ctaPrimary": "도입 상담",
       "ctaSecondary": "제품 보기"
     },
     "jp": {
-      "masterCompany": "すべての店舗を、ひとつの店舗のように。",
+      "masterCompany": "すべての空間を、完璧に。",
       "masterOwner": "私たちの店が、代表店のように。",
       "heroSub": "すでにあるCCTVの上で — 誰かではなく、何をどう。映像は残さない、匿名化された空間AIです。",
       "ctaPrimary": "導入のご相談",
@@ -36,7 +36,7 @@
       "cta": "Talk to us about the right product",
       "loop": {
         "store-count": {
-          "desc": "Reads the footfall outside — trade area, footfall, capture rate."
+          "desc": "Reads the footfall outside — trade area, footfall, inflow rate."
         },
         "store-insight": {
           "desc": "Reads inside — flow, dwell, conversion. Yesterday, and why."
@@ -62,7 +62,7 @@
       "heroTitle": "모든 매장을 한 매장처럼",
       "heroSub": "네 개의 제품, 하나의 운영 루프 — 문 밖의 통행부터 다음 한 수까지. SAAI로 익명화.",
       "loopEyebrow": "엔터프라이즈 · 매장 운영 루프",
-      "ownersEyebrow": "점주를 위한 · B2C (별도 사이트)",
+      "ownersEyebrow": "사장님을 위한 · B2C (별도 사이트)",
       "detail": "자세히 보기",
       "visit": "바로가기",
       "seedLine": "SEAL · anonymizer · spatial AI · vision models — 모든 제품을 떠받치는 익명화 기술 기반.",
@@ -70,7 +70,7 @@
       "cta": "어떤 제품이 맞을지 상담하기",
       "loop": {
         "store-count": {
-          "desc": "문 밖을 읽다 — 상권·통행량·흡인율."
+          "desc": "문 밖을 읽다 — 상권·통행량·유입률."
         },
         "store-insight": {
           "desc": "문 안을 읽다 — 동선·체류·전환. 어제, 그리고 왜."
@@ -84,7 +84,7 @@
       },
       "owners": {
         "saai-store": {
-          "desc": "카메라리스 점주 suite — 발주부터 POP까지."
+          "desc": "카메라리스 사장님 suite — 발주부터 POP까지."
         },
         "storecare-ai": {
           "desc": "한 매장을 위한 보안·이상 알림."
@@ -104,7 +104,7 @@
       "cta": "どの製品が最適かご相談する",
       "loop": {
         "store-count": {
-          "desc": "店の外を読む — 商圏・通行量・捕捉率。"
+          "desc": "店の外を読む — 商圏・通行量・流入率。"
         },
         "store-insight": {
           "desc": "店の中を読む — 動線・滞在・転換。昨日と、その理由。"
@@ -316,25 +316,25 @@
       }
     },
     "ko": {
-      "heroBadge": "saai.store · 편의점 점주를 위한 AI",
+      "heroBadge": "saai.store · 편의점 사장님을 위한 AI",
       "heroTitle": "발주부터 POP까지, 한 흐름으로.",
-      "heroSub": "무엇을 밀지 정하고, 트렌드를 받고, POP을 만들고, 진열을 점검하고, 무엇이든 물어보세요 — 카메라 없이 동작하는 SW로, 점주의 한 주를 한 흐름으로 잇습니다. 카드 등록 없이 무료로 시작합니다.",
+      "heroSub": "무엇을 밀지 정하고, 트렌드를 받고, POP을 만들고, 진열을 점검하고, 무엇이든 물어보세요 — 카메라 없이 동작하는 SW로, 사장님의 한 주를 한 흐름으로 잇습니다. 카드 등록 없이 무료로 시작합니다.",
       "heroCta": "saai.store 시작하기",
       "heroNote": "saai.store에서 무료로 운영돼요 · 카드 등록 없이",
       "loopEyebrow": "제품의 본질 · 5단계 주간 운영 루프",
       "loopHeading": "여러 도구가 아니라, 하나의 흐름입니다",
-      "loopSub": "각 단계의 산출물이 다음 단계의 입력이 됩니다. 밀 상품이 정해진 점주는 ①②를 건너뛰고 POP부터 시작하고, 마지막 챗이 모든 맥락을 기억한 채 루프를 닫습니다.",
+      "loopSub": "각 단계의 산출물이 다음 단계의 입력이 됩니다. 밀 상품이 정해진 사장님은 ①②를 건너뛰고 POP부터 시작하고, 마지막 챗이 모든 맥락을 기억한 채 루프를 닫습니다.",
       "loopFootnote": "카메라 없이 동작하는 SW. POS가 없으면 적합·품질 추정으로 라벨하고, 챗은 근거가 없으면 답하지 않습니다.",
       "toolsEyebrow": "도구 · saai.store",
-      "toolsHeading": "점주의 반복되는 고민을, 각각 받아내는 도구",
-      "toolsSub": "실제 점주 인터뷰에서 출발한 도구들. 주간 루프 위에 일상 레이어를 얹어 매일 여는 이유를 만듭니다.",
+      "toolsHeading": "사장님의 반복되는 고민을, 각각 받아내는 도구",
+      "toolsSub": "실제 사장님 인터뷰에서 출발한 도구들. 주간 루프 위에 일상 레이어를 얹어 매일 여는 이유를 만듭니다.",
       "trendNote": "trend fit은 saai.store 안의 발주 단계입니다 — 별도 제품이 아닙니다.",
       "planEyebrow": "요금",
       "planHeading": "무료로 시작하고, 필요한 만큼 더하세요",
       "planSub": "카드 등록 없이 무료로 시작해, 매장 운영에 필요한 기능만 더합니다.",
       "planNote": "* 요금은 베타 운영 중이며, 실제 구성은 달라질 수 있습니다.",
       "featureCta": "saai.store 바로가기",
-      "featureNote": "saai.store는 SAAI(익명화 공간 AI)의 점주용 B2C 제품군으로, 별도 사이트에서 운영됩니다.",
+      "featureNote": "saai.store는 SAAI(익명화 공간 AI)의 사장님용 B2C 제품군으로, 별도 사이트에서 운영됩니다.",
       "otherProducts": "다른 제품 보기",
       "loop": {
         "trendfit": {
@@ -381,7 +381,7 @@
         },
         "archive": {
           "name": "운영 가이드 아카이브",
-          "desc": "발주·세무·노무·양수도까지 36개 실무 가이드. 점주의 질문에서 출발해 상시 축적."
+          "desc": "발주·세무·노무·양수도까지 36개 실무 가이드. 사장님의 질문에서 출발해 상시 축적."
         }
       },
       "plans": {
@@ -593,13 +593,13 @@
   },
   "about": {
     "en": {
-      "badge": "About DeepingSource",
+      "badge": "About DEEPINGSOURCE",
       "heroEyebrowCompany": "Online",
       "heroMasterCompany": "got optimized\nby measurement.",
       "heroEyebrowOwner": "The physical world",
       "heroMasterOwner": "stayed\nlargely the same.",
       "companyIntro": "For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.",
-      "companyIntro2": "DeepingSource is here to reinvent it.",
+      "companyIntro2": "DEEPINGSOURCE is here to reinvent it.",
       "vmEyebrow": "Vision & Mission",
       "vision": "From your space — to every space.",
       "visionLabel": "Vision",
@@ -655,7 +655,7 @@
       }
     },
     "ko": {
-      "badge": "About DeepingSource",
+      "badge": "About DEEPINGSOURCE",
       "heroEyebrowCompany": "온라인은",
       "heroMasterCompany": "측정으로\n최적화됐다",
       "heroEyebrowOwner": "현장은",
@@ -717,7 +717,7 @@
       }
     },
     "jp": {
-      "badge": "About DeepingSource",
+      "badge": "About DEEPINGSOURCE",
       "heroEyebrowCompany": "オンラインは",
       "heroMasterCompany": "測定で\n最適化された。",
       "heroEyebrowOwner": "現場は",
@@ -872,7 +872,7 @@
         },
         "agent": {
           "label": "store agent",
-          "desc": "AI가 정리하고, 점주는 확인만"
+          "desc": "AI가 정리하고, 사장님은 확인만"
         }
       }
     },

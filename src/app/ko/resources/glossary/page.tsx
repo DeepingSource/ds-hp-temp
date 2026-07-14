@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import GlossaryView from '@/components/corporate/views/GlossaryView';
 
 export const metadata: Metadata = {
-  title: '용어 사전 | DeepingSource',
+  title: '용어 사전 | DEEPINGSOURCE',
   description:
     '매장 히트맵, 익명화 CCTV, 체류 시간, 전환율 등 프라이버시 AI와 공간 분석의 핵심 용어를 현장 언어로 쉽게 설명합니다.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: '용어 사전 | DeepingSource',
+    title: '용어 사전 | DEEPINGSOURCE',
     description: '프라이버시 AI와 공간 분석의 핵심 용어를 쉽게 설명합니다.',
     url: '/ko/resources/glossary',
   },

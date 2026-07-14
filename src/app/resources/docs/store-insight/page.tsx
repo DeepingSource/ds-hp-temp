@@ -30,12 +30,12 @@ type Item = { name: string; desc: string; img: string; h: number };
 const SI = (slug: string) => `/images/si-guide/${slug}.png`;
 
 export const metadata: Metadata = {
-  title: 'store insight 사용자 매뉴얼 | DeepingSource',
+  title: 'store insight 사용자 매뉴얼 | DEEPINGSOURCE',
   description:
     'store insight 공간 분석 대시보드 사용 매뉴얼. 로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 리포트 읽는 법을 한곳에서 안내합니다.',
   alternates: { canonical: '/resources/docs/store-insight' },
   openGraph: {
-    title: 'store insight 사용자 매뉴얼 | DeepingSource',
+    title: 'store insight 사용자 매뉴얼 | DEEPINGSOURCE',
     description: '로그인부터 리포트 해석까지, store insight 대시보드 사용 매뉴얼.',
     url: '/resources/docs/store-insight',
   },

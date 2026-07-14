@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import SpatialAiView from '@/components/corporate/views/SpatialAiView';
 
 export const metadata: Metadata = {
-  title: 'Spatial AI — MTMC 多カメラ分析 | DeepingSource',
+  title: 'Spatial AI — MTMC 多カメラ分析 | DEEPINGSOURCE',
   description:
     'Multi-Target Multi-Camera（MTMC）は、複数カメラの観測を一つの空間座標系に統合し、複数オブジェクトの連続した動線を分析する技術です。定義、座標化、座標系の段階、結果を整理します。',
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Spatial AI — MTMC 多カメラ分析 | DeepingSource',
+    title: 'Spatial AI — MTMC 多カメラ分析 | DEEPINGSOURCE',
     description: '複数のカメラを一つの空間座標系に統合するMTMC技術の概要。',
     url: '/jp/technology/spatial-ai',
   },
