@@ -49,6 +49,8 @@ type Copy = {
 
 const CMS = siteContent.foodBeverage as unknown as Record<Locale, Copy>;
 
+const dashCaption: Record<Locale, string> = { ko: '* 분석 화면 예시', en: '* Example analysis screen', jp: '* 分析画面の例' };
+
 export default function FoodBeverageView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
 
@@ -145,7 +147,7 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
           <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-gray-200 shadow-card bg-slate-50">
             <Image src={DASH_IMG} alt={`${t.badge} 분석 대시보드 예시`} fill sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
           </div>
-          <p className="mt-3 text-xs text-gray-400 text-center">* 분석 화면 예시</p>
+          <p className="mt-3 text-xs text-gray-400 text-center">{dashCaption[locale]}</p>
         </div>
       </AnimatedSection>
 

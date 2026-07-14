@@ -95,6 +95,11 @@ const CMS = siteContent.technology as unknown as Record<Locale, Copy>;
 export default function TechnologyView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
   const pj = PRIVACY_COPY[locale];
+  const patentsBreakdown: Record<Locale, string> = {
+    ko: '등록 66개 · 출원 37개',
+    en: 'Registered 66 · Pending 37',
+    jp: '登録66件 · 出願37件',
+  };
 
   const stack = t.stack.map((s, i) => ({ ...s, icon: stackIcons[i], href: stackHrefs[i] }));
   const poweredProducts = t.poweredProducts.map((p, i) => ({ ...p, href: poweredHrefs[i] }));
@@ -126,7 +131,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               <div className="w-px h-10 bg-white/10" />
               <div className="text-left">
                 <p className="text-sm font-medium text-white">{t.heroStackLine}</p>
-                <p className="text-xs text-slate-300 mt-0.5">{COMPANY.patentsLabel}</p>
+                <p className="text-xs text-slate-300 mt-0.5">{patentsBreakdown[locale]}</p>
               </div>
             </div>
           </div>
@@ -312,7 +317,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               <div className="p-10 section-dark rounded-3xl text-center flex-1 flex flex-col justify-center">
                 <p className="text-5xl sm:text-7xl font-bold mb-2 text-white">{COMPANY.patents}</p>
                 <p className="text-lg font-bold mb-1 text-white">{t.patentsLabel}</p>
-                <p className="text-sm text-slate-300 font-medium mb-1">{COMPANY.patentsLabel}</p>
+                <p className="text-sm text-slate-300 font-medium mb-1">{patentsBreakdown[locale]}</p>
                 <p className="text-slate-400 text-sm">{t.patentsStackLine}</p>
               </div>
               <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">

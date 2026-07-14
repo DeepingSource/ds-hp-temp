@@ -138,7 +138,9 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-1 break-keep">
             {title}
           </h1>
-          <p className="text-base text-gray-500 font-medium mb-3">{term.englishTitle}</p>
+          {term.englishTitle !== title && (
+            <p className="text-base text-gray-500 font-medium mb-3">{term.englishTitle}</p>
+          )}
           <p className="text-base text-gray-600 break-keep">{tagline}</p>
         </div>
       </div>
@@ -222,7 +224,9 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
                         <p className="text-sm font-medium text-gray-900 group-hover:text-primary transition-colors">
                           {relTitle}
                         </p>
-                        <p className="text-xs text-gray-500">{rel.englishTitle}</p>
+                        {rel.englishTitle !== relTitle && (
+                          <p className="text-xs text-gray-500">{rel.englishTitle}</p>
+                        )}
                       </div>
                       <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-[color,transform] flex-shrink-0" />
                     </Link>

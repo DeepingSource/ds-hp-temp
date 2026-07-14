@@ -10,10 +10,11 @@ import { type Locale } from '@/lib/i18n';
  * PartnerGrid — trust metrics + partner names (PR-17 will swap to logo sprite).
  */
 
-const trustedBrands = [
-  '올리브영', 'BGF CU', '코리아세븐', 'CJ푸드빌',
-  '롯데GRS', '현대자동차', '롯데월드', '국립박물관재단',
-];
+const trustedBrands: Record<Locale, string[]> = {
+  ko: ['올리브영', 'BGF CU', '코리아세븐', 'CJ푸드빌', '롯데GRS', '현대자동차', '롯데월드', '국립박물관재단'],
+  en: ['Olive Young', 'BGF CU', 'Korea Seven', 'CJ Foodville', 'Lotte GRS', 'Hyundai Motor', 'Lotte World', 'National Museum Foundation'],
+  jp: ['オリーブヤング', 'BGF CU', 'コリアセブン', 'CJフードビル', 'ロッテGRS', '現代自動車', 'ロッテワールド', '国立博物館財団'],
+};
 
 type Units = { patents: string; brands: string; industries: string };
 const dict: Record<Locale, { heading: string; partners: string; metrics: Units; units: Units }> = {
@@ -52,7 +53,7 @@ export default function PartnerGrid({ locale }: { locale: Locale }) {
           <div className="flex-1 h-px bg-gray-200" />
         </div>
         <StaggerContainer className="flex flex-wrap justify-center gap-2 sm:gap-3">
-          {trustedBrands.map((brand) => (
+          {trustedBrands[locale].map((brand) => (
             <StaggerItem key={brand}>
               <span className="inline-flex items-center px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 select-none">
                 {brand}

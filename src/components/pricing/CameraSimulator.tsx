@@ -148,9 +148,9 @@ const C: Record<Locale, SimContent> = {
     won: ' KRW',
     perMonth: '/mo',
     presets: [
-      { label: 'Small', range: '10–20 pyeong' },
-      { label: 'Medium', range: '20–40 pyeong' },
-      { label: 'Large', range: '40+ pyeong' },
+      { label: 'Small', range: '10–20 pyeong (33–66㎡)' },
+      { label: 'Medium', range: '20–40 pyeong (66–132㎡)' },
+      { label: 'Large', range: '40+ pyeong (132㎡+)' },
     ],
     step1Title: 'Tell us your store size',
     cameraLabel: 'Cameras',

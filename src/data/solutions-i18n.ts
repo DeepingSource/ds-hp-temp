@@ -24,7 +24,7 @@ export const industryLabelI18n: Record<string, Partial<Record<Locale, string>>> 
 
 export const solutionCardI18n: Record<
   string,
-  Partial<Record<Locale, { title: string; excerpt: string; impactLabel: string }>>
+  Partial<Record<Locale, { title: string; excerpt: string; impactLabel: string; impact?: string }>>
 > = {
   // ── Convenience stores ──
   'convenience-night-theft': {
@@ -266,12 +266,14 @@ export const solutionCardI18n: Record<
       title: 'Booth performance analysis for exhibitions',
       excerpt:
         'How to measure each exhibitor booth’s ability to attract visitors with objective data.',
+      impact: '3x',
       impactLabel: 'improvement in booth performance measurement accuracy',
     },
     jp: {
       title: '展示ブースの成果分析',
       excerpt:
         '各出展企業ブースの来場者集客成果を、客観的なデータで測定する方法です。',
+      impact: '3倍',
       impactLabel: 'ブース成果測定の精度向上',
     },
   },

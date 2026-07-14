@@ -31,6 +31,7 @@ const COPY: Record<Locale, {
   cardAlerts: string;
   cardRevenue: string;
   liveLabel: string;
+  storeNames: string[];
 }> = {
   ko: {
     sub: '200개 가맹점의 상태를 본사 한 화면에서.',
@@ -47,6 +48,7 @@ const COPY: Record<Locale, {
     cardAlerts: '알림',
     cardRevenue: '매출 전일비',
     liveLabel: '실시간',
+    storeNames: ['서초중앙점', '판교테크노점', '광안리점', '둔산로점', '전대후문점', '송도국제점'],
   },
   en: {
     sub: '200 franchise stores, one HQ view.',
@@ -63,6 +65,7 @@ const COPY: Record<Locale, {
     cardAlerts: 'Alerts',
     cardRevenue: 'Revenue vs. prev',
     liveLabel: 'Live',
+    storeNames: ['Seocho Central', 'Pangyo Techno', 'Gwangalli', 'Dunsan-ro', 'Jeondae Back Gate', 'Songdo Intl'],
   },
   jp: {
     sub: '200店舗の状態を、本部の一画面で。',
@@ -79,6 +82,7 @@ const COPY: Record<Locale, {
     cardAlerts: 'アラート',
     cardRevenue: '売上前日比',
     liveLabel: 'ライブ',
+    storeNames: ['瑞草中央店', '板橋テクノ店', '広安里店', '屯山路店', '全大裏門店', '松島国際店'],
   },
 };
 
@@ -132,8 +136,6 @@ function buildPins() {
   }));
 }
 
-const STORE_NAMES = ['서초중앙점', '판교테크노점', '광안리점', '둔산로점', '전대후문점', '송도국제점'];
-
 export default function HqMapDashboardMockup({
   active = true,
   locale = 'en',
@@ -178,7 +180,7 @@ export default function HqMapDashboardMockup({
   const displayStores = reducedMotion ? canonicalHq.totalStores : stores;
 
   // deterministic per-pin mock card data
-  const cardName = STORE_NAMES[activeIndex % STORE_NAMES.length];
+  const cardName = t.storeNames[activeIndex % t.storeNames.length];
   const cardAlertCount = 3 + ((activeIndex * 7) % 22);
   const cardRevenueDelta =
     activePin.status === 'critical' ? -18 : activePin.status === 'warning' ? -6 : 8;

@@ -178,7 +178,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                     >
                       {/* 임팩트 수치 */}
                       <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-bold ${colors.bg} ${colors.text}`}>
-                        {sol.impact} {c?.impactLabel ?? sol.impactLabel}
+                        {c?.impact ?? sol.impact} {c?.impactLabel ?? sol.impactLabel}
                       </div>
 
                       <h3 className="text-base font-bold text-gray-900 leading-snug break-keep group-hover:text-primary transition-colors">

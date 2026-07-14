@@ -86,7 +86,7 @@ const C: Record<Locale, Copy> = {
     coverageNote: 'Links open external coverage in a new tab.',
     coverage: [
       { date: '2025.06', outlet: 'ZDNet Korea', category: 'Press releases', title: 'DeepingSource raises strategic investment from KDDI Open Innovation Fund III', url: 'https://zdnet.co.kr/view/?no=20250610175314' },
-      { date: '2025.03', outlet: 'VentureSquare', category: 'Press releases', title: 'DeepingSource appoints Sang-ho Kim as new CBO to accelerate global business', url: 'https://www.venturesquare.net/1067079' },
+      { date: '2025.03', outlet: 'VentureSquare', category: 'Press releases', title: 'DeepingSource appoints Sang-ho Geum as new CBO to accelerate global business', url: 'https://www.venturesquare.net/1067079' },
       { date: '2023.05', outlet: 'Asia Economy', category: 'Media mentions', title: '[AI Revolution] DeepingSource: “making all the world’s data safe to use”', url: 'https://www.asiae.co.kr/article/2023051209490460590' },
       { date: '2020.08', outlet: 'etnews', category: 'Media mentions', title: '[CEO Today] Tae-Hoon Kim of DeepingSource: solving AI’s hard problems with data anonymization', url: 'https://www.etnews.com/20200817000108' },
       { date: '2020.01', outlet: 'Platum', category: 'Press releases', title: 'DeepingSource raises a ~₩5.5B Series A', url: 'https://platum.kr/archives/134568' },

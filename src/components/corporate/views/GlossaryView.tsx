@@ -117,7 +117,9 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
                           </h2>
                           <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-[color,transform] flex-shrink-0 mt-0.5" />
                         </div>
-                        <p className="text-xs text-gray-500 font-medium">{term.englishTitle}</p>
+                        {term.englishTitle !== title && (
+                          <p className="text-xs text-gray-500 font-medium">{term.englishTitle}</p>
+                        )}
                         <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 break-keep mt-1">
                           {tagline}
                         </p>
