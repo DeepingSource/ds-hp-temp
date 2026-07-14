@@ -142,8 +142,9 @@ export default config({
   },
   ui: {
     brand: { name: 'DEEPINGSOURCE' },
-    // 그룹명이 온보딩 역할 — 자주 편집하는 문서를 위로 (KEYSTATIC_ENHANCEMENT_PLAN C-1).
+    // 그룹명이 온보딩 역할 — 시작하기 → 자주 편집 순으로 시선 유도 (C-1·G-1).
     navigation: {
+      '시작하기': ['editorGuide'],
       '블로그': ['articles'],
       '자주 편집': ['home', 'pricing'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai'],
@@ -258,6 +259,16 @@ export default config({
     }),
   },
   singletons: {
+    // G-1: CMS 안의 편집 가이드. 편집자는 /keystatic 에서 읽고, 이 문서 자체도 CMS 로
+    // 유지보수됨. 같은 파일을 사이트 /help(noindex) 에서도 렌더한다.
+    editorGuide: singleton({
+      label: '📖 편집 가이드 (먼저 읽어주세요)',
+      path: 'content/editor/guide',
+      format: { contentField: 'body' },
+      schema: {
+        body: fields.mdx({ label: '가이드 본문' }),
+      },
+    }),
     home: singleton({
       label: 'Home — master copy',
       path: 'content/site/home',
