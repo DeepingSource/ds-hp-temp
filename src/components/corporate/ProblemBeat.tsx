@@ -142,10 +142,10 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
         </div>
 
         {/* Evidence band — funnel (the invisible majority) beside its consequence (−317 + why POS can't tell you) */}
-        <StaggerContainer className="grid gap-6 lg:grid-cols-12 items-start">
+        <StaggerContainer className="grid gap-6 lg:grid-cols-12 items-stretch">
           {/* LEFT — funnel hero: horizontal bars narrowing top→bottom; the last row is the only one POS keeps */}
-          <StaggerItem className="lg:col-span-7">
-            <Card className="p-6 sm:p-8">
+          <StaggerItem className="lg:col-span-7 flex">
+            <Card className="p-6 sm:p-8 flex flex-1 flex-col justify-center">
               <div className="mb-5 flex items-center justify-between gap-3">
                 <p className="text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
                 <div className="flex items-center gap-3 text-2xs text-gray-400">
