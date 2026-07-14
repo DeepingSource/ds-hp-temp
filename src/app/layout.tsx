@@ -96,6 +96,15 @@ const jsonLd = [
       "@type": "Organization",
       name: "NVIDIA Inception Program",
     },
+    // Trust signals — surface hard credentials as structured fields (not just prose) for AEO.
+    award: `${COMPANY.patents} registered patents in anonymized spatial AI`,
+    knowsAbout: [
+      "Anonymized Spatial AI",
+      "Privacy-preserving video analytics",
+      "Multi-target multi-camera tracking (MTMC)",
+      "Retail store analytics",
+      "CCTV de-identification",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       email: "contact@deepingsource.io",

@@ -17,6 +17,7 @@
 | Keystatic 고도화 (편집자 루프·온보딩) | 🟡 Week 1–3 완료, 대형 항목 잔여 | [KEYSTATIC_ENHANCEMENT_PLAN](./KEYSTATIC_ENHANCEMENT_PLAN_v1.md) |
 | 페이지 카피 CMS화 (Phase D) | ✅ 완료 (16 싱글톤: 카피 14 + 법무 2) | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
 | 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | `피드백-반영-계획-260714.md` (repo-root) |
+| AEO/SEO 개선 | 🟡 P0 완료 + 스키마 감사, P1/P2 잔여 | `AEO-SEO-개발계획-260714.md` (repo-root) · 이 문서 §6 |
 | 런치 준비 | 🟡 진행 중 | [LAUNCH_PLAN](./LAUNCH_PLAN_v1.md) |
 
 ---
@@ -79,6 +80,23 @@
 
 - **완료**: 애널리틱스 배선(GA4+Umami, env 게이트) · 블로그 CMS · Keystatic GitHub 모드 · R2(배포 stale) 해소.
 - **잔여**: 도메인 전환(`deepingsource.io`) + GitHub App callback/`NEXT_PUBLIC_SITE_URL` 갱신 · noindex 게이트 해제(`NEXT_PUBLIC_ALLOW_INDEXING=true`) · GSC sitemap · GA4/Umami 계정 발급.
+
+## 6. AEO/SEO 개선 (`AEO-SEO-개발계획-260714.md`)
+
+### ✅ 완료 (2026-07-14, P0 배치 + 스키마 감사)
+| 항목 | 결과 |
+|---|---|
+| P0-1 FAQ `FAQPage` 스키마 | **이미 구현됨**(`FaqView.tsx` — 렌더 아코디언과 동일 소스로 `faqPage()` 출력). 계획서 "호출 흔적 없음"은 오탐. 빌드 3로케일 HTML에서 `"@type":"FAQPage"` 검증 완료 |
+| P0-2 홈 H1 하이브리드 | H1(감성) 아래 키워드 **H2 추가** — `CorporateHero.tsx` `heroKeyword` 딕트("익명화 공간 AI — …" 3로케일). 빌드 HTML `<h2>` 렌더 검증. 마스터 카피 불변 |
+| P0-3 메타 Title 길이 | 병기 유지 + 혜택 꼬리만 절삭(사용자 결정). 제품 12개(`store-agent/insight/care/count` × 3로케일) + `storeagent` 미니사이트 title을 `제품명 \| DEEPINGSOURCE`로. OG title은 이미 절삭형이었음 |
+| P2-2 스키마 커버리지 감사 | 빌드 산출물 실측: **제품 5(SoftwareApplication)·솔루션 4(Service)·블로그(Article)·글로서리(DefinedTerm) 전부 출력 확인 — 갭 없음.** Organization 신뢰지표 보강: `award`(특허 수)·`knowsAbout`(핵심 토픽) 구조화 필드 추가(`layout.tsx`) |
+
+### ⬜ 잔여 (P1/P2 — 카피 결정·창작 수반)
+- **P1-1** 제품 현장 사례 → Problem·Solution·Result 구조화(정량 수치 텍스트 노출). 공수 2~3일. §4 배치 D #13 도입사례 페이지화와 연계.
+- **P1-2/1-3** 메인 키워드 "Anonymized Spatial AI" 전진 배치 통일 + 제품 네이밍 규칙 문서화(saai=브랜드 / Spatial AI=카테고리 역할 분리).
+- **P2-1** 본문 내부링크 앵커 키워드화(제너릭 "Learn more" → 문맥 키워드 + 글로서리 내부링크).
+- **카피 "그래서?" 다리**(P2-B): "Beyond data, to decisions." 류 추상 카피에 혜택 문장 보강 — 마스터 카피 동결, 받침 문장만. 브랜드 SOT 사인오프 필요.
+- **아웃라이어 title**: `company/partnership`(3로케일 `— DEEPINGSOURCE Inc. \| 마스터태그라인` 패턴, jp 107자) — 제품 혜택꼬리와 달리 **의도적 마스터 태그라인**이라 별도 결정 필요(미변경).
 
 ---
 

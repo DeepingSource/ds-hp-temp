@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import StoreInsightView from '@/components/corporate/views/StoreInsightView';
 
 export const metadata: Metadata = {
-  title: 'saai insight — store insight | DEEPINGSOURCE — Spatial analytics that read your store',
+  title: 'saai insight — store insight | DEEPINGSOURCE',
   description:
     'Read your store with an analyst’s composure. Enterprise spatial analytics that cross-analyze flow, dwell, and conversion to pinpoint what moves revenue. POS only knows what sold; store insight knows what almost sold.',
   keywords: ['saai insight', 'store insight', 'spatial analytics', 'store data', 'flow analysis', 'conversion', 'revenue analysis', 'DeepingSource'],

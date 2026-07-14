@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import StoreAgentView from '@/components/corporate/views/StoreAgentView';
 
 export const metadata: Metadata = {
-  title: 'saai agent — store agent | DEEPINGSOURCE — 다음 한 수를 제안하는 매장 AI',
+  title: 'saai agent — store agent | DEEPINGSOURCE',
   description:
     'Executive의 판단을 매장 운영에 더합니다. 오늘 무엇을, 얼마나, 어디에 둘지 — store agent가 데이터를 결정으로 옮깁니다. 권고는 AI가, 결정은 사람이.',
   keywords: ['saai agent', 'store agent', '매장 AI', '운영 자동화', '의사결정 AI', '발주 자동화', 'DeepingSource'],
