@@ -14,6 +14,7 @@ import { PRIVACY_COPY } from '@/data/mockup-scenarios/technology';
 import { COMPANY } from '@/lib/company-data';
 import siteContent from '@/data/generated/site-content.json';
 import { localeHref, type Locale } from '@/lib/i18n';
+import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -332,6 +333,11 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </AnimatedSection>
+
+      <RelatedGlossary
+        slugs={['computer-vision', 'anonymized-cctv', 'cctv-analytics', 'behavior-analysis', 'anomaly-detection', 'pos-data-limitations']}
+        locale={locale}
+      />
 
       {/* ── CTA ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-gray-50">

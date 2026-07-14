@@ -5,6 +5,7 @@ import { solutionsData } from '@/data/solutionsData';
 import { industryList, industryColorMap } from '@/data/industryList';
 import { industryLabelI18n, solutionCardI18n } from '@/data/solutions-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
+import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -202,6 +203,11 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           })}
         </div>
       </section>
+
+      <RelatedGlossary
+        slugs={['stockout-detection', 'dwell-time', 'footfall-analysis', 'zone-analysis', 'crowd-density-analysis', 'anomaly-detection']}
+        locale={locale}
+      />
 
       {/* ── CTA ── */}
       <section className="py-20 bg-slate-950">

@@ -7,6 +7,7 @@ import Eyebrow from '@/components/ui/Eyebrow';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import OperatingLoopGraphic from '@/components/corporate/OperatingLoopGraphic';
 import { localeHref, type Locale } from '@/lib/i18n';
+import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -176,6 +177,11 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           </div>
         </Container>
       </Section>
+
+      <RelatedGlossary
+        slugs={['store-heatmap', 'dwell-time', 'purchase-conversion-rate', 'store-operations-automation', 'store-automation-agent', 'retail-ai']}
+        locale={locale}
+      />
 
       {/* ── CTA ── */}
       <AnimatedSection className="py-14 lg:py-20 bg-gray-50">
