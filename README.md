@@ -3,6 +3,7 @@
 Next.js 16 (App Router) 기반 회사 사이트. 제품·기술 소개, STOREAGENT 목업, 다국어(en/ko/jp), Keystatic CMS, Velite 블로그를 포함한다.
 
 > 현행 기준(SOT)은 [`DESIGN.md`](./DESIGN.md)와 라이브 `src/` 트리. `docs/`는 history 보존용 계획 산출물이다 — [`docs/README.md`](./docs/README.md) 참고.
+> **작업 진행 상태(완료·잔여)는 [`docs/STATUS.md`](./docs/STATUS.md)** — 이어받기·유지보수 시 먼저 본다.
 
 ---
 
@@ -11,7 +12,7 @@ Next.js 16 (App Router) 기반 회사 사이트. 제품·기술 소개, STOREAGE
 - **Next.js 16** (App Router, React 19) — 서버 모드 (API 라우트 + proxy 미들웨어)
 - **Tailwind CSS v4** + 디자인 토큰 (`globals.css` + `tokens.ts`)
 - **Velite** — 블로그/용어집 콘텐츠 (`content/`)
-- **Keystatic** — CMS (`/keystatic`, 현재 local 모드)
+- **Keystatic** — CMS (`/keystatic`, **GitHub 모드** — `DeepingSource/ds-hp-temp`). 카피 싱글톤 9개 + `articles` 블로그 컬렉션. 편집 가이드는 `/help`.
 - **Vitest** — 테스트 / **ESLint** — 린트
 
 ## 빠른 시작
@@ -32,6 +33,9 @@ npm run dev          # http://localhost:3000
 | `npm start` | 빌드 결과 서버 실행 |
 | `npm run lint` | ESLint |
 | `npm run lint:tokens` | 디자인 토큰 가드 |
+| `npm run lint:frontmatter` | 블로그 프론트매터 키 ↔ Keystatic 스키마 대조 (유실 방지) |
+| `npm run gen:content` | 사이트 카피 YAML → `site-content.json` 생성 (predev/prebuild 자동) |
+| `npm run new:post -- <slug> [category]` | 블로그 글 스캐폴드 (`weekly`면 주간 골격) |
 | `npm test` | Vitest |
 
 ## 환경변수
@@ -44,9 +48,16 @@ npm run dev          # http://localhost:3000
 |---|---|---|
 | `NEXT_PUBLIC_BASE_URL` | sitemap/robots | `https://deepingsource.io` |
 | `SLACK_WEBHOOK_URL` | contact/newsletter 폼 알림 | 알림만 생략 (폼 제출은 성공) |
-| `NEXT_PUBLIC_SITE_URL` | Keystatic GitHub OAuth origin | local 모드 동작 |
-| `GITHUB_CLIENT_ID` / `_SECRET` | Keystatic GitHub 모드 (Phase 2) | local 모드 동작 |
-| `NEXT_PUBLIC_UMAMI_*` | 애널리틱스 (선택) | 스크립트 미주입 |
+| `NEXT_PUBLIC_SITE_URL` | Keystatic GitHub OAuth origin | `https://deepingsource.io` |
+| `KEYSTATIC_GITHUB_CLIENT_ID` / `_SECRET` | Keystatic GitHub 모드 OAuth (서버) | `/keystatic` 어드민이 503 (사이트 빌드·배포는 정상) |
+| `KEYSTATIC_SECRET` | Keystatic 세션 서명 (`openssl rand -hex 32`) | 상동 |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | GitHub App slug (빌드타임 인라인) | 상동 — 설정 후 **재배포** 필요 |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | 운영 도메인에서 색인 허용 | `noindex`/`Disallow:/` (임시 도메인 안전) |
+| `NEXT_PUBLIC_GA_ID` / `NEXT_PUBLIC_UMAMI_*` | 애널리틱스 (선택) | 스크립트 미주입 |
+
+> ⚠️ Keystatic GitHub 모드 env는 **Production + Preview 모두**에 설정한다. `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`는 빌드타임에 인라인되므로 값 추가/변경 후 **반드시 재배포**해야 반영된다. 상세 절차는 [`docs/PHASE_C_github-mode-setup.md`](./docs/PHASE_C_github-mode-setup.md).
+>
+> **GitHub Actions 시크릿**: `VERCEL_DEPLOY_HOOK_URL` — 매일 예약 재빌드(`.github/workflows/schedule-rebuild.yml`, 미래 날짜 블로그 글 발행)용. 없으면 워크플로는 건너뛴다.
 
 ---
 

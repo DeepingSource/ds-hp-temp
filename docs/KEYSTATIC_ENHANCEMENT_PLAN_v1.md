@@ -1,5 +1,8 @@
 # Keystatic 고도화 계획 v1.2
 
+> 🟢 **진행 상태(2026-07-14)**: Week 1–3 코드 항목 완료 — A-1·B-1·B-2·B-3·B-4·B-5·C-1/2/3·G-1·G-4 + A-1 재발방지 lint. **잔여**: D-1(프리뷰·보류) · G-2(온보딩 실테스트) · G-3(FAQ 컬렉션화) · G-5(docs 거버넌스·부분) · E-1(pricing 폼 다이어트) · A-2·D-2·B-7·F. 통합 현황은 [`STATUS.md`](./STATUS.md).
+
+
 > **일자** 2026-07-14 · **입력** [keystatic.com/docs](https://keystatic.com/docs/introduction) 전수 검토 + `keystatic.config.tsx` · `src/lib/articles.ts` · `gen-site-content.mjs` · git log(콘텐츠 수정 빈도) · [PHASE_C](./PHASE_C_github-mode-setup.md) · [B-S 스파이크](./blog-keystatic-spike-B-S-findings.md)
 > **현재** Keystatic `0.5.50` · GitHub 모드(`DeepingSource/ds-hp-temp`) · `articles` 컬렉션 + 싱글톤 8개 · Velite(블로그) + `gen-site-content.mjs`(페이지 카피 YAML→JSON 컴파일)
 > **목표** ① 데이터 유실 리스크 제거 ② **실제 편집자의 글쓰기 루프 완성**(초안→이미지→프리뷰→발행) ③ **접속 즉시 쓸 수 있는 온보딩**(매뉴얼·FAQ가 CMS 안에) ④ 운영 워크플로(브랜치/PR·예약발행) 정착
