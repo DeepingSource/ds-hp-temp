@@ -173,6 +173,7 @@ export default config({
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
       '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace'],
+      '법무 (검토 후 편집)': ['privacyDoc', 'termsDoc'],
     },
   },
   collections: {
@@ -710,6 +711,19 @@ export default config({
         mtmcLink: localized('MTMC 링크 (mtmcLink)'),
         mtmcItems: localizedList('MTMC 항목 (mtmcItems)'),
       },
+    }),
+    // 법무 문서 — 한국어 단문 마크다운. ⚠️ 변경 전 법무 검토 필수(편집도 검토 후 반영).
+    privacyDoc: singleton({
+      label: '⚖️ 개인정보 처리방침 (법무 검토 후)',
+      path: 'content/legal/privacy',
+      format: { contentField: 'body' },
+      schema: { body: fields.mdx({ label: '개인정보 처리방침 본문' }) },
+    }),
+    termsDoc: singleton({
+      label: '⚖️ 이용약관 (법무 검토 후)',
+      path: 'content/legal/terms',
+      format: { contentField: 'body' },
+      schema: { body: fields.mdx({ label: '이용약관 본문' }) },
     }),
   },
 });
