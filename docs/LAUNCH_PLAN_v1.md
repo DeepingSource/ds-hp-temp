@@ -68,7 +68,7 @@
 | # | 발견 | 조치 |
 |---|---|---|
 | R1 | **`/demo`가 내부 목업 리뷰 페이지** ("목업 데모 리뷰 · 총 28종", EN 로케일에서도 한국어) — 홈 CTA "See the live demo"가 여기로 연결 | 공개용 데모 페이지로 교체 or CTA 재타깃. 최소한 noindex + 네비·CTA에서 숨김 |
-| R2 | **배포 뒤처짐 확정(7/14 진단)** — 배포판(`ds-hp-temp.vercel.app`) 블로그 KO 189편 vs 로컬 196편, `/keystatic`이 GitHub 로그인 없이 local 모드로 뜸(→ 서버리스 FS 못 읽어 "0 entries" 빈 화면). 즉 7/13 GitHub 모드 전환 커밋(`de5b9f6ea`) 미배포 = **Keystatic 어드민 빈 화면의 근본 원인** | Vercel Git 연동 상태 확인 후 최신 main 배포. 검증: `/keystatic` 진입 시 GitHub 로그인 화면 → 로그인 후 싱글톤 7종+articles 241편 로드, 블로그 KO 196편 |
+| R2 | **해결(7/14)** — 근본 원인: 7/13 GitHub 모드 전환 후 Vercel 빌드가 `KEYSTATIC_*` env 누락으로 전부 실패("Collecting page data"에서 makeRouteHandler throw) → 마지막 성공 배포(local 모드 어드민 = 빈 화면)가 계속 서빙됨. **편수 "189 vs 196"은 오탐**: /resources/blog는 weekly(26편)+case-study 제외가 설계(articles.ts) → 189가 정상. | **조치 완료**: route.ts 가드(`0685cfb44`) — env 누락 시 /api/keystatic만 503, 빌드는 통과 → 사이트 배포와 CMS env 분리. **잔여(사용자)**: Vercel env 4종(`KEYSTATIC_GITHUB_CLIENT_ID/SECRET`·`KEYSTATIC_SECRET`·`NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`) 이름·Production 체크 확인 후 Redeploy → `/keystatic` GitHub 로그인 → 콘텐츠 로드 확인 |
 | R3 | **KO 네비 "Company" 미번역** — 제품·기술·솔루션·**Company**·리소스 (JP는 정상 "会社") | Header KO 라벨 수정 |
 | R4 | **Contact 페이지 초기 "Loading…" 노출** — 폼 hydration 수 초 지연 | SSR 폴백/스켈레톤, 또는 클라이언트 경계 축소 |
 
