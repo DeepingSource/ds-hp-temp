@@ -110,6 +110,24 @@
 - **카피 "그래서?" 다리**(P2-B): "Beyond data, to decisions." 류 추상 카피에 혜택 문장 보강 — 마스터 카피 동결, 받침 문장만. 브랜드 SOT 사인오프 필요.
 - **아웃라이어 title**: `company/partnership`(3로케일 `— DEEPINGSOURCE Inc. \| 마스터태그라인` 패턴, jp 107자) — 제품 혜택꼬리와 달리 **의도적 마스터 태그라인**이라 별도 결정 필요(미변경).
 
+## 7. 전체페이지 감사 반영 (`DeepingSource_전체페이지_감사_개선안_260714.md`)
+
+> ⚠️ 감사는 **stale Vercel 배포본**(ds-hp-temp, ~7/10 이후 미배포) 기준이라 다수 발견이 이미 로컬 HEAD에 반영돼 있었다. 20여 발견을 현재 코드 기준으로 재검증(워크플로우 6클러스터)해 분류 후 처리.
+
+### ✅ 완료 (2026-07-14, 2커밋 `c057f6e79`·`2b6da0441`)
+- **i18n 한글 누출 제거(P0)**: 홈 파트너 pill(PartnerGrid 로케일화)·technology 특허 라벨·솔루션 4뷰 캡션·전시 "3배"→3x/3倍·HqMap 매장명 서초중앙점 등 로케일화.
+- **통화 표기 KRW 통일(P1, 사용자 결정)**: 우리 제품 가격 EN/JP → `14,900 KRW`(ko는 `원`). 버그 수정: B2cPlans `원` 누출, CameraSimulator/PricingClientView `円`(엔) → KRW. store-care 시급/월정액 문구 연결(≈/약…꼴/約). 시뮬레이터 평→㎡ 병기. *(일러스트용 시나리오 매장 데이터 ₩는 우리 가격 아님 → 유지.)*
+- **제품 네이밍(P1, 사용자 결정)**: /technology "이 기술로 구동되는 제품" → saai 주 라벨(technology.yaml 재생성).
+- **/help 노출(P1, 사용자 결정)**: `VERCEL_ENV==='production'`에서 notFound()(로컬·프리뷰 노출). 탈출구 `ENABLE_EDITOR_GUIDE=true`(.env.example 문서화). ⚠️ **임시 도메인(ds-hp-temp)도 production 취급 → /help 비노출**. 임시 도메인에서 편집자에게 /help 링크 공유 중이면 해당 배포에 `ENABLE_EDITOR_GUIDE=true` 설정.
+- **법무 EN/JP(P1, 사용자 결정=임시 비구속 안내문)**: LegalDoc `locale`+`kind` prop + EN/JP 안내 배너("한국어본 정본, 공식 번역 준비 중"). 물리 `/ko·/jp/legal/{privacy,terms}` 미러 4개 + proxy TRANSLATED_PATHS 2건. 한국어 본문 불변(법무 텍스트 미조작).
+- **데이터 정정(P2)**: CBO Geum(≠Kim)·용어집 카드 영문 부제 중복 제거(index+detail)·블로그 Webflow "Previous Article" URL 잔재 제거(ko+en).
+
+### ⬜ 잔여 (의도적 설계 / 데이터·사인오프 게이트)
+- **의도적 설계(변경=결정 필요)**: G4 saai 3중 의미(대문자 SAAI/소문자 saai X/saai.store 케이싱으로 이미 구분) · P2b `/products/saai` slug(타이틀은 이미 saai.store 정합) · H1 "Three stores, one flow"=3(store count=SOURCE라 의도적 제외) · G15 WordRise 등장 모션(브랜드 모티프) · H2 캐러셀 pill/콘텐츠 lag(AnimatePresence mode="wait" 트레이드오프) · H3 "remade online" 목적 카피(브랜드 SOT).
+- **데이터 게이트(실데이터 필요)**: G18 spatial-ai CES/KDDI/NVIDIA 레퍼런스 링크(실 URL) · G20 보도자료 최신화(2025-07+ 실기사) · G19 docs 허브 "coming soon"(콘텐츠/로드맵 결정) · G21a 블로그 "Insight" 배지=임포트 기사 frontmatter `category` 기본값(에디토리얼 재분류).
+- **G10 재프레이밍**: `/thank-you`는 **KO 전용 storeagent 미니사이트** 전용(메인 사이트엔 뉴스레터 폼 없음). "/thank-you만 번역"은 무의미 → 미니사이트 전체 i18n 여부 결정 필요(대형, 보류).
+- **⚪ 조치 불필요(오탐/이미 반영)**: G13 case-studies measured/illustrative 뱃지 이미 구현 · G17 "13 vs 18 모델"=스코프된 라벨(13=라이브 오버레이 서브셋) · G1 /demo 이미 noindex(일러스트만, 저위험).
+
 ---
 
 ## 잔여 항목 우선순위 제안
