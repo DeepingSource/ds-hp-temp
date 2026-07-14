@@ -34,6 +34,8 @@ const articles = defineCollection({
       // lang: 콘텐츠 언어 · target: company(회사 블로그) | saai(saai.store 이관 큐)
       lang: s.enum(['en', 'ko', 'jp']).default('ko'),
       target: s.enum(['company', 'saai']).default('company'),
+      // 초안 — true 면 사이트 목록·라우트에서 제외 (articles.ts·article-metadata.ts 필터).
+      draft: s.boolean().default(false),
       body: s.raw(),
     })
     .transform((data) => ({

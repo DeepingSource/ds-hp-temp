@@ -18,6 +18,7 @@ export interface Article {
   relatedSlugs?: string[];
   lang: 'en' | 'ko' | 'jp'; // content language (Velite frontmatter, default 'ko')
   target?: 'company' | 'saai'; // distribution target (Velite frontmatter)
+  draft?: boolean; // true = excluded from site lists/routes (Velite default false)
 }
 
 export type ArticleMeta = Omit<Article, 'body'>;

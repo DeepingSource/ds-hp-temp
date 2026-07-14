@@ -146,8 +146,8 @@ export default config({
       format: { contentField: 'body' },
       // 본문 전체 폭 + 메타데이터 사이드 패널 (KEYSTATIC_ENHANCEMENT_PLAN C-2).
       entryLayout: 'content',
-      // 196편+ 스캔성 — 제목·날짜 외에 카테고리·언어 노출 (C-3).
-      columns: ['title', 'date', 'category', 'lang'],
+      // 196편+ 스캔성 — 제목·날짜 외에 카테고리·언어·초안 노출 (C-3).
+      columns: ['title', 'date', 'category', 'lang', 'draft'],
       schema: {
         title: fields.text({
           label: '제목',
@@ -214,6 +214,12 @@ export default config({
             { label: 'saai (이관 큐)', value: 'saai' },
           ],
           defaultValue: 'company',
+        }),
+        // B-2: 초안 — 체크 시 사이트에 노출 안 됨(리포엔 커밋됨). 쓰다 만 글 저장용.
+        draft: fields.checkbox({
+          label: '초안 (사이트에 노출 안 됨)',
+          description: '체크하면 발행되지 않고 리포에만 저장됩니다. 발행하려면 체크 해제.',
+          defaultValue: false,
         }),
         // A-1: relatedSlugs 는 Velite·getRelatedArticles 가 쓰는 필드. 스키마에 없으면
         // 편집자가 저장만 해도 프론트매터에서 삭제됨 → relationship 배열로 편입(오타 방지).

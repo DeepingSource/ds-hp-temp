@@ -10,7 +10,7 @@ const allMeta: ArticleMeta[] = allArticlesRaw.map(
 const kstOffset = 9 * 60 * 60 * 1000;
 const todayStr = new Date(Date.now() + kstOffset).toISOString().split('T')[0];
 const cachedMeta: ArticleMeta[] = [...allMeta]
-  .filter((a) => a.date <= todayStr)
+  .filter((a) => a.date <= todayStr && !a.draft)
   .sort((a, b) => b.date.localeCompare(a.date));
 
 export function getAllArticlesMeta(): ArticleMeta[] {

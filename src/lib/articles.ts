@@ -18,7 +18,7 @@ const kstOffset = 9 * 60 * 60 * 1000;
 const todayStr = new Date(Date.now() + kstOffset).toISOString().split('T')[0];
 
 const sortedArticles: Article[] = [...allArticles]
-  .filter((a) => a.date <= todayStr)
+  .filter((a) => a.date <= todayStr && !a.draft)
   .sort((a, b) => b.date.localeCompare(a.date));
 const articleBySlug = new Map(sortedArticles.map((a) => [a.slug, a]));
 
