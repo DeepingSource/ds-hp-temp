@@ -1,0 +1,100 @@
+# Resources hub copy — edited in Keystatic (/keystatic → "Resources — 리소스 카피").
+# 카드 href·아이콘·featured 링크·metadata 는 코드 유지. resources id 순서 = 코드 아이콘 순서, 재정렬 금지.
+eyebrow:
+  ko: Resources
+  en: Resources
+  jp: Resources
+heroTitle:
+  ko: 필요한 자료를 한곳에서
+  en: Everything you need, in one place
+  jp: 必要な資料を、ひとつの場所に
+heroSub:
+  ko: DeepingSource의 프라이버시 AI 솔루션을 더 깊이 이해하는 데 필요한 블로그, 케이스 스터디, 문서, 용어 사전, FAQ를 제공합니다.
+  en: Blog posts, case studies, product docs, a glossary, and FAQs to help you understand DeepingSource privacy AI more deeply.
+  jp: DeepingSource のプライバシー AI ソリューションをより深く理解するためのブログ、ケーススタディ、ドキュメント、用語集、FAQ をご用意しています。
+featuredLabel:
+  ko: Featured
+  en: Featured
+  jp: Featured
+featuredTitle:
+  ko: store insight 사용자 매뉴얼
+  en: store insight User Manual
+  jp: store insight ユーザーマニュアル
+featuredDesc:
+  ko: 로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 — 대시보드 리포트를 처음부터 읽는 법을 단계별로 안내합니다.
+  en: From login and date ranges to visitor analysis, heatmaps, flow, funnels, and purchase conversion — a step-by-step guide to reading the dashboard report from the very start.
+  jp: ログイン・期間設定から、来店者分析、ヒートマップ、動線、ファネル、購買転換率まで — ダッシュボードレポートを最初から読み解く方法を、ステップごとにご案内します。
+featuredCta:
+  ko: 매뉴얼 보기
+  en: View the manual
+  jp: マニュアルを見る
+cardCta:
+  ko: 바로가기
+  en: Go
+  jp: 移動する
+resources:
+  - id: blog
+    title:
+      ko: 블로그
+      en: Blog
+      jp: ブログ
+    description:
+      ko: 프라이버시 AI, 영상 익명화, 다점포 운영 표준화에 대한 인사이트와 실무 가이드를 정기적으로 발행합니다.
+      en: Insights and hands-on guides on privacy AI, video anonymization, and standardizing multi-store operations, published regularly.
+      jp: プライバシー AI、映像の匿名化、多店舗運営の標準化に関するインサイトと実務ガイドを、定期的に発信しています。
+    label:
+      ko: 인사이트 · 가이드
+      en: Insights · Guides
+      jp: インサイト · ガイド
+  - id: case-studies
+    title:
+      ko: 케이스 스터디
+      en: Case Studies
+      jp: ケーススタディ
+    description:
+      ko: 편의점 53개 매장 실측부터 본사 100점포 전파, 드럭스토어·카페·대형 공간까지 — Golden Case 5단계로 읽는 도입 사례.
+      en: From a 53-store convenience-store field study to a 100-store HQ rollout, drugstores, cafés, and large spaces — deployments read through the 5-stage Golden Case.
+      jp: コンビニ 53 店舗の実測から本部 100 店舗への展開、ドラッグストア・カフェ・大型空間まで — Golden Case の 5 段階で読み解く導入事例。
+    label:
+      ko: 도입 사례
+      en: Deployments
+      jp: 導入事例
+  - id: docs
+    title:
+      ko: 제품 문서
+      en: Product Docs
+      jp: 製品ドキュメント
+    description:
+      ko: store insight 사용자 매뉴얼을 비롯해 설치·연동·보안·분석에 필요한 기술 문서를 제공합니다.
+      en: Technical documentation for installation, integration, security, and analytics, including the store insight user manual.
+      jp: store insight ユーザーマニュアルをはじめ、導入・連携・セキュリティ・分析活用に必要な技術文書をご提供します。
+    label:
+      ko: 기술 문서
+      en: Technical Docs
+      jp: 技術ドキュメント
+  - id: glossary
+    title:
+      ko: 용어 사전
+      en: Glossary
+      jp: 用語集
+    description:
+      ko: 히트맵, 익명화 CCTV, 체류 시간, 구매 전환율 등 핵심 용어를 현장 언어로 쉽게 설명합니다.
+      en: Core terms like heatmaps, anonymized CCTV, dwell time, and purchase conversion, explained plainly in the language of the field.
+      jp: ヒートマップ、匿名化 CCTV、滞在時間、購買転換率など、主要な用語を現場の言葉でわかりやすくご説明します。
+    label:
+      ko: 용어 정리
+      en: Terms
+      jp: 用語整理
+  - id: faq
+    title:
+      ko: FAQ
+      en: FAQ
+      jp: FAQ
+    description:
+      ko: 도입 절차, 요금, 데이터 보안과 익명화 동작 원리 등 자주 묻는 질문에 대한 답변을 모았습니다.
+      en: Answers to common questions on deployment, pricing, data security, and how anonymization works.
+      jp: 導入手順、料金、データセキュリティ、匿名化の仕組みなど、よくあるご質問への回答をまとめました。
+    label:
+      ko: 자주 묻는 질문
+      en: Common Questions
+      jp: よくあるご質問

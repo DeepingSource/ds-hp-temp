@@ -193,9 +193,22 @@ for (const loc of LOCALES) {
   };
 }
 
+// ── resources — flat copy + 1 ordered card array (href/아이콘은 코드 유지, 인덱스 매핑). ──
+const RESOURCES_FLAT = [
+  'eyebrow', 'heroTitle', 'heroSub', 'featuredLabel', 'featuredTitle',
+  'featuredDesc', 'featuredCta', 'cardCta',
+];
+const resourcesYaml = load('content/site/resources.yaml');
+const resourcesFlat = toLocaleMajor(resourcesYaml, RESOURCES_FLAT);
+const resourceCards = arrayItemsLocaleMajor(resourcesYaml.resources, ['title', 'description', 'label']);
+const resources = {};
+for (const loc of LOCALES) {
+  resources[loc] = { ...resourcesFlat[loc], resources: resourceCards[loc] };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources)');
