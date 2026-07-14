@@ -20,7 +20,8 @@
     "lint:tokens": "node scripts/check-design-tokens.mjs",
     "lint:frontmatter": "node scripts/check-article-frontmatter.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "copy:review": "node scripts/export-copy.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

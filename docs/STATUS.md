@@ -16,8 +16,8 @@
 | Keystatic CMS — GitHub 모드 전환 | ✅ 완료 | [PHASE_C](./PHASE_C_github-mode-setup.md) |
 | Keystatic 고도화 (편집자 루프·온보딩) | 🟡 Week 1–3 완료, 대형 항목 잔여 | [KEYSTATIC_ENHANCEMENT_PLAN](./KEYSTATIC_ENHANCEMENT_PLAN_v1.md) |
 | 페이지 카피 CMS화 (Phase D) | ✅ 완료 (16 싱글톤: 카피 14 + 법무 2) | [ADMIN_TOOLING_PLAN](./ADMIN_TOOLING_PLAN_v1.md) |
-| 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | `피드백-반영-계획-260714.md` (repo-root) |
-| AEO/SEO 개선 | 🟡 P0 완료 + 스키마 감사, P1/P2 잔여 | `AEO-SEO-개발계획-260714.md` (repo-root) · 이 문서 §6 |
+| 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | [`피드백-반영-계획-260714.md`](./피드백-반영-계획-260714.md) |
+| AEO/SEO 개선 | 🟡 P0·P1-2/1-3·P2-1 완료, P1-1(실데이터)·P2-B(사인오프) 잔여 | [`AEO-SEO-개발계획-260714.md`](./AEO-SEO-개발계획-260714.md) · 이 문서 §6 |
 | 런치 준비 | 🟡 진행 중 | [LAUNCH_PLAN](./LAUNCH_PLAN_v1.md) |
 
 ---

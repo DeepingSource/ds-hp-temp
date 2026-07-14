@@ -27,7 +27,8 @@
 - [`ADMIN_TOOLING_PLAN_v1.md`](./ADMIN_TOOLING_PLAN_v1.md) — 애널리틱스·페이지 카피 CMS화 로드맵
 - [`LAUNCH_PLAN_v1.md`](./LAUNCH_PLAN_v1.md) — 런치 준비·리스크
 - [`blog-keystatic-phase2-proposal.md`](./blog-keystatic-phase2-proposal.md) · [`blog-keystatic-spike-B-S-findings.md`](./blog-keystatic-spike-B-S-findings.md) — 블로그 컬렉션 제안·스파이크(GO)
-- repo-root `피드백-반영-계획-260714.md` — 홈페이지 피드백 16항목/4배치 (배치 A·B 완료)
+- [`피드백-반영-계획-260714.md`](./피드백-반영-계획-260714.md) — 홈페이지 피드백 16항목/4배치 (배치 A·B 완료)
+- [`AEO-SEO-개발계획-260714.md`](./AEO-SEO-개발계획-260714.md) — AEO/SEO 개선 (P0·P1-2/1-3·P2-1 완료 — STATUS §6)
 
 ---
 
