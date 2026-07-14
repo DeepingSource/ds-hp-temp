@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import PricingClientView from '@/components/pricing/PricingClientView';
+import siteContent from '@/data/generated/site-content.json';
+
+const hero = siteContent.pricing.en;
 
 export const metadata: Metadata = {
   title: 'Pricing | DeepingSource',
@@ -36,10 +39,10 @@ export default function PricingPage() {
             Pricing
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            What goal do you want to achieve?
+            {hero.heroTitle}
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Pick the product that matches the outcome you want, with transparent and fair pricing.
+            {hero.heroSub}
           </p>
         </div>
       </section>

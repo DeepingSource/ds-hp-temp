@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import PricingClientView from '@/components/pricing/PricingClientView';
+import siteContent from '@/data/generated/site-content.json';
+
+const hero = siteContent.pricing.ko;
 
 export const metadata: Metadata = {
   title: '요금 안내 | DeepingSource',
@@ -36,10 +39,10 @@ export default function PricingPage() {
             Pricing
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            어떤 목표를 달성하고 싶으신가요?
+            {hero.heroTitle}
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            원하는 성과에 맞는 제품을 선택하고, 투명하고 합리적인 요금을 확인하세요.
+            {hero.heroSub}
           </p>
         </div>
       </section>

@@ -133,9 +133,27 @@ for (const loc of LOCALES) {
   contact[loc] = { ...contactFlat[loc], cards: contactCards[loc] };
 }
 
+// ── pricing — flat copy + list fields (localizedList values pass through toLocaleMajor).
+//    Discount tiers (numeric SOT), interpolation functions, lead-payload labels, and the
+//    store-agent-vs-care footer tuple stay in code; see PricingClientView.tsx CODE. ──
+const PRICING_FLAT = [
+  'heroTitle', 'heroSub', 'toggleB2c', 'toggleB2b', 'b2cHeading', 'b2cSub', 'careStep', 'careDesc',
+  'carePerMonth', 'careFeatures', 'insightStep', 'insightDesc', 'insightPerMonth', 'insightBasis', 'insightFeatures', 'agentStep',
+  'agentDesc', 'agentFree', 'agentPriceTail', 'agentFeatures', 'freeConsult', 'startFree', 'diffTitle', 'freeBadge',
+  'paidBadge', 'saaiBasic', 'storeCare', 'saaiFeatures', 'careDiffFeatures', 'simLink', 'agentCompareLink', 'b2bHeading',
+  'b2bSub', 'b2bSimTitle', 'b2bSimSub', 'b2bCamLabel', 'unitDevice', 'b2bSmall', 'b2bMid', 'b2bLarge',
+  'b2bStoreLabel', 'unitStore', 'b2b3', 'b2b50', 'b2b100', 'discountLabel', 'perStoreCost', 'perStoreBasis',
+  'totalMonthly', 'won', 'estimateDisclaimer', 'b2bEmailLabel', 'emailPlaceholder', 'getQuote', 'b2bEmailNote', 'submittedTitle',
+  'submittedSub', 'recalc', 'entBadge', 'entTitle', 'entDesc', 'entFeatures', 'entCta', 'backToB2c',
+  'simHeading', 'simSub', 'simSelectLabel', 'simCamLabel', 'simSmall', 'simLarge', 'simEmailLabel', 'simEmailNote',
+  'simResultLabel', 'simEmptyHint', 'simResultDisclaimer', 'detailSimLink', 'bundleHeading', 'bundleBodyPre', 'bundleBodyStrong', 'bundleBodyPost',
+  'bundleCta', 'bundleSimLink', 'errSubmitFailed', 'errGeneric',
+];
+const pricing = toLocaleMajor(load('content/site/pricing.yaml'), PRICING_FLAT);
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact)');
+console.log('✓ generated src/data/generated/site-content.json (homeCopy, products, storeAgent, saai, solutions, about, contact, pricing)');
