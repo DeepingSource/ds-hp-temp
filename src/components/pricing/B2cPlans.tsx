@@ -69,6 +69,8 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
 }
 
 export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) {
+  // Canonical KRW notation: ko '14,900원', en/jp '14,900 KRW' (no '원'/'円' leak on non-ko).
+  const fmtWon = (n: number) => (locale === 'ko' ? `${n.toLocaleString('ko-KR')}원` : `${n.toLocaleString('en-US')} KRW`);
   const cards: PlanCardDescriptor[] = [
     {
       icon: <Eye className="w-5 h-5 text-primary" />,
@@ -76,7 +78,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       title: 'store care',
       price: (
         <>
-          <span className="text-3xl font-bold text-gray-900">{B2C_PRICING.storeCare.basic.toLocaleString('ko-KR')}원</span>
+          <span className="text-3xl font-bold text-gray-900">{fmtWon(B2C_PRICING.storeCare.basic)}</span>
           <span className="text-sm text-gray-500">{t.carePerMonth}</span>
         </>
       ),
@@ -91,7 +93,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       title: 'store insight',
       price: (
         <>
-          <span className="text-3xl font-bold text-gray-900">{(B2C_PRICING.storeInsight.base + B2C_PRICING.storeInsight.perCamera * 8).toLocaleString('ko-KR')}원</span>
+          <span className="text-3xl font-bold text-gray-900">{fmtWon(B2C_PRICING.storeInsight.base + B2C_PRICING.storeInsight.perCamera * 8)}</span>
           <span className="text-sm text-gray-500">{t.insightPerMonth}</span>
           <span className="text-xs text-gray-500 block mt-1">{t.insightBasis}</span>
         </>

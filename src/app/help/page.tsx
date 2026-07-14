@@ -1,13 +1,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 /**
  * /help — the editor guide (G-1), rendered from the same content/editor/guide.mdx
  * that the Keystatic `editorGuide` singleton edits. noindex — internal onboarding
- * page shared by URL in the first access email. Static (reads the file at build).
+ * page. Static (reads the file at build).
+ *
+ * Access: the guide exposes the private repo slug + CMS/deploy process, so the
+ * public route is EXCLUDED from production (VERCEL_ENV==='production' → notFound()).
+ * It stays available on local dev + preview deploys; editors also see the same
+ * content inside /keystatic. Override with ENABLE_EDITOR_GUIDE=true if ever needed.
  */
+
+// Server-only gate (RSC): not a NEXT_PUBLIC var, never shipped to the client.
+function editorGuideEnabled(): boolean {
+  if (process.env.ENABLE_EDITOR_GUIDE === 'true') return true;
+  return process.env.VERCEL_ENV !== 'production';
+}
 
 export const metadata: Metadata = {
   title: '편집 가이드 | DEEPINGSOURCE',
@@ -47,6 +59,7 @@ const components = {
 };
 
 export default function HelpPage() {
+  if (!editorGuideEnabled()) notFound();
   const body = loadGuide();
   return (
     <main className="mx-auto max-w-3xl px-4 sm:px-6 py-16 lg:py-24">

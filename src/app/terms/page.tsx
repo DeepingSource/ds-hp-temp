@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return <LegalDoc title="이용약관" file="content/legal/terms.mdx" />;
+  return <LegalDoc title="이용약관" file="content/legal/terms.mdx" locale="en" kind="terms" />;
 }

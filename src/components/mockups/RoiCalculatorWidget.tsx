@@ -88,10 +88,10 @@ const COPY: Record<
     conservative: 'conservative estimate',
     footTitle: 'Assumptions (conservative estimate)',
     foot1: '30 min/day saved on CCTV checks · scaled to 16h baseline',
-    foot2: '₩30,000/hr labor · 20 business days/mo',
+    foot2: '30,000 KRW/hr labor · 20 business days/mo',
     foot3: '0.5% of daily sales recovered from stock-outs',
-    foot4: 'Care cost ₩14,900/store/mo (first month free)',
-    foot5: 'Payback is based on a one-time ₩750,000/store setup & onboarding cost',
+    foot4: 'Care cost 14,900 KRW/store/mo (first month free)',
+    foot5: 'Payback is based on a one-time 750,000 KRW/store setup & onboarding cost',
   },
   jp: {
     title: 'ROI計算ツール',
@@ -110,10 +110,10 @@ const COPY: Record<
     conservative: '保守的な推定',
     footTitle: '前提 (保守的な推定)',
     foot1: 'CCTV確認の削減 1日30分 ・ 営業16時間を基準に比例',
-    foot2: '時給 ₩30,000 ・ 月20営業日',
+    foot2: '時給 30,000 KRW ・ 月20営業日',
     foot3: '日商の0.5%を欠品から回収',
-    foot4: 'Care導入費 1店舗 月₩14,900 (初月無料)',
-    foot5: '回収期間は1店舗あたり初期導入・オンボーディング費 ₩750,000を基準',
+    foot4: 'Care導入費 1店舗 月14,900 KRW (初月無料)',
+    foot5: '回収期間は1店舗あたり初期導入・オンボーディング費 750,000 KRWを基準',
   },
 };
 

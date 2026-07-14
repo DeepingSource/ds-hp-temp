@@ -1357,15 +1357,15 @@
       ],
       "poweredProducts": [
         {
-          "name": "store insight",
+          "name": "saai insight",
           "desc": "Reads yesterday — the space beyond sales"
         },
         {
-          "name": "store agent",
+          "name": "saai agent",
           "desc": "Acts on next — AI recommends, people decide"
         },
         {
-          "name": "store care",
+          "name": "saai care",
           "desc": "Flags the now — only the moments that matter"
         }
       ]
@@ -1469,15 +1469,15 @@
       ],
       "poweredProducts": [
         {
-          "name": "store insight",
+          "name": "saai insight",
           "desc": "어제를 읽다 — 매출 너머의 공간"
         },
         {
-          "name": "store agent",
+          "name": "saai agent",
           "desc": "다음을 실행하다 — 권고는 AI, 결정은 사람"
         },
         {
-          "name": "store care",
+          "name": "saai care",
           "desc": "지금을 알리다 — 필요한 순간만 실시간"
         }
       ]
@@ -1581,15 +1581,15 @@
       ],
       "poweredProducts": [
         {
-          "name": "store insight",
+          "name": "saai insight",
           "desc": "昨日を読む — 売上の先にある空間"
         },
         {
-          "name": "store agent",
+          "name": "saai agent",
           "desc": "次を動かす — 推奨はAI、決定は人"
         },
         {
-          "name": "store care",
+          "name": "saai care",
           "desc": "今を知らせる — 必要な瞬間だけリアルタイム"
         }
       ]

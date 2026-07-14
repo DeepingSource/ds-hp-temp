@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <LegalDoc title="개인정보 처리방침" file="content/legal/privacy.mdx" />;
+  return <LegalDoc title="개인정보 처리방침" file="content/legal/privacy.mdx" locale="en" kind="privacy" />;
 }

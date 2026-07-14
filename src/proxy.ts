@@ -59,6 +59,10 @@ const TRANSLATED_PATHS = new Set<string>([
   '/resources/glossary',
   '/resources/faq',
   '/resources/blog',
+  // Legal: physical /ko·/jp mirrors carry the viewer locale so LegalDoc can show
+  // the interim EN/JP "Korean is authoritative" notice (Korean body is unchanged).
+  '/legal/privacy',
+  '/legal/terms',
 ]);
 
 /** When FORCE_MINISITE=true, treat every request as minisite (for standalone deployment) */

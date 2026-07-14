@@ -206,7 +206,7 @@ const C: Record<Locale, SimContent> = {
   },
   jp: {
     unitDevice: '台',
-    won: '円',
+    won: ' KRW',
     perMonth: '/月',
     presets: [
       { label: '小型', range: '10〜20坪' },
@@ -244,13 +244,13 @@ const C: Record<Locale, SimContent> = {
     agentLineFree: '基本型', agentLineStd: '標準', agentLinePrem: 'プレミアム',
     free: '無料',
     monthlySum: '想定月額費用の合計',
-    perDay: (n) => `1日あたり約${n}円`,
+    perDay: (n) => `1日あたり約${n} KRW`,
     initialDevice: '初期機器費用（一回）',
     selectedFeatures: '選択された機能',
     featDirt: '汚れ・陳列検知', featStay: '異常滞留検知', featNight: '夜間防犯検知', featTemp: '温度モニタリング含む',
     featFlow: '動線・滞留分析', featDash: 'Webダッシュボード',
     featBriefing: 'AIブリーフィング', featAgentPrem: 'AIアシスタント・自動化', featAgentStd: 'POS連携分析',
-    upgradeMsg: (price) => `プラスプラン（${price}円/月）に変更すると温度モニタリングが含まれ、より合理的です。`,
+    upgradeMsg: (price) => `プラスプラン（${price} KRW/月）に変更すると温度モニタリングが含まれ、より合理的です。`,
     emailTitle: 'シミュレーション結果をメールで受け取る',
     emailPlaceholder: 'メールアドレス',
     emailBtn: '見積もりを受け取る',
@@ -263,7 +263,7 @@ const C: Record<Locale, SimContent> = {
     reqName: 'シミュレーター見積もり',
     reqInquiry: '見積もり依頼',
     reqMessage: ({ products, cam, fridge, monthly, oneTime }) =>
-      `[シミュレーション] ${products || '未選択'}、カメラ${cam}台、冷蔵庫${fridge}台、想定月額〜${monthly}円、初期${oneTime}円`,
+      `[シミュレーション] ${products || '未選択'}、カメラ${cam}台、冷蔵庫${fridge}台、想定月額〜${monthly} KRW、初期${oneTime} KRW`,
   },
 };
 

@@ -156,7 +156,7 @@ const C: Record<Locale, Copy> = {
     pillarsHeading: 'What you could not do before, you do now',
     pillarsSub: 'Whether you outsource or staff it, it ends up a few-day snapshot of one store. store count reads the trade area of every store, day after day.',
     pillars: [
-      { no: '01', h: 'Cheap and simple', d: 'For the price of one outsourced study, store count runs every month.', meta: 'Rental from ₩300K/mo · 5-minute setup with one outlet and Wi-Fi — no construction, no staff.' },
+      { no: '01', h: 'Cheap and simple', d: 'For the price of one outsourced study, store count runs every month.', meta: 'Rental from 300K KRW/mo · 5-minute setup with one outlet and Wi-Fi — no construction, no staff.' },
       { no: '02', h: 'Fast, many at once', d: 'Not one store but every store, same day, same standard.', meta: 'Not a few days of sampling but daily, always-on. One standard, however many stores.' },
       { no: '03', h: 'A basis for decisions', d: 'Whether a store is doing well, whether its trade area is shifting — on the HQ screen.', meta: 'Instead of costly one-off surveys, decide the next move on always-on data.' },
     ],
@@ -213,7 +213,7 @@ const C: Record<Locale, Copy> = {
     pillarsHeading: 'これまでできなかったことを、いまできます',
     pillarsSub: '外注でも人手でも、結局は一店舗の数日分のスナップショットです。store count は全国店舗の商圏を、毎日続けて見ます。',
     pillars: [
-      { no: '01', h: '安く、手軽です', d: '外注の商圏分析一回分で、store count は毎月常時。', meta: '月30万ウォンのレンタル型 · 電源1口とWi-Fiで5分設置 — 工事も、人手も不要。' },
+      { no: '01', h: '安く、手軽です', d: '外注の商圏分析一回分で、store count は毎月常時。', meta: '月30万 KRW のレンタル型 · 電源1口とWi-Fiで5分設置 — 工事も、人手も不要。' },
       { no: '02', h: '速く、同時に多数', d: '一店舗ではなく全国店舗を、同じ日に、同じ基準で。', meta: '数日のサンプルではなく毎日 — 常時測定。店舗が増えても基準は一つ。' },
       { no: '03', h: '意思決定の根拠に', d: '店舗が好調か、商圏が変調していないか — 本部の画面で。', meta: '面倒で高い外部調査の代わりに、常時データで次の一手を決めます。' },
     ],

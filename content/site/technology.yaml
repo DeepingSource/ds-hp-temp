@@ -288,27 +288,27 @@ complianceItems:
 poweredProducts:
   - id: insight
     name:
-      ko: store insight
-      en: store insight
-      jp: store insight
+      ko: saai insight
+      en: saai insight
+      jp: saai insight
     desc:
       ko: 어제를 읽다 — 매출 너머의 공간
       en: Reads yesterday — the space beyond sales
       jp: 昨日を読む — 売上の先にある空間
   - id: agent
     name:
-      ko: store agent
-      en: store agent
-      jp: store agent
+      ko: saai agent
+      en: saai agent
+      jp: saai agent
     desc:
       ko: 다음을 실행하다 — 권고는 AI, 결정은 사람
       en: Acts on next — AI recommends, people decide
       jp: 次を動かす — 推奨はAI、決定は人
   - id: care
     name:
-      ko: store care
-      en: store care
-      jp: store care
+      ko: saai care
+      en: saai care
+      jp: saai care
     desc:
       ko: 지금을 알리다 — 필요한 순간만 실시간
       en: Flags the now — only the moments that matter
