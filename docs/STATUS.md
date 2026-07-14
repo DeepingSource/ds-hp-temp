@@ -90,12 +90,13 @@
 | P0-2 홈 H1 하이브리드 | H1(감성) 아래 키워드 **H2 추가** — `CorporateHero.tsx` `heroKeyword` 딕트("익명화 공간 AI — …" 3로케일). 빌드 HTML `<h2>` 렌더 검증. 마스터 카피 불변 |
 | P0-3 메타 Title 길이 | 병기 유지 + 혜택 꼬리만 절삭(사용자 결정). 제품 12개(`store-agent/insight/care/count` × 3로케일) + `storeagent` 미니사이트 title을 `제품명 \| DEEPINGSOURCE`로. OG title은 이미 절삭형이었음 |
 | P2-2 스키마 커버리지 감사 | 빌드 산출물 실측: **제품 5(SoftwareApplication)·솔루션 4(Service)·블로그(Article)·글로서리(DefinedTerm) 전부 출력 확인 — 갭 없음.** Organization 신뢰지표 보강: `award`(특허 수, `categoryKeyword.en` 참조)·`knowsAbout`(핵심 토픽) 구조화 필드 추가(`layout.tsx`) |
+| P2-1 내부링크 앵커 키워드화 | **감사 결론: 카드 링크(제품/기술)·글로서리 상세는 이미 키워드 리치**(카드 전체가 `<Link>`=제너릭 앵커 아님; 글로서리 상세=관련 용어/업종/CTA 내부링크). 실질 결함 1건 수정: 글로서리 "관련 업종"이 `/industries/${slug}`(301→/solutions, **locale 유실**)로 링크 → **업종→솔루션 허브 매핑(`INDUSTRY_SOLUTION`)으로 `localeHref`+직접 `/solutions/[hub]`** 전환(리다이렉트 제거+로케일 버그 수정+키워드 앵커+내부 아이콘). ~20 용어×3로케일. **잔여: 메인 페이지→글로서리 링크는 View 카피가 yaml 평문이라 markdown 링크 미렌더 → JSX 섹션 신설 필요(별도 UI 작업, 보류)** |
 | P1-2/1-3 키워드·네이밍 규칙 SOT | **`brand-canon.ts`에 `categoryKeyword` SOT + 역할 분리 규칙 doc 추가** — "Anonymized Spatial AI/익명화 공간 AI/匿名化空間AI"=카테고리 키워드, SAAI=우산 브랜드, `saai/store {…}`=제품명(productNaming). 표기 감사: KO 18건·JP 10건 **100% 일관**, EN 소문자 변형은 대부분 정당한 산문(문장 중간·기술 스택 나열)이라 미변경. 정규화 2건: saai featureNote 정의 글로스, Organization award. 홈 H2를 SOT에서 파생(dogfood). **제품 네이밍 규칙(P1-3)은 이미 §14/§15 option B로 productNaming에 명문화 완료** |
 
 ### ⬜ 잔여 (P1/P2 — 카피 결정·창작 수반)
 - **P1-1** 제품 현장 사례 → Problem·Solution·Result 구조화(정량 수치 텍스트 노출). **⚠️ 실데이터 게이트**: 현재 사례는 명시적 "예시(illustrative)"(`CaseBand.tsx:13` "Results are NOT [real]", `CaseStudiesView.tsx`에 "예시:" 수치·"(예시 인용)"). 검증된 것처럼 보이는 수치 생성 = 조작이라 **실명·실측 사례 확보 전까지 보류**. 구조(라벨·KPI·인용)는 이미 존재. §4 배치 D #13 도입사례 페이지화와 연계.
 - ~~P1-2 허브 hero/메타 전진 배치~~ **✅ 완료(메타 표면)**: technology는 title·desc에 이미 "Anonymized Spatial AI" 보유. products/solutions **메타 description에 키워드 전진 배치**(3로케일) + products `keywords` 배열 추가. **허브 hero(H1/sub)는 의도적 감성/구조 프레이밍**(technology 3축 분해·products 마스터 카피 "SAAI로 익명화")이라 **의도적으로 불변** — SEO 표면만 손댐.
-- **P2-1** 본문 내부링크 앵커 키워드화(제너릭 "Learn more" → 문맥 키워드 + 글로서리 내부링크).
+- **P2-1 메인→글로서리 링크(선택)**: 제품/솔루션/기술 허브 본문에서 글로서리 용어로의 키워드 내부링크 = 토픽 클러스터 강화. **View 카피가 yaml 평문**이라 markdown 링크 미렌더 → JSX 링크 섹션 신설이 필요(별도 UI 작업). glossaryDetail `viewCase`("사례 보기"→`/contact`) 앵커↔목적지 불일치도 후속 후보.
 - **카피 "그래서?" 다리**(P2-B): "Beyond data, to decisions." 류 추상 카피에 혜택 문장 보강 — 마스터 카피 동결, 받침 문장만. 브랜드 SOT 사인오프 필요.
 - **아웃라이어 title**: `company/partnership`(3로케일 `— DEEPINGSOURCE Inc. \| 마스터태그라인` 패턴, jp 107자) — 제품 혜택꼬리와 달리 **의도적 마스터 태그라인**이라 별도 결정 필요(미변경).
 

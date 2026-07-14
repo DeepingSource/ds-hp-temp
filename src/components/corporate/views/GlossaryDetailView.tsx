@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
 import { glossaryBySlug, type GlossaryTerm } from '@/data/glossaryTerms';
 import { industryList, type IndustryMeta } from '@/data/industryList';
 import { glossaryCardI18n, glossaryCategoryI18n } from '@/data/glossary-i18n';
@@ -7,6 +7,23 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+
+/**
+ * Industry slug → solution hub route. The per-industry pages were consolidated into
+ * four solution hubs, so link related industries straight to the matching hub (a
+ * keyword-anchored, locale-aware internal link) instead of /industries/* which 301-
+ * redirects to the generic /solutions and drops the locale.
+ */
+const INDUSTRY_SOLUTION: Record<string, string> = {
+  convenience: 'retail',
+  mart: 'retail',
+  fashion: 'retail',
+  unmanned: 'retail',
+  drugstore: 'drug',
+  cafe: 'food-beverage',
+  exhibition: 'large-space',
+  logistics: 'large-space',
+};
 
 const C: Record<
   Locale,
@@ -176,11 +193,11 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
                 {relatedIndustryObjects.map((ind) => (
                   <Link
                     key={ind.slug}
-                    href={`/industries/${ind.slug}`}
+                    href={localeHref(locale, INDUSTRY_SOLUTION[ind.slug] ? `/solutions/${INDUSTRY_SOLUTION[ind.slug]}` : '/solutions')}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-sm text-gray-600 hover:border-primary hover:text-primary transition-colors"
                   >
                     {ind.label}
-                    <ExternalLink className="w-3 h-3 opacity-50" />
+                    <ArrowRight className="w-3 h-3 opacity-50" />
                   </Link>
                 ))}
               </div>
