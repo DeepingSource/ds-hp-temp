@@ -127,7 +127,14 @@ export default config({
     repo: { owner: 'DeepingSource', name: 'ds-hp-temp' },
   },
   ui: {
-    brand: { name: 'DeepingSource' },
+    brand: { name: 'DEEPINGSOURCE' },
+    // 그룹명이 온보딩 역할 — 자주 편집하는 문서를 위로 (KEYSTATIC_ENHANCEMENT_PLAN C-1).
+    navigation: {
+      '블로그': ['articles'],
+      '자주 편집': ['home', 'pricing'],
+      '페이지 카피 · 제품': ['products', 'storeAgent', 'saai'],
+      '페이지 카피 · 회사': ['about', 'solutions', 'contact'],
+    },
   },
   collections: {
     // 블로그 글 — Velite 가 읽는 것과 같은 content/articles/*.mdx 를 직접 편집.
@@ -137,13 +144,26 @@ export default config({
       path: 'content/articles/*',
       slugField: 'slug',
       format: { contentField: 'body' },
-      columns: ['title', 'date'],
+      // 본문 전체 폭 + 메타데이터 사이드 패널 (KEYSTATIC_ENHANCEMENT_PLAN C-2).
+      entryLayout: 'content',
+      // 196편+ 스캔성 — 제목·날짜 외에 카테고리·언어 노출 (C-3).
+      columns: ['title', 'date', 'category', 'lang'],
       schema: {
-        title: fields.text({ label: '제목', validation: { isRequired: true } }),
+        title: fields.text({
+          label: '제목',
+          description: 'OG·검색결과 제목. 70자 이내 권장(잘림 방지).',
+          validation: { isRequired: true, length: { max: 70 } },
+        }),
         slug: fields.slug({ name: { label: 'URL 슬러그 (파일명 = URL 경로)' } }),
-        excerpt: fields.text({ label: '요약 (목록·OG용 한 줄)', multiline: true }),
+        excerpt: fields.text({
+          label: '요약 (목록·OG용 한 줄)',
+          description: '목록 카드·검색결과·SNS 공유에 노출되는 1~2문장.',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
         category: fields.select({
           label: '카테고리',
+          description: '가이드·주간은 회사 블로그 목록에서 제외됨(saai.store 성격).',
           options: [
             { label: '가이드', value: 'guide' },
             { label: '케이스스터디', value: 'case-study' },
@@ -152,19 +172,32 @@ export default config({
           ],
           defaultValue: 'insight',
         }),
-        date: fields.date({ label: '게시일' }),
-        readTime: fields.integer({ label: '읽기 시간(분) — 비우면 자동 계산' }),
+        date: fields.date({
+          label: '게시일',
+          description: '미래 날짜 = 해당일 00시(KST) 이후 자동 발행(예약). 재빌드 시 반영.',
+          defaultValue: { kind: 'today' },
+          validation: { isRequired: true },
+        }),
+        readTime: fields.integer({
+          label: '읽기 시간(분) — 비우면 자동 계산',
+          description: '비우면 본문 분량으로 자동 추정. 특별한 경우만 직접 입력.',
+        }),
         tags: fields.array(fields.text({ label: '태그' }), {
           label: '태그',
+          description: '항목별 추가. 기존 태그를 재사용하면 묶임이 좋아집니다.',
           itemLabel: (p) => p.value,
         }),
         icon: fields.text({ label: 'Lucide 아이콘', defaultValue: 'Newspaper' }),
         cover: fields.image({
           label: '커버 이미지',
+          description: '2:1 비율 권장, webp·500KB 이하. 목록·글 상단·OG에 사용.',
           directory: 'public/images/blog',
           publicPath: '/images/blog/',
         }),
-        coverAlt: fields.text({ label: '커버 대체텍스트' }),
+        coverAlt: fields.text({
+          label: '커버 대체텍스트',
+          description: '커버를 넣었다면 접근성을 위해 꼭 채워주세요(비우면 제목 사용).',
+        }),
         lang: fields.select({
           label: '언어',
           options: [
@@ -182,7 +215,20 @@ export default config({
           ],
           defaultValue: 'company',
         }),
-        body: fields.mdx({ label: '본문', components: blogComponents }),
+        // A-1: relatedSlugs 는 Velite·getRelatedArticles 가 쓰는 필드. 스키마에 없으면
+        // 편집자가 저장만 해도 프론트매터에서 삭제됨 → relationship 배열로 편입(오타 방지).
+        relatedSlugs: fields.array(
+          fields.relationship({ label: '관련 글', collection: 'articles' }),
+          { label: '관련 글 (수동 지정)', itemLabel: (p) => p.value ?? '(선택)' },
+        ),
+        // B-1: 본문 인라인 이미지 업로드 대상 — 미설정 시 content/ 옆에 저장돼 사이트에서 안 보임.
+        body: fields.mdx({
+          label: '본문',
+          components: blogComponents,
+          options: {
+            image: { directory: 'public/images/blog', publicPath: '/images/blog/' },
+          },
+        }),
       },
     }),
   },
