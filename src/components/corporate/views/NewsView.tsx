@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { localeHref, type Locale } from '@/lib/i18n';
+import siteContent from '@/data/generated/site-content.json';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -25,7 +26,6 @@ type Copy = {
   coverageEyebrow: string;
   coverageHeading: string;
   coverageNote: string;
-  coverage: { date: string; outlet: string; category: string; title: string; url: string }[];
   badgesEyebrow: string;
   badgesHeading: string;
   badgesSub: string;
@@ -50,16 +50,6 @@ const C: Record<Locale, Copy> = {
     coverageEyebrow: 'Coverage',
     coverageHeading: '대표 미디어 커버리지',
     coverageNote: '외부 매체 보도로 연결됩니다 (새 창에서 열림).',
-    coverage: [
-      { date: '2026.01', outlet: '이데일리', category: '보도자료', title: '딥핑소스 “매장 자율운영 상용화 원년”…AI가 분석부터 실행까지 잇는다', url: 'https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04559206645320016' },
-      { date: '2025.12', outlet: 'IT데일리', category: '보도자료', title: '딥핑소스, ‘컴업 2025’서 AI 매장 관리 솔루션 ‘스토어케어’ 공개', url: 'https://www.itdaily.kr/news/articleView.html?idxno=236863' },
-      { date: '2025.07', outlet: '머니투데이', category: '보도자료', title: '딥핑소스, KDDI·로손 ‘리얼×테크 로손’ 도쿄 1호점에 AI 기술 파트너로 참여', url: 'https://www.mt.co.kr/future/2025/07/07/2025070714265461809' },
-      { date: '2025.06', outlet: 'ZDNet Korea', category: '보도자료', title: '딥핑소스, KDDI 오픈 이노베이션 펀드 3호서 전략투자 유치', url: 'https://zdnet.co.kr/view/?no=20250610175314' },
-      { date: '2025.03', outlet: '벤처스퀘어', category: '보도자료', title: '딥핑소스, 금상호 신임 CBO 영입 — 글로벌 사업 가속', url: 'https://www.venturesquare.net/1067079' },
-      { date: '2023.05', outlet: '아시아경제', category: '미디어 언급', title: '[AI혁명] 딥핑소스 “세상 모든 데이터 안전하게 쓰도록 만든다”', url: 'https://www.asiae.co.kr/article/2023051209490460590' },
-      { date: '2020.08', outlet: '전자신문', category: '미디어 언급', title: '[오늘의 CEO] 김태훈 딥핑소스 대표 “데이터 익명화로 AI 고도화 난제 해결”', url: 'https://www.etnews.com/20200817000108' },
-      { date: '2020.01', outlet: '플래텀', category: '보도자료', title: '딥핑소스, 55억 규모 시리즈A 투자 유치', url: 'https://platum.kr/archives/134568' },
-    ],
     badgesEyebrow: 'Awards & Credentials',
     badgesHeading: '증명된 기술, 검증된 신뢰',
     badgesSub: '수상과 인증, 그리고 누적된 특허가 딥핑소스의 기술력을 뒷받침합니다.',
@@ -87,16 +77,6 @@ const C: Record<Locale, Copy> = {
     coverageEyebrow: 'Coverage',
     coverageHeading: 'Selected media coverage',
     coverageNote: 'Links open external coverage in a new tab.',
-    coverage: [
-      { date: '2026.01', outlet: 'Edaily', category: 'Press releases', title: 'DeepingSource declares 2026 the first year of commercial store autonomous operation — AI from analysis to execution', url: 'https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04559206645320016' },
-      { date: '2025.12', outlet: 'ITdaily', category: 'Press releases', title: 'DeepingSource unveils Store Care, its AI store-management solution, at COMEUP 2025', url: 'https://www.itdaily.kr/news/articleView.html?idxno=236863' },
-      { date: '2025.07', outlet: 'Money Today', category: 'Press releases', title: 'DeepingSource joins KDDI × LAWSON’s first Real×Tech LAWSON store in Tokyo as AI technology partner', url: 'https://www.mt.co.kr/future/2025/07/07/2025070714265461809' },
-      { date: '2025.06', outlet: 'ZDNet Korea', category: 'Press releases', title: 'DeepingSource raises strategic investment from KDDI Open Innovation Fund III', url: 'https://zdnet.co.kr/view/?no=20250610175314' },
-      { date: '2025.03', outlet: 'VentureSquare', category: 'Press releases', title: 'DeepingSource appoints Sang-ho Geum as new CBO to accelerate global business', url: 'https://www.venturesquare.net/1067079' },
-      { date: '2023.05', outlet: 'Asia Economy', category: 'Media mentions', title: '[AI Revolution] DeepingSource: “making all the world’s data safe to use”', url: 'https://www.asiae.co.kr/article/2023051209490460590' },
-      { date: '2020.08', outlet: 'etnews', category: 'Media mentions', title: '[CEO Today] Tae-Hoon Kim of DeepingSource: solving AI’s hard problems with data anonymization', url: 'https://www.etnews.com/20200817000108' },
-      { date: '2020.01', outlet: 'Platum', category: 'Press releases', title: 'DeepingSource raises a ~₩5.5B Series A', url: 'https://platum.kr/archives/134568' },
-    ],
     badgesEyebrow: 'Awards & Credentials',
     badgesHeading: 'Proven technology, verified trust',
     badgesSub: 'Awards, credentials, and a growing patent portfolio back DeepingSource’s technical strength.',
@@ -124,16 +104,6 @@ const C: Record<Locale, Copy> = {
     coverageEyebrow: 'Coverage',
     coverageHeading: '主なメディア掲載',
     coverageNote: '外部メディアの記事を新しいタブで開きます。',
-    coverage: [
-      { date: '2026.01', outlet: 'イーデイリー', category: 'プレスリリース', title: 'ディーピングソース「店舗自律運営の商用化元年」…AIが分析から実行までつなぐ', url: 'https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04559206645320016' },
-      { date: '2025.12', outlet: 'ITデイリー', category: 'プレスリリース', title: 'ディーピングソース、「COMEUP 2025」でAI店舗管理ソリューション「ストアケア」を公開', url: 'https://www.itdaily.kr/news/articleView.html?idxno=236863' },
-      { date: '2025.07', outlet: 'マネートゥデイ', category: 'プレスリリース', title: 'ディーピングソース、KDDI・ローソンの「Real×Tech LAWSON」東京1号店にAI技術パートナーとして参画', url: 'https://www.mt.co.kr/future/2025/07/07/2025070714265461809' },
-      { date: '2025.06', outlet: 'ZDNet Korea', category: 'プレスリリース', title: 'ディーピングソース、KDDIオープンイノベーションファンド3号から戦略投資を調達', url: 'https://zdnet.co.kr/view/?no=20250610175314' },
-      { date: '2025.03', outlet: 'VentureSquare', category: 'プレスリリース', title: 'ディーピングソース、新CBOにクム・サンホ氏を迎えグローバル事業を加速', url: 'https://www.venturesquare.net/1067079' },
-      { date: '2023.05', outlet: 'アジア経済', category: 'メディア掲載', title: '[AI革命] ディーピングソース「世界中のデータを安全に使えるようにする」', url: 'https://www.asiae.co.kr/article/2023051209490460590' },
-      { date: '2020.08', outlet: 'etnews', category: 'メディア掲載', title: '[本日のCEO] キム・テフン代表「データ匿名化でAI高度化の難題を解決」', url: 'https://www.etnews.com/20200817000108' },
-      { date: '2020.01', outlet: 'Platum', category: 'プレスリリース', title: 'ディーピングソース、55億ウォン規模のシリーズAを調達', url: 'https://platum.kr/archives/134568' },
-    ],
     badgesEyebrow: 'Awards & Credentials',
     badgesHeading: '証明された技術、検証された信頼',
     badgesSub: '受賞と認証、そして積み重ねた特許が、ディーピングソースの技術力を支えます。',
@@ -157,8 +127,12 @@ const C: Record<Locale, Copy> = {
 
 const badgeIcons = [ShieldCheck, Award, Cpu, Tag];
 
+type CoverageItem = { date: string; outlet: string; category: string; title: string; url: string };
+const NEWS = siteContent.news as Record<Locale, { coverage: CoverageItem[] }>;
+
 export default function NewsView({ locale }: { locale: Locale }) {
   const t = C[locale];
+  const coverage = NEWS[locale].coverage;
   return (
     <div className="bg-white min-h-screen">
       {/* ── Hero ── */}
@@ -190,7 +164,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
             <p className="text-sm text-gray-500 break-keep">{t.coverageNote}</p>
           </div>
           <StaggerContainer className="space-y-4">
-            {t.coverage.map((item) => (
+            {coverage.map((item) => (
               <StaggerItem key={item.url}>
                 <a
                   href={item.url}

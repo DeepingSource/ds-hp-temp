@@ -227,9 +227,24 @@ const drug = solBase(load('content/site/drug.yaml'));
 const foodBeverage = solBase(load('content/site/food-beverage.yaml'));
 const largeSpace = solBase(load('content/site/large-space.yaml'), ['mtmcBadge', 'mtmcHeading', 'mtmcBody', 'mtmcLink', 'mtmcItems']);
 
+// ── news — media coverage list. date/url are shared; outlet/category/title per-locale. ──
+const newsYaml = load('content/site/news.yaml');
+const news = {};
+for (const loc of LOCALES) {
+  news[loc] = {
+    coverage: (newsYaml.coverage ?? []).map((item) => ({
+      date: item.date,
+      outlet: item.outlet?.[loc] ?? '',
+      category: item.category?.[loc] ?? '',
+      title: item.title?.[loc] ?? '',
+      url: item.url,
+    })),
+  };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, technology, resources, retail, drug, foodBeverage, largeSpace)');
+console.log('✓ generated src/data/generated/site-content.json (…, retail, drug, foodBeverage, largeSpace, news)');

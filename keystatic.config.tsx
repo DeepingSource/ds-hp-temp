@@ -187,7 +187,7 @@ export default config({
       '블로그': ['articles'],
       '케이스스터디': ['caseStudies'],
       '제품 문서': ['docs'],
-      '자주 편집': ['home', 'pricing'],
+      '자주 편집': ['home', 'pricing', 'news'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
       '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace'],
@@ -885,6 +885,28 @@ export default config({
           description: localized('설명 (description)'),
           label: localized('라벨 (label)'),
         }),
+      },
+    }),
+    // 뉴스/미디어 커버리지 — 보도자료마다 추가되는 고빈도 목록. date·url 은 공용,
+    // 언론사·분류·제목은 로케일별. content/site/news.yaml → gen-site-content → NewsView.
+    news: singleton({
+      label: '뉴스 · 미디어 커버리지',
+      path: 'content/site/news',
+      format: { data: 'yaml' },
+      schema: {
+        coverage: fields.array(
+          fields.object({
+            date: fields.text({ label: '날짜 (예: 2026.01)' }),
+            url: fields.url({ label: '기사 URL' }),
+            outlet: localized('언론사'),
+            category: localized('분류 (예: 보도자료 · 미디어 언급)'),
+            title: localized('제목'),
+          }),
+          {
+            label: '미디어 커버리지 (최신순)',
+            itemLabel: (p) => `${p.fields.date.value || ''} · ${p.fields.title.fields.ko.value || '(제목)'}`,
+          },
+        ),
       },
     }),
     retail: singleton({
