@@ -117,7 +117,8 @@ export function proxy(request: NextRequest) {
         || base.startsWith('/glossary/')
         || base.startsWith('/solutions/')
         || base.startsWith('/resources/blog/')
-        || base.startsWith('/resources/case-studies/');
+        || base.startsWith('/resources/case-studies/')
+        || base.startsWith('/resources/docs/');
       if (!isTranslated) {
         const url = request.nextUrl.clone();
         url.pathname = base;

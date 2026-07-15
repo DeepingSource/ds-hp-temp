@@ -100,6 +100,14 @@ const INDUSTRY_ICON_NAMES = [
 ] as const;
 const industryIconOptions = INDUSTRY_ICON_NAMES.map((n) => ({ label: n, value: n }));
 
+/** Doc list/sidebar icons — must exist in src/components/docs/docIcons.tsx docIconMap. */
+const DOC_ICON_NAMES = [
+  'BookOpen', 'Rocket', 'Server', 'BarChart3', 'Camera', 'CreditCard', 'LayoutGrid', 'Code',
+  'ShieldCheck', 'Database', 'UserCheck', 'Scale', 'Grid3x3', 'TrendingUp', 'FileText', 'Calendar',
+  'HelpCircle', 'Lightbulb', 'SlidersHorizontal', 'ShieldAlert',
+] as const;
+const docIconOptions = DOC_ICON_NAMES.map((n) => ({ label: n, value: n }));
+
 /** An id-keyed array item: a fixed id (structure lives in code) + localized copy fields. */
 const idItem = (
   label: string,
@@ -178,6 +186,7 @@ export default config({
       '시작하기': ['editorGuide'],
       '블로그': ['articles'],
       '케이스스터디': ['caseStudies'],
+      '제품 문서': ['docs'],
       '자주 편집': ['home', 'pricing'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
@@ -400,6 +409,89 @@ export default config({
           label: '심화 서술 (선택 — 상세페이지 하단, 없으면 미노출)',
           options: {
             image: { directory: 'public/images/case-studies', publicPath: '/images/case-studies/' },
+          },
+        }),
+      },
+    }),
+    // 제품 문서(위키) — content/docs/*.mdx (Velite 가 읽는 것과 동일). URL 은
+    // /resources/docs/[slug] 고정, 로케일 번역은 파일명 -en/-jp 접미사(URL 은 접미사 없음).
+    // 사이드바·prev/next 는 section·order 에서 자동 생성.
+    docs: collection({
+      label: '제품 문서 (docs)',
+      path: 'content/docs/*',
+      slugField: 'slug',
+      format: { contentField: 'body' },
+      entryLayout: 'content',
+      columns: ['title', 'section', 'order', 'lang', 'draft'],
+      schema: {
+        title: fields.text({
+          label: '제목',
+          description: '문서 제목(사이드바·목록·메타). 70자 이내 권장.',
+          validation: { isRequired: true, length: { max: 70 } },
+        }),
+        slug: fields.slug({ name: { label: 'URL 슬러그 (파일명. 번역은 -en/-jp 접미사, URL 은 접미사 없음)' } }),
+        excerpt: fields.text({
+          label: '요약 (목록·메타용 한 줄)',
+          multiline: true,
+        }),
+        section: fields.select({
+          label: '사이드바 섹션',
+          options: [
+            { label: '시작하기', value: 'getting-started' },
+            { label: '연동 가이드', value: 'integration' },
+            { label: '프라이버시 & 보안', value: 'privacy' },
+            { label: '분석 활용', value: 'analytics' },
+            { label: '제품 매뉴얼', value: 'manual' },
+          ],
+          defaultValue: 'getting-started',
+        }),
+        order: fields.integer({
+          label: '섹션 내 순서',
+          description: '작을수록 위. prev/next 자동 내비게이션의 근거.',
+          defaultValue: 0,
+        }),
+        parent: fields.text({ label: '상위 문서 슬러그 (선택 — 매뉴얼 챕터 중첩)' }),
+        icon: fields.select({
+          label: '아이콘',
+          options: docIconOptions,
+          defaultValue: 'BookOpen',
+        }),
+        lang: fields.select({
+          label: '언어',
+          options: [
+            { label: '한국어', value: 'ko' },
+            { label: 'English', value: 'en' },
+            { label: '日本語', value: 'jp' },
+          ],
+          defaultValue: 'ko',
+        }),
+        draft: fields.checkbox({
+          label: '초안 (사이트에 노출 안 됨 · "준비 중" 스텁)',
+          defaultValue: false,
+        }),
+        access: fields.select({
+          label: '접근',
+          description: 'gated = 공유 액세스 코드 필요(추후 활성화). 현재는 public 만 유효.',
+          options: [
+            { label: '공개 (public)', value: 'public' },
+            { label: '제한 (gated)', value: 'gated' },
+          ],
+          defaultValue: 'public',
+        }),
+        updated: fields.date({ label: '최종 수정일 (선택)' }),
+        relatedSlugs: fields.array(fields.text({ label: '슬러그' }), {
+          label: '이어서 읽기 (관련 문서 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
+        relatedTerms: fields.array(fields.text({ label: '용어 슬러그' }), {
+          label: '관련 용어 (glossary 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
+        body: fields.mdx({
+          label: '본문',
+          components: blogComponents,
+          options: {
+            image: { directory: 'public/images/docs', publicPath: '/images/docs/' },
           },
         }),
       },

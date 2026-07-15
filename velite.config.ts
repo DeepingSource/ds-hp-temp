@@ -79,6 +79,30 @@ const caseStudies = defineCollection({
   }),
 });
 
+/** Product docs — wiki-style MDX collection (DOCS_WIKI_PLAN D2). content/docs/**\/*.mdx.
+ *  URL stays /resources/docs/[slug] (no suffix); per-locale files use -en/-jp on the
+ *  filename while the URL uses the base (logical) slug — see src/lib/docs.ts. */
+const docs = defineCollection({
+  name: 'Doc',
+  pattern: 'docs/**/*.mdx',
+  schema: s.object({
+    slug: s.string(),
+    title: s.string(),
+    excerpt: s.string().default(''),
+    section: s.enum(['getting-started', 'integration', 'privacy', 'analytics', 'manual']),
+    order: s.number().default(0),
+    parent: s.string().optional(),
+    icon: s.string().default('BookOpen'),
+    lang: s.enum(['en', 'ko', 'jp']).default('ko'),
+    draft: s.boolean().default(false),
+    access: s.enum(['public', 'gated']).default('public'),
+    updated: s.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    relatedSlugs: s.array(s.string()).default([]),
+    relatedTerms: s.array(s.string()).default([]),
+    body: s.raw(),
+  }),
+});
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -87,5 +111,5 @@ export default defineConfig({
     base: '/static/',
     clean: true,
   },
-  collections: { articles, caseStudies },
+  collections: { articles, caseStudies, docs },
 });

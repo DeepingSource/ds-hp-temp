@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { getAllArticlesMeta } from '@/lib/article-metadata';
 import { getAllCaseStudies } from '@/lib/case-studies';
+import { getDocsForLocale } from '@/lib/docs';
+import { logicalDocSlug } from '@/data/docs/types';
 import { glossaryTerms } from '@/data/glossaryTerms';
 import { solutionsData } from '@/data/solutionsData';
 
@@ -121,5 +123,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     caseStudyPages = [];
   }
 
-  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages, ...caseStudyPages];
+  // Product docs → /resources/docs/[slug]. List only real per-locale content (a
+  // doc whose lang === that locale), not Korean fallbacks, to avoid duplicate URLs.
+  let docPages: MetadataRoute.Sitemap = [];
+  try {
+    docPages = (['en', 'ko', 'jp'] as const).flatMap((loc) => {
+      const prefix = loc === 'en' ? '' : `/${loc}`;
+      return getDocsForLocale(loc)
+        .filter((d) => d.lang === loc && d.access !== 'gated')
+        .map((d) => ({
+          url: `${baseUrl}${prefix}/resources/docs/${logicalDocSlug(d.slug)}`,
+          lastModified: d.updated ? new Date(d.updated) : STABLE_LAST_MODIFIED,
+          changeFrequency: 'monthly' as const,
+          priority: 0.5,
+        }));
+    });
+  } catch {
+    docPages = [];
+  }
+
+  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages, ...caseStudyPages, ...docPages];
 }
