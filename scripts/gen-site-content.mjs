@@ -242,9 +242,12 @@ for (const loc of LOCALES) {
   };
 }
 
+// ── company — site-wide constants (flat, not per-locale). Edited via the `company` singleton. ──
+const company = load('content/site/company.yaml');
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, retail, drug, foodBeverage, largeSpace, news)');
+console.log('✓ generated src/data/generated/site-content.json (…, largeSpace, news, company)');
