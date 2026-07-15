@@ -27,9 +27,10 @@ describe('labelForCode', () => {
     expect(labelForCode('EF34')).toBe('globex');
   });
 
-  it('supports a bare code (label = code)', () => {
+  it('supports a bare code but never returns the code as the label (no secret in logs)', () => {
     process.env.DOCS_ACCESS_CODES = 'PLAINCODE';
-    expect(labelForCode('PLAINCODE')).toBe('PLAINCODE');
+    expect(labelForCode('PLAINCODE')).toBe('access');
+    expect(labelForCode('PLAINCODE')).not.toBe('PLAINCODE');
   });
 
   it('returns null for an unknown or empty code', () => {

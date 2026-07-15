@@ -93,6 +93,23 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // ── Gated docs (Phase 4): send a gated /resources/docs/<slug> (any locale) to the
+  //    access page unless a valid signed cookie is present. Runs BEFORE the host split
+  //    so minisite hosts can't serve gated docs ungated. Entirely a no-op unless some
+  //    doc is actually gated (gated-docs.json non-empty), so idle = zero change. ──
+  if (hasAnyGatedDocs()) {
+    const gatedMatch = pathname.match(/^\/(?:(ko|jp)\/)?resources\/docs\/([^/]+)\/?$/);
+    if (gatedMatch && gatedMatch[2] !== 'access' && isGatedSlug(gatedMatch[2])) {
+      const token = request.cookies.get(COOKIE_NAME)?.value;
+      if (!(await verifyAccessToken(token))) {
+        const url = request.nextUrl.clone();
+        url.pathname = `${gatedMatch[1] ? '/' + gatedMatch[1] : ''}/resources/docs/access`;
+        url.searchParams.set('from', pathname);
+        return NextResponse.redirect(url);
+      }
+    }
+  }
+
   // ── Main site: simple redirects (replaces next.config.ts redirects) ──
   if (!isMinisite(host)) {
     const mainRedirect = mainSiteRedirects[pathname];
@@ -106,25 +123,6 @@ export async function proxy(request: NextRequest) {
     const htmlLocale = localeMatch ? localeMatch[1] : 'en';
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set('x-locale', htmlLocale);
-
-    // ── Gated docs (Phase 4): send gated /resources/docs/<slug> (any locale) to the
-    //    access page unless a valid signed cookie is present. Entirely a no-op unless
-    //    some doc is actually gated (gated-docs.json non-empty), so idle = zero change. ──
-    if (hasAnyGatedDocs()) {
-      const gatedMatch = pathname.match(/^\/(?:(ko|jp)\/)?resources\/docs\/([^/]+)\/?$/);
-      if (gatedMatch) {
-        const logicalSlug = gatedMatch[2];
-        if (logicalSlug !== 'access' && isGatedSlug(logicalSlug)) {
-          const token = request.cookies.get(COOKIE_NAME)?.value;
-          if (!(await verifyAccessToken(token))) {
-            const url = request.nextUrl.clone();
-            url.pathname = `${gatedMatch[1] ? '/' + gatedMatch[1] : ''}/resources/docs/access`;
-            url.searchParams.set('from', pathname);
-            return NextResponse.redirect(url);
-          }
-        }
-      }
-    }
 
     // Locale path-prefix (D6): /ko/* · /jp/* sub-paths serve the base route.
     // EXCEPT paths that have fully-translated physical /ko·/jp routes — those

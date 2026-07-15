@@ -48,10 +48,23 @@ const C: Record<Locale, {
   },
 };
 
-/** Only allow same-origin absolute paths (block //host and external). */
+/**
+ * Only allow a same-origin path. Resolving against a dummy base catches every
+ * off-origin form — `//host`, `http://host`, and `/\host` (the URL parser folds
+ * `\`→`/` for special schemes, so a naive `!startsWith('//')` check is bypassable).
+ * SSR-safe (no `window`).
+ */
 function safeFrom(from: string | null): string {
-  if (from && from.startsWith('/') && !from.startsWith('//')) return from;
-  return '/resources/docs';
+  const fallback = '/resources/docs';
+  if (!from) return fallback;
+  try {
+    const base = 'https://d.invalid';
+    const u = new URL(from, base);
+    if (u.origin !== base) return fallback;
+    return u.pathname + u.search;
+  } catch {
+    return fallback;
+  }
 }
 
 export default function DocsAccessView({ locale }: { locale: Locale }) {

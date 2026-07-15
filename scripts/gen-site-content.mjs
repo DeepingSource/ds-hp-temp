@@ -323,10 +323,21 @@ const gatedSet = new Set();
 if (fs.existsSync(DOCS_DIR)) {
   for (const f of fs.readdirSync(DOCS_DIR).filter((n) => n.endsWith('.mdx'))) {
     const raw = fs.readFileSync(path.join(DOCS_DIR, f), 'utf8');
-    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
-    if (!fmMatch) continue;
+    // Fail CLOSED: if a file *looks* gated but we cannot confirm it, break the build
+    // rather than silently omitting it from the allowlist (which would serve it ungated).
+    const looksGated = /^access:\s*["']?gated/m.test(raw);
+    const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/); // CRLF-tolerant
+    if (!fmMatch) {
+      if (looksGated) throw new Error(`[gated-docs] ${f}: access:gated 로 보이나 frontmatter 파싱 실패 — fail-open 방지 위해 빌드 중단`);
+      continue;
+    }
     let fm;
-    try { fm = yaml.load(fmMatch[1]) || {}; } catch { continue; }
+    try {
+      fm = yaml.load(fmMatch[1]) || {};
+    } catch (e) {
+      if (looksGated) throw new Error(`[gated-docs] ${f}: frontmatter YAML 파싱 실패(access:gated 의심) — 빌드 중단: ${e.message}`);
+      continue;
+    }
     if (fm.access === 'gated' && !fm.draft) {
       const base = String(fm.slug || f.replace(/\.mdx$/, ''));
       gatedSet.add(base.replace(/-(en|jp)$/, '')); // logical (locale-agnostic) slug

@@ -61,15 +61,17 @@ async function hmacHex(secret: string, payload: string): Promise<string> {
 
 /**
  * Validate a submitted access code against DOCS_ACCESS_CODES.
- * Returns the matching customer label (for logging) or null.
- * Entries are `label:code` (colon-separated) or a bare `code` (label = code).
+ * Returns a NON-SECRET label (safe to log) on match, or null.
+ * Entries are `label:code` (colon-separated → returns the label) or a bare `code`
+ * (returns the generic 'access', never the code itself, so nothing secret is logged;
+ * use the `label:code` form for per-customer audit logs).
  */
 export function labelForCode(code: string): string | null {
   const raw = process.env.DOCS_ACCESS_CODES || '';
   if (!code) return null;
   for (const entry of raw.split(',').map((s) => s.trim()).filter(Boolean)) {
     const idx = entry.indexOf(':');
-    const label = idx >= 0 ? entry.slice(0, idx) : entry;
+    const label = idx >= 0 ? entry.slice(0, idx) : '';
     const value = idx >= 0 ? entry.slice(idx + 1) : entry;
     if (value && safeEqual(value, code)) return label || 'access';
   }
