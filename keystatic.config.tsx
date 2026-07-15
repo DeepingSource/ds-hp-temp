@@ -472,7 +472,7 @@ export default config({
         }),
         access: fields.select({
           label: '접근',
-          description: 'gated = 공유 액세스 코드 필요(추후 활성화). 현재는 public 만 유효.',
+          description: 'gated = 공유 액세스 코드 필요(코드 입력 전엔 열람 불가). 활성화 조건: Vercel env DOCS_ACCESS_SECRET·DOCS_ACCESS_CODES 설정. 미설정 시 fail-closed(누구도 열람 불가).',
           options: [
             { label: '공개 (public)', value: 'public' },
             { label: '제한 (gated)', value: 'gated' },

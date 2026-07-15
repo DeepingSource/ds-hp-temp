@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { COOKIE_NAME, hasAnyGatedDocs, isGatedSlug, verifyAccessToken } from '@/lib/docs-access';
 
 /** Hosts recognized as the minisite */
 const MINISITE_HOSTS = new Set([
@@ -78,7 +79,7 @@ function isMinisite(host: string): boolean {
 
 // Next.js 16: the `middleware` convention was renamed to `proxy` (nodejs runtime).
 // File must be `proxy.ts`; the exported function must be named `proxy`.
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const host = request.headers.get('host') ?? '';
   const { pathname } = request.nextUrl;
 
@@ -105,6 +106,25 @@ export function proxy(request: NextRequest) {
     const htmlLocale = localeMatch ? localeMatch[1] : 'en';
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set('x-locale', htmlLocale);
+
+    // ── Gated docs (Phase 4): send gated /resources/docs/<slug> (any locale) to the
+    //    access page unless a valid signed cookie is present. Entirely a no-op unless
+    //    some doc is actually gated (gated-docs.json non-empty), so idle = zero change. ──
+    if (hasAnyGatedDocs()) {
+      const gatedMatch = pathname.match(/^\/(?:(ko|jp)\/)?resources\/docs\/([^/]+)\/?$/);
+      if (gatedMatch) {
+        const logicalSlug = gatedMatch[2];
+        if (logicalSlug !== 'access' && isGatedSlug(logicalSlug)) {
+          const token = request.cookies.get(COOKIE_NAME)?.value;
+          if (!(await verifyAccessToken(token))) {
+            const url = request.nextUrl.clone();
+            url.pathname = `${gatedMatch[1] ? '/' + gatedMatch[1] : ''}/resources/docs/access`;
+            url.searchParams.set('from', pathname);
+            return NextResponse.redirect(url);
+          }
+        }
+      }
+    }
 
     // Locale path-prefix (D6): /ko/* · /jp/* sub-paths serve the base route.
     // EXCEPT paths that have fully-translated physical /ko·/jp routes — those

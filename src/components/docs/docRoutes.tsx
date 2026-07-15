@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDocForRoute, getDocStaticSlugs } from '@/lib/docs';
+import { isGatedSlug } from '@/lib/docs-access';
 import { localePrefix, type Locale } from '@/lib/i18n';
 import DocDetailView from './DocDetailView';
 
@@ -25,7 +26,11 @@ const NOT_FOUND_TITLE: Record<Locale, string> = {
 };
 
 export function docStaticParams(locale: Locale): { slug: string }[] {
-  const params = getDocStaticSlugs(locale).map((slug) => ({ slug }));
+  let slugs = getDocStaticSlugs(locale);
+  // GH-Pages static export has no proxy to gate access, so exclude gated docs from
+  // the export entirely (they stay on the Vercel deploy, gated by the proxy).
+  if (process.env.GH_PAGES === '1') slugs = slugs.filter((s) => !isGatedSlug(s));
+  const params = slugs.map((slug) => ({ slug }));
   return params.length > 0 ? params : [{ slug: '__none__' }];
 }
 

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Lock } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { getDocsForLocale } from '@/lib/docs';
 import { docSectionOrder, docSectionLabelI18n, logicalDocSlug } from '@/data/docs/types';
@@ -37,6 +38,9 @@ export default function DocsSidebar({ locale, currentSlug }: { locale: Locale; c
                     }`}
                   >
                     {d.title}
+                    {d.access === 'gated' && (
+                      <Lock className="inline-block w-3 h-3 ml-1 -translate-y-px text-gray-400" aria-label="gated" />
+                    )}
                   </Link>
                 </li>
               );

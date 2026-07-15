@@ -315,9 +315,31 @@ const glossary = fs.existsSync(GLOSSARY_DIR)
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
   : [];
 
+// ── gated docs — logical slugs of access:gated docs (DOCS_WIKI_PLAN Phase 4). The
+//    proxy gate + GH-Pages export exclusion read this. Parsed from content/docs/*.mdx
+//    frontmatter so it's independent of velite build order. Currently gates nothing. ──
+const DOCS_DIR = path.join(ROOT, 'content/docs');
+const gatedSet = new Set();
+if (fs.existsSync(DOCS_DIR)) {
+  for (const f of fs.readdirSync(DOCS_DIR).filter((n) => n.endsWith('.mdx'))) {
+    const raw = fs.readFileSync(path.join(DOCS_DIR, f), 'utf8');
+    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+    if (!fmMatch) continue;
+    let fm;
+    try { fm = yaml.load(fmMatch[1]) || {}; } catch { continue; }
+    if (fm.access === 'gated' && !fm.draft) {
+      const base = String(fm.slug || f.replace(/\.mdx$/, ''));
+      gatedSet.add(base.replace(/-(en|jp)$/, '')); // logical (locale-agnostic) slug
+    }
+  }
+}
+const gatedDocs = { gatedSlugs: [...gatedSet].sort() };
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
+fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
   JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career }, null, 2) + '\n',
 );
 console.log('✓ generated src/data/generated/site-content.json (…, glossary, leadership, milestones, career)');
+console.log(`✓ generated src/data/generated/gated-docs.json (${gatedDocs.gatedSlugs.length} gated)`);
