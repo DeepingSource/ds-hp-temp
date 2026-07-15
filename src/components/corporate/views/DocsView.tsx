@@ -23,7 +23,7 @@ const C: Record<Locale, {
   featuredDesc: string;
   comingSoon: string;
   docComingSoon: string;
-  navSections: { id: string; title: string; items: string[] }[];
+  navSections: { id: string; title: string; items: { title: string; slug?: string }[] }[];
   comingSoonManuals: { title: string; desc: string }[];
 }> = {
   ko: {
@@ -40,10 +40,15 @@ const C: Record<Locale, {
     comingSoon: '준비 중',
     docComingSoon: '문서 준비 중',
     navSections: [
-      { id: 'getting-started', title: '시작하기', items: ['제품 개요', '도입 절차', '환경 요구사항', '첫 리포트 받기'] },
-      { id: 'integration', title: '연동 가이드', items: ['CCTV 연동', 'POS 연동', '대시보드 접근', 'API 개요'] },
-      { id: 'privacy', title: '프라이버시 & 보안', items: ['익명화 동작 원리', '데이터 보관 정책', '접근 권한 관리', '컴플라이언스'] },
-      { id: 'analytics', title: '분석 활용', items: ['히트맵 읽는 법', '체류·전환 지표', '리포트 해석', '기간 비교 분석'] },
+      { id: 'getting-started', title: '시작하기', items: [
+        { title: '제품 개요', slug: 'product-overview' },
+        { title: '도입 절차' },
+        { title: '환경 요구사항' },
+        { title: '첫 리포트 받기' },
+      ] },
+      { id: 'integration', title: '연동 가이드', items: [{ title: 'CCTV 연동' }, { title: 'POS 연동' }, { title: '대시보드 접근' }, { title: 'API 개요' }] },
+      { id: 'privacy', title: '프라이버시 & 보안', items: [{ title: '익명화 동작 원리' }, { title: '데이터 보관 정책' }, { title: '접근 권한 관리' }, { title: '컴플라이언스' }] },
+      { id: 'analytics', title: '분석 활용', items: [{ title: '히트맵 읽는 법' }, { title: '체류·전환 지표' }, { title: '리포트 해석' }, { title: '기간 비교 분석' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 store agent 매뉴얼입니다.' },
@@ -64,10 +69,15 @@ const C: Record<Locale, {
     comingSoon: 'Coming soon',
     docComingSoon: 'Doc coming soon',
     navSections: [
-      { id: 'getting-started', title: 'Getting Started', items: ['Product Overview', 'Deployment Steps', 'Environment Requirements', 'Your First Report'] },
-      { id: 'integration', title: 'Integration Guide', items: ['CCTV Integration', 'POS Integration', 'Dashboard Access', 'API Overview'] },
-      { id: 'privacy', title: 'Privacy & Security', items: ['How Anonymization Works', 'Data Retention Policy', 'Access Control', 'Compliance'] },
-      { id: 'analytics', title: 'Using Analytics', items: ['Reading Heatmaps', 'Dwell & Conversion Metrics', 'Interpreting Reports', 'Period-over-Period Analysis'] },
+      { id: 'getting-started', title: 'Getting Started', items: [
+        { title: 'Product Overview', slug: 'product-overview' },
+        { title: 'Deployment Steps' },
+        { title: 'Environment Requirements' },
+        { title: 'Your First Report' },
+      ] },
+      { id: 'integration', title: 'Integration Guide', items: [{ title: 'CCTV Integration' }, { title: 'POS Integration' }, { title: 'Dashboard Access' }, { title: 'API Overview' }] },
+      { id: 'privacy', title: 'Privacy & Security', items: [{ title: 'How Anonymization Works' }, { title: 'Data Retention Policy' }, { title: 'Access Control' }, { title: 'Compliance' }] },
+      { id: 'analytics', title: 'Using Analytics', items: [{ title: 'Reading Heatmaps' }, { title: 'Dwell & Conversion Metrics' }, { title: 'Interpreting Reports' }, { title: 'Period-over-Period Analysis' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent User Manual', desc: 'The store agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
@@ -88,10 +98,15 @@ const C: Record<Locale, {
     comingSoon: '準備中',
     docComingSoon: 'ドキュメント準備中',
     navSections: [
-      { id: 'getting-started', title: 'はじめに', items: ['製品概要', '導入手順', '動作環境', '初めてのレポート'] },
-      { id: 'integration', title: '連携ガイド', items: ['CCTV 連携', 'POS 連携', 'ダッシュボードへのアクセス', 'API 概要'] },
-      { id: 'privacy', title: 'プライバシー & セキュリティ', items: ['匿名化の仕組み', 'データ保管ポリシー', 'アクセス権限の管理', 'コンプライアンス'] },
-      { id: 'analytics', title: '分析活用', items: ['ヒートマップの読み方', '滞在・転換指標', 'レポートの解釈', '期間比較分析'] },
+      { id: 'getting-started', title: 'はじめに', items: [
+        { title: '製品概要', slug: 'product-overview' },
+        { title: '導入手順' },
+        { title: '動作環境' },
+        { title: '初めてのレポート' },
+      ] },
+      { id: 'integration', title: '連携ガイド', items: [{ title: 'CCTV 連携' }, { title: 'POS 連携' }, { title: 'ダッシュボードへのアクセス' }, { title: 'API 概要' }] },
+      { id: 'privacy', title: 'プライバシー & セキュリティ', items: [{ title: '匿名化の仕組み' }, { title: 'データ保管ポリシー' }, { title: 'アクセス権限の管理' }, { title: 'コンプライアンス' }] },
+      { id: 'analytics', title: '分析活用', items: [{ title: 'ヒートマップの読み方' }, { title: '滞在・転換指標' }, { title: 'レポートの解釈' }, { title: '期間比較分析' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する store agent のマニュアルです。' },
@@ -126,13 +141,22 @@ export default function DocsView({ locale }: { locale: Locale }) {
                     </p>
                     <ul className="space-y-1 border-l border-gray-100 pl-3">
                       {section.items.map((item) => (
-                        <li key={item}>
-                          <a
-                            href={`#${section.id}`}
-                            className="block text-sm text-gray-500 hover:text-primary py-1 transition-colors"
-                          >
-                            {item}
-                          </a>
+                        <li key={item.title}>
+                          {item.slug ? (
+                            <Link
+                              href={localeHref(locale, `/resources/docs/${item.slug}`)}
+                              className="block text-sm text-gray-700 font-medium hover:text-primary py-1 transition-colors"
+                            >
+                              {item.title}
+                            </Link>
+                          ) : (
+                            <a
+                              href={`#${section.id}`}
+                              className="block text-sm text-gray-500 hover:text-primary py-1 transition-colors"
+                            >
+                              {item.title}
+                            </a>
+                          )}
                         </li>
                       ))}
                     </ul>
@@ -221,13 +245,24 @@ export default function DocsView({ locale }: { locale: Locale }) {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {section.items.map((item) => (
-                        <div
-                          key={item}
-                          className="card p-5"
-                        >
-                          <h3 className="text-sm font-medium text-gray-900 mb-1">{item}</h3>
-                          <p className="text-xs text-gray-500 leading-relaxed">{t.docComingSoon}</p>
-                        </div>
+                        item.slug ? (
+                          <Link
+                            key={item.title}
+                            href={localeHref(locale, `/resources/docs/${item.slug}`)}
+                            className="group card p-5 border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors flex items-center justify-between"
+                          >
+                            <h3 className="text-sm font-medium text-gray-900">{item.title}</h3>
+                            <span className="text-primary text-sm shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                          </Link>
+                        ) : (
+                          <div
+                            key={item.title}
+                            className="card p-5"
+                          >
+                            <h3 className="text-sm font-medium text-gray-900 mb-1">{item.title}</h3>
+                            <p className="text-xs text-gray-500 leading-relaxed">{t.docComingSoon}</p>
+                          </div>
+                        )
                       ))}
                     </div>
                   </section>
