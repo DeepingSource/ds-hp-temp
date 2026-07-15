@@ -42,7 +42,7 @@ const C: Record<Locale, {
     navSections: [
       { id: 'getting-started', title: '시작하기', items: [
         { title: '제품 개요', slug: 'product-overview' },
-        { title: '도입 절차' },
+        { title: '도입 절차', slug: 'deployment-steps' },
         { title: '환경 요구사항' },
         { title: '첫 리포트 받기' },
       ] },
@@ -71,7 +71,7 @@ const C: Record<Locale, {
     navSections: [
       { id: 'getting-started', title: 'Getting Started', items: [
         { title: 'Product Overview', slug: 'product-overview' },
-        { title: 'Deployment Steps' },
+        { title: 'Deployment Steps', slug: 'deployment-steps' },
         { title: 'Environment Requirements' },
         { title: 'Your First Report' },
       ] },
@@ -100,7 +100,7 @@ const C: Record<Locale, {
     navSections: [
       { id: 'getting-started', title: 'はじめに', items: [
         { title: '製品概要', slug: 'product-overview' },
-        { title: '導入手順' },
+        { title: '導入手順', slug: 'deployment-steps' },
         { title: '動作環境' },
         { title: '初めてのレポート' },
       ] },
