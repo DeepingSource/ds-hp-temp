@@ -48,7 +48,7 @@ const C: Record<Locale, {
       ] },
       { id: 'integration', title: '연동 가이드', items: [{ title: 'CCTV 연동', slug: 'cctv-integration' }, { title: 'POS 연동', slug: 'pos-integration' }, { title: '대시보드 접근', slug: 'dashboard-access' }, { title: 'API 개요', slug: 'api-overview' }] },
       { id: 'privacy', title: '프라이버시 & 보안', items: [{ title: '익명화 동작 원리', slug: 'how-anonymization-works' }, { title: '데이터 보관 정책', slug: 'data-retention-policy' }, { title: '접근 권한 관리', slug: 'access-control' }, { title: '컴플라이언스', slug: 'compliance' }] },
-      { id: 'analytics', title: '분석 활용', items: [{ title: '히트맵 읽는 법' }, { title: '체류·전환 지표' }, { title: '리포트 해석' }, { title: '기간 비교 분석' }] },
+      { id: 'analytics', title: '분석 활용', items: [{ title: '히트맵 읽는 법', slug: 'reading-heatmaps' }, { title: '체류·전환 지표', slug: 'dwell-conversion-metrics' }, { title: '리포트 해석', slug: 'interpreting-reports' }, { title: '기간 비교 분석', slug: 'period-over-period-analysis' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 store agent 매뉴얼입니다.' },
@@ -77,7 +77,7 @@ const C: Record<Locale, {
       ] },
       { id: 'integration', title: 'Integration Guide', items: [{ title: 'CCTV Integration', slug: 'cctv-integration' }, { title: 'POS Integration', slug: 'pos-integration' }, { title: 'Dashboard Access', slug: 'dashboard-access' }, { title: 'API Overview', slug: 'api-overview' }] },
       { id: 'privacy', title: 'Privacy & Security', items: [{ title: 'How Anonymization Works', slug: 'how-anonymization-works' }, { title: 'Data Retention Policy', slug: 'data-retention-policy' }, { title: 'Access Control', slug: 'access-control' }, { title: 'Compliance', slug: 'compliance' }] },
-      { id: 'analytics', title: 'Using Analytics', items: [{ title: 'Reading Heatmaps' }, { title: 'Dwell & Conversion Metrics' }, { title: 'Interpreting Reports' }, { title: 'Period-over-Period Analysis' }] },
+      { id: 'analytics', title: 'Using Analytics', items: [{ title: 'Reading Heatmaps', slug: 'reading-heatmaps' }, { title: 'Dwell & Conversion Metrics', slug: 'dwell-conversion-metrics' }, { title: 'Interpreting Reports', slug: 'interpreting-reports' }, { title: 'Period-over-Period Analysis', slug: 'period-over-period-analysis' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent User Manual', desc: 'The store agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
@@ -106,7 +106,7 @@ const C: Record<Locale, {
       ] },
       { id: 'integration', title: '連携ガイド', items: [{ title: 'CCTV 連携', slug: 'cctv-integration' }, { title: 'POS 連携', slug: 'pos-integration' }, { title: 'ダッシュボードへのアクセス', slug: 'dashboard-access' }, { title: 'API 概要', slug: 'api-overview' }] },
       { id: 'privacy', title: 'プライバシー & セキュリティ', items: [{ title: '匿名化の仕組み', slug: 'how-anonymization-works' }, { title: 'データ保管ポリシー', slug: 'data-retention-policy' }, { title: 'アクセス権限の管理', slug: 'access-control' }, { title: 'コンプライアンス', slug: 'compliance' }] },
-      { id: 'analytics', title: '分析活用', items: [{ title: 'ヒートマップの読み方' }, { title: '滞在・転換指標' }, { title: 'レポートの解釈' }, { title: '期間比較分析' }] },
+      { id: 'analytics', title: '分析活用', items: [{ title: 'ヒートマップの読み方', slug: 'reading-heatmaps' }, { title: '滞在・転換指標', slug: 'dwell-conversion-metrics' }, { title: 'レポートの解釈', slug: 'interpreting-reports' }, { title: '期間比較分析', slug: 'period-over-period-analysis' }] },
     ],
     comingSoonManuals: [
       { title: 'store agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する store agent のマニュアルです。' },
