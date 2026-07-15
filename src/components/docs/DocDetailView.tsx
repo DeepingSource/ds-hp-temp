@@ -1,13 +1,28 @@
+import { isValidElement } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Languages, Lightbulb, BookOpen } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import TableOfContents, { MobileTOC } from '@/components/blog/TableOfContents';
+import { getHeadings } from '@/components/blog/ArticleRenderer';
+import DocRelatedTerms from './DocRelatedTerms';
 import { crumb } from '@/lib/breadcrumb-labels';
+import { toSlug } from '@/lib/slug';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { getDocForRoute, getAdjacentDocs } from '@/lib/docs';
 import type { Doc } from '@/data/docs/types';
 import { docSectionLabelI18n, logicalDocSlug } from '@/data/docs/types';
 import DocsSidebar from './DocsSidebar';
+
+/** Extract plain text from MDX heading children (for the anchor id). */
+function extractText(node: React.ReactNode): string {
+  if (node == null || typeof node === 'boolean') return '';
+  if (typeof node === 'string') return node;
+  if (typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join('');
+  if (isValidElement(node)) return extractText((node.props as { children?: React.ReactNode }).children);
+  return '';
+}
 
 const docsCrumb: Record<Locale, string> = { ko: '제품 문서', en: 'Docs', jp: '製品ドキュメント' };
 const backLabel: Record<Locale, string> = { ko: '제품 문서로', en: 'Back to docs', jp: '製品ドキュメントへ' };
@@ -25,7 +40,11 @@ const fallbackNotice: Record<'en' | 'jp', string> = {
 };
 
 const bodyComponents = {
-  h2: (p: React.ComponentProps<'h2'>) => <h2 className="mt-12 mb-4 text-xl sm:text-2xl font-bold text-gray-900 scroll-mt-24 break-keep" {...p} />,
+  h2: ({ children, ...p }: React.ComponentProps<'h2'>) => (
+    <h2 id={toSlug(extractText(children))} className="mt-12 mb-4 text-xl sm:text-2xl font-bold text-gray-900 scroll-mt-24 break-keep" {...p}>
+      {children}
+    </h2>
+  ),
   h3: (p: React.ComponentProps<'h3'>) => <h3 className="mt-8 mb-3 text-lg font-bold text-gray-900 scroll-mt-24 break-keep" {...p} />,
   p: (p: React.ComponentProps<'p'>) => <p className="my-4 text-gray-600 leading-relaxed break-keep" {...p} />,
   ul: (p: React.ComponentProps<'ul'>) => <ul className="my-4 space-y-2 list-disc pl-5 text-gray-600 break-keep marker:text-primary" {...p} />,
@@ -47,6 +66,7 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
   const logical = logicalDocSlug(doc.slug);
   const isFallback = doc.lang !== locale && locale !== 'ko';
   const { prev, next } = getAdjacentDocs(logical, locale);
+  const headings = getHeadings(doc.body);
 
   const related = doc.relatedSlugs
     .map((s) => getDocForRoute(logicalDocSlug(s), locale))
@@ -100,9 +120,14 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
               </p>
             )}
 
+            <MobileTOC headings={headings} />
+
             <div className="text-base">
               <MDXRemote source={doc.body} components={bodyComponents} />
             </div>
+
+            {/* Related glossary terms */}
+            <DocRelatedTerms slugs={doc.relatedTerms} locale={locale} />
 
             {/* Related docs */}
             {related.length > 0 && (
@@ -150,6 +175,9 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
               </div>
             </div>
           </main>
+
+          {/* Right — in-page table of contents (auto from h2) */}
+          <TableOfContents headings={headings} />
         </div>
       </div>
     </div>
