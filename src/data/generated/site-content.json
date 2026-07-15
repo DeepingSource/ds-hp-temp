@@ -3402,5 +3402,458 @@
         }
       ]
     }
-  ]
+  ],
+  "leadership": {
+    "en": [
+      {
+        "key": "ceo",
+        "name": "Tae-Hoon Kim",
+        "role": "Co-founder · CEO",
+        "focus": "Vision · strategy · overall business",
+        "bio": "Co-founded and served as CTO of the image-recognition startup Olaworks, acquired by Intel, then worked as a senior engineer at Intel before co-founding DeepingSource in 2018. He steers the direction of spatial AI built on anonymization.",
+        "initials": "TK"
+      },
+      {
+        "key": "cbo",
+        "name": "Sang-ho Geum",
+        "role": "Chief Business Officer (CBO)",
+        "focus": "Business strategy · global partnerships",
+        "bio": "Led B2B business strategy, sales, and new ventures at SK Broadband for 26 years, scaling a cloud CCTV service to ₩10B in annual revenue within four years. He drives DeepingSource’s domestic and global expansion.",
+        "initials": "SK"
+      },
+      {
+        "key": "vpe",
+        "name": "Bong-kyung Ko",
+        "role": "VP of Engineering",
+        "focus": "Engineering · platform",
+        "bio": "Leads DeepingSource’s engineering organization, turning anonymization, spatial intelligence, and agentic AI into reliable products.",
+        "initials": "BK"
+      }
+    ],
+    "ko": [
+      {
+        "key": "ceo",
+        "name": "김태훈",
+        "role": "공동창업자 · 대표 (CEO)",
+        "focus": "비전 · 전략 · 사업 전반",
+        "bio": "이미지 인식 스타트업 올라웍스를 공동창업·CTO로 이끌어 인텔에 매각한 뒤, 인텔 수석 엔지니어를 거쳐 2018년 딥핑소스를 공동창업했습니다. 익명화에서 출발한 공간 AI의 방향을 이끕니다.",
+        "initials": "김"
+      },
+      {
+        "key": "cbo",
+        "name": "금상호",
+        "role": "최고사업책임자 (CBO)",
+        "focus": "사업 전략 · 글로벌 파트너십",
+        "bio": "SK브로드밴드에서 26년간 B2B 사업 전략·영업·신사업을 총괄했습니다. 클라우드 CCTV 서비스를 4년 만에 연매출 100억 규모로 키운 경험으로 딥핑소스의 국내외 사업 확장을 이끕니다.",
+        "initials": "금"
+      },
+      {
+        "key": "vpe",
+        "name": "고봉경",
+        "role": "VP of Engineering",
+        "focus": "엔지니어링 · 플랫폼",
+        "bio": "딥핑소스 엔지니어링 조직을 총괄하며, 익명화·공간 지능·에이전트 AI를 안정적인 제품으로 구현합니다.",
+        "initials": "고"
+      }
+    ],
+    "jp": [
+      {
+        "key": "ceo",
+        "name": "Tae-Hoon Kim (キム・テフン)",
+        "role": "共同創業者 · 代表 (CEO)",
+        "focus": "ビジョン · 戦略 · 事業全般",
+        "bio": "画像認識スタートアップOlaworksを共同創業・CTOとして率いてインテルに売却後、インテルのシニアエンジニアを経て2018年にディーピングソースを共同創業。匿名化から始まる空間AIの方向を導きます。",
+        "initials": "TK"
+      },
+      {
+        "key": "cbo",
+        "name": "Sang-ho Geum (クム・サンホ)",
+        "role": "最高事業責任者 (CBO)",
+        "focus": "事業戦略 · グローバルパートナーシップ",
+        "bio": "SKブロードバンドで26年間、B2Bの事業戦略・営業・新規事業を統括。クラウドCCTVサービスを4年で年商100億ウォン規模に成長させた経験で、国内外の事業拡大を導きます。",
+        "initials": "SK"
+      },
+      {
+        "key": "vpe",
+        "name": "Bong-kyung Ko (コ・ボンギョン)",
+        "role": "VP of Engineering",
+        "focus": "エンジニアリング · プラットフォーム",
+        "bio": "ディーピングソースのエンジニアリング組織を統括し、匿名化・空間知能・エージェントAIを安定した製品として実装します。",
+        "initials": "BK"
+      }
+    ]
+  },
+  "milestones": {
+    "en": [
+      {
+        "year": "2018",
+        "title": "Founded",
+        "desc": "Born from one store owner’s question — understanding offline space with video anonymization AI.",
+        "highlight": true
+      },
+      {
+        "year": "2020",
+        "title": "NVIDIA Inception · Series A",
+        "desc": "Joined as NVIDIA Inception Partner; raised a ~₩5.5B Series A (led by Japan’s KDDI).",
+        "highlight": true
+      },
+      {
+        "year": "2022",
+        "title": "Pre-B funding",
+        "desc": "A ~₩16B Pre-B round — accelerating commercialization of space-reading AI."
+      },
+      {
+        "year": "2024",
+        "title": "SOC 2 · Top Innovator",
+        "desc": "Achieved SOC 2 certification; won the NextRise 2024 ‘Top Innovator’ award.",
+        "highlight": true
+      },
+      {
+        "year": "2025",
+        "title": "KDDI strategic investment · Global",
+        "desc": "Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan."
+      },
+      {
+        "year": "Today",
+        "title": "103 patents",
+        "desc": "Registered 66 · Pending 37",
+        "highlight": true
+      },
+      {
+        "year": "2031",
+        "title": "Vision",
+        "desc": "All the world’s data, kept safe — all the world’s spaces, made perfect."
+      }
+    ],
+    "ko": [
+      {
+        "year": "2018",
+        "title": "창업",
+        "desc": "한 점주의 질문에서 출발 — 영상 익명화 AI로 오프라인 공간을 이해하다.",
+        "highlight": true
+      },
+      {
+        "year": "2020",
+        "title": "NVIDIA Inception · 시리즈 A",
+        "desc": "NVIDIA Inception 파트너 합류, 시리즈 A 약 55억 원 유치(일본 KDDI 리드).",
+        "highlight": true
+      },
+      {
+        "year": "2022",
+        "title": "프리-B 투자",
+        "desc": "약 160억 원 규모 프리-B 라운드 — 공간을 읽는 AI 상용화를 가속."
+      },
+      {
+        "year": "2024",
+        "title": "SOC 2 · Top Innovator",
+        "desc": "SOC 2 인증 취득, NextRise 2024 ‘Top Innovator’ 수상.",
+        "highlight": true
+      },
+      {
+        "year": "2025",
+        "title": "KDDI 전략투자 · 글로벌",
+        "desc": "KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장."
+      },
+      {
+        "year": "현재",
+        "title": "특허 103건",
+        "desc": "등록 66개 · 출원 37개",
+        "highlight": true
+      },
+      {
+        "year": "2031",
+        "title": "비전",
+        "desc": "세상 모든 데이터를 안전하게, 세상 모든 공간을 완벽하게"
+      }
+    ],
+    "jp": [
+      {
+        "year": "2018",
+        "title": "創業",
+        "desc": "一人の店主の問いから出発 — 映像の匿名化AIでオフライン空間を理解する。",
+        "highlight": true
+      },
+      {
+        "year": "2020",
+        "title": "NVIDIA Inception · シリーズA",
+        "desc": "NVIDIA Inception パートナーに参加、シリーズA 約55億ウォンを調達（日本KDDIがリード）。",
+        "highlight": true
+      },
+      {
+        "year": "2022",
+        "title": "プレB 投資",
+        "desc": "約160億ウォン規模のプレBラウンド — 空間を読むAIの商用化を加速。"
+      },
+      {
+        "year": "2024",
+        "title": "SOC 2 · Top Innovator",
+        "desc": "SOC 2 認証を取得、NextRise 2024「Top Innovator」を受賞。",
+        "highlight": true
+      },
+      {
+        "year": "2025",
+        "title": "KDDI 戦略投資 · グローバル",
+        "desc": "KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。"
+      },
+      {
+        "year": "現在",
+        "title": "特許103件",
+        "desc": "登録66件 · 出願37件",
+        "highlight": true
+      },
+      {
+        "year": "2031",
+        "title": "ビジョン",
+        "desc": "世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。"
+      }
+    ]
+  },
+  "career": {
+    "en": {
+      "badge": "Careers",
+      "heroMaster": "Perfect every space —",
+      "heroMasterAccent": "the role of weaving that one company",
+      "heroSub": "We have no open roles right now. If you’d like to work with us, reach out anytime — we’d love to hear from you.",
+      "cultureEyebrow": "Why DeepingSource",
+      "cultureHeading": "Why work with us",
+      "cultureSub": "Not a list of perks — first, the work you can only do here.",
+      "benefitsEyebrow": "Benefits & Culture",
+      "benefitsHeading": "An environment to do great work",
+      "benefitsSub": "Good results come from a good environment. We support you to focus and grow.",
+      "rolesEyebrow": "Talent Pool",
+      "rolesHeading": "Join our talent pool",
+      "rolesSub": "We have no open roles right now, but we’re always looking for great people. Register your interest and we’ll reach out first when a fitting role opens.",
+      "rolesApply": "Register your interest",
+      "processEyebrow": "Process",
+      "processHeading": "How hiring works",
+      "processSub": "Simple, with enough room for both sides to get to know each other.",
+      "mailSubject": "Careers inquiry",
+      "ctaHeading": "No matching role? That’s okay",
+      "ctaSub": "If you’d like to join us, tell us your story first.",
+      "ctaApply": "Apply · inquire",
+      "ctaGeneral": "General inquiry",
+      "culture": [
+        {
+          "title": "Anonymization as the mission",
+          "desc": "We analyze only on top of erased identity. At a company where privacy is the product, not a constraint, you solve problems that can’t wait."
+        },
+        {
+          "title": "NVIDIA Inception compute",
+          "desc": "As an NVIDIA Inception Partner, we have the compute and tools for vision-AI development and train our own models."
+        },
+        {
+          "title": "Patent-backed R&D",
+          "desc": "On technology protected by 103 patents, we do research that ships to the field — not just to a paper."
+        },
+        {
+          "title": "AI advises, people decide",
+          "desc": "Automation doesn’t replace people. AI recommends the next move; the final call is always a person’s."
+        }
+      ],
+      "benefits": [
+        {
+          "title": "Flexible work",
+          "desc": "Flexible hours and a focused work environment. A culture that trusts results."
+        },
+        {
+          "title": "Growth support",
+          "desc": "Conference, book, and education support to grow both your skills and your perspective."
+        },
+        {
+          "title": "Top-tier equipment",
+          "desc": "High-spec workstations, GPUs, and licenses — the tools to work without friction."
+        },
+        {
+          "title": "A great place to work",
+          "desc": "A Gangnam headquarters where focus and collaboration are in balance."
+        }
+      ],
+      "process": [
+        {
+          "step": "01",
+          "title": "Apply",
+          "desc": "Send your résumé/portfolio by email — even if you’re not sure which role fits."
+        },
+        {
+          "step": "02",
+          "title": "Conversations",
+          "desc": "Interviews with the role and team to align on direction (usually 1–2 rounds)."
+        },
+        {
+          "step": "03",
+          "title": "Assignment · deep dive",
+          "desc": "Depending on the role, a take-home or deep-dive to picture working together."
+        },
+        {
+          "step": "04",
+          "title": "Offer · join",
+          "desc": "We agree on terms and you join the team."
+        }
+      ]
+    },
+    "ko": {
+      "badge": "Careers",
+      "heroMaster": "모든 공간을, 완벽하게 —",
+      "heroMasterAccent": "그 한 회사를 함께 짜는 자리",
+      "heroSub": "지금 공개된 채용 공고는 없습니다. 함께하고 싶은 마음이 있다면 언제든 먼저 이야기를 들려주세요.",
+      "cultureEyebrow": "Why DeepingSource",
+      "cultureHeading": "왜 우리와 일하는가",
+      "cultureSub": "복지 목록이 아니라, 여기서만 할 수 있는 일을 먼저 말합니다.",
+      "benefitsEyebrow": "Benefits & Culture",
+      "benefitsHeading": "잘 일하기 위한 환경",
+      "benefitsSub": "좋은 결과는 좋은 환경에서 나옵니다. 집중하고 성장할 수 있도록 지원합니다.",
+      "rolesEyebrow": "Talent Pool",
+      "rolesHeading": "인재 풀에 등록하세요",
+      "rolesSub": "지금은 공개된 공고가 없습니다. 하지만 좋은 동료는 늘 찾고 있습니다. 인재 풀에 등록해 두시면, 맞는 자리가 열릴 때 가장 먼저 연락드립니다.",
+      "rolesApply": "인재 풀 등록",
+      "processEyebrow": "Process",
+      "processHeading": "채용은 이렇게 진행됩니다",
+      "processSub": "복잡하지 않게, 서로를 충분히 알 수 있도록.",
+      "mailSubject": "채용 문의",
+      "ctaHeading": "맞는 자리가 없어도 괜찮습니다",
+      "ctaSub": "함께하고 싶은 마음이 있다면, 먼저 이야기를 들려주세요",
+      "ctaApply": "지원 · 문의하기",
+      "ctaGeneral": "일반 문의",
+      "culture": [
+        {
+          "title": "익명화라는 미션",
+          "desc": "신원을 지운 위에서만 분석합니다. 프라이버시가 제약이 아니라 제품인 회사에서, 미룰 수 없는 문제를 풉니다."
+        },
+        {
+          "title": "NVIDIA Inception 컴퓨팅",
+          "desc": "NVIDIA Inception Partner로서 비전 AI 개발에 필요한 컴퓨팅과 도구를 갖추고, 모델을 직접 학습시킵니다."
+        },
+        {
+          "title": "특허 기반 R&D",
+          "desc": "103건의 특허로 보호되는 기술 위에서, 논문이 아니라 현장에 나가는 연구를 합니다."
+        },
+        {
+          "title": "권고는 AI, 결정은 사람",
+          "desc": "자동화가 사람을 대체하지 않습니다. AI는 다음 한 수를 권하고, 마지막 결정은 사람이 내리는 방식으로 일합니다."
+        }
+      ],
+      "benefits": [
+        {
+          "title": "유연한 근무",
+          "desc": "자율 출퇴근과 집중 근무 환경. 결과로 신뢰하는 문화입니다."
+        },
+        {
+          "title": "성장 지원",
+          "desc": "컨퍼런스 · 도서 · 교육 지원으로 기술과 시야를 함께 키웁니다."
+        },
+        {
+          "title": "최고의 장비",
+          "desc": "고사양 워크스테이션 · GPU · 라이선스 등 막힘 없이 일할 도구를 제공합니다."
+        },
+        {
+          "title": "일하기 좋은 환경",
+          "desc": "강남 본사, 집중과 협업이 균형을 이루는 업무 공간."
+        }
+      ],
+      "process": [
+        {
+          "step": "01",
+          "title": "지원",
+          "desc": "이력서·포트폴리오를 메일로 보내 주세요. 직군이 정해지지 않아도 괜찮습니다."
+        },
+        {
+          "step": "02",
+          "title": "대화",
+          "desc": "직무·팀과의 인터뷰로 서로의 방향을 맞춥니다 (보통 1~2회)."
+        },
+        {
+          "step": "03",
+          "title": "과제 · 심층",
+          "desc": "직무에 따라 과제 또는 심층 인터뷰로 함께 일하는 모습을 그려 봅니다."
+        },
+        {
+          "step": "04",
+          "title": "오퍼 · 합류",
+          "desc": "처우를 협의하고, 한 팀으로 합류합니다."
+        }
+      ]
+    },
+    "jp": {
+      "badge": "Careers",
+      "heroMaster": "すべての空間を、完璧に —",
+      "heroMasterAccent": "そのひとつの会社をともに織りなす場所",
+      "heroSub": "現在、公開中の募集はありません。一緒に働きたい方は、いつでもまずはお声がけください。",
+      "cultureEyebrow": "Why DeepingSource",
+      "cultureHeading": "なぜ私たちと働くのか",
+      "cultureSub": "福利厚生のリストではなく、ここでしかできない仕事を、まずお話しします。",
+      "benefitsEyebrow": "Benefits & Culture",
+      "benefitsHeading": "よい仕事のための環境",
+      "benefitsSub": "よい結果は、よい環境から生まれます。集中し、成長できるよう支援します。",
+      "rolesEyebrow": "Talent Pool",
+      "rolesHeading": "人材プールに登録",
+      "rolesSub": "現在、公開中の募集はありません。ですが、よい仲間はいつでも探しています。人材プールにご登録いただければ、合うポジションが開いた際に最初にご連絡します。",
+      "rolesApply": "人材プールに登録",
+      "processEyebrow": "Process",
+      "processHeading": "採用の進め方",
+      "processSub": "複雑にせず、お互いを十分に知れるように。",
+      "mailSubject": "採用のお問い合わせ",
+      "ctaHeading": "合うポジションがなくても大丈夫です",
+      "ctaSub": "ともに働きたいお気持ちがあれば、まずはお話を聞かせてください。",
+      "ctaApply": "応募 · お問い合わせ",
+      "ctaGeneral": "一般のお問い合わせ",
+      "culture": [
+        {
+          "title": "匿名化というミッション",
+          "desc": "身元を消した上でのみ分析します。プライバシーが制約ではなく製品である会社で、先送りできない課題を解きます。"
+        },
+        {
+          "title": "NVIDIA Inception コンピューティング",
+          "desc": "NVIDIA Inception Partnerとして、ビジョンAI開発に必要なコンピューティングとツールを備え、モデルを自ら学習させます。"
+        },
+        {
+          "title": "特許に基づくR&D",
+          "desc": "103件の特許で保護された技術の上で、論文ではなく現場に出る研究を行います。"
+        },
+        {
+          "title": "推奨はAI、決定は人",
+          "desc": "自動化が人を置き換えることはありません。AIが次の一手を提案し、最後の決定は人が下す働き方です。"
+        }
+      ],
+      "benefits": [
+        {
+          "title": "柔軟な働き方",
+          "desc": "自律的な勤務時間と集中できる環境。結果で信頼する文化です。"
+        },
+        {
+          "title": "成長支援",
+          "desc": "カンファレンス · 書籍 · 教育の支援で、技術と視野をともに育てます。"
+        },
+        {
+          "title": "最高の設備",
+          "desc": "高スペックのワークステーション · GPU · ライセンスなど、滞りなく働ける道具を用意します。"
+        },
+        {
+          "title": "働きやすい環境",
+          "desc": "江南本社、集中と協働がバランスする業務空間。"
+        }
+      ],
+      "process": [
+        {
+          "step": "01",
+          "title": "応募",
+          "desc": "履歴書・ポートフォリオをメールでお送りください。職種が決まっていなくても大丈夫です。"
+        },
+        {
+          "step": "02",
+          "title": "対話",
+          "desc": "職務・チームとのインタビューで方向性をすり合わせます（通常1〜2回）。"
+        },
+        {
+          "step": "03",
+          "title": "課題 · 深掘り",
+          "desc": "職務に応じて課題または深掘りインタビューで、一緒に働く姿を描きます。"
+        },
+        {
+          "step": "04",
+          "title": "オファー · 参加",
+          "desc": "条件を協議し、ひとつのチームとして参加いただきます。"
+        }
+      ]
+    }
+  }
 }

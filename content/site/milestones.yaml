@@ -1,0 +1,77 @@
+# 회사 연혁 (About 요약 + Investors 전체). highlight:true → About 요약 카드.
+# {foundingYear} {patents} {patentsLabel} {vision} 토큰은 company 싱글톤 값으로 빌드 시 치환됨.
+items:
+  - id: founded
+    highlight: true
+    year: { ko: "{foundingYear}", en: "{foundingYear}", jp: "{foundingYear}" }
+    title:
+      ko: 창업
+      en: Founded
+      jp: 創業
+    desc:
+      ko: 한 점주의 질문에서 출발 — 영상 익명화 AI로 오프라인 공간을 이해하다.
+      en: Born from one store owner’s question — understanding offline space with video anonymization AI.
+      jp: 一人の店主の問いから出発 — 映像の匿名化AIでオフライン空間を理解する。
+  - id: series-a
+    highlight: true
+    year: { ko: "2020", en: "2020", jp: "2020" }
+    title:
+      ko: NVIDIA Inception · 시리즈 A
+      en: NVIDIA Inception · Series A
+      jp: NVIDIA Inception · シリーズA
+    desc:
+      ko: NVIDIA Inception 파트너 합류, 시리즈 A 약 55억 원 유치(일본 KDDI 리드).
+      en: Joined as NVIDIA Inception Partner; raised a ~₩5.5B Series A (led by Japan’s KDDI).
+      jp: NVIDIA Inception パートナーに参加、シリーズA 約55億ウォンを調達（日本KDDIがリード）。
+  - id: pre-b
+    year: { ko: "2022", en: "2022", jp: "2022" }
+    title:
+      ko: 프리-B 투자
+      en: Pre-B funding
+      jp: プレB 投資
+    desc:
+      ko: 약 160억 원 규모 프리-B 라운드 — 공간을 읽는 AI 상용화를 가속.
+      en: A ~₩16B Pre-B round — accelerating commercialization of space-reading AI.
+      jp: 約160億ウォン規模のプレBラウンド — 空間を読むAIの商用化を加速。
+  - id: soc2
+    highlight: true
+    year: { ko: "2024", en: "2024", jp: "2024" }
+    title:
+      ko: SOC 2 · Top Innovator
+      en: SOC 2 · Top Innovator
+      jp: SOC 2 · Top Innovator
+    desc:
+      ko: SOC 2 인증 취득, NextRise 2024 ‘Top Innovator’ 수상.
+      en: Achieved SOC 2 certification; won the NextRise 2024 ‘Top Innovator’ award.
+      jp: SOC 2 認証を取得、NextRise 2024「Top Innovator」を受賞。
+  - id: kddi
+    year: { ko: "2025", en: "2025", jp: "2025" }
+    title:
+      ko: KDDI 전략투자 · 글로벌
+      en: KDDI strategic investment · Global
+      jp: KDDI 戦略投資 · グローバル
+    desc:
+      ko: KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장.
+      en: Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan.
+      jp: KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。
+  - id: patents
+    highlight: true
+    year: { ko: 현재, en: Today, jp: 現在 }
+    title:
+      ko: "특허 {patents}건"
+      en: "{patents} patents"
+      jp: "特許{patents}件"
+    desc:
+      ko: "{patentsLabel}"
+      en: Registered 66 · Pending 37
+      jp: 登録66件 · 出願37件
+  - id: vision
+    year: { ko: "2031", en: "2031", jp: "2031" }
+    title:
+      ko: 비전
+      en: Vision
+      jp: ビジョン
+    desc:
+      ko: "{vision}"
+      en: All the world’s data, kept safe — all the world’s spaces, made perfect.
+      jp: 世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。

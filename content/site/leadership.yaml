@@ -1,0 +1,67 @@
+leaders:
+  - key: ceo
+    name:
+      ko: 김태훈
+      en: Tae-Hoon Kim
+      jp: Tae-Hoon Kim (キム・テフン)
+    role:
+      ko: 공동창업자 · 대표 (CEO)
+      en: Co-founder · CEO
+      jp: 共同創業者 · 代表 (CEO)
+    focus:
+      ko: 비전 · 전략 · 사업 전반
+      en: Vision · strategy · overall business
+      jp: ビジョン · 戦略 · 事業全般
+    bio:
+      ko: 이미지 인식 스타트업 올라웍스를 공동창업·CTO로 이끌어 인텔에 매각한 뒤, 인텔 수석 엔지니어를 거쳐 2018년 딥핑소스를 공동창업했습니다. 익명화에서 출발한 공간 AI의 방향을 이끕니다.
+      en: Co-founded and served as CTO of the image-recognition startup Olaworks, acquired by Intel, then worked as a senior engineer at Intel before co-founding DeepingSource in 2018. He steers the direction of spatial AI built on anonymization.
+      jp: 画像認識スタートアップOlaworksを共同創業・CTOとして率いてインテルに売却後、インテルのシニアエンジニアを経て2018年にディーピングソースを共同創業。匿名化から始まる空間AIの方向を導きます。
+    initials:
+      ko: 김
+      en: TK
+      jp: TK
+    photo: ""
+  - key: cbo
+    name:
+      ko: 금상호
+      en: Sang-ho Geum
+      jp: Sang-ho Geum (クム・サンホ)
+    role:
+      ko: 최고사업책임자 (CBO)
+      en: Chief Business Officer (CBO)
+      jp: 最高事業責任者 (CBO)
+    focus:
+      ko: 사업 전략 · 글로벌 파트너십
+      en: Business strategy · global partnerships
+      jp: 事業戦略 · グローバルパートナーシップ
+    bio:
+      ko: SK브로드밴드에서 26년간 B2B 사업 전략·영업·신사업을 총괄했습니다. 클라우드 CCTV 서비스를 4년 만에 연매출 100억 규모로 키운 경험으로 딥핑소스의 국내외 사업 확장을 이끕니다.
+      en: Led B2B business strategy, sales, and new ventures at SK Broadband for 26 years, scaling a cloud CCTV service to ₩10B in annual revenue within four years. He drives DeepingSource’s domestic and global expansion.
+      jp: SKブロードバンドで26年間、B2Bの事業戦略・営業・新規事業を統括。クラウドCCTVサービスを4年で年商100億ウォン規模に成長させた経験で、国内外の事業拡大を導きます。
+    initials:
+      ko: 금
+      en: SK
+      jp: SK
+    photo: ""
+  - key: vpe
+    name:
+      ko: 고봉경
+      en: Bong-kyung Ko
+      jp: Bong-kyung Ko (コ・ボンギョン)
+    role:
+      ko: VP of Engineering
+      en: VP of Engineering
+      jp: VP of Engineering
+    focus:
+      ko: 엔지니어링 · 플랫폼
+      en: Engineering · platform
+      jp: エンジニアリング · プラットフォーム
+    bio:
+      ko: 딥핑소스 엔지니어링 조직을 총괄하며, 익명화·공간 지능·에이전트 AI를 안정적인 제품으로 구현합니다.
+      en: Leads DeepingSource’s engineering organization, turning anonymization, spatial intelligence, and agentic AI into reliable products.
+      jp: ディーピングソースのエンジニアリング組織を統括し、匿名化・空間知能・エージェントAIを安定した製品として実装します。
+    initials:
+      ko: 고
+      en: BK
+      jp: BK
+    photo: ""

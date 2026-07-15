@@ -245,6 +245,63 @@ for (const loc of LOCALES) {
 // ── company — site-wide constants (flat, not per-locale). Edited via the `company` singleton. ──
 const company = load('content/site/company.yaml');
 
+// ── leadership · milestones · career — About/Career 저빈도 콘텐츠 (DOCS_WIKI_PLAN 6-W2).
+//    {patents}/{foundingYear}/{nvidiaPartner}/{patentsLabel}/{vision} 토큰은 company 값으로
+//    빌드 시 치환(SOT 유지 — company 싱글톤이 바뀌면 재생성 시 반영). mailto/아이콘은 코드 유지. ──
+const subst = (s) =>
+  typeof s === 'string'
+    ? s
+        .replaceAll('{patents}', String(company.patents))
+        .replaceAll('{foundingYear}', String(company.foundingYear))
+        .replaceAll('{nvidiaPartner}', company.nvidiaPartner)
+        .replaceAll('{patentsLabel}', company.patentsLabel)
+        .replaceAll('{vision}', company.vision)
+    : s;
+
+const leadershipYaml = load('content/site/leadership.yaml');
+const LEADER_FIELDS = ['name', 'role', 'focus', 'bio', 'initials'];
+const leadership = {};
+for (const loc of LOCALES) {
+  leadership[loc] = (leadershipYaml.leaders ?? []).map((l) => {
+    const o = { key: l.key };
+    for (const f of LEADER_FIELDS) o[f] = l[f]?.[loc] ?? '';
+    if (l.photo) o.photo = l.photo;
+    return o;
+  });
+}
+
+const milestonesYaml = load('content/site/milestones.yaml');
+const MILESTONE_FIELDS = ['year', 'title', 'desc'];
+const milestones = {};
+for (const loc of LOCALES) {
+  milestones[loc] = (milestonesYaml.items ?? []).map((m) => {
+    const o = {};
+    for (const f of MILESTONE_FIELDS) o[f] = subst(m[f]?.[loc] ?? '');
+    if (m.highlight) o.highlight = true;
+    return o;
+  });
+}
+
+const CAREER_FLAT = [
+  'badge', 'heroMaster', 'heroMasterAccent', 'heroSub', 'cultureEyebrow', 'cultureHeading', 'cultureSub',
+  'benefitsEyebrow', 'benefitsHeading', 'benefitsSub', 'rolesEyebrow', 'rolesHeading', 'rolesSub', 'rolesApply',
+  'processEyebrow', 'processHeading', 'processSub', 'mailSubject', 'ctaHeading', 'ctaSub', 'ctaApply', 'ctaGeneral',
+];
+const careerYaml = load('content/site/career.yaml');
+const careerFlat = toLocaleMajor(careerYaml, CAREER_FLAT);
+const careerCulture = arrayItemsLocaleMajor(careerYaml.culture, ['title', 'desc']);
+const careerBenefits = arrayItemsLocaleMajor(careerYaml.benefits, ['title', 'desc']);
+const careerProcess = arrayItemsLocaleMajor(careerYaml.process, ['step', 'title', 'desc']);
+const career = {};
+for (const loc of LOCALES) {
+  career[loc] = {
+    ...careerFlat[loc],
+    culture: careerCulture[loc].map((c) => ({ title: c.title, desc: subst(c.desc) })),
+    benefits: careerBenefits[loc],
+    process: careerProcess[loc],
+  };
+}
+
 // ── glossary — CMS collection (content/glossary/*.yaml, one file per term). Structured
 //    per-term data passed through as-is: title/tagline/definition are {ko,en,jp}; body
 //    (sections) + saaiUsage + metaDescription are ko-only. Ordered by `order`. Edited via
@@ -261,6 +318,6 @@ const glossary = fs.existsSync(GLOSSARY_DIR)
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, news, company, glossary)');
+console.log('✓ generated src/data/generated/site-content.json (…, glossary, leadership, milestones, career)');

@@ -1,0 +1,217 @@
+# Careers 페이지 카피 (/company/career). culture 2·3번 desc 의 {nvidiaPartner} {patents}
+# 토큰은 company 싱글톤 값으로 빌드 시 치환됨. mailto·아이콘은 코드 유지.
+badge:
+  ko: Careers
+  en: Careers
+  jp: Careers
+heroMaster:
+  ko: 모든 공간을, 완벽하게 —
+  en: Perfect every space —
+  jp: すべての空間を、完璧に —
+heroMasterAccent:
+  ko: 그 한 회사를 함께 짜는 자리
+  en: the role of weaving that one company
+  jp: そのひとつの会社をともに織りなす場所
+heroSub:
+  ko: 지금 공개된 채용 공고는 없습니다. 함께하고 싶은 마음이 있다면 언제든 먼저 이야기를 들려주세요.
+  en: We have no open roles right now. If you’d like to work with us, reach out anytime — we’d love to hear from you.
+  jp: 現在、公開中の募集はありません。一緒に働きたい方は、いつでもまずはお声がけください。
+cultureEyebrow:
+  ko: Why DeepingSource
+  en: Why DeepingSource
+  jp: Why DeepingSource
+cultureHeading:
+  ko: 왜 우리와 일하는가
+  en: Why work with us
+  jp: なぜ私たちと働くのか
+cultureSub:
+  ko: 복지 목록이 아니라, 여기서만 할 수 있는 일을 먼저 말합니다.
+  en: Not a list of perks — first, the work you can only do here.
+  jp: 福利厚生のリストではなく、ここでしかできない仕事を、まずお話しします。
+benefitsEyebrow:
+  ko: Benefits & Culture
+  en: Benefits & Culture
+  jp: Benefits & Culture
+benefitsHeading:
+  ko: 잘 일하기 위한 환경
+  en: An environment to do great work
+  jp: よい仕事のための環境
+benefitsSub:
+  ko: 좋은 결과는 좋은 환경에서 나옵니다. 집중하고 성장할 수 있도록 지원합니다.
+  en: Good results come from a good environment. We support you to focus and grow.
+  jp: よい結果は、よい環境から生まれます。集中し、成長できるよう支援します。
+rolesEyebrow:
+  ko: Talent Pool
+  en: Talent Pool
+  jp: Talent Pool
+rolesHeading:
+  ko: 인재 풀에 등록하세요
+  en: Join our talent pool
+  jp: 人材プールに登録
+rolesSub:
+  ko: 지금은 공개된 공고가 없습니다. 하지만 좋은 동료는 늘 찾고 있습니다. 인재 풀에 등록해 두시면, 맞는 자리가 열릴 때 가장 먼저 연락드립니다.
+  en: We have no open roles right now, but we’re always looking for great people. Register your interest and we’ll reach out first when a fitting role opens.
+  jp: 現在、公開中の募集はありません。ですが、よい仲間はいつでも探しています。人材プールにご登録いただければ、合うポジションが開いた際に最初にご連絡します。
+rolesApply:
+  ko: 인재 풀 등록
+  en: Register your interest
+  jp: 人材プールに登録
+processEyebrow:
+  ko: Process
+  en: Process
+  jp: Process
+processHeading:
+  ko: 채용은 이렇게 진행됩니다
+  en: How hiring works
+  jp: 採用の進め方
+processSub:
+  ko: 복잡하지 않게, 서로를 충분히 알 수 있도록.
+  en: Simple, with enough room for both sides to get to know each other.
+  jp: 複雑にせず、お互いを十分に知れるように。
+mailSubject:
+  ko: 채용 문의
+  en: Careers inquiry
+  jp: 採用のお問い合わせ
+ctaHeading:
+  ko: 맞는 자리가 없어도 괜찮습니다
+  en: No matching role? That’s okay
+  jp: 合うポジションがなくても大丈夫です
+ctaSub:
+  ko: 함께하고 싶은 마음이 있다면, 먼저 이야기를 들려주세요
+  en: If you’d like to join us, tell us your story first.
+  jp: ともに働きたいお気持ちがあれば、まずはお話を聞かせてください。
+ctaApply:
+  ko: 지원 · 문의하기
+  en: Apply · inquire
+  jp: 応募 · お問い合わせ
+ctaGeneral:
+  ko: 일반 문의
+  en: General inquiry
+  jp: 一般のお問い合わせ
+culture:
+  - id: mission
+    title:
+      ko: 익명화라는 미션
+      en: Anonymization as the mission
+      jp: 匿名化というミッション
+    desc:
+      ko: 신원을 지운 위에서만 분석합니다. 프라이버시가 제약이 아니라 제품인 회사에서, 미룰 수 없는 문제를 풉니다.
+      en: We analyze only on top of erased identity. At a company where privacy is the product, not a constraint, you solve problems that can’t wait.
+      jp: 身元を消した上でのみ分析します。プライバシーが制約ではなく製品である会社で、先送りできない課題を解きます。
+  - id: compute
+    title:
+      ko: NVIDIA Inception 컴퓨팅
+      en: NVIDIA Inception compute
+      jp: NVIDIA Inception コンピューティング
+    desc:
+      ko: "{nvidiaPartner}로서 비전 AI 개발에 필요한 컴퓨팅과 도구를 갖추고, 모델을 직접 학습시킵니다."
+      en: As an {nvidiaPartner}, we have the compute and tools for vision-AI development and train our own models.
+      jp: "{nvidiaPartner}として、ビジョンAI開発に必要なコンピューティングとツールを備え、モデルを自ら学習させます。"
+  - id: rnd
+    title:
+      ko: 특허 기반 R&D
+      en: Patent-backed R&D
+      jp: 特許に基づくR&D
+    desc:
+      ko: "{patents}건의 특허로 보호되는 기술 위에서, 논문이 아니라 현장에 나가는 연구를 합니다."
+      en: On technology protected by {patents} patents, we do research that ships to the field — not just to a paper.
+      jp: "{patents}件の特許で保護された技術の上で、論文ではなく現場に出る研究を行います。"
+  - id: human
+    title:
+      ko: 권고는 AI, 결정은 사람
+      en: AI advises, people decide
+      jp: 推奨はAI、決定は人
+    desc:
+      ko: 자동화가 사람을 대체하지 않습니다. AI는 다음 한 수를 권하고, 마지막 결정은 사람이 내리는 방식으로 일합니다.
+      en: Automation doesn’t replace people. AI recommends the next move; the final call is always a person’s.
+      jp: 自動化が人を置き換えることはありません。AIが次の一手を提案し、最後の決定は人が下す働き方です。
+benefits:
+  - id: flexible
+    title:
+      ko: 유연한 근무
+      en: Flexible work
+      jp: 柔軟な働き方
+    desc:
+      ko: 자율 출퇴근과 집중 근무 환경. 결과로 신뢰하는 문화입니다.
+      en: Flexible hours and a focused work environment. A culture that trusts results.
+      jp: 自律的な勤務時間と集中できる環境。結果で信頼する文化です。
+  - id: growth
+    title:
+      ko: 성장 지원
+      en: Growth support
+      jp: 成長支援
+    desc:
+      ko: 컨퍼런스 · 도서 · 교육 지원으로 기술과 시야를 함께 키웁니다.
+      en: Conference, book, and education support to grow both your skills and your perspective.
+      jp: カンファレンス · 書籍 · 教育の支援で、技術と視野をともに育てます。
+  - id: equipment
+    title:
+      ko: 최고의 장비
+      en: Top-tier equipment
+      jp: 最高の設備
+    desc:
+      ko: 고사양 워크스테이션 · GPU · 라이선스 등 막힘 없이 일할 도구를 제공합니다.
+      en: High-spec workstations, GPUs, and licenses — the tools to work without friction.
+      jp: 高スペックのワークステーション · GPU · ライセンスなど、滞りなく働ける道具を用意します。
+  - id: place
+    title:
+      ko: 일하기 좋은 환경
+      en: A great place to work
+      jp: 働きやすい環境
+    desc:
+      ko: 강남 본사, 집중과 협업이 균형을 이루는 업무 공간.
+      en: A Gangnam headquarters where focus and collaboration are in balance.
+      jp: 江南本社、集中と協働がバランスする業務空間。
+process:
+  - id: apply
+    step:
+      ko: "01"
+      en: "01"
+      jp: "01"
+    title:
+      ko: 지원
+      en: Apply
+      jp: 応募
+    desc:
+      ko: 이력서·포트폴리오를 메일로 보내 주세요. 직군이 정해지지 않아도 괜찮습니다.
+      en: Send your résumé/portfolio by email — even if you’re not sure which role fits.
+      jp: 履歴書・ポートフォリオをメールでお送りください。職種が決まっていなくても大丈夫です。
+  - id: talk
+    step:
+      ko: "02"
+      en: "02"
+      jp: "02"
+    title:
+      ko: 대화
+      en: Conversations
+      jp: 対話
+    desc:
+      ko: 직무·팀과의 인터뷰로 서로의 방향을 맞춥니다 (보통 1~2회).
+      en: Interviews with the role and team to align on direction (usually 1–2 rounds).
+      jp: 職務・チームとのインタビューで方向性をすり合わせます（通常1〜2回）。
+  - id: assignment
+    step:
+      ko: "03"
+      en: "03"
+      jp: "03"
+    title:
+      ko: 과제 · 심층
+      en: Assignment · deep dive
+      jp: 課題 · 深掘り
+    desc:
+      ko: 직무에 따라 과제 또는 심층 인터뷰로 함께 일하는 모습을 그려 봅니다.
+      en: Depending on the role, a take-home or deep-dive to picture working together.
+      jp: 職務に応じて課題または深掘りインタビューで、一緒に働く姿を描きます。
+  - id: offer
+    step:
+      ko: "04"
+      en: "04"
+      jp: "04"
+    title:
+      ko: 오퍼 · 합류
+      en: Offer · join
+      jp: オファー · 参加
+    desc:
+      ko: 처우를 협의하고, 한 팀으로 합류합니다.
+      en: We agree on terms and you join the team.
+      jp: 条件を協議し、ひとつのチームとして参加いただきます。

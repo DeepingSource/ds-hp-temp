@@ -190,7 +190,7 @@ export default config({
       'FAQ': ['faq'],
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
-      '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
+      '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'milestones', 'career'],
       '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace'],
       '법무 (검토 후 편집)': ['privacyDoc', 'termsDoc'],
     },
@@ -1043,6 +1043,91 @@ export default config({
         platformIntro: fields.text({ label: '제품 한 줄 정의', multiline: true }),
         vision: fields.text({ label: '핵심 비전', multiline: true }),
         privacyPrinciple: fields.text({ label: '프라이버시 원칙', multiline: true }),
+      },
+    }),
+    // 경영진 — About(필수)·Career(선택)에서 공유. key 는 코드 아바타 매핑용(변경 금지).
+    // photo 미지정 시 initials 로 아바타 렌더. content/site/leadership.yaml.
+    leadership: singleton({
+      label: '경영진 (About · Career)',
+      path: 'content/site/leadership',
+      format: { data: 'yaml' },
+      schema: {
+        leaders: fields.array(
+          fields.object({
+            key: fields.text({ label: 'key (코드 아바타 매핑 — 변경 금지)' }),
+            name: localized('이름 (name)'),
+            role: localized('직책 (role)'),
+            focus: localized('책임 영역 (focus)'),
+            bio: localized('약력 (bio · 1~2문장)'),
+            initials: localized('이니셜 (사진 없을 때 아바타)'),
+            photo: fields.text({ label: '사진 경로 (선택, 예: /images/team/ceo.webp)' }),
+          }),
+          { label: '경영진', itemLabel: (p) => p.fields.key.value || '경영진' },
+        ),
+      },
+    }),
+    // 회사 연혁 — About 요약(highlight)·Investors 전체. content/site/milestones.yaml.
+    // year/title/desc 안의 {foundingYear} {patents} {patentsLabel} {vision} 토큰은
+    // 빌드 시 회사 정보(company) 값으로 자동 치환된다(그대로 두면 최신값 유지).
+    milestones: singleton({
+      label: '회사 연혁 (About · Investors)',
+      path: 'content/site/milestones',
+      format: { data: 'yaml' },
+      schema: {
+        items: fields.array(
+          fields.object({
+            id: fields.text({ label: 'id (라벨용)' }),
+            highlight: fields.checkbox({ label: 'About 요약 카드에 노출 (highlight)', defaultValue: false }),
+            year: localized('연도 (year · {foundingYear} 토큰 가능)'),
+            title: localized('제목 (title · {patents} 토큰 가능)'),
+            desc: localized('설명 (desc · {patentsLabel}/{vision} 토큰 가능)'),
+          }),
+          { label: '연혁 (오래된→최신)', itemLabel: (p) => p.fields.id.value || '연혁' },
+        ),
+      },
+    }),
+    // 채용 페이지 카피 — /company/career. content/site/career.yaml. culture 카드 desc 의
+    // {nvidiaPartner}/{patents} 토큰은 빌드 시 치환. mailto·아이콘은 코드 유지.
+    career: singleton({
+      label: '채용 페이지 (Careers)',
+      path: 'content/site/career',
+      format: { data: 'yaml' },
+      schema: {
+        badge: localized('배지 (badge)'),
+        heroMaster: localized('Hero 제목 (heroMaster)'),
+        heroMasterAccent: localized('Hero 강조줄 (heroMasterAccent)'),
+        heroSub: localized('Hero 서브 (heroSub)'),
+        cultureEyebrow: localized('컬처 eyebrow (cultureEyebrow)'),
+        cultureHeading: localized('컬처 제목 (cultureHeading)'),
+        cultureSub: localized('컬처 서브 (cultureSub)'),
+        benefitsEyebrow: localized('복지 eyebrow (benefitsEyebrow)'),
+        benefitsHeading: localized('복지 제목 (benefitsHeading)'),
+        benefitsSub: localized('복지 서브 (benefitsSub)'),
+        rolesEyebrow: localized('인재풀 eyebrow (rolesEyebrow)'),
+        rolesHeading: localized('인재풀 제목 (rolesHeading)'),
+        rolesSub: localized('인재풀 서브 (rolesSub)'),
+        rolesApply: localized('인재풀 CTA (rolesApply)'),
+        processEyebrow: localized('절차 eyebrow (processEyebrow)'),
+        processHeading: localized('절차 제목 (processHeading)'),
+        processSub: localized('절차 서브 (processSub)'),
+        mailSubject: localized('지원 메일 제목 (mailSubject)'),
+        ctaHeading: localized('CTA 제목 (ctaHeading)'),
+        ctaSub: localized('CTA 서브 (ctaSub)'),
+        ctaApply: localized('CTA 지원 버튼 (ctaApply)'),
+        ctaGeneral: localized('CTA 일반문의 버튼 (ctaGeneral)'),
+        culture: idItem('컬처 카드 · 4개 (culture)', 'culture', {
+          title: localized('제목 (title)'),
+          desc: localized('설명 (desc · {nvidiaPartner}/{patents} 토큰 가능)'),
+        }),
+        benefits: idItem('복지 카드 · 4개 (benefits)', 'benefit', {
+          title: localized('제목 (title)'),
+          desc: localized('설명 (desc)'),
+        }),
+        process: idItem('채용 절차 · 4단계 (process)', 'step', {
+          step: localized('번호 (step · 예: 01)'),
+          title: localized('제목 (title)'),
+          desc: localized('설명 (desc)'),
+        }),
       },
     }),
     retail: singleton({
