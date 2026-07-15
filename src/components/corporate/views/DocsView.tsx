@@ -43,7 +43,7 @@ const C: Record<Locale, {
       { id: 'getting-started', title: '시작하기', items: [
         { title: '제품 개요', slug: 'product-overview' },
         { title: '도입 절차', slug: 'deployment-steps' },
-        { title: '환경 요구사항' },
+        { title: '환경 요구사항', slug: 'environment-requirements' },
         { title: '첫 리포트 받기' },
       ] },
       { id: 'integration', title: '연동 가이드', items: [{ title: 'CCTV 연동' }, { title: 'POS 연동' }, { title: '대시보드 접근' }, { title: 'API 개요' }] },
@@ -72,7 +72,7 @@ const C: Record<Locale, {
       { id: 'getting-started', title: 'Getting Started', items: [
         { title: 'Product Overview', slug: 'product-overview' },
         { title: 'Deployment Steps', slug: 'deployment-steps' },
-        { title: 'Environment Requirements' },
+        { title: 'Environment Requirements', slug: 'environment-requirements' },
         { title: 'Your First Report' },
       ] },
       { id: 'integration', title: 'Integration Guide', items: [{ title: 'CCTV Integration' }, { title: 'POS Integration' }, { title: 'Dashboard Access' }, { title: 'API Overview' }] },
@@ -101,7 +101,7 @@ const C: Record<Locale, {
       { id: 'getting-started', title: 'はじめに', items: [
         { title: '製品概要', slug: 'product-overview' },
         { title: '導入手順', slug: 'deployment-steps' },
-        { title: '動作環境' },
+        { title: '動作環境', slug: 'environment-requirements' },
         { title: '初めてのレポート' },
       ] },
       { id: 'integration', title: '連携ガイド', items: [{ title: 'CCTV 連携' }, { title: 'POS 連携' }, { title: 'ダッシュボードへのアクセス' }, { title: 'API 概要' }] },
