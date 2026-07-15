@@ -44,6 +44,41 @@ const articles = defineCollection({
     })),
 });
 
+/** Case studies — a standalone collection (structured metrics/quotes, not free MDX).
+ *  content/case-studies/**\/*.mdx, edited via the Keystatic `caseStudies` collection.
+ *  Per-locale files use the blog's -ko/-jp suffix convention (no cross-locale join). */
+const caseStudies = defineCollection({
+  name: 'CaseStudy',
+  pattern: 'case-studies/**/*.mdx',
+  schema: s.object({
+    slug: s.string(),
+    title: s.string(),
+    sub: s.string(),
+    context: s.string(),
+    industry: s.string(),
+    industryIcon: s.string().default('Store'),
+    audience: s.string().default(''),
+    goldenStep: s.enum(['discover', 'verify', 'translate', 'sync', 'remeasure']),
+    products: s.array(s.string()).default([]),
+    before: s.string().default(''),
+    after: s.string().default(''),
+    metrics: s
+      .array(s.object({ label: s.string(), value: s.string(), verified: s.boolean().default(false) }))
+      .default([]),
+    quotes: s.array(s.object({ text: s.string(), who: s.string() })).default([]),
+    note: s.string().default(''),
+    cover: s.string().optional(),
+    coverAlt: s.string().optional(),
+    // Opt-in before/after adoption chart (CaseStudyChartMockup) — single toggle, not generalized.
+    showAdoptionChart: s.boolean().default(false),
+    lang: s.enum(['en', 'ko', 'jp']).default('ko'),
+    date: s.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    featured: s.boolean().default(false),
+    draft: s.boolean().default(false),
+    body: s.raw().optional(),
+  }),
+});
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -52,5 +87,5 @@ export default defineConfig({
     base: '/static/',
     clean: true,
   },
-  collections: { articles },
+  collections: { articles, caseStudies },
 });

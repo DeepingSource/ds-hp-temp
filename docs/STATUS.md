@@ -129,6 +129,18 @@
 - **G10 재프레이밍**: `/thank-you`는 **KO 전용 storeagent 미니사이트** 전용(메인 사이트엔 뉴스레터 폼 없음). "/thank-you만 번역"은 무의미 → 미니사이트 전체 i18n 여부 결정 필요(대형, 보류).
 - **⚪ 조치 불필요(오탐/이미 반영)**: G13 case-studies measured/illustrative 뱃지 이미 구현 · G17 "13 vs 18 모델"=스코프된 라벨(13=라이브 오버레이 서브셋) · G1 /demo 이미 noindex(일러스트만, 저위험).
 
+## 8. 케이스스터디 CMS화 (`CASE_STUDIES_KEYSTATIC_PLAN_v1.md`) ✅
+
+> 5건이 `CaseStudiesView.tsx`에 3언어 하드코딩돼 있어 새 사례 = 개발자 PR이던 구조를 블로그와 동일한 Keystatic 편집 루프로 전환. 옵션 B(전용 컬렉션) 채택.
+
+- **컬렉션 신설**: `caseStudies` (Keystatic `keystatic.config.tsx` + Velite `velite.config.ts`). 지표(metrics)·인용(quotes)은 구조화 배열이라 카드 UI를 코드가 자동 렌더 — **중첩 객체 배열 직렬화(플랜 §0 스파이크 리스크) Velite 파싱 검증 통과.** 타입 `src/data/case-studies/types.ts`, 정적 카피 `copy.ts`, getter `src/lib/case-studies.ts`.
+- **마이그레이션**: `scripts/migrate-case-studies.mjs`(1회성, 재실행=덮어쓰기 주의) → `content/case-studies/*.mdx` 15개(5 slug × 3언어, 블로그 `-ko`/`-jp` 접미사=파일명=slug 컨벤션). 카피 무손실.
+- **라우팅**: index/detail 2단(`caseStudyRoutes.tsx`=blogRoutes 패턴). 6개 `page.tsx`(index 교체 + `[slug]` 신규 × 3로케일). `CaseStudyCard`·`CaseStudiesIndexView`·`CaseStudyDetailView`·`industryIcons.tsx`. 상세 = 개별 URL·OG·canonical.
+- **Golden Case 슬롯→태그**: `goldenStep` select(발견·검증·번역·전파·재측정). ⚠️ Sync 라벨은 ko '전파'·jp '展開'(원본 그대로). `featured` 체크박스로 상단 고정. 정렬=featured→단계순→date desc.
+- **연동**: proxy `/resources/case-studies/` fall-through, sitemap 상세 루프, 편집 가이드에 "케이스스터디 작성하기"(**실측 여부 체크박스 신뢰 경고 굵게**).
+- **검증**: 빌드 그린, 프리렌더 en/ko/jp 실측(카드 순서·Illustrative 뱃지·차트·다국어). 레거시 `CaseStudiesView.tsx` 삭제.
+- **잔여(선택)**: Phase 6 필터 UI(8건+ 누적 시) · 커버 이미지 자산(현재 아이콘 배지 대체) · Keystatic GitHub 모드 실편집 왕복(중첩배열 저장) 팀원 검증 · `CaseBand.tsx`(홈)는 범위 밖(별도 자산).
+
 ---
 
 ## 잔여 항목 우선순위 제안

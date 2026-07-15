@@ -116,7 +116,8 @@ export function proxy(request: NextRequest) {
       const isTranslated = TRANSLATED_PATHS.has(base)
         || base.startsWith('/glossary/')
         || base.startsWith('/solutions/')
-        || base.startsWith('/resources/blog/');
+        || base.startsWith('/resources/blog/')
+        || base.startsWith('/resources/case-studies/');
       if (!isTranslated) {
         const url = request.nextUrl.clone();
         url.pathname = base;

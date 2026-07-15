@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllArticlesMeta } from '@/lib/article-metadata';
+import { getAllCaseStudies } from '@/lib/case-studies';
 import { glossaryTerms } from '@/data/glossaryTerms';
 import { solutionsData } from '@/data/solutionsData';
 
@@ -104,5 +105,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     articlePages = [];
   }
 
-  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages];
+  // Case studies → /resources/case-studies/[slug] (each in its own content language).
+  let caseStudyPages: MetadataRoute.Sitemap = [];
+  try {
+    caseStudyPages = getAllCaseStudies().map((c) => {
+      const prefix = c.lang === 'en' ? '' : `/${c.lang}`;
+      return {
+        url: `${baseUrl}${prefix}/resources/case-studies/${c.slug}`,
+        lastModified: c.date ? new Date(c.date) : STABLE_LAST_MODIFIED,
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+      };
+    });
+  } catch {
+    caseStudyPages = [];
+  }
+
+  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages, ...caseStudyPages];
 }

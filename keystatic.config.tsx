@@ -92,6 +92,14 @@ const BLOG_ICON_NAMES = [
 ] as const;
 const blogIconOptions = BLOG_ICON_NAMES.map((n) => ({ label: n, value: n }));
 
+/** Industry icons for case studies — must exist in CaseStudyCard's iconMap.
+ *  New icons: add here AND to the iconMap in src/components/case-studies/CaseStudyCard.tsx. */
+const INDUSTRY_ICON_NAMES = [
+  'Store', 'Building2', 'Pill', 'Coffee', 'Landmark', 'Warehouse',
+  'ShoppingBag', 'ShoppingCart', 'Hospital', 'Factory', 'MapPin', 'Building',
+] as const;
+const industryIconOptions = INDUSTRY_ICON_NAMES.map((n) => ({ label: n, value: n }));
+
 /** An id-keyed array item: a fixed id (structure lives in code) + localized copy fields. */
 const idItem = (
   label: string,
@@ -169,6 +177,7 @@ export default config({
     navigation: {
       '시작하기': ['editorGuide'],
       '블로그': ['articles'],
+      '케이스스터디': ['caseStudies'],
       '자주 편집': ['home', 'pricing'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
@@ -278,6 +287,119 @@ export default config({
           components: blogComponents,
           options: {
             image: { directory: 'public/images/blog', publicPath: '/images/blog/' },
+          },
+        }),
+      },
+    }),
+    // 케이스스터디 — content/case-studies/*.mdx (Velite 가 읽는 것과 동일). 블로그와
+    // 같은 -ko/-jp 접미사 컨벤션(파일명 = slug). 지표·인용은 구조화 배열이라 카드 UI 를
+    // 코드가 자동 렌더. 새 케이스를 저장하면 재빌드에 목록·상세로 누적됨(코드 PR 불필요).
+    caseStudies: collection({
+      label: '케이스스터디',
+      path: 'content/case-studies/*',
+      slugField: 'slug',
+      format: { contentField: 'body' },
+      entryLayout: 'content',
+      columns: ['title', 'industry', 'goldenStep', 'lang', 'draft'],
+      schema: {
+        title: fields.text({
+          label: '헤드라인',
+          description: '카드·상세페이지 제목. 70자 이내 권장.',
+          validation: { isRequired: true, length: { max: 70 } },
+        }),
+        slug: fields.slug({ name: { label: 'URL 슬러그 (파일명 = URL 경로. ko/jp 는 -ko/-jp 접미사)' } }),
+        sub: fields.text({
+          label: '서브헤드라인 (목록 카드용 한 줄)',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        context: fields.text({
+          label: '도입부 본문 (상세페이지 상단 서술)',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        industry: fields.text({
+          label: '산업 (예: 편의점 · 무인매장)',
+          validation: { isRequired: true },
+        }),
+        industryIcon: fields.select({
+          label: '산업 아이콘',
+          description: '목록·상세 배지 아이콘. 새 아이콘은 개발자에게 요청(코드의 iconMap 과 동기화 필요).',
+          options: industryIconOptions,
+          defaultValue: 'Store',
+        }),
+        audience: fields.text({ label: '청자 (예: 점주, 본사 임원)' }),
+        goldenStep: fields.select({
+          label: 'Golden Case 단계',
+          description: '더 이상 "1건당 1단계 고정"이 아님 — 같은 단계에 여러 케이스가 쌓일 수 있음.',
+          options: [
+            { label: '01 발견 (Discover)', value: 'discover' },
+            { label: '02 검증 (Verify)', value: 'verify' },
+            { label: '03 번역 (Translate)', value: 'translate' },
+            { label: '04 전파 (Sync)', value: 'sync' },
+            { label: '05 재측정 (Re-measure)', value: 'remeasure' },
+          ],
+          defaultValue: 'discover',
+        }),
+        products: fields.array(fields.text({ label: '제품 태그' }), {
+          label: '사용 제품',
+          itemLabel: (p) => p.value,
+        }),
+        before: fields.text({ label: 'Before', multiline: true }),
+        after: fields.text({ label: 'After', multiline: true }),
+        metrics: fields.array(
+          fields.object({
+            label: fields.text({ label: '지표명' }),
+            value: fields.text({ label: '값' }),
+            verified: fields.checkbox({ label: '실측 여부 (체크 해제 = 예시/가상)' }),
+          }),
+          { label: '핵심 숫자', itemLabel: (p) => p.fields.label.value || '(지표)' },
+        ),
+        quotes: fields.array(
+          fields.object({
+            text: fields.text({ label: '인용문', multiline: true }),
+            who: fields.text({ label: '출처 (예: 서초구 편의점 조OO)' }),
+          }),
+          { label: '인용', itemLabel: (p) => p.fields.who.value || '(인용)' },
+        ),
+        note: fields.text({ label: '마무리 노트 (카드 하단 회색 문구)', multiline: true }),
+        cover: fields.image({
+          label: '커버 이미지 (선택 — 없으면 아이콘 배지로 대체)',
+          directory: 'public/images/case-studies',
+          publicPath: '/images/case-studies/',
+        }),
+        coverAlt: fields.text({ label: '커버 대체텍스트' }),
+        showAdoptionChart: fields.checkbox({
+          label: '도입 전후 차트 표시 (store care 53개 매장 차트)',
+          defaultValue: false,
+        }),
+        lang: fields.select({
+          label: '언어',
+          options: [
+            { label: '한국어', value: 'ko' },
+            { label: 'English', value: 'en' },
+            { label: '日本語', value: 'jp' },
+          ],
+          defaultValue: 'ko',
+        }),
+        date: fields.date({
+          label: '게시일',
+          description: '미래 날짜 = 해당일 이후 자동 발행(예약). 재빌드 시 반영.',
+          defaultValue: { kind: 'today' },
+          validation: { isRequired: true },
+        }),
+        featured: fields.checkbox({
+          label: '대표 노출 (목록 상단 고정)',
+          defaultValue: false,
+        }),
+        draft: fields.checkbox({
+          label: '초안 (사이트에 노출 안 됨)',
+          defaultValue: false,
+        }),
+        body: fields.mdx({
+          label: '심화 서술 (선택 — 상세페이지 하단, 없으면 미노출)',
+          options: {
+            image: { directory: 'public/images/case-studies', publicPath: '/images/case-studies/' },
           },
         }),
       },
