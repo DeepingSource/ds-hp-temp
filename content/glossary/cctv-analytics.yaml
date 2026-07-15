@@ -1,0 +1,36 @@
+slug: cctv-analytics
+order: 15
+category: ai
+englishTitle: CCTV Analytics Solution
+title:
+  ko: CCTV 분석 솔루션
+  en: CCTV Analytics Solution
+  jp: CCTV分析ソリューション
+tagline:
+  ko: 보안용 CCTV를 매장 운영 데이터 수집 도구로 전환하는 솔루션
+  en: A solution that turns security CCTV into a tool for collecting store operations data
+  jp: 防犯用CCTVを店舗運営データの収集ツールへと転換するソリューションです
+definition:
+  ko: CCTV 분석 솔루션이란 매장에 이미 설치된 CCTV 카메라의 영상을 AI가 실시간으로 분석해 고객 행동 데이터, 이상 상황 감지, 공간 활용도 분석 등 운영 인사이트를 제공하는 소프트웨어 솔루션입니다. 새로운 하드웨어 없이 기존 인프라를 활용하는 것이 특징입니다.
+  en: A CCTV analytics solution is software in which AI analyzes, in real time, footage from cameras already installed in a store to deliver operational insights such as customer behavior data, abnormal-situation detection, and space-utilization analysis. Its defining trait is that it leverages existing infrastructure without requiring new hardware.
+  jp: CCTV分析ソリューションとは、店舗にすでに設置されたCCTVカメラの映像をAIがリアルタイムで分析し、顧客行動データ・異常状況の検知・空間活用度の分析といった運営インサイトを提供するソフトウェアソリューションです。新たなハードウェアを必要とせず、既存インフラを活用する点が特徴です。
+relatedTerms:
+  - anonymized-cctv
+  - computer-vision
+  - anomaly-detection
+  - store-heatmap
+relatedIndustries:
+  - convenience
+  - unmanned
+  - logistics
+saaiUsage: SAAI는 대부분의 IP 카메라 브랜드와 호환되며, 기존 CCTV NVR/DVR 시스템에 연동할 수 있습니다. 소프트웨어 설치와 카메라 각도 조정만으로 도입이 완료되며, 현장 시공이나 배선 공사가 필요하지 않습니다. 도입 첫날부터 데이터 수집이 시작됩니다.
+metaDescription: CCTV 분석 솔루션이란? 기존 CCTV로 매장 운영 데이터를 수집하는 AI 소프트웨어. 고객 행동 분석, 이상 감지, 결품 감지까지 한 번에 해결하는 방법.
+body:
+  - heading: 기존 CCTV의 한계와 분석의 차이
+    paragraphs:
+      - 보안 목적으로 설치된 CCTV는 "사건이 발생했을 때 확인하는" 수동적 도구입니다. 하루 24시간 녹화된 영상 대부분은 아무도 보지 않습니다. 매월 발생하는 CCTV 운영 비용 대비 활용도가 극히 낮습니다.
+      - CCTV 분석 솔루션은 같은 카메라를 24시간 능동적으로 활용합니다. 고객이 어느 구역에 얼마나 있었는지, 이상한 일이 발생했는지, 결품이 생겼는지를 자동으로 감지해 운영자에게 알려줍니다.
+  - heading: 도입 시 고려사항
+    paragraphs:
+      - 카메라의 해상도와 설치 각도가 분석 정확도에 영향을 줍니다. 일반적으로 1080p 이상의 IP 카메라가 권장되며, 천장 카메라(Bird's eye view)가 공간 분석에 가장 적합합니다.
+      - 개인정보보호 측면에서는 익명화 처리 여부와 데이터 저장 위치를 반드시 확인해야 합니다. SAAI는 원본 영상을 외부로 전송하지 않고 매장 내 장치에서 익명화 처리를 수행합니다.

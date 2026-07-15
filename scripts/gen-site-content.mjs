@@ -245,9 +245,22 @@ for (const loc of LOCALES) {
 // ── company — site-wide constants (flat, not per-locale). Edited via the `company` singleton. ──
 const company = load('content/site/company.yaml');
 
+// ── glossary — CMS collection (content/glossary/*.yaml, one file per term). Structured
+//    per-term data passed through as-is: title/tagline/definition are {ko,en,jp}; body
+//    (sections) + saaiUsage + metaDescription are ko-only. Ordered by `order`. Edited via
+//    the `glossary` collection; consumed by the glossaryTerms.ts/glossary-i18n.ts re-exports. ──
+const GLOSSARY_DIR = path.join(ROOT, 'content/glossary');
+const glossary = fs.existsSync(GLOSSARY_DIR)
+  ? fs
+      .readdirSync(GLOSSARY_DIR)
+      .filter((f) => f.endsWith('.yaml'))
+      .map((f) => yaml.load(fs.readFileSync(path.join(GLOSSARY_DIR, f), 'utf8')))
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  : [];
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, largeSpace, news, company)');
+console.log('✓ generated src/data/generated/site-content.json (…, news, company, glossary)');

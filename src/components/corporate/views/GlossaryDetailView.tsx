@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, FileText } from 'lucide-react';
 import { glossaryBySlug, type GlossaryTerm } from '@/data/glossaryTerms';
 import { industryList, type IndustryMeta } from '@/data/industryList';
 import { glossaryCardI18n, glossaryCategoryI18n } from '@/data/glossary-i18n';
+import { getDocsUsingTerm } from '@/lib/docs';
+import { logicalDocSlug } from '@/data/docs/types';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -35,6 +37,7 @@ const C: Record<
     viewCase: string;
     relatedIndustries: string;
     relatedTerms: string;
+    docsUsingTerm: string;
     backToGlossary: string;
     ctaEyebrow: string;
     ctaHeading: (title: string) => string;
@@ -51,6 +54,7 @@ const C: Record<
     viewCase: 'See it in action',
     relatedIndustries: 'Related Industries',
     relatedTerms: 'Related Terms Worth Knowing',
+    docsUsingTerm: 'Docs that cover this term',
     backToGlossary: 'Back to the full glossary',
     ctaEyebrow: 'Real-World Application',
     ctaHeading: (title) => `Want to bring ${title} to your store?`,
@@ -67,6 +71,7 @@ const C: Record<
     viewCase: '실제 적용 사례 보기',
     relatedIndustries: '관련 업종',
     relatedTerms: '함께 알아두면 좋은 용어',
+    docsUsingTerm: '이 용어를 다루는 문서',
     backToGlossary: '전체 용어 사전으로 돌아가기',
     ctaEyebrow: '실제 적용',
     ctaHeading: (title) => `${title}을(를) 우리 매장에 적용하고 싶으신가요?`,
@@ -82,6 +87,7 @@ const C: Record<
     viewCase: '実際の活用事例を見る',
     relatedIndustries: '関連業種',
     relatedTerms: '併せて知っておきたい用語',
+    docsUsingTerm: 'この用語を扱うドキュメント',
     backToGlossary: '用語辞典の一覧へ戻る',
     ctaEyebrow: '実際の活用',
     ctaHeading: (title) => `${title}を自店舗に導入してみませんか？`,
@@ -107,6 +113,8 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
   const relatedIndustryObjects = term.relatedIndustries
     .map((s) => industryList.find((i) => i.slug === s))
     .filter((x): x is IndustryMeta => x !== undefined);
+  // Reverse cross-link: product docs that reference this term (glossary→docs graph).
+  const referencingDocs = getDocsUsingTerm(term.slug, locale);
 
   return (
     <div className="bg-white min-h-screen">
@@ -232,6 +240,30 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
                     </Link>
                   );
                 })}
+              </div>
+            </div>
+          )}
+
+          {/* 이 용어를 다루는 문서 (glossary→docs 역링크) */}
+          {referencingDocs.length > 0 && (
+            <div className="mt-10">
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">{c.docsUsingTerm}</h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {referencingDocs.map((doc) => (
+                  <Link
+                    key={doc.slug}
+                    href={localeHref(locale, `/resources/docs/${logicalDocSlug(doc.slug)}`)}
+                    className="group flex items-center justify-between gap-3 p-4 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-[border-color,box-shadow]"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <FileText className="w-4 h-4 text-gray-400 flex-shrink-0" aria-hidden="true" />
+                      <p className="text-sm font-medium text-gray-900 group-hover:text-primary transition-colors truncate">
+                        {doc.title}
+                      </p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-[color,transform] flex-shrink-0" />
+                  </Link>
+                ))}
               </div>
             </div>
           )}

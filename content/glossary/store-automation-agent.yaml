@@ -1,0 +1,38 @@
+slug: store-automation-agent
+order: 19
+category: ai
+englishTitle: Store AI Agent
+title:
+  ko: 매장 AI 에이전트
+  en: Store AI Agent
+  jp: 店舗AIエージェント
+tagline:
+  ko: 데이터 분석 결과를 현장 행동으로 연결하는 자동화 실행 AI
+  en: An execution AI that turns analytics results into on-site action
+  jp: データ分析の結果を現場の行動へとつなぐ自動化実行AIです
+definition:
+  ko: 매장 AI 에이전트(Store AI Agent)란 매장 운영 데이터를 분석한 결과를 바탕으로 구체적인 행동(알림 발송, 발주 제안, 직원 지시 등)을 자동으로 실행하는 AI 시스템입니다. 단순히 데이터를 보여주는 것을 넘어, 분석 결과가 실제 현장 개선으로 이어지도록 연결하는 역할을 합니다.
+  en: A store AI agent is an AI system that automatically executes concrete actions — sending alerts, suggesting orders, directing staff — based on the results of analyzing store-operations data. Going beyond merely displaying data, it serves to connect analytical findings to actual on-site improvement.
+  jp: 店舗AIエージェント（Store AI Agent）とは、店舗運営データを分析した結果に基づき、アラート送信・発注提案・スタッフへの指示といった具体的な行動を自動で実行するAIシステムです。単にデータを表示するだけでなく、分析結果が実際の現場改善につながるよう橋渡しする役割を担います。
+relatedTerms:
+  - store-operations-automation
+  - retail-ai
+  - behavior-analysis
+  - anomaly-detection
+relatedIndustries:
+  - convenience
+  - unmanned
+  - mart
+saaiUsage: SAAI store agent는 store care의 실시간 감지와 store insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.
+metaDescription: 매장 AI 에이전트란? 데이터 분석 결과를 자동으로 현장 행동으로 연결하는 AI 시스템. 알림 발송, 발주 제안, 자동 리포트로 매장 운영을 자동화하는 방법.
+body:
+  - heading: AI 에이전트가 다른 분석 도구와 다른 점
+    paragraphs:
+      - 대부분의 분석 도구는 대시보드와 리포트를 제공합니다. 하지만 "데이터를 보는 것"과 "데이터를 바탕으로 행동하는 것" 사이에는 여전히 사람의 해석과 결정이 필요합니다.
+      - AI 에이전트는 이 중간 단계를 자동화합니다. "B 구역 체류 시간이 전주 대비 20% 감소했습니다"라는 관찰에서 "B 구역 진열 상태를 바로 확인하세요"라는 알림으로, 더 나아가 자동으로 발주를 제안하거나 프로모션을 트리거합니다.
+  - heading: 에이전트가 실행하는 작업들
+    paragraphs:
+      - "**실시간 알림**: 결품, 이상 행동, 혼잡도 초과 시 실시간 알림."
+      - "**패턴 기반 제안**: 주간 데이터를 분석해 발주 제안, 직원 배치 최적화 제안."
+      - "**자동 리포트**: 일간·주간·월간 운영 성과 리포트 자동 생성 및 전송."
+      - "**외부 시스템 연동**: POS, 발주 시스템, 메신저 등과 연동해 완전 자동화 가능."

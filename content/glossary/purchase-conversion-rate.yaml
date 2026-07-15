@@ -1,0 +1,36 @@
+slug: purchase-conversion-rate
+order: 4
+category: retail
+englishTitle: Purchase Conversion Rate
+title:
+  ko: 구매 전환율
+  en: Purchase Conversion Rate
+  jp: 購買転換率
+tagline:
+  ko: 방문한 고객 중 실제로 구매한 비율, 매장 효율의 핵심 지표
+  en: The share of visitors who actually buy — a core measure of store efficiency
+  jp: 来店した顧客のうち実際に購入した割合で、店舗効率の中核指標です
+definition:
+  ko: 구매 전환율(Purchase Conversion Rate)이란 매장에 입장한 전체 방문객 중 실제로 구매 행동(결제)으로 이어진 고객의 비율입니다. 방문 100명 중 30명이 구매했다면 전환율은 30%입니다. 매장의 진열, 동선, 상품 구성, 직원 서비스의 종합적 효율을 나타내는 지표입니다.
+  en: Purchase conversion rate is the share of all visitors entering a store who actually complete a purchase. If 30 of every 100 visitors buy, the conversion rate is 30%. It is a metric that reflects the combined efficiency of a store’s merchandising, traffic flow, product mix, and staff service.
+  jp: 購買転換率（Purchase Conversion Rate）とは、来店したすべての顧客のうち、実際に購買（決済）に至った顧客の割合です。来店100名のうち30名が購入すれば、転換率は30%となります。店舗の陳列・動線・商品構成・接客サービスの総合的な効率を示す指標です。
+relatedTerms:
+  - store-heatmap
+  - dwell-time
+  - footfall-analysis
+  - pos-data-limitations
+relatedIndustries:
+  - convenience
+  - drugstore
+  - mart
+saaiUsage: SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 store insight 대시보드에서 실시간으로 확인할 수 있습니다. store agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.
+metaDescription: 구매 전환율이란? 방문 고객 중 실제 구매로 이어진 비율. 편의점·드럭스토어·마트별 평균과 AI 분석으로 전환율을 높이는 방법을 설명합니다.
+body:
+  - heading: 구매 전환율의 업종별 평균
+    paragraphs:
+      - 업종에 따라 구매 전환율의 기준이 크게 다릅니다. 편의점·슈퍼마켓은 구매 목적으로 방문하는 경우가 많아 전환율이 50–70%에 달하는 경우도 있습니다. 반면 드럭스토어나 뷰티숍은 탐색형 방문이 많아 20–40%가 평균적입니다.
+      - 중요한 것은 절대적인 수치보다 변화 추세입니다. 진열을 바꾼 뒤 전환율이 상승했다면 긍정적인 변화입니다. 특정 시간대에 전환율이 급락한다면 그 시간대의 서비스 품질이나 진열 상태를 점검해야 합니다.
+  - heading: 전환율을 높이는 요소들
+    paragraphs:
+      - 고객 체류 시간과 구매 전환율은 강한 상관관계가 있습니다. 체류 시간이 길수록 더 많은 상품을 탐색하고, 충동 구매 가능성도 높아집니다. 동선 설계는 고객이 매장을 충분히 둘러보도록 유도하는 데 핵심입니다.
+      - 집고 내려놓는 행동(Pick-up & Put-down)을 AI가 감지하면 구매 직전 단계를 포착할 수 있습니다. 특정 상품의 픽업률이 높지만 전환율이 낮다면 가격, 용량, 포장 등에 개선이 필요하다는 신호입니다.

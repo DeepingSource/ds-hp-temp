@@ -186,7 +186,7 @@ export default config({
       '시작하기': ['editorGuide'],
       '블로그': ['articles'],
       '케이스스터디': ['caseStudies'],
-      '제품 문서': ['docs'],
+      '문서 · 용어 사전': ['docs', 'glossary'],
       'FAQ': ['faq'],
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
@@ -532,6 +532,73 @@ export default config({
         }),
         draft: fields.checkbox({ label: '초안 (노출 안 됨)', defaultValue: false }),
         body: fields.mdx({ label: '답변', components: blogComponents }),
+      },
+    }),
+
+    // 용어 사전 — content/glossary/*.yaml (구조화 데이터, MDX 아님). 한 파일 = 한 용어.
+    // URL /glossary/<슬러그> 고정. title/tagline/definition 은 KO/EN/JP 3벌; body(섹션)·
+    // saaiUsage·metaDescription 은 KO. definition 은 DefinedTerm JSON-LD(AEO) 로 소비되니
+    // 정확히 작성. gen-site-content 가 order 순으로 컴파일한다.
+    glossary: collection({
+      label: '용어 사전',
+      path: 'content/glossary/*',
+      slugField: 'slug',
+      format: { data: 'yaml' },
+      columns: ['slug', 'category', 'order'],
+      schema: {
+        slug: fields.slug({ name: { label: 'URL 슬러그 (파일명 = /glossary/<슬러그>. 영문 kebab-case, 변경 시 URL 변경)' } }),
+        order: fields.integer({
+          label: '정렬 순서',
+          description: '용어 사전 페이지에서 카테고리 안 표시 순서(오름차순).',
+          validation: { isRequired: true },
+        }),
+        category: fields.select({
+          label: '카테고리',
+          options: [
+            { label: 'AI 기술 (ai)', value: 'ai' },
+            { label: '데이터 분석 (analytics)', value: 'analytics' },
+            { label: '리테일 (retail)', value: 'retail' },
+            { label: '매장 운영 (operations)', value: 'operations' },
+          ],
+          defaultValue: 'analytics',
+        }),
+        englishTitle: fields.text({
+          label: '영문 명칭 (englishTitle)',
+          description: '카드·상세 부제로 노출. 예: Store Heatmap',
+          validation: { isRequired: true },
+        }),
+        title: localized('용어명 (title)'),
+        tagline: localized('한 줄 요약 (tagline)'),
+        definition: localized('핵심 정의 (definition · DefinedTerm JSON-LD 소비 — AEO 핵심)'),
+        relatedTerms: fields.array(fields.text({ label: '용어 슬러그' }), {
+          label: '관련 용어 (glossary 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
+        relatedIndustries: fields.array(fields.text({ label: '업종 슬러그' }), {
+          label: '관련 업종 (industry 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
+        saaiUsage: fields.text({
+          label: 'SAAI에서의 활용 (KO)',
+          description: '상세 하단 다크 박스 본문.',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        metaDescription: fields.text({
+          label: '메타 설명 (KO · 검색결과 스니펫)',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        body: fields.array(
+          fields.object({
+            heading: fields.text({ label: '소제목 (heading)' }),
+            paragraphs: fields.array(fields.text({ label: '문단', multiline: true }), {
+              label: '문단들',
+              itemLabel: (p) => p.value.slice(0, 40),
+            }),
+          }),
+          { label: '본문 섹션 (KO)', itemLabel: (p) => p.fields.heading.value || '섹션' },
+        ),
       },
     }),
   },

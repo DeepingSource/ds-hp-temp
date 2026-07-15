@@ -1,0 +1,37 @@
+slug: pos-data-limitations
+order: 18
+category: analytics
+englishTitle: Limitations of POS Data
+title:
+  ko: POS 데이터의 한계
+  en: Limitations of POS Data
+  jp: POSデータの限界
+tagline:
+  ko: 결제된 것만 아는 POS, 놓치는 데이터가 더 많다
+  en: POS knows only what was paid for — far more data goes unrecorded
+  jp: 決済されたものしか分からないPOSは、取りこぼすデータの方が多いのです
+definition:
+  ko: POS(Point of Sale) 데이터는 실제로 결제가 완료된 거래 기록만을 포함합니다. 방문했지만 구매하지 않은 고객, 집었다가 내려놓은 상품, 진열대가 비어 팔리지 못한 손실은 POS에 기록되지 않습니다. 이 "보이지 않는 데이터"가 매장 개선의 핵심입니다.
+  en: POS (Point of Sale) data includes only records of transactions that were actually completed. Customers who visited but did not buy, products picked up and put back down, and losses from shelves that sat empty and unsold are never recorded in POS. This “invisible data” is the key to store improvement.
+  jp: POS（Point of Sale）データには、実際に決済が完了した取引記録のみが含まれます。来店したが購入しなかった顧客、手に取って戻した商品、陳列棚が空いて売れなかった損失は、POSには記録されません。この「見えないデータ」こそが店舗改善の鍵です。
+relatedTerms:
+  - purchase-conversion-rate
+  - stockout-detection
+  - footfall-analysis
+  - behavior-analysis
+relatedIndustries:
+  - convenience
+  - mart
+  - drugstore
+saaiUsage: SAAI store insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. "방문자 수 대비 매출"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.
+metaDescription: POS 데이터의 한계란? 결제된 것만 아는 POS로는 놓치는 고객 행동 데이터. AI 분석으로 POS 사각지대를 채우고 매출 손실 원인을 찾는 방법을 설명합니다.
+body:
+  - heading: POS가 알려주지 못하는 것들
+    paragraphs:
+      - "**미결제 이탈**: 계산대 앞 대기열이 길어 결제를 포기한 고객은 POS에 흔적이 없습니다. 이 고객이 얼마나 자주, 어떤 요인으로 이탈하는지 알아야 계산대 운영을 최적화할 수 있습니다."
+      - "**집고 내려놓은 상품**: 가격이나 용량을 보고 구매를 포기한 행동은 POS에 기록되지 않습니다. 하지만 이 데이터야말로 가격 조정과 패키지 개선의 가장 직접적인 신호입니다."
+      - "**결품 손실**: 재고가 있는데 진열이 안 되어 팔리지 못한 경우, 또는 실제 결품으로 기회 손실이 발생한 경우—POS는 이 두 가지를 구별할 수 없습니다."
+  - heading: AI 데이터로 POS 한계 보완하기
+    paragraphs:
+      - CCTV AI 분석은 POS 데이터의 "결과"와 매장 내 "과정"을 연결합니다. 특정 날 매출이 낮았다면 POS는 "그랬다"는 사실만 알려줍니다. AI 데이터는 "그 날 방문자가 적었는지, 방문자는 많았는데 전환율이 낮았는지, 결품이 많았는지"를 구별해줍니다.
+      - 이 맥락 데이터가 있어야 개선 방향을 정확히 설정할 수 있습니다. 방문자가 적었다면 마케팅을 강화하고, 전환율이 낮았다면 진열을 바꾸고, 결품이 많았다면 발주 체계를 점검하는 식입니다.

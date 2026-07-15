@@ -1,0 +1,36 @@
+slug: behavior-analysis
+order: 12
+category: analytics
+englishTitle: Customer Behavior Analysis
+title:
+  ko: 고객 행동 분석
+  en: Customer Behavior Analysis
+  jp: 顧客行動分析
+tagline:
+  ko: 고객이 매장에서 무엇을 하는지 데이터로 이해하는 분석 방법
+  en: An analytical method to understand, through data, what customers do in store
+  jp: 顧客が店舗内で何をしているかをデータで理解する分析手法です
+definition:
+  ko: 고객 행동 분석(Customer Behavior Analysis)이란 매장을 방문한 고객의 이동 경로, 체류 패턴, 상품 접촉 행동, 구매 결정 과정을 데이터로 수집하고 분석하는 방법입니다. 고객 설문이나 POS 데이터만으로는 파악하기 어려운 현장에서의 실제 행동을 AI 카메라로 포착합니다.
+  en: Customer behavior analysis is a method of collecting and analyzing, as data, the movement paths, dwell patterns, product-contact behavior, and purchase-decision process of customers who visit a store. AI cameras capture the actual in-store behavior that is difficult to grasp through surveys or POS data alone.
+  jp: 顧客行動分析（Customer Behavior Analysis）とは、店舗を訪れた顧客の移動経路・滞在パターン・商品への接触行動・購買決定のプロセスをデータとして収集し分析する手法です。アンケートやPOSデータだけでは把握しにくい現場での実際の行動を、AIカメラで捉えます。
+relatedTerms:
+  - store-heatmap
+  - dwell-time
+  - purchase-conversion-rate
+  - footfall-analysis
+relatedIndustries:
+  - convenience
+  - drugstore
+  - mart
+saaiUsage: SAAI의 store insight는 방문객 동선, 구역별 체류 패턴, 상품 픽업 행동을 종합한 고객 행동 리포트를 주간·월간으로 자동 생성합니다. 익명화 처리로 개인정보 없이 행동 패턴만 분석하며, A/B 테스트 형태로 진열 개편 전후 효과를 비교 분석합니다.
+metaDescription: 고객 행동 분석이란? 매장에서 고객의 이동·체류·상품 접촉 행동을 데이터로 파악하는 방법. AI 카메라 기반 분석으로 매출을 높이는 실용 가이드.
+body:
+  - heading: 왜 고객 행동을 직접 관찰해야 하는가
+    paragraphs:
+      - "\"고객이 왜 사지 않았는가\"는 가장 중요하지만 가장 답하기 어려운 질문입니다. 구매하지 않은 고객은 설문에 응하지 않고, 구매한 고객도 자신의 구매 동기를 정확히 설명하지 못할 수 있습니다. 직접 행동 데이터만이 진실을 담습니다."
+      - 매장 방문 후 구매하지 않은 고객의 행동을 분석하면 "어느 구역에서 멈췄는지", "어떤 상품을 집었다 내려놓았는지"를 알 수 있습니다. 이 데이터는 진열, 가격, 상품 구성 개선의 직접적인 근거가 됩니다.
+  - heading: 행동 분석 데이터의 활용 범위
+    paragraphs:
+      - 단순한 체류 시간과 동선 분석을 넘어, 고객 행동 분석은 마케팅 효과 측정에도 활용됩니다. 특정 POP(Point of Purchase) 광고물이 설치된 후 해당 구역의 방문률과 체류 시간이 증가했다면 해당 광고의 효과가 입증된 것입니다.
+      - 매장 직원의 고객 응대가 구매 전환에 미치는 영향도 분석 가능합니다. 직원이 고객에게 먼저 접근했을 때와 그렇지 않을 때의 구매율 차이를 측정해 서비스 표준을 수립할 수 있습니다.

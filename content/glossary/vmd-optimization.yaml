@@ -1,0 +1,36 @@
+slug: vmd-optimization
+order: 10
+category: retail
+englishTitle: Visual Merchandising (VMD) Optimization
+title:
+  ko: VMD 최적화
+  en: Visual Merchandising (VMD) Optimization
+  jp: VMD最適化
+tagline:
+  ko: 데이터 기반으로 상품 진열과 매장 연출을 과학적으로 개선하는 방법
+  en: A data-driven, scientific approach to improving product display and store presentation
+  jp: データに基づき、商品陳列と店舗演出を科学的に改善する手法です
+definition:
+  ko: VMD(Visual Merchandising) 최적화란 상품 진열, 사인물 배치, 동선 설계 등 매장의 시각적 연출이 실제로 고객 행동에 미치는 영향을 데이터로 측정하고 개선하는 과정입니다. 직관이나 경험에 의존하던 진열 결정을 AI 분석 데이터로 검증하고 개선합니다.
+  en: VMD (Visual Merchandising) optimization is the process of measuring, with data, how a store’s visual presentation — product display, signage placement, traffic-flow design — actually influences customer behavior, and improving it accordingly. Merchandising decisions once made on intuition and experience are validated and refined with AI analytics data.
+  jp: VMD（Visual Merchandising）最適化とは、商品陳列・サイン配置・動線設計など店舗の視覚的演出が実際に顧客行動へ及ぼす影響をデータで測定し、改善していくプロセスです。直感や経験に頼っていた陳列の判断を、AI分析データで検証し改善します。
+relatedTerms:
+  - store-heatmap
+  - dwell-time
+  - zone-analysis
+  - purchase-conversion-rate
+relatedIndustries:
+  - drugstore
+  - convenience
+  - mart
+saaiUsage: SAAI store insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. store agent는 분석 결과를 바탕으로 "B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요"와 같은 actionable 알림을 자동으로 전송합니다.
+metaDescription: VMD 최적화란? 상품 진열 효과를 데이터로 측정하고 개선하는 방법. 드럭스토어·편의점·마트에서 AI 분석으로 VMD를 과학적으로 관리하는 법을 알아보세요.
+body:
+  - heading: VMD의 데이터화가 중요한 이유
+    paragraphs:
+      - 전통적인 VMD는 MD 담당자의 경험과 브랜드 가이드라인에 의존합니다. 이 방식은 일관성은 있지만 "우리 매장의 특정 고객에게 실제로 효과적인가"를 검증하기 어렵습니다.
+      - 데이터 기반 VMD는 진열 변경 전후의 고객 체류 시간, 상품 픽업률, 구매 전환율을 비교해 A/B 테스트를 수행하는 것과 같습니다. 어떤 배치가 우리 매장 고객에게 더 효과적인지 숫자로 증명할 수 있습니다.
+  - heading: VMD 최적화의 실제 적용
+    paragraphs:
+      - 드럭스토어에서는 테스터 상품 위치를 바꾼 후 해당 구역의 체류 시간과 픽업률이 어떻게 변화했는지 측정합니다. 효과가 없다면 원상복구, 효과가 있다면 다른 구역에 동일 전략을 적용합니다.
+      - 편의점에서는 계산대 앞 충동구매 구역의 상품 배치를 주기적으로 변경하면서 충동 구매율 변화를 측정합니다. 어떤 상품 카테고리가 최고의 충동 구매율을 보이는지 데이터로 파악합니다.

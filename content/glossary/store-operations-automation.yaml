@@ -1,0 +1,36 @@
+slug: store-operations-automation
+order: 16
+category: operations
+englishTitle: Store Operations Automation
+title:
+  ko: 매장 운영 자동화
+  en: Store Operations Automation
+  jp: 店舗運営自動化
+tagline:
+  ko: 반복적인 매장 점검과 대응을 AI가 자동으로 처리하는 운영 방식
+  en: An operating model in which AI automatically handles repetitive store checks and responses
+  jp: 繰り返しの店舗点検や対応をAIが自動で処理する運営方式です
+definition:
+  ko: 매장 운영 자동화(Store Operations Automation)란 결품 확인, 이상 상황 모니터링, 고객 흐름 분석, 발주 제안 등 반복적으로 수행해야 하는 매장 운영 업무를 AI 시스템이 자동으로 처리하는 것입니다. 사람이 직접 순찰하거나 영상을 확인하는 시간을 줄이고 데이터 기반 의사결정을 빠르게 내릴 수 있습니다.
+  en: Store operations automation is the use of an AI system to automatically handle the repetitive store-operations tasks that must be performed routinely — stockout checks, abnormal-situation monitoring, customer-flow analysis, and ordering suggestions. It reduces the time spent patrolling or reviewing footage in person and enables faster, data-driven decisions.
+  jp: 店舗運営自動化（Store Operations Automation）とは、欠品確認・異常状況のモニタリング・顧客の流れの分析・発注提案など、繰り返し行う必要のある店舗運営業務をAIシステムが自動で処理することです。人が直接巡回したり映像を確認したりする時間を減らし、データに基づく意思決定を迅速に下せます。
+relatedTerms:
+  - retail-ai
+  - anomaly-detection
+  - stockout-detection
+  - behavior-analysis
+relatedIndustries:
+  - convenience
+  - unmanned
+  - mart
+saaiUsage: SAAI store agent는 store care의 실시간 감지 데이터와 store insight의 패턴 분석을 결합해 actionable 알림을 자동 발송합니다. 운영자는 매일 아침 전날 야간 이상 요약, 결품 발생 현황, 금일 혼잡 예측이 담긴 리포트를 앱으로 받아볼 수 있습니다.
+metaDescription: 매장 운영 자동화란? AI가 결품 확인, 이상 감지, 혼잡 모니터링 등 반복 업무를 자동 처리하는 방식. 점주가 중요한 결정에 집중할 수 있도록 돕는 AI 솔루션.
+body:
+  - heading: 자동화가 필요한 매장 운영 업무들
+    paragraphs:
+      - 점주와 매장 관리자가 매일 수행하는 업무 중 상당 부분은 반복적인 확인 작업입니다. 진열 상태 확인, 야간 CCTV 영상 체크, 혼잡 구역 파악, 청결 상태 확인 등은 시간과 노동력을 소모하지만 부가가치가 낮습니다.
+      - AI 자동화는 이런 반복 업무를 24시간 자동으로 수행하고, "이상이 있을 때만" 알림을 줍니다. 점주는 모든 것을 직접 확인하는 대신 중요한 결정에 집중할 수 있습니다.
+  - heading: 자동화의 범위와 한계
+    paragraphs:
+      - "현재 매장 AI 자동화가 잘 작동하는 영역: 이상 감지 알림, 결품 알림, 혼잡도 모니터링, 주간·월간 성과 리포트 자동 생성."
+      - "여전히 사람의 판단이 필요한 영역: 고객 응대, 복잡한 공급업체 협상, 신상품 선정, 인테리어 전략 결정. AI 자동화는 정형적이고 반복적인 업무에서 가장 높은 ROI를 냅니다."

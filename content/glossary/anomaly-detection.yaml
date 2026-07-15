@@ -1,0 +1,36 @@
+slug: anomaly-detection
+order: 6
+category: ai
+englishTitle: Anomaly Detection
+title:
+  ko: 이상 감지 (Anomaly Detection)
+  en: Anomaly Detection
+  jp: 異常検知 (Anomaly Detection)
+tagline:
+  ko: AI가 정상 패턴을 학습해 비정상 상황을 자동으로 탐지하는 기술
+  en: AI that learns normal patterns to automatically flag abnormal situations
+  jp: AIが正常なパターンを学習し、異常な状況を自動で検知する技術です
+definition:
+  ko: 이상 감지(Anomaly Detection)란 AI가 정상적인 패턴을 학습한 후, 그 패턴에서 벗어나는 비정상적인 상황을 실시간으로 탐지해 알림을 발생시키는 기술입니다. 매장 환경에서는 무인 시간대 침입, 장시간 배회, 쓰러짐, 기물 파손 등의 이상 행동을 감지하는 데 활용됩니다.
+  en: Anomaly detection is a technology in which AI learns normal patterns and then detects, in real time, abnormal situations that deviate from those patterns, raising alerts. In a store environment, it is used to detect anomalous behavior such as intrusion during unattended hours, prolonged loitering, falls, and vandalism.
+  jp: 異常検知（Anomaly Detection）とは、AIが正常なパターンを学習したうえで、そのパターンから外れる異常な状況をリアルタイムで検知し、アラートを発する技術です。店舗環境では、無人時間帯の侵入、長時間の徘徊、転倒、器物破損などの異常行動の検知に活用されます。
+relatedTerms:
+  - computer-vision
+  - anonymized-cctv
+  - night-monitoring
+  - cctv-analytics
+relatedIndustries:
+  - unmanned
+  - convenience
+  - logistics
+saaiUsage: SAAI store care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.
+metaDescription: 이상 감지(Anomaly Detection)란? AI가 비정상 상황을 자동 탐지하는 기술. 무인매장·편의점 야간 도난·사고 예방에 활용하는 방법을 알아보세요.
+body:
+  - heading: 이상 감지가 필요한 매장 상황
+    paragraphs:
+      - 무인매장·편의점 심야 운영, 창고·물류센터에서는 실시간 모니터링 인력이 없는 상황이 일반적입니다. 사고나 도난이 발생해도 다음날 출근 시 CCTV를 직접 확인해야 알 수 있어 대응이 늦어집니다.
+      - AI 이상 감지는 24시간 카메라 영상을 분석해 미리 정의된 이상 행동 패턴이 감지되면 실시간으로 문자·앱 알림을 전송합니다. 운영자가 잠든 새벽에도 실시간 대응이 가능해집니다.
+  - heading: 이상 감지 AI의 작동 원리
+    paragraphs:
+      - 딥러닝 기반 이상 감지 모델은 수천 시간의 정상 매장 영상을 학습해 "일반적인 행동 범위"를 구성합니다. 특정 구역에 허용 시간 이상 체류하거나, 특이한 이동 패턴, 쓰러지는 동작 등이 감지되면 이상 이벤트로 분류합니다.
+      - 단순 움직임 감지(Motion Detection)와의 차이는 "의미 있는" 이상만을 필터링한다는 점입니다. 냉방기 바람에 흔들리는 배너나 배달 직원의 정상적인 이동은 정상으로 처리해 오경보를 최소화합니다.

@@ -1,0 +1,37 @@
+slug: dwell-time
+order: 3
+category: analytics
+englishTitle: Dwell Time Analysis
+title:
+  ko: 체류 시간 분석
+  en: Dwell Time Analysis
+  jp: 滞在時間分析
+tagline:
+  ko: 고객이 특정 공간에 머문 시간으로 관심도를 측정하는 지표
+  en: A metric that gauges interest by how long customers stay in a given space
+  jp: 顧客が特定の空間に滞在した時間で関心度を測る指標です
+definition:
+  ko: 체류 시간(Dwell Time)이란 고객이 매장 또는 매장 내 특정 구역에 머문 총 시간을 의미합니다. 체류 시간이 길수록 해당 공간에 대한 관심도나 구매 고민이 높다고 해석할 수 있으며, 이를 분석해 매장 레이아웃과 진열 전략을 최적화합니다.
+  en: Dwell time refers to the total time a customer spends in a store or in a specific zone within it. Longer dwell time can be read as higher interest in that space or greater consideration to purchase, and analyzing it helps optimize store layout and merchandising strategy.
+  jp: 滞在時間（Dwell Time）とは、顧客が店舗または店舗内の特定エリアに滞在した合計時間を指します。滞在時間が長いほど、その空間への関心や購買検討が高いと解釈でき、これを分析することで店舗レイアウトや陳列戦略を最適化できます。
+relatedTerms:
+  - store-heatmap
+  - zone-analysis
+  - seat-turnover-rate
+  - footfall-analysis
+relatedIndustries:
+  - cafe
+  - exhibition
+  - drugstore
+saaiUsage: SAAI store insight는 구역별 체류 시간을 자동 측정해 시간대, 요일, 이벤트 전후 비교를 실시간 대시보드로 제공합니다. store care의 실시간 감지 데이터를 기반으로 평균 체류 시간, 최장 체류 위치, 구역 이탈률 등 다차원 분석이 가능합니다.
+metaDescription: 체류 시간 분석이란? 고객이 특정 구역에 머문 시간으로 관심도를 측정하는 핵심 리테일 지표. 매장 레이아웃 최적화와 매출 개선에 활용하는 방법을 설명합니다.
+body:
+  - heading: 체류 시간이 매출에 미치는 영향
+    paragraphs:
+      - 소매 업계 연구에 따르면 매장 내 평균 체류 시간이 1분 늘어날 때 구매 금액이 약 2–3% 증가하는 상관관계가 있습니다. 체류 시간은 단순한 방문 데이터가 아니라 구매 의도의 선행 지표입니다.
+      - 반면 특정 구역에서의 체류 시간이 지나치게 짧다면 해당 상품에 관심을 가졌지만 구매하지 않았거나, 심지어 관심을 갖기 전에 이동했다는 의미일 수 있습니다. 이는 진열 위치나 상품 구성을 재검토해야 한다는 신호입니다.
+  - heading: 체류 시간 분석의 실제 활용
+    paragraphs:
+      - 카페·음식점에서는 테이블별 체류 시간을 측정해 좌석 회전율을 파악합니다. 특정 테이블의 회전율이 현저히 낮다면 위치, 조명, 소음 등 환경 요인을 점검할 수 있습니다.
+      - 전시 공간에서는 부스별 평균 체류 시간으로 어떤 전시물이 가장 주목받는지 정량적으로 측정합니다. 행사 후 데이터를 분석해 다음 기획에 반영할 수 있습니다.
+      - 편의점·드럭스토어에서는 고마진 상품 구역의 체류 시간을 높이는 것이 매출 증대의 핵심 전략입니다. 샘플·테스터 배치, 동선 설계가 체류 시간에 직접적인 영향을 줍니다.

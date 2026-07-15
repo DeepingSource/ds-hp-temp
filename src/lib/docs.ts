@@ -48,6 +48,15 @@ export function getDocStaticSlugs(locale: Locale): string[] {
   return getDocsForLocale(locale).map((d) => logicalDocSlug(d.slug));
 }
 
+/**
+ * Docs that reference a glossary term via their `relatedTerms` (DOCS_WIKI_PLAN Phase 3
+ * reverse link — the glossary→docs half of the cross-link graph). Locale-resolved with
+ * Korean fallback, in the same section→order the sidebar uses.
+ */
+export function getDocsUsingTerm(termSlug: string, locale: Locale): Doc[] {
+  return getDocsForLocale(locale).filter((d) => d.relatedTerms.includes(termSlug));
+}
+
 /** Prev/next within the same section→order flat ordering (IA-2 auto navigation). */
 export function getAdjacentDocs(logicalSlug: string, locale: Locale): { prev?: Doc; next?: Doc } {
   const list = getDocsForLocale(locale);

@@ -1,0 +1,36 @@
+slug: anonymized-cctv
+order: 2
+category: ai
+englishTitle: Anonymized CCTV Analytics
+title:
+  ko: 익명화 CCTV 분석
+  en: Anonymized CCTV Analytics
+  jp: 匿名化CCTV分析
+tagline:
+  ko: 얼굴·개인정보 없이 행동 패턴만 추출하는 AI 분석 기술
+  en: AI that extracts only behavioral patterns, without faces or personal data
+  jp: 顔や個人情報を扱わず、行動パターンのみを抽出するAI分析技術です
+definition:
+  ko: 익명화 CCTV 분석이란 CCTV 영상에서 개인을 식별할 수 있는 정보(얼굴, 이름, 번호판 등)를 AI가 자동으로 제거하거나 처리하지 않고, 위치·이동·체류 등 행동 패턴 데이터만 추출하는 기술입니다. 개인정보보호법을 준수하면서 매장 분석에 필요한 인사이트를 확보할 수 있습니다.
+  en: Anonymized CCTV analytics is a technology in which AI extracts only behavioral data — such as location, movement, and dwell — from CCTV footage, without capturing or processing personally identifiable information like faces, names, or license plates. It secures the insights needed for store analysis while remaining compliant with privacy regulations.
+  jp: 匿名化CCTV分析とは、CCTV映像から顔・氏名・ナンバープレートなどの個人を特定できる情報を取得・処理せず、位置・移動・滞在といった行動パターンのデータのみを抽出する技術です。個人情報保護法を遵守しながら、店舗分析に必要なインサイトを確保できます。
+relatedTerms:
+  - computer-vision
+  - store-heatmap
+  - cctv-analytics
+  - retail-ai
+relatedIndustries:
+  - convenience
+  - unmanned
+  - logistics
+saaiUsage: SAAI의 모든 제품(store care, store insight, store agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.
+metaDescription: 익명화 CCTV 분석이란? 얼굴·개인정보 없이 행동 패턴만 추출하는 AI 기술. 개인정보보호법 준수 방법과 매장 분석에 활용하는 법을 알아보세요.
+body:
+  - heading: 익명화 CCTV가 필요한 법적 배경
+    paragraphs:
+      - 국내 개인정보보호법에 따르면 CCTV로 특정인을 식별하거나 그 영상을 분석·보관하려면 정보주체의 동의가 필요합니다. 불특정 다수가 방문하는 매장에서 개별 동의를 받는 것은 현실적으로 불가능합니다.
+      - 익명화 AI는 이 문제를 근본적으로 해결합니다. 영상에서 "어떤 사람"이 아닌 "어떤 행동"만을 추출하기 때문에 개인정보에 해당하는 데이터 자체를 수집하지 않습니다. 법적 리스크 없이 매장 운영 데이터를 확보할 수 있는 이유입니다.
+  - heading: 익명화 처리의 기술적 원리
+    paragraphs:
+      - AI 모델은 영상 내 사람을 감지하되 얼굴 특징점을 추출하지 않습니다. 대신 실루엣·골격(스켈레톤) 또는 바운딩 박스로 사람의 위치와 이동만을 분석합니다. 이 데이터는 좌표값과 타임스탬프로만 구성되어 있어 원본 영상과 연결해도 개인 식별이 불가합니다.
+      - 고급 익명화 시스템은 실시간 엣지 처리(카메라 또는 로컬 서버)를 통해 원본 영상이 외부 서버로 전송되기 전 모든 식별 가능 정보를 제거합니다. SAAI의 경우 원본 CCTV 영상은 매장 내 장치에만 머물고, 분석된 행동 데이터만 암호화되어 클라우드로 전송됩니다.

@@ -1,0 +1,35 @@
+slug: crowd-density-analysis
+order: 13
+category: analytics
+englishTitle: Crowd Density Analysis
+title:
+  ko: 혼잡도 분석
+  en: Crowd Density Analysis
+  jp: 混雑度分析
+tagline:
+  ko: 공간별 인구 밀도를 실시간으로 측정해 혼잡을 사전에 관리
+  en: Measuring density per space in real time to manage congestion proactively
+  jp: 空間ごとの人口密度をリアルタイムで測定し、混雑を事前に管理します
+definition:
+  ko: 혼잡도 분석(Crowd Density Analysis)이란 매장이나 특정 구역에 동시에 존재하는 사람의 수와 밀도를 실시간으로 측정하는 분석입니다. 혼잡 상황을 사전에 감지해 입장 제한, 인력 배치, 동선 분산 등의 조치를 취할 수 있습니다.
+  en: Crowd density analysis measures, in real time, the number and density of people present simultaneously in a store or a specific zone. By detecting congestion in advance, operators can take measures such as entry limits, staff deployment, and traffic-flow dispersion.
+  jp: 混雑度分析（Crowd Density Analysis）とは、店舗や特定エリアに同時に存在する人数と密度をリアルタイムで測定する分析です。混雑状況を事前に検知し、入場制限・人員配置・動線分散などの対応を取ることができます。
+relatedTerms:
+  - footfall-analysis
+  - zone-analysis
+  - anomaly-detection
+relatedIndustries:
+  - mart
+  - exhibition
+  - logistics
+saaiUsage: "SAAI store care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. store insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다."
+metaDescription: 혼잡도 분석이란? 매장 구역별 인구 밀도를 실시간으로 측정하는 기술. 대형마트·전시 공간·물류센터에서 혼잡을 사전에 관리하는 방법을 알아보세요.
+body:
+  - heading: 혼잡도 관리가 필요한 이유
+    paragraphs:
+      - 혼잡한 매장은 고객 경험을 저하시키고 구매 포기율을 높입니다. 계산대 앞에 5명 이상이 줄을 서면 상당수 고객이 그냥 나간다는 연구 결과가 있습니다. 혼잡도 데이터가 있으면 추가 계산대를 언제 열어야 하는지 예측할 수 있습니다.
+      - 전시 공간·행사장에서는 특정 부스의 과도한 집중이 다른 구역의 고객 경험을 방해합니다. 실시간 혼잡도 데이터로 스태프 배치와 안내 방송을 통해 흐름을 분산시킬 수 있습니다.
+  - heading: 운영에서의 실제 활용 사례
+    paragraphs:
+      - 대형마트에서 혼잡도 분석을 활용하면 요일·시간대별 혼잡 예측 모델을 만들 수 있습니다. 이를 바탕으로 직원 스케줄링, 계산대 운영 계획, 쇼핑 카트 배치를 최적화합니다.
+      - 물류센터에서는 구역별 작업자 밀집도를 모니터링해 특정 구역에 너무 많은 인원이 집중되는 상황을 방지합니다. 안전 사고 예방과 작업 효율 향상에 동시에 기여합니다.
