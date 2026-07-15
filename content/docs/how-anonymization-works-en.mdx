@@ -1,0 +1,58 @@
+---
+slug: "how-anonymization-works-en"
+title: "How Anonymization Works"
+excerpt: "Explains how CCTV footage is anonymized in real time and how analysis is performed on top of it."
+section: "privacy"
+order: 1
+icon: "ShieldCheck"
+lang: "en"
+draft: false
+relatedSlugs: []
+---
+
+Explains how CCTV footage is anonymized in real time and how analysis is performed on top of it. You can also find the technical background in the Anonymizer section of the technology overview page.
+
+## Erased Before It Is Read
+
+Vision AI ultimately looks at people. The moment it looks at a person, that information becomes personal data and falls under regulations such as GDPR, CCPA, and Korea's Personal Information Protection Act. DeepingSource solves this problem by **erasing identity at the point of input**. All analysis begins only on top of anonymized data.
+
+## If the Original Is Left As Is
+
+### If the original footage is kept
+
+- Faces and identities remain in the original footage.
+- Many people are exposed without consent.
+- The longer the retention period, the greater the regulatory risk.
+- In the end, you either give up on analysis or keep bearing the burden of the original footage.
+
+### If anonymization is applied
+
+- Identity is removed at the point of input.
+- Many people are protected simultaneously without a consent process.
+- The original footage is not retained.
+- The movement information needed for analysis is retained at original quality.
+
+## How It Is Erased
+
+- **Anonymization at the point of input** — The moment footage arrives, identity is erased before it is read. All subsequent analysis is performed only on top of anonymized data.
+- **Protection without consent** — Even when multiple people appear on a single screen, they are anonymized simultaneously. Everyone passing through the store is protected without an individual consent process.
+- **No retention of the original** — The original footage prior to anonymization is not stored anywhere in the system.
+
+## Analysis on Top of Anonymization
+
+After anonymization, we look at **"what and how," not "who."** Behavioral information such as detection, posture, and crowd density is read from a single video, and information scattered across multiple cameras is aligned into a single store space, so that even as cameras change, the same person's path is tracked continuously while remaining anonymous. At no point in this entire process is identity restored.
+
+## Why It Is Safe
+
+Because personally identifiable information is never created in the first place, it fundamentally reduces the risks addressed by major regulations such as GDPR (EU), CCPA (California, USA), and the Personal Information Protection Act (Korea). The relationship with regional regulations is covered in more detail in the compliance document.
+
+## Frequently Asked Questions
+
+### Can the original footage before anonymization be viewed again later?
+No. The original footage is not stored during the anonymization process, so it cannot be restored and viewed afterward.
+
+### Can the same person still be tracked while anonymized?
+Yes. Even without knowing the identity, the same person's path can be tracked while remaining anonymous.
+
+### Are employees and customers anonymized separately?
+Depending on the analysis purpose, data can be distinguished on a zone- or role-based basis. Store-specific settings are discussed together at the time of deployment.

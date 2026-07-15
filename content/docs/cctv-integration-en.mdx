@@ -1,0 +1,56 @@
+---
+slug: "cctv-integration-en"
+title: "CCTV Integration"
+excerpt: "A guide to connecting your existing CCTV cameras to the DeepingSource anonymization analytics pipeline."
+section: "integration"
+order: 1
+icon: "Camera"
+lang: "en"
+draft: false
+relatedSlugs: ["environment-requirements"]
+---
+
+This guide explains how to connect your existing CCTV cameras to the DeepingSource anonymization analytics pipeline. The exact configuration for each site is confirmed together during the pre-inspection step of the onboarding process.
+
+## Integration Principles
+
+CCTV integration is **not about installing new cameras, but about connecting the video streams of your existing cameras to the analytics pipeline**. Video from the cameras is anonymized in real time before it is stored, and the original footage itself does not remain in the DeepingSource system.
+
+## Integration Flow
+
+The path from video to report goes through the following flow.
+
+1. Video streams are pulled from the store's CCTV (or NVR/DVR).
+2. AI anonymizes the people in the video in real time — personally identifiable information such as faces is removed, and only behavioral attributes such as movement and dwell remain.
+3. The anonymized data is transmitted to and stored on the analytics server. The original footage is not retained during this process.
+4. Based on the accumulated data, reports are generated in the dashboard.
+
+## Integration Methods
+
+- Most stores integrate by using the **video collected on the NVR/DVR** or the **stream from IP cameras** (common network camera streaming methods such as RTSP) as-is.
+- The equipment configuration required for integration may vary depending on the camera and NVR manufacturer and the store's network structure, so it is confirmed individually during the pre-inspection.
+- Integration equipment is installed to a minimum, and as a rule the process proceeds without building a separate large-scale server.
+
+## Information to Prepare
+
+Integration goes faster if your point of contact organizes the following information in advance.
+
+- **Camera and NVR list** — A list organizing the manufacturer and model, installation location, and quantity.
+- **Access credentials** — NVR/DVR administrator account or account information that can access the camera streams.
+- **Network diagram** — A simple diagram or description of how the cameras, NVR, and internet line are connected.
+- **On-site contact** — A contact who can open the door or guide equipment placement on-site on the day of installation.
+
+## Verifying the Integration
+
+Once integration is complete, your account manager checks whether each camera's stream is being received properly. After data begins to accumulate, you can view it as reports in the dashboard — see the Getting Your First Report document for details.
+
+## Frequently Asked Questions
+
+### Can old analog CCTV also be integrated?
+If it can output video over the network through an NVR/DVR, integration is often possible. The exact feasibility is confirmed during the pre-inspection.
+
+### Does CCTV recording stop during the integration work?
+As a rule, integration is set up to operate separately from your existing recording system. Store-specific exceptions are explained during the pre-inspection.
+
+### Do I need to integrate again if I replace a camera?
+Yes, if you replace a camera or NVR, you may need to recheck the integration settings. If a replacement is planned, please let us know in advance.
