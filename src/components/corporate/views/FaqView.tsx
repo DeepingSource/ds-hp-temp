@@ -1,21 +1,22 @@
 import Link from 'next/link';
 import { HelpCircle, ArrowRight } from 'lucide-react';
 import Accordion from '@/components/ui/Accordion';
-import { commonFaqs, storeCareFaqs, storeInsightFaqs, faqData } from '@/data/faq-data';
-import { faqI18n } from '@/data/faq-i18n';
+import FaqAnswer from '@/components/faq/FaqAnswer';
+import { getFaqsByGroup, faqAnswerText } from '@/lib/faq';
+import { faqGroupOrder, faqGroupMeta } from '@/data/faq/types';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { JsonLd, faqPage, nodeToText } from '@/lib/structured-data';
+import { JsonLd, faqPage } from '@/lib/structured-data';
 
 /**
  * FaqView — shared FAQ composition.
  * Rendered by `/resources/faq` (en), `/ko/resources/faq`, `/jp/resources/faq`
  * with the locale prop (PLAN_v1.1 D6 path-prefix i18n).
  *
- * Korean is the source (faq-data.tsx). en/jp answers come from the faq-i18n
- * overlay; missing locales fall back to the Korean source.
+ * Content comes from the Velite `faq` collection (content/faq/*.mdx), grouped by
+ * `group` and ordered by `order`; en/jp fall back to Korean per item.
  */
 
 const C: Record<Locale, {
@@ -63,31 +64,25 @@ const C: Record<Locale, {
 export default function FaqView({ locale }: { locale: Locale }) {
   const c = C[locale];
 
-  const storeAgentKo = faqData.flatMap((cat) => cat.items);
-
-  const sections = [
-    { id: 'common' as const, label: c.commonLabel, ko: commonFaqs, product: null },
-    { id: 'storecare' as const, label: 'store care', ko: storeCareFaqs, product: 'StoreCare' },
-    { id: 'storeinsight' as const, label: 'store insight', ko: storeInsightFaqs, product: 'StoreInsight' },
-    { id: 'storeagent' as const, label: 'store agent', ko: storeAgentKo, product: 'StoreAgent' },
-  ].map((s) => {
-    const source = locale === 'ko' ? s.ko : (faqI18n[s.id]?.[locale] ?? s.ko);
-    return {
-      id: s.id,
-      label: s.label,
-      product: s.product,
-      items: source.map((it) => ({
-        question: it.question,
-        answer: typeof it.answer === 'function' ? it.answer(locale) : it.answer,
-      })),
-    };
-  });
+  const sections = faqGroupOrder
+    .map((group) => {
+      const meta = faqGroupMeta[group];
+      const faqs = getFaqsByGroup(group, locale);
+      return {
+        id: group,
+        label: meta.label[locale],
+        product: meta.product,
+        faqs,
+        items: faqs.map((f) => ({
+          question: f.question,
+          answer: <FaqAnswer body={f.body} locale={locale} />,
+        })),
+      };
+    })
+    .filter((s) => s.items.length > 0);
 
   const faqItems = sections.flatMap((s) =>
-    s.items.map((it) => ({
-      question: it.question,
-      answer: nodeToText(it.answer).replace(/\s+/g, ' ').trim(),
-    })),
+    s.faqs.map((f) => ({ question: f.question, answer: faqAnswerText(f.body) })),
   ).filter((it) => it.answer.length > 0);
 
   return (

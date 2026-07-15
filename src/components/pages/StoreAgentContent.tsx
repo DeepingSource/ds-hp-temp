@@ -6,6 +6,8 @@ import {
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import HeroSection from '@/components/sections/HeroSection';
 import FeatureSection from '@/components/sections/FeatureSection';
+import FaqAnswer from '@/components/faq/FaqAnswer';
+import { getFaqsByGroup } from '@/lib/faq';
 
 const AgentMockupShowcase = dynamic(
   () => import('@/components/sections/AgentMockupShowcase'),
@@ -95,6 +97,11 @@ export default function StoreAgentContent({
   const ctaTitle = ctaCopy?.title ?? '승인 한 번이면, 현장에 바로 전달됩니다';
   const ctaSubtitle = ctaCopy?.subtitle ?? '사장님의 승인 한 번으로 최적화된 운영 가이드가 현장에 바로 전달되어 실행을 돕습니다';
   const storeAgentJsonLd = buildJsonLd(canonicalUrl);
+  // 미니사이트 FAQ = store agent 그룹(KO). Velite `faq` 컬렉션에서 로드.
+  const agentFaq = getFaqsByGroup('store-agent', 'ko').map((f) => ({
+    question: f.question,
+    answer: <FaqAnswer body={f.body} locale="ko" />,
+  }));
 
   return (
     <>
@@ -170,7 +177,7 @@ export default function StoreAgentContent({
       )}
 
       {/* ── S6 · FAQ ── */}
-      <FAQSection />
+      <FAQSection items={agentFaq} />
 
       {/* ── S7 · CTA ── */}
       <AnimatedSection className="relative py-20 lg:py-28 bg-slate-900 noise-overlay overflow-hidden">

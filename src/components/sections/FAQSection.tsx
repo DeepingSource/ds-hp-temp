@@ -2,11 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowRight, HelpCircle, ChevronDown } from 'lucide-react';
-import { faqData } from '@/data/faq-data';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
-
-const mainFaqItems = faqData.flatMap((cat) => cat.items).slice(0, 10);
 
 function FaqItem({ question, answer, id }: { question: string; answer: React.ReactNode; id: string }) {
   const [open, setOpen] = useState(false);
@@ -37,14 +34,14 @@ function FaqItem({ question, answer, id }: { question: string; answer: React.Rea
         style={{ gridTemplateRows: open ? '1fr' : '0fr' }}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-5 text-sm text-gray-500 leading-relaxed">{answer}</p>
+          <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed">{answer}</div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function FAQSection() {
+export default function FAQSection({ items }: { items: { question: string; answer: React.ReactNode }[] }) {
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
@@ -65,8 +62,8 @@ export default function FAQSection() {
 
           {/* FAQ 아코디언 */}
           <div className={`bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm mb-6 ${isVisible ? 'scroll-visible delay-100' : 'scroll-hidden'}`}>
-            {mainFaqItems.map((item, i) => (
-              <FaqItem key={item.question} id={`faq-home-${i}`} question={item.question} answer={typeof item.answer === 'function' ? item.answer('en') : item.answer} />
+            {items.slice(0, 10).map((item, i) => (
+              <FaqItem key={item.question} id={`faq-home-${i}`} question={item.question} answer={item.answer} />
             ))}
           </div>
 

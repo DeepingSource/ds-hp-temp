@@ -187,6 +187,7 @@ export default config({
       '블로그': ['articles'],
       '케이스스터디': ['caseStudies'],
       '제품 문서': ['docs'],
+      'FAQ': ['faq'],
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources'],
@@ -494,6 +495,43 @@ export default config({
             image: { directory: 'public/images/docs', publicPath: '/images/docs/' },
           },
         }),
+      },
+    }),
+    // FAQ — content/faq/*.mdx. 질문=frontmatter, 답변=본문(MDX). group·order 로
+    // /resources/faq 섹션·정렬 자동. 번역은 -en/-jp 접미사(질문/답변 각 로케일 파일).
+    // 답변 안의 내부 링크는 `/contact` 처럼 plain 경로로 쓰면 렌더러가 로케일화한다.
+    faq: collection({
+      label: 'FAQ',
+      path: 'content/faq/*',
+      slugField: 'slug',
+      format: { contentField: 'body' },
+      entryLayout: 'content',
+      columns: ['question', 'group', 'order', 'lang'],
+      schema: {
+        question: fields.text({ label: '질문', validation: { isRequired: true } }),
+        slug: fields.slug({ name: { label: 'URL 슬러그 (파일명. 번역은 -en/-jp 접미사)' } }),
+        group: fields.select({
+          label: '그룹 (FAQ 섹션)',
+          options: [
+            { label: '공통', value: 'common' },
+            { label: 'store care', value: 'store-care' },
+            { label: 'store insight', value: 'store-insight' },
+            { label: 'store agent', value: 'store-agent' },
+          ],
+          defaultValue: 'common',
+        }),
+        order: fields.integer({ label: '그룹 내 순서', defaultValue: 0 }),
+        lang: fields.select({
+          label: '언어',
+          options: [
+            { label: '한국어', value: 'ko' },
+            { label: 'English', value: 'en' },
+            { label: '日本語', value: 'jp' },
+          ],
+          defaultValue: 'ko',
+        }),
+        draft: fields.checkbox({ label: '초안 (노출 안 됨)', defaultValue: false }),
+        body: fields.mdx({ label: '답변', components: blogComponents }),
       },
     }),
   },

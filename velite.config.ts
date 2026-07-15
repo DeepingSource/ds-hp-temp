@@ -103,6 +103,22 @@ const docs = defineCollection({
   }),
 });
 
+/** FAQ — MDX collection (DOCS_WIKI_PLAN Phase 6-W1). content/faq/**\/*.mdx.
+ *  One entry per Q&A; body = answer MDX. Grouped by `group`, per-locale -en/-jp files. */
+const faq = defineCollection({
+  name: 'Faq',
+  pattern: 'faq/**/*.mdx',
+  schema: s.object({
+    slug: s.string(),
+    question: s.string(),
+    group: s.enum(['common', 'store-care', 'store-insight', 'store-agent']),
+    order: s.number().default(0),
+    lang: s.enum(['en', 'ko', 'jp']).default('ko'),
+    draft: s.boolean().default(false),
+    body: s.raw(),
+  }),
+});
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -111,5 +127,5 @@ export default defineConfig({
     base: '/static/',
     clean: true,
   },
-  collections: { articles, caseStudies, docs },
+  collections: { articles, caseStudies, docs, faq },
 });
