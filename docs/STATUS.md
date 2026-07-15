@@ -124,7 +124,8 @@
 
 ### ⬜ 잔여 (의도적 설계 / 데이터·사인오프 게이트)
 - **의도적 설계(변경=결정 필요)**: G4 saai 3중 의미(대문자 SAAI/소문자 saai X/saai.store 케이싱으로 이미 구분) · P2b `/products/saai` slug(타이틀은 이미 saai.store 정합) · H1 "Three stores, one flow"=3(store count=SOURCE라 의도적 제외) · G15 WordRise 등장 모션(브랜드 모티프) · H2 캐러셀 pill/콘텐츠 lag(AnimatePresence mode="wait" 트레이드오프) · H3 "remade online" 목적 카피(브랜드 SOT).
-- **데이터 게이트(실데이터 필요)**: G18 spatial-ai CES/KDDI/NVIDIA 레퍼런스 링크(실 URL) · G20 보도자료 최신화(2025-07+ 실기사) · G19 docs 허브 "coming soon"(콘텐츠/로드맵 결정) · G21a 블로그 "Insight" 배지=임포트 기사 frontmatter `category` 기본값(에디토리얼 재분류).
+- **G20 보도자료 최신화 ✅ 완료**: NewsView 3로케일 coverage에 실검증 기사 3건 추가(2026.01 이데일리 "매장 자율운영 상용화 원년" · 2025.12 IT데일리 "컴업 2025 스토어케어 공개" · 2025.07 머니투데이 "KDDI·로손 리얼×테크 로손 도쿄 1호점 참여"). 발행일·제목·URL 웹검색+WebFetch 실측 검증(지어내지 않음). 최신 항목 2025.06→2026.01.
+- **데이터 게이트(실데이터 필요)**: G18 spatial-ai CES/KDDI/NVIDIA 레퍼런스 링크(실 URL) · G19 docs 허브 "coming soon"(콘텐츠/로드맵 결정) · G21a 블로그 "Insight" 배지=임포트 기사 frontmatter `category` 기본값(에디토리얼 재분류).
 - **G10 재프레이밍**: `/thank-you`는 **KO 전용 storeagent 미니사이트** 전용(메인 사이트엔 뉴스레터 폼 없음). "/thank-you만 번역"은 무의미 → 미니사이트 전체 i18n 여부 결정 필요(대형, 보류).
 - **⚪ 조치 불필요(오탐/이미 반영)**: G13 case-studies measured/illustrative 뱃지 이미 구현 · G17 "13 vs 18 모델"=스코프된 라벨(13=라이브 오버레이 서브셋) · G1 /demo 이미 noindex(일러스트만, 저위험).
 
