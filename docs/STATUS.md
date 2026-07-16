@@ -164,10 +164,19 @@
 - **신규 콘텐츠**: insight 기능 17종 그리드+도입 3단계 · count 설치 6단계 · seal "남는 것의 전부"(로우데이터 8필드+3법 인용+2021 타임라인) · FAQ +2(동의·저장, 3로케일) · glossary 유입률(capture-rate) · 블로그 2편(점주의 하루 9장면·유입률).
 - **P2-1 허브**: /products 5단 아크(①SAAI 정의 4-up ②운영 루프 ③카테고리 키워드 ④도메인 구현 ⑤사례·CTA). SaaiView(B2C)는 유지.
 
+## 11. 후속 실행 (2026-07-16 · `4566d3b7e`→`aab0fdf96`) ✅
+
+- **ko nav 'Company'→'회사'** (Footer와 통일, 유일 ko 영문 노출 지점).
+- **EN/JP 정합 검수 패스**: 신규 카피 16영역 독립 검수 → 5건 수정 — **EN 유입률 'capture rate' 통일**(glossary 정본, inflow rate는 SEO 키워드 동의어만), Agentic AI en +optimization, 店長→店主, 個人情報保護委員会 풀네임, one- and two-person.
+- **블로그 en/jp 이관**: 점주의 하루·유입률 → en(베이스 슬러그)+jp(-jp) 4편. ⚠️블로그 mdx는 링크 자동 로케일화 없음 → 에디션별 로케일 프리픽스 수동(ko도 `/ko/` 적용).
+- **E-1 폼 다이어트 (pricing+about)**: flat 필드를 `fields.object` 섹션으로(pricing 9섹션·about 7섹션), yaml 동일 중첩 + gen-site-content 평탄화 → **생성 JSON byte-identical(sha256) 검증** — 소비처 무접촉. 나머지 싱글톤은 폼이 짧아 후속 판단.
+- **글로서리 확장 20→28** (배치 D #15-2): mtmc·edge-ai·video-anonymization·privacy-by-design·re-identification·visit-funnel·pickup-analysis·people-counting — 3로케일 + DefinedTerm JSON-LD 프리렌더 검증.
+- 확인: 배치 C #8(모델 이미지 18종)은 기수행 완료 상태.
+
 ## 잔여 항목 우선순위 제안
 
-1. **EN/JP 번역 사인오프** — 이번 콘텐츠 트랙 신규 카피(WP1~신규 콘텐츠)의 3로케일 병기 검수 (`copy:review` 스냅샷).
-2. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조.
-3. **leadership 인사 확인** — 자료 CTO(이수민) vs 사이트(CBO 금상호·VP 고봉경) 정합 후 bio 보강(§5-8) · 사회 안전 블록(§5-7)도 함께 판단.
-4. **블로그 EN/JP 이관 여부** — 신규 insight 2편은 ko만, 필요 시 -en/-jp 추가.
-5. **E-1 pricing 폼 다이어트** — 편집 UX(대형) · **D-1 프리뷰** — GitHub 로그인 환경에서 검증 가능해지면.
+1. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조. *(사용자)*
+2. **leadership 인사 확인** — 자료 CTO(이수민) vs 사이트(CBO 금상호·VP 고봉경) 정합 후 bio 보강(§5-8) · 사회 안전 블록(§5-7)도 함께 판단. *(사용자)*
+3. **EN/JP 최종 사인오프** — 기계 검수 완료, 사람 확인만 잔여. *(사용자)*
+4. **A-2 slug 이중 입력 정리** — 콘텐츠 ~400파일 마이그레이션 + Keystatic 어드민 왕복 검증 필요 → GitHub 로그인 환경에서. *(어드민 게이트)*
+5. **배치 C #4 SpatialTrajectoryMockup 모션 개선**(프로토타입→검토) · **D-1 프리뷰**(GitHub 로그인 환경) · 배치 D #9 솔루션 히어로 분화(브랜드 카피 세션 권장).
