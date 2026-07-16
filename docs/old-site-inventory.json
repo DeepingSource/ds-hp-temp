@@ -1,0 +1,827 @@
+{
+  "base": "https://www.deepingsource.io",
+  "crawledCount": 163,
+  "notes": [
+    "GET /sitemap.xml → 200 (application/rss+xml; charset=utf-8)",
+    "GET /sitemap-0.xml → 404 (text/html; charset=utf-8)",
+    "GET /sitemap_index.xml → 404 (text/html; charset=utf-8)",
+    "GET / → 200 (text/html; charset=utf-8) finalUrl=https://www.deepingsource.io/"
+  ],
+  "items": [
+    {
+      "path": "/",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/about-us",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/access-denied",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/blog",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/career",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/contact",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/about-us",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/jp/access-denied",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/blog",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/career",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/contact",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/log-in",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/jp/news",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/jp/pi-docs",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/heatmap-by-time-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/inter-zone-traffic-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/line-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/login",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/main-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/seoljeong-kategori-teseuteu",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/visitor-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/visitor-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/pi-manual/zone-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/jp/post/adapting-to-ai-company-work-as-a-new-employee",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/jp/post/all-products-are-experience-goods",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/post/deeping-source-pioneering-privacy-centric-retail-optimization-in-the-age-of-ai",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/jp/post/deeping-sources-commitment-to-safe-ai-achieving-soc2-type-2-certification",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/diving-deeper-how-heatmaps-dwell-time-and-attention-maps-revolutionize-retail-insights",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/post/enhancing-holiday-retail-strategy-with-advanced-vision-ai-technology",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/post/enhancing-retail-strategy-with-ab-test",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/how-ai-discovers-my-preferences-the-rise-of-intelligent-retail-systems",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/how-we-measure-the-experience-of-a-visiting-customer-in-a-store-visit-pass-stay-analysis",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/post/innovative-anonymization-how-deeping-source-enhances-ml-model-performance-2",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/post/knowledge-assembly",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/navigating-the-privacy-ai-paradox-with-seal",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/post/plus-insight-dashboard-zone-interest-analysis",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/post/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/jp/post/seal-a-solution-for-compliance-with-the-eu-ai-act-and-gdpr",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/post/setting-ourselves-apart-actionable-insights-redefining-retail-with-computer-vision-ai",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/post/the-birth-of-deeping-source",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/the-key-to-pleasant-brick-and-mortar-experiences",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/vision-ai-the-secret-ingredient-to-recapturing-missed-sales-opportunities-in-hypermarkets",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/post/why-anonymized-ai",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/post/why-plus-insight-is-the-plus-your-business-needs-transforming-data-into-decisions",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/privacy",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/jp/reset-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/jp/seal",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/search",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/sign-up",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/jp/store-insight",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/storeagent",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/tech-anonymizer",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/tech-spatial-ai",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/jp/tech-store-care-ai",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/jp/untitled/untitled-2",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/jp/update-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/jp/user-account",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/about-us",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/ko/access-denied",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/blog",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/career",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/contact",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/log-in",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/ko/news",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/ko/pi-docs",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/heatmap-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/heatmap-by-time-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/heatmapbytime-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/inter-zone-traffic-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/line-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/login",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/main-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/seoljeong-kategori-teseuteu",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/visitor-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/visitor-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/pi-manual/zone-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/ko/post/2024-nextrise-awards-deepingsource",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/2024-nextrise-awards-deepingsource-2",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/adapting-to-ai-company-work-as-a-new-employee",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/ko/post/all-products-are-experience-goods",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/deeping-source-pioneering-privacy-centric-retail-optimization-in-the-age-of-ai",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/ko/post/deeping-source-story-about-deeping-source-not-dipping-source",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/ko/post/deeping-sources-commitment-to-safe-ai-achieving-soc2-type-2-certification",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/diving-deeper-how-heatmaps-dwell-time-and-attention-maps-revolutionize-retail-insights",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/enhancing-holiday-retail-strategy-with-advanced-vision-ai-technology",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/post/enhancing-retail-strategy-with-ab-test",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/how-ai-discovers-my-preferences-the-rise-of-intelligent-retail-systems",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/how-we-measure-the-experience-of-a-visiting-customer-in-a-store-visit-pass-stay-analysis",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/innovative-anonymization-how-deeping-source-enhances-ml-model-performance-2",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/post/introducing-store-care-ai-revolutionizing-store-management-with-artificial-intelligence",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/knowledge-assembly",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/navigating-the-privacy-ai-paradox-with-seal",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/post/plus-insight-dashboard-zone-interest-analysis",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/ko/post/seal-a-solution-for-compliance-with-the-eu-ai-act-and-gdpr",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/post/setting-ourselves-apart-actionable-insights-redefining-retail-with-computer-vision-ai",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/post/the-birth-of-deeping-source",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/the-key-to-pleasant-brick-and-mortar-experiences",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/vision-ai-the-secret-ingredient-to-recapturing-missed-sales-opportunities-in-hypermarkets",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/post/why-anonymized-ai",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/post/why-plus-insight-is-the-plus-your-business-needs-transforming-data-into-decisions",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/privacy",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/ko/reset-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/ko/seal",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/search",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/sign-up",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/ko/store-insight",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/storeagent",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/tech-anonymizer",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/tech-spatial-ai",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/ko/tech-store-care-ai",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/ko/untitled/untitled-2",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/ko/update-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/ko/user-account",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/log-in",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/news",
+      "source": "sitemap",
+      "category": "company"
+    },
+    {
+      "path": "/pi-docs",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/heatmap-by-time-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/inter-zone-traffic-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/line-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/login",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/main-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/seoljeong-kategori-teseuteu",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/visitor-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/visitor-path-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/pi-manual/zone-analysis",
+      "source": "sitemap",
+      "category": "resources"
+    },
+    {
+      "path": "/post/adapting-to-ai-company-work-as-a-new-employee",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/all-products-are-experience-goods",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/deeping-source-pioneering-privacy-centric-retail-optimization-in-the-age-of-ai",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/deeping-sources-commitment-to-safe-ai-achieving-soc2-type-2-certification",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/diving-deeper-how-heatmaps-dwell-time-and-attention-maps-revolutionize-retail-insights",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/enhancing-holiday-retail-strategy-with-advanced-vision-ai-technology",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/enhancing-retail-strategy-with-ab-test",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/how-ai-discovers-my-preferences-the-rise-of-intelligent-retail-systems",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/how-we-measure-the-experience-of-a-visiting-customer-in-a-store-visit-pass-stay-analysis",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/innovative-anonymization-how-deeping-source-enhances-ml-model-performance-2",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/introducing-store-care-ai-revolutionizing-store-management-with-artificial-intelligence",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/knowledge-assembly",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/navigating-the-privacy-ai-paradox-with-seal",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/plus-insight-dashboard-zone-interest-analysis",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/privacy-in-machine-learning-applications-how-deeping-source-tackles-privacy-while-preserving-utility",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/seal-a-solution-for-compliance-with-the-eu-ai-act-and-gdpr",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/setting-ourselves-apart-actionable-insights-redefining-retail-with-computer-vision-ai",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/the-birth-of-deeping-source",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/the-key-to-pleasant-brick-and-mortar-experiences",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/vision-ai-the-secret-ingredient-to-recapturing-missed-sales-opportunities-in-hypermarkets",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/why-anonymized-ai",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/post/why-plus-insight-is-the-plus-your-business-needs-transforming-data-into-decisions",
+      "source": "sitemap",
+      "category": "blog"
+    },
+    {
+      "path": "/privacy",
+      "source": "sitemap",
+      "category": "legal"
+    },
+    {
+      "path": "/reset-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/seal",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/search",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/sign-up",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/store-insight",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/storeagent",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/tech-anonymizer",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/tech-spatial-ai",
+      "source": "sitemap",
+      "category": "technology"
+    },
+    {
+      "path": "/tech-store-care-ai",
+      "source": "sitemap",
+      "category": "product"
+    },
+    {
+      "path": "/untitled/untitled-2",
+      "source": "sitemap",
+      "category": "other"
+    },
+    {
+      "path": "/update-password",
+      "source": "sitemap",
+      "category": "auth"
+    },
+    {
+      "path": "/user-account",
+      "source": "sitemap",
+      "category": "product"
+    }
+  ]
+}

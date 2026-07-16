@@ -80,7 +80,10 @@ if (isGhPages) {
       { source: '/faq', destination: '/resources/faq', permanent: true },
       { source: '/storeagent/faq', destination: '/resources/faq', permanent: true },
       { source: '/pi-docs', destination: '/resources/docs', permanent: true },
-      { source: '/pi-manual/:slug', destination: '/resources/docs/:slug', permanent: true },
+      // 구 pi-manual = store insight 대시보드 매뉴얼(heatmap·zone·visitor 분석 등).
+      // 구 slug는 신 docs 컬렉션과 불일치 → 404 방지 위해 saai insight 제품 페이지로 보냄
+      // (기능 17종 섹션이 구 매뉴얼 내용을 대체). 1-1 크롤 대조로 확인.
+      { source: '/pi-manual/:slug*', destination: '/products/saai-insight', permanent: true },
 
       // ── 법무 정돈 (301) ──
       { source: '/privacy', destination: '/legal/privacy', permanent: true },
@@ -92,6 +95,45 @@ if (isGhPages) {
       { source: '/user-account', destination: 'https://app.deepingsource.io/user-account', permanent: false, basePath: false },
       { source: '/reset-password', destination: 'https://app.deepingsource.io/reset-password', permanent: false, basePath: false },
       { source: '/update-password', destination: 'https://app.deepingsource.io/update-password', permanent: false, basePath: false },
+
+      // ── 구 Webflow 로케일 프리픽스 미러 (1-1) ──
+      // 구 사이트는 /ko/·/jp/ 프리픽스를 썼으나 위 규칙은 대부분 non-prefixed source만
+      // 커버 → 크롤 대조로 발견된 로케일 버전을 목적지에 같은 프리픽스로 미러(체인 1홉).
+      { source: '/:locale(ko|jp)/store-insight', destination: '/:locale/products/saai-insight', permanent: true },
+      { source: '/:locale(ko|jp)/storeinsight', destination: '/:locale/products/saai-insight', permanent: true },
+      { source: '/:locale(ko|jp)/storecare', destination: '/:locale/products/saai-care', permanent: true },
+      { source: '/:locale(ko|jp)/storeagent', destination: '/:locale/products/saai-agent', permanent: true },
+      { source: '/:locale(ko|jp)/tech-store-care-ai', destination: '/:locale/products/saai-care', permanent: true },
+      { source: '/:locale(ko|jp)/seal', destination: '/:locale/technology/seal', permanent: true },
+      { source: '/:locale(ko|jp)/tech-anonymizer', destination: '/:locale/technology/anonymizer', permanent: true },
+      { source: '/:locale(ko|jp)/tech-spatial-ai', destination: '/:locale/technology/spatial-ai', permanent: true },
+      { source: '/:locale(ko|jp)/about', destination: '/:locale/company/about', permanent: true },
+      { source: '/:locale(ko|jp)/about-us', destination: '/:locale/company/about', permanent: true },
+      { source: '/:locale(ko|jp)/news', destination: '/:locale/company/news', permanent: true },
+      { source: '/:locale(ko|jp)/career', destination: '/:locale/company/career', permanent: true },
+      { source: '/:locale(ko|jp)/ms-agent', destination: '/:locale/company/partnership', permanent: true },
+      { source: '/:locale(ko|jp)/blog', destination: '/:locale/resources/blog', permanent: true },
+      { source: '/:locale(ko|jp)/blog/:slug', destination: '/:locale/resources/blog/:slug', permanent: true },
+      { source: '/:locale(ko|jp)/post/:slug', destination: '/:locale/resources/blog/:slug', permanent: true },
+      { source: '/:locale(ko|jp)/pi-docs', destination: '/:locale/resources/docs', permanent: true },
+      { source: '/:locale(ko|jp)/pi-manual/:slug*', destination: '/:locale/products/saai-insight', permanent: true },
+      { source: '/:locale(ko|jp)/glossary', destination: '/:locale/resources/glossary', permanent: true },
+      { source: '/:locale(ko|jp)/faq', destination: '/:locale/resources/faq', permanent: true },
+      { source: '/:locale(ko|jp)/privacy', destination: '/:locale/legal/privacy', permanent: true },
+      { source: '/:locale(ko|jp)/terms', destination: '/:locale/legal/terms', permanent: true },
+      { source: '/:locale(ko|jp)/log-in', destination: 'https://app.deepingsource.io/log-in', permanent: false, basePath: false },
+      { source: '/:locale(ko|jp)/sign-up', destination: 'https://app.deepingsource.io/sign-up', permanent: false, basePath: false },
+      { source: '/:locale(ko|jp)/user-account', destination: 'https://app.deepingsource.io/user-account', permanent: false, basePath: false },
+      { source: '/:locale(ko|jp)/reset-password', destination: 'https://app.deepingsource.io/reset-password', permanent: false, basePath: false },
+      { source: '/:locale(ko|jp)/update-password', destination: 'https://app.deepingsource.io/update-password', permanent: false, basePath: false },
+
+      // ── 구 Webflow 시스템/미완성 페이지 → 홈 (1-1) ──
+      { source: '/access-denied', destination: '/', permanent: true },
+      { source: '/search', destination: '/', permanent: true },
+      { source: '/untitled/:path*', destination: '/', permanent: true },
+      { source: '/:locale(ko|jp)/access-denied', destination: '/:locale', permanent: true },
+      { source: '/:locale(ko|jp)/search', destination: '/:locale', permanent: true },
+      { source: '/:locale(ko|jp)/untitled/:path*', destination: '/:locale', permanent: true },
     ];
   };
   nextConfig.headers = async () => {
