@@ -1,0 +1,36 @@
+slug: re-identification
+order: 25
+category: ai
+englishTitle: Re-Identification (Re-ID)
+title:
+  ko: 재식별 (Re-ID)
+  en: Re-Identification (Re-ID)
+  jp: 再識別（Re-ID）
+tagline:
+  ko: 카메라를 옮겨 다니는 같은 객체를 익명 특징으로 이어 붙이는 비전 기술 — 신원 확인과는 다릅니다
+  en: Linking the same object across cameras by anonymous features — not identity verification
+  jp: カメラをまたぐ同じオブジェクトを匿名特徴でつなぐビジョン技術 — 身元確認とは異なります
+definition:
+  ko: 재식별(Re-Identification, Re-ID)이란 서로 다른 카메라·시점에 찍힌 객체가 같은 객체인지를 외형 특징 임베딩으로 판별하는 컴퓨터 비전 기술입니다. 이름·신원을 알아내는 기술이 아니라, "3번 카메라의 A와 7번 카메라의 B가 같은 사람인가"를 익명 상태로 잇는 기술로, 멀티카메라 추적(MTMC)의 핵심 요소입니다.
+  en: Re-Identification (Re-ID) is a computer-vision technique that determines whether objects seen by different cameras are the same object, using appearance-feature embeddings. It does not reveal names or identity — it anonymously links "A on camera 3" with "B on camera 7," and is a core building block of multi-camera tracking (MTMC).
+  jp: 再識別（Re-Identification、Re-ID）とは、異なるカメラ・時点に映ったオブジェクトが同一かどうかを、外見特徴の埋め込みで判別するコンピュータビジョン技術です。名前や身元を突き止める技術ではなく、「カメラ3のAとカメラ7のBは同じ人か」を匿名のままつなぐ技術で、マルチカメラ追跡（MTMC）の中核要素です。
+relatedTerms:
+  - mtmc
+  - video-anonymization
+  - computer-vision
+  - behavior-analysis
+relatedIndustries:
+  - mart
+  - exhibition
+  - logistics
+saaiUsage: 딥핑소스의 Re-ID는 익명화된 특징만 사용합니다. 얼굴 등 신원 요소는 입력 시점에 이미 지워져 있고, 남은 외형 임베딩으로 동선을 잇습니다. 임베딩에서 개인의 신원을 되찾는 것은 불가능하도록 설계돼, "같은 객체"는 알 수 있어도 "누구"인지는 시스템 어디에도 존재하지 않습니다.
+metaDescription: 재식별(Re-ID)이란? 여러 카메라에 찍힌 같은 객체를 익명 특징으로 잇는 비전 기술. 신원 확인과의 차이와 프라이버시 설계를 설명합니다.
+body:
+  - heading: '"재식별"이라는 이름의 오해'
+    paragraphs:
+      - 용어만 보면 "누구인지 알아내는 기술"로 들리지만, 비전 분야의 Re-ID는 신원 확인(identification)과 다릅니다. 얼굴 인식이 "이 사람은 김OO"을 목표로 한다면, Re-ID는 "아까 그 객체가 지금 이 객체"를 목표로 합니다. 이름표 없이 조각을 잇는 일입니다.
+      - 다만 원본 영상 위에서 Re-ID를 돌리면 신원 정보와 결합될 여지가 남습니다. 그래서 어떤 데이터 위에서 수행하는가 — 원본인가, 익명화된 특징인가 — 가 프라이버시의 갈림길이 됩니다.
+  - heading: 익명 Re-ID가 가능하게 하는 것
+    paragraphs:
+      - 익명화된 특징만으로도 매장 분석에는 충분합니다. 입장부터 퇴장까지의 동선, 구역 간 이동, 재방문 패턴 같은 분석은 "같은 객체"만 알면 되지 "누구"인지는 필요 없기 때문입니다.
+      - 이 구분이 지켜질 때, 다점포·대형 공간의 정밀한 흐름 분석과 개인정보 보호가 동시에 성립합니다.

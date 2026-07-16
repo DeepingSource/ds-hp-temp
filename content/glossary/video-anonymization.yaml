@@ -1,0 +1,36 @@
+slug: video-anonymization
+order: 23
+category: ai
+englishTitle: Video Anonymization
+title:
+  ko: 영상 익명화
+  en: Video Anonymization
+  jp: 映像匿名化
+tagline:
+  ko: 분석에 필요한 신호만 남기고 신원을 지워, 영상을 개인정보 없이 쓰는 기술
+  en: Erasing identity while keeping the signals analysis needs — video without personal data
+  jp: 分析に必要な信号だけを残して身元を消し、映像を個人情報なしで使う技術です
+definition:
+  ko: 영상 익명화(Video Anonymization)란 영상 속 개인을 알아볼 수 있는 정보(얼굴 등 신원 요소)를 제거하면서, 움직임·자세처럼 분석에 필요한 신호는 유지하는 기술입니다. 원본 복원이 불가능한 비가역 방식이면, 익명화된 데이터는 개인정보보호법(제58조의2)·GDPR(Recital 26)·CCPA에서 개인정보로 취급되지 않습니다.
+  en: Video anonymization removes identifying elements (such as faces) from footage while preserving the signals analysis needs, like movement and pose. When irreversible, the anonymized data falls outside personal-data regimes — Korea PIPA (Article 58-2), GDPR (Recital 26), and the CCPA.
+  jp: 映像匿名化（Video Anonymization）とは、映像内の個人を識別できる情報（顔などの身元要素）を除去しながら、動きや姿勢など分析に必要な信号は維持する技術です。原本復元が不可能な非可逆方式であれば、匿名化されたデータは韓国個人情報保護法（第58条の2）・GDPR（Recital 26）・CCPAで個人情報として扱われません。
+relatedTerms:
+  - anonymized-cctv
+  - privacy-by-design
+  - edge-ai
+  - re-identification
+relatedIndustries:
+  - convenience
+  - drugstore
+  - mart
+saaiUsage: 딥핑소스의 원천 기술입니다. SEAL 엔진이 입력 시점에 메모리에서 영상을 익명화하고, 원본은 시스템 어디에도 저장하지 않습니다. 타사가 원본을 분석한 뒤 삭제하는 것과 달리 익명화가 분석보다 먼저 — 그 위에서 saai 제품군의 모든 공간 분석이 이뤄집니다. 개인정보보호위원회 유권해석(2021.08)과 법무 자문(2021.12)으로 처리 구조를 확인했습니다.
+metaDescription: 영상 익명화란? 얼굴 등 신원을 지우고 분석 신호만 남겨 CCTV 영상을 개인정보 없이 활용하는 기술. 법적 근거와 원리를 설명합니다.
+body:
+  - heading: 전체 익명화와 부분 익명화
+    paragraphs:
+      - 전체 익명화는 장면 전체를 지워 안전을 극대화합니다. 부분 익명화는 신원 영역만 강하게 지우고 동선·자세 같은 분석 신호를 남깁니다. 목적에 따라 강도를 고르는 것이지, 어느 한쪽만 정답인 것은 아닙니다.
+      - 핵심은 비가역성입니다. 픽셀을 흐리는 수준이 아니라, 분석에 필요한 최소한의 값만 남기고 파기해 원본을 되돌릴 수 없어야 "익명 정보"로 인정받을 수 있습니다.
+  - heading: 순서가 만드는 차이
+    paragraphs:
+      - 같은 "익명화"라도 순서가 다르면 결과가 다릅니다. 원본을 먼저 분석하고 나중에 삭제하는 구조에서는, 분석하는 동안 원본과 신원이 시스템 안에 존재합니다. 익명화를 첫 단계로 두면 분석 시스템은 처음부터 신원을 가진 적이 없습니다.
+      - 이 순서는 신뢰의 문제이기도 합니다. "지우겠다"는 약속보다 "애초에 갖지 않는" 구조가, 고객과 규제 기관 모두에게 검증하기 쉽습니다.

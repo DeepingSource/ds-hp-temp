@@ -1,0 +1,36 @@
+slug: pickup-analysis
+order: 27
+category: analytics
+englishTitle: Pickup Analysis
+title:
+  ko: 픽업 분석
+  en: Pickup Analysis
+  jp: ピックアップ分析
+tagline:
+  ko: 집었다 내려놓은 상품을 읽어, 구매 직전에 무슨 일이 있었는지 아는 방법
+  en: Reading picked-up-and-put-back items to see what happened just before the purchase
+  jp: 手に取って戻された商品を読み、購入直前に何があったかを知る方法です
+definition:
+  ko: 픽업 분석(Pickup Analysis)이란 고객이 상품을 집는 행동(Pick-up)과 내려놓는 행동(Put-down)을 감지해, 결제 이전 단계의 관심과 망설임을 읽는 분석입니다. POS에는 남지 않는 "샀을 뻔한 상품"을 데이터로 만들어, 진열·가격·구성의 개선 신호로 씁니다.
+  en: Pickup analysis detects pick-up and put-down actions to read interest and hesitation before the purchase. It turns the "almost bought" items that never reach the POS into data — signals for improving display, pricing, and assortment.
+  jp: ピックアップ分析（Pickup Analysis）とは、顧客が商品を手に取る行動（Pick-up）と戻す行動（Put-down）を検知し、決済前段階の関心とためらいを読む分析です。POSには残らない「買われかけた商品」をデータ化し、陳列・価格・構成の改善シグナルとして使います。
+relatedTerms:
+  - behavior-analysis
+  - purchase-conversion-rate
+  - visit-funnel
+  - vmd-optimization
+relatedIndustries:
+  - drugstore
+  - mart
+  - convenience
+saaiUsage: saai insight는 진열대 단위로 방문→노출→탐색→픽업의 퍼널을 제공합니다. 픽업률은 높은데 구매 전환이 낮은 상품은 가격·용량·포장을 점검할 신호입니다. 함께 집히는 조합은 saai agent가 결제 시 추가 제안이나 연관 진열로 옮깁니다 — 픽업 데이터가 실행으로 이어지는 경로입니다.
+metaDescription: 픽업 분석이란? 집었다 내려놓은 상품을 감지해 구매 직전의 관심과 망설임을 읽는 매장 분석. 진열·가격 개선 신호로 쓰는 법을 설명합니다.
+body:
+  - heading: 결제 직전의 데이터
+    paragraphs:
+      - 구매는 긴 과정의 마지막 순간입니다. 그 직전, 고객은 상품을 집어 들고 살펴보다가 사기도 하고 내려놓기도 합니다. 이 순간이야말로 상품과 고객이 가장 가까웠던 접점인데, POS는 결제된 쪽만 기록합니다.
+      - 픽업 분석은 내려놓은 쪽을 기록합니다. 어떤 상품이 자주 집히는지, 집힌 뒤 얼마나 구매로 이어지는지, 어떤 상품들이 함께 집히는지 — 결제 이전의 행동이 상품별 데이터가 됩니다.
+  - heading: 무엇을 바꿀 수 있나
+    paragraphs:
+      - 픽업률은 높은데 전환이 낮다면 상품이 아니라 조건의 문제일 가능성이 큽니다. 가격, 용량, 포장, 옆 상품과의 비교 — 관심은 증명됐으니 걸림돌을 찾으면 됩니다.
+      - 함께 집히는 조합은 진열과 제안의 근거가 됩니다. 함께 집히지만 따로 사는 조합을 세트나 인접 진열로 묶으면, 이미 있던 관심이 매출로 옮겨 갑니다.

@@ -3595,6 +3595,406 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "mtmc",
+      "order": 21,
+      "category": "ai",
+      "englishTitle": "MTMC (Multi-Target Multi-Camera Tracking)",
+      "title": {
+        "ko": "멀티카메라 추적 (MTMC)",
+        "en": "MTMC (Multi-Target Multi-Camera Tracking)",
+        "jp": "マルチカメラ追跡（MTMC）"
+      },
+      "tagline": {
+        "ko": "여러 대의 카메라 화면을 이어 붙여, 매장 전체를 하나의 공간으로 읽는 기술",
+        "en": "Stitching multiple camera views together to read the whole store as one space",
+        "jp": "複数のカメラ映像をつなぎ合わせ、店舗全体をひとつの空間として読む技術です"
+      },
+      "definition": {
+        "ko": "MTMC(Multi-Target Multi-Camera Tracking)란 여러 대의 카메라에 나눠 찍힌 움직임을 하나로 이어, 다수의 객체를 매장 전체 공간에서 연속으로 추적하는 컴퓨터 비전 기술입니다. 카메라 한 대의 사각지대를 다른 카메라가 메워, 입장부터 퇴장까지 끊기지 않는 동선을 만듭니다.",
+        "en": "MTMC (Multi-Target Multi-Camera Tracking) is a computer-vision technique that joins movement captured across multiple cameras, tracking many objects continuously across the whole store. One camera's blind spot is covered by another, producing unbroken pathways from entry to exit.",
+        "jp": "MTMC（Multi-Target Multi-Camera Tracking）とは、複数のカメラに分かれて映った動きをひとつにつなぎ、多数のオブジェクトを店舗全体の空間で連続して追跡するコンピュータビジョン技術です。1台のカメラの死角を別のカメラが補い、入店から退店まで途切れない動線をつくります。"
+      },
+      "relatedTerms": [
+        "computer-vision",
+        "behavior-analysis",
+        "zone-analysis",
+        "re-identification"
+      ],
+      "relatedIndustries": [
+        "mart",
+        "exhibition",
+        "logistics"
+      ],
+      "saaiUsage": "딥핑소스의 Spatial AI는 MTMC로 여러 카메라의 화면을 평면도 좌표 위에 통합합니다. 개별 카메라가 아니라 매장 전체를 기준으로 동선·체류·구역 간 이동을 읽기 때문에, saai insight의 대표 동선·구역 간 통행량 같은 분석이 가능해집니다. 모든 추적은 입력 시점에 익명화된 데이터 위에서 이뤄집니다.",
+      "metaDescription": "MTMC(멀티카메라 추적)란? 여러 카메라 화면을 이어 매장 전체에서 동선을 끊김 없이 추적하는 기술. 원리와 매장 분석 활용을 설명합니다.",
+      "body": [
+        {
+          "heading": "왜 한 대로는 부족한가",
+          "paragraphs": [
+            "매장은 한 대의 카메라로 다 담기지 않습니다. 진열대 뒤, 코너, 통로 끝 — 카메라마다 사각이 있고, 한 카메라에서 사라진 손님이 다른 카메라에 다시 나타납니다. 화면 단위로 보면 동선은 조각난 채로 남습니다.",
+            "MTMC는 이 조각을 이어 붙입니다. 각 카메라의 화면을 매장 평면도라는 하나의 좌표계로 투영하고, 익명화된 특징으로 같은 객체를 카메라 경계 너머까지 연결합니다. 그 결과 \"입장 → 진열대 A → 진열대 C → 계산대\"처럼 매장 전체를 관통하는 동선이 만들어집니다."
+          ]
+        },
+        {
+          "heading": "매장 분석에서의 쓰임",
+          "paragraphs": [
+            "끊기지 않는 동선은 구역 단위 분석의 토대입니다. 어느 구역에서 어느 구역으로 얼마나 이동하는지, 어떤 경로가 대표 동선인지, 어디서 발길이 끊기는지는 모두 MTMC가 전제돼야 정확해집니다.",
+            "대형 공간일수록 효과가 큽니다. 전시장·마트·물류 공간처럼 카메라 수십 대가 필요한 곳에서, MTMC는 공간 전체의 흐름을 한 장의 지도로 요약합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "edge-ai",
+      "order": 22,
+      "category": "ai",
+      "englishTitle": "Edge AI",
+      "title": {
+        "ko": "엣지 AI",
+        "en": "Edge AI",
+        "jp": "エッジAI"
+      },
+      "tagline": {
+        "ko": "영상을 밖으로 보내지 않고, 현장의 장비에서 바로 분석하는 방식",
+        "en": "Analyzing video right on on-site hardware, without sending footage outside",
+        "jp": "映像を外に送らず、現場の機器でそのまま分析する方式です"
+      },
+      "definition": {
+        "ko": "엣지 AI(Edge AI)란 클라우드 서버가 아니라 현장에 설치된 소형 장비(엣지 디바이스)에서 AI 분석을 수행하는 방식입니다. 영상이 매장 밖으로 나가지 않아 데이터 반출 위험이 줄고, 네트워크 상태와 무관하게 실시간 처리가 가능합니다.",
+        "en": "Edge AI runs AI analysis on compact on-site hardware (edge devices) instead of cloud servers. Footage never leaves the store, reducing data-exfiltration risk, and processing stays real-time regardless of network conditions.",
+        "jp": "エッジAI（Edge AI）とは、クラウドサーバーではなく現場に設置した小型機器（エッジデバイス）でAI分析を行う方式です。映像が店舗の外に出ないためデータ流出リスクが減り、ネットワーク状態に関係なくリアルタイム処理が可能です。"
+      },
+      "relatedTerms": [
+        "video-anonymization",
+        "privacy-by-design",
+        "cctv-analytics",
+        "computer-vision"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "mart",
+        "unmanned"
+      ],
+      "saaiUsage": "딥핑소스는 소형 AI 분석 장비를 현장에 설치하는 온프레미스 방식을 기본으로 제공합니다. 기존 CCTV 영상을 현장 장비가 수신해 메모리에서 즉시 익명화·분석하고, 밖으로는 개인정보 없는 통계값만 내보냅니다. 카메라 4~8대의 소규모 매장부터 수천 대 규모까지 같은 구조로 확장됩니다.",
+      "metaDescription": "엣지 AI란? 클라우드 대신 현장 장비에서 영상을 분석해 데이터 반출 없이 실시간 처리하는 방식. 매장 영상 분석에서의 장점을 설명합니다.",
+      "body": [
+        {
+          "heading": "클라우드와 무엇이 다른가",
+          "paragraphs": [
+            "클라우드 방식은 영상을 외부 서버로 보내 분석합니다. 회선 비용과 지연이 생기고, 무엇보다 원본 영상이 매장 밖으로 나간다는 부담이 있습니다. 엣지 방식은 분석을 데이터가 있는 곳으로 가져옵니다 — 영상은 제자리에, 결과만 움직입니다.",
+            "실시간성도 다릅니다. 혼잡 감지나 이상 상황 알림처럼 몇 초가 중요한 분석은, 네트워크를 오가는 왕복 시간 없이 현장에서 즉시 처리될 때 가장 빠릅니다."
+          ]
+        },
+        {
+          "heading": "프라이버시와의 관계",
+          "paragraphs": [
+            "엣지 AI는 프라이버시 설계와 자연스럽게 맞물립니다. 영상이 장비의 메모리 안에서 익명화·분석되고 저장되지 않으면, 외부로 나가는 것은 좌표·연령대 같은 통계값뿐입니다. \"원본이 어디에 있는가\"라는 질문 자체가 사라집니다.",
+            "규제 관점에서도 유리합니다. 데이터가 국경이나 사업장 경계를 넘지 않으니, 반출·위탁을 둘러싼 검토가 크게 단순해집니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "video-anonymization",
+      "order": 23,
+      "category": "ai",
+      "englishTitle": "Video Anonymization",
+      "title": {
+        "ko": "영상 익명화",
+        "en": "Video Anonymization",
+        "jp": "映像匿名化"
+      },
+      "tagline": {
+        "ko": "분석에 필요한 신호만 남기고 신원을 지워, 영상을 개인정보 없이 쓰는 기술",
+        "en": "Erasing identity while keeping the signals analysis needs — video without personal data",
+        "jp": "分析に必要な信号だけを残して身元を消し、映像を個人情報なしで使う技術です"
+      },
+      "definition": {
+        "ko": "영상 익명화(Video Anonymization)란 영상 속 개인을 알아볼 수 있는 정보(얼굴 등 신원 요소)를 제거하면서, 움직임·자세처럼 분석에 필요한 신호는 유지하는 기술입니다. 원본 복원이 불가능한 비가역 방식이면, 익명화된 데이터는 개인정보보호법(제58조의2)·GDPR(Recital 26)·CCPA에서 개인정보로 취급되지 않습니다.",
+        "en": "Video anonymization removes identifying elements (such as faces) from footage while preserving the signals analysis needs, like movement and pose. When irreversible, the anonymized data falls outside personal-data regimes — Korea PIPA (Article 58-2), GDPR (Recital 26), and the CCPA.",
+        "jp": "映像匿名化（Video Anonymization）とは、映像内の個人を識別できる情報（顔などの身元要素）を除去しながら、動きや姿勢など分析に必要な信号は維持する技術です。原本復元が不可能な非可逆方式であれば、匿名化されたデータは韓国個人情報保護法（第58条の2）・GDPR（Recital 26）・CCPAで個人情報として扱われません。"
+      },
+      "relatedTerms": [
+        "anonymized-cctv",
+        "privacy-by-design",
+        "edge-ai",
+        "re-identification"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "drugstore",
+        "mart"
+      ],
+      "saaiUsage": "딥핑소스의 원천 기술입니다. SEAL 엔진이 입력 시점에 메모리에서 영상을 익명화하고, 원본은 시스템 어디에도 저장하지 않습니다. 타사가 원본을 분석한 뒤 삭제하는 것과 달리 익명화가 분석보다 먼저 — 그 위에서 saai 제품군의 모든 공간 분석이 이뤄집니다. 개인정보보호위원회 유권해석(2021.08)과 법무 자문(2021.12)으로 처리 구조를 확인했습니다.",
+      "metaDescription": "영상 익명화란? 얼굴 등 신원을 지우고 분석 신호만 남겨 CCTV 영상을 개인정보 없이 활용하는 기술. 법적 근거와 원리를 설명합니다.",
+      "body": [
+        {
+          "heading": "전체 익명화와 부분 익명화",
+          "paragraphs": [
+            "전체 익명화는 장면 전체를 지워 안전을 극대화합니다. 부분 익명화는 신원 영역만 강하게 지우고 동선·자세 같은 분석 신호를 남깁니다. 목적에 따라 강도를 고르는 것이지, 어느 한쪽만 정답인 것은 아닙니다.",
+            "핵심은 비가역성입니다. 픽셀을 흐리는 수준이 아니라, 분석에 필요한 최소한의 값만 남기고 파기해 원본을 되돌릴 수 없어야 \"익명 정보\"로 인정받을 수 있습니다."
+          ]
+        },
+        {
+          "heading": "순서가 만드는 차이",
+          "paragraphs": [
+            "같은 \"익명화\"라도 순서가 다르면 결과가 다릅니다. 원본을 먼저 분석하고 나중에 삭제하는 구조에서는, 분석하는 동안 원본과 신원이 시스템 안에 존재합니다. 익명화를 첫 단계로 두면 분석 시스템은 처음부터 신원을 가진 적이 없습니다.",
+            "이 순서는 신뢰의 문제이기도 합니다. \"지우겠다\"는 약속보다 \"애초에 갖지 않는\" 구조가, 고객과 규제 기관 모두에게 검증하기 쉽습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "privacy-by-design",
+      "order": 24,
+      "category": "ai",
+      "englishTitle": "Privacy by Design",
+      "title": {
+        "ko": "프라이버시 바이 디자인",
+        "en": "Privacy by Design",
+        "jp": "プライバシー・バイ・デザイン"
+      },
+      "tagline": {
+        "ko": "문제가 생긴 뒤 고치는 게 아니라, 설계 단계에서 개인정보 보호를 내장하는 원칙",
+        "en": "Building privacy into the design itself, not patching it after problems appear",
+        "jp": "問題が起きてから直すのではなく、設計段階で個人情報保護を組み込む原則です"
+      },
+      "definition": {
+        "ko": "프라이버시 바이 디자인(Privacy by Design)이란 시스템을 만들 때부터 개인정보 보호를 기본값으로 설계에 내장하는 원칙입니다. GDPR 제25조가 요구하는 \"설계 및 기본값에 의한 데이터 보호\"의 바탕이 된 개념으로, 사후 동의·삭제에 기대는 대신 애초에 개인정보가 생기지 않거나 최소화되는 구조를 지향합니다.",
+        "en": "Privacy by Design is the principle of building privacy protection into a system from the start, as the default. It underpins GDPR Article 25's \"data protection by design and by default\" — aiming for structures where personal data never arises or is minimized, rather than relying on after-the-fact consent and deletion.",
+        "jp": "プライバシー・バイ・デザイン（Privacy by Design）とは、システムをつくる時点から個人情報保護をデフォルトとして設計に組み込む原則です。GDPR第25条の「データ保護・バイ・デザイン」の土台となった概念で、事後の同意・削除に頼るのではなく、そもそも個人情報が生じない・最小化される構造を目指します。"
+      },
+      "relatedTerms": [
+        "video-anonymization",
+        "anonymized-cctv",
+        "edge-ai",
+        "night-monitoring"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "drugstore",
+        "exhibition"
+      ],
+      "saaiUsage": "딥핑소스의 제품은 이 원칙 위에 서 있습니다. 영상은 입력 시점에 익명화되고(원본 미보존), 사람의 눈은 영상을 열람하지 않으며(사람 미열람), 익명화된 데이터에서 신원을 되찾을 수 없습니다(재식별 불가). 보호를 \"옵션\"이 아니라 파이프라인의 첫 단계로 고정한 구조라, 어디에 배치하든 같은 기준이 적용됩니다.",
+      "metaDescription": "프라이버시 바이 디자인이란? 설계 단계에서 개인정보 보호를 내장하는 원칙. GDPR 제25조와 매장 영상 분석에서의 적용을 설명합니다.",
+      "body": [
+        {
+          "heading": "왜 \"설계\"가 중요한가",
+          "paragraphs": [
+            "운영 중인 시스템에 보호 장치를 덧붙이는 방식은 늘 빈틈이 남습니다. 접근 권한, 보관 기간, 삭제 절차 — 지켜야 할 규칙이 늘어날수록 사람의 실수가 끼어들 자리도 늘어납니다.",
+            "설계로 해결하면 규칙이 아니라 구조가 지킵니다. 개인정보가 시스템에 들어오지 않으면 유출될 것도, 오남용될 것도 없습니다. 감사와 인증도 \"절차를 지켰는가\"가 아니라 \"구조가 그러한가\"를 확인하면 됩니다."
+          ]
+        },
+        {
+          "heading": "매장 영상 분석에의 적용",
+          "paragraphs": [
+            "CCTV 영상 분석은 프라이버시 바이 디자인이 가장 필요한 영역입니다. 화면 속 다수는 동의를 받을 수 없는 불특정 고객이기 때문입니다. 입력 시점 익명화, 원본 미저장, 통계값만 반출 — 이 세 가지가 구조로 갖춰지면 동의 없이도 보호가 성립합니다.",
+            "반대로 이 구조가 없다면, 아무리 좋은 분석도 법적 불확실성 위에 서게 됩니다. 도입 검토 단계에서 \"어떻게 분석하는가\"만큼 \"무엇이 남는가\"를 물어야 하는 이유입니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "re-identification",
+      "order": 25,
+      "category": "ai",
+      "englishTitle": "Re-Identification (Re-ID)",
+      "title": {
+        "ko": "재식별 (Re-ID)",
+        "en": "Re-Identification (Re-ID)",
+        "jp": "再識別（Re-ID）"
+      },
+      "tagline": {
+        "ko": "카메라를 옮겨 다니는 같은 객체를 익명 특징으로 이어 붙이는 비전 기술 — 신원 확인과는 다릅니다",
+        "en": "Linking the same object across cameras by anonymous features — not identity verification",
+        "jp": "カメラをまたぐ同じオブジェクトを匿名特徴でつなぐビジョン技術 — 身元確認とは異なります"
+      },
+      "definition": {
+        "ko": "재식별(Re-Identification, Re-ID)이란 서로 다른 카메라·시점에 찍힌 객체가 같은 객체인지를 외형 특징 임베딩으로 판별하는 컴퓨터 비전 기술입니다. 이름·신원을 알아내는 기술이 아니라, \"3번 카메라의 A와 7번 카메라의 B가 같은 사람인가\"를 익명 상태로 잇는 기술로, 멀티카메라 추적(MTMC)의 핵심 요소입니다.",
+        "en": "Re-Identification (Re-ID) is a computer-vision technique that determines whether objects seen by different cameras are the same object, using appearance-feature embeddings. It does not reveal names or identity — it anonymously links \"A on camera 3\" with \"B on camera 7,\" and is a core building block of multi-camera tracking (MTMC).",
+        "jp": "再識別（Re-Identification、Re-ID）とは、異なるカメラ・時点に映ったオブジェクトが同一かどうかを、外見特徴の埋め込みで判別するコンピュータビジョン技術です。名前や身元を突き止める技術ではなく、「カメラ3のAとカメラ7のBは同じ人か」を匿名のままつなぐ技術で、マルチカメラ追跡（MTMC）の中核要素です。"
+      },
+      "relatedTerms": [
+        "mtmc",
+        "video-anonymization",
+        "computer-vision",
+        "behavior-analysis"
+      ],
+      "relatedIndustries": [
+        "mart",
+        "exhibition",
+        "logistics"
+      ],
+      "saaiUsage": "딥핑소스의 Re-ID는 익명화된 특징만 사용합니다. 얼굴 등 신원 요소는 입력 시점에 이미 지워져 있고, 남은 외형 임베딩으로 동선을 잇습니다. 임베딩에서 개인의 신원을 되찾는 것은 불가능하도록 설계돼, \"같은 객체\"는 알 수 있어도 \"누구\"인지는 시스템 어디에도 존재하지 않습니다.",
+      "metaDescription": "재식별(Re-ID)이란? 여러 카메라에 찍힌 같은 객체를 익명 특징으로 잇는 비전 기술. 신원 확인과의 차이와 프라이버시 설계를 설명합니다.",
+      "body": [
+        {
+          "heading": "\"재식별\"이라는 이름의 오해",
+          "paragraphs": [
+            "용어만 보면 \"누구인지 알아내는 기술\"로 들리지만, 비전 분야의 Re-ID는 신원 확인(identification)과 다릅니다. 얼굴 인식이 \"이 사람은 김OO\"을 목표로 한다면, Re-ID는 \"아까 그 객체가 지금 이 객체\"를 목표로 합니다. 이름표 없이 조각을 잇는 일입니다.",
+            "다만 원본 영상 위에서 Re-ID를 돌리면 신원 정보와 결합될 여지가 남습니다. 그래서 어떤 데이터 위에서 수행하는가 — 원본인가, 익명화된 특징인가 — 가 프라이버시의 갈림길이 됩니다."
+          ]
+        },
+        {
+          "heading": "익명 Re-ID가 가능하게 하는 것",
+          "paragraphs": [
+            "익명화된 특징만으로도 매장 분석에는 충분합니다. 입장부터 퇴장까지의 동선, 구역 간 이동, 재방문 패턴 같은 분석은 \"같은 객체\"만 알면 되지 \"누구\"인지는 필요 없기 때문입니다.",
+            "이 구분이 지켜질 때, 다점포·대형 공간의 정밀한 흐름 분석과 개인정보 보호가 동시에 성립합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "visit-funnel",
+      "order": 26,
+      "category": "analytics",
+      "englishTitle": "Visit Funnel",
+      "title": {
+        "ko": "방문 퍼널",
+        "en": "Visit Funnel",
+        "jp": "来店ファネル"
+      },
+      "tagline": {
+        "ko": "지나감 → 입장 → 체류 → 결제, 고객이 새는 단계를 찾는 틀",
+        "en": "Pass-by → entry → dwell → purchase — the frame for finding where customers leak out",
+        "jp": "通過 → 入店 → 滞在 → 決済、顧客が漏れる段階を見つける枠組みです"
+      },
+      "definition": {
+        "ko": "방문 퍼널(Visit Funnel)이란 매장 앞을 지나간 사람이 결제에 이르기까지의 단계 — 지나감, 입장, 체류·탐색, 결제 — 를 깔때기 모양으로 배열해 각 단계의 전환율을 읽는 분석 틀입니다. 이커머스의 구매 퍼널을 오프라인 매장에 옮긴 개념으로, 어느 단계에서 고객이 이탈하는지를 정량화합니다.",
+        "en": "The visit funnel arranges the stages from passing by to paying — pass-by, entry, dwell and browse, purchase — as a funnel and reads the conversion rate at each stage. It brings e-commerce's purchase funnel to physical stores, quantifying where customers drop off.",
+        "jp": "来店ファネル（Visit Funnel）とは、店の前を通った人が決済に至るまでの段階 — 通過、入店、滞在・回遊、決済 — をファネル状に並べ、各段階の転換率を読む分析枠組みです。ECの購買ファネルをオフライン店舗に持ち込んだ概念で、どの段階で顧客が離脱するかを定量化します。"
+      },
+      "relatedTerms": [
+        "capture-rate",
+        "purchase-conversion-rate",
+        "dwell-time",
+        "pos-data-limitations"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "drugstore",
+        "mart"
+      ],
+      "saaiUsage": "saai count가 퍼널의 첫 단(지나감·입장·유입률)을, saai insight가 그 안쪽(체류·탐색·픽업·결제 전환)을 잇습니다. POS에는 마지막 단(결제)만 남지만, saai는 그 앞의 모든 단계를 데이터로 만들어 어디가 병목인지 — 입지인지, 전면인지, 진열인지, 가격인지 — 를 가립니다.",
+      "metaDescription": "방문 퍼널이란? 지나감→입장→체류→결제 단계별 전환율로 오프라인 매장의 이탈 지점을 찾는 분석 틀. 단계별 읽는 법을 설명합니다.",
+      "body": [
+        {
+          "heading": "POS가 못 보는 앞 단계",
+          "paragraphs": [
+            "매출이 떨어졌을 때 POS가 말해주는 것은 결제가 줄었다는 사실뿐입니다. 통행이 줄었는지, 유입률이 낮아졌는지, 들어온 손님이 사지 않고 나갔는지는 구분되지 않습니다. 처방이 다 다른 문제들이 한 숫자에 뭉쳐 있는 셈입니다.",
+            "퍼널로 펼치면 문제가 분리됩니다. 통행이 줄었으면 입지·시즌의 문제, 유입률이 낮으면 전면의 문제, 체류 대비 결제가 낮으면 진열·가격·응대의 문제 — 단계마다 책임이 다른 곳으로 갑니다."
+          ]
+        },
+        {
+          "heading": "퍼널을 읽는 법",
+          "paragraphs": [
+            "각 단계의 절대값보다 단계 사이의 전환율 변화를 봅니다. 같은 매장의 시간대별·요일별 전환율, 진열 변경 전후의 전환율 비교가 실질적인 판단 근거입니다.",
+            "단계를 더 쪼갤 수도 있습니다. 특정 진열대 앞 방문 → 노출 → 탐색 → 픽업 → 결제처럼 진열대 단위 퍼널로 내려가면, 개별 매대의 문제까지 짚을 수 있습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pickup-analysis",
+      "order": 27,
+      "category": "analytics",
+      "englishTitle": "Pickup Analysis",
+      "title": {
+        "ko": "픽업 분석",
+        "en": "Pickup Analysis",
+        "jp": "ピックアップ分析"
+      },
+      "tagline": {
+        "ko": "집었다 내려놓은 상품을 읽어, 구매 직전에 무슨 일이 있었는지 아는 방법",
+        "en": "Reading picked-up-and-put-back items to see what happened just before the purchase",
+        "jp": "手に取って戻された商品を読み、購入直前に何があったかを知る方法です"
+      },
+      "definition": {
+        "ko": "픽업 분석(Pickup Analysis)이란 고객이 상품을 집는 행동(Pick-up)과 내려놓는 행동(Put-down)을 감지해, 결제 이전 단계의 관심과 망설임을 읽는 분석입니다. POS에는 남지 않는 \"샀을 뻔한 상품\"을 데이터로 만들어, 진열·가격·구성의 개선 신호로 씁니다.",
+        "en": "Pickup analysis detects pick-up and put-down actions to read interest and hesitation before the purchase. It turns the \"almost bought\" items that never reach the POS into data — signals for improving display, pricing, and assortment.",
+        "jp": "ピックアップ分析（Pickup Analysis）とは、顧客が商品を手に取る行動（Pick-up）と戻す行動（Put-down）を検知し、決済前段階の関心とためらいを読む分析です。POSには残らない「買われかけた商品」をデータ化し、陳列・価格・構成の改善シグナルとして使います。"
+      },
+      "relatedTerms": [
+        "behavior-analysis",
+        "purchase-conversion-rate",
+        "visit-funnel",
+        "vmd-optimization"
+      ],
+      "relatedIndustries": [
+        "drugstore",
+        "mart",
+        "convenience"
+      ],
+      "saaiUsage": "saai insight는 진열대 단위로 방문→노출→탐색→픽업의 퍼널을 제공합니다. 픽업률은 높은데 구매 전환이 낮은 상품은 가격·용량·포장을 점검할 신호입니다. 함께 집히는 조합은 saai agent가 결제 시 추가 제안이나 연관 진열로 옮깁니다 — 픽업 데이터가 실행으로 이어지는 경로입니다.",
+      "metaDescription": "픽업 분석이란? 집었다 내려놓은 상품을 감지해 구매 직전의 관심과 망설임을 읽는 매장 분석. 진열·가격 개선 신호로 쓰는 법을 설명합니다.",
+      "body": [
+        {
+          "heading": "결제 직전의 데이터",
+          "paragraphs": [
+            "구매는 긴 과정의 마지막 순간입니다. 그 직전, 고객은 상품을 집어 들고 살펴보다가 사기도 하고 내려놓기도 합니다. 이 순간이야말로 상품과 고객이 가장 가까웠던 접점인데, POS는 결제된 쪽만 기록합니다.",
+            "픽업 분석은 내려놓은 쪽을 기록합니다. 어떤 상품이 자주 집히는지, 집힌 뒤 얼마나 구매로 이어지는지, 어떤 상품들이 함께 집히는지 — 결제 이전의 행동이 상품별 데이터가 됩니다."
+          ]
+        },
+        {
+          "heading": "무엇을 바꿀 수 있나",
+          "paragraphs": [
+            "픽업률은 높은데 전환이 낮다면 상품이 아니라 조건의 문제일 가능성이 큽니다. 가격, 용량, 포장, 옆 상품과의 비교 — 관심은 증명됐으니 걸림돌을 찾으면 됩니다.",
+            "함께 집히는 조합은 진열과 제안의 근거가 됩니다. 함께 집히지만 따로 사는 조합을 세트나 인접 진열로 묶으면, 이미 있던 관심이 매출로 옮겨 갑니다."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "people-counting",
+      "order": 28,
+      "category": "analytics",
+      "englishTitle": "People Counting",
+      "title": {
+        "ko": "피플 카운팅",
+        "en": "People Counting",
+        "jp": "ピープルカウンティング"
+      },
+      "tagline": {
+        "ko": "통행과 입장을 세는 것 — 모든 매장 데이터의 출발점",
+        "en": "Counting footfall and entries — where every store metric begins",
+        "jp": "通行と入店を数えること — あらゆる店舗データの出発点です"
+      },
+      "definition": {
+        "ko": "피플 카운팅(People Counting)이란 특정 지점이나 선을 지나는 사람 수를 자동으로 세는 기술입니다. 매장 앞 유동인구, 출입구 입장객, 구역별 방문객이 대표적인 측정 대상으로, 유입률·전환율·체류 같은 상위 지표가 모두 이 카운트를 분모나 분자로 삼습니다.",
+        "en": "People counting automatically counts how many people cross a point or line — footfall outside, entries at the door, visitors per zone. Higher-level metrics like capture rate, conversion, and dwell all use these counts as numerator or denominator.",
+        "jp": "ピープルカウンティング（People Counting）とは、特定の地点やラインを通過する人数を自動で数える技術です。店頭の通行量、出入口の入店数、エリア別の来訪者数が代表的な測定対象で、流入率・転換率・滞在といった上位指標はすべてこのカウントを分母・分子にしています。"
+      },
+      "relatedTerms": [
+        "footfall-analysis",
+        "capture-rate",
+        "crowd-density-analysis",
+        "zone-analysis"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "exhibition",
+        "cafe"
+      ],
+      "saaiUsage": "saai count는 카메라 한 대로 화면 위에 그은 기준선을 넘는 사람을 셉니다 — 통행 선과 유입 선을 나눠 유동인구와 입장객을 동시에 측정하고, 시간대·성별·연령대별로 집계합니다. 검증 현장 기준 정확도 95~96%(사람이 직접 센 결과 대비), 영상은 저장하지 않고 통계값만 남습니다.",
+      "metaDescription": "피플 카운팅이란? 통행·입장·구역 방문을 자동으로 세는 기술. 측정 방식별 차이와 유입률·전환율 분석의 기초가 되는 이유를 설명합니다.",
+      "body": [
+        {
+          "heading": "세는 방식의 차이",
+          "paragraphs": [
+            "적외선 센서는 싸지만 겹쳐 지나가면 놓치고, 방향과 속성을 모릅니다. Wi-Fi 신호 기반은 기기 보급률과 신호 설정에 좌우됩니다. 비전 기반 카운팅은 화면에서 사람을 직접 인식하므로 방향·시간대·연령대·성별 같은 속성까지 함께 셀 수 있습니다.",
+            "정확도는 \"사람이 직접 센 결과와 얼마나 일치하는가\"로 검증합니다. 도입 전 검증 기준과 측정 시점이 명시된 수치인지 확인하는 것이 좋습니다."
+          ]
+        },
+        {
+          "heading": "카운트가 기초 체력인 이유",
+          "paragraphs": [
+            "유입률은 입장을 통행으로 나눈 값이고, 전환율은 결제를 방문으로 나눈 값입니다. 분모가 되는 카운트가 흔들리면 위의 모든 지표가 함께 흔들립니다. 그래서 카운팅의 정확도와 상시성이 매장 데이터 전체의 품질을 결정합니다.",
+            "반대로 카운트가 안정되면, 매출·날씨·프로모션 같은 다른 데이터와 결합해 \"왜\"를 설명하는 분석으로 확장할 수 있습니다."
+          ]
+        }
+      ]
     }
   ],
   "leadership": {

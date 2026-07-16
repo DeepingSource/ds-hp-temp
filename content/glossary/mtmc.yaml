@@ -1,0 +1,36 @@
+slug: mtmc
+order: 21
+category: ai
+englishTitle: MTMC (Multi-Target Multi-Camera Tracking)
+title:
+  ko: 멀티카메라 추적 (MTMC)
+  en: MTMC (Multi-Target Multi-Camera Tracking)
+  jp: マルチカメラ追跡（MTMC）
+tagline:
+  ko: 여러 대의 카메라 화면을 이어 붙여, 매장 전체를 하나의 공간으로 읽는 기술
+  en: Stitching multiple camera views together to read the whole store as one space
+  jp: 複数のカメラ映像をつなぎ合わせ、店舗全体をひとつの空間として読む技術です
+definition:
+  ko: MTMC(Multi-Target Multi-Camera Tracking)란 여러 대의 카메라에 나눠 찍힌 움직임을 하나로 이어, 다수의 객체를 매장 전체 공간에서 연속으로 추적하는 컴퓨터 비전 기술입니다. 카메라 한 대의 사각지대를 다른 카메라가 메워, 입장부터 퇴장까지 끊기지 않는 동선을 만듭니다.
+  en: MTMC (Multi-Target Multi-Camera Tracking) is a computer-vision technique that joins movement captured across multiple cameras, tracking many objects continuously across the whole store. One camera's blind spot is covered by another, producing unbroken pathways from entry to exit.
+  jp: MTMC（Multi-Target Multi-Camera Tracking）とは、複数のカメラに分かれて映った動きをひとつにつなぎ、多数のオブジェクトを店舗全体の空間で連続して追跡するコンピュータビジョン技術です。1台のカメラの死角を別のカメラが補い、入店から退店まで途切れない動線をつくります。
+relatedTerms:
+  - computer-vision
+  - behavior-analysis
+  - zone-analysis
+  - re-identification
+relatedIndustries:
+  - mart
+  - exhibition
+  - logistics
+saaiUsage: 딥핑소스의 Spatial AI는 MTMC로 여러 카메라의 화면을 평면도 좌표 위에 통합합니다. 개별 카메라가 아니라 매장 전체를 기준으로 동선·체류·구역 간 이동을 읽기 때문에, saai insight의 대표 동선·구역 간 통행량 같은 분석이 가능해집니다. 모든 추적은 입력 시점에 익명화된 데이터 위에서 이뤄집니다.
+metaDescription: MTMC(멀티카메라 추적)란? 여러 카메라 화면을 이어 매장 전체에서 동선을 끊김 없이 추적하는 기술. 원리와 매장 분석 활용을 설명합니다.
+body:
+  - heading: 왜 한 대로는 부족한가
+    paragraphs:
+      - 매장은 한 대의 카메라로 다 담기지 않습니다. 진열대 뒤, 코너, 통로 끝 — 카메라마다 사각이 있고, 한 카메라에서 사라진 손님이 다른 카메라에 다시 나타납니다. 화면 단위로 보면 동선은 조각난 채로 남습니다.
+      - MTMC는 이 조각을 이어 붙입니다. 각 카메라의 화면을 매장 평면도라는 하나의 좌표계로 투영하고, 익명화된 특징으로 같은 객체를 카메라 경계 너머까지 연결합니다. 그 결과 "입장 → 진열대 A → 진열대 C → 계산대"처럼 매장 전체를 관통하는 동선이 만들어집니다.
+  - heading: 매장 분석에서의 쓰임
+    paragraphs:
+      - 끊기지 않는 동선은 구역 단위 분석의 토대입니다. 어느 구역에서 어느 구역으로 얼마나 이동하는지, 어떤 경로가 대표 동선인지, 어디서 발길이 끊기는지는 모두 MTMC가 전제돼야 정확해집니다.
+      - 대형 공간일수록 효과가 큽니다. 전시장·마트·물류 공간처럼 카메라 수십 대가 필요한 곳에서, MTMC는 공간 전체의 흐름을 한 장의 지도로 요약합니다.

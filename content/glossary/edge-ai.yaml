@@ -1,0 +1,36 @@
+slug: edge-ai
+order: 22
+category: ai
+englishTitle: Edge AI
+title:
+  ko: 엣지 AI
+  en: Edge AI
+  jp: エッジAI
+tagline:
+  ko: 영상을 밖으로 보내지 않고, 현장의 장비에서 바로 분석하는 방식
+  en: Analyzing video right on on-site hardware, without sending footage outside
+  jp: 映像を外に送らず、現場の機器でそのまま分析する方式です
+definition:
+  ko: 엣지 AI(Edge AI)란 클라우드 서버가 아니라 현장에 설치된 소형 장비(엣지 디바이스)에서 AI 분석을 수행하는 방식입니다. 영상이 매장 밖으로 나가지 않아 데이터 반출 위험이 줄고, 네트워크 상태와 무관하게 실시간 처리가 가능합니다.
+  en: Edge AI runs AI analysis on compact on-site hardware (edge devices) instead of cloud servers. Footage never leaves the store, reducing data-exfiltration risk, and processing stays real-time regardless of network conditions.
+  jp: エッジAI（Edge AI）とは、クラウドサーバーではなく現場に設置した小型機器（エッジデバイス）でAI分析を行う方式です。映像が店舗の外に出ないためデータ流出リスクが減り、ネットワーク状態に関係なくリアルタイム処理が可能です。
+relatedTerms:
+  - video-anonymization
+  - privacy-by-design
+  - cctv-analytics
+  - computer-vision
+relatedIndustries:
+  - convenience
+  - mart
+  - unmanned
+saaiUsage: 딥핑소스는 소형 AI 분석 장비를 현장에 설치하는 온프레미스 방식을 기본으로 제공합니다. 기존 CCTV 영상을 현장 장비가 수신해 메모리에서 즉시 익명화·분석하고, 밖으로는 개인정보 없는 통계값만 내보냅니다. 카메라 4~8대의 소규모 매장부터 수천 대 규모까지 같은 구조로 확장됩니다.
+metaDescription: 엣지 AI란? 클라우드 대신 현장 장비에서 영상을 분석해 데이터 반출 없이 실시간 처리하는 방식. 매장 영상 분석에서의 장점을 설명합니다.
+body:
+  - heading: 클라우드와 무엇이 다른가
+    paragraphs:
+      - 클라우드 방식은 영상을 외부 서버로 보내 분석합니다. 회선 비용과 지연이 생기고, 무엇보다 원본 영상이 매장 밖으로 나간다는 부담이 있습니다. 엣지 방식은 분석을 데이터가 있는 곳으로 가져옵니다 — 영상은 제자리에, 결과만 움직입니다.
+      - 실시간성도 다릅니다. 혼잡 감지나 이상 상황 알림처럼 몇 초가 중요한 분석은, 네트워크를 오가는 왕복 시간 없이 현장에서 즉시 처리될 때 가장 빠릅니다.
+  - heading: 프라이버시와의 관계
+    paragraphs:
+      - 엣지 AI는 프라이버시 설계와 자연스럽게 맞물립니다. 영상이 장비의 메모리 안에서 익명화·분석되고 저장되지 않으면, 외부로 나가는 것은 좌표·연령대 같은 통계값뿐입니다. "원본이 어디에 있는가"라는 질문 자체가 사라집니다.
+      - 규제 관점에서도 유리합니다. 데이터가 국경이나 사업장 경계를 넘지 않으니, 반출·위탁을 둘러싼 검토가 크게 단순해집니다.
