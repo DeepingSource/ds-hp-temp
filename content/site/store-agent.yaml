@@ -19,9 +19,9 @@ stepsHeading:
   en: From the number to the next move
   jp: 数字から、次の一手まで
 stepsSub:
-  ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
-  en: Running a perfect store means watching far too much for one person. saai agent shoulders the load and tells you what to do right now.
-  jp: 店舗を完璧にするには、見るべきものが多すぎます。saai agent がその負担を分かち合い、今すべきことを示します。
+  ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. POS도 비전도 한 엔진에서 — saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
+  en: Running a perfect store means watching far too much for one person. POS and vision in one engine — saai agent shoulders the load and tells you what to do right now.
+  jp: 店舗を完璧にするには、見るべきものが多すぎます。POSもビジョンもひとつのエンジンで — saai agent がその負担を分かち合い、今すべきことを示します。
 pricingHeading:
   ko: 한 매장이 아니라, 브랜드 전체가
   en: Not one store — your whole brand
@@ -74,3 +74,12 @@ steps:
       ko: 권고하고, 승인받고, 실행하고, 결과로 학습합니다. 권고는 AI가, 결정은 언제나 사람이.
       en: Recommend, approve, act, learn from the outcome. The AI advises; the call is always yours.
       jp: 推奨し、承認を受け、実行し、結果から学びます。推奨はAIが、決定はいつも人が。
+  - id: improve
+    title:
+      ko: 쓸수록, 스스로 나아집니다
+      en: The more you use it, the better it gets
+      jp: 使うほど、自ら良くなります
+    desc:
+      ko: 남긴 지적이 다음 개선으로 이어집니다. 주간 리포트는 챗에서 바로 고치고, 대화는 흐름을 기억합니다.
+      en: Your feedback becomes the next improvement. Fix the weekly report right in the chat — and the conversation keeps its thread.
+      jp: 残した指摘が、次の改善につながります。週次レポートはチャットでそのまま直せて、会話は流れを覚えています。

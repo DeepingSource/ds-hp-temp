@@ -64,22 +64,22 @@ const ctaDict: Record<Locale, { heading: string; sub: string; close: string; rea
  *  Names resolve from brand-canon `productNaming` (saai primary + store alternate). */
 const productDict: Record<Locale, { key: ProductKey; description: string; path: string }[]> = {
   ko: [
-    { key: 'insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해 매출 변화의 원인을 짚어냅니다.', path: '/products/saai-insight' },
-    { key: 'care', description: '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 사장님용 안심 솔루션입니다.', path: '/products/saai-care' },
-    { key: 'agent', description: '데이터를 넘어 결정으로. 오늘 무엇을, 얼마나, 어디에 둘지 매장 운영의 다음 한 수를 제안합니다.', path: '/products/saai-agent' },
-    { key: 'count', description: '카메라 한 대로 문 밖의 상권·통행·유입률을 매일 읽는 매장 카운팅 제품입니다.', path: '/products/saai-count' },
+    { key: 'insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해, 결제 데이터가 놓치는 구매 전 행동까지 짚어냅니다.', path: '/products/saai-insight' },
+    { key: 'care', description: '작은 매장에도 든든한 눈 하나. 진열·온도·청결을 대신 지켜보고, 필요한 순간에만 알립니다.', path: '/products/saai-care' },
+    { key: 'agent', description: '데이터를 넘어 결정으로. POS와 비전을 한 엔진에서 — 오늘 무엇을, 얼마나, 어디에 둘지 물어보면 답과 실행안까지.', path: '/products/saai-agent' },
+    { key: 'count', description: '카메라 한 대로 문 밖 통행과 입장을 견줘 유입률을 읽습니다. 입지 문제인지, 매장 문제인지 가립니다.', path: '/products/saai-count' },
   ],
   en: [
-    { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyze flow, dwell, and conversion to pinpoint what moves revenue.', path: '/products/saai-insight' },
-    { key: 'care', description: 'A reliable extra eye, even for small stores. Watches for incidents, theft, and anomalies, and alerts owners.', path: '/products/saai-care' },
-    { key: 'agent', description: 'Beyond data, to decisions. What to stock, how much, and where — your next move in store operations.', path: '/products/saai-agent' },
-    { key: 'count', description: 'A store-counting product that reads trade area, footfall, and inflow rate outside the door, daily, from one camera.', path: '/products/saai-count' },
+    { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyzing flow, dwell, and conversion, it captures the pre-purchase behavior payment data misses.', path: '/products/saai-insight' },
+    { key: 'care', description: 'A reliable extra eye, even for small stores. It watches displays, temperature, and cleanliness for you — and alerts you only when it matters.', path: '/products/saai-care' },
+    { key: 'agent', description: 'Beyond data, to decisions. POS and vision in one engine — ask what to stock, how much, and where, and get the answer with an action plan.', path: '/products/saai-agent' },
+    { key: 'count', description: 'One camera reads the footfall outside against the customers who walk in — your inflow rate. It tells a location problem from a store problem.', path: '/products/saai-count' },
   ],
   jp: [
-    { key: 'insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせて分析し、売上変化の要因を突き止めます。', path: '/products/saai-insight' },
-    { key: 'care', description: '小さな店舗にも頼れる目をひとつ。事故・盗難・異常を見守り、お知らせする店主向けの安心ソリューションです。', path: '/products/saai-care' },
-    { key: 'agent', description: 'データから意思決定へ。今日、何を、どれだけ、どこに置くか。店舗運営における次の一手をご提案します。', path: '/products/saai-agent' },
-    { key: 'count', description: 'カメラ1台で、店の外の商圏・通行・流入率を毎日読み取る店舗カウント製品です。', path: '/products/saai-count' },
+    { key: 'insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせ、決済データが見落とす購入前の行動まで捉えます。', path: '/products/saai-insight' },
+    { key: 'care', description: '小さな店舗にも頼れる目をひとつ。陳列・温度・清潔さを代わりに見守り、必要な瞬間だけお知らせします。', path: '/products/saai-care' },
+    { key: 'agent', description: 'データから意思決定へ。POSもビジョンもひとつのエンジンで — 何を、どれだけ、どこに置くか、聞けば答えと実行案まで。', path: '/products/saai-agent' },
+    { key: 'count', description: 'カメラ1台で、店の外の通行と入店を見比べて流入率を読みます。立地の問題か、店舗の問題かを見極めます。', path: '/products/saai-count' },
   ],
 };
 

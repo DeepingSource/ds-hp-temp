@@ -44,6 +44,7 @@ const STEPS_STRUCT = [
   { id: 'restock', icon: 'ClipboardCheck' },
   { id: 'order', icon: 'Lightbulb' },
   { id: 'human', icon: 'TrendingUp' },
+  { id: 'improve', icon: 'Repeat' },
 ] as const;
 
 export default function StoreAgentView({ locale }: { locale: Locale }) {

@@ -89,7 +89,7 @@ const C: Record<Locale, Copy> = {
     turnTitle: ['매장 앞 유동인구부터,', '들어온 고객까지.'],
     turnDesc: '카메라 한 대로 매장 앞을 지나간 사람과 안으로 들어온 고객, 그리고 유입률까지 — 사람 없이, 매일 상시로 셉니다.',
     whatHeading: '무엇을 알 수 있나',
-    whatSub: '지나간 사람을 세기 시작하면, 어제는 비로소 데이터가 됩니다.',
+    whatSub: '지나간 사람을 세기 시작하면, 어제는 비로소 데이터가 됩니다. 유입률(입장 ÷ 통행)이 낮으면 매장의 문제, 통행 자체가 적으면 입지의 문제 — 원인이 갈립니다.',
     metrics: [
       { label: '시간대', desc: '언제 붐비는지' },
       { label: '성별', desc: '방문 구성' },
@@ -146,7 +146,7 @@ const C: Record<Locale, Copy> = {
     turnTitle: ['From the footfall outside,', 'to the customers inside.'],
     turnDesc: 'One camera counts who passes your store, who walks in, and your inflow rate — with no staff, every single day.',
     whatHeading: 'What you get',
-    whatSub: 'Once you start counting who passed by, yesterday finally becomes data.',
+    whatSub: 'Once you start counting who passed by, yesterday finally becomes data. A low inflow rate (entries ÷ footfall) points to a store problem; low footfall points to a location problem.',
     metrics: [
       { label: 'Time of day', desc: 'When it gets busy' },
       { label: 'Gender', desc: 'Visit mix' },
@@ -203,7 +203,7 @@ const C: Record<Locale, Copy> = {
     turnTitle: ['店前の通行人から、', '入ってきたお客様まで。'],
     turnDesc: 'カメラ1台で、店前を通り過ぎた人と中に入ったお客様、そして流入率まで — 人手なしで、毎日常時数えます。',
     whatHeading: '何がわかるか',
-    whatSub: '通り過ぎた人を数え始めると、昨日がはじめてデータになります。',
+    whatSub: '通り過ぎた人を数え始めると、昨日がはじめてデータになります。流入率（入店 ÷ 通行）が低ければ店舗の問題、通行そのものが少なければ立地の問題 — 原因が分かれます。',
     metrics: [
       { label: '時間帯', desc: 'いつ混むか' },
       { label: '性別', desc: '来店構成' },

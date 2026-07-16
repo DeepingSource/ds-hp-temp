@@ -133,7 +133,7 @@
       "ctaPrimary": "Request a consultation",
       "ctaSecondary": "See sample recommendations",
       "stepsHeading": "From the number to the next move",
-      "stepsSub": "Running a perfect store means watching far too much for one person. saai agent shoulders the load and tells you what to do right now.",
+      "stepsSub": "Running a perfect store means watching far too much for one person. POS and vision in one engine — saai agent shoulders the load and tells you what to do right now.",
       "pricingHeading": "Not one store — your whole brand",
       "pricingSub": "At HQ, every store across the country on one screen — footfall, purchases, and conversion, in real time. From a single store to a multi-location headquarters, configured to your scale.",
       "pricingCta": "See pricing",
@@ -152,6 +152,10 @@
         "human": {
           "title": "AI recommends, people decide",
           "desc": "Recommend, approve, act, learn from the outcome. The AI advises; the call is always yours."
+        },
+        "improve": {
+          "title": "The more you use it, the better it gets",
+          "desc": "Your feedback becomes the next improvement. Fix the weekly report right in the chat — and the conversation keeps its thread."
         }
       }
     },
@@ -161,7 +165,7 @@
       "ctaPrimary": "도입 상담 신청",
       "ctaSecondary": "제안 예시 보기",
       "stepsHeading": "숫자에서, 다음 한 수까지",
-      "stepsSub": "매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.",
+      "stepsSub": "매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. POS도 비전도 한 엔진에서 — saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.",
       "pricingHeading": "한 매장이 아니라, 브랜드 전체가",
       "pricingSub": "본부에서는 전국 모든 매장이 한 화면에 — 방문·구매·전환율로, 실시간으로. 단일 매장부터 다점포 본사까지 운영 규모에 맞춰 구성합니다.",
       "pricingCta": "요금 안내 보기",
@@ -180,6 +184,10 @@
         "human": {
           "title": "권고는 AI, 결정은 사람",
           "desc": "권고하고, 승인받고, 실행하고, 결과로 학습합니다. 권고는 AI가, 결정은 언제나 사람이."
+        },
+        "improve": {
+          "title": "쓸수록, 스스로 나아집니다",
+          "desc": "남긴 지적이 다음 개선으로 이어집니다. 주간 리포트는 챗에서 바로 고치고, 대화는 흐름을 기억합니다."
         }
       }
     },
@@ -189,7 +197,7 @@
       "ctaPrimary": "導入のご相談",
       "ctaSecondary": "ご提案の例を見る",
       "stepsHeading": "数字から、次の一手まで",
-      "stepsSub": "店舗を完璧にするには、見るべきものが多すぎます。saai agent がその負担を分かち合い、今すべきことを示します。",
+      "stepsSub": "店舗を完璧にするには、見るべきものが多すぎます。POSもビジョンもひとつのエンジンで — saai agent がその負担を分かち合い、今すべきことを示します。",
       "pricingHeading": "一店舗ではなく、ブランド全体が",
       "pricingSub": "本部では、全国すべての店舗を一画面に — 来店・購入・転換率を、リアルタイムで。単一店舗から多店舗の本部まで、運営規模に合わせて構成します。",
       "pricingCta": "料金のご案内を見る",
@@ -208,6 +216,10 @@
         "human": {
           "title": "推奨はAI、決定は人",
           "desc": "推奨し、承認を受け、実行し、結果から学びます。推奨はAIが、決定はいつも人が。"
+        },
+        "improve": {
+          "title": "使うほど、自ら良くなります",
+          "desc": "残した指摘が、次の改善につながります。週次レポートはチャットでそのまま直せて、会話は流れを覚えています。"
         }
       }
     }
