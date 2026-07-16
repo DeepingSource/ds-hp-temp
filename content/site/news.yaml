@@ -69,6 +69,34 @@ coverage:
       ko: "딥핑소스, 금상호 신임 CBO 영입 — 글로벌 사업 가속"
       en: "DeepingSource appoints Sang-ho Geum as new CBO to accelerate global business"
       jp: "ディーピングソース、新CBOにクム・サンホ氏を迎えグローバル事業を加速"
+  - date: "2025.01"
+    url: "https://www.epnc.co.kr/news/articleView.html?idxno=310872"
+    outlet:
+      ko: "테크월드"
+      en: "TechWorld"
+      jp: "テックワールド"
+    category:
+      ko: "미디어 언급"
+      en: "Media mentions"
+      jp: "メディア掲載"
+    title:
+      ko: "딥핑소스, 일본·북미서 AI 리테일테크 성과 탄력…2025년 사업 확장 박차"
+      en: "DeepingSource gains momentum in Japan and North America, accelerating expansion in 2025"
+      jp: "ディーピングソース、日本・北米でAIリテールテックの成果に弾み…2025年の事業拡大を加速"
+  - date: "2024.06"
+    url: "https://www.aitimes.com/news/articleView.html?idxno=160544"
+    outlet:
+      ko: "AI타임스"
+      en: "AI Times"
+      jp: "AIタイムス"
+    category:
+      ko: "보도자료"
+      en: "Press releases"
+      jp: "プレスリリース"
+    title:
+      ko: "딥핑소스, AI 매장분석 솔루션으로 ‘넥스트라이즈 2024 탑 이노베이터상’ 수상"
+      en: "DeepingSource wins the NextRise 2024 Top Innovator Award for its AI store-analytics solution"
+      jp: "ディーピングソース、AI店舗分析ソリューションで「NextRise 2024 トップイノベーター賞」を受賞"
   - date: "2023.05"
     url: "https://www.asiae.co.kr/article/2023051209490460590"
     outlet:
@@ -83,6 +111,20 @@ coverage:
       ko: "[AI혁명] 딥핑소스 “세상 모든 데이터 안전하게 쓰도록 만든다”"
       en: "[AI Revolution] DeepingSource: “making all the world’s data safe to use”"
       jp: "[AI革命] ディーピングソース「世界中のデータを安全に使えるようにする」"
+  - date: "2022.05"
+    url: "https://www.hankyung.com/article/202205026330i"
+    outlet:
+      ko: "한국경제"
+      en: "The Korea Economic Daily"
+      jp: "韓国経済新聞"
+    category:
+      ko: "보도자료"
+      en: "Press releases"
+      jp: "プレスリリース"
+    title:
+      ko: "딥핑소스, 해외 VC로부터 160억원 규모 프리B 투자 유치"
+      en: "DeepingSource raises a ~₩16B Pre-B round from overseas VCs"
+      jp: "ディーピングソース、海外VCから160億ウォン規模のプレBラウンドを調達"
   - date: "2020.08"
     url: "https://www.etnews.com/20200817000108"
     outlet:

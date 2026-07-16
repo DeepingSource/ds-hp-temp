@@ -2286,11 +2286,32 @@
           "url": "https://www.venturesquare.net/1067079"
         },
         {
+          "date": "2025.01",
+          "outlet": "TechWorld",
+          "category": "Media mentions",
+          "title": "DeepingSource gains momentum in Japan and North America, accelerating expansion in 2025",
+          "url": "https://www.epnc.co.kr/news/articleView.html?idxno=310872"
+        },
+        {
+          "date": "2024.06",
+          "outlet": "AI Times",
+          "category": "Press releases",
+          "title": "DeepingSource wins the NextRise 2024 Top Innovator Award for its AI store-analytics solution",
+          "url": "https://www.aitimes.com/news/articleView.html?idxno=160544"
+        },
+        {
           "date": "2023.05",
           "outlet": "Asia Economy",
           "category": "Media mentions",
           "title": "[AI Revolution] DeepingSource: “making all the world’s data safe to use”",
           "url": "https://www.asiae.co.kr/article/2023051209490460590"
+        },
+        {
+          "date": "2022.05",
+          "outlet": "The Korea Economic Daily",
+          "category": "Press releases",
+          "title": "DeepingSource raises a ~₩16B Pre-B round from overseas VCs",
+          "url": "https://www.hankyung.com/article/202205026330i"
         },
         {
           "date": "2020.08",
@@ -2346,11 +2367,32 @@
           "url": "https://www.venturesquare.net/1067079"
         },
         {
+          "date": "2025.01",
+          "outlet": "테크월드",
+          "category": "미디어 언급",
+          "title": "딥핑소스, 일본·북미서 AI 리테일테크 성과 탄력…2025년 사업 확장 박차",
+          "url": "https://www.epnc.co.kr/news/articleView.html?idxno=310872"
+        },
+        {
+          "date": "2024.06",
+          "outlet": "AI타임스",
+          "category": "보도자료",
+          "title": "딥핑소스, AI 매장분석 솔루션으로 ‘넥스트라이즈 2024 탑 이노베이터상’ 수상",
+          "url": "https://www.aitimes.com/news/articleView.html?idxno=160544"
+        },
+        {
           "date": "2023.05",
           "outlet": "아시아경제",
           "category": "미디어 언급",
           "title": "[AI혁명] 딥핑소스 “세상 모든 데이터 안전하게 쓰도록 만든다”",
           "url": "https://www.asiae.co.kr/article/2023051209490460590"
+        },
+        {
+          "date": "2022.05",
+          "outlet": "한국경제",
+          "category": "보도자료",
+          "title": "딥핑소스, 해외 VC로부터 160억원 규모 프리B 투자 유치",
+          "url": "https://www.hankyung.com/article/202205026330i"
         },
         {
           "date": "2020.08",
@@ -2406,11 +2448,32 @@
           "url": "https://www.venturesquare.net/1067079"
         },
         {
+          "date": "2025.01",
+          "outlet": "テックワールド",
+          "category": "メディア掲載",
+          "title": "ディーピングソース、日本・北米でAIリテールテックの成果に弾み…2025年の事業拡大を加速",
+          "url": "https://www.epnc.co.kr/news/articleView.html?idxno=310872"
+        },
+        {
+          "date": "2024.06",
+          "outlet": "AIタイムス",
+          "category": "プレスリリース",
+          "title": "ディーピングソース、AI店舗分析ソリューションで「NextRise 2024 トップイノベーター賞」を受賞",
+          "url": "https://www.aitimes.com/news/articleView.html?idxno=160544"
+        },
+        {
           "date": "2023.05",
           "outlet": "アジア経済",
           "category": "メディア掲載",
           "title": "[AI革命] ディーピングソース「世界中のデータを安全に使えるようにする」",
           "url": "https://www.asiae.co.kr/article/2023051209490460590"
+        },
+        {
+          "date": "2022.05",
+          "outlet": "韓国経済新聞",
+          "category": "プレスリリース",
+          "title": "ディーピングソース、海外VCから160億ウォン規模のプレBラウンドを調達",
+          "url": "https://www.hankyung.com/article/202205026330i"
         },
         {
           "date": "2020.08",
