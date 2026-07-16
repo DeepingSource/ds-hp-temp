@@ -1,11 +1,10 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import Spinner from '@/components/ui/Spinner';
@@ -229,23 +228,21 @@ function buildSchema(t: Content) {
 type FormData = z.infer<ReturnType<typeof buildSchema>>;
 
 export default function ContactFormPage({ locale = 'en' }: { locale?: Locale }) {
-  const t = contactCopy(locale);
-  return (
-    <Suspense fallback={
-      <div className="min-h-[80vh] flex items-center justify-center">
-        <div className="text-gray-500">{t.loading}</div>
-      </div>
-    }>
-      <ContactForm locale={locale} />
-    </Suspense>
-  );
+  // 폼 골격을 즉시 렌더 (전면 Suspense fallback "Loading" 제거, 1-9).
+  // 사전 선택 라벨(plan/product)은 CSR 전용이라 마운트 후 useEffect로 읽는다 —
+  // 첫 페인트에는 없다가 하이드레이션 후 채워지는 부가 정보라 CLS 영향 미미.
+  return <ContactForm locale={locale} />;
 }
 
 function ContactForm({ locale }: { locale: Locale }) {
   const t = contactCopy(locale);
-  const searchParams = useSearchParams();
-  const planParam = searchParams.get('plan');
-  const productParam = searchParams.get('product');
+  const [params, setParams] = useState<{ plan: string | null; product: string | null }>({ plan: null, product: null });
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    setParams({ plan: sp.get('plan'), product: sp.get('product') });
+  }, []);
+  const planParam = params.plan;
+  const productParam = params.product;
   const planLabel = planParam ? t.planLabels[planParam] : null;
   const productLabel = productParam ? t.productLabels[productParam] : null;
 
