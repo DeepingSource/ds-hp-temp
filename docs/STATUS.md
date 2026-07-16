@@ -186,6 +186,13 @@
 - **B1 [3-5 R5] 스크롤 리빌**: useScrollAnimation에 마운트 시 rect 검사(above-fold 즉시 표시)+rootMargin 여유 → 빠른 스크롤 빈 블록 방지. Reveal reduced-motion 즉시 표시(initial=false). 테스트 +1(48).
 - **B2 [3-6 R6·R7] EN 로컬**: R6(파트너명)은 이미 로케일별 번역됨(수정 불요). R7 CountUp above-fold 값→0 점프 제거(below-fold만 카운트업).
 
+## 13. 추가 콘텐츠 — 이벤트 페이지 (2026-07-16 · `PLAN_ADDITIONAL_CONTENT_v1.md`) 🟡
+
+- **EV-1 ✅**: `content/events/coex-franchise-expo-84{,-en,-jp}.mdx` — 제84회 코엑스 프랜차이즈 창업박람회(8/25–27 COEX D홀), publish window 8/18–9/3, CTA UTM(`utm_source=coex-expo-84`). 창업자 프레이밍(상권분석→관리→POP) + **사이트 캐논 saai 네이밍**(계획의 convention deck Store* 표기 대신 — brand-canon이 최상위 SSOT). draft:true(부스번호·커버 이미지 자산 대기). 검증: velite 3로케일 파싱·UTM, draft 미노출(콘텐츠 안 샘), 발행 시뮬로 목록·상세·CTA·sitemap·3로케일 프리렌더 확인, `/e/<slug>` QR 307.
+- **EV-2 🟡**: UTM/QR 정합 확인 완료. **커버 이미지(`public/images/events/`)는 자산 대기(조슬기)** — 발행 시 cover 추가 + draft 해제.
+- **EV-3/EV-4 ⏸**: 박람회 후기(사후)·업종별 시나리오(§2 확산)는 별도.
+- ⚠️ **발행 전 게이트(사용자)**: 부스 번호 확정, 커버 이미지, 박람회 한정 오퍼 유무, 12_convention 부스 패널과 웹 톤 최종 대조.
+
 ## 잔여 항목 우선순위 제안
 
 1. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조. *(사용자)*
