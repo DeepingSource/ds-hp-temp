@@ -191,7 +191,7 @@ export default config({
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'milestones', 'career'],
-      '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace'],
+      '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace', 'solutionPages'],
       '법무 (검토 후 편집)': ['privacyDoc', 'termsDoc'],
     },
   },
@@ -599,6 +599,91 @@ export default config({
           }),
           { label: '본문 섹션 (KO)', itemLabel: (p) => p.fields.heading.value || '섹션' },
         ),
+      },
+    }),
+
+    // 솔루션 시나리오 — content/solutions/*.yaml (구조화 데이터, MDX 아님). 한 파일 = 한
+    // /solutions/<슬러그> 랜딩페이지. title/excerpt/impact/impactLabel·background.heading·
+    // cause/step 제목·result 라벨은 KO/EN/JP; problem·본문·desc·stat·metaDescription 은 KO.
+    // step 의 productLabel(01 관찰 · store care)·색상, 업종 라벨은 코드에서 파생(저장 안 함).
+    solutionPages: collection({
+      label: '솔루션 시나리오',
+      path: 'content/solutions/*',
+      slugField: 'slug',
+      format: { data: 'yaml' },
+      columns: ['slug', 'industry', 'order'],
+      schema: {
+        slug: fields.slug({ name: { label: 'URL 슬러그 (/solutions/<슬러그>. 영문 kebab-case)' } }),
+        order: fields.integer({
+          label: '정렬 순서',
+          description: '/solutions 목록에서 업종 안 표시 순서(오름차순).',
+          validation: { isRequired: true },
+        }),
+        industry: fields.select({
+          label: '업종',
+          options: [
+            { label: '편의점 (convenience)', value: 'convenience' },
+            { label: '카페·음식점 (cafe)', value: 'cafe' },
+            { label: '무인매장 (unmanned)', value: 'unmanned' },
+            { label: '드럭스토어 (drugstore)', value: 'drugstore' },
+            { label: '대형마트 (mart)', value: 'mart' },
+            { label: '전시 공간 (exhibition)', value: 'exhibition' },
+            { label: '물류·창고 (logistics)', value: 'logistics' },
+            { label: '패션·의류 (fashion)', value: 'fashion' },
+          ],
+          defaultValue: 'convenience',
+        }),
+        title: localized('제목 (title)'),
+        excerpt: localized('한 줄 요약 (excerpt)'),
+        impact: localized('핵심 지표 값 (impact · 예: -68%. 보통 EN/JP 는 비워 KO 공유)'),
+        impactLabel: localized('지표 라벨 (impactLabel)'),
+        problem: fields.text({ label: '문제 정의 (problem · KO)', multiline: true, validation: { isRequired: true } }),
+        background: fields.object(
+          {
+            heading: localized('배경 소제목 (heading)'),
+            body: fields.text({ label: '배경 본문 (body · KO)', multiline: true }),
+          },
+          { label: '배경 (background)' },
+        ),
+        causes: fields.array(
+          fields.object({
+            title: localized('원인 제목 (title)'),
+            desc: fields.text({ label: '원인 설명 (desc · KO)', multiline: true }),
+          }),
+          { label: '원인 (causes)', itemLabel: (p) => p.fields.title.fields.ko.value || '원인' },
+        ),
+        steps: fields.array(
+          fields.object({
+            product: fields.select({
+              label: '제품 (단계 = 관찰→분석→실행)',
+              options: [
+                { label: 'store care (01 관찰)', value: 'StoreCare' },
+                { label: 'store insight (02 분석)', value: 'StoreInsight' },
+                { label: 'store agent (03 실행)', value: 'StoreAgent' },
+              ],
+              defaultValue: 'StoreCare',
+            }),
+            title: localized('단계 제목 (title)'),
+            desc: fields.text({ label: '단계 설명 (desc · KO)', multiline: true }),
+          }),
+          { label: '해결 단계 (steps)', itemLabel: (p) => p.fields.title.fields.ko.value || '단계' },
+        ),
+        results: fields.array(
+          fields.object({
+            stat: fields.text({ label: '수치 (stat · 예: -68% · 98.2%)' }),
+            label: localized('라벨 (label)'),
+          }),
+          { label: '성과 (results)', itemLabel: (p) => p.fields.stat.value || '성과' },
+        ),
+        metaDescription: fields.text({ label: '메타 설명 (KO · 검색결과 스니펫)', multiline: true }),
+        relatedTerms: fields.array(fields.text({ label: '용어 슬러그' }), {
+          label: '관련 용어 (glossary 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
+        relatedSolutions: fields.array(fields.text({ label: '솔루션 슬러그' }), {
+          label: '관련 솔루션 (solution 슬러그)',
+          itemLabel: (p) => p.value,
+        }),
       },
     }),
   },

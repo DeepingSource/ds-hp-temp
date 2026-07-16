@@ -1,0 +1,86 @@
+slug: convenience-inventory-loss
+order: 2
+industry: convenience
+title:
+  ko: 편의점 결품 및 재고 손실 관리
+  en: Stockout and inventory loss management for convenience stores
+  jp: コンビニの欠品・在庫ロス管理
+excerpt:
+  ko: AI 카메라로 결품 발생을 실시간 감지해 매출 손실과 고객 이탈을 방지하는 방법
+  en: How AI cameras detect stockouts in real time to prevent lost sales and customer churn.
+  jp: AI カメラで欠品の発生をリアルタイムに検知し、売上ロスと顧客離れを防ぐ方法です。
+impact:
+  ko: "-42%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 결품으로 인한 매출 손실 감소
+  en: reduction in sales lost to stockouts
+  jp: 欠品による売上ロスの削減
+problem: 편의점의 재고 결품은 POS 데이터만으로는 파악할 수 없습니다. 창고에 재고가 있어도 진열이 안 된 상태로 방치되거나, 실제 결품이 장시간 지속되어 기회 손실이 누적됩니다.
+background:
+  heading:
+    ko: 결품 1시간이 만드는 손실
+    en: The loss created by one hour of stockout
+    jp: 欠品1時間が生む損失
+  body: 편의점에서 인기 음료나 즉석 식품이 1시간 결품이면 평균 5–8건의 구매 기회가 사라집니다. 특히 출근·점심·퇴근 피크 타임에 결품이 발생하면 고객은 다른 매장으로 이동하고, 이 경험이 반복되면 방문 자체가 줄어듭니다. POS 기록에는 "팔리지 않은 것"이 표시되지 않기 때문에 점주는 손실이 얼마나 컸는지조차 모릅니다.
+causes:
+  - title:
+      ko: POS 재고 관리의 실제 재고 괴리
+      en: Gap between POS and actual inventory
+      jp: POS在庫と実在庫の乖離
+    desc: 이론적 재고(POS 계산)와 실제 진열 재고 사이에는 도난, 파손, 보충 누락으로 항상 차이가 생깁니다. POS가 "재고 있음"이라고 해도 실제 매대는 비어 있을 수 있습니다.
+  - title:
+      ko: 바쁜 시간대 보충 지연
+      en: Restocking delays at busy hours
+      jp: 繁忙時間帯の補充遅延
+    desc: 점심·저녁 피크 타임에는 계산과 고객 응대에 집중하다 보니 매대 보충이 늦어집니다. 결품이 발생해도 당장 처리하지 못하고 30분~1시간이 지나는 경우가 빈번합니다.
+  - title:
+      ko: 창고 재고와 진열 재고의 단절
+      en: Disconnect between backroom and shelf stock
+      jp: バックヤード在庫と陳列在庫の断絶
+    desc: 창고에 재고가 있어도 누군가가 직접 확인하지 않으면 진열 보충이 이루어지지 않습니다. 특히 야간·새벽 근무자는 어떤 매대를 보충해야 하는지 파악하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 주요 매대 결품 자동 확인
+      en: Automatic stockout checks on key shelves
+      jp: 主要棚の欠品を自動確認
+    desc: 지정한 주요 매대의 진열 상태를 AI 카메라가 주기적으로 확인합니다. 진열 공간의 일정 비율 이상이 비어 있거나 상품이 쓰러진 상태가 발견되면 실시간 통보를 발송합니다.
+  - product: StoreInsight
+    title:
+      ko: 결품 빈도 및 손실 패턴 분석
+      en: Stockout frequency and loss pattern analysis
+      jp: 欠品頻度と損失パターンの分析
+    desc: 어느 매대, 어느 상품이 어떤 시간대에 결품이 자주 발생하는지 누적 데이터로 파악합니다. 결품 지속 시간과 빈도를 기반으로 발주 주기 조정을 위한 인사이트를 제공합니다.
+  - product: StoreAgent
+    title:
+      ko: 보충 안내 자동 발송
+      en: Automatic restocking notifications
+      jp: 補充案内の自動送信
+    desc: 결품 발견 시 근무자 또는 점주에게 "A 매대 음료 보충 필요"와 같은 구체적인 푸시 전송이 이루어집니다. 알림에는 해당 매대의 현재 상태 사진이 포함되어 바로 확인할 수 있습니다.
+results:
+  - stat: "-42%"
+    label:
+      ko: 결품 지속 시간 감소
+      en: Reduction in stockout duration
+      jp: 欠品継続時間の削減
+  - stat: +23%
+    label:
+      ko: 매대 구매 전환율 상승
+      en: Increase in shelf purchase conversion
+      jp: 棚の購入転換率の上昇
+  - stat: <5분
+    label:
+      ko: 결품 알림 발송 시간
+      en: Stockout alert delivery time
+      jp: 欠品通知の送信時間
+metaDescription: 편의점 결품·재고 손실 관리 방법. AI 카메라로 결품 실시간 감지, 빠른 알림 발송. POS로 놓치는 매출 손실을 줄이는 SAAI 솔루션.
+relatedTerms:
+  - stockout-detection
+  - pos-data-limitations
+  - store-operations-automation
+relatedSolutions:
+  - convenience-night-theft
+  - convenience-planogram
+  - mart-checkout-congestion

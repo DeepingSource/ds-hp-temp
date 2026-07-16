@@ -1,0 +1,82 @@
+slug: drugstore-tester-interaction
+order: 12
+industry: drugstore
+title:
+  ko: 드럭스토어 테스터 상호작용 분석
+  en: Tester interaction analysis for drugstores
+  jp: ドラッグストアのテスター接触分析
+excerpt:
+  ko: 어떤 위치의 테스터가 실제 구매로 이어지는지 데이터로 검증하는 방법
+  en: How to verify with data which tester locations actually lead to purchases.
+  jp: どの位置のテスターが実際の購入につながるのかを、データで検証する方法です。
+impact:
+  ko: +16%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 테스터 구역 구매 전환율 향상
+  en: improvement in tester zone conversion
+  jp: テスターエリアの購入転換率向上
+problem: 테스터 상품을 배치하는 비용은 들지만 실제로 판매에 얼마나 기여하는지 측정하기 어렵습니다. 어떤 테스터가 효과적이고 어떤 위치가 최적인지 알 수 없습니다.
+background:
+  heading:
+    ko: 테스터의 효과를 데이터로 측정하는 방법
+    en: How to measure tester impact with data
+    jp: テスターの効果をデータで測定する方法
+  body: 드럭스토어·뷰티숍에서 테스터는 구매 결정에 중요한 역할을 합니다. 하지만 어떤 상품의 테스터가 가장 체험 빈도가 높은지, 테스터 체험 후 구매로 이어지는 비율이 얼마나 되는지는 주관적 판단에 의존하게 됩니다.
+causes:
+  - title:
+      ko: 테스터 체험 빈도 미측정
+      en: Tester trial frequency unmeasured
+      jp: テスター体験頻度の未測定
+    desc: 고객이 어떤 테스터를 몇 번이나 체험했는지, 어느 시간대에 테스터 접촉이 많은지 파악하지 못합니다.
+  - title:
+      ko: 테스터 위치 최적화 기준 부재
+      en: No criteria for tester placement
+      jp: テスター位置最適化の基準不在
+    desc: 어느 위치에 테스터를 두어야 가장 많은 고객이 접촉하는지 데이터 없이 감으로 배치합니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 테스터 접촉 행동 자동 인식
+      en: Automatic recognition of tester contact behavior
+      jp: テスター接触行動を自動認識
+    desc: 특정 상품을 집어 드는 행동, 얼굴에 가져가는 테스트 동작을 AI가 포착하고 횟수를 집계합니다. 테스터 구역 체류 시간도 함께 측정합니다.
+  - product: StoreInsight
+    title:
+      ko: 테스터 접촉 대비 구매 전환율 분석
+      en: Tester contact vs. purchase conversion analysis
+      jp: テスター接触に対する購入転換率分析
+    desc: 테스터를 체험한 고객 중 해당 상품 또는 인근 상품을 구매한 비율을 POS 데이터와 연동해 확인합니다. 시간대별, 테스터 위치별 효과 비교도 가능합니다.
+  - product: StoreAgent
+    title:
+      ko: 최적 테스터 배치 제안
+      en: Optimal tester placement suggestions
+      jp: 最適なテスター配置の提案
+    desc: 체험 빈도는 높지만 구매 전환율이 낮은 테스터 상품을 식별하고 개선 방향(가격 조정, 위치 변경, 함께 배치할 상품 추가)을 제안합니다.
+results:
+  - stat: +16%
+    label:
+      ko: 테스터 구역 구매 전환율
+      en: Tester zone purchase conversion
+      jp: テスターエリアの購入転換率
+  - stat: +34%
+    label:
+      ko: 테스터 접촉 후 체류 시간
+      en: Dwell time after tester contact
+      jp: テスター接触後の滞在時間
+  - stat: 2배
+    label:
+      ko: 테스터 ROI 측정 정확도
+      en: Tester ROI measurement accuracy
+      jp: テスターROI測定の精度
+metaDescription: 드럭스토어 테스터 효과 측정. AI로 테스터 접촉 횟수 집계, 구매 전환율 연동 평가. 테스터 구역 전환율 16% 향상 방법과 최적 배치 전략.
+relatedTerms:
+  - vmd-optimization
+  - dwell-time
+  - purchase-conversion-rate
+  - behavior-analysis
+relatedSolutions:
+  - drugstore-vmd-optimization
+  - drugstore-zone-performance
+  - convenience-planogram

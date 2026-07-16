@@ -1,0 +1,87 @@
+slug: cafe-low-seat-turnover
+order: 4
+industry: cafe
+title:
+  ko: 카페 낮은 좌석 회전율 개선
+  en: Improving low seat turnover at cafés
+  jp: カフェの低い座席回転率の改善
+excerpt:
+  ko: 피크 타임 장시간 체류 고객으로 인한 좌석 회전율 문제를 데이터로 해결하는 방법
+  en: How to solve seat-turnover problems caused by long-staying customers during peak hours, with data.
+  jp: ピークタイムの長時間滞在客による座席回転率の課題を、データで解決する方法です。
+impact:
+  ko: +22%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 피크 타임 좌석 회전율 향상
+  en: improvement in peak-hour seat turnover
+  jp: ピークタイムの座席回転率向上
+problem: 피크 타임에 좌석은 꽉 찼지만 새로운 고객을 받지 못하고 있습니다. 언제 어느 테이블이 얼마나 오래 사용되었는지 파악할 방법이 없어 운영 전략을 세우기 어렵습니다.
+background:
+  heading:
+    ko: 좌석 회전율 1회 차이가 만드는 매출 차이
+    en: The revenue gap created by one extra seat turn
+    jp: 座席回転1回の差が生む売上の違い
+  body: 10테이블 카페에서 피크 타임 2시간 동안 테이블 회전율이 1.5회에서 2.0회로 높아지면, 동일 인원으로 약 33% 더 많은 고객을 응대할 수 있습니다. 하지만 어느 테이블이 얼마나 오래 점유 중인지, 대기 고객이 몇 명인지를 실시간으로 파악하지 못하면 적절한 조치를 취할 수 없습니다.
+causes:
+  - title:
+      ko: 장시간 체류 패턴 파악 불가
+      en: Cannot track long-stay patterns
+      jp: 長時間滞在パターンを把握できない
+    desc: 특정 고객이 2–3시간 이상 머무르는 경우가 잦지만, 이 패턴이 어느 테이블에서, 어느 시간대에 주로 발생하는지 데이터 없이는 알 수 없습니다.
+  - title:
+      ko: 피크 타임 예측 불가
+      en: Cannot predict peak hours
+      jp: ピークタイムを予測できない
+    desc: 언제 바쁠지 경험적으로는 알지만 정확한 수치 데이터가 없어 직원 배치나 사전 준비를 최적화하기 어렵습니다.
+  - title:
+      ko: 테이블별 상태 파악의 어려움
+      en: Hard to grasp per-table status
+      jp: テーブル別の状況把握の難しさ
+    desc: 홀이 넓거나 층이 여러 개인 경우, 모든 테이블의 착석 상태를 실시간으로 파악하려면 직원이 자주 홀을 순회해야 해 서비스 집중도가 낮아집니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 테이블별 착석 여부 실시간 인식
+      en: Real-time seating detection per table
+      jp: テーブル別の着席をリアルタイム認識
+    desc: AI 카메라가 테이블별 착석 시작과 이석을 자동으로 파악합니다. 각 테이블의 실시간 점유 상태, 현재 체류 시간, 장시간 체류 여부를 대시보드에서 확인할 수 있습니다.
+  - product: StoreInsight
+    title:
+      ko: 좌석 회전율 및 체류 시간 분석
+      en: Seat-turnover and dwell-time analysis
+      jp: 座席回転率・滞在時間の分析
+    desc: "시간대별, 요일별, 테이블별 평균 체류 시간과 회전율을 파악합니다. 장시간 체류가 집중되는 패턴(예: 오후 2–4시 특정 구역)을 확인해 운영 전략 수립에 활용합니다."
+  - product: StoreAgent
+    title:
+      ko: 피크 타임 혼잡 예측 및 준비 안내
+      en: Peak-hour operations guidance
+      jp: ピークタイムの運営最適化案内
+    desc: "테이블 체류 시간이 설정 기준(예: 3시간)을 초과하면 푸시 전송이 이루어집니다. 피크 타임 30분 전 예상 혼잡도를 예측해 직원 배치와 사전 준비를 도웁니다."
+results:
+  - stat: +22%
+    label:
+      ko: 피크 타임 좌석 회전율 향상
+      en: Improvement in peak-hour seat turnover
+      jp: ピークタイムの座席回転率向上
+  - stat: "-15분"
+    label:
+      ko: 평균 테이블 대기 시간 감소
+      en: Reduction in average table wait time
+      jp: 平均テーブル待ち時間の削減
+  - stat: 정확도 95%
+    label:
+      ko: 착석 감지 정확도
+      en: Seating-detection accuracy
+      jp: 着席検知の精度
+metaDescription: 카페 좌석 회전율 개선 방법. AI로 테이블별 체류 시간 자동 측정, 피크 타임 운영 최적화. 22% 회전율 향상 사례. SAAI 무료 상담 신청.
+relatedTerms:
+  - seat-turnover-rate
+  - dwell-time
+  - footfall-analysis
+  - crowd-density-analysis
+relatedSolutions:
+  - cafe-peak-hour-management
+  - cafe-customer-wait-time
+  - exhibition-visitor-dwell-time

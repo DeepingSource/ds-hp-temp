@@ -1,0 +1,81 @@
+slug: unmanned-remote-monitoring
+order: 9
+industry: unmanned
+title:
+  ko: 무인매장 원격 관리 및 모니터링
+  en: Remote management and monitoring for unmanned stores
+  jp: 無人店舗の遠隔管理・モニタリング
+excerpt:
+  ko: 스마트폰 하나로 여러 무인매장을 동시에 관리하는 원격 운영 방법
+  en: How to manage multiple unmanned stores at once from a single smartphone.
+  jp: スマートフォン 1 台で複数の無人店舗を同時に管理する遠隔運営の方法です。
+impact:
+  ko: "-60%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 현장 방문 없이 처리 가능한 이슈 증가
+  en: increase in issues resolved without a site visit
+  jp: 現地訪問なしで対応可能な課題の増加
+problem: 여러 개의 무인매장을 운영하면서 각 지점을 주기적으로 방문 확인해야 합니다. 현장 방문 없이는 상태 파악이 불가능해 운영 효율이 낮습니다.
+background:
+  heading:
+    ko: 다점포 무인매장 운영의 현실
+    en: The reality of multi-site unmanned operations
+    jp: 多店舗無人運営の現実
+  body: 무인매장의 경쟁력은 인건비 절감과 24시간 운영에 있지만, 다점포를 운영하는 경우 점검 방문 자체가 새로운 비용이 됩니다. AI 원격 모니터링으로 현장 방문 없이도 모든 지점의 상태를 실시간으로 파악하고, 이슈 발생 시에만 방문하는 방식으로 운영 효율을 높일 수 있습니다.
+causes:
+  - title:
+      ko: 다점포 동시 모니터링 불가
+      en: Cannot monitor multiple sites at once
+      jp: 多店舗の同時モニタリングが不可能
+    desc: 지점이 여러 곳이면 동시에 모든 현장의 상태를 확인할 방법이 없습니다. 문제가 생겨도 직접 방문 전까지 파악이 어렵습니다.
+  - title:
+      ko: 불필요한 현장 방문 비용
+      en: Cost of unnecessary site visits
+      jp: 不要な現地訪問のコスト
+    desc: 아무 이상이 없는데도 정기 확인을 위해 방문해야 합니다. 이동 시간과 비용이 낭비됩니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 다점포 실시간 상태 통합 대시보드
+      en: Unified real-time dashboard across sites
+      jp: 多店舗の状態を統合リアルタイム表示
+    desc: 여러 무인매장의 현재 상태(방문객 수, 이상 여부, 시설 상태)를 하나의 앱에서 실시간으로 확인합니다. 이상이 있는 지점만 강조 표시되어 우선 확인이 가능합니다.
+  - product: StoreInsight
+    title:
+      ko: 지점별 운영 성과 비교 분석
+      en: Comparative performance analysis by site
+      jp: 店舗別の運営成果の比較分析
+    desc: 지점별 방문객 수, 이상 탐지 빈도, 결품 발생 건수를 비교해 운영 효율이 낮은 지점과 개선이 필요한 부분을 파악합니다.
+  - product: StoreAgent
+    title:
+      ko: 이상 발생 시에만 선택적 방문 알림
+      en: Selective visit alerts only on anomalies
+      jp: 異常発生時のみ選択的に訪問通知
+    desc: 일반적인 상태에서는 모든 것이 정상으로 표시됩니다. 방문이 필요한 이상 상황(결품, 시설 이상, 도난 의심)이 확인된 경우에만 실시간 통보로 방문을 권고합니다.
+results:
+  - stat: "-60%"
+    label:
+      ko: 불필요한 현장 방문 감소
+      en: Reduction in unnecessary site visits
+      jp: 不要な現地訪問の削減
+  - stat: 10개+
+    label:
+      ko: 동시 모니터링 가능 매장 수
+      en: Stores monitored simultaneously
+      jp: 同時モニタリング可能な店舗数
+  - stat: 15초
+    label:
+      ko: 이상 알림 발송 시간
+      en: Anomaly alert delivery time
+      jp: 異常通知の送信時間
+metaDescription: 무인매장 원격 관리 방법. AI로 다점포를 스마트폰 하나로 통합 모니터링. 불필요한 방문 60% 감소. 이상 발생 시에만 방문하는 스마트 운영 방법.
+relatedTerms:
+  - store-operations-automation
+  - anomaly-detection
+  - cctv-analytics
+relatedSolutions:
+  - unmanned-theft-prevention
+  - unmanned-anomaly-detection
+  - convenience-night-theft

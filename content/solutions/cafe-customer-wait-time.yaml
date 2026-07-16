@@ -1,0 +1,86 @@
+slug: cafe-customer-wait-time
+order: 6
+industry: cafe
+title:
+  ko: 카페 고객 대기 시간 단축
+  en: Reducing customer wait time at cafés
+  jp: カフェの顧客待ち時間の短縮
+excerpt:
+  ko: 대기 중 이탈 고객을 줄이고 주문부터 제공까지 흐름을 최적화하는 방법
+  en: How to reduce walk-aways while waiting and optimize the flow from order to service.
+  jp: 待機中の離脱客を減らし、注文から提供までの流れを最適化する方法です。
+impact:
+  ko: +19%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 대기 고객 전환율 향상
+  en: improvement in waiting-customer conversion
+  jp: 待機客のコンバージョン向上
+problem: 카운터 앞 대기 줄이 길어지면 고객이 그냥 나갑니다. 대기 이탈 고객이 얼마나 되는지, 어떤 조건에서 이탈이 급증하는지 파악하지 못합니다.
+background:
+  heading:
+    ko: 대기 이탈 고객의 보이지 않는 손실
+    en: The invisible loss of walk-away customers
+    jp: 待機離脱客の見えない損失
+  body: 3명 이상 줄이 서면 약 25%의 고객이 포기한다는 연구가 있습니다. 이 고객들은 POS에 기록되지 않지만 실질적인 매출 손실입니다. 특히 카드 결제가 보편화된 현재, 줄 서는 시간에 대한 민감도는 과거보다 높아졌습니다. 빠른 처리를 위한 메뉴판 배치, 모바일 주문 유도, 직원 배치 최적화가 핵심입니다.
+causes:
+  - title:
+      ko: 대기 이탈 고객 규모 미파악
+      en: Cannot gauge walk-away volume
+      jp: 待機離脱客の規模を把握できない
+    desc: 가게 앞을 지나치거나 줄을 보고 포기하는 고객의 수를 측정하지 못해 실제 수요가 얼마나 큰지 알 수 없습니다.
+  - title:
+      ko: 병목 구간 식별 어려움
+      en: Hard to identify bottlenecks
+      jp: ボトルネック区間の識別が難しい
+    desc: 주문, 결제, 픽업 중 어느 단계에서 대기가 집중되는지 파악하지 못해 개선 포인트를 찾기 어렵습니다.
+  - title:
+      ko: 동선 혼잡으로 인한 불편
+      en: Discomfort from congested flow
+      jp: 動線混雑による不便
+    desc: 주문 대기 줄과 픽업 대기 구역이 겹치면 혼잡이 가중됩니다. 동선 재배치가 필요하지만 데이터 없이 결정하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 대기 줄 길이 및 이탈 고객 실시간 파악
+      en: Real-time queue length and walk-away tracking
+      jp: 待ち行列の長さと離脱客をリアルタイム把握
+    desc: 입구와 카운터 카메라로 대기 줄 인원과 이탈 고객 수를 자동으로 집계합니다. 줄 길이가 임계치를 초과 시 즉시 안내를 발송합니다.
+  - product: StoreInsight
+    title:
+      ko: 대기 패턴 분석 및 병목 구간 파악
+      en: Wait-pattern analysis and bottleneck detection
+      jp: 待機パターン分析とボトルネック把握
+    desc: 시간대별 대기 인원, 평균 대기 시간, 이탈률을 파악합니다. 주문/결제/픽업 단계별 소요 시간을 비교해 병목 구간을 찾아냅니다.
+  - product: StoreAgent
+    title:
+      ko: 대기 최소화를 위한 운영 제안
+      en: Operations suggestions to minimize waiting
+      jp: 待機最小化のための運営提案
+    desc: 대기 줄이 기준치를 넘으면 추가 카운터 오픈 안내를 전송합니다. 피크 예측 데이터를 기반으로 미리 준비해 대기 발생 자체를 줄이는 전략을 제안합니다.
+results:
+  - stat: +19%
+    label:
+      ko: 대기 고객 구매 전환율
+      en: Waiting-customer purchase conversion
+      jp: 待機客の購入転換率
+  - stat: "-22%"
+    label:
+      ko: 평균 대기 줄 길이
+      en: Average queue length
+      jp: 平均待ち行列の長さ
+  - stat: "-31%"
+    label:
+      ko: 대기 이탈 고객 수
+      en: Walk-away customer count
+      jp: 待機離脱客数
+metaDescription: 카페 대기 시간 단축 방법. AI로 대기 줄 길이 실시간 감지, 이탈 고객 측정, 병목 구간 파악. 고객 전환율 19% 향상 방법 알아보기.
+relatedTerms:
+  - crowd-density-analysis
+  - footfall-analysis
+  - behavior-analysis
+relatedSolutions:
+  - cafe-peak-hour-management
+  - cafe-low-seat-turnover
+  - mart-checkout-congestion

@@ -1,0 +1,80 @@
+slug: logistics-ppe-compliance
+order: 21
+industry: logistics
+title:
+  ko: 물류 보호구 착용 준수 자동화
+  en: Automated PPE compliance for logistics
+  jp: 物流の保護具着用遵守の自動化
+excerpt:
+  ko: AI로 모든 작업자의 안전 보호구 착용 여부를 자동으로 확인하는 방법
+  en: How AI automatically checks whether every worker is wearing their safety gear.
+  jp: すべての作業者の安全保護具の着用有無を、AI が自動で確認する方法です。
+impact:
+  ko: "-70%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 보호구 미착용 사고 위험 감소
+  en: reduction in incident risk from missing PPE
+  jp: 保護具未着用による事故リスクの削減
+problem: 안전 규정상 모든 작업자가 헬멧·안전화·형광 조끼를 착용해야 하지만 이를 일일이 확인하기 어렵습니다. 특히 야간·새벽 근무나 인력이 많은 경우 관리가 어렵습니다.
+background:
+  heading:
+    ko: PPE 준수가 산업재해를 줄이는 방법
+    en: How PPE compliance reduces industrial accidents
+    jp: PPE遵守が産業災害を減らす方法
+  body: 산업안전보건공단 데이터에 따르면 물류·제조업 사망 사고의 상당수가 개인 보호구(PPE) 미착용 상태에서 발생합니다. 규정은 있지만 높은 준수율을 사람이 일일이 확인하기는 현실적으로 어렵습니다. AI가 이 역할을 자동화하면 관리자의 부담을 줄이면서 준수율을 높일 수 있습니다.
+causes:
+  - title:
+      ko: 전 작업자 실시간 확인 불가
+      en: Cannot verify every worker in real time
+      jp: 全作業者のリアルタイム確認が不可能
+    desc: 작업자가 많고 구역이 넓으면 모든 사람의 보호구 착용 여부를 안전 관리자 1명이 확인할 수 없습니다.
+  - title:
+      ko: 비준수 기록 및 추적 어려움
+      en: Hard to record and trace non-compliance
+      jp: 非遵守の記録と追跡が難しい
+    desc: 누가, 언제, 어디서 보호구를 착용하지 않았는지 기록하지 못해 반복 위반자 파악과 교육이 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 보호구 착용 여부 AI 자동 검출
+      en: AI auto-detection of PPE use
+      jp: 保護具着用をAIで自動検出
+    desc: 카메라가 작업자의 헬멧, 안전 조끼, 안전화 착용 여부를 자동으로 확인합니다. 미착용 발견 시 경고 방송 + 관리자 알림이 자동 발송됩니다.
+  - product: StoreInsight
+    title:
+      ko: 구역별·시간대별 준수율 분석
+      en: Compliance-rate analysis by zone and time
+      jp: エリア別・時間帯別の遵守率分析
+    desc: 어느 구역에서 어느 시간대에 미착용이 많은지 확인합니다. 반복적으로 미착용이 발견되는 패턴을 파악해 집중 교육 대상과 환경 개선 방향을 제안합니다.
+  - product: StoreAgent
+    title:
+      ko: PPE 준수율 자동 리포트
+      en: Automatic PPE compliance reports
+      jp: PPE遵守率の自動レポート
+    desc: 일별·주별 PPE 준수율, 미착용 이벤트 수, 구역별 현황을 자동 리포트로 제공합니다. 산업안전보건법 준수 증빙 자료로도 활용 가능합니다.
+results:
+  - stat: "-70%"
+    label:
+      ko: PPE 미착용 이벤트 감소
+      en: Reduction in PPE non-compliance events
+      jp: PPE未着用イベントの削減
+  - stat: +90%
+    label:
+      ko: PPE 준수율 달성
+      en: PPE compliance rate achieved
+      jp: PPE遵守率の達成
+  - stat: 24/7
+    label:
+      ko: 미착용 이벤트 자동 기록
+      en: Automatic logging of non-compliance
+      jp: 未着用イベントの自動記録
+metaDescription: 물류 보호구 착용 준수 자동화. AI로 헬멧·조끼 착용 여부 자동 감지, PPE 준수율 90% 달성. 미착용 이벤트 70% 감소. 산업안전보건법 준수 방법.
+relatedTerms:
+  - anomaly-detection
+  - store-operations-automation
+  - cctv-analytics
+relatedSolutions:
+  - logistics-worker-safety
+  - logistics-efficiency-zones

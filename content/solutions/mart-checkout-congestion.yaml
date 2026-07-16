@@ -1,0 +1,86 @@
+slug: mart-checkout-congestion
+order: 13
+industry: mart
+title:
+  ko: 마트 계산대 혼잡 관리
+  en: Checkout congestion management for hypermarkets
+  jp: 大型スーパーのレジ混雑管理
+excerpt:
+  ko: 계산대 앞 대기 줄을 데이터로 예측하고 최적화해 고객 이탈을 방지하는 방법
+  en: How to predict and optimize checkout queues with data to prevent customer walk-aways.
+  jp: レジ前の待ち行列をデータで予測・最適化し、顧客の離脱を防ぐ方法です。
+impact:
+  ko: "-32%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 계산대 평균 대기 시간 감소
+  en: reduction in average checkout wait time
+  jp: レジの平均待ち時間削減
+problem: 피크 타임에 계산대 앞 줄이 길어지면 고객이 카트를 버리고 나가는 경우가 발생합니다. 언제 추가 계산대를 열어야 하는지, 실제 이탈이 얼마나 되는지 파악하기 어렵습니다.
+background:
+  heading:
+    ko: 마트 계산대 이탈의 실제 비용
+    en: The real cost of checkout walk-aways at hypermarkets
+    jp: 大型スーパーのレジ離脱の実際のコスト
+  body: 마트 방문 고객이 상품을 골라 카트에 담은 후 계산대에서 포기하는 경우, 담아놓은 상품을 원래 자리에 돌려놓는 비용(직원 시간)과 매출 손실이 동시에 발생합니다. 대기 시간이 3분을 넘으면 약 15%의 고객이 포기한다는 연구 결과가 있습니다.
+causes:
+  - title:
+      ko: 계산대 수요 예측 불가
+      en: Cannot forecast checkout demand
+      jp: レジ需要を予測できない
+    desc: 언제 몇 명이 계산대로 올지 예측하지 못해 대기 줄이 이미 길어진 후에야 추가 계산대를 열게 됩니다.
+  - title:
+      ko: 대기 이탈 고객 측정 불가
+      en: Cannot measure walk-away customers
+      jp: 待機離脱客を測定できない
+    desc: 줄을 보고 포기한 고객이 얼마나 되는지 파악하지 못해 실제 손실 규모를 알 수 없습니다.
+  - title:
+      ko: 비효율적인 계산대 배분
+      en: Inefficient checkout allocation
+      jp: 非効率なレジ配分
+    desc: 한쪽 계산대는 긴 줄, 다른 쪽은 여유 있는 상황이 발생해도 고객이 자발적으로 이동하지 않으면 해소되지 않습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 계산대별 대기 줄 실시간 모니터링
+      en: Real-time queue monitoring per checkout
+      jp: レジ別の待ち行列をリアルタイム監視
+    desc: "각 계산대의 대기 인원과 예상 대기 시간을 실시간으로 측정합니다. 설정 임계치(예: 5명 이상)를 초과 시 즉시 안내를 발송합니다."
+  - product: StoreInsight
+    title:
+      ko: 피크 타임 계산대 수요 예측
+      en: Peak-hour checkout demand forecasting
+      jp: ピークタイムのレジ需要予測
+    desc: 현장 내 방문객 수와 구역별 체류 패턴을 파악해 15–30분 후 계산대로 이동할 예상 인원을 예측합니다.
+  - product: StoreAgent
+    title:
+      ko: 계산대 선제적 운영 안내
+      en: Proactive checkout operations guidance
+      jp: レジの先制的な運営案内
+    desc: "\"15분 후 계산대 예상 대기 15명 — 추가 계산대 오픈 권장\" 푸시 전송을 피크 시작 전에 보내 선제적 대응을 지원합니다."
+results:
+  - stat: "-32%"
+    label:
+      ko: 계산대 평균 대기 시간
+      en: Average checkout wait time
+      jp: レジの平均待ち時間
+  - stat: "-18%"
+    label:
+      ko: 계산대 이탈 고객 수
+      en: Checkout walk-away customer count
+      jp: レジ離脱客数
+  - stat: 15분
+    label:
+      ko: 피크 예측 선행 시간
+      en: Peak forecast lead time
+      jp: ピーク予測の先行時間
+metaDescription: 마트 계산대 혼잡 관리 방법. AI로 대기 줄 실시간 모니터링, 피크 예측으로 선제적 대응. 대기 시간 32% 감소, 이탈 고객 18% 감소 방법.
+relatedTerms:
+  - crowd-density-analysis
+  - footfall-analysis
+  - store-operations-automation
+relatedSolutions:
+  - mart-cart-path-optimization
+  - cafe-peak-hour-management
+  - cafe-customer-wait-time

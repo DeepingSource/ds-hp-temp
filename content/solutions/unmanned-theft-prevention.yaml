@@ -1,0 +1,87 @@
+slug: unmanned-theft-prevention
+order: 7
+industry: unmanned
+title:
+  ko: 무인매장 도난 방지 시스템
+  en: Theft prevention system for unmanned stores
+  jp: 無人店舗の盗難防止システム
+excerpt:
+  ko: 사람이 없는 환경에서 AI가 24시간 매장을 지키는 완전 자동화 도난 방지 방법
+  en: A fully automated approach where AI guards the store 24/7 in a staff-free environment.
+  jp: スタッフ不在の環境で、AI が 24 時間店舗を守る完全自動の盗難防止アプローチです。
+impact:
+  ko: "-35%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 무인 운영 손실률 감소
+  en: reduction in unmanned operation loss rate
+  jp: 無人運営の損失率削減
+problem: 무인매장은 운영 비용은 낮지만 도난 위험에 그대로 노출됩니다. 카메라가 있어도 실시간으로 모니터링하는 사람이 없어 도난이 발생해도 다음 날에야 알게 됩니다.
+background:
+  heading:
+    ko: 무인매장의 구조적 도난 취약성
+    en: The structural theft vulnerability of unmanned stores
+    jp: 無人店舗の構造的な盗難脆弱性
+  body: 무인매장 도입 기업 대상 설문에서 "도난·손실 관리"가 운영 최대 고민 1위로 꼽혔습니다. 직원이 없기 때문에 고객의 행동을 제지하거나 즉시 대응하기 불가능합니다. 카메라는 증거 수집용이지 예방용이 되지 못합니다. AI 이상 탐지가 이 문제의 구조적 해결책입니다.
+causes:
+  - title:
+      ko: 실시간 모니터링 인력 부재
+      en: No staff for real-time monitoring
+      jp: リアルタイム監視の人員不在
+    desc: 무인 운영의 특성상 이상 상황을 즉시 발견하고 대응할 사람이 없습니다. 경고나 제지 없이 도난이 완성됩니다.
+  - title:
+      ko: 사후 확인만 가능한 CCTV
+      en: CCTV that only confirms after the fact
+      jp: 事後確認しかできないCCTV
+    desc: 기존 CCTV는 사건 후 영상을 찾아보는 용도입니다. 실시간으로 이상을 탐지해 알려주는 기능이 없습니다.
+  - title:
+      ko: 조용한 누적 손실
+      en: Quiet accumulating losses
+      jp: 静かに累積する損失
+    desc: 한 번에 큰 도난 사고가 아닌 소액 절도가 반복되는 경우, 재고 장부와 실제 재고 차이로만 뒤늦게 발견됩니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 무인 환경 특화 이상 행동 탐지
+      en: Anomaly detection tuned for unmanned settings
+      jp: 無人環境に特化した異常行動検知
+    desc: 영업 시간 외 침입, 상품을 봉지나 가방에 넣는 행동, 카메라 가리기 시도, 비정상적인 장시간 체류를 실시간으로 포착합니다. 이상 포착 시 경고 방송을 자동 실행합니다.
+  - product: StoreInsight
+    title:
+      ko: 도난 위험 패턴 누적 분석
+      en: Cumulative theft-risk pattern analysis
+      jp: 盗難リスクパターンの累積分析
+    desc: 이상 탐지 이벤트 로그를 확인해 도난 위험이 높은 시간대와 구역을 파악합니다. 반복적으로 이상 행동이 발견되는 고객 패턴을 조사해 예방적 조치를 준비합니다.
+  - product: StoreAgent
+    title:
+      ko: 다중 알림 및 원격 대응
+      en: Multi-channel alerts and remote response
+      jp: 多重通知と遠隔対応
+    desc: 이상 확인 시 점주 앱, 경비 업체 연동 알림을 동시에 발송합니다. 원격 잠금, 경보음 활성화, 경고 방송 자동 실행으로 즉각 대응이 가능합니다.
+results:
+  - stat: "-35%"
+    label:
+      ko: 무인 운영 손실률 감소
+      en: Reduction in unmanned operation loss rate
+      jp: 無人運営の損失率削減
+  - stat: 98.2%
+    label:
+      ko: 이상 감지 정확도
+      en: Anomaly detection accuracy
+      jp: 異常検知の精度
+  - stat: 15초
+    label:
+      ko: 알림 발송 소요 시간
+      en: Alert delivery time
+      jp: 通知の所要時間
+metaDescription: 무인매장 도난 방지 방법. AI 실시간 이상 감지로 손실률 35% 감소. 15초 알림, 원격 잠금, 경고 방송 자동화. SAAI 무료 상담 신청.
+relatedTerms:
+  - anomaly-detection
+  - night-monitoring
+  - cctv-analytics
+  - store-operations-automation
+relatedSolutions:
+  - convenience-night-theft
+  - unmanned-remote-monitoring
+  - unmanned-anomaly-detection

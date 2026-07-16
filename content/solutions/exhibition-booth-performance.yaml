@@ -1,0 +1,80 @@
+slug: exhibition-booth-performance
+order: 17
+industry: exhibition
+title:
+  ko: 전시 부스 성과 분석
+  en: Booth performance analysis for exhibitions
+  jp: 展示ブースの成果分析
+excerpt:
+  ko: 각 참가 기업 부스의 방문객 유치 성과를 객관적 데이터로 측정하는 방법
+  en: How to measure each exhibitor booth’s ability to attract visitors with objective data.
+  jp: 各出展企業ブースの来場者集客成果を、客観的なデータで測定する方法です。
+impact:
+  ko: 3배
+  en: 3x
+  jp: 3倍
+impactLabel:
+  ko: 부스 성과 측정 정확도 향상
+  en: improvement in booth performance measurement accuracy
+  jp: ブース成果測定の精度向上
+problem: 박람회·전시회에서 각 부스가 얼마나 많은 방문객을 유치했는지 객관적으로 측정하기 어렵습니다. 참가사 만족도와 재참가 결정에 데이터 근거가 없습니다.
+background:
+  heading:
+    ko: 부스 성과 측정의 중요성
+    en: Why measuring booth performance matters
+    jp: ブース成果測定の重要性
+  body: 전시 주최사 입장에서 참가 기업에게 "우리 행사가 얼마나 효과적이었는지" 데이터로 보여줄 수 있다면 재참가율과 참가비 정당성을 높일 수 있습니다. 참가사 입장에서도 부스 투자 대비 효과를 정량적으로 평가할 수 있습니다.
+causes:
+  - title:
+      ko: 주관적 성과 측정
+      en: Subjective performance measurement
+      jp: 主観的な成果測定
+    desc: 부스 방문객 수를 직원이 수작업으로 집계하거나 명함 수로 대략 추정합니다. 정확도가 낮고 비교 기준이 없습니다.
+  - title:
+      ko: 부스 간 방문객 분포 파악 불가
+      en: Cannot grasp visitor distribution across booths
+      jp: ブース間の来場者分布を把握できない
+    desc: 어떤 부스가 상대적으로 방문이 많은지, 위치의 영향이 얼마나 큰지 객관적으로 파악하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 부스별 방문객 수 자동 집계
+      en: Automatic visitor count per booth
+      jp: ブース別の来場者数を自動集計
+    desc: 전시 공간 전체 카메라로 부스별 방문객 수, 체류 시간, 혼잡도를 자동으로 측정합니다.
+  - product: StoreInsight
+    title:
+      ko: 부스 성과 비교 및 위치 효과 분석
+      en: Booth performance and location-effect analysis
+      jp: ブース成果と位置効果の分析
+    desc: 부스 위치(입구 근처 vs 안쪽), 크기, 디자인 요소별 방문률 차이를 비교합니다. 동일 행사 내 부스 성과 순위를 객관적으로 산출합니다.
+  - product: StoreAgent
+    title:
+      ko: 참가사별 성과 리포트 자동 제공
+      en: Automatic per-exhibitor performance reports
+      jp: 出展社別の成果レポートを自動提供
+    desc: 행사 종료 후 각 참가사에게 "귀사 부스 방문객 수, 평균 체류 시간, 전체 대비 성과 비교" 리포트를 자동으로 제공합니다.
+results:
+  - stat: 3배
+    label:
+      ko: 부스 성과 측정 정확도
+      en: Booth performance measurement accuracy
+      jp: ブース成果測定の精度
+  - stat: 전 부스
+    label:
+      ko: 방문객 수 자동 집계
+      en: Automatic visitor count
+      jp: 来場者数の自動集計
+  - stat: 자동
+    label:
+      ko: 행사 종료 후 리포트 자동화
+      en: Post-event report automation
+      jp: 行事終了後のレポート自動化
+metaDescription: 전시 부스 성과 분석 방법. AI로 부스별 방문객 수 자동 집계, 성과 비교 리포트 자동 생성. 참가사 만족도 향상과 재참가율 제고 방법.
+relatedTerms:
+  - footfall-analysis
+  - dwell-time
+  - zone-analysis
+relatedSolutions:
+  - exhibition-visitor-dwell-time
+  - exhibition-crowd-flow

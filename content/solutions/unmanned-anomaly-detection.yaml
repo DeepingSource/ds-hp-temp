@@ -1,0 +1,81 @@
+slug: unmanned-anomaly-detection
+order: 8
+industry: unmanned
+title:
+  ko: 무인매장 이상 감지 자동화
+  en: Automated anomaly detection for unmanned stores
+  jp: 無人店舗の異常検知の自動化
+excerpt:
+  ko: 침입, 파손, 냉장 이상까지 무인 환경의 모든 이상 상황을 AI가 자동으로 감지하는 방법
+  en: How AI automatically detects every anomaly in an unmanned environment — from intrusion and damage to refrigeration faults.
+  jp: 侵入・破損から冷蔵異常まで、無人環境のあらゆる異常状況を AI が自動で検知する方法です。
+impact:
+  ko: "-82%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 이상 상황 발견 지연 시간 감소
+  en: reduction in anomaly discovery delay
+  jp: 異常発見の遅延時間削減
+problem: 냉장 진열대 도어가 열린 채 방치되거나, 물건이 쏟아져 있어도 다음날 출근 전까지 아무도 모릅니다. 작은 이상들이 쌓여 큰 손실이 됩니다.
+background:
+  heading:
+    ko: 무인매장에서 발생하는 이상 상황의 범위
+    en: The range of anomalies that occur in unmanned stores
+    jp: 無人店舗で発生する異常状況の範囲
+  body: 도난 외에도 무인매장에서는 다양한 이상 상황이 발생합니다. 냉장고 도어가 닫히지 않아 식품이 상하거나, 물건이 통로에 쓰러져 안전 위협이 되거나, 음주 고객이 장시간 배회하는 상황 등입니다. 이런 상황들이 발생해도 직원이 없으면 즉각 발견이 불가능합니다.
+causes:
+  - title:
+      ko: 다양한 이상 유형에 대한 개별 대응 불가
+      en: Cannot handle varied anomaly types individually
+      jp: 多様な異常タイプへの個別対応が困難
+    desc: 도난, 시설 이상, 안전 위협 등 각기 다른 유형의 이상 상황에 단일 솔루션으로 대응하기 어렵습니다.
+  - title:
+      ko: 야간·새벽 사각지대
+      en: Night and dawn blind spots
+      jp: 夜間・早朝の死角
+    desc: 가장 문제가 되는 심야 시간대에 아무도 모니터링하지 않습니다. 문제가 수 시간 동안 지속될 수 있습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 다유형 이상 상황 동시 탐지
+      en: Simultaneous detection of multiple anomaly types
+      jp: 多タイプの異常状況を同時検知
+    desc: 도난 의심 행동, 냉장 도어 장시간 열림, 상품 쏟아짐, 장시간 체류, 영업 외 시간 침입을 각각 독립적으로 인식합니다. 이상 유형별로 알림 수신자와 대응 방식을 다르게 설정할 수 있습니다.
+  - product: StoreInsight
+    title:
+      ko: 이상 이벤트 로그 및 통계 분석
+      en: Anomaly event logs and statistical analysis
+      jp: 異常イベントログと統計分析
+    desc: 일별·주별 이상 이벤트 발생 건수, 유형별 분포, 해결 완료 시간을 집계해 운영 개선 방향을 도출합니다.
+  - product: StoreAgent
+    title:
+      ko: 이상 유형별 자동 대응 실행
+      en: Automated response per anomaly type
+      jp: 異常タイプ別の自動対応実行
+    desc: 냉장 도어 장시간 열림 → 경고 방송, 침입 확인 → 경보음 + 점주 알림 + 경비 업체 알림, 상품 쏟아짐 → 담당자 알림과 같이 이상 유형별로 미리 설정한 대응을 자동으로 실행합니다.
+results:
+  - stat: "-82%"
+    label:
+      ko: 이상 상황 발견 지연 시간
+      en: Anomaly discovery delay
+      jp: 異常発見の遅延時間
+  - stat: 5가지
+    label:
+      ko: 동시 감지 이상 유형 수
+      en: Anomaly types detected simultaneously
+      jp: 同時検知する異常タイプ数
+  - stat: 24시간
+    label:
+      ko: 무중단 자동 모니터링
+      en: Uninterrupted automatic monitoring
+      jp: 無中断の自動モニタリング
+metaDescription: 무인매장 이상 감지 자동화. 도난·냉장 이상·파손 등 5가지 이상 유형을 AI가 동시에 감지. 발견 지연 82% 감소. SAAI 솔루션 알아보기.
+relatedTerms:
+  - anomaly-detection
+  - night-monitoring
+  - store-operations-automation
+relatedSolutions:
+  - unmanned-theft-prevention
+  - unmanned-remote-monitoring
+  - convenience-night-theft

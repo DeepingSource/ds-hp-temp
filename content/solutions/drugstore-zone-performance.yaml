@@ -1,0 +1,82 @@
+slug: drugstore-zone-performance
+order: 11
+industry: drugstore
+title:
+  ko: 드럭스토어 구역별 성과 분석
+  en: Zone-by-zone performance analysis for drugstores
+  jp: ドラッグストアのエリア別成果分析
+excerpt:
+  ko: 매장 내 어떤 구역이 매출에 기여하고 어떤 구역이 사각지대인지 파악하는 방법
+  en: How to identify which in-store zones drive sales and which are blind spots.
+  jp: 店内のどのエリアが売上に貢献し、どのエリアが死角なのかを把握する方法です。
+impact:
+  ko: +20%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 사각지대 구역 방문률 향상
+  en: improvement in blind-spot zone visit rate
+  jp: 死角エリアの来訪率向上
+problem: 공간 안에서도 고객이 잘 가지 않는 구역이 있습니다. 어떤 구역이 사각지대인지, 왜 방문이 적은지 파악하지 못해 레이아웃 최적화를 할 수 없습니다.
+background:
+  heading:
+    ko: 모든 구역이 동등하게 활용되지 않는다
+    en: Not every zone is used equally
+    jp: すべてのエリアが等しく活用されるわけではない
+  body: 드럭스토어 현장 내에서도 입구 근처와 안쪽 구역, 주 동선과 옆 구역의 방문 빈도는 크게 다릅니다. 이 차이를 파악하지 못하면 비싼 임대 공간의 일부가 낭비되고, 잠재 수익을 창출할 수 있는 상품이 주목받지 못합니다.
+causes:
+  - title:
+      ko: 구역별 방문 빈도 미측정
+      en: Zone visit frequency unmeasured
+      jp: エリア別来訪頻度の未測定
+    desc: 어느 구역을 몇 명이 방문하는지 데이터가 없어 레이아웃 문제를 파악하기 어렵습니다.
+  - title:
+      ko: 사각지대 구역의 상품 배치 비효율
+      en: Inefficient product placement in blind spots
+      jp: 死角エリアの商品配置の非効率
+    desc: 방문이 적은 구역에 어떤 상품을 배치해야 방문을 유도할 수 있는지 알 수 없습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 전 구역 방문률 및 체류 시간 측정
+      en: Measure visit rate and dwell time across all zones
+      jp: 全エリアの来訪率と滞在時間を測定
+    desc: 공간을 최대 20개 가상 구역으로 분할해 각 구역의 방문 고객 수, 체류 시간, 재방문 패턴을 자동으로 측정합니다.
+  - product: StoreInsight
+    title:
+      ko: 구역별 성과 히트맵 및 이동 경로 분석
+      en: Zone performance heatmap and path analysis
+      jp: エリア別成果ヒートマップと移動経路分析
+    desc: 전체 공간 구역을 방문률 기반 색상 히트맵으로 시각화합니다. 고객이 어떤 경로로 이동하는지 확인해 사각지대 원인을 파악합니다.
+  - product: StoreAgent
+    title:
+      ko: 사각지대 개선 제안
+      en: Blind-spot improvement suggestions
+      jp: 死角エリアの改善提案
+    desc: "\"D 구역 방문률이 평균 대비 40% 낮습니다 — 입구 사인물 추가 또는 프로모션 상품 배치를 권장합니다\"와 같은 구체적 개선 제안을 자동으로 제공합니다."
+results:
+  - stat: +20%
+    label:
+      ko: 사각지대 구역 방문률 향상
+      en: Improvement in blind-spot zone visit rate
+      jp: 死角エリアの来訪率向上
+  - stat: 3배
+    label:
+      ko: 레이아웃 개편 효과 측정 속도
+      en: Speed of measuring layout-change impact
+      jp: レイアウト改編効果の測定速度
+  - stat: 20개
+    label:
+      ko: 동시 분석 가능 구역 수
+      en: Zones analyzed simultaneously
+      jp: 同時分析可能なエリア数
+metaDescription: 드럭스토어 구역별 성과 분석. AI로 사각지대 파악, 방문률 히트맵 생성. 사각지대 방문률 20% 향상 방법과 레이아웃 최적화 전략.
+relatedTerms:
+  - zone-analysis
+  - store-heatmap
+  - footfall-analysis
+  - vmd-optimization
+relatedSolutions:
+  - drugstore-vmd-optimization
+  - mart-zone-conversion
+  - exhibition-booth-performance

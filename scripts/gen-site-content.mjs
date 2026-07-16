@@ -315,6 +315,20 @@ const glossary = fs.existsSync(GLOSSARY_DIR)
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
   : [];
 
+// ── solutionPages — CMS collection (content/solutions/*.yaml, one file per scenario).
+//    Structured per-solution data: title/excerpt/impact/impactLabel + background.heading,
+//    cause titles, step titles, result labels are {ko,en,jp}; the rest (problem, bodies,
+//    descs, stats, metaDescription) is ko-only. productLabel/productColor/industryLabel are
+//    NOT stored (re-export derives them). Consumed by solutionsData.ts/solutions-i18n.ts. ──
+const SOLUTION_PAGES_DIR = path.join(ROOT, 'content/solutions');
+const solutionPages = fs.existsSync(SOLUTION_PAGES_DIR)
+  ? fs
+      .readdirSync(SOLUTION_PAGES_DIR)
+      .filter((f) => f.endsWith('.yaml'))
+      .map((f) => yaml.load(fs.readFileSync(path.join(SOLUTION_PAGES_DIR, f), 'utf8')))
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  : [];
+
 // ── gated docs — logical slugs of access:gated docs (DOCS_WIKI_PLAN Phase 4). The
 //    proxy gate + GH-Pages export exclusion read this. Parsed from content/docs/*.mdx
 //    frontmatter so it's independent of velite build order. Currently gates nothing. ──
@@ -350,7 +364,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career, solutionPages }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, glossary, leadership, milestones, career)');
+console.log('✓ generated src/data/generated/site-content.json (…, leadership, milestones, career, solutionPages)');
 console.log(`✓ generated src/data/generated/gated-docs.json (${gatedDocs.gatedSlugs.length} gated)`);

@@ -1,0 +1,82 @@
+slug: exhibition-visitor-dwell-time
+order: 16
+industry: exhibition
+title:
+  ko: 전시 공간 방문객 체류 시간 분석
+  en: Visitor dwell-time analysis for exhibition spaces
+  jp: 展示空間の来場者滞在時間分析
+excerpt:
+  ko: 어떤 전시물이 관람객의 주목을 끌고 얼마나 오래 머무르게 하는지 측정하는 방법
+  en: How to measure which exhibits draw attention and how long they hold visitors.
+  jp: どの展示物が来場者の注目を集め、どれだけ長く滞在させるのかを測定する方法です。
+impact:
+  ko: +28%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 관람 만족도 향상
+  en: improvement in visitor satisfaction
+  jp: 観覧満足度の向上
+problem: 어떤 전시물이 관람객에게 가장 인상적인지, 어느 구역에서 오래 머무르는지 정량적으로 알 방법이 없습니다. 행사 후 개선점을 데이터로 도출하기 어렵습니다.
+background:
+  heading:
+    ko: 전시 기획에서 데이터의 역할
+    en: The role of data in exhibition planning
+    jp: 展示企画におけるデータの役割
+  body: 전시 기획자는 어떤 배치가 관람객의 동선과 관심을 자연스럽게 유도하는지 항상 고민합니다. 하지만 행사 후 설문지나 직원 관찰에 의존하면 객관성이 부족합니다. 체류 시간 데이터는 관람객의 실제 반응을 있는 그대로 보여주는 가장 객관적인 지표입니다.
+causes:
+  - title:
+      ko: 부스·작품별 주목도 정량화 불가
+      en: Cannot quantify booth/exhibit attention
+      jp: ブース・作品別の注目度を定量化できない
+    desc: 어떤 작품 앞에 얼마나 오래 서 있었는지 수작업으로 측정하기 어렵습니다.
+  - title:
+      ko: 관람 동선 분석 부재
+      en: No visitor-flow analysis
+      jp: 観覧動線分析の不在
+    desc: 관람객이 전시 공간을 어떤 순서로 돌아다니는지 확인하지 못해 다음 배치 전략에 활용하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 부스·작품별 체류 시간 자동 측정
+      en: Automatic dwell-time measurement per booth/exhibit
+      jp: ブース・作品別の滞在時間を自動測定
+    desc: 전시 공간 내 각 구역(부스, 작품, 설치물)의 방문객 수와 체류 시간을 실시간으로 자동 집계합니다.
+  - product: StoreInsight
+    title:
+      ko: 관람 동선 및 주목도 분석
+      en: Visitor-flow and attention analysis
+      jp: 観覧動線と注目度の分析
+    desc: 관람객의 이동 경로와 체류 시간을 히트맵으로 시각화합니다. 어떤 작품이 가장 주목받았는지, 어떤 구역이 상대적으로 방문이 적었는지 파악합니다.
+  - product: StoreAgent
+    title:
+      ko: 행사 종료 후 인사이트 리포트 자동 생성
+      en: Automatic post-event insight report
+      jp: 行事終了後のインサイトレポートを自動生成
+    desc: 행사 기간 동안의 방문객 통계, 피크 시간, 구역별 주목도 순위 등이 담긴 종합 리포트를 자동으로 생성해 다음 행사 기획에 활용합니다.
+results:
+  - stat: +28%
+    label:
+      ko: 관람 만족도 향상
+      en: Improvement in visitor satisfaction
+      jp: 観覧満足度の向上
+  - stat: 전 부스
+    label:
+      ko: 실시간 체류 시간 측정
+      en: Real-time dwell measurement
+      jp: リアルタイム滞在時間測定
+  - stat: 자동
+    label:
+      ko: 행사 종료 후 리포트 생성
+      en: Post-event report generation
+      jp: 行事終了後のレポート生成
+metaDescription: 전시 공간 관람객 체류 시간 분석. AI로 부스·작품별 주목도 측정, 관람 동선 파악. 관람 만족도 28% 향상. 행사 기획 최적화 방법.
+relatedTerms:
+  - dwell-time
+  - footfall-analysis
+  - zone-analysis
+  - crowd-density-analysis
+relatedSolutions:
+  - exhibition-booth-performance
+  - exhibition-crowd-flow
+  - cafe-low-seat-turnover

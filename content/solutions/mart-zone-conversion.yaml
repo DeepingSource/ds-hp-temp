@@ -1,0 +1,81 @@
+slug: mart-zone-conversion
+order: 15
+industry: mart
+title:
+  ko: 마트 구역별 전환율 분석
+  en: Zone-by-zone conversion analysis for hypermarkets
+  jp: 大型スーパーのエリア別転換率分析
+excerpt:
+  ko: 어느 구역의 방문이 실제 구매로 이어지는지 파악해 배치를 최적화하는 방법
+  en: How to identify which zone visits lead to purchases and optimize product placement.
+  jp: どのエリアの来訪が実際の購入につながるのかを把握し、配置を最適化する方法です。
+impact:
+  ko: +17%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 고마진 구역 전환율 향상
+  en: improvement in high-margin zone conversion
+  jp: 高利益エリアの転換率向上
+problem: 방문객은 많은데 특정 구역의 매출 전환율이 낮습니다. 어떤 구역에서 고객이 구매를 포기하는지, 왜 그런지 파악하지 못합니다.
+background:
+  heading:
+    ko: 구역별 전환율 차이가 드러내는 것
+    en: What zone-by-zone conversion gaps reveal
+    jp: エリア別転換率の差が示すもの
+  body: 같은 방문객 수여도 어떤 구역에서는 70%가 구매하고, 어떤 구역에서는 20%만 구매합니다. 이 차이는 진열 방식, 가격 표시, 상품 구성, 접근성의 문제를 드러냅니다. 구역별 전환율을 파악하면 개선 포인트를 정확히 찾을 수 있습니다.
+causes:
+  - title:
+      ko: 구역별 방문 대비 구매 데이터 미연동
+      en: Visit and purchase data not linked by zone
+      jp: エリア別の来訪・購入データが未連動
+    desc: POS 매출과 구역별 방문자 수 데이터가 연동되지 않아 전환율을 계산할 수 없습니다.
+  - title:
+      ko: 구매 포기 원인 불명확
+      en: Unclear reasons for purchase abandonment
+      jp: 購入断念の原因が不明確
+    desc: 방문은 했지만 구매하지 않은 고객이 왜 포기했는지 원인을 확인하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 구역별 방문객 수 및 체류 행동 측정
+      en: Measure visitors and dwell behavior by zone
+      jp: エリア別の来訪客数と滞在行動を測定
+    desc: 각 구역을 방문한 고객 수, 평균 체류 시간, 상품 접촉(픽업) 빈도를 자동으로 측정합니다.
+  - product: StoreInsight
+    title:
+      ko: POS 연동 구역별 전환율 계산
+      en: POS-linked conversion calculation by zone
+      jp: POS連動のエリア別転換率算出
+    desc: 구역별 방문객 수와 POS 해당 카테고리 매출을 연동해 구역별 전환율을 산출합니다. 전환율 낮은 구역의 원인 진단(체류 시간, 픽업 대비 구매율)을 제공합니다.
+  - product: StoreAgent
+    title:
+      ko: 전환율 개선 구역 우선순위 제안
+      en: Prioritized conversion-improvement zones
+      jp: 転換率改善エリアの優先順位提案
+    desc: "\"E 구역 방문률 상위 30%이지만 전환율 하위 20% — 가격 표시 또는 상품 구성 개선 필요\" 형태의 우선순위 개선 과제를 자동으로 제안합니다."
+results:
+  - stat: +17%
+    label:
+      ko: 고마진 구역 전환율
+      en: High-margin zone conversion
+      jp: 高利益エリアの転換率
+  - stat: 3배
+    label:
+      ko: 개선 과제 파악 속도
+      en: Speed of identifying improvement tasks
+      jp: 改善課題の把握速度
+  - stat: 20개
+    label:
+      ko: 동시 분석 가능 구역 수
+      en: Zones analyzed simultaneously
+      jp: 同時分析可能なエリア数
+metaDescription: 마트 구역별 전환율 분석 방법. AI로 방문객 수와 POS 매출 연동, 구역별 전환율 자동 산출. 고마진 구역 전환율 17% 향상 전략.
+relatedTerms:
+  - zone-analysis
+  - purchase-conversion-rate
+  - vmd-optimization
+relatedSolutions:
+  - mart-checkout-congestion
+  - mart-cart-path-optimization
+  - drugstore-vmd-optimization

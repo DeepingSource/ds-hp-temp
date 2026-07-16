@@ -1,0 +1,87 @@
+slug: convenience-night-theft
+order: 1
+industry: convenience
+title:
+  ko: 편의점 야간 도난 방지
+  en: Overnight theft prevention for convenience stores
+  jp: コンビニの夜間盗難防止
+excerpt:
+  ko: 야간 무인·1인 운영 중 도난과 이상 행동을 AI가 실시간으로 감지하는 방법
+  en: How AI detects theft and abnormal behavior in real time during unmanned or single-staff night shifts.
+  jp: 無人・1人運営の夜間に発生する盗難や異常行動を、AI がリアルタイムで検知する方法です。
+impact:
+  ko: "-68%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 야간 도난 손실 감소
+  en: reduction in overnight theft loss
+  jp: 夜間盗難損失の削減
+problem: 야간 시간대 편의점은 최소 인원으로 운영되거나 완전 무인 상태가 됩니다. 도난이 발생해도 다음 날 아침에야 알게 되어 손실이 누적됩니다.
+background:
+  heading:
+    ko: 야간 편의점, 왜 도난에 취약한가
+    en: Why convenience stores are vulnerable to overnight theft
+    jp: なぜ夜間のコンビニは盗難に弱いのか
+  body: 통계청 자료에 따르면 편의점 절도의 70% 이상이 심야·새벽 시간대에 집중됩니다. 근무자 혼자인 상황에서 여러 고객을 동시에 관찰하는 것은 불가능합니다. CCTV가 있어도 실시간으로 모니터링하는 사람이 없으면 사후 확인 도구에 불과합니다. 사건 발생 후 영상을 찾아보는 동안 손실은 이미 발생한 상태입니다.
+causes:
+  - title:
+      ko: 실시간 모니터링 부재
+      en: No real-time monitoring
+      jp: リアルタイム監視の不在
+    desc: CCTV가 녹화 중이지만 야간에 영상을 실시간으로 확인하는 사람이 없습니다. 이상 상황이 발생해도 다음날 아침까지 발견이 늦어집니다.
+  - title:
+      ko: 1인 근무의 사각지대
+      en: Blind spots of single-staff shifts
+      jp: 1人運営の死角
+    desc: 근무자 1명이 계산대 업무를 보는 동안 공간 내부 전체를 동시에 관찰할 수 없습니다. 음료수 코너, 주류 구역 등 사각지대가 발생합니다.
+  - title:
+      ko: 이상 행동 식별 어려움
+      en: Hard to identify abnormal behavior
+      jp: 異常行動の識別の難しさ
+    desc: 장시간 배회, 여러 번 다른 구역을 반복 방문하는 행동이 실제 도난 시도 신호임에도 그 자리에서 판단하고 대응하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 야간 이상 행동 실시간 포착
+      en: Real-time capture of overnight abnormal behavior
+      jp: 夜間の異常行動をリアルタイムに捕捉
+    desc: AI가 현장 내 고객의 행동 패턴을 실시간으로 파악합니다. 특정 구역 장시간 배회(설정값 초과), 무릎을 굽히거나 몸을 숨기는 비정상적 자세, 그룹 행동 패턴을 인식하면 즉시 안내를 발송합니다.
+  - product: StoreInsight
+    title:
+      ko: 시간대별 도난 위험 패턴 분석
+      en: Theft-risk pattern analysis by time of day
+      jp: 時間帯別の盗難リスクパターン分析
+    desc: 어느 시간대, 어느 구역에서 이상 탐지 빈도가 높은지 누적 데이터로 파악합니다. 주간 리포트로 도난 위험이 높은 구역과 시간을 확인해 카메라 추가 설치나 진열 재배치에 활용합니다.
+  - product: StoreAgent
+    title:
+      ko: 이상 발생 시 자동 알림 및 대응
+      en: Automatic alerts and response on anomalies
+      jp: 異常発生時の自動通知と対応
+    desc: 이상 포착 시 점주 앱으로 15초 이내에 푸시 알림과 영상 캡처가 전송됩니다. 경고 방송 자동 실행, 원격 잠금 시스템과 연동도 가능합니다.
+results:
+  - stat: "-68%"
+    label:
+      ko: 야간 도난 손실 감소
+      en: Reduction in overnight theft loss
+      jp: 夜間盗難損失の削減
+  - stat: 98.2%
+    label:
+      ko: 이상 감지 정확도
+      en: Anomaly detection accuracy
+      jp: 異常検知の精度
+  - stat: 15초
+    label:
+      ko: 알림 발송 소요 시간
+      en: Alert delivery time
+      jp: 通知の所要時間
+metaDescription: 편의점 야간 도난 방지 방법. AI 이상 감지로 야간 도난 손실을 68% 줄이는 솔루션. 15초 이내 알림 발송, 98.2% 감지 정확도. 무료 상담 신청.
+relatedTerms:
+  - anomaly-detection
+  - night-monitoring
+  - anonymized-cctv
+  - cctv-analytics
+relatedSolutions:
+  - convenience-inventory-loss
+  - unmanned-theft-prevention
+  - unmanned-remote-monitoring

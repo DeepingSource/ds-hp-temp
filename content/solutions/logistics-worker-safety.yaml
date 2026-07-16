@@ -1,0 +1,86 @@
+slug: logistics-worker-safety
+order: 19
+industry: logistics
+title:
+  ko: 물류 작업자 안전 모니터링
+  en: Worker safety monitoring for logistics
+  jp: 物流作業者の安全モニタリング
+excerpt:
+  ko: AI 카메라로 창고 내 안전 사각지대와 위험 행동을 실시간으로 감지하는 방법
+  en: How AI cameras detect safety blind spots and risky behavior in warehouses in real time.
+  jp: AI カメラで倉庫内の安全上の死角や危険行動を、リアルタイムに検知する方法です。
+impact:
+  ko: "-45%"
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 안전 사고 위험 요소 감소
+  en: reduction in safety incident risk factors
+  jp: 安全事故リスク要因の削減
+problem: 넓은 물류센터에서 모든 작업 구역의 안전을 동시에 관찰하기 어렵습니다. 안전 규정 위반(보호구 미착용, 위험 구역 진입)을 실시간으로 파악하고 대응하는 체계가 없습니다.
+background:
+  heading:
+    ko: 물류센터 안전 사고의 현실
+    en: The reality of safety incidents in logistics centers
+    jp: 物流センターの安全事故の現実
+  body: 물류·창고 업종은 산업재해 발생률이 높은 업종 중 하나입니다. 지게차 충돌, 높은 곳에서의 낙하, 무거운 물체에 깔리는 사고가 빈번합니다. 안전 관리자 1명이 수백 평 넓이의 창고를 동시에 확인할 수 없습니다. AI 카메라가 이 문제를 해결합니다.
+causes:
+  - title:
+      ko: 광범위한 관찰 범위
+      en: Vast observation area
+      jp: 広範囲な観察範囲
+    desc: 물류센터의 넓은 면적을 소수의 안전 관리자가 동시에 확인하기 불가능합니다.
+  - title:
+      ko: 보호구 착용 여부 실시간 확인 불가
+      en: Cannot verify PPE use in real time
+      jp: 保護具着用をリアルタイムで確認できない
+    desc: 헬멧, 조끼 등 안전 보호구 착용 여부를 모든 작업자에 대해 실시간으로 확인하기 어렵습니다.
+  - title:
+      ko: 위험 구역 접근 통제 어려움
+      en: Hard to control access to hazardous zones
+      jp: 危険区域への接近制御が難しい
+    desc: 지게차 운행 구역, 고압 전기 구역 등 출입 제한 구역에 대한 접근을 실시간으로 확인하고 제한하기 어렵습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 보호구 착용 및 위험 구역 접근 실시간 확인
+      en: Real-time check of PPE use and hazardous-zone access
+      jp: 保護具着用と危険区域接近をリアルタイム確認
+    desc: 작업자의 헬멧·안전 조끼 착용 여부를 AI가 자동으로 인식합니다. 위험 구역(가상 경계선 설정)에 사람이 접근하면 자동으로 경보음과 알림을 발송합니다.
+  - product: StoreInsight
+    title:
+      ko: 구역별 안전 위반 패턴 분석
+      en: Zone-by-zone safety-violation pattern analysis
+      jp: エリア別の安全違反パターン分析
+    desc: 안전 위반이 발생하는 구역, 시간대, 작업 유형을 누적 집계합니다. 반복적으로 위반이 발생하는 패턴을 파악해 근본적인 환경 개선에 활용합니다.
+  - product: StoreAgent
+    title:
+      ko: 실시간 경보 및 자동 기록
+      en: Real-time alarms and automatic logging
+      jp: リアルタイム警報と自動記録
+    desc: 안전 위반 확인 시 자동으로 현장 경보음 + 관리자 앱 푸시 전송이 이루어집니다. 모든 이벤트는 자동으로 기록되어 안전 감사와 규정 준수 증빙에 활용합니다.
+results:
+  - stat: "-45%"
+    label:
+      ko: 안전 위험 요소 감지 지연 감소
+      en: Reduced delay in detecting safety risks
+      jp: 安全リスク要因の検知遅延の削減
+  - stat: 24시간
+    label:
+      ko: 무중단 자동 모니터링
+      en: Uninterrupted automatic monitoring
+      jp: 無中断の自動モニタリング
+  - stat: 24/7
+    label:
+      ko: 위반 이벤트 자동 기록
+      en: Automatic logging of violation events
+      jp: 違反イベントの自動記録
+metaDescription: 물류 작업자 안전 모니터링. AI로 보호구 미착용·위험 구역 접근 실시간 감지. 안전 위험 요소 45% 감소. 물류센터 24시간 자동 안전 관리 방법.
+relatedTerms:
+  - anomaly-detection
+  - crowd-density-analysis
+  - store-operations-automation
+relatedSolutions:
+  - logistics-efficiency-zones
+  - logistics-ppe-compliance
+  - unmanned-anomaly-detection

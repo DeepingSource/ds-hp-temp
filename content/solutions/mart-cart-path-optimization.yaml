@@ -1,0 +1,82 @@
+slug: mart-cart-path-optimization
+order: 14
+industry: mart
+title:
+  ko: 마트 카트 동선 및 체류 시간 최적화
+  en: Cart path and dwell-time optimization for hypermarkets
+  jp: 大型スーパーのカート動線・滞在時間の最適化
+excerpt:
+  ko: 고객이 마트를 어떻게 돌아다니는지 파악해 매출 동선을 설계하는 방법
+  en: How to understand how customers move through the store and design sales-driving paths.
+  jp: 顧客が店内をどう回遊するのかを把握し、売上につながる動線を設計する方法です。
+impact:
+  ko: +20%
+  en: ""
+  jp: ""
+impactLabel:
+  ko: 평균 체류 시간 및 구매 금액 증가
+  en: increase in average dwell time and basket value
+  jp: 平均滞在時間と購入金額の増加
+problem: 고객이 마트에서 어떤 경로로 이동하는지, 어느 구역에서 오래 머무는지 파악하지 못합니다. 동선 설계가 매출에 미치는 영향을 데이터로 검증할 수 없습니다.
+background:
+  heading:
+    ko: 마트 동선 설계와 매출의 관계
+    en: The relationship between path design and sales
+    jp: 動線設計と売上の関係
+  body: 대형마트의 레이아웃은 고객이 가능한 한 많은 구역을 지나가도록 설계됩니다. 필수 품목(달걀, 우유 등)을 공간 안쪽에 배치하는 것이 대표적인 전략입니다. 하지만 실제 고객이 이 설계대로 이동하는지, 어느 구역이 동선에서 자주 생략되는지 데이터 없이는 검증할 수 없습니다.
+causes:
+  - title:
+      ko: 다중 카메라 동선 파악 부재
+      en: No multi-camera path tracking
+      jp: 多カメラ動線把握の不在
+    desc: 대형 공간에서는 여러 카메라의 데이터를 연결해야 하나, 이를 통합하는 시스템이 없어 전체 이동 경로를 파악하지 못합니다.
+  - title:
+      ko: 구역별 방문률 데이터 부재
+      en: No zone visit-rate data
+      jp: エリア別来訪率データの不在
+    desc: 어느 구역이 고객 동선에서 자주 생략되는지 파악하지 못해 레이아웃 개선에 데이터 근거가 없습니다.
+steps:
+  - product: StoreCare
+    title:
+      ko: 다중 카메라 연속 동선 연결
+      en: Continuous path linking across multiple cameras
+      jp: 多カメラで連続動線を連結
+    desc: 카메라 간 핸드오버 기술로 익명화된 객체의 입장부터 퇴장까지 전체 이동 경로를 연속으로 연결합니다. 개인정보 없이 동선 데이터만 수집합니다.
+  - product: StoreInsight
+    title:
+      ko: 동선 패턴 및 구역 방문률 분석
+      en: Path-pattern and zone visit-rate analysis
+      jp: 動線パターンとエリア来訪率の分析
+    desc: 가장 많이 이용되는 동선과 생략되는 구역을 히트맵으로 시각화합니다. 시간대별 동선 변화도 파악해 레이아웃 개편 방향을 결정합니다.
+  - product: StoreAgent
+    title:
+      ko: 동선 최적화 레이아웃 제안
+      en: Path-optimized layout suggestions
+      jp: 動線最適化レイアウトの提案
+    desc: 방문률이 낮은 구역의 원인(접근성 불편, 사인물 부족 등)을 진단하고 구체적인 개선 제안을 제공합니다.
+results:
+  - stat: +20%
+    label:
+      ko: 평균 체류 시간 증가
+      en: Increase in average dwell time
+      jp: 平均滞在時間の増加
+  - stat: +15%
+    label:
+      ko: 구역별 방문률 균형 향상
+      en: Improved balance in zone visit rate
+      jp: エリア別来訪率のバランス向上
+  - stat: 3주
+    label:
+      ko: 동선 패턴 분석 완성 기간
+      en: Time to complete path-pattern analysis
+      jp: 動線パターン分析の完成期間
+metaDescription: 마트 카트 동선 최적화 방법. AI 다중 카메라 연속 동선 추적으로 이동 경로 파악. 체류 시간 20% 증가, 사각지대 방문률 향상 방법 알아보기.
+relatedTerms:
+  - zone-analysis
+  - store-heatmap
+  - dwell-time
+  - behavior-analysis
+relatedSolutions:
+  - mart-checkout-congestion
+  - mart-zone-conversion
+  - drugstore-zone-performance
