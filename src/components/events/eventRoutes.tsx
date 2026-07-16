@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getEventForRoute, getEventStaticSlugs } from '@/lib/events';
+import { logicalEventSlug } from '@/data/events/types';
 import { localePrefix, type Locale } from '@/lib/i18n';
 import EventDetailView from './EventDetailView';
 import EventsIndexView from './EventsIndexView';
+import ExpoLanding from './coex-franchise-expo/ExpoLanding';
 
 /**
  * Shared route helpers for the events pages. Each locale's page.tsx (en at /events,
@@ -54,6 +56,11 @@ export async function EventDetailPage(locale: Locale, params: Params) {
   const { slug } = await params;
   const event = getEventForRoute(slug, locale);
   if (!event) notFound();
+
+  // 전용 랜딩 분기 (ko만; 다른 로케일은 기존 템플릿 유지 — en/jp는 후속).
+  if (locale === 'ko' && logicalEventSlug(slug) === 'coex-franchise-expo-84') {
+    return <ExpoLanding event={event} locale={locale} />;
+  }
   return <EventDetailView event={event} locale={locale} />;
 }
 
