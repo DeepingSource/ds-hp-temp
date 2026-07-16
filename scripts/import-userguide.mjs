@@ -209,6 +209,17 @@ function parseFm(raw) {
   return { fm: yaml.load(m[1]) || {}, body: m[2] };
 }
 
+// ── 사전 패스: 원 폴더 그룹 → base slug 리스트 (relatedSlugs 배선 근거) ──
+const groups = {};
+{
+  const koDir = join(ROOT, CFG.repo, CFG.locales.ko);
+  for (const abs of listMdx(koDir)) {
+    const rel = relative(koDir, abs);
+    const dir = dirname(rel); // 'reports/add-ons' | 'getting-started' | '.'
+    (groups[dir] ??= []).push(slugFor(rel));
+  }
+}
+
 // ── 메인 ──
 const copySet = new Map(); // abs src → dest
 const outFiles = [];
@@ -238,7 +249,8 @@ for (const [locale, verDir] of Object.entries(CFG.locales)) {
       lang: locale === 'ko' ? 'ko' : locale === 'jp' ? 'jp' : 'en',
       draft: false,
       access: 'public',
-      relatedSlugs: [],
+      // 같은 원 폴더 그룹의 형제 문서 (reports 하위그룹·getting-started·settings 등), 자기 제외 최대 4개
+      relatedSlugs: (groups[dirname(relPath)] || []).filter((s) => s !== slug).slice(0, 4),
       relatedTerms: RELATED_TERMS[slug] || [],
     };
     // undefined 제거
