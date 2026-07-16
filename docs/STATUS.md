@@ -193,6 +193,17 @@
 - **EV-3/EV-4 ⏸**: 박람회 후기(사후)·업종별 시나리오(§2 확산)는 별도.
 - ⚠️ **발행 전 게이트(사용자)**: 부스 번호 확정, 커버 이미지, 박람회 한정 오퍼 유무, 12_convention 부스 패널과 웹 톤 최종 대조.
 
+## 14. 사용자 가이드 이식 — StoreInsight·StoreCare → Docs (2026-07-16 · `USERGUIDE_IMPORT_PLAN_v1.md`) ✅
+
+두 비공개 GitHub 레포(`DeepingSource/storeinsight-user-guide`·`storecare-user-guide`, Astro Starlight)를 `content/_import`에 clone(⚠️ gitignore+tsconfig exclude=작업용, 미커밋) → `content/docs/*.mdx`로 이식. **총 118문서**(StoreInsight 96=ko/en/jp 32씩, StoreCare 22=ko/en 11씩·jp는 ko 폴백) + 271 이미지/비디오.
+
+- **변환 스크립트 `scripts/import-userguide.mjs`**: Starlight → 우리 MDX. import 제거, `<Screenshot src={var}>`→`![](/images/docs/…)`, `<Aside>`/`:::note`→blockquote(💡팁/📌참고/⚠️주의, title 지원), `<LinkCard>`/`<CardGrid>`/`<Card>`→마크다운(탭 들여쓰기 제거), `<DemoVideo>`→`<video>`, 내부링크 `/v{ver}/…`→`/[locale/]resources/docs/<slug>`, colocated `_images`/`_videos` 로케일별 복사. 슬러그=`<product>-<name>`(랜딩=store-insight/store-care).
+- **선행**: docs MDXRemote에 **remark-gfm 추가**(가이드 GFM 표 미렌더였음). `content/_import`을 tsconfig exclude+gitignore(clone된 Astro repo가 tsc/빌드 오염).
+- **섹션**: SI getting-started/analytics(reports)/integration(settings)/manual(faq,index). SC getting-started/analytics(live,report)/manual(notification,index).
+- **배선**: relatedTerms로 glossary 연결(heatmap→store-heatmap, inflow-rate→capture-rate, funnel→visit-funnel 등 명시 매핑).
+- 검증: 752페이지 빌드, en(기본)/ko 렌더·jp 폴백, 표·이미지·비디오·blockquote·doc링크·이미지 서빙·glossary 역링크, 48 테스트.
+- ⚠️ **잔여**: EN/JP는 레포 원본 번역 그대로 이식(품질 검수 미실시) · relatedSlugs(챕터 간)는 빈 배열(prev/next로 대체) · 랜딩 hero/일부 스타일(Screenshot 모바일 프레임·figcaption)은 플레인.
+
 ## 잔여 항목 우선순위 제안
 
 1. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조. *(사용자)*
