@@ -8,9 +8,15 @@ let observerCallback: IntersectionObserverCallback;
 const mockDisconnect = vi.fn();
 const mockObserve = vi.fn();
 
+// 기본: 요소가 below-fold(top > innerHeight)라고 가정 → observer 경로를 탄다.
+// (jsdom의 getBoundingClientRect는 0을 반환해 새 above-fold 조기표시 로직에 걸리므로 mock 필요)
+const belowFold = { top: 10000, bottom: 10100, left: 0, right: 0, width: 0, height: 100, x: 0, y: 10000, toJSON: () => ({}) } as DOMRect;
+
 beforeEach(() => {
   mockDisconnect.mockClear();
   mockObserve.mockClear();
+
+  vi.spyOn(Element.prototype, 'getBoundingClientRect').mockReturnValue(belowFold);
 
   vi.stubGlobal(
     'IntersectionObserver',
@@ -86,5 +92,15 @@ describe('useScrollAnimation', () => {
     expect(getIsVisible()).toBe(true);
 
     vi.useRealTimers();
+  });
+
+  it('마운트 시 이미 뷰포트 안(above-fold)이면 즉시 visible, observer 미등록 (R5)', () => {
+    const aboveFold = { top: 100, bottom: 200, left: 0, right: 0, width: 0, height: 100, x: 0, y: 100, toJSON: () => ({}) } as DOMRect;
+    vi.spyOn(Element.prototype, 'getBoundingClientRect').mockReturnValue(aboveFold);
+
+    render(<TestComponent />);
+
+    expect(getIsVisible()).toBe(true);
+    expect(mockObserve).not.toHaveBeenCalled();
   });
 });

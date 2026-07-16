@@ -39,15 +39,18 @@ export function Reveal({
   delay = 0,
   duration = 0.5,
   once = true,
-  amount = 0.3,
+  amount = 0.15,
 }: RevealProps) {
   const reduced = usePrefersReducedMotion();
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: reduced ? 0 : y }}
+      // reduced-motion: 애니메이션을 완전히 스킵해 즉시 최종 상태로 렌더 (R5).
+      // 이전엔 opacity:0 으로 시작해 whileInView가 미발동하면 빈 화면이 남았다.
+      initial={reduced ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, amount }}
+      // margin 하단 15% 확장: 빠른 스크롤에도 진입 전 미리 트리거.
+      viewport={{ once, amount, margin: '0px 0px 15% 0px' }}
       transition={{ duration, ease: ease.outCubic, delay }}
     >
       {children}
@@ -71,15 +74,17 @@ export function RevealStagger({
   stagger = 0.08,
   delayChildren = 0,
   once = true,
-  amount = 0.2,
+  amount = 0.15,
 }: RevealStaggerProps) {
+  const reduced = usePrefersReducedMotion();
   return (
     <motion.div
       className={className}
       variants={{ hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren } } }}
-      initial="hidden"
+      // reduced-motion: 자식 variants가 opacity:0 에 갇히지 않도록 처음부터 show 상태로.
+      initial={reduced ? 'show' : 'hidden'}
       whileInView="show"
-      viewport={{ once, amount }}
+      viewport={{ once, amount, margin: '0px 0px 15% 0px' }}
     >
       {children}
     </motion.div>
