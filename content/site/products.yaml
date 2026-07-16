@@ -15,9 +15,21 @@ loopEyebrow:
   en: Enterprise · the operating loop
   jp: エンタープライズ · 店舗オペレーションループ
 ownersEyebrow:
-  ko: 사장님을 위한 · B2C (별도 사이트)
-  en: For owners · B2C (separate sites)
-  jp: 店長向け · B2C（別サイト）
+  ko: 도메인 구현 · 사장님을 위한 B2C (별도 사이트)
+  en: Domain implementations · for owners, B2C (separate sites)
+  jp: ドメイン実装 · 店長向けB2C（別サイト）
+categoryTitle:
+  ko: 카테고리는 하나 — 익명화 공간 AI
+  en: One category — Anonymized Spatial AI
+  jp: カテゴリーはひとつ — 匿名化空間AI
+categoryBody:
+  ko: 네 제품은 하나의 카테고리 위에 서 있습니다. 영상은 입력 시점에 익명화되어 저장되지 않고, 공간의 흐름만 데이터로 남습니다. 그 위에서 관찰(count)→분석(insight)→제안(care)→학습(agent)의 운영 루프가 돌아갑니다.
+  en: All four products stand on one category. Footage is anonymized at input and never stored — only the flow of the space remains as data. On top of that runs the operating loop, Observe (count) → Analyze (insight) → Suggest (care) → Learn (agent).
+  jp: 4つの製品は、ひとつのカテゴリーの上に立っています。映像は入力時点で匿名化されて保存されず、空間の流れだけがデータとして残ります。その上で、観察（count）→分析（insight）→提案（care）→学習（agent）のオペレーションループが回ります。
+casesCta:
+  ko: 도입 사례 보기
+  en: See customer cases
+  jp: 導入事例を見る
 detail:
   ko: 자세히 보기
   en: Learn more

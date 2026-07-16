@@ -57,6 +57,7 @@ const homeCopy = toLocaleMajor(load('content/site/home.yaml'), HOME_FIELDS);
 // ── products — flat copy + id-keyed nested arrays (structure stays in code) ───
 const PRODUCTS_FLAT = [
   'eyebrow', 'heroTitle', 'heroSub', 'loopEyebrow', 'ownersEyebrow',
+  'categoryTitle', 'categoryBody', 'casesCta',
   'detail', 'visit', 'seedLine', 'seedCta', 'cta',
 ];
 const productsYaml = load('content/site/products.yaml');

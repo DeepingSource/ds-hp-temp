@@ -12,13 +12,15 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
-import { productNaming, productSecondary, type ProductKey } from '@/lib/brand-canon';
+import { productNaming, productSecondary, saaiPromiseLayer, categoryKeyword, type ProductKey } from '@/lib/brand-canon';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
- * ProductsView — product hub (product-reorg 2-Tier, §7.4).
- * Tier 1 = the enterprise operating loop (count→insight→care→agent, Observe→Analyze→Suggest→Learn);
- * Tier 2 = for owners, the camera-less B2C sites (saai.store / storecare.ai ↗).
+ * ProductsView — SAAI brand hub (SITE_IMPROVEMENT P2-1 · 5-part arc):
+ * ① SAAI definition (saaiPromiseLayer 4-up → tech anchors) → ② the operating
+ * loop (count→insight→care→agent, hero graphic + Tier-1 cards) → ③ category
+ * keyword (익명화 공간 AI) → ④ domain implementations (saai.store / storecare.ai ↗)
+ * → ⑤ cases · CTA. /products/saai stays the B2C product page (no absorption).
  * Copy is CMS-editable (content/site/products.yaml → generated JSON); structure
  * (stage, icon, href, external) stays in code and is merged with copy by id.
  */
@@ -27,6 +29,7 @@ type CardCopy = { desc: string };
 type ProductsCopy = {
   eyebrow: string; heroTitle: string; heroSub: string;
   loopEyebrow: string; ownersEyebrow: string;
+  categoryTitle: string; categoryBody: string; casesCta: string;
   detail: string; visit: string; seedLine: string; seedCta: string; cta: string;
   loop: Record<string, CardCopy>;
   owners: Record<string, CardCopy>;
@@ -61,6 +64,7 @@ const HUB: Record<Locale, string> = {
 
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
+  const promise = saaiPromiseLayer[locale];
   const loop = LOOP_STRUCT.map((s) => ({
     ...s,
     name: productNaming[s.key].store,
@@ -96,7 +100,35 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ── Tier 1 — Enterprise · the operating loop ── */}
+      {/* ── ① SAAI 정의 — 약속 층 4-up (brand-canon saaiPromiseLayer SOT) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-slate-50 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 max-w-2xl">
+            <Eyebrow className="mb-4">{promise.eyebrow}</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{promise.heading}</h2>
+            <p className="text-gray-500 break-keep">{promise.sub}</p>
+          </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {promise.pillars.map((p) => (
+              <li key={p.key}>
+                <Link
+                  href={localeHref(locale, p.tech)}
+                  className="group flex flex-col h-full rounded-2xl border border-gray-200 bg-white p-6 hover:border-primary-light transition-colors no-underline"
+                >
+                  <div className="flex items-baseline gap-2 mb-3">
+                    <span className="text-3xl font-bold text-primary font-mono leading-none">{p.letter}</span>
+                    <span className="text-sm font-bold text-gray-900">{p.label}</span>
+                  </div>
+                  <p className="text-sm text-gray-500 leading-relaxed break-keep">{p.promise}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center text-sm text-gray-500 break-keep">{promise.bridge}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── ② Tier 1 — Enterprise · the operating loop ── */}
       <Section variant="default">
         <Container>
           <Eyebrow className="mb-7">{c.loopEyebrow}</Eyebrow>
@@ -130,7 +162,16 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         </Container>
       </Section>
 
-      {/* ── Tier 2 — For owners · B2C (separate sites) ── */}
+      {/* ── ③ 카테고리 키워드 — 익명화 공간 AI (categoryKeyword SOT) ── */}
+      <AnimatedSection className="py-16 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <Eyebrow className="mb-4 justify-center">{categoryKeyword[locale]}</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{c.categoryTitle}</h2>
+          <p className="text-gray-500 leading-relaxed break-keep">{c.categoryBody}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── ④ 도메인 구현 — For owners · B2C (separate sites) ── */}
       <Section variant="alt">
         <Container>
           <Eyebrow className="mb-7">{c.ownersEyebrow}</Eyebrow>
@@ -183,13 +224,19 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         locale={locale}
       />
 
-      {/* ── CTA ── */}
+      {/* ── ⑤ 사례 · CTA ── */}
       <AnimatedSection className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg inline-flex items-center gap-2">
-            {c.cta}
-            <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg inline-flex items-center gap-2">
+              {c.cta}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+            <Link href={localeHref(locale, '/resources/case-studies')} className="btn-secondary btn-lg inline-flex items-center gap-2">
+              {c.casesCta}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </AnimatedSection>
     </>
