@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - unmanned
   - mart
-saaiUsage: SAAI store agent는 store care의 실시간 감지와 store insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.
+saaiUsage: SAAI saai agent는 saai care의 실시간 감지와 saai insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.
 metaDescription: 매장 AI 에이전트란? 데이터 분석 결과를 자동으로 현장 행동으로 연결하는 AI 시스템. 알림 발송, 발주 제안, 자동 리포트로 매장 운영을 자동화하는 방법.
 body:
   - heading: AI 에이전트가 다른 분석 도구와 다른 점

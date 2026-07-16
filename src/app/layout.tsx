@@ -25,7 +25,7 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 export const metadata: Metadata = {
   metadataBase: new URL("https://deepingsource.io"),
   title: "DEEPINGSOURCE | Anonymized Spatial AI — 모든 공간을, 완벽하게",
-  description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. store insight · store agent · store care · SAAI.",
+  description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. saai insight · saai agent · saai care · SAAI.",
   alternates: {
     canonical: 'https://deepingsource.io',
     languages: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       ja: 'https://deepingsource.io/jp',
     },
   },
-  keywords: ["DeepingSource", "딥핑소스", "Anonymized Spatial AI", "SAAI", "store insight", "store agent", "store care", "익명화 AI", "공간 AI", "CCTV AI", "프라이버시 AI"],
+  keywords: ["DeepingSource", "딥핑소스", "Anonymized Spatial AI", "SAAI", "saai insight", "saai agent", "saai care", "store insight", "store agent", "store care", "익명화 AI", "공간 AI", "CCTV AI", "프라이버시 AI"],
   authors: [{ name: "DeepingSource" }],
   icons: {
     icon: [
@@ -82,7 +82,7 @@ const jsonLd = [
     "@id": "https://deepingsource.io/#organization",
     name: "DeepingSource (딥핑소스)",
     url: "https://deepingsource.io",
-    description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. store insight · store agent · store care · SAAI.",
+    description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. saai insight · saai agent · saai care · SAAI.",
     foundingDate: String(COMPANY.foundingYear),
     sameAs: ["https://www.deepingsource.io", "https://storecare.ai", "https://saai.store"],
     logo: { "@type": "ImageObject", url: "https://deepingsource.io/icon.svg" },

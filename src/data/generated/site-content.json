@@ -129,21 +129,21 @@
   "storeAgent": {
     "en": {
       "heroTitle": "Beyond seeing. AI that operates.",
-      "heroSub": "A dashboard shows you the numbers. store agent tells you what to do with them — and makes the next move with you.",
+      "heroSub": "A dashboard shows you the numbers. saai agent tells you what to do with them — and makes the next move with you.",
       "ctaPrimary": "Request a consultation",
       "ctaSecondary": "See sample recommendations",
       "stepsHeading": "From the number to the next move",
-      "stepsSub": "Running a perfect store means watching far too much for one person. store agent shoulders the load and tells you what to do right now.",
+      "stepsSub": "Running a perfect store means watching far too much for one person. saai agent shoulders the load and tells you what to do right now.",
       "pricingHeading": "Not one store — your whole brand",
       "pricingSub": "At HQ, every store across the country on one screen — footfall, purchases, and conversion, in real time. From a single store to a multi-location headquarters, configured to your scale.",
       "pricingCta": "See pricing",
       "finalHeading": "From watching to operating.",
-      "finalSub": "We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. store agent decides your store’s next move with you.",
+      "finalSub": "We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides your store’s next move with you.",
       "finalCta": "Request a consultation",
       "steps": {
         "restock": {
           "title": "Restock the shelf now?",
-          "desc": "Lunchtime student traffic is up 18%. Three top drinks will sell out within the hour. store agent asks: pull from the backroom and restock now?"
+          "desc": "Lunchtime student traffic is up 18%. Three top drinks will sell out within the hour. saai agent asks: pull from the backroom and restock now?"
         },
         "order": {
           "title": "Not a note — a PO",
@@ -157,16 +157,16 @@
     },
     "ko": {
       "heroTitle": "보는 AI를 넘어, 운영하는 AI.",
-      "heroSub": "대시보드는 숫자를 보여줍니다. store agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장의 다음 한 수를 함께 결정합니다.",
+      "heroSub": "대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장의 다음 한 수를 함께 결정합니다.",
       "ctaPrimary": "도입 상담 신청",
       "ctaSecondary": "제안 예시 보기",
       "stepsHeading": "숫자에서, 다음 한 수까지",
-      "stepsSub": "매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. store agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.",
+      "stepsSub": "매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.",
       "pricingHeading": "한 매장이 아니라, 브랜드 전체가",
       "pricingSub": "본부에서는 전국 모든 매장이 한 화면에 — 방문·구매·전환율로, 실시간으로. 단일 매장부터 다점포 본사까지 운영 규모에 맞춰 구성합니다.",
       "pricingCta": "요금 안내 보기",
       "finalHeading": "지켜보는 데서, 운영하는 데로.",
-      "finalSub": "영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. store agent가 매장의 다음을 함께 결정합니다.",
+      "finalSub": "영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. saai agent가 매장의 다음을 함께 결정합니다.",
       "finalCta": "도입 상담 신청",
       "steps": {
         "restock": {
@@ -185,16 +185,16 @@
     },
     "jp": {
       "heroTitle": "見るAIを超え、運営するAIへ。",
-      "heroSub": "ダッシュボードは数字を見せます。store agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。",
+      "heroSub": "ダッシュボードは数字を見せます。saai agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。",
       "ctaPrimary": "導入のご相談",
       "ctaSecondary": "ご提案の例を見る",
       "stepsHeading": "数字から、次の一手まで",
-      "stepsSub": "店舗を完璧にするには、見るべきものが多すぎます。store agent がその負担を分かち合い、今すべきことを示します。",
+      "stepsSub": "店舗を完璧にするには、見るべきものが多すぎます。saai agent がその負担を分かち合い、今すべきことを示します。",
       "pricingHeading": "一店舗ではなく、ブランド全体が",
       "pricingSub": "本部では、全国すべての店舗を一画面に — 来店・購入・転換率を、リアルタイムで。単一店舗から多店舗の本部まで、運営規模に合わせて構成します。",
       "pricingCta": "料金のご案内を見る",
       "finalHeading": "見守るだけから、運営する側へ。",
-      "finalSub": "映像は残しません。身元はその場で消し、動線と転換だけを記録します。store agent が店舗の次を、ともに決めます。",
+      "finalSub": "映像は残しません。身元はその場で消し、動線と転換だけを記録します。saai agent が店舗の次を、ともに決めます。",
       "finalCta": "導入のご相談",
       "steps": {
         "restock": {
@@ -308,9 +308,9 @@
           "price": "₩14,900+",
           "desc": "Security and analytics, together",
           "items": [
-            "store care — CCTV theft/anomaly & temperature alerts",
-            "store insight — dashboards & regular reports",
-            "store care & insight for end-to-end store operations"
+            "saai care — CCTV theft/anomaly & temperature alerts",
+            "saai insight — dashboards & regular reports",
+            "saai care & insight for end-to-end store operations"
           ]
         }
       }
@@ -410,9 +410,9 @@
           "price": "₩14,900~",
           "desc": "보안·분석까지 한 번에",
           "items": [
-            "store care — CCTV 도난·이상 감지·온도 알림",
-            "store insight — 대시보드·정기 리포트",
-            "store care·insight로 매장 운영 전반까지"
+            "saai care — CCTV 도난·이상 감지·온도 알림",
+            "saai insight — 대시보드·정기 리포트",
+            "saai care·insight로 매장 운영 전반까지"
           ]
         }
       }
@@ -512,9 +512,9 @@
           "price": "₩14,900〜",
           "desc": "セキュリティと分析をまとめて",
           "items": [
-            "store care — CCTV盗難・異常検知・温度アラート",
-            "store insight — ダッシュボード・定期レポート",
-            "store care・insightで店舗運営の全体まで"
+            "saai care — CCTV盗難・異常検知・温度アラート",
+            "saai insight — ダッシュボード・定期レポート",
+            "saai care・insightで店舗運営の全体まで"
           ]
         }
       }
@@ -815,15 +815,15 @@
       "errGeneric": "A temporary error occurred. Please try again shortly.",
       "cards": {
         "care": {
-          "label": "store care",
+          "label": "saai care",
           "desc": "Captures everything happening in your store"
         },
         "insight": {
-          "label": "store insight",
+          "label": "saai insight",
           "desc": "Pinpoints where revenue is leaking"
         },
         "agent": {
-          "label": "store agent",
+          "label": "saai agent",
           "desc": "AI handles the work; you simply review"
         }
       }
@@ -863,15 +863,15 @@
       "errGeneric": "일시적인 오류입니다. 잠시 후 다시 시도해 주세요.",
       "cards": {
         "care": {
-          "label": "store care",
+          "label": "saai care",
           "desc": "매장을 빠짐없이 기록합니다"
         },
         "insight": {
-          "label": "store insight",
+          "label": "saai insight",
           "desc": "매출이 새는 곳을 찾아드립니다"
         },
         "agent": {
-          "label": "store agent",
+          "label": "saai agent",
           "desc": "AI가 정리하고, 사장님은 확인만"
         }
       }
@@ -911,15 +911,15 @@
       "errGeneric": "一時的なエラーが発生しました。しばらくしてからもう一度お試しください。",
       "cards": {
         "care": {
-          "label": "store care",
+          "label": "saai care",
           "desc": "店舗の出来事をもれなく記録します"
         },
         "insight": {
-          "label": "store insight",
+          "label": "saai insight",
           "desc": "売上が漏れている箇所を見つけます"
         },
         "agent": {
-          "label": "store agent",
+          "label": "saai agent",
           "desc": "AIが整理し、オーナーは確認するだけ"
         }
       }
@@ -961,11 +961,11 @@
       ],
       "freeConsult": "Request a free consultation",
       "startFree": "Start for free",
-      "diffTitle": "store agent basic (free) vs store care (paid) — what is the difference?",
+      "diffTitle": "saai agent basic (free) vs saai care (paid) — what is the difference?",
       "freeBadge": "Free",
       "paidBadge": "Paid",
-      "saaiBasic": "store agent basic",
-      "storeCare": "store care",
+      "saaiBasic": "saai agent basic",
+      "storeCare": "saai care",
       "saaiFeatures": [
         "Daily morning briefing (weather, events, operating tips)",
         "AI-powered checklist",
@@ -977,7 +977,7 @@
         "Real-time KakaoTalk / app push alerts"
       ],
       "simLink": "Try the pricing simulator",
-      "agentCompareLink": "Compare store agent plans in detail",
+      "agentCompareLink": "Compare saai agent plans in detail",
       "b2bHeading": "Manage your entire network with data",
       "b2bSub": "Scale-based synergy discounts and dedicated features included.",
       "b2bSimTitle": "Multi-store quote simulation",
@@ -994,7 +994,7 @@
       "b2b100": "100",
       "discountLabel": "Synergy discount",
       "perStoreCost": "Estimated cost per store",
-      "perStoreBasis": "Based on store care Plus / mo",
+      "perStoreBasis": "Based on saai care Plus / mo",
       "totalMonthly": "Estimated total monthly cost",
       "won": " KRW",
       "estimateDisclaimer": "※ The figures above are illustrative; actual cost may vary by environment (camera specs, network, installation conditions, etc.).",
@@ -1071,11 +1071,11 @@
       ],
       "freeConsult": "무료 상담 신청",
       "startFree": "무료로 시작하기",
-      "diffTitle": "store agent 기본(무료) vs store care(유료) — 무엇이 다른가요?",
+      "diffTitle": "saai agent 기본(무료) vs saai care(유료) — 무엇이 다른가요?",
       "freeBadge": "무료",
       "paidBadge": "유료",
-      "saaiBasic": "store agent 기본형",
-      "storeCare": "store care",
+      "saaiBasic": "saai agent 기본형",
+      "storeCare": "saai care",
       "saaiFeatures": [
         "매일 아침 브리핑 (날씨·이벤트·운영 팁)",
         "AI 기반 체크리스트",
@@ -1087,7 +1087,7 @@
         "카카오톡/앱 푸시 실시간 알림"
       ],
       "simLink": "요금 시뮬레이션 해보기",
-      "agentCompareLink": "store agent 상세 플랜 비교",
+      "agentCompareLink": "saai agent 상세 플랜 비교",
       "b2bHeading": "가맹점 전체를 데이터로 관리하세요",
       "b2bSub": "규모에 따른 시너지 할인과 전용 기능을 제공합니다.",
       "b2bSimTitle": "다점포 견적 시뮬레이션",
@@ -1104,7 +1104,7 @@
       "b2b100": "100개",
       "discountLabel": "시너지 할인율",
       "perStoreCost": "매장당 예상 비용",
-      "perStoreBasis": "store care 플러스 기준/월",
+      "perStoreBasis": "saai care 플러스 기준/월",
       "totalMonthly": "전체 예상 월 비용",
       "won": "원",
       "estimateDisclaimer": "※ 위 금액은 참고용 예시이며, 실제 환경(카메라 규격·네트워크·설치 조건 등)에 따라 달라질 수 있습니다.",
@@ -1181,11 +1181,11 @@
       ],
       "freeConsult": "無料相談を申し込む",
       "startFree": "無料で始める",
-      "diffTitle": "store agent 基本（無料）vs store care（有料） — 何が違いますか？",
+      "diffTitle": "saai agent 基本（無料）vs saai care（有料） — 何が違いますか？",
       "freeBadge": "無料",
       "paidBadge": "有料",
-      "saaiBasic": "store agent 基本型",
-      "storeCare": "store care",
+      "saaiBasic": "saai agent 基本型",
+      "storeCare": "saai care",
       "saaiFeatures": [
         "毎朝のブリーフィング（天気・イベント・運営のヒント）",
         "AIベースのチェックリスト",
@@ -1197,7 +1197,7 @@
         "カカオトーク／アプリプッシュのリアルタイム通知"
       ],
       "simLink": "料金シミュレーションを試す",
-      "agentCompareLink": "store agent 詳細プラン比較",
+      "agentCompareLink": "saai agent 詳細プラン比較",
       "b2bHeading": "加盟店全体をデータで管理しましょう",
       "b2bSub": "規模に応じたシナジー割引と専用機能をご提供します。",
       "b2bSimTitle": "多店舗見積もりシミュレーション",
@@ -1214,7 +1214,7 @@
       "b2b100": "100店舗",
       "discountLabel": "シナジー割引率",
       "perStoreCost": "店舗あたり想定費用",
-      "perStoreBasis": "store care プラス基準/月",
+      "perStoreBasis": "saai care プラス基準/月",
       "totalMonthly": "全体の想定月額費用",
       "won": "円",
       "estimateDisclaimer": "※ 上記の金額は参考例であり、実際の環境（カメラ規格・ネットワーク・設置条件など）により異なる場合があります。",
@@ -2547,7 +2547,7 @@
         "drugstore",
         "mart"
       ],
-      "saaiUsage": "SAAI의 store care는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 store insight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.",
+      "saaiUsage": "SAAI의 saai care는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 saai insight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.",
       "metaDescription": "매장 히트맵이란? 고객 체류 패턴을 색상으로 시각화하는 공간 분석 기술. CCTV AI 분석으로 진열 최적화와 매출 개선에 활용하는 방법을 알아보세요.",
       "body": [
         {
@@ -2598,7 +2598,7 @@
         "unmanned",
         "logistics"
       ],
-      "saaiUsage": "SAAI의 모든 제품(store care, store insight, store agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.",
+      "saaiUsage": "SAAI의 모든 제품(saai care, saai insight, saai agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.",
       "metaDescription": "익명화 CCTV 분석이란? 얼굴·개인정보 없이 행동 패턴만 추출하는 AI 기술. 개인정보보호법 준수 방법과 매장 분석에 활용하는 법을 알아보세요.",
       "body": [
         {
@@ -2648,7 +2648,7 @@
         "exhibition",
         "drugstore"
       ],
-      "saaiUsage": "SAAI store insight는 구역별 체류 시간을 자동 측정해 시간대, 요일, 이벤트 전후 비교를 실시간 대시보드로 제공합니다. store care의 실시간 감지 데이터를 기반으로 평균 체류 시간, 최장 체류 위치, 구역 이탈률 등 다차원 분석이 가능합니다.",
+      "saaiUsage": "SAAI saai insight는 구역별 체류 시간을 자동 측정해 시간대, 요일, 이벤트 전후 비교를 실시간 대시보드로 제공합니다. saai care의 실시간 감지 데이터를 기반으로 평균 체류 시간, 최장 체류 위치, 구역 이탈률 등 다차원 분석이 가능합니다.",
       "metaDescription": "체류 시간 분석이란? 고객이 특정 구역에 머문 시간으로 관심도를 측정하는 핵심 리테일 지표. 매장 레이아웃 최적화와 매출 개선에 활용하는 방법을 설명합니다.",
       "body": [
         {
@@ -2699,7 +2699,7 @@
         "drugstore",
         "mart"
       ],
-      "saaiUsage": "SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 store insight 대시보드에서 실시간으로 확인할 수 있습니다. store agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.",
+      "saaiUsage": "SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 saai insight 대시보드에서 실시간으로 확인할 수 있습니다. saai agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.",
       "metaDescription": "구매 전환율이란? 방문 고객 중 실제 구매로 이어진 비율. 편의점·드럭스토어·마트별 평균과 AI 분석으로 전환율을 높이는 방법을 설명합니다.",
       "body": [
         {
@@ -2746,7 +2746,7 @@
       "relatedIndustries": [
         "cafe"
       ],
-      "saaiUsage": "SAAI store care는 카메라로 테이블별 착석 여부를 실시간 감지합니다. store insight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. store agent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.",
+      "saaiUsage": "SAAI saai care는 카메라로 테이블별 착석 여부를 실시간 감지합니다. saai insight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. saai agent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.",
       "metaDescription": "좌석 회전율이란? 카페·음식점 매출 핵심 지표인 테이블 전환 횟수. 측정 방법, 업계 평균, AI 분석으로 회전율을 높이는 전략을 알아보세요.",
       "body": [
         {
@@ -2796,7 +2796,7 @@
         "convenience",
         "logistics"
       ],
-      "saaiUsage": "SAAI store care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.",
+      "saaiUsage": "SAAI saai care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.",
       "metaDescription": "이상 감지(Anomaly Detection)란? AI가 비정상 상황을 자동 탐지하는 기술. 무인매장·편의점 야간 도난·사고 예방에 활용하는 방법을 알아보세요.",
       "body": [
         {
@@ -2896,7 +2896,7 @@
         "mart",
         "exhibition"
       ],
-      "saaiUsage": "SAAI store insight의 구역별 분석 기능은 최대 20개 가상 구역을 동시에 모니터링합니다. 각 구역의 방문객 수, 평균 체류 시간, 재방문율을 시간대별로 집계하며, 구역 간 이동 패턴(어느 구역에서 어느 구역으로 이동하는지)도 분석합니다.",
+      "saaiUsage": "SAAI saai insight의 구역별 분석 기능은 최대 20개 가상 구역을 동시에 모니터링합니다. 각 구역의 방문객 수, 평균 체류 시간, 재방문율을 시간대별로 집계하며, 구역 간 이동 패턴(어느 구역에서 어느 구역으로 이동하는지)도 분석합니다.",
       "metaDescription": "구역별 분석이란? 매장을 공간으로 나눠 방문률·체류·전환율을 측정하는 리테일 분석법. 사각지대 파악과 레이아웃 최적화에 활용하는 방법을 알아보세요.",
       "body": [
         {
@@ -2945,7 +2945,7 @@
         "mart",
         "logistics"
       ],
-      "saaiUsage": "SAAI store care는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 \"방문했다\"는 사실만 기록합니다. store insight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.",
+      "saaiUsage": "SAAI saai care는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 \"방문했다\"는 사실만 기록합니다. saai insight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.",
       "metaDescription": "방문객 분석(Footfall Analysis)이란? 매장 방문객 수와 시간 패턴을 자동으로 측정하는 기술. 인력 배치·전환율 계산·프로모션 효과 측정에 활용하는 방법을 설명합니다.",
       "body": [
         {
@@ -2995,7 +2995,7 @@
         "convenience",
         "mart"
       ],
-      "saaiUsage": "SAAI store insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. store agent는 분석 결과를 바탕으로 \"B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요\"와 같은 actionable 알림을 자동으로 전송합니다.",
+      "saaiUsage": "SAAI saai insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. saai agent는 분석 결과를 바탕으로 \"B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요\"와 같은 actionable 알림을 자동으로 전송합니다.",
       "metaDescription": "VMD 최적화란? 상품 진열 효과를 데이터로 측정하고 개선하는 방법. 드럭스토어·편의점·마트에서 AI 분석으로 VMD를 과학적으로 관리하는 법을 알아보세요.",
       "body": [
         {
@@ -3044,7 +3044,7 @@
         "mart",
         "drugstore"
       ],
-      "saaiUsage": "SAAI store care는 주요 매대 CCTV 영상을 분석해 결품 발생 시 실시간 앱 알림을 전송합니다. 알림에는 발생 시간, 해당 매대 위치, 카메라 캡처 이미지가 포함되어 담당자가 바로 확인할 수 있습니다. 결품 지속 시간과 빈도도 기록되어 재발 방지 발주 계획 수립에 활용됩니다.",
+      "saaiUsage": "SAAI saai care는 주요 매대 CCTV 영상을 분석해 결품 발생 시 실시간 앱 알림을 전송합니다. 알림에는 발생 시간, 해당 매대 위치, 카메라 캡처 이미지가 포함되어 담당자가 바로 확인할 수 있습니다. 결품 지속 시간과 빈도도 기록되어 재발 방지 발주 계획 수립에 활용됩니다.",
       "metaDescription": "결품 감지란? AI 카메라로 진열대 빈 공간을 자동 감지하는 기술. POS 재고 관리의 한계를 극복하고 매출 손실을 방지하는 방법을 알아보세요.",
       "body": [
         {
@@ -3094,7 +3094,7 @@
         "drugstore",
         "mart"
       ],
-      "saaiUsage": "SAAI의 store insight는 방문객 동선, 구역별 체류 패턴, 상품 픽업 행동을 종합한 고객 행동 리포트를 주간·월간으로 자동 생성합니다. 익명화 처리로 개인정보 없이 행동 패턴만 분석하며, A/B 테스트 형태로 진열 개편 전후 효과를 비교 분석합니다.",
+      "saaiUsage": "SAAI의 saai insight는 방문객 동선, 구역별 체류 패턴, 상품 픽업 행동을 종합한 고객 행동 리포트를 주간·월간으로 자동 생성합니다. 익명화 처리로 개인정보 없이 행동 패턴만 분석하며, A/B 테스트 형태로 진열 개편 전후 효과를 비교 분석합니다.",
       "metaDescription": "고객 행동 분석이란? 매장에서 고객의 이동·체류·상품 접촉 행동을 데이터로 파악하는 방법. AI 카메라 기반 분석으로 매출을 높이는 실용 가이드.",
       "body": [
         {
@@ -3143,7 +3143,7 @@
         "exhibition",
         "logistics"
       ],
-      "saaiUsage": "SAAI store care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. store insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다.",
+      "saaiUsage": "SAAI saai care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. saai insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다.",
       "metaDescription": "혼잡도 분석이란? 매장 구역별 인구 밀도를 실시간으로 측정하는 기술. 대형마트·전시 공간·물류센터에서 혼잡을 사전에 관리하는 방법을 알아보세요.",
       "body": [
         {
@@ -3193,7 +3193,7 @@
         "cafe",
         "unmanned"
       ],
-      "saaiUsage": "SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(store care) → 분석(store insight) → 실행(store agent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.",
+      "saaiUsage": "SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(saai care) → 분석(saai insight) → 실행(saai agent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.",
       "metaDescription": "리테일 AI란? 소매업 운영을 자동화하는 인공지능 기술 가이드. 고객 행동 분석, 결품 감지, 이상 감지 등 실제 매장 적용 사례와 도입 방법을 설명합니다.",
       "body": [
         {
@@ -3295,7 +3295,7 @@
         "unmanned",
         "mart"
       ],
-      "saaiUsage": "SAAI store agent는 store care의 실시간 감지 데이터와 store insight의 패턴 분석을 결합해 actionable 알림을 자동 발송합니다. 운영자는 매일 아침 전날 야간 이상 요약, 결품 발생 현황, 금일 혼잡 예측이 담긴 리포트를 앱으로 받아볼 수 있습니다.",
+      "saaiUsage": "SAAI saai agent는 saai care의 실시간 감지 데이터와 saai insight의 패턴 분석을 결합해 actionable 알림을 자동 발송합니다. 운영자는 매일 아침 전날 야간 이상 요약, 결품 발생 현황, 금일 혼잡 예측이 담긴 리포트를 앱으로 받아볼 수 있습니다.",
       "metaDescription": "매장 운영 자동화란? AI가 결품 확인, 이상 감지, 혼잡 모니터링 등 반복 업무를 자동 처리하는 방식. 점주가 중요한 결정에 집중할 수 있도록 돕는 AI 솔루션.",
       "body": [
         {
@@ -3343,7 +3343,7 @@
         "convenience",
         "unmanned"
       ],
-      "saaiUsage": "SAAI store care의 야간 모니터링은 해가 진 후 자동으로 야간 모드로 전환됩니다. 침입 감지 알림은 평균 15초 이내에 발송되며, 앱 알림과 함께 감지 순간의 영상 캡처가 첨부됩니다. 무인매장의 경우 원격 잠금·경고음 연동도 지원합니다.",
+      "saaiUsage": "SAAI saai care의 야간 모니터링은 해가 진 후 자동으로 야간 모드로 전환됩니다. 침입 감지 알림은 평균 15초 이내에 발송되며, 앱 알림과 함께 감지 순간의 영상 캡처가 첨부됩니다. 무인매장의 경우 원격 잠금·경고음 연동도 지원합니다.",
       "metaDescription": "야간 모니터링이란? 편의점·무인매장 야간 도난·침입을 AI가 실시간 감지하는 방법. 15초 이내 알림 발송으로 야간 운영 리스크를 최소화하는 방법을 알아보세요.",
       "body": [
         {
@@ -3393,7 +3393,7 @@
         "mart",
         "drugstore"
       ],
-      "saaiUsage": "SAAI store insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. \"방문자 수 대비 매출\"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.",
+      "saaiUsage": "SAAI saai insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. \"방문자 수 대비 매출\"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.",
       "metaDescription": "POS 데이터의 한계란? 결제된 것만 아는 POS로는 놓치는 고객 행동 데이터. AI 분석으로 POS 사각지대를 채우고 매출 손실 원인을 찾는 방법을 설명합니다.",
       "body": [
         {
@@ -3444,7 +3444,7 @@
         "unmanned",
         "mart"
       ],
-      "saaiUsage": "SAAI store agent는 store care의 실시간 감지와 store insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.",
+      "saaiUsage": "SAAI saai agent는 saai care의 실시간 감지와 saai insight의 패턴 분석을 기반으로 동작합니다. 임계치 기반 실시간 알림부터 주간 인사이트 리포트, 검증된 패턴의 자동 실행까지 3단계로 매장 운영을 자동화합니다. 카카오 비즈니스, 네이버 톡톡, SMS 등 다양한 채널로 알림을 전송합니다.",
       "metaDescription": "매장 AI 에이전트란? 데이터 분석 결과를 자동으로 현장 행동으로 연결하는 AI 시스템. 알림 발송, 발주 제안, 자동 리포트로 매장 운영을 자동화하는 방법.",
       "body": [
         {

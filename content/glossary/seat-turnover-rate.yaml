@@ -20,7 +20,7 @@ relatedTerms:
   - behavior-analysis
 relatedIndustries:
   - cafe
-saaiUsage: SAAI store care는 카메라로 테이블별 착석 여부를 실시간 감지합니다. store insight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. store agent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.
+saaiUsage: SAAI saai care는 카메라로 테이블별 착석 여부를 실시간 감지합니다. saai insight는 좌석별 평균 체류 시간, 시간대별 회전율, 만석률 추이를 분석해 최적 운영 시간대를 도출합니다. saai agent는 피크 타임 전 체류 시간이 기준치를 초과하는 경우 자동으로 알림을 전송합니다.
 metaDescription: 좌석 회전율이란? 카페·음식점 매출 핵심 지표인 테이블 전환 횟수. 측정 방법, 업계 평균, AI 분석으로 회전율을 높이는 전략을 알아보세요.
 body:
   - heading: 좌석 회전율이 카페 수익에 미치는 영향

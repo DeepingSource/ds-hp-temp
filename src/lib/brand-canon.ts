@@ -204,21 +204,22 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
 /**
  * Product naming — single source for how the four products are named on the surface
  * (naming reorg §14/§15, option B). `saai` = value brand = the PRIMARY public label;
- * `store` = domain implementation (the URL slug's name) = the secondary. store count
- * has NO `saai` — it's a SOURCE tool (verb), not a SOLUTION (§12.B), so it keeps its
- * store name. Names are locale-invariant (lowercase). URLs are /products/saai-* (P1-3);
+ * `store` = domain implementation (the URL slug's name) = the secondary.
+ * 2026-07-16 결정: saai 전면 확정 — count 포함 (콘텐츠_수정확장_실행계획 §7 #2;
+ * §12.B의 "count = SOURCE 도구라 store 유지"는 이 결정으로 대체).
+ * Names are locale-invariant (lowercase). URLs are /products/saai-* (P1-3);
  * the old /products/store-* paths 301-redirect to them (see next.config.ts).
  */
 export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
 export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {
-  count: { store: 'store count' },
+  count: { store: 'store count', saai: 'saai count' },
   insight: { store: 'store insight', saai: 'saai insight' },
   care: { store: 'store care', saai: 'saai care' },
   agent: { store: 'store agent', saai: 'saai agent' },
 };
 /** Primary public label — the value brand where it exists, else the store name. */
 export const productPrimary = (k: ProductKey): string => productNaming[k].saai ?? productNaming[k].store;
-/** Secondary (store) label — null when the primary already IS the store name (count). */
+/** Secondary (store) label — null when the primary already IS the store name. */
 export const productSecondary = (k: ProductKey): string | null =>
   productNaming[k].saai ? productNaming[k].store : null;
 

@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - mart
   - drugstore
-saaiUsage: SAAI store insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. "방문자 수 대비 매출"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.
+saaiUsage: SAAI saai insight는 POS 매출 데이터와 CCTV AI 분석 데이터를 하나의 대시보드에서 연동합니다. "방문자 수 대비 매출"을 실시간으로 확인하고, 전환율 하락 시 그 원인을 데이터로 추적할 수 있습니다. POS만으로는 보이지 않던 매출 손실 원인을 찾아 대응하는 것이 핵심입니다.
 metaDescription: POS 데이터의 한계란? 결제된 것만 아는 POS로는 놓치는 고객 행동 데이터. AI 분석으로 POS 사각지대를 채우고 매출 손실 원인을 찾는 방법을 설명합니다.
 body:
   - heading: POS가 알려주지 못하는 것들

@@ -247,14 +247,14 @@ plans:
       jp: セキュリティと分析をまとめて
     items:
       ko:
-        - store care — CCTV 도난·이상 감지·온도 알림
-        - store insight — 대시보드·정기 리포트
-        - store care·insight로 매장 운영 전반까지
+        - saai care — CCTV 도난·이상 감지·온도 알림
+        - saai insight — 대시보드·정기 리포트
+        - saai care·insight로 매장 운영 전반까지
       en:
-        - store care — CCTV theft/anomaly & temperature alerts
-        - store insight — dashboards & regular reports
-        - store care & insight for end-to-end store operations
+        - saai care — CCTV theft/anomaly & temperature alerts
+        - saai insight — dashboards & regular reports
+        - saai care & insight for end-to-end store operations
       jp:
-        - store care — CCTV盗難・異常検知・温度アラート
-        - store insight — ダッシュボード・定期レポート
-        - store care・insightで店舗運営の全体まで
+        - saai care — CCTV盗難・異常検知・温度アラート
+        - saai insight — ダッシュボード・定期レポート
+        - saai care・insightで店舗運営の全体まで

@@ -23,7 +23,7 @@ relatedIndustries:
   - unmanned
   - convenience
   - logistics
-saaiUsage: SAAI store care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.
+saaiUsage: SAAI saai care의 이상 감지 기능은 무인매장·편의점 야간 운영에서 검증된 98.2%의 감지 정확도를 제공합니다. 침입, 배회, 쓰러짐, 냉장 진열대 장시간 열림 등 업종별 특화 이상 시나리오를 지원하며, 감지 시 앱 푸시 알림을 자동 전송합니다.
 metaDescription: 이상 감지(Anomaly Detection)란? AI가 비정상 상황을 자동 탐지하는 기술. 무인매장·편의점 야간 도난·사고 예방에 활용하는 방법을 알아보세요.
 body:
   - heading: 이상 감지가 필요한 매장 상황

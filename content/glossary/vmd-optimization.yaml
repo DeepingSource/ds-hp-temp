@@ -23,7 +23,7 @@ relatedIndustries:
   - drugstore
   - convenience
   - mart
-saaiUsage: SAAI store insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. store agent는 분석 결과를 바탕으로 "B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요"와 같은 actionable 알림을 자동으로 전송합니다.
+saaiUsage: SAAI saai insight는 진열 구역별 고객 체류 시간과 상품 픽업(집고 내려놓는 행동) 데이터를 수집합니다. saai agent는 분석 결과를 바탕으로 "B 구역의 체류 시간이 이번 주 20% 감소했습니다 — 진열 상태를 확인하세요"와 같은 actionable 알림을 자동으로 전송합니다.
 metaDescription: VMD 최적화란? 상품 진열 효과를 데이터로 측정하고 개선하는 방법. 드럭스토어·편의점·마트에서 AI 분석으로 VMD를 과학적으로 관리하는 법을 알아보세요.
 body:
   - heading: VMD의 데이터화가 중요한 이유

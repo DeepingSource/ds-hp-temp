@@ -3,9 +3,9 @@ heroTitle:
   en: Beyond seeing. AI that operates.
   jp: 見るAIを超え、運営するAIへ。
 heroSub:
-  ko: 대시보드는 숫자를 보여줍니다. store agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장의 다음 한 수를 함께 결정합니다.
-  en: A dashboard shows you the numbers. store agent tells you what to do with them — and makes the next move with you.
-  jp: ダッシュボードは数字を見せます。store agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。
+  ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장의 다음 한 수를 함께 결정합니다.
+  en: A dashboard shows you the numbers. saai agent tells you what to do with them — and makes the next move with you.
+  jp: ダッシュボードは数字を見せます。saai agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。
 ctaPrimary:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -19,9 +19,9 @@ stepsHeading:
   en: From the number to the next move
   jp: 数字から、次の一手まで
 stepsSub:
-  ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. store agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
-  en: Running a perfect store means watching far too much for one person. store agent shoulders the load and tells you what to do right now.
-  jp: 店舗を完璧にするには、見るべきものが多すぎます。store agent がその負担を分かち合い、今すべきことを示します。
+  ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
+  en: Running a perfect store means watching far too much for one person. saai agent shoulders the load and tells you what to do right now.
+  jp: 店舗を完璧にするには、見るべきものが多すぎます。saai agent がその負担を分かち合い、今すべきことを示します。
 pricingHeading:
   ko: 한 매장이 아니라, 브랜드 전체가
   en: Not one store — your whole brand
@@ -39,9 +39,9 @@ finalHeading:
   en: From watching to operating.
   jp: 見守るだけから、運営する側へ。
 finalSub:
-  ko: 영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. store agent가 매장의 다음을 함께 결정합니다.
-  en: We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. store agent decides your store’s next move with you.
-  jp: 映像は残しません。身元はその場で消し、動線と転換だけを記録します。store agent が店舗の次を、ともに決めます。
+  ko: 영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. saai agent가 매장의 다음을 함께 결정합니다.
+  en: We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides your store’s next move with you.
+  jp: 映像は残しません。身元はその場で消し、動線と転換だけを記録します。saai agent が店舗の次を、ともに決めます。
 finalCta:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -54,7 +54,7 @@ steps:
       jp: 今、棚から補充しますか？
     desc:
       ko: 점심 학생 방문이 평소보다 18% 많습니다. 인기 음료 세 종이 한 시간 안에 동날 것 같아요. 지금 백룸 재고로 매대부터 채울지 짚어드립니다.
-      en: "Lunchtime student traffic is up 18%. Three top drinks will sell out within the hour. store agent asks: pull from the backroom and restock now?"
+      en: "Lunchtime student traffic is up 18%. Three top drinks will sell out within the hour. saai agent asks: pull from the backroom and restock now?"
       jp: ランチタイムの学生来店が普段より18%多めです。人気ドリンク3種が1時間以内に品切れしそうです。バックルームの在庫で今すぐ補充するか、お知らせします。
   - id: order
     title:

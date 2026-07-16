@@ -129,27 +129,27 @@ errGeneric:
 cards:
   - id: care
     label:
-      ko: store care
-      en: store care
-      jp: store care
+      ko: saai care
+      en: saai care
+      jp: saai care
     desc:
       ko: 매장을 빠짐없이 기록합니다
       en: Captures everything happening in your store
       jp: 店舗の出来事をもれなく記録します
   - id: insight
     label:
-      ko: store insight
-      en: store insight
-      jp: store insight
+      ko: saai insight
+      en: saai insight
+      jp: saai insight
     desc:
       ko: 매출이 새는 곳을 찾아드립니다
       en: Pinpoints where revenue is leaking
       jp: 売上が漏れている箇所を見つけます
   - id: agent
     label:
-      ko: store agent
-      en: store agent
-      jp: store agent
+      ko: saai agent
+      en: saai agent
+      jp: saai agent
     desc:
       ko: AI가 정리하고, 사장님은 확인만
       en: AI handles the work; you simply review

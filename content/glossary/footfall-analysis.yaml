@@ -22,7 +22,7 @@ relatedIndustries:
   - convenience
   - mart
   - logistics
-saaiUsage: SAAI store care는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 "방문했다"는 사실만 기록합니다. store insight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.
+saaiUsage: SAAI saai care는 입구 카메라를 통해 시간당 방문객 수를 자동 집계합니다. 익명화 처리로 개인정보 없이 "방문했다"는 사실만 기록합니다. saai insight 대시보드에서 전년 동기 대비, 이벤트 전후, 날씨 연동 분석이 가능합니다.
 metaDescription: 방문객 분석(Footfall Analysis)이란? 매장 방문객 수와 시간 패턴을 자동으로 측정하는 기술. 인력 배치·전환율 계산·프로모션 효과 측정에 활용하는 방법을 설명합니다.
 body:
   - heading: 방문객 수를 왜 정확히 측정해야 하는가

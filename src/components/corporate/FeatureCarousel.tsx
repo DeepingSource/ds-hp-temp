@@ -31,8 +31,7 @@ type ProductStruct = {
   key: 'count' | 'insight' | 'care' | 'agent';
   name: string;        // domain implementation — store {value} (locale-invariant, lowercase)
   saaiName?: string;   // value-brand — saai {value}, the primary label (naming option B).
-                       // Absent for store count: a SOURCE tool (verb), not a SOLUTION (value),
-                       // so it keeps its store name (lineup reorg §12.B / §15).
+                       // 2026-07-16: saai 전면 확정 — count 포함 (콘텐츠_수정확장_실행계획 §7 #2).
   stage: string;       // operating-loop stage — canon labels (brand-canon operatingLoop, §5)
   icon: LucideIcon;
   href: string;
@@ -41,7 +40,7 @@ type ProductStruct = {
 
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'count', name: productNaming.count.store, stage: 'Observe', icon: DoorOpen, href: '/products/saai-count',
+    key: 'count', name: productNaming.count.store, saaiName: productNaming.count.saai, stage: 'Observe', icon: DoorOpen, href: '/products/saai-count',
     images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {

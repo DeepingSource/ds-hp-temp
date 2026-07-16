@@ -27,7 +27,7 @@ const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram')
 });
 
 /**
- * StoreInsightView — shared store insight product-detail composition.
+ * StoreInsightView — shared saai insight product-detail composition.
  * Rendered by `/products/saai-insight` (en), `/ko/products/saai-insight`,
  * `/jp/products/saai-insight` with the locale prop. Product name stays identical.
  */
@@ -67,7 +67,7 @@ const C: Record<Locale, {
 }> = {
   ko: {
     heroTitle: ['POS가 못 센 것을', '봅니다.'],
-    heroSub: '둘러보다 그냥 나간 손님은 POS에 없습니다. store insight는 매출 너머 — 어제의 매장에서 무슨 일이 있었고, 왜 그랬는지를 읽습니다.',
+    heroSub: '둘러보다 그냥 나간 손님은 POS에 없습니다. saai insight는 매출 너머 — 어제의 매장에서 무슨 일이 있었고, 왜 그랬는지를 읽습니다.',
     ctaPrimary: '도입 상담 신청',
     ctaSecondary: '무엇을 보나요',
     dashEyebrow: 'DASHBOARD',
@@ -75,11 +75,11 @@ const C: Record<Locale, {
     dashSub: '방문·동선·체류·전환을 한 화면으로. 손님이 어디서 멈추고 무엇을 놓쳤는지, 어제의 매장이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',
     hypHeading: '매출이 미처 보지 못한 것을 읽습니다',
-    hypSub: '매출만으로는 알 수 없던 질문에, store insight가 답합니다.',
+    hypSub: '매출만으로는 알 수 없던 질문에, saai insight가 답합니다.',
     hypotheses: [
-      { claim: 'POS는 결제한 65명만 압니다.', answer: 'store insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },
-      { claim: '안 팔리던 매대, 이유는 감입니다.', answer: 'store insight는 히트맵으로 보여줍니다.', desc: '어디서 머물고 어디서 그냥 지나치는지 — 안 팔리던 매대의 진짜 이유가 드러납니다.' },
-      { claim: '"오늘 손님이 적었다"는 인상입니다.', answer: 'store insight는 왜 그랬는지 설명합니다.', desc: '입장부터 퇴장까지 여정을 따라가, 어디서 발길을 돌리는지 이탈 지점을 짚습니다.' },
+      { claim: 'POS는 결제한 65명만 압니다.', answer: 'saai insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },
+      { claim: '안 팔리던 매대, 이유는 감입니다.', answer: 'saai insight는 히트맵으로 보여줍니다.', desc: '어디서 머물고 어디서 그냥 지나치는지 — 안 팔리던 매대의 진짜 이유가 드러납니다.' },
+      { claim: '"오늘 손님이 적었다"는 인상입니다.', answer: 'saai insight는 왜 그랬는지 설명합니다.', desc: '입장부터 퇴장까지 여정을 따라가, 어디서 발길을 돌리는지 이탈 지점을 짚습니다.' },
     ],
     funnelHeading: '지나감에서 결제까지, 보이지 않던 손님이 보입니다',
     funnelSub: 'POS엔 결제한 65명만 남습니다. 그 앞의 단계를 모두 펼쳐, 어디서 새는지 찾습니다.',
@@ -100,22 +100,22 @@ const C: Record<Locale, {
     ],
     baNote: '* 수치는 학원가 편의점·시립 전시관 등 실제 운영 사례를 설명하기 위한 예시입니다.',
     handoffEyebrow: '분석에서 실행으로',
-    handoffHeading: '이유는 insight가, 무엇을 할지는 store agent가 정합니다.',
-    handoffSub: 'store insight는 어제를 읽고 그 이유를 설명합니다. 무엇을 채우고, 보충하고, 누구를 배치할지 정해야 하는 순간 — 그건 store agent의 일입니다. 모든 추천은 하나의 엔진에서.',
+    handoffHeading: '이유는 insight가, 무엇을 할지는 saai agent가 정합니다.',
+    handoffSub: 'saai insight는 어제를 읽고 그 이유를 설명합니다. 무엇을 채우고, 보충하고, 누구를 배치할지 정해야 하는 순간 — 그건 saai agent의 일입니다. 모든 추천은 하나의 엔진에서.',
     cardTitle: '인사이트를 액션 카드로',
-    cardBody: '음료 체류가 2배? store insight가 원인을 짚으면, store agent가 발주량·공급처·시점까지 담아 승인용 카드로 만듭니다. 어떤 인사이트에서든 클릭 한 번.',
-    cardCta: 'store agent 보기',
-    boundaryLine: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를, store agent는 다음에 무엇을 할지를 — 각각 맡습니다.',
+    cardBody: '음료 체류가 2배? saai insight가 원인을 짚으면, saai agent가 발주량·공급처·시점까지 담아 승인용 카드로 만듭니다. 어떤 인사이트에서든 클릭 한 번.',
+    cardCta: 'saai agent 보기',
+    boundaryLine: 'saai count는 문 밖의 통행을, saai insight는 문 안에서 무슨 일이 왜 일어났는지를, saai agent는 다음에 무엇을 할지를 — 각각 맡습니다.',
     finalHeading: '어제와 "왜"에, 매일 아침 답을 받으세요',
     finalSub: '이미 달린 CCTV 위에서 바로 시작할 수 있습니다.',
     finalCta: '도입 상담 신청',
-    seeAgent: 'store agent 보기',
+    seeAgent: 'saai agent 보기',
     alreadyUsing: '이미 사용 중이신가요?',
     manual: '사용자 매뉴얼 보기 →',
   },
   en: {
     heroTitle: ['See what your POS', 'never counted.'],
-    heroSub: 'The shoppers who browsed and left aren’t in your POS. store insight reads beyond sales — what happened in your store yesterday, and why.',
+    heroSub: 'The shoppers who browsed and left aren’t in your POS. saai insight reads beyond sales — what happened in your store yesterday, and why.',
     ctaPrimary: 'Request a consultation',
     ctaSecondary: 'What it shows',
     dashEyebrow: 'DASHBOARD',
@@ -123,11 +123,11 @@ const C: Record<Locale, {
     dashSub: 'Visits, flow, dwell, and conversion on one screen. See where shoppers stopped and what they missed — yesterday, made visible.',
     mockupNote: '* Sample AI analysis screen.',
     hypHeading: 'See what your sales numbers never could',
-    hypSub: 'store insight answers the questions sales data alone can’t.',
+    hypSub: 'saai insight answers the questions sales data alone can’t.',
     hypotheses: [
-      { claim: 'POS knows only the 65 who paid.', answer: 'store insight sees the rest.', desc: '1,160 passed your storefront yesterday, 382 came in — and 317 browsed and walked out. We see them too.' },
-      { claim: 'Why a shelf underperforms is a guess.', answer: 'store insight shows it on a heatmap.', desc: 'Where people linger and where they walk past — the real reason that shelf isn’t selling.' },
-      { claim: '"Quiet today" is an impression.', answer: 'store insight explains why.', desc: 'Follow the journey from entry to exit and pinpoint exactly where shoppers turn back.' },
+      { claim: 'POS knows only the 65 who paid.', answer: 'saai insight sees the rest.', desc: '1,160 passed your storefront yesterday, 382 came in — and 317 browsed and walked out. We see them too.' },
+      { claim: 'Why a shelf underperforms is a guess.', answer: 'saai insight shows it on a heatmap.', desc: 'Where people linger and where they walk past — the real reason that shelf isn’t selling.' },
+      { claim: '"Quiet today" is an impression.', answer: 'saai insight explains why.', desc: 'Follow the journey from entry to exit and pinpoint exactly where shoppers turn back.' },
     ],
     funnelHeading: 'From passing by to paying — the invisible majority, made visible',
     funnelSub: 'Your POS keeps only the 65 who paid. We unfold every step before it to find where it leaks.',
@@ -148,22 +148,22 @@ const C: Record<Locale, {
     ],
     baNote: '* Figures illustrate real cases — a campus convenience store and a city exhibition hall.',
     handoffEyebrow: 'From insight to action',
-    handoffHeading: 'We show you why. store agent decides what to do.',
-    handoffSub: "store insight reads yesterday and explains it. The moment it's time to decide what to stock, restock, or staff, that's store agent — one engine for every recommendation.",
+    handoffHeading: 'We show you why. saai agent decides what to do.',
+    handoffSub: "saai insight reads yesterday and explains it. The moment it's time to decide what to stock, restock, or staff, that's saai agent — one engine for every recommendation.",
     cardTitle: 'Turn an insight into an action card',
-    cardBody: 'Beverage dwell up 2×? store insight flags the cause. store agent drafts the move — order quantity, supplier, timing — for your approval. One click from any insight.',
-    cardCta: 'See store agent',
-    boundaryLine: 'store count reads the footfall outside. store insight explains what happened inside, and why. store agent decides what to do next.',
+    cardBody: 'Beverage dwell up 2×? saai insight flags the cause. saai agent drafts the move — order quantity, supplier, timing — for your approval. One click from any insight.',
+    cardCta: 'See saai agent',
+    boundaryLine: 'saai count reads the footfall outside. saai insight explains what happened inside, and why. saai agent decides what to do next.',
     finalHeading: 'Get the answer to yesterday and "why," every morning',
     finalSub: 'Start right on the CCTV you already have.',
     finalCta: 'Request a consultation',
-    seeAgent: 'See store agent',
+    seeAgent: 'See saai agent',
     alreadyUsing: 'Already a user?',
     manual: 'View the user manual →',
   },
   jp: {
     heroTitle: ['POS が数えられなかったものを、', '見ます。'],
-    heroSub: '見て回っただけで出ていったお客様は、POS に残りません。store insight は売上の先 — 昨日の店舗で何が起き、なぜそうなったのかを読み解きます。',
+    heroSub: '見て回っただけで出ていったお客様は、POS に残りません。saai insight は売上の先 — 昨日の店舗で何が起き、なぜそうなったのかを読み解きます。',
     ctaPrimary: '導入のご相談',
     ctaSecondary: '何が見えるのか',
     dashEyebrow: 'DASHBOARD',
@@ -171,11 +171,11 @@ const C: Record<Locale, {
     dashSub: '来店・動線・滞在・転換を一画面で。お客様がどこで立ち止まり、何を見逃したのか — 昨日の店舗が見えてきます。',
     mockupNote: '※ AI分析のサンプル画面です。',
     hypHeading: '売上が見られなかったものを、見ます',
-    hypSub: '売上だけでは分からなかった問いに、store insight がお答えします。',
+    hypSub: '売上だけでは分からなかった問いに、saai insight がお答えします。',
     hypotheses: [
-      { claim: 'POS は決済した 65 人しか分かりません。', answer: 'store insight は残りを見ます。', desc: '昨日、店頭を通った 1,160 人、入った 382 人 — 見て回っただけで出ていった 317 人まで見ます。' },
-      { claim: '売れない棚の理由は、感覚頼みです。', answer: 'store insight はヒートマップで見せます。', desc: 'どこで留まり、どこを素通りするのか — 売れなかった棚の本当の理由が見えてきます。' },
-      { claim: '「今日は客が少なかった」は印象です。', answer: 'store insight はなぜそうなのかを説明します。', desc: '入店から退店までの動線をたどり、どこで引き返すのか離脱地点を突き止めます。' },
+      { claim: 'POS は決済した 65 人しか分かりません。', answer: 'saai insight は残りを見ます。', desc: '昨日、店頭を通った 1,160 人、入った 382 人 — 見て回っただけで出ていった 317 人まで見ます。' },
+      { claim: '売れない棚の理由は、感覚頼みです。', answer: 'saai insight はヒートマップで見せます。', desc: 'どこで留まり、どこを素通りするのか — 売れなかった棚の本当の理由が見えてきます。' },
+      { claim: '「今日は客が少なかった」は印象です。', answer: 'saai insight はなぜそうなのかを説明します。', desc: '入店から退店までの動線をたどり、どこで引き返すのか離脱地点を突き止めます。' },
     ],
     funnelHeading: '通過から決済まで、見えなかったお客様が見えます',
     funnelSub: 'POS に残るのは決済した 65 人だけ。その手前の段階をすべて広げ、どこで取りこぼすかを探します。',
@@ -196,16 +196,16 @@ const C: Record<Locale, {
     ],
     baNote: '※ 数値は学習塾街のコンビニ・市立展示館などの実例を説明するための一例です。',
     handoffEyebrow: '分析から実行へ',
-    handoffHeading: '理由は insight が、次の一手は store agent が決めます。',
-    handoffSub: 'store insight は昨日を読み、その理由を説明します。何を仕入れ、補充し、誰を配置するか — それは store agent の役割。すべての推奨はひとつのエンジンから。',
+    handoffHeading: '理由は insight が、次の一手は saai agent が決めます。',
+    handoffSub: 'saai insight は昨日を読み、その理由を説明します。何を仕入れ、補充し、誰を配置するか — それは saai agent の役割。すべての推奨はひとつのエンジンから。',
     cardTitle: 'インサイトをアクションカードに',
-    cardBody: '飲料の滞在が2倍? store insight が原因を示すと、store agent が発注量・仕入先・タイミングまで含めて承認用カードにします。どのインサイトからもワンクリック。',
-    cardCta: 'store agent を見る',
-    boundaryLine: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを、store agent は次に何をするかを — それぞれ担います。',
+    cardBody: '飲料の滞在が2倍? saai insight が原因を示すと、saai agent が発注量・仕入先・タイミングまで含めて承認用カードにします。どのインサイトからもワンクリック。',
+    cardCta: 'saai agent を見る',
+    boundaryLine: 'saai count は店の外の通行を、saai insight は店の中で何がなぜ起きたかを、saai agent は次に何をするかを — それぞれ担います。',
     finalHeading: '昨日と「なぜ」への答えを、毎朝お受け取りください',
     finalSub: 'すでにある CCTV の上で、すぐに始められます。',
     finalCta: '導入のご相談',
-    seeAgent: 'store agent を見る',
+    seeAgent: 'saai agent を見る',
     alreadyUsing: 'すでにご利用中ですか？',
     manual: 'ユーザーマニュアルを見る →',
   },
@@ -401,7 +401,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── insight → store agent 핸드오프 (경계: insight=원인, agent=행동) ── */}
+      {/* ── insight → saai agent 핸드오프 (경계: insight=원인, agent=행동) ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-10 max-w-2xl">
@@ -410,7 +410,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             <p className="text-gray-600 leading-relaxed break-keep">{t.handoffSub}</p>
           </div>
           <div className="rounded-2xl border border-primary/20 bg-white p-6 sm:p-8 shadow-card">
-            <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-2">Powered by store agent</p>
+            <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-2">Powered by saai agent</p>
             <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{t.cardTitle}</h3>
             <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">{t.cardBody}</p>
             <Link href={localeHref(locale, '/products/saai-agent')} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-dark transition-colors">

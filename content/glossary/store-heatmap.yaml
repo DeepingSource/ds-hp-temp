@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - drugstore
   - mart
-saaiUsage: SAAI의 store care는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 store insight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.
+saaiUsage: SAAI의 saai care는 기존 CCTV 영상을 실시간으로 분석해 구역별 체류 히트맵을 자동 생성합니다. 얼굴이나 개인정보는 일절 수집하지 않으며, 익명화된 행동 데이터만 활용합니다. 히트맵 데이터는 saai insight 대시보드에서 시간대별, 요일별로 비교 분석할 수 있어 진열 개편 의사결정의 근거로 사용됩니다.
 metaDescription: 매장 히트맵이란? 고객 체류 패턴을 색상으로 시각화하는 공간 분석 기술. CCTV AI 분석으로 진열 최적화와 매출 개선에 활용하는 방법을 알아보세요.
 body:
   - heading: 매장 히트맵이 필요한 이유

@@ -1,4 +1,5 @@
 import siteContent from '@/data/generated/site-content.json';
+import { productPrimary } from '@/lib/brand-canon';
 
 export interface SolutionCause {
   title: string;
@@ -51,9 +52,9 @@ type Product = SolutionStep['product'];
  * scripts/migrate-solutions.mjs (deepStrictEqual gate).
  */
 const PRODUCT_LABEL_KO: Record<Product, string> = {
-  StoreCare: '01 관찰 · store care',
-  StoreInsight: '02 분석 · store insight',
-  StoreAgent: '03 실행 · store agent',
+  StoreCare: `01 관찰 · ${productPrimary('care')}`,
+  StoreInsight: `02 분석 · ${productPrimary('insight')}`,
+  StoreAgent: `03 실행 · ${productPrimary('agent')}`,
 };
 const PRODUCT_COLOR: Record<Product, SolutionStep['productColor']> = {
   StoreCare: 'emerald',

@@ -114,9 +114,9 @@ const CODE: Record<Locale, CodeContent> = {
       enterprise: '엔터프라이즈',
     },
     productLabels: {
-      StoreAgent: 'store agent',
-      StoreCare: 'store care',
-      StoreInsight: 'store insight',
+      StoreAgent: 'saai agent',
+      StoreCare: 'saai care',
+      StoreInsight: 'saai insight',
     },
   },
   en: {
@@ -157,9 +157,9 @@ const CODE: Record<Locale, CodeContent> = {
       enterprise: 'Enterprise',
     },
     productLabels: {
-      StoreAgent: 'store agent',
-      StoreCare: 'store care',
-      StoreInsight: 'store insight',
+      StoreAgent: 'saai agent',
+      StoreCare: 'saai care',
+      StoreInsight: 'saai insight',
     },
   },
   jp: {
@@ -200,9 +200,9 @@ const CODE: Record<Locale, CodeContent> = {
       enterprise: 'エンタープライズ',
     },
     productLabels: {
-      StoreAgent: 'store agent',
-      StoreCare: 'store care',
-      StoreInsight: 'store insight',
+      StoreAgent: 'saai agent',
+      StoreCare: 'saai care',
+      StoreInsight: 'saai insight',
     },
   },
 };

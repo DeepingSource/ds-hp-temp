@@ -4,17 +4,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Linkedin, Instagram } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
+import { productPrimary, type ProductKey } from '@/lib/brand-canon';
 import { stripLocale, localeHref, type Locale } from '@/lib/i18n';
 
 type Tri = Record<Locale, string>;
 const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
+/** Product label from the naming SOT (locale-invariant lowercase). */
+const PN = (k: ProductKey): Tri => {
+  const n = productPrimary(k);
+  return L(n, n, n);
+};
 type FLink = { href: string; label: Tri; external?: boolean };
 
 const productLinks: FLink[] = [
-  { href: '/products/saai-count', label: L('store count', 'store count', 'store count') },
-  { href: '/products/saai-insight', label: L('saai insight', 'saai insight', 'saai insight') },
-  { href: '/products/saai-care', label: L('saai care', 'saai care', 'saai care') },
-  { href: '/products/saai-agent', label: L('saai agent', 'saai agent', 'saai agent') },
+  { href: '/products/saai-count', label: PN('count') },
+  { href: '/products/saai-insight', label: PN('insight') },
+  { href: '/products/saai-care', label: PN('care') },
+  { href: '/products/saai-agent', label: PN('agent') },
   { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store') },
   { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai') },
 ];

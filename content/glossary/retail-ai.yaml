@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - cafe
   - unmanned
-saaiUsage: SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(store care) → 분석(store insight) → 실행(store agent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.
+saaiUsage: SAAI는 편의점, 카페, 무인매장, 드럭스토어 등 7개 업종 특화 리테일 AI 솔루션을 제공합니다. 관찰(saai care) → 분석(saai insight) → 실행(saai agent) → 학습 4단계로 AI가 매장 운영을 자동화합니다. 기존 CCTV에 소프트웨어만 연동하면 3일 이내 데이터 수집이 시작됩니다.
 metaDescription: 리테일 AI란? 소매업 운영을 자동화하는 인공지능 기술 가이드. 고객 행동 분석, 결품 감지, 이상 감지 등 실제 매장 적용 사례와 도입 방법을 설명합니다.
 body:
   - heading: 리테일 AI의 적용 영역

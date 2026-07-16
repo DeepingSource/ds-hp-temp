@@ -1,5 +1,6 @@
 import { type Locale } from '@/lib/i18n';
 import siteContent from '@/data/generated/site-content.json';
+import { productPrimary } from '@/lib/brand-canon';
 
 /**
  * Translation OVERLAY for /solutions cards + detail pages (en default · ko · jp).
@@ -30,14 +31,14 @@ type Product = 'StoreCare' | 'StoreInsight' | 'StoreAgent';
 
 const PRODUCT_LABEL_I18N: Record<'en' | 'jp', Record<Product, string>> = {
   en: {
-    StoreCare: '01 Observe · store care',
-    StoreInsight: '02 Analyze · store insight',
-    StoreAgent: '03 Act · store agent',
+    StoreCare: `01 Observe · ${productPrimary('care')}`,
+    StoreInsight: `02 Analyze · ${productPrimary('insight')}`,
+    StoreAgent: `03 Act · ${productPrimary('agent')}`,
   },
   jp: {
-    StoreCare: '01 観察 · store care',
-    StoreInsight: '02 分析 · store insight',
-    StoreAgent: '03 実行 · store agent',
+    StoreCare: `01 観察 · ${productPrimary('care')}`,
+    StoreInsight: `02 分析 · ${productPrimary('insight')}`,
+    StoreAgent: `03 実行 · ${productPrimary('agent')}`,
   },
 };
 

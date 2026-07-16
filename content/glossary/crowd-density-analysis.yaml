@@ -22,7 +22,7 @@ relatedIndustries:
   - mart
   - exhibition
   - logistics
-saaiUsage: "SAAI store care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. store insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다."
+saaiUsage: "SAAI saai care는 매장 전체와 구역별 동시 체류 인원을 실시간으로 카운팅합니다. 설정한 임계치(예: 계산대 구역 5명 이상)를 초과 시 실시간 알림을 전송합니다. saai insight는 시간대별 혼잡 패턴을 분석해 다음 주 예측 혼잡도를 사전 제공합니다."
 metaDescription: 혼잡도 분석이란? 매장 구역별 인구 밀도를 실시간으로 측정하는 기술. 대형마트·전시 공간·물류센터에서 혼잡을 사전에 관리하는 방법을 알아보세요.
 body:
   - heading: 혼잡도 관리가 필요한 이유

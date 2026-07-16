@@ -11,7 +11,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
  * OperatingLoopGraphic — the /products hero visual (product-reorg D2, §10.5).
  * The four Tier-1 products as a clockwise cycle around the SAAI hub —
  * count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn), output feeding back
- * to input. Names lead with the value brand (saai …); store count keeps its name.
+ * to input. Names lead with the value brand (saai …) — count included (2026-07-16).
  * Brand-blue single color + stage icons (no rainbow), agent emphasized.
  * Desktop = circular; mobile = vertical stack. Inline SVG ring, no raster.
  */
@@ -54,10 +54,10 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
   const { ref, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const reduced = usePrefersReducedMotion();
   const label = locale === 'ko'
-    ? 'store count·saai insight·saai care·saai agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
+    ? 'saai count·saai insight·saai care·saai agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
     : locale === 'jp'
-    ? 'store count・saai insight・saai care・saai agentがSAAIハブを中心に時計回りに循環するオペレーションループ'
-    : 'DeepingSource operating loop: store count, saai insight, saai care and saai agent as a clockwise cycle around the SAAI hub';
+    ? 'saai count・saai insight・saai care・saai agentがSAAIハブを中心に時計回りに循環するオペレーションループ'
+    : 'DeepingSource operating loop: saai count, saai insight, saai care and saai agent as a clockwise cycle around the SAAI hub';
 
   return (
     <div role="img" aria-label={label}>

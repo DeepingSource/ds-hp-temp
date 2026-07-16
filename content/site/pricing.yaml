@@ -117,9 +117,9 @@ startFree:
   en: Start for free
   jp: 無料で始める
 diffTitle:
-  ko: store agent 기본(무료) vs store care(유료) — 무엇이 다른가요?
-  en: store agent basic (free) vs store care (paid) — what is the difference?
-  jp: store agent 基本（無料）vs store care（有料） — 何が違いますか？
+  ko: saai agent 기본(무료) vs saai care(유료) — 무엇이 다른가요?
+  en: saai agent basic (free) vs saai care (paid) — what is the difference?
+  jp: saai agent 基本（無料）vs saai care（有料） — 何が違いますか？
 freeBadge:
   ko: 무료
   en: Free
@@ -129,13 +129,13 @@ paidBadge:
   en: Paid
   jp: 有料
 saaiBasic:
-  ko: store agent 기본형
-  en: store agent basic
-  jp: store agent 基本型
+  ko: saai agent 기본형
+  en: saai agent basic
+  jp: saai agent 基本型
 storeCare:
-  ko: store care
-  en: store care
-  jp: store care
+  ko: saai care
+  en: saai care
+  jp: saai care
 saaiFeatures:
   ko:
     - 매일 아침 브리핑 (날씨·이벤트·운영 팁)
@@ -167,9 +167,9 @@ simLink:
   en: Try the pricing simulator
   jp: 料金シミュレーションを試す
 agentCompareLink:
-  ko: store agent 상세 플랜 비교
-  en: Compare store agent plans in detail
-  jp: store agent 詳細プラン比較
+  ko: saai agent 상세 플랜 비교
+  en: Compare saai agent plans in detail
+  jp: saai agent 詳細プラン比較
 b2bHeading:
   ko: 가맹점 전체를 데이터로 관리하세요
   en: Manage your entire network with data
@@ -235,9 +235,9 @@ perStoreCost:
   en: Estimated cost per store
   jp: 店舗あたり想定費用
 perStoreBasis:
-  ko: store care 플러스 기준/월
-  en: Based on store care Plus / mo
-  jp: store care プラス基準/月
+  ko: saai care 플러스 기준/월
+  en: Based on saai care Plus / mo
+  jp: saai care プラス基準/月
 totalMonthly:
   ko: 전체 예상 월 비용
   en: Estimated total monthly cost

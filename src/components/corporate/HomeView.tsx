@@ -12,7 +12,7 @@ import SolutionTimeline from './SolutionTimeline';
 import SpacesShowcase from './SpacesShowcase';
 import PartnerGrid from './PartnerGrid';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
-import { seam, purpose } from '@/lib/brand-canon';
+import { seam, purpose, productPrimary, productSecondary, type ProductKey } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 
 /** basePath prefix for CSS background images (set for the GitHub Pages export). */
@@ -60,25 +60,26 @@ const ctaDict: Record<Locale, { heading: string; sub: string; close: string; rea
   },
 };
 
-/** Locale-aware product descriptions (mirrors ProductsView copy) for the home ItemList. */
-const productDict: Record<Locale, { name: string; description: string; path: string }[]> = {
+/** Locale-aware product descriptions (mirrors ProductsView copy) for the home ItemList.
+ *  Names resolve from brand-canon `productNaming` (saai primary + store alternate). */
+const productDict: Record<Locale, { key: ProductKey; description: string; path: string }[]> = {
   ko: [
-    { name: 'store insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해 매출 변화의 원인을 짚어냅니다.', path: '/products/saai-insight' },
-    { name: 'store care', description: '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 사장님용 안심 솔루션입니다.', path: '/products/saai-care' },
-    { name: 'store agent', description: '데이터를 넘어 결정으로. 오늘 무엇을, 얼마나, 어디에 둘지 매장 운영의 다음 한 수를 제안합니다.', path: '/products/saai-agent' },
-    { name: 'store count', description: '카메라 한 대로 문 밖의 상권·통행·유입률을 매일 읽는 매장 카운팅 제품입니다.', path: '/products/saai-count' },
+    { key: 'insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해 매출 변화의 원인을 짚어냅니다.', path: '/products/saai-insight' },
+    { key: 'care', description: '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 사장님용 안심 솔루션입니다.', path: '/products/saai-care' },
+    { key: 'agent', description: '데이터를 넘어 결정으로. 오늘 무엇을, 얼마나, 어디에 둘지 매장 운영의 다음 한 수를 제안합니다.', path: '/products/saai-agent' },
+    { key: 'count', description: '카메라 한 대로 문 밖의 상권·통행·유입률을 매일 읽는 매장 카운팅 제품입니다.', path: '/products/saai-count' },
   ],
   en: [
-    { name: 'store insight', description: 'Read what happens in your stores as data. Cross-analyze flow, dwell, and conversion to pinpoint what moves revenue.', path: '/products/saai-insight' },
-    { name: 'store care', description: 'A reliable extra eye, even for small stores. Watches for incidents, theft, and anomalies, and alerts owners.', path: '/products/saai-care' },
-    { name: 'store agent', description: 'Beyond data, to decisions. What to stock, how much, and where — your next move in store operations.', path: '/products/saai-agent' },
-    { name: 'store count', description: 'A store-counting product that reads trade area, footfall, and inflow rate outside the door, daily, from one camera.', path: '/products/saai-count' },
+    { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyze flow, dwell, and conversion to pinpoint what moves revenue.', path: '/products/saai-insight' },
+    { key: 'care', description: 'A reliable extra eye, even for small stores. Watches for incidents, theft, and anomalies, and alerts owners.', path: '/products/saai-care' },
+    { key: 'agent', description: 'Beyond data, to decisions. What to stock, how much, and where — your next move in store operations.', path: '/products/saai-agent' },
+    { key: 'count', description: 'A store-counting product that reads trade area, footfall, and inflow rate outside the door, daily, from one camera.', path: '/products/saai-count' },
   ],
   jp: [
-    { name: 'store insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせて分析し、売上変化の要因を突き止めます。', path: '/products/saai-insight' },
-    { name: 'store care', description: '小さな店舗にも頼れる目をひとつ。事故・盗難・異常を見守り、お知らせする店主向けの安心ソリューションです。', path: '/products/saai-care' },
-    { name: 'store agent', description: 'データから意思決定へ。今日、何を、どれだけ、どこに置くか。店舗運営における次の一手をご提案します。', path: '/products/saai-agent' },
-    { name: 'store count', description: 'カメラ1台で、店の外の商圏・通行・流入率を毎日読み取る店舗カウント製品です。', path: '/products/saai-count' },
+    { key: 'insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせて分析し、売上変化の要因を突き止めます。', path: '/products/saai-insight' },
+    { key: 'care', description: '小さな店舗にも頼れる目をひとつ。事故・盗難・異常を見守り、お知らせする店主向けの安心ソリューションです。', path: '/products/saai-care' },
+    { key: 'agent', description: 'データから意思決定へ。今日、何を、どれだけ、どこに置くか。店舗運営における次の一手をご提案します。', path: '/products/saai-agent' },
+    { key: 'count', description: 'カメラ1台で、店の外の商圏・通行・流入率を毎日読み取る店舗カウント製品です。', path: '/products/saai-count' },
   ],
 };
 
@@ -90,7 +91,13 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <JsonLd
         data={itemList(
           productDict[locale].map((p) =>
-            softwareApplication({ name: p.name, description: p.description, path: p.path, locale }),
+            softwareApplication({
+              name: productPrimary(p.key),
+              alternateName: productSecondary(p.key) ?? undefined,
+              description: p.description,
+              path: p.path,
+              locale,
+            }),
           ),
         )}
       />

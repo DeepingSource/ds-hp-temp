@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - drugstore
   - mart
-saaiUsage: SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 store insight 대시보드에서 실시간으로 확인할 수 있습니다. store agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.
+saaiUsage: SAAI는 POS 결제 데이터와 CCTV 기반 방문자 수를 연동해 정확한 구매 전환율을 산출합니다. 단순 전환율뿐만 아니라 매대별 전환율, 시간대별 전환율 변화를 saai insight 대시보드에서 실시간으로 확인할 수 있습니다. saai agent는 전환율 하락 패턴을 감지하면 자동으로 진열 개선 제안을 전송합니다.
 metaDescription: 구매 전환율이란? 방문 고객 중 실제 구매로 이어진 비율. 편의점·드럭스토어·마트별 평균과 AI 분석으로 전환율을 높이는 방법을 설명합니다.
 body:
   - heading: 구매 전환율의 업종별 평균

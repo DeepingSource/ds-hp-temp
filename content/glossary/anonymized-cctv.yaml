@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - unmanned
   - logistics
-saaiUsage: SAAI의 모든 제품(store care, store insight, store agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.
+saaiUsage: SAAI의 모든 제품(saai care, saai insight, saai agent)은 익명화 엔진을 기반으로 동작합니다. 카메라로부터 영상을 받는 순간 익명화 처리가 이루어지며, SAAI 서버에는 행동 패턴 데이터만 저장됩니다. 개인정보보호위원회 가이드라인을 준수하는 구조로 설계되어 있습니다.
 metaDescription: 익명화 CCTV 분석이란? 얼굴·개인정보 없이 행동 패턴만 추출하는 AI 기술. 개인정보보호법 준수 방법과 매장 분석에 활용하는 법을 알아보세요.
 body:
   - heading: 익명화 CCTV가 필요한 법적 배경
