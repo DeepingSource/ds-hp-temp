@@ -173,6 +173,19 @@
 - **글로서리 확장 20→28** (배치 D #15-2): mtmc·edge-ai·video-anonymization·privacy-by-design·re-identification·visit-funnel·pickup-analysis·people-counting — 3로케일 + DefinedTerm JSON-LD 프리렌더 검증.
 - 확인: 배치 C #8(모델 이미지 18종)은 기수행 완료 상태.
 
+## 12. SPECS_WEEK1 + 주3 픽스 (2026-07-16 · `c1c0391fa`→`c78dd72a2`) ✅
+
+`docs/SPECS_WEEK1_v1.md`(런칭 주1 잔여) + SPECS_NEXT 주3 픽스 처리. SPECS 문서 2종은 **untracked(다른 세션 WIP)라 미커밋**, 산출물은 tracked 문서로.
+
+- **T1 [1-1] 리다이렉트 맵**: `scripts/crawl-old-site.mjs`로 구 Webflow(www.deepingsource.io) 163 URL 크롤 → `verify-redirects.mjs`(정적 대조 + `--http` HEAD 검증). **발견: 구 사이트가 `/ko/`·`/jp/` 프리픽스를 쓰는데 기존 규칙은 non-prefixed만 커버** → next.config에 `:locale(ko|jp)` 미러 대량 추가. pi-manual(구 store insight 매뉴얼) slug가 신 docs와 불일치 → `/products/saai-insight`로. 시스템 페이지(access-denied/search/untitled)→홈. **163/163 = 200(≤1홉)/외부앱, 2홉·404 0건.** `docs/REDIRECT_MAP_v1.md`.
+- **T2 [1-9] Contact Loading**: 전면 Suspense(useSearchParams) 제거 → 폼 골격 즉시 렌더, 사전선택 라벨은 useEffect. 3로케일 초기 페인트 Loading 텍스트 0.
+- **T3 [1-6] /demo 404**: ⚠️**검증에서 실결함 발견** — 기존 NODE_ENV 게이트가 정적 프리렌더로 우회돼 200. **Turbopack 프로덕션 빌드에서 dynamic 페이지 notFound()가 상태코드 200 반환**(본문은 not-found UI라 목업은 안 샘). → `proxy.ts`에서 존재하지 않는 경로로 rewrite해 확실히 404(host 분기 전, 미니사이트 커버) + page.tsx force-dynamic·fail-safe 게이트. 3로케일 404, opt-in(ENABLE_MOCKUP_DEMO=true) 시 노출.
+- **T4 [1-5] noindex 게이트**: robots.ts 검증(미설정 Disallow / 빌드주입 Allow), sitemap BASE_URL 준수·noindex 페이지 제외. ⚠️**`NEXT_PUBLIC_*`은 빌드타임 인라인 → 전환 시 env 설정 후 재배포 필수**. `docs/LAUNCH_GATES_v1.md`.
+- **T5 [1-4] pricing 정리**: 대부분 기수행(시뮬레이터 3상태·B2C_PRICING 참조·4플랜 테스트·미사용 0). 남은 중복 = plans 가격 문자열 → `won(B2C_PRICING.storeAgent.*)` 파생(byte-identical). 숫자 추가·노출 없음.
+- **T6 [1-10] 호스팅**: Vercel 유지 권고 이미 문서화(CP-2 확정). 코드 작업 없음.
+- **B1 [3-5 R5] 스크롤 리빌**: useScrollAnimation에 마운트 시 rect 검사(above-fold 즉시 표시)+rootMargin 여유 → 빠른 스크롤 빈 블록 방지. Reveal reduced-motion 즉시 표시(initial=false). 테스트 +1(48).
+- **B2 [3-6 R6·R7] EN 로컬**: R6(파트너명)은 이미 로케일별 번역됨(수정 불요). R7 CountUp above-fold 값→0 점프 제거(below-fold만 카운트업).
+
 ## 잔여 항목 우선순위 제안
 
 1. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조. *(사용자)*
