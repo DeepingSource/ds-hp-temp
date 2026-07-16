@@ -206,7 +206,7 @@ const C: Record<Locale, {
       { name: 'Purchase conversion', desc: 'Conversion rates by gender and age band' },
       { name: 'CSV export', desc: 'Download the data behind every analysis' },
       { name: 'Multi-store dashboard *', desc: 'Every store’s metrics on one screen' },
-      { name: 'Agentic AI *', desc: 'Behavior data joined with sales, stock, and weather for prediction' },
+      { name: 'Agentic AI *', desc: 'Behavior data joined with sales, stock, and weather for prediction and optimization' },
     ],
     featNote: '* Multi-store dashboard and agentic AI are scoped separately.',
     installHeading: 'How onboarding works',

@@ -10,7 +10,7 @@ import { CountUp } from '@/components/ui/CountUp';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
- * Left of the door: store count reads footfall + inflow rate (382 ÷ 1,160 = 33%).
+ * Left of the door: store count reads footfall + capture rate (382 ÷ 1,160 = 33%).
  * Right of the door: store insight reads flow/dwell (heatmap) + the conversion
  * funnel (382→317→65). Shared on both product pages as a contrast pair. Inline
  * SVG/CSS, no raster. Sample values (caption marks it).
@@ -34,13 +34,13 @@ const dict: Record<Locale, {
     caption: '* 수치는 설명용 예시입니다.',
   },
   en: {
-    outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · inflow',
+    outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · capture rate',
     passersby: 'Passing by', passersbyN: '1,160',
     captureLabel: 'Inflow rate', captureRate: 33, captureSub: 'Entered 382 ÷ passing 1,160',
     insideTag: 'Inside · store insight', insideTitle: 'Flow · dwell · conversion',
     heatLabel: 'Dwell heatmap',
     funnel: [{ label: 'Entered', n: '382' }, { label: 'Dwell', n: '317' }, { label: 'Bought', n: '65' }],
-    boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — inflow rate is the handoff between them.',
+    boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — capture rate is the handoff between them.',
     caption: '* Figures are illustrative.',
   },
   jp: {

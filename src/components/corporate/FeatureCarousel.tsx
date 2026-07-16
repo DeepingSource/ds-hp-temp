@@ -94,7 +94,7 @@ const COPY: Record<Locale, Copy> = {
     cta: 'See all products',
     taglines: { count: 'Counts the flow', insight: solutionTaglines.insight.en, care: solutionTaglines.care.en, agent: solutionTaglines.agent.en },
     desc: {
-      count: 'Who passed by and who came in — inflow rate reads the trade area.',
+      count: 'Who passed by and who came in — capture rate reads the trade area.',
       insight: 'Beyond sales — dwell, flow and conversion on a heatmap.',
       care: 'Only the moments that matter — detect anomalies, alert in real time.',
       agent: 'To the next move — AI advises, people decide.',

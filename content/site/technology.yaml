@@ -292,7 +292,7 @@ complianceItems:
     desc:
       ko: 제58조의2(익명정보) · 개인정보보호위원회 유권해석(2021.08)·법무 자문(2021.12)
       en: Article 58-2 (anonymized data) · PIPC interpretation (2021.08) · legal opinion (2021.12)
-      jp: 第58条の2（匿名情報）・保護委員会の有権解釈（2021.08）・法務意見（2021.12）
+      jp: 第58条の2（匿名情報）・個人情報保護委員会の有権解釈（2021.08）・法務意見（2021.12）
 poweredProducts:
   - id: insight
     name:

@@ -39,7 +39,7 @@
       "cta": "Talk to us about the right product",
       "loop": {
         "store-count": {
-          "desc": "Reads the footfall outside — trade area, footfall, inflow rate."
+          "desc": "Reads the footfall outside — trade area, footfall, capture rate."
         },
         "store-insight": {
           "desc": "Reads inside — flow, dwell, conversion. Yesterday, and why."
@@ -102,7 +102,7 @@
       "heroTitle": "すべての空間を、完璧に。",
       "heroSub": "4つのプロダクト、ひとつのオペレーションループ — 店の外の通行から、次の一手まで。SAAIで匿名化。",
       "loopEyebrow": "エンタープライズ · 店舗オペレーションループ",
-      "ownersEyebrow": "ドメイン実装 · 店長向けB2C（別サイト）",
+      "ownersEyebrow": "ドメイン実装 · 店主向けB2C（別サイト）",
       "categoryTitle": "カテゴリーはひとつ — 匿名化空間AI",
       "categoryBody": "4つの製品は、ひとつのカテゴリーの上に立っています。映像は入力時点で匿名化されて保存されず、空間の流れだけがデータとして残ります。その上で、観察（count）→分析（insight）→提案（care）→学習（agent）のオペレーションループが回ります。",
       "casesCta": "導入事例を見る",
@@ -1032,8 +1032,8 @@
       "submittedTitle": "Your quote request has been received!",
       "submittedSub": "A specialist will review it and get in touch.",
       "recalc": "Recalculate",
-      "countBadge": "Trade-area · inflow diagnostics",
-      "countDesc": "One camera counts the footfall outside, the customers who walk in, and your inflow rate — every day. We adjust the setup to your store count and contract term.",
+      "countBadge": "Trade-area · capture-rate diagnostics",
+      "countDesc": "One camera counts the footfall outside, the customers who walk in, and your capture rate — every day. We adjust the setup to your store count and contract term.",
       "countPrice": "From ₩300K/mo · Standard rental",
       "countOptions": [
         "Pro — real-time over LTE (₩400K/mo)",
@@ -1633,7 +1633,7 @@
         {
           "region": "KR",
           "law": "PIPA",
-          "desc": "第58条の2（匿名情報）・保護委員会の有権解釈（2021.08）・法務意見（2021.12）"
+          "desc": "第58条の2（匿名情報）・個人情報保護委員会の有権解釈（2021.08）・法務意見（2021.12）"
         }
       ],
       "poweredProducts": [
@@ -2071,7 +2071,7 @@
       "quote": "\"It was hard to handle everything myself at peak time, but seeing the rush and hygiene together lets me prepare in advance. Even when staff change, operations don’t waver.\"",
       "quoteName": "Café owner",
       "quoteRole": "Food-service store",
-      "resultsLine": "A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one-two person sets — grew guests and revenue by about 10%.",
+      "resultsLine": "A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one- and two-person sets — grew guests and revenue by about 10%.",
       "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [

@@ -73,7 +73,7 @@ const productDict: Record<Locale, { key: ProductKey; description: string; path: 
     { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyzing flow, dwell, and conversion, it captures the pre-purchase behavior payment data misses.', path: '/products/saai-insight' },
     { key: 'care', description: 'A reliable extra eye, even for small stores. It watches displays, temperature, and cleanliness for you — and alerts you only when it matters.', path: '/products/saai-care' },
     { key: 'agent', description: 'Beyond data, to decisions. POS and vision in one engine — ask what to stock, how much, and where, and get the answer with an action plan.', path: '/products/saai-agent' },
-    { key: 'count', description: 'One camera reads the footfall outside against the customers who walk in — your inflow rate. It tells a location problem from a store problem.', path: '/products/saai-count' },
+    { key: 'count', description: 'One camera reads the footfall outside against the customers who walk in — your capture rate. It tells a location problem from a store problem.', path: '/products/saai-count' },
   ],
   jp: [
     { key: 'insight', description: '店舗で起きていることをデータで読み解きます。動線・滞在・転換を掛け合わせ、決済データが見落とす購入前の行動まで捉えます。', path: '/products/saai-insight' },

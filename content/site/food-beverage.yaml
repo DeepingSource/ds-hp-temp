@@ -105,7 +105,7 @@ scenarios:
       jp: 材料の消費と棚の状態を参考に、発注が必要な時点を見極めます。不足や余りを減らし、運営のリズムを安定して保てるよう支援します。
 resultsLine:
   ko: 4인 테이블의 평균 이용이 1.1~1.8명임을 확인하고 2인 테이블과 1·2인 세트로 바꾼 매장은 이용객과 매출이 약 10% 늘었습니다.
-  en: A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one-two person sets — grew guests and revenue by about 10%.
+  en: A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one- and two-person sets — grew guests and revenue by about 10%.
   jp: 4人テーブルの平均利用が1.1〜1.8名だと確認し、2人テーブルと1・2人向けセットに切り替えた店舗は、利用客と売上が約10%伸びました。
 resultsNote:
   ko: "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다."

@@ -1,0 +1,79 @@
+---
+slug: a-day-with-saai-agent
+title: "A store owner's day with saai agent — from the 08:00 briefing to the 21:00 close"
+excerpt: "The morning briefing on the way in, waste-vs-stockout calls before the order deadline, congestion checks at the lunch peak, and the close-out. Nine scenes from a convenience-store owner's day, told through measured saai agent responses."
+category: insight
+date: '2026-07-16'
+tags:
+  - saai agent
+  - store operations
+  - AI agent
+icon: Lightbulb
+lang: en
+target: company
+draft: false
+---
+
+<Callout variant="info">
+The conversations below are a demo scenario reconstructed from saai agent responses measured in a real production environment (a convenience store). Figures are specific to that store and period, and vary by store conditions.
+</Callout>
+
+The hard part of running a store is that there is too much to watch. Sales, visitors, waste, ordering, displays, congestion, equipment — each has a dashboard, but turning them into **what to do today** was always the owner's job. saai agent flips that order: ask, and you get the answer with an action plan. Here is a convenience-store owner's day in nine scenes.
+
+## 08:00 — Arrive, morning briefing
+
+Walk in, open the agent first. *"Give me the morning briefing."*
+
+The last seven days averaged ₩3.32M a day, well up on the prior week — but visitors fell 29.3%. Revenue and footfall are diverging, and the briefing says so. Which products dipped and which are newly growing, where waste runs high (the rice-ball line, up to 50%), and which shelf move looks most promising (activating the dead zone, up to about ₩680K a month) — all in one pass.
+
+What makes it different from ordinary BI: every item in the briefing is an entrance to the **next question**.
+
+## 08:10 — An unexpected answer to "why did it drop?"
+
+The briefing flagged one beverage down 53%. *"Why did this drop so hard?"*
+
+The agent's answer is not what you expect: **"It didn't actually drop."** Average sales over the last seven days are up 37.5% versus the prior two weeks; no anomaly pattern, no waste. But orders are at zero — so when the stock runs down, it really will fall. The prescription isn't "respond"; it's "don't stop ordering."
+
+Correcting a wrong premise with data, then following through with a predictive suggestion — cause over surface numbers.
+
+## 08:20 — Waste and stockouts, both, before the order deadline
+
+The hardest call before the 10 a.m. order deadline: what to cut, what to add.
+
+*"Why was yesterday's waste so high?"* — mostly over-ordering; one rice-ball SKU took in six, sold one, wasted five. *"Any A-grade items running low?"* — the best-selling spicy-tuna rice ball keeps bottoming out at 0–2 units, so nudge it up instead. *"So how should I adjust today's order?"* — per-item recommended quantities come back as an order plan. *"It's supposed to rain tomorrow — is that factored in?"* — tomorrow is overcast, 0.0mm, so no rain adjustment was applied.
+
+Across four follow-up questions the agent keeps the thread. You never re-explain the situation.
+
+## 09:00 — Click the chart, and that becomes the question
+
+Click the 11:00–13:00 peak bar on the hourly visitor chart, and the question "what sold well in that window?" is composed and sent automatically. Answer: pre- and post-meal demand — grab-and-go food, drinks, and energy pick-me-ups lead. The visualization itself is a question button.
+
+## 11:30 — Just before the lunch peak: call in another person?
+
+*"How congested is the store right now?"* — quiet overall (8 customers, average dwell 3.2 minutes). *"The lunch-box corner?"* — moderate (12), watch it for another 10–20 minutes. *"Should I add someone at the register?"* — 4 people there, no need yet.
+
+Each zone has its own real headcount, with a grade (quiet · moderate · busy) and a recommended action.
+
+## 15:00 — Afternoon sales review, and the weather
+
+*"What sells on rainy days?"* — overall purchases drop 29.3% in the rain, but beer, glutinous-rice cakes, ice cups, and cup noodles hold up. When rain is forecast: trim regular grab-and-go, keep or slightly raise these.
+
+## 17:30 — Shelf moves, with ROI attached
+
+*"Review my shelf layout."* — activating the dead zone ranks first at an expected ROI of about ₩678K. *"If I put snacks where the alcohol is?"* — likely positive for snacks given bought-together patterns, but in a store with heavy alcohol sales, check whether the snack gain offsets the loss. A calculation only possible because CCTV pathways and POS run in one engine.
+
+## 18:00 — Staffing retrospective
+
+Mention "staff efficiency" and a dedicated analysis panel opens beside the chat. Deep metrics — counter coverage, shelf-zone management rate, counter gaps — live in the panel; the conversation helps you judge.
+
+## 21:00 — Close, and tomorrow
+
+*"Wrap up today and tell me what to watch tomorrow."* — today's summary comes with tomorrow's ordering direction (trim rice balls, nudge A-grade up). *"Will tomorrow's briefing reflect all this automatically?"* — "Yes. Tomorrow's briefing is recalculated on today's latest data."
+
+The morning briefing flows into the evening close, and the close into tomorrow's briefing. And the loop gets better with use — a self-improvement pipeline turns the owner's feedback into the next fix.
+
+## AI recommends, people decide
+
+Nine scenes, one constant: saai agent drafts the action plan, but a person always presses approve. The purchase order, the shelf move, the extra staffer — the AI advises; the owner decides.
+
+[See saai agent →](/products/saai-agent)

@@ -4,8 +4,8 @@ import StoreCountView from '@/components/corporate/views/StoreCountView';
 export const metadata: Metadata = {
   title: 'saai count — store count | DEEPINGSOURCE',
   description:
-    'Count the footfall passing your store, the customers who walk in, and your inflow rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
-  keywords: ['saai count', 'store count', 'footfall counting', 'trade area analysis', 'people counting', 'inflow rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
+    'Count the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
+  keywords: ['saai count', 'store count', 'footfall counting', 'trade area analysis', 'people counting', 'capture rate', 'inflow rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
   alternates: {
     canonical: '/products/saai-count',
     languages: {

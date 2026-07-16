@@ -17,7 +17,7 @@ loopEyebrow:
 ownersEyebrow:
   ko: 도메인 구현 · 사장님을 위한 B2C (별도 사이트)
   en: Domain implementations · for owners, B2C (separate sites)
-  jp: ドメイン実装 · 店長向けB2C（別サイト）
+  jp: ドメイン実装 · 店主向けB2C（別サイト）
 categoryTitle:
   ko: 카테고리는 하나 — 익명화 공간 AI
   en: One category — Anonymized Spatial AI
@@ -54,7 +54,7 @@ loop:
   - id: store-count
     desc:
       ko: 문 밖을 읽다 — 상권·통행량·유입률.
-      en: Reads the footfall outside — trade area, footfall, inflow rate.
+      en: Reads the footfall outside — trade area, footfall, capture rate.
       jp: 店の外を読む — 商圏・通行量・流入率。
   - id: store-insight
     desc:
