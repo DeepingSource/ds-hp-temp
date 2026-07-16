@@ -111,6 +111,18 @@ export async function proxy(request: NextRequest) {
     }
   }
 
+  // ── /demo 게이트 (내부 목업 리뷰, 1-6): 프로덕션에서 비노출. Turbopack 프로덕션
+  //    빌드에서 페이지 notFound()가 상태코드 200을 반환하는 이슈가 있어(본문은 not-found
+  //    UI라 목업은 노출 안 되지만) 미들웨어에서 존재하지 않는 경로로 rewrite → Next 404.
+  //    dev(next dev)이거나 ENABLE_MOCKUP_DEMO=true일 때만 통과. host 분기 전에 둬
+  //    미니사이트 호스트에서도 노출 안 됨. page.tsx 게이트는 이중 방어로 유지. ──
+  const demoEnabled = process.env.NODE_ENV === 'development' || process.env.ENABLE_MOCKUP_DEMO === 'true';
+  if (!demoEnabled && /^\/(?:(?:ko|jp)\/)?demo(?:\/|$)/.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/_blocked-internal';
+    return NextResponse.rewrite(url);
+  }
+
   // ── Main site: simple redirects (replaces next.config.ts redirects) ──
   if (!isMinisite(host)) {
     const mainRedirect = mainSiteRedirects[pathname];
