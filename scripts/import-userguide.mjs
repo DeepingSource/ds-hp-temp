@@ -135,8 +135,13 @@ function convertBody(raw, docDir, locale, copySet) {
     return `<video controls loop muted playsinline src="${url}" style={{ maxWidth: '100%', borderRadius: '0.5rem' }}></video>${cap ? `\n\n*${cap}*` : ''}`;
   });
 
-  // 4) <Aside type="tip|note|caution" title?> … </Aside> → blockquote
-  const asideLabel = { tip: '💡 팁', note: '📌 참고', caution: '⚠️ 주의' };
+  // 4) <Aside type="tip|note|caution" title?> … </Aside> → blockquote (라벨은 로케일별)
+  const ASIDE_LABELS = {
+    ko: { tip: '💡 팁', note: '📌 참고', caution: '⚠️ 주의' },
+    en: { tip: '💡 Tip', note: '📌 Note', caution: '⚠️ Caution' },
+    jp: { tip: '💡 ヒント', note: '📌 メモ', caution: '⚠️ 注意' },
+  };
+  const asideLabel = ASIDE_LABELS[locale] || ASIDE_LABELS.ko;
   s = s.replace(/<Aside\s+type="(tip|note|caution)"(?:\s+title="([^"]*)")?[^>]*>([\s\S]*?)<\/Aside>/g, (m, type, title, body) => {
     const label = asideLabel[type] + (title ? `: ${title}` : '');
     const lines = body.trim().split('\n').map((l) => `> ${l.trim()}`).join('\n');
