@@ -43,6 +43,30 @@ if (!CFG) { console.error('사용: node scripts/import-userguide.mjs <storecare|
 
 const ICON = { 'getting-started': 'Rocket', analytics: 'BarChart3', integration: 'SlidersHorizontal', privacy: 'ShieldCheck', manual: 'BookOpen' };
 
+// 문서(base slug) → glossary 용어 연결 (Phase 5 배선). 명백한 것만; 나머지는 빈 배열.
+const RELATED_TERMS = {
+  'store-insight': ['store-heatmap', 'dwell-time', 'zone-analysis', 'footfall-analysis', 'purchase-conversion-rate'],
+  'store-care': ['anomaly-detection', 'store-operations-automation', 'night-monitoring'],
+  'storeinsight-heatmap': ['store-heatmap'],
+  'storeinsight-time-heatmap': ['store-heatmap', 'dwell-time'],
+  'storeinsight-inflow-rate': ['capture-rate', 'footfall-analysis'],
+  'storeinsight-conversion-rate': ['purchase-conversion-rate', 'visit-funnel'],
+  'storeinsight-funnel': ['visit-funnel', 'purchase-conversion-rate'],
+  'storeinsight-zone-analysis': ['zone-analysis'],
+  'storeinsight-zone-interest': ['zone-analysis', 'dwell-time'],
+  'storeinsight-seat-occupancy': ['seat-turnover-rate'],
+  'storeinsight-visitor-trajectory': ['behavior-analysis'],
+  'storeinsight-visitor-analysis': ['footfall-analysis', 'behavior-analysis'],
+  'storeinsight-inter-zone-traffic': ['zone-analysis'],
+  'storeinsight-representative-path': ['behavior-analysis'],
+  'storeinsight-shelf-heatmap': ['store-heatmap', 'vmd-optimization'],
+  'storeinsight-shelf-analysis': ['vmd-optimization'],
+  'storeinsight-line-analysis': ['footfall-analysis', 'people-counting'],
+  'storeinsight-segment-analysis': ['behavior-analysis'],
+  'storecare-anomalies': ['anomaly-detection'],
+  'storecare-score-inventory': ['stockout-detection'],
+};
+
 // ── 슬러그 규칙: <prefix>-<name> (index면 폴더명; 루트 index면 landingSlug) ──
 function slugFor(relPath) {
   const noExt = relPath.replace(/\.mdx?$/, '');
@@ -111,11 +135,12 @@ function convertBody(raw, docDir, locale, copySet) {
     return `<video controls loop muted playsinline src="${url}" style={{ maxWidth: '100%', borderRadius: '0.5rem' }}></video>${cap ? `\n\n*${cap}*` : ''}`;
   });
 
-  // 4) <Aside type="tip|note|caution">…</Aside> → blockquote
+  // 4) <Aside type="tip|note|caution" title?> … </Aside> → blockquote
   const asideLabel = { tip: '💡 팁', note: '📌 참고', caution: '⚠️ 주의' };
-  s = s.replace(/<Aside\s+type="(tip|note|caution)"\s*>([\s\S]*?)<\/Aside>/g, (m, type, body) => {
-    const lines = body.trim().split('\n').map((l) => `> ${l}`).join('\n');
-    return `> **${asideLabel[type]}**\n>\n${lines}`;
+  s = s.replace(/<Aside\s+type="(tip|note|caution)"(?:\s+title="([^"]*)")?[^>]*>([\s\S]*?)<\/Aside>/g, (m, type, title, body) => {
+    const label = asideLabel[type] + (title ? `: ${title}` : '');
+    const lines = body.trim().split('\n').map((l) => `> ${l.trim()}`).join('\n');
+    return `> **${label}**\n>\n${lines}`;
   });
 
   // 5) ::note/:::tip/:::caution 디렉티브 → blockquote
@@ -132,10 +157,11 @@ function convertBody(raw, docDir, locale, copySet) {
     return `- [${title}](${href})${desc ? ` — ${desc}` : ''}`;
   });
 
-  // 7) <Card title icon>…</Card> → 소제목 + 본문
-  s = s.replace(/<Card\s+([^>]*)>([\s\S]*?)<\/Card>/g, (m, attrs, body) => {
+  // 7) <Card title icon>…</Card> → 소제목 + 본문 (앞 들여쓰기·탭 제거: 코드블록 오인 방지)
+  s = s.replace(/^[ \t]*<Card\s+([^>]*)>([\s\S]*?)<\/Card>/gm, (m, attrs, body) => {
     const title = (attrs.match(/title="([^"]*)"/) || [])[1] || '';
-    return `**${title}**\n\n${body.trim()}`;
+    const cleanBody = body.trim().split('\n').map((l) => l.trim()).join('\n');
+    return `**${title}**\n\n${cleanBody}`;
   });
 
   // 8) <CardGrid> wrapper 제거 (내부는 이미 변환)
@@ -213,12 +239,12 @@ for (const [locale, verDir] of Object.entries(CFG.locales)) {
       draft: false,
       access: 'public',
       relatedSlugs: [],
-      relatedTerms: [],
+      relatedTerms: RELATED_TERMS[slug] || [],
     };
     // undefined 제거
     Object.keys(front).forEach((k) => front[k] === undefined && delete front[k]);
     const fmYaml = Object.entries(front).map(([k, v]) => {
-      if (Array.isArray(v)) return `${k}: []`;
+      if (Array.isArray(v)) return v.length ? `${k}:\n${v.map((x) => `  - ${JSON.stringify(x)}`).join('\n')}` : `${k}: []`;
       if (typeof v === 'string') return `${k}: ${JSON.stringify(v)}`;
       return `${k}: ${v}`;
     }).join('\n');

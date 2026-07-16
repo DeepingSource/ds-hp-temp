@@ -1,0 +1,142 @@
+---
+slug: "storeinsight-shelf-heatmap-en"
+title: "Display Shelf Heatmap"
+excerpt: "Visualize gaze, dwell, and pickup at the shelf level"
+section: "analytics"
+order: 3
+parent: "store-insight"
+icon: "BarChart3"
+lang: "en"
+draft: false
+access: "public"
+relatedSlugs: []
+relatedTerms:
+  - "store-heatmap"
+  - "vmd-optimization"
+---
+
+- Visualizes customer gaze, dwell, and pickup behavior at the shelf level using color.
+- Shows which level of a display (top, middle, bottom) attracts the most attention.
+- Useful for optimizing product placement and analyzing SKU efficiency.
+
+
+> **📌 참고**
+>
+> **Add-on report.** A fit for retail stores with installed shelving.
+
+## Prerequisites
+
+- A **Display stand** must be defined under [Zone Config](/en/resources/docs/storeinsight-zones).
+
+## Report layout
+
+![Display Shelf Heatmap view transition (animation)](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/01.gif)
+
+*Shelf-level performance across the store visualized in color*
+
+![Display Shelf Heatmap main view](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/02.png)
+
+*Visit-to-exposure and exposure-to-pickup rates per shelf shown in color*
+
+The Display Shelf Heatmap visually shows where shelves in your store are performing well. It color-codes performance for entire shelves and individual levels (rows), letting you see at a glance which shelves attracted gaze and pickup.
+
+## Core features
+
+### Customer exposure & pickup analysis
+
+- See, per shelf, the share of customers who looked at it (visit → exposure) and the share who actually picked something up (exposure → pickup).
+
+**Examples**
+
+- Shelves with lots of looks but low pickup → Likely a product appeal or pricing issue.
+- Shelves with frequent pickup but low purchase conversion → Inspect the payment path and shelf placement.
+
+### Color-based visualization
+
+- Configure the color bands using absolute or relative thresholds.
+- See performance differences intuitively through color intensity rather than raw numbers.
+
+**Examples**
+
+- Spot top-performing shelves at a glance using color contrast.
+- Anchor on relative thresholds to compare against your store's best shelf.
+
+### Shelf detail view
+
+- Select a shelf to open a popup with detailed data.
+- Inspect both the entire shelf and individual levels (rows).
+
+**Examples**
+
+- Identify shelves that customers walk past but rarely look at.
+- Find levels (rows) with many viewers but few pickups.
+
+## Key metrics (KPIs)
+
+| Metric | Description | Insight |
+| ------ | ---- | ------------- |
+| Visit → exposure rate | Share of passing customers who actually looked | Diagnose shelf visibility and attention |
+| Exposure → pickup rate | Share of viewers who actually picked up | How well interest converts to purchase behavior |
+| Per-level performance | Performance at the row (level) of a shelf | Analyze height-based differences and improve placement |
+
+## Use cases
+
+### Product-placement optimization
+
+- Many looks but few pickups → **Identify pricing and display improvements**.
+- Frequent pickups but low revenue → **Inspect the payment path and product mix**.
+
+### Level-by-level insight
+
+- See performance for top, middle, and bottom levels.
+- Distinguish levels that get lots of looks but few pickups from those that are less visible but get many pickups, and **improve product-placement strategy**.
+
+### Marketing-impact validation
+
+- Track gaze and pickup changes for specific shelves before and after a promotion.
+- See impact in numbers and colors so you can **measure the actual effect of ads and events**.
+
+### Operational efficiency
+
+- Identify the lowest-performing shelves in the store and prioritize improvements.
+- Concentrate stock and staff on revenue-driving shelves to **maximize operational efficiency**.
+
+## Advanced tips
+
+> **💡 팁**
+>
+> **Validating promotion impact** — Compare gaze and pickup changes for shelves before and after an event to confirm real impact, then surface pricing, product, and placement levers when impact is weak.
+
+> **💡 팁**
+>
+> **Running A/B tests** — Place identical products on different shelves (entrance vs. interior) and compare performance to measure how location affects gaze and pickup.
+
+> **💡 팁**
+>
+> **Customer-group differences** — Filter shelf performance by age and gender, and concentrate marketing on shelves where the target audience responds best.
+
+> **💡 팁**
+>
+> **Per-level optimization** — Compare pickup rates across top, middle, and bottom levels and apply best-performing patterns to other shelves.
+
+## Summary
+
+> The Display Shelf Heatmap visualizes the performance of each shelf and its individual levels (rows) in color.
+> Visit, exposure, and pickup data make it clear which shelves drove customer attention and action,
+> and it's a must-have for improving product placement, promotions, and operations with data.
+
+![Display Shelf Heatmap usage example](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/03.png)
+
+*Color intensity makes top-performing shelves easy to compare at a glance*
+
+![Shelf detail data popup](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/04.png)
+
+*Selecting a shelf reveals data for the whole shelf and each level (row)*
+
+![Per-level analysis view](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/05.png)
+
+*Performance broken down by top, middle, and bottom levels to inform placement*
+
+![Display Shelf Heatmap combined insights](/images/docs/storeinsight/reports/add-ons/_images/shelf-heatmap/06.png)
+
+*Visit, exposure, and pickup data unified into store-operations insights*
