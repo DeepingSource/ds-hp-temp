@@ -121,7 +121,9 @@ const ABOUT_FLAT = [
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
   'methodEyebrow', 'methodHeading', 'methodIntro',
 ];
-const aboutYaml = load('content/site/about.yaml');
+// E-1 폼 다이어트: about.yaml도 섹션 중첩 — 평탄화해 공개 shape 유지.
+const aboutYamlNested = load('content/site/about.yaml');
+const aboutYaml = Object.assign({}, ...Object.values(aboutYamlNested));
 const aboutFlat = toLocaleMajor(aboutYaml, ABOUT_FLAT);
 const aboutCerts = arrayByIdLocaleMajor(aboutYaml.certs, ['sub']);
 const aboutMethodSteps = arrayByIdLocaleMajor(aboutYaml.methodSteps, ['term', 'promise']);
@@ -165,7 +167,9 @@ const PRICING_FLAT = [
   'simResultLabel', 'simEmptyHint', 'simResultDisclaimer', 'detailSimLink', 'bundleHeading', 'bundleBodyPre', 'bundleBodyStrong', 'bundleBodyPost',
   'bundleCta', 'bundleSimLink', 'errSubmitFailed', 'errGeneric',
 ];
-const pricing = toLocaleMajor(load('content/site/pricing.yaml'), PRICING_FLAT);
+// E-1 폼 다이어트: pricing.yaml은 섹션 중첩(hero/b2c/…) — 평탄화해 공개 shape 유지.
+const pricingYamlNested = load('content/site/pricing.yaml');
+const pricing = toLocaleMajor(Object.assign({}, ...Object.values(pricingYamlNested)), PRICING_FLAT);
 
 // ── technology — flat copy + 2 string lists + 4 ordered object-arrays (icons/hrefs/
 //    특허수/다이어그램 라벨은 코드 유지). coreTitle·ctaBadge 는 인자 미사용 상수라 문자열. ──

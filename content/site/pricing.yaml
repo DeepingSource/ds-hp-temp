@@ -1,419 +1,430 @@
 # Pricing page copy — edited in Keystatic (/keystatic → "Pricing — 요금 카피").
 # Structural bits (discount tiers = numeric SOT, interpolation functions, lead-payload
-# labels, the store agent vs care footer tuple) stay in code; see PricingClientView.tsx CODE.
-heroTitle:
-  ko: 어떤 목표를 달성하고 싶으신가요?
-  en: What goal do you want to achieve?
-  jp: どのような目標を達成したいですか？
-heroSub:
-  ko: 원하는 성과에 맞는 제품을 선택하고, 투명하고 합리적인 요금을 확인하세요.
-  en: Pick the product that matches the outcome you want, with transparent and fair pricing.
-  jp: ご希望の成果に合った製品をお選びいただき、透明で合理的な料金をご確認ください。
-toggleB2c:
-  ko: 개별 매장
-  en: Single store
-  jp: 個別店舗
-toggleB2b:
-  ko: 프랜차이즈 / 다점포
-  en: Franchise / multi-store
-  jp: フランチャイズ / 多店舗
-b2cHeading:
-  ko: 매장에 맞는 솔루션을 선택하세요
-  en: Choose the solution that fits your store
-  jp: 店舗に合ったソリューションをお選びください
-b2cSub:
-  ko: 아르바이트 야간 근무 1회 비용보다 낮은 금액으로 시작할 수 있습니다.
-  en: You can start for less than the cost of a single overnight part-time shift.
-  jp: アルバイトの夜勤1回分よりも低い金額で始められます。
-careStep:
-  ko: 01 관찰
-  en: 01 Observe
-  jp: 01 観察
-careDesc:
-  ko: CCTV 기반 실시간 매장 모니터링
-  en: Real-time, CCTV-based store monitoring
-  jp: CCTVベースのリアルタイム店舗モニタリング
-carePerMonth:
-  ko: ~/월
-  en: ~/mo
-  jp: 〜/月
-careFeatures:
-  ko:
-    - 오염·진열 이상 감지
-    - 비정상 체류 알림
-    - 온도 모니터링 (플러스)
-  en:
-    - Hygiene & display anomaly detection
-    - Abnormal dwell alerts
-    - Temperature monitoring (Plus)
-  jp:
-    - 汚れ・陳列の異常検知
-    - 異常滞留の通知
-    - 温度モニタリング（プラス）
-insightStep:
-  ko: 02 분석
-  en: 02 Analyze
-  jp: 02 分析
-insightDesc:
-  ko: 고객 행동 분석 및 인사이트 대시보드
-  en: Customer-behavior analytics and insight dashboard
-  jp: 顧客行動分析とインサイトダッシュボード
-insightPerMonth:
-  ko: ~/월
-  en: ~/mo
-  jp: 〜/月
-insightBasis:
-  ko: 카메라 8대 기준
-  en: Based on 8 cameras
-  jp: カメラ8台を基準
-insightFeatures:
-  ko:
-    - 구역별 방문자 객수
-    - 동선·체류 분석
-    - 재방문·성별 연계 데이터
-  en:
-    - Visitor count by zone
-    - Flow & dwell analysis
-    - Revisit & gender-linked data
-  jp:
-    - エリア別の来店客数
-    - 動線・滞留分析
-    - 再来店・性別連携データ
-agentStep:
-  ko: 03 실행
-  en: 03 Act
-  jp: 03 実行
-agentDesc:
-  ko: AI 기반 매장 운영 자동화 비서
-  en: AI-powered store-operations automation assistant
-  jp: AIベースの店舗運営自動化アシスタント
-agentFree:
-  ko: 무료
-  en: Free
-  jp: 無料
-agentPriceTail:
-  ko: ~25,000원/월
-  en: ~25,000 KRW/mo
-  jp: 〜25,000円/月
-agentFeatures:
-  ko:
-    - 매일 모닝 브리핑 (무료)
-    - POS 연동 분석 (15,000원~)
-    - 대화형 AI 채팅 (25,000원~)
-  en:
-    - Daily morning briefing (free)
-    - POS-integrated analysis (from 15,000 KRW)
-    - Conversational AI chat (from 25,000 KRW)
-  jp:
-    - 毎朝のモーニングブリーフィング（無料）
-    - POS連携分析（15,000円〜）
-    - 対話型AIチャット（25,000円〜）
-freeConsult:
-  ko: 무료 상담 신청
-  en: Request a free consultation
-  jp: 無料相談を申し込む
-startFree:
-  ko: 무료로 시작하기
-  en: Start for free
-  jp: 無料で始める
-diffTitle:
-  ko: saai agent 기본(무료) vs saai care(유료) — 무엇이 다른가요?
-  en: saai agent basic (free) vs saai care (paid) — what is the difference?
-  jp: saai agent 基本（無料）vs saai care（有料） — 何が違いますか？
-freeBadge:
-  ko: 무료
-  en: Free
-  jp: 無料
-paidBadge:
-  ko: 유료
-  en: Paid
-  jp: 有料
-saaiBasic:
-  ko: saai agent 기본형
-  en: saai agent basic
-  jp: saai agent 基本型
-storeCare:
-  ko: saai care
-  en: saai care
-  jp: saai care
-saaiFeatures:
-  ko:
-    - 매일 아침 브리핑 (날씨·이벤트·운영 팁)
-    - AI 기반 체크리스트
-    - 주간 뉴스레터
-  en:
-    - Daily morning briefing (weather, events, operating tips)
-    - AI-powered checklist
-    - Weekly newsletter
-  jp:
-    - 毎朝のブリーフィング（天気・イベント・運営のヒント）
-    - AIベースのチェックリスト
-    - 週刊ニュースレター
-careDiffFeatures:
-  ko:
-    - 실시간 이상 상황 감지
-    - 냉장고 온도·진열 상태·청결 알림
-    - 카카오톡/앱 푸시 실시간 알림
-  en:
-    - Real-time anomaly detection
-    - Refrigerator temperature, display & cleanliness alerts
-    - Real-time KakaoTalk / app push alerts
-  jp:
-    - リアルタイム異常検知
-    - 冷蔵庫の温度・陳列状態・清潔さの通知
-    - カカオトーク／アプリプッシュのリアルタイム通知
-simLink:
-  ko: 요금 시뮬레이션 해보기
-  en: Try the pricing simulator
-  jp: 料金シミュレーションを試す
-agentCompareLink:
-  ko: saai agent 상세 플랜 비교
-  en: Compare saai agent plans in detail
-  jp: saai agent 詳細プラン比較
-b2bHeading:
-  ko: 가맹점 전체를 데이터로 관리하세요
-  en: Manage your entire network with data
-  jp: 加盟店全体をデータで管理しましょう
-b2bSub:
-  ko: 규모에 따른 시너지 할인과 전용 기능을 제공합니다.
-  en: Scale-based synergy discounts and dedicated features included.
-  jp: 規模に応じたシナジー割引と専用機能をご提供します。
-b2bSimTitle:
-  ko: 다점포 견적 시뮬레이션
-  en: Multi-store quote simulation
-  jp: 多店舗見積もりシミュレーション
-b2bSimSub:
-  ko: 매장 수에 따른 할인율과 예상 비용을 확인하세요.
-  en: See the discount rate and estimated cost based on your store count.
-  jp: 店舗数に応じた割引率と想定費用をご確認ください。
-b2bCamLabel:
-  ko: 매장당 평균 카메라 수
-  en: Average cameras per store
-  jp: 店舗あたり平均カメラ台数
-unitDevice:
-  ko: 대
-  en: ""
-  jp: 台
-b2bSmall:
-  ko: 소형 (1대)
-  en: Small (1)
-  jp: 小型（1台）
-b2bMid:
-  ko: 중형 (8대)
-  en: Medium (8)
-  jp: 中型（8台）
-b2bLarge:
-  ko: 대형 (20대)
-  en: Large (20)
-  jp: 大型（20台）
-b2bStoreLabel:
-  ko: 운영 매장 수
-  en: Number of stores
-  jp: 運営店舗数
-unitStore:
-  ko: 개 매장
-  en: " stores"
-  jp: 店舗
-b2b3:
-  ko: 3개
-  en: "3"
-  jp: 3店舗
-b2b50:
-  ko: 50개
-  en: "50"
-  jp: 50店舗
-b2b100:
-  ko: 100개
-  en: "100"
-  jp: 100店舗
-discountLabel:
-  ko: 시너지 할인율
-  en: Synergy discount
-  jp: シナジー割引率
-perStoreCost:
-  ko: 매장당 예상 비용
-  en: Estimated cost per store
-  jp: 店舗あたり想定費用
-perStoreBasis:
-  ko: saai care 플러스 기준/월
-  en: Based on saai care Plus / mo
-  jp: saai care プラス基準/月
-totalMonthly:
-  ko: 전체 예상 월 비용
-  en: Estimated total monthly cost
-  jp: 全体の想定月額費用
-won:
-  ko: 원
-  en: " KRW"
-  jp: 円
-estimateDisclaimer:
-  ko: ※ 위 금액은 참고용 예시이며, 실제 환경(카메라 규격·네트워크·설치 조건 등)에 따라 달라질 수 있습니다.
-  en: ※ The figures above are illustrative; actual cost may vary by environment (camera specs, network, installation conditions, etc.).
-  jp: ※ 上記の金額は参考例であり、実際の環境（カメラ規格・ネットワーク・設置条件など）により異なる場合があります。
-b2bEmailLabel:
-  ko: 맞춤 견적서를 이메일로 받아보세요
-  en: Get a custom quote by email
-  jp: カスタム見積もりをメールで受け取る
-emailPlaceholder:
-  ko: 이메일 주소
-  en: Email address
-  jp: メールアドレス
-getQuote:
-  ko: 견적 받기
-  en: Get quote
-  jp: 見積もりを受け取る
-b2bEmailNote:
-  ko: 영업일 기준 1일 내 전문 담당자가 상세 견적을 보내드립니다.
-  en: A specialist will send a detailed quote within one business day.
-  jp: 営業日基準1日以内に専門担当者が詳細なお見積りをお送りします。
-submittedTitle:
-  ko: 견적 요청이 접수되었습니다!
-  en: Your quote request has been received!
-  jp: 見積もり依頼を受け付けました！
-submittedSub:
-  ko: 담당자가 확인 후 연락드리겠습니다.
-  en: A specialist will review it and get in touch.
-  jp: 担当者が確認後、ご連絡いたします。
-recalc:
-  ko: 다시 계산하기
-  en: Recalculate
-  jp: 再計算する
-countBadge:
-  ko: 상권·유입 진단
-  en: Trade-area · capture-rate diagnostics
-  jp: 商圏・流入診断
-countDesc:
-  ko: 매장 앞 통행·입장·유입률을 카메라 한 대로 매일 셉니다. 매장 수와 계약 기간에 따라 구성을 조정해 드립니다.
-  en: One camera counts the footfall outside, the customers who walk in, and your capture rate — every day. We adjust the setup to your store count and contract term.
-  jp: 店の前の通行・入店・流入率を、カメラ1台で毎日数えます。店舗数と契約期間に合わせて構成を調整します。
-countPrice:
-  ko: 월 30만 원부터 · Standard 대여형
-  en: From ₩300K/mo · Standard rental
-  jp: 月30万ウォンから · Standardレンタル
-countOptions:
-  ko:
-    - Pro — LTE 실시간 (월 40만 원)
-    - Connect — 기존 CCTV 연동 (별도 견적)
-  en:
-    - Pro — real-time over LTE (₩400K/mo)
-    - Connect — reuse existing CCTV (quoted separately)
-  jp:
-    - Pro — LTEリアルタイム（月40万ウォン）
-    - Connect — 既存CCTV連携（別途見積）
-countCta:
-  ko: 요금 상담 신청
-  en: Talk pricing
-  jp: 料金のご相談
-entBadge:
-  ko: 본사 전용
-  en: Headquarters only
-  jp: 本社専用
-entTitle:
-  ko: 엔터프라이즈 맞춤 솔루션
-  en: Enterprise custom solution
-  jp: エンタープライズ向けカスタムソリューション
-entDesc:
-  ko: 전국 가맹점 통합 관제, 커스텀 API 연동, 전담 CS 팀 배정
-  en: Nationwide store control, custom API integration, and a dedicated CS team
-  jp: 全国加盟店の統合管制、カスタムAPI連携、専任CSチームの配置
-entFeatures:
-  ko:
-    - 수백 개 매장 실시간 대시보드
-    - ERP/POS 커스텀 연동 API
-    - 도입 규모별 맞춤 단가
-  en:
-    - Real-time dashboard for hundreds of stores
-    - Custom ERP/POS integration API
-    - Tiered pricing by deployment scale
-  jp:
-    - 数百店舗のリアルタイムダッシュボード
-    - ERP/POSカスタム連携API
-    - 導入規模に応じた段階単価
-entCta:
-  ko: 맞춤 견적 받기
-  en: Get a custom quote
-  jp: カスタム見積もりを受け取る
-backToB2c:
-  ko: 개별 매장 요금 보기
-  en: View single-store pricing
-  jp: 個別店舗の料金を見る
-simHeading:
-  ko: 우리 매장 요금이 궁금하신가요?
-  en: Curious about pricing for your store?
-  jp: 自店舗の料金が気になりますか？
-simSub:
-  ko: 원하는 솔루션과 카메라 대수를 선택하면 예상 월 비용을 바로 확인할 수 있습니다.
-  en: Select the solutions and camera count you want to see your estimated monthly cost instantly.
-  jp: ご希望のソリューションとカメラ台数を選択すると、想定月額費用がすぐに確認できます。
-simSelectLabel:
-  ko: 솔루션 선택 (복수 선택 가능)
-  en: Select solutions (multiple allowed)
-  jp: ソリューション選択（複数選択可）
-simCamLabel:
-  ko: 카메라 대수
-  en: Number of cameras
-  jp: カメラ台数
-simSmall:
-  ko: 소형 (2대)
-  en: Small (2)
-  jp: 小型（2台）
-simLarge:
-  ko: 대형 (32대)
-  en: Large (32)
-  jp: 大型（32台）
-simEmailLabel:
-  ko: 견적 결과를 이메일로 받기
-  en: Get the quote result by email
-  jp: 見積もり結果をメールで受け取る
-simEmailNote:
-  ko: 견적 산출 용도로만 사용됩니다.
-  en: Used only to produce your quote.
-  jp: 見積もり算出の用途にのみ使用します。
-simResultLabel:
-  ko: 선택 솔루션 예상 월 비용
-  en: Estimated monthly cost of selected solutions
-  jp: 選択ソリューションの想定月額費用
-simEmptyHint:
-  ko: 솔루션을 선택하면 비용이 계산됩니다
-  en: Select a solution to calculate the cost
-  jp: ソリューションを選択すると費用が計算されます
-simResultDisclaimer:
-  ko: ※ 참고용 예시이며 실제 계약 조건에 따라 달라집니다.
-  en: ※ Illustrative only; actual cost depends on contract terms.
-  jp: ※ 参考例であり、実際の契約条件により異なります。
-detailSimLink:
-  ko: 상세 시뮬레이션 하기
-  en: Run the detailed simulation
-  jp: 詳細シミュレーションを行う
-bundleHeading:
-  ko: 관찰 + 분석 + 실행을 하나로
-  en: Observe + Analyze + Act, all in one
-  jp: 観察 + 分析 + 実行をひとつに
-bundleBodyPre:
-  ko: "세 가지 제품을 묶어 도입하시면 "
-  en: "Deploy all three products together and "
-  jp: 3つの製品をまとめて導入されると、
-bundleBodyStrong:
-  ko: 최대 30% 시너지 할인
-  en: a synergy discount of up to 30%
-  jp: 最大30%のシナジー割引
-bundleBodyPost:
-  ko: 이 적용됩니다. 매장 운영을 하나의 흐름으로 잇습니다.
-  en: " applies — connecting your store operations into one flow."
-  jp: が適用されます。店舗運営をひとつの流れにつなぎます。
-bundleCta:
-  ko: 시너지 패키지 상담받기
-  en: Talk to us about the synergy package
-  jp: シナジーパッケージを相談する
-bundleSimLink:
-  ko: 요금 시뮬레이션
-  en: Pricing simulator
-  jp: 料金シミュレーション
-errSubmitFailed:
-  ko: 견적 요청에 실패했습니다. 다시 시도해주세요.
-  en: Quote request failed. Please try again.
-  jp: お申し込みに失敗しました。もう一度お試しください。
-errGeneric:
-  ko: 일시적인 오류입니다. 잠시 후 다시 시도해 주세요.
-  en: A temporary error occurred. Please try again shortly.
-  jp: 一時的なエラーが発生しました。しばらくしてからもう一度お試しください。
+# labels, the saai agent vs care footer tuple) stay in code; see PricingClientView.tsx CODE.
+# E-1 폼 다이어트: 섹션 중첩(hero/b2c/diff/b2bSim/count/enterprise/inlineSim/bundle/errors)
+# — gen-site-content.mjs가 컴파일 시 평탄화하므로 생성 JSON(공개 shape)은 불변.
+hero:
+  heroTitle:
+    ko: 어떤 목표를 달성하고 싶으신가요?
+    en: What goal do you want to achieve?
+    jp: どのような目標を達成したいですか？
+  heroSub:
+    ko: 원하는 성과에 맞는 제품을 선택하고, 투명하고 합리적인 요금을 확인하세요.
+    en: Pick the product that matches the outcome you want, with transparent and fair pricing.
+    jp: ご希望の成果に合った製品をお選びいただき、透明で合理的な料金をご確認ください。
+  toggleB2c:
+    ko: 개별 매장
+    en: Single store
+    jp: 個別店舗
+  toggleB2b:
+    ko: 프랜차이즈 / 다점포
+    en: Franchise / multi-store
+    jp: フランチャイズ / 多店舗
+b2c:
+  b2cHeading:
+    ko: 매장에 맞는 솔루션을 선택하세요
+    en: Choose the solution that fits your store
+    jp: 店舗に合ったソリューションをお選びください
+  b2cSub:
+    ko: 아르바이트 야간 근무 1회 비용보다 낮은 금액으로 시작할 수 있습니다.
+    en: You can start for less than the cost of a single overnight part-time shift.
+    jp: アルバイトの夜勤1回分よりも低い金額で始められます。
+  careStep:
+    ko: 01 관찰
+    en: 01 Observe
+    jp: 01 観察
+  careDesc:
+    ko: CCTV 기반 실시간 매장 모니터링
+    en: Real-time, CCTV-based store monitoring
+    jp: CCTVベースのリアルタイム店舗モニタリング
+  carePerMonth:
+    ko: ~/월
+    en: ~/mo
+    jp: 〜/月
+  careFeatures:
+    ko:
+      - 오염·진열 이상 감지
+      - 비정상 체류 알림
+      - 온도 모니터링 (플러스)
+    en:
+      - Hygiene & display anomaly detection
+      - Abnormal dwell alerts
+      - Temperature monitoring (Plus)
+    jp:
+      - 汚れ・陳列の異常検知
+      - 異常滞留の通知
+      - 温度モニタリング（プラス）
+  insightStep:
+    ko: 02 분석
+    en: 02 Analyze
+    jp: 02 分析
+  insightDesc:
+    ko: 고객 행동 분석 및 인사이트 대시보드
+    en: Customer-behavior analytics and insight dashboard
+    jp: 顧客行動分析とインサイトダッシュボード
+  insightPerMonth:
+    ko: ~/월
+    en: ~/mo
+    jp: 〜/月
+  insightBasis:
+    ko: 카메라 8대 기준
+    en: Based on 8 cameras
+    jp: カメラ8台を基準
+  insightFeatures:
+    ko:
+      - 구역별 방문자 객수
+      - 동선·체류 분석
+      - 재방문·성별 연계 데이터
+    en:
+      - Visitor count by zone
+      - Flow & dwell analysis
+      - Revisit & gender-linked data
+    jp:
+      - エリア別の来店客数
+      - 動線・滞留分析
+      - 再来店・性別連携データ
+  agentStep:
+    ko: 03 실행
+    en: 03 Act
+    jp: 03 実行
+  agentDesc:
+    ko: AI 기반 매장 운영 자동화 비서
+    en: AI-powered store-operations automation assistant
+    jp: AIベースの店舗運営自動化アシスタント
+  agentFree:
+    ko: 무료
+    en: Free
+    jp: 無料
+  agentPriceTail:
+    ko: ~25,000원/월
+    en: ~25,000 KRW/mo
+    jp: 〜25,000円/月
+  agentFeatures:
+    ko:
+      - 매일 모닝 브리핑 (무료)
+      - POS 연동 분석 (15,000원~)
+      - 대화형 AI 채팅 (25,000원~)
+    en:
+      - Daily morning briefing (free)
+      - POS-integrated analysis (from 15,000 KRW)
+      - Conversational AI chat (from 25,000 KRW)
+    jp:
+      - 毎朝のモーニングブリーフィング（無料）
+      - POS連携分析（15,000円〜）
+      - 対話型AIチャット（25,000円〜）
+  freeConsult:
+    ko: 무료 상담 신청
+    en: Request a free consultation
+    jp: 無料相談を申し込む
+  startFree:
+    ko: 무료로 시작하기
+    en: Start for free
+    jp: 無料で始める
+diff:
+  diffTitle:
+    ko: saai agent 기본(무료) vs saai care(유료) — 무엇이 다른가요?
+    en: saai agent basic (free) vs saai care (paid) — what is the difference?
+    jp: saai agent 基本（無料）vs saai care（有料） — 何が違いますか？
+  freeBadge:
+    ko: 무료
+    en: Free
+    jp: 無料
+  paidBadge:
+    ko: 유료
+    en: Paid
+    jp: 有料
+  saaiBasic:
+    ko: saai agent 기본형
+    en: saai agent basic
+    jp: saai agent 基本型
+  storeCare:
+    ko: saai care
+    en: saai care
+    jp: saai care
+  saaiFeatures:
+    ko:
+      - 매일 아침 브리핑 (날씨·이벤트·운영 팁)
+      - AI 기반 체크리스트
+      - 주간 뉴스레터
+    en:
+      - Daily morning briefing (weather, events, operating tips)
+      - AI-powered checklist
+      - Weekly newsletter
+    jp:
+      - 毎朝のブリーフィング（天気・イベント・運営のヒント）
+      - AIベースのチェックリスト
+      - 週刊ニュースレター
+  careDiffFeatures:
+    ko:
+      - 실시간 이상 상황 감지
+      - 냉장고 온도·진열 상태·청결 알림
+      - 카카오톡/앱 푸시 실시간 알림
+    en:
+      - Real-time anomaly detection
+      - Refrigerator temperature, display & cleanliness alerts
+      - Real-time KakaoTalk / app push alerts
+    jp:
+      - リアルタイム異常検知
+      - 冷蔵庫の温度・陳列状態・清潔さの通知
+      - カカオトーク／アプリプッシュのリアルタイム通知
+  simLink:
+    ko: 요금 시뮬레이션 해보기
+    en: Try the pricing simulator
+    jp: 料金シミュレーションを試す
+  agentCompareLink:
+    ko: saai agent 상세 플랜 비교
+    en: Compare saai agent plans in detail
+    jp: saai agent 詳細プラン比較
+b2bSim:
+  b2bHeading:
+    ko: 가맹점 전체를 데이터로 관리하세요
+    en: Manage your entire network with data
+    jp: 加盟店全体をデータで管理しましょう
+  b2bSub:
+    ko: 규모에 따른 시너지 할인과 전용 기능을 제공합니다.
+    en: Scale-based synergy discounts and dedicated features included.
+    jp: 規模に応じたシナジー割引と専用機能をご提供します。
+  b2bSimTitle:
+    ko: 다점포 견적 시뮬레이션
+    en: Multi-store quote simulation
+    jp: 多店舗見積もりシミュレーション
+  b2bSimSub:
+    ko: 매장 수에 따른 할인율과 예상 비용을 확인하세요.
+    en: See the discount rate and estimated cost based on your store count.
+    jp: 店舗数に応じた割引率と想定費用をご確認ください。
+  b2bCamLabel:
+    ko: 매장당 평균 카메라 수
+    en: Average cameras per store
+    jp: 店舗あたり平均カメラ台数
+  unitDevice:
+    ko: 대
+    en: ''
+    jp: 台
+  b2bSmall:
+    ko: 소형 (1대)
+    en: Small (1)
+    jp: 小型（1台）
+  b2bMid:
+    ko: 중형 (8대)
+    en: Medium (8)
+    jp: 中型（8台）
+  b2bLarge:
+    ko: 대형 (20대)
+    en: Large (20)
+    jp: 大型（20台）
+  b2bStoreLabel:
+    ko: 운영 매장 수
+    en: Number of stores
+    jp: 運営店舗数
+  unitStore:
+    ko: 개 매장
+    en: ' stores'
+    jp: 店舗
+  b2b3:
+    ko: 3개
+    en: '3'
+    jp: 3店舗
+  b2b50:
+    ko: 50개
+    en: '50'
+    jp: 50店舗
+  b2b100:
+    ko: 100개
+    en: '100'
+    jp: 100店舗
+  discountLabel:
+    ko: 시너지 할인율
+    en: Synergy discount
+    jp: シナジー割引率
+  perStoreCost:
+    ko: 매장당 예상 비용
+    en: Estimated cost per store
+    jp: 店舗あたり想定費用
+  perStoreBasis:
+    ko: saai care 플러스 기준/월
+    en: Based on saai care Plus / mo
+    jp: saai care プラス基準/月
+  totalMonthly:
+    ko: 전체 예상 월 비용
+    en: Estimated total monthly cost
+    jp: 全体の想定月額費用
+  won:
+    ko: 원
+    en: ' KRW'
+    jp: 円
+  estimateDisclaimer:
+    ko: ※ 위 금액은 참고용 예시이며, 실제 환경(카메라 규격·네트워크·설치 조건 등)에 따라 달라질 수 있습니다.
+    en: ※ The figures above are illustrative; actual cost may vary by environment (camera specs, network, installation conditions, etc.).
+    jp: ※ 上記の金額は参考例であり、実際の環境（カメラ規格・ネットワーク・設置条件など）により異なる場合があります。
+  b2bEmailLabel:
+    ko: 맞춤 견적서를 이메일로 받아보세요
+    en: Get a custom quote by email
+    jp: カスタム見積もりをメールで受け取る
+  emailPlaceholder:
+    ko: 이메일 주소
+    en: Email address
+    jp: メールアドレス
+  getQuote:
+    ko: 견적 받기
+    en: Get quote
+    jp: 見積もりを受け取る
+  b2bEmailNote:
+    ko: 영업일 기준 1일 내 전문 담당자가 상세 견적을 보내드립니다.
+    en: A specialist will send a detailed quote within one business day.
+    jp: 営業日基準1日以内に専門担当者が詳細なお見積りをお送りします。
+  submittedTitle:
+    ko: 견적 요청이 접수되었습니다!
+    en: Your quote request has been received!
+    jp: 見積もり依頼を受け付けました！
+  submittedSub:
+    ko: 담당자가 확인 후 연락드리겠습니다.
+    en: A specialist will review it and get in touch.
+    jp: 担当者が確認後、ご連絡いたします。
+  recalc:
+    ko: 다시 계산하기
+    en: Recalculate
+    jp: 再計算する
+count:
+  countBadge:
+    ko: 상권·유입 진단
+    en: Trade-area · capture-rate diagnostics
+    jp: 商圏・流入診断
+  countDesc:
+    ko: 매장 앞 통행·입장·유입률을 카메라 한 대로 매일 셉니다. 매장 수와 계약 기간에 따라 구성을 조정해 드립니다.
+    en: One camera counts the footfall outside, the customers who walk in, and your capture rate — every day. We adjust the setup to your store count and contract term.
+    jp: 店の前の通行・入店・流入率を、カメラ1台で毎日数えます。店舗数と契約期間に合わせて構成を調整します。
+  countPrice:
+    ko: 월 30만 원부터 · Standard 대여형
+    en: From ₩300K/mo · Standard rental
+    jp: 月30万ウォンから · Standardレンタル
+  countOptions:
+    ko:
+      - Pro — LTE 실시간 (월 40만 원)
+      - Connect — 기존 CCTV 연동 (별도 견적)
+    en:
+      - Pro — real-time over LTE (₩400K/mo)
+      - Connect — reuse existing CCTV (quoted separately)
+    jp:
+      - Pro — LTEリアルタイム（月40万ウォン）
+      - Connect — 既存CCTV連携（別途見積）
+  countCta:
+    ko: 요금 상담 신청
+    en: Talk pricing
+    jp: 料金のご相談
+enterprise:
+  entBadge:
+    ko: 본사 전용
+    en: Headquarters only
+    jp: 本社専用
+  entTitle:
+    ko: 엔터프라이즈 맞춤 솔루션
+    en: Enterprise custom solution
+    jp: エンタープライズ向けカスタムソリューション
+  entDesc:
+    ko: 전국 가맹점 통합 관제, 커스텀 API 연동, 전담 CS 팀 배정
+    en: Nationwide store control, custom API integration, and a dedicated CS team
+    jp: 全国加盟店の統合管制、カスタムAPI連携、専任CSチームの配置
+  entFeatures:
+    ko:
+      - 수백 개 매장 실시간 대시보드
+      - ERP/POS 커스텀 연동 API
+      - 도입 규모별 맞춤 단가
+    en:
+      - Real-time dashboard for hundreds of stores
+      - Custom ERP/POS integration API
+      - Tiered pricing by deployment scale
+    jp:
+      - 数百店舗のリアルタイムダッシュボード
+      - ERP/POSカスタム連携API
+      - 導入規模に応じた段階単価
+  entCta:
+    ko: 맞춤 견적 받기
+    en: Get a custom quote
+    jp: カスタム見積もりを受け取る
+  backToB2c:
+    ko: 개별 매장 요금 보기
+    en: View single-store pricing
+    jp: 個別店舗の料金を見る
+inlineSim:
+  simHeading:
+    ko: 우리 매장 요금이 궁금하신가요?
+    en: Curious about pricing for your store?
+    jp: 自店舗の料金が気になりますか？
+  simSub:
+    ko: 원하는 솔루션과 카메라 대수를 선택하면 예상 월 비용을 바로 확인할 수 있습니다.
+    en: Select the solutions and camera count you want to see your estimated monthly cost instantly.
+    jp: ご希望のソリューションとカメラ台数を選択すると、想定月額費用がすぐに確認できます。
+  simSelectLabel:
+    ko: 솔루션 선택 (복수 선택 가능)
+    en: Select solutions (multiple allowed)
+    jp: ソリューション選択（複数選択可）
+  simCamLabel:
+    ko: 카메라 대수
+    en: Number of cameras
+    jp: カメラ台数
+  simSmall:
+    ko: 소형 (2대)
+    en: Small (2)
+    jp: 小型（2台）
+  simLarge:
+    ko: 대형 (32대)
+    en: Large (32)
+    jp: 大型（32台）
+  simEmailLabel:
+    ko: 견적 결과를 이메일로 받기
+    en: Get the quote result by email
+    jp: 見積もり結果をメールで受け取る
+  simEmailNote:
+    ko: 견적 산출 용도로만 사용됩니다.
+    en: Used only to produce your quote.
+    jp: 見積もり算出の用途にのみ使用します。
+  simResultLabel:
+    ko: 선택 솔루션 예상 월 비용
+    en: Estimated monthly cost of selected solutions
+    jp: 選択ソリューションの想定月額費用
+  simEmptyHint:
+    ko: 솔루션을 선택하면 비용이 계산됩니다
+    en: Select a solution to calculate the cost
+    jp: ソリューションを選択すると費用が計算されます
+  simResultDisclaimer:
+    ko: ※ 참고용 예시이며 실제 계약 조건에 따라 달라집니다.
+    en: ※ Illustrative only; actual cost depends on contract terms.
+    jp: ※ 参考例であり、実際の契約条件により異なります。
+  detailSimLink:
+    ko: 상세 시뮬레이션 하기
+    en: Run the detailed simulation
+    jp: 詳細シミュレーションを行う
+bundle:
+  bundleHeading:
+    ko: 관찰 + 분석 + 실행을 하나로
+    en: Observe + Analyze + Act, all in one
+    jp: 観察 + 分析 + 実行をひとつに
+  bundleBodyPre:
+    ko: '세 가지 제품을 묶어 도입하시면 '
+    en: 'Deploy all three products together and '
+    jp: 3つの製品をまとめて導入されると、
+  bundleBodyStrong:
+    ko: 최대 30% 시너지 할인
+    en: a synergy discount of up to 30%
+    jp: 最大30%のシナジー割引
+  bundleBodyPost:
+    ko: 이 적용됩니다. 매장 운영을 하나의 흐름으로 잇습니다.
+    en: ' applies — connecting your store operations into one flow.'
+    jp: が適用されます。店舗運営をひとつの流れにつなぎます。
+  bundleCta:
+    ko: 시너지 패키지 상담받기
+    en: Talk to us about the synergy package
+    jp: シナジーパッケージを相談する
+  bundleSimLink:
+    ko: 요금 시뮬레이션
+    en: Pricing simulator
+    jp: 料金シミュレーション
+errors:
+  errSubmitFailed:
+    ko: 견적 요청에 실패했습니다. 다시 시도해주세요.
+    en: Quote request failed. Please try again.
+    jp: お申し込みに失敗しました。もう一度お試しください。
+  errGeneric:
+    ko: 일시적인 오류입니다. 잠시 후 다시 시도해 주세요.
+    en: A temporary error occurred. Please try again shortly.
+    jp: 一時的なエラーが発生しました。しばらくしてからもう一度お試しください。

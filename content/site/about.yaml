@@ -1,184 +1,212 @@
-badge:
-  ko: About DEEPINGSOURCE
-  en: About DEEPINGSOURCE
-  jp: About DEEPINGSOURCE
-heroEyebrowCompany:
-  ko: 온라인은
-  en: Online
-  jp: オンラインは
-heroMasterCompany:
-  ko: "측정으로\n최적화됐다"
-  en: "got optimized\nby measurement."
-  jp: "測定で\n最適化された。"
-heroEyebrowOwner:
-  ko: 현장은
-  en: The physical world
-  jp: 現場は
-heroMasterOwner:
-  ko: "거의\n그대로였다"
-  en: "stayed\nlargely the same."
-  jp: "ほぼ\nそのままだった。"
-companyIntro:
-  ko: 온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.
-  en: For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.
-  jp: オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。
-companyIntro2:
-  ko: 딥핑소스는 그 현장을 다시 만듭니다.
-  en: DEEPINGSOURCE is here to reinvent it.
-  jp: ディーピングソースは、その現場を作り直します。
-vmEyebrow:
-  ko: Vision & Mission
-  en: Vision & Mission
-  jp: Vision & Mission
-missionStatement:
-  ko: REINVENT OFFLINE
-  en: REINVENT OFFLINE
-  jp: REINVENT OFFLINE
-missionStatementSub:
-  ko: 오프라인을 다시 만든다
-  en: Reinvent offline
-  jp: オフラインを、つくりなおす
-vision:
-  ko: 당신의 공간에서, 모든 공간으로
-  en: From your space — to every space.
-  jp: あなたの空間から、すべての空間へ。
-visionLabel:
-  ko: Vision
-  en: Vision
-  jp: Vision
-missionLabel:
-  ko: Mission
-  en: Mission
-  jp: Mission
-mission:
-  ko: 측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.
-  en: If you can measure it, you can improve it. We bring the force that remade online to the physical world.
-  jp: 測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。
-storyEyebrow:
-  ko: Our Story
-  en: Our Story
-  jp: Our Story
-storyHeading:
-  ko: 익명화에서, 물리 세계로
-  en: From anonymization to the physical world
-  jp: 匿名化から、物理世界へ
-storySub:
-  ko: 우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.
-  en: We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.
-  jp: 私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。
-leadershipEyebrow:
-  ko: Leadership
-  en: Leadership
-  jp: Leadership
-leadershipHeading:
-  ko: 공간을 다시 만드는 사람들
-  en: The people remaking space
-  jp: 空間を作り直す人々
-leadershipSub:
-  ko: 익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.
-  en: Roots in anonymization, global business, and engineering execution — three axes, one goal.
-  jp: 匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。
-partnersEyebrow:
-  ko: Trusted Partners
-  en: Trusted Partners
-  jp: Trusted Partners
-partnersHeading:
-  ko: "{partnerBrands}개 파트너 브랜드가 함께합니다"
-  en: "{partnerBrands} partner brands work with us"
-  jp: "{partnerBrands}社のパートナーブランドがともにあります"
-partnersSub:
-  ko: "{industries}개 업종에서 검증된 SAAI. {nvidiaPartner}로서 글로벌 표준을 따릅니다."
-  en: "SAAI proven across {industries} industries. As an {nvidiaPartner}, we follow the global standard."
-  jp: "{industries}業種で実証されたSAAI。{nvidiaPartner}として、グローバル標準に準拠します。"
-partnerStatsNote:
-  ko: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.'
-  en: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.'
-  jp: '* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。'
-certsLabel:
-  ko: Awards & Credentials
-  en: Awards & Credentials
-  jp: Awards & Credentials
-ctaHeading:
-  ko: "데이터센터가 아니라,\n사람이 사는 세상을"
-  en: "Not a world in a data center —\nthe world people live in"
-  jp: "データセンターの中ではなく、\n人が暮らす世界を"
-ctaSub:
-  ko: 도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요
-  en: From adoption inquiries to partnership proposals, reach out anytime.
-  jp: 導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。
-ctaButton:
-  ko: 문의하기
-  en: Get in touch
-  jp: お問い合わせ
-partnerStatLabels:
-  ko:
-    - 파트너 브랜드
-    - 지원 업종
-    - 특허
-    - 규제 준수
-  en:
-    - Partner brands
-    - Industries served
-    - Patents
-    - Compliance
-  jp:
-    - パートナーブランド
-    - 対応業種
-    - 特許
-    - 規制準拠
-methodEyebrow:
-  ko: How we work
-  en: How we work
-  jp: How we work
-methodHeading:
-  ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI
-  en: Spatial AI on anonymization, agents on top
-  jp: 匿名化の上に空間知能、その上にエージェントAI
-methodIntro:
-  ko: 비전 AI는 결국 사람을 봅니다. 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.
-  en: Vision AI ultimately looks at people. We start with anonymization, then read and run the space across three layers.
-  jp: ビジョンAIは結局、人を見ます。私たちは匿名化から始め、三つの軸で空間を読み、運営します。
-certs:
-  - id: soc2
-    sub:
-      ko: 정보보안 통제 인증 (2024)
-      en: Security controls certification (2024)
-      jp: 情報セキュリティ統制認証 (2024)
-  - id: nextrise
-    sub:
-      ko: ‘Top Innovator’ 수상
-      en: ‘Top Innovator’ award
-      jp: 「Top Innovator」受賞
-  - id: nvidia
-    sub:
-      ko: 글로벌 AI 스타트업 프로그램
-      en: Global AI startup program
-      jp: グローバルAIスタートアップ・プログラム
-methodSteps:
-  - id: anonymizer
-    term:
-      ko: ① 익명화 · Anonymizer
-      en: ① Anonymizer
-      jp: ① 匿名化 · Anonymizer
-    promise:
-      ko: 입력 시점에 신원을 지웁니다. 누구인지는 남기지 않고, 무엇을 어떻게만 봅니다.
-      en: Identity is erased at the moment of input. Never who — only what and how.
-      jp: 入力の時点で身元を消します。誰かではなく、何をどうだけを見ます。
-  - id: spatial
-    term:
-      ko: ② 공간 지능 · Spatial AI
-      en: ② Spatial AI
-      jp: ② 空間知能 · Spatial AI
-    promise:
-      ko: 머문 곳, 흐른 길, 닿은 손길까지 — 비전 모델로 공간을 좌표 위에 읽어냅니다.
-      en: Where people pause, how they flow, what they touch — vision models map the space onto coordinates.
-      jp: 滞留した場所、流れた道、触れた手まで — ビジョンモデルが空間を座標の上に読み解きます。
-  - id: agentic
-    term:
-      ko: ③ 에이전트 AI · Agentic AI
-      en: ③ Agentic AI
-      jp: ③ エージェントAI · Agentic AI
-    promise:
-      ko: 보는 데서 그치지 않고 다음 한 수를 권합니다. 권고는 AI가, 결정은 사람이.
-      en: It does not stop at seeing. It recommends the next move — AI advises, people decide.
-      jp: 見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。
+# About page copy — edited in Keystatic (/keystatic → "About — 회사 소개 카피").
+# E-1 폼 다이어트: 섹션 중첩(hero/vm/story/leadership/partners/method/cta)
+# — gen-site-content.mjs가 컴파일 시 평탄화하므로 생성 JSON(공개 shape)은 불변.
+hero:
+  badge:
+    ko: About DEEPINGSOURCE
+    en: About DEEPINGSOURCE
+    jp: About DEEPINGSOURCE
+  heroEyebrowCompany:
+    ko: 온라인은
+    en: Online
+    jp: オンラインは
+  heroMasterCompany:
+    ko: |-
+      측정으로
+      최적화됐다
+    en: |-
+      got optimized
+      by measurement.
+    jp: |-
+      測定で
+      最適化された。
+  heroEyebrowOwner:
+    ko: 현장은
+    en: The physical world
+    jp: 現場は
+  heroMasterOwner:
+    ko: |-
+      거의
+      그대로였다
+    en: |-
+      stayed
+      largely the same.
+    jp: |-
+      ほぼ
+      そのままだった。
+  companyIntro:
+    ko: 온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.
+    en: For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.
+    jp: オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。
+  companyIntro2:
+    ko: 딥핑소스는 그 현장을 다시 만듭니다.
+    en: DEEPINGSOURCE is here to reinvent it.
+    jp: ディーピングソースは、その現場を作り直します。
+vm:
+  vmEyebrow:
+    ko: Vision & Mission
+    en: Vision & Mission
+    jp: Vision & Mission
+  missionStatement:
+    ko: REINVENT OFFLINE
+    en: REINVENT OFFLINE
+    jp: REINVENT OFFLINE
+  missionStatementSub:
+    ko: 오프라인을 다시 만든다
+    en: Reinvent offline
+    jp: オフラインを、つくりなおす
+  vision:
+    ko: 당신의 공간에서, 모든 공간으로
+    en: From your space — to every space.
+    jp: あなたの空間から、すべての空間へ。
+  visionLabel:
+    ko: Vision
+    en: Vision
+    jp: Vision
+  missionLabel:
+    ko: Mission
+    en: Mission
+    jp: Mission
+  mission:
+    ko: 측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.
+    en: If you can measure it, you can improve it. We bring the force that remade online to the physical world.
+    jp: 測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。
+story:
+  storyEyebrow:
+    ko: Our Story
+    en: Our Story
+    jp: Our Story
+  storyHeading:
+    ko: 익명화에서, 물리 세계로
+    en: From anonymization to the physical world
+    jp: 匿名化から、物理世界へ
+  storySub:
+    ko: 우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.
+    en: We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.
+    jp: 私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。
+leadership:
+  leadershipEyebrow:
+    ko: Leadership
+    en: Leadership
+    jp: Leadership
+  leadershipHeading:
+    ko: 공간을 다시 만드는 사람들
+    en: The people remaking space
+    jp: 空間を作り直す人々
+  leadershipSub:
+    ko: 익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.
+    en: Roots in anonymization, global business, and engineering execution — three axes, one goal.
+    jp: 匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。
+partners:
+  partnersEyebrow:
+    ko: Trusted Partners
+    en: Trusted Partners
+    jp: Trusted Partners
+  partnersHeading:
+    ko: '{partnerBrands}개 파트너 브랜드가 함께합니다'
+    en: '{partnerBrands} partner brands work with us'
+    jp: '{partnerBrands}社のパートナーブランドがともにあります'
+  partnersSub:
+    ko: '{industries}개 업종에서 검증된 SAAI. {nvidiaPartner}로서 글로벌 표준을 따릅니다.'
+    en: SAAI proven across {industries} industries. As an {nvidiaPartner}, we follow the global standard.
+    jp: '{industries}業種で実証されたSAAI。{nvidiaPartner}として、グローバル標準に準拠します。'
+  partnerStatsNote:
+    ko: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.'
+    en: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.'
+    jp: '* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。'
+  partnerStatLabels:
+    ko:
+      - 파트너 브랜드
+      - 지원 업종
+      - 특허
+      - 규제 준수
+    en:
+      - Partner brands
+      - Industries served
+      - Patents
+      - Compliance
+    jp:
+      - パートナーブランド
+      - 対応業種
+      - 特許
+      - 規制準拠
+  certsLabel:
+    ko: Awards & Credentials
+    en: Awards & Credentials
+    jp: Awards & Credentials
+  certs:
+    - id: soc2
+      sub:
+        ko: 정보보안 통제 인증 (2024)
+        en: Security controls certification (2024)
+        jp: 情報セキュリティ統制認証 (2024)
+    - id: nextrise
+      sub:
+        ko: ‘Top Innovator’ 수상
+        en: ‘Top Innovator’ award
+        jp: 「Top Innovator」受賞
+    - id: nvidia
+      sub:
+        ko: 글로벌 AI 스타트업 프로그램
+        en: Global AI startup program
+        jp: グローバルAIスタートアップ・プログラム
+method:
+  methodEyebrow:
+    ko: How we work
+    en: How we work
+    jp: How we work
+  methodHeading:
+    ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI
+    en: Spatial AI on anonymization, agents on top
+    jp: 匿名化の上に空間知能、その上にエージェントAI
+  methodIntro:
+    ko: 비전 AI는 결국 사람을 봅니다. 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.
+    en: Vision AI ultimately looks at people. We start with anonymization, then read and run the space across three layers.
+    jp: ビジョンAIは結局、人を見ます。私たちは匿名化から始め、三つの軸で空間を読み、運営します。
+  methodSteps:
+    - id: anonymizer
+      term:
+        ko: ① 익명화 · Anonymizer
+        en: ① Anonymizer
+        jp: ① 匿名化 · Anonymizer
+      promise:
+        ko: 입력 시점에 신원을 지웁니다. 누구인지는 남기지 않고, 무엇을 어떻게만 봅니다.
+        en: Identity is erased at the moment of input. Never who — only what and how.
+        jp: 入力の時点で身元を消します。誰かではなく、何をどうだけを見ます。
+    - id: spatial
+      term:
+        ko: ② 공간 지능 · Spatial AI
+        en: ② Spatial AI
+        jp: ② 空間知能 · Spatial AI
+      promise:
+        ko: 머문 곳, 흐른 길, 닿은 손길까지 — 비전 모델로 공간을 좌표 위에 읽어냅니다.
+        en: Where people pause, how they flow, what they touch — vision models map the space onto coordinates.
+        jp: 滞留した場所、流れた道、触れた手まで — ビジョンモデルが空間を座標の上に読み解きます。
+    - id: agentic
+      term:
+        ko: ③ 에이전트 AI · Agentic AI
+        en: ③ Agentic AI
+        jp: ③ エージェントAI · Agentic AI
+      promise:
+        ko: 보는 데서 그치지 않고 다음 한 수를 권합니다. 권고는 AI가, 결정은 사람이.
+        en: It does not stop at seeing. It recommends the next move — AI advises, people decide.
+        jp: 見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。
+cta:
+  ctaHeading:
+    ko: |-
+      데이터센터가 아니라,
+      사람이 사는 세상을
+    en: |-
+      Not a world in a data center —
+      the world people live in
+    jp: |-
+      データセンターの中ではなく、
+      人が暮らす世界を
+  ctaSub:
+    ko: 도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요
+    en: From adoption inquiries to partnership proposals, reach out anytime.
+    jp: 導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。
+  ctaButton:
+    ko: 문의하기
+    en: Get in touch
+    jp: お問い合わせ
