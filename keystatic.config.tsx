@@ -165,6 +165,8 @@ const solBaseSchema = {
   quote: localized('후기 인용 (quote)'),
   quoteName: localized('후기 이름 (quoteName)'),
   quoteRole: localized('후기 역할 (quoteRole)'),
+  resultsLine: localized('사례 수치 한 줄 (resultsLine)'),
+  resultsNote: localized('사례 수치 각주 (resultsNote)'),
   ctaEyebrow: localized('CTA eyebrow (ctaEyebrow)'),
   ctaTitle: localizedList('CTA 제목 · 2줄 (ctaTitle)'),
   ctaSub: localized('CTA 서브 (ctaSub)'),

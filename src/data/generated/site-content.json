@@ -1746,6 +1746,8 @@
       "quote": "\"I find out a shelf is empty before the customer does, so I never miss the moment to restock. It feels like seeing every store through one set of eyes.\"",
       "quoteName": "Convenience store owner",
       "quoteRole": "Multi-store operation",
+      "resultsLine": "A convenience store that moved its high-converting display into the busiest path saw revenue rise about 20%; a fashion store that added checkout suggestions from pickup data lifted basket size about 10%.",
+      "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
         "Build the operating standard",
@@ -1800,6 +1802,8 @@
       "quote": "\"매대가 비는 걸 손님보다 먼저 알게 되니까, 채워야 할 타이밍을 놓치지 않게 됐어요. 여러 매장을 같은 눈으로 보는 느낌입니다.\"",
       "quoteName": "편의점 운영 점주",
       "quoteRole": "다점포 운영",
+      "resultsLine": "전환율 높은 진열을 통행 많은 자리로 옮긴 편의점은 매출이 약 20%, 픽업 데이터로 결제 시 추가 제안을 붙인 패션 매장은 객단가가 약 10% 늘었습니다.",
+      "resultsNote": "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다.",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
         "우리 매장에 맞는",
@@ -1854,6 +1858,8 @@
       "quote": "「棚が空くのをお客様より先に気づけるので、補充すべきタイミングを逃さなくなりました。複数の店舗を同じ目で見ている感覚です。」",
       "quoteName": "コンビニ運営の店主",
       "quoteRole": "多店舗運営",
+      "resultsLine": "転換率の高い陳列を人通りの多い場所へ移したコンビニは売上が約20%、ピックアップデータでレジ時の追加提案を加えたファッション店は客単価が約10%伸びました。",
+      "resultsNote": "* 導入事例に基づく例 — 店舗条件により異なる場合があります。",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [
         "自店に合った",
@@ -1910,6 +1916,8 @@
       "quote": "\"With so many items, displays often slipped out of order, but seeing every store by the same standard means each location stays neat and tidy.\"",
       "quoteName": "Drugstore owner",
       "quoteRole": "Multi-category store",
+      "resultsLine": "A drugstore that used first-glance heatmaps to find where customers in their 20s look — and rearranged its hot zone — saw revenue rise about 15%.",
+      "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
         "Make every location",
@@ -1948,6 +1956,8 @@
       "quote": "\"품목이 워낙 많아 진열이 자주 흐트러졌는데, 같은 기준으로 매장을 보게 되니 어느 지점이든 정돈된 모습을 유지하게 됐습니다.\"",
       "quoteName": "드럭스토어 운영 점주",
       "quoteRole": "다카테고리 매장",
+      "resultsLine": "첫 검토 히트맵으로 20대 고객의 관심 구역을 찾아 HOT ZONE 진열을 조정한 드럭스토어는 매출이 약 15% 늘었습니다.",
+      "resultsNote": "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다.",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
         "모든 지점을",
@@ -1986,6 +1996,8 @@
       "quote": "「商品があまりに多く陳列がよく崩れていましたが、同じ基準で店舗を見られるようになり、どの店舗でも整った状態を保てるようになりました。」",
       "quoteName": "ドラッグストア運営の店主",
       "quoteRole": "多カテゴリー店舗",
+      "resultsLine": "ファーストビューのヒートマップで20代のお客様の関心エリアを見つけ、HOT ZONEの陳列を調整したドラッグストアは売上が約15%伸びました。",
+      "resultsNote": "* 導入事例に基づく例 — 店舗条件により異なる場合があります。",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [
         "すべての店舗を",
@@ -2026,6 +2038,8 @@
       "quote": "\"It was hard to handle everything myself at peak time, but seeing the rush and hygiene together lets me prepare in advance. Even when staff change, operations don’t waver.\"",
       "quoteName": "Café owner",
       "quoteRole": "Food-service store",
+      "resultsLine": "A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one-two person sets — grew guests and revenue by about 10%.",
+      "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
         "A store that holds steady",
@@ -2064,6 +2078,8 @@
       "quote": "\"피크 타임에 직접 다 챙기기 어려웠는데, 붐비는 흐름과 위생 상태를 같이 보니 미리 준비하게 됩니다. 직원이 바뀌어도 운영이 흔들리지 않아요.\"",
       "quoteName": "카페 운영 점주",
       "quoteRole": "외식 매장",
+      "resultsLine": "4인 테이블의 평균 이용이 1.1~1.8명임을 확인하고 2인 테이블과 1·2인 세트로 바꾼 매장은 이용객과 매출이 약 10% 늘었습니다.",
+      "resultsNote": "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다.",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
         "바쁜 시간에도",
@@ -2102,6 +2118,8 @@
       "quote": "「ピークタイムにすべてを自分で見るのは難しかったのですが、混み合う流れと衛生状態を一緒に見ることで前もって準備できます。スタッフが替わっても運営がぶれません。」",
       "quoteName": "カフェ運営の店主",
       "quoteRole": "飲食店",
+      "resultsLine": "4人テーブルの平均利用が1.1〜1.8名だと確認し、2人テーブルと1・2人向けセットに切り替えた店舗は、利用客と売上が約10%伸びました。",
+      "resultsNote": "* 導入事例に基づく例 — 店舗条件により異なる場合があります。",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [
         "忙しい時間でも",
@@ -2142,6 +2160,8 @@
       "quote": "\"It was large and multi-level, so it was hard to tell where it was crowded — but seeing the whole space on one screen lets us prepare staffing and guidance in advance.\"",
       "quoteName": "Large-space operations lead",
       "quoteRole": "Hypermarket · Mall",
+      "resultsLine": "An exhibition space that quantified interest in themed and pop-up zones — and rearranged accordingly — saw visitors rise about 30%.",
+      "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Enterprise rollout",
       "ctaTitle": [
         "Bring many spaces",
@@ -2189,6 +2209,8 @@
       "quote": "\"넓고 층이 많아 어디가 붐비는지 파악이 어려웠는데, 전체 공간을 한 화면으로 보니 인력 배치와 안내를 미리 준비할 수 있게 됐습니다.\"",
       "quoteName": "대형 공간 운영 담당",
       "quoteRole": "하이퍼마켓 · 몰",
+      "resultsLine": "테마·팝업 전시의 관심도를 정량화해 배치를 조정한 전시 공간은 방문객이 약 30% 늘었습니다.",
+      "resultsNote": "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다.",
       "ctaEyebrow": "본사 도입",
       "ctaTitle": [
         "여러 공간을",
@@ -2236,6 +2258,8 @@
       "quote": "「広く階数が多くどこが混んでいるか把握が難しかったのですが、空間全体を一つの画面で見ることで、人員配置と案内を前もって準備できるようになりました。」",
       "quoteName": "大型空間運営の担当者",
       "quoteRole": "ハイパーマーケット · モール",
+      "resultsLine": "テーマ・ポップアップ展示への関心度を定量化し、配置を調整した展示空間は、来場者が約30%増えました。",
+      "resultsNote": "* 導入事例に基づく例 — 店舗条件により異なる場合があります。",
       "ctaEyebrow": "本社導入",
       "ctaTitle": [
         "複数の空間を",

@@ -132,3 +132,11 @@ scenarios:
       ko: 넓은 공간일수록 사람이 모든 곳을 지켜보기 어렵습니다. 혼잡 과밀, 낙상, 비정상 상황 같은 신호를 살펴 담당자에게 즉시 전달, 빠른 대응을 돕습니다.
       en: The larger the space, the harder for people to watch everywhere. We watch signals like overcrowding, falls, and abnormal situations, and send them to the right person at once for a fast response.
       jp: 広い空間ほど、人がすべての場所を見守るのは困難です。過密、転倒、異常な状況といったサインを見守り、担当者へただちにお伝えして迅速な対応を支援します。
+resultsLine:
+  ko: 테마·팝업 전시의 관심도를 정량화해 배치를 조정한 전시 공간은 방문객이 약 30% 늘었습니다.
+  en: An exhibition space that quantified interest in themed and pop-up zones — and rearranged accordingly — saw visitors rise about 30%.
+  jp: テーマ・ポップアップ展示への関心度を定量化し、配置を調整した展示空間は、来場者が約30%増えました。
+resultsNote:
+  ko: "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다."
+  en: "* Illustrative, based on customer cases — results vary by store conditions."
+  jp: "* 導入事例に基づく例 — 店舗条件により異なる場合があります。"

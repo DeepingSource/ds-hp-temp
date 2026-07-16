@@ -103,3 +103,11 @@ scenarios:
       ko: 사람이 많이 머무는 구역과 지나치는 구역의 흐름을 살핍니다. 진열과 배치를 점검하는 근거로 활용해 매장 경험을 다듬도록 돕습니다.
       en: We watch the flow through areas where people linger and areas they pass by — a basis for reviewing display and layout and refining the store experience.
       jp: 人が多く留まる区域と通り過ぎる区域の流れを見守ります。陳列と配置を点検する根拠として活用し、店舗体験を整えられるよう支援します。
+resultsLine:
+  ko: 첫 검토 히트맵으로 20대 고객의 관심 구역을 찾아 HOT ZONE 진열을 조정한 드럭스토어는 매출이 약 15% 늘었습니다.
+  en: A drugstore that used first-glance heatmaps to find where customers in their 20s look — and rearranged its hot zone — saw revenue rise about 15%.
+  jp: ファーストビューのヒートマップで20代のお客様の関心エリアを見つけ、HOT ZONEの陳列を調整したドラッグストアは売上が約15%伸びました。
+resultsNote:
+  ko: "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다."
+  en: "* Illustrative, based on customer cases — results vary by store conditions."
+  jp: "* 導入事例に基づく例 — 店舗条件により異なる場合があります。"

@@ -210,7 +210,8 @@ for (const loc of LOCALES) {
 //    Retail(beforeAfter[3]) · LargeSpace(mtmc* + mtmcItems 리스트). 이미지/아이콘/metadata 코드 유지. ──
 const SOL_BASE_FLAT = [
   'badge', 'heroTitle', 'heroSub', 'heroCta', 'scenariosEyebrow', 'scenariosHeading',
-  'quote', 'quoteName', 'quoteRole', 'ctaEyebrow', 'ctaTitle', 'ctaSub', 'ctaButton',
+  'quote', 'quoteName', 'quoteRole', 'resultsLine', 'resultsNote',
+  'ctaEyebrow', 'ctaTitle', 'ctaSub', 'ctaButton',
 ];
 function solBase(yamlObj, extraFlat = []) {
   const flat = toLocaleMajor(yamlObj, [...SOL_BASE_FLAT, ...extraFlat]);

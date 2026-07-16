@@ -139,3 +139,11 @@ beforeAfter:
       ko: 이상 상황만 골라 알려주는 선택적 확인
       en: Selective review — only anomalies are surfaced
       jp: 異常な状況だけを選んでお知らせする選択的な確認
+resultsLine:
+  ko: 전환율 높은 진열을 통행 많은 자리로 옮긴 편의점은 매출이 약 20%, 픽업 데이터로 결제 시 추가 제안을 붙인 패션 매장은 객단가가 약 10% 늘었습니다.
+  en: A convenience store that moved its high-converting display into the busiest path saw revenue rise about 20%; a fashion store that added checkout suggestions from pickup data lifted basket size about 10%.
+  jp: 転換率の高い陳列を人通りの多い場所へ移したコンビニは売上が約20%、ピックアップデータでレジ時の追加提案を加えたファッション店は客単価が約10%伸びました。
+resultsNote:
+  ko: "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다."
+  en: "* Illustrative, based on customer cases — results vary by store conditions."
+  jp: "* 導入事例に基づく例 — 店舗条件により異なる場合があります。"

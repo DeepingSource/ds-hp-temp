@@ -47,6 +47,8 @@ type Copy = {
   quote: string;
   quoteName: string;
   quoteRole: string;
+  resultsLine: string;
+  resultsNote: string;
   ctaEyebrow: string;
   ctaTitle: [string, string];
   ctaSub: string;
@@ -215,6 +217,8 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
               </div>
             </div>
           </div>
+          <p className="mt-8 text-center text-base text-gray-600 break-keep">{t.resultsLine}</p>
+          <p className="mt-2 text-center text-xs text-gray-400 break-keep">{t.resultsNote}</p>
         </div>
       </AnimatedSection>
 

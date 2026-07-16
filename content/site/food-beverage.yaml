@@ -103,3 +103,11 @@ scenarios:
       ko: 재료 소진과 매대 상태를 참고해 발주가 필요한 시점을 가늠합니다. 모자라거나 남기는 일을 줄이고 운영 리듬을 안정적으로 유지하도록 돕습니다.
       en: We gauge when to reorder from ingredient depletion and shelf status. Less running short, less waste — keeping your operating rhythm steady.
       jp: 材料の消費と棚の状態を参考に、発注が必要な時点を見極めます。不足や余りを減らし、運営のリズムを安定して保てるよう支援します。
+resultsLine:
+  ko: 4인 테이블의 평균 이용이 1.1~1.8명임을 확인하고 2인 테이블과 1·2인 세트로 바꾼 매장은 이용객과 매출이 약 10% 늘었습니다.
+  en: A restaurant that found its four-tops seating 1.1–1.8 guests on average — and switched to two-tops with one-two person sets — grew guests and revenue by about 10%.
+  jp: 4人テーブルの平均利用が1.1〜1.8名だと確認し、2人テーブルと1・2人向けセットに切り替えた店舗は、利用客と売上が約10%伸びました。
+resultsNote:
+  ko: "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다."
+  en: "* Illustrative, based on customer cases — results vary by store conditions."
+  jp: "* 導入事例に基づく例 — 店舗条件により異なる場合があります。"
