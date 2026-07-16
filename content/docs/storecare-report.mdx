@@ -1,0 +1,38 @@
+---
+slug: "storecare-report"
+title: "리포트"
+excerpt: "지난 날짜를 골라 그날의 매장 상태를 돌아봅니다."
+section: "analytics"
+order: 1
+parent: "store-care"
+icon: "BarChart3"
+lang: "ko"
+draft: false
+access: "public"
+relatedSlugs: []
+relatedTerms: []
+---
+
+**리포트** 탭은 지난 날짜를 골라 그날 매장이 어땠는지 돌아보는 화면입니다. "실시간"이 지금이라면, 리포트는 회고입니다. 구성은 실시간 화면과 거의 같고, 보는 기준이 "오늘"에서 "선택한 날짜"로 바뀝니다.
+
+![리포트 상단](/images/docs/storecare/report/_images/overview.png)
+
+*상단 달력에서 날짜를 고르면 그날의 요약이 표시됩니다*
+
+## 날짜 선택
+
+상단의 주간 달력에서 조회할 날짜를 누릅니다. 선택한 날짜 아래에는 `M월 D일 요일`과 함께 `N일 전`처럼 며칠 전인지 표시되고, 그날의 상태를 한 문장으로 정리한 요약 카드가 나옵니다.
+
+## 그날의 매장 이상 감지 · 매장 점수
+
+선택한 날짜를 기준으로 [매장 이상 감지](/resources/docs/storecare-anomalies)(운영 이상·온도 이상)와 [매장 점수](/resources/docs/storecare-score-inventory)를 실시간 화면과 동일한 방식으로 보여 줍니다. 카드를 누르면 그날의 상세 목록으로 이동합니다.
+
+![리포트 매장 점수와 재고 주의 구역](/images/docs/storecare/report/_images/score-inventory.png)
+
+*그날의 매장 점수 추이와 재고 주의 구역*
+
+## 재고 주의 구역
+
+선택한 날 **6시간 이상 주의·나쁨 상태를 유지한** 진열 구역을 모아 줍니다. 해당 구역이 없으면 "재고 주의 진열 구역이 없어요"가 표시됩니다.
+
+이어서 그날 가장 활발했던 [인기 진열 구역](/resources/docs/storecare-popular-zones)을 볼 수 있습니다.

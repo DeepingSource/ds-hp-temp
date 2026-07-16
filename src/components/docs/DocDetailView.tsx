@@ -2,6 +2,7 @@ import { isValidElement } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Languages, Lightbulb, BookOpen } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import TableOfContents, { MobileTOC } from '@/components/blog/TableOfContents';
 import { getHeadings } from '@/components/blog/ArticleRenderer';
@@ -123,7 +124,11 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
             <MobileTOC headings={headings} />
 
             <div className="text-base">
-              <MDXRemote source={doc.body} components={bodyComponents} />
+              <MDXRemote
+                source={doc.body}
+                components={bodyComponents}
+                options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+              />
             </div>
 
             {/* Related glossary terms */}

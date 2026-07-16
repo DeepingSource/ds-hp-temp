@@ -31,5 +31,5 @@
     "**/*.mts",
     ".velite/**/*.ts"
   ],
-  "exclude": ["node_modules", "remotion"]
+  "exclude": ["node_modules", "remotion", "content/_import"]
 }
