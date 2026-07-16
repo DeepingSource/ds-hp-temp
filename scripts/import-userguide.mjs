@@ -143,10 +143,11 @@ function convertBody(raw, docDir, locale, copySet) {
     return `> **${label}**\n>\n${lines}`;
   });
 
-  // 5) ::note/:::tip/:::caution 디렉티브 → blockquote
-  s = s.replace(/:::(tip|note|caution)\s*\r?\n([\s\S]*?):::/g, (m, type, body) => {
+  // 5) :::note/:::tip/:::caution[title?] 디렉티브 → blockquote (대괄호 제목 지원)
+  s = s.replace(/:::(tip|note|caution)(?:\[([^\]]*)\])?\s*\r?\n([\s\S]*?):::/g, (m, type, title, body) => {
+    const label = asideLabel[type] + (title ? `: ${title}` : '');
     const lines = body.trim().split('\n').map((l) => `> ${l}`).join('\n');
-    return `> **${asideLabel[type]}**\n>\n${lines}`;
+    return `> **${label}**\n>\n${lines}`;
   });
 
   // 6) <LinkCard title href description /> → 마크다운 리스트 항목 (앞 들여쓰기 제거)
