@@ -57,11 +57,14 @@ export function getDocsUsingTerm(termSlug: string, locale: Locale): Doc[] {
   return getDocsForLocale(locale).filter((d) => d.relatedTerms.includes(termSlug));
 }
 
-/** Prev/next within the same section→order flat ordering (IA-2 auto navigation). */
+/** Prev/next within the same PRODUCT (parent) group, section→order flat (IA-2).
+ *  Keeps navigation from crossing between store insight / store care / general docs. */
 export function getAdjacentDocs(logicalSlug: string, locale: Locale): { prev?: Doc; next?: Doc } {
-  const list = getDocsForLocale(locale);
+  const all = getDocsForLocale(locale);
+  const cur = all.find((d) => logicalDocSlug(d.slug) === logicalSlug);
+  if (!cur) return {};
+  const list = all.filter((d) => (d.parent ?? null) === (cur.parent ?? null));
   const i = list.findIndex((d) => logicalDocSlug(d.slug) === logicalSlug);
-  if (i < 0) return {};
   return { prev: i > 0 ? list[i - 1] : undefined, next: i < list.length - 1 ? list[i + 1] : undefined };
 }
 

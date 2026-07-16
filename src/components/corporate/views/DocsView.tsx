@@ -35,7 +35,6 @@ const C: Record<Locale, {
     comingSoon: '준비 중',
     comingSoonManuals: [
       { title: 'store agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 store agent 매뉴얼입니다.' },
-      { title: 'store care 사용자 매뉴얼', desc: '이상·청결·냉장·진열 모듈의 알림 설정과 점주 모바일 운영을 다루는 store care 매뉴얼입니다.' },
     ],
   },
   en: {
@@ -49,7 +48,6 @@ const C: Record<Locale, {
     comingSoon: 'Coming soon',
     comingSoonManuals: [
       { title: 'store agent User Manual', desc: 'The store agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
-      { title: 'store care User Manual', desc: 'The store care manual covering alert settings for the anomaly, cleanliness, refrigeration, and display modules, and mobile operations for owners.' },
     ],
   },
   jp: {
@@ -63,7 +61,6 @@ const C: Record<Locale, {
     comingSoon: '準備中',
     comingSoonManuals: [
       { title: 'store agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する store agent のマニュアルです。' },
-      { title: 'store care ユーザーマニュアル', desc: '異常・清潔・冷蔵・陳列モジュールの通知設定と、店主向けモバイル運用を扱う store care のマニュアルです。' },
     ],
   },
 };
@@ -73,15 +70,20 @@ const comingSoonIcons = [Bot, ShieldCheck];
 export default function DocsView({ locale }: { locale: Locale }) {
   const t = C[locale];
   const docs = getDocsForLocale(locale);
-  // Section cards from the collection — manual section is shown as the featured card.
+  // Section cards: general docs only — product-guide chapters (parent set) live under
+  // their product landing (below) so store insight / store care don't intermix here.
   const sections = docSectionOrder
     .filter((s) => s !== 'manual')
     .map((section) => ({
       section,
       label: docSectionLabelI18n[locale][section],
-      items: docs.filter((d) => d.section === section),
+      items: docs.filter((d) => d.section === section && !d.parent),
     }))
     .filter((g) => g.items.length > 0);
+  // Product-guide landings (store insight / store care), rendered as featured cards.
+  const productLandings = ['store-insight', 'store-care']
+    .map((s) => docs.find((d) => logicalDocSlug(d.slug) === s))
+    .filter((d): d is NonNullable<typeof d> => !!d);
 
   return (
     <div className="bg-white min-h-screen">
@@ -109,19 +111,22 @@ export default function DocsView({ locale }: { locale: Locale }) {
             <div className="mb-12">
               <p className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3">{t.manualSectionTitle}</p>
               <div className="space-y-3">
-                <Link
-                  href={localeHref(locale, '/resources/docs/store-insight')}
-                  className="group flex items-start gap-4 p-5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors no-underline"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <BarChart3 className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-bold text-gray-900 mb-1">{t.featuredTitle}</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed break-keep">{t.featuredDesc}</p>
-                  </div>
-                  <span className="text-primary text-sm shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-                </Link>
+                {productLandings.map((d) => (
+                  <Link
+                    key={d.slug}
+                    href={localeHref(locale, `/resources/docs/${logicalDocSlug(d.slug)}`)}
+                    className="group flex items-start gap-4 p-5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors no-underline"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <DocIcon name={d.icon} className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-bold text-gray-900 mb-1">{d.title}</h3>
+                      {d.excerpt && <p className="text-xs text-gray-600 leading-relaxed break-keep">{d.excerpt}</p>}
+                    </div>
+                    <span className="text-primary text-sm shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                  </Link>
+                ))}
 
                 {t.comingSoonManuals.map((m, i) => {
                   const Icon = comingSoonIcons[i];
