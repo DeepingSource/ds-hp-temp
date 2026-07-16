@@ -1,6 +1,6 @@
 # STATUS — 현재 작업 상태 (완료 · 잔여)
 
-> **갱신** 2026-07-14 · **범위** 활성 작업 스트림의 완료/잔여 구분. 유지보수·이어받기용 단일 진입점.
+> **갱신** 2026-07-16 · **범위** 활성 작업 스트림의 완료/잔여 구분. 유지보수·이어받기용 단일 진입점.
 > **라이브 SOT** 는 여전히 repo-root [`/DESIGN.md`](../DESIGN.md) + 라이브 `src/`. 이 문서는 *진행 상태*만 추적한다.
 > 구 Phase 1–4 계획 산출물(`PLAN_v1`·`BRAND_v2`·`DESIGN_v2`·`CODE_v1`·`AUDIT_v1` 등)은 archive — [`docs/README.md`](./README.md) 참고.
 
@@ -19,6 +19,9 @@
 | 홈페이지 피드백 반영 | 🟡 배치 A·B 완료, C·D 일부 | [`피드백-반영-계획-260714.md`](./피드백-반영-계획-260714.md) |
 | AEO/SEO 개선 | 🟡 P0·P1-2/1-3·P2-1 완료, P1-1(실데이터)·P2-B(사인오프) 잔여 | [`AEO-SEO-개발계획-260714.md`](./AEO-SEO-개발계획-260714.md) · 이 문서 §6 |
 | 런치 준비 | 🟡 진행 중 | [LAUNCH_PLAN](./LAUNCH_PLAN_v1.md) |
+| 문서 위키화 + 콘텐츠 CMS화 (docs·FAQ·glossary·solutions·leadership 등) | ✅ 완료 (gated 메커니즘 포함, 활성화=env) | `DOCS_WIKI_PLAN_v1.md`(untracked WIP) · 이 문서 §9 |
+| 사이트 개선 260716 (P0~P3: 가이드 숨김·블로그 성능·이벤트·saai URL·운영 가이드) | ✅ 요청분 완료 | `SITE_IMPROVEMENT_PLAN_260716.md`(untracked) · [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md) · 이 문서 §9 |
+| 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
 
 ---
 
@@ -144,10 +147,27 @@
 
 ---
 
+## 9. 문서 위키화 + 사이트 개선 260716 ✅ (2026-07-15~16)
+
+- **DOCS_WIKI 전체 완료**: docs 17편 MDX 컬렉션(EN/JP 번역+IA) · 뉴스·회사상수·FAQ(84 MDX)·glossary(19 yaml)·leadership·연혁·career·solutions 21페이지 CMS화 · gated-docs **메커니즘만**(기본 gated 0건, 활성화=`DOCS_ACCESS_SECRET`/`CODES` env) + 보안 하드닝(미니사이트 우회·오픈리다이렉트·fail-closed).
+- **SITE_IMPROVEMENT 260716 요청분 완료** (`fabb8f94d`→`86020bc01`): P0 guide 97편 숨김+데모 비노출 · P1-1 블로그 Load More(ko 189→18) · P1-3 store→saai **URL** 전환(12디렉토리+301+116참조) · P2-2 events 컬렉션(+`/e` QR·아카이브·noindex) · P2-3 미디어 실검증 +3(총 11건) · P3-1 [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md).
+
+## 10. 콘텐츠 수정·확장 통합 실행 ✅ (2026-07-16 · [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md))
+
+원자료 PDF 9종(`자료 모음 1`) 실추출 기반. 커밋 스택 `534a86056`(WP0)→`4012e231e`(WP1)→`718601b41`(WP2+3)→`6aae26ff2`(WP4+5)→`43a95bc66`(WP6)→`e4888a617`(신규 콘텐츠)→`7048a4797`(P2-1).
+
+- **WP0 네이밍**: `productNaming.count`에 `saai: 'saai count'` 추가(2026-07-16 결정, count 포함 saai 전면) + Header/Footer/HomeView/SolutionTimeline/StoreCountView/FAQ그룹/솔루션 라벨 헬퍼 경유 + count 메타 title 병기 + 산문 표기 saai 우선(도메인·매뉴얼·기사·목업 제외) + 재정비안 §14/§15 결정 갱신.
+- **WP1 회사·기술**: companyIntro 누적 300억 · milestones kddi 병기 · about REINVENT OFFLINE 미션 블록+진화 서사 · technology 로우데이터 명세+제58조의2·유권해석(2021.08)·법무자문(2021.12)+익명화-먼저 대비 각주 · contact provenText/Label 시뮬레이션 완화.
+- **WP2+3 홈·제품**: 홈 productDict 4종 정밀화(유입률/구매전/4대감지/POS+비전) · CaseBand 홈 무수치화 · agent 4번째 스텝 '자가개선' · insight 구매전 프레임+설치 3주 · care 문제제기+30분→8분 예시 단서 · count 유입률 공식.
+- **WP4+5 업종·사례**: 업종 4종 `resultsLine/Note`(+20/+15/+10/+10/+30%, 예시 각주) · smb-53 시간 수치 verified 강등(3로케일) · 신규 케이스 fashion-pickup(3로케일, 인용 없음).
+- **WP6 요금**: B2B에 saai count 진단 카드(Standard 월 30만~, Pro/Connect 부가, `COUNT_PRICING` SOT).
+- **신규 콘텐츠**: insight 기능 17종 그리드+도입 3단계 · count 설치 6단계 · seal "남는 것의 전부"(로우데이터 8필드+3법 인용+2021 타임라인) · FAQ +2(동의·저장, 3로케일) · glossary 유입률(capture-rate) · 블로그 2편(점주의 하루 9장면·유입률).
+- **P2-1 허브**: /products 5단 아크(①SAAI 정의 4-up ②운영 루프 ③카테고리 키워드 ④도메인 구현 ⑤사례·CTA). SaaiView(B2C)는 유지.
+
 ## 잔여 항목 우선순위 제안
 
-1. **Phase D 카피 CMS화** 이어가기 (technology → resources → solutions 4종 → legal) — 편집자 커버리지 확대, 저위험·검증 가능.
-2. **G-3 FAQ 컬렉션화** — 분기 4회 개발자 수정 실적, 편집자 셀프서비스 전환 효과 큼(대형).
-3. **배치 D #12 블로그 가이드 이관** — SEO redirect 결정 필요.
-4. **E-1 pricing 폼 다이어트** — 편집 UX(대형).
-5. **D-1 프리뷰** — GitHub 로그인 환경에서 검증 가능해지면.
+1. **EN/JP 번역 사인오프** — 이번 콘텐츠 트랙 신규 카피(WP1~신규 콘텐츠)의 3로케일 병기 검수 (`copy:review` 스냅샷).
+2. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조.
+3. **leadership 인사 확인** — 자료 CTO(이수민) vs 사이트(CBO 금상호·VP 고봉경) 정합 후 bio 보강(§5-8) · 사회 안전 블록(§5-7)도 함께 판단.
+4. **블로그 EN/JP 이관 여부** — 신규 insight 2편은 ko만, 필요 시 -en/-jp 추가.
+5. **E-1 pricing 폼 다이어트** — 편집 UX(대형) · **D-1 프리뷰** — GitHub 로그인 환경에서 검증 가능해지면.

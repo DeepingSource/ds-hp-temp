@@ -133,7 +133,7 @@ tools:
     desc:
       ko: 상품·가격·이벤트만 입력하면 1분 만에 포스터·배지·가격표·띠지. 월 무료 크레딧, 카드 등록 없이.
       en: Enter product, price, and promo — get posters, badges, price tags, and shelf strips in a minute. Free monthly credits, no card.
-      jp: 商品・価格・イベントを入力するだけで1分でポスター・バッジ・価格表・띠지。月の無料クレジット、カード登録なし。
+      jp: 商品・価格・イベントを入力するだけで1分でポスター・バッジ・価格表・棚帯。月の無料クレジット、カード登録なし。
   - id: letter
     name:
       ko: 스토어레터
