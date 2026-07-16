@@ -113,6 +113,10 @@ complianceSub:
   ko: 원본은 저장하지 않고, 재식별은 불가능합니다. GDPR·CCPA·국내 개인정보보호법, 그리고 SOC2 인증까지 충족합니다.
   en: The original is never stored and re-identification is impossible. Compliant with GDPR, CCPA, Korea’s PIPA — and SOC 2 certified.
   jp: 原本は保存せず、再識別は不可能です。GDPR・CCPA・韓国の個人情報保護法、そしてSOC2認証まで満たします。
+complianceDataSpec:
+  ko: 영상은 메모리에서 즉시 익명화되고 저장되지 않습니다. 남는 건 개인정보 없는 통계값 — 좌표·성별대·연령대·시선·픽업 여부뿐입니다.
+  en: Footage is anonymized in memory and never stored. What remains is personal-data-free statistics — coordinates, gender band, age band, gaze, and pickup only.
+  jp: 映像はメモリ上で即座に匿名化され、保存されません。残るのは個人情報のない統計値 — 座標・性別帯・年齢帯・視線・ピックアップの有無だけです。
 patentsLabel:
   ko: 보유 특허
   en: Patents
@@ -177,6 +181,10 @@ dilemmaNew:
     - 同意がなくても、多数を同時に保護
     - 原本は残さない
     - 分析に必要な流れは原本品質で維持
+dilemmaNote:
+  ko: 타사는 원본을 분석한 뒤 삭제합니다. 딥핑소스는 익명화가 먼저 — 원본은 분석 전에 파기됩니다.
+  en: Others analyze the original footage, then delete it. DeepingSource anonymizes first — the original is destroyed before analysis.
+  jp: 他社は原本を分析してから削除します。ディーピングソースは匿名化が先 — 原本は分析の前に破棄されます。
 demoItems:
   - id: erase
     label:
@@ -282,9 +290,9 @@ complianceItems:
       en: PIPA
       jp: PIPA
     desc:
-      ko: 한국 개인정보보호법
-      en: Korea Personal Information Protection Act
-      jp: 韓国個人情報保護法
+      ko: 제58조의2(익명정보) · 개인정보보호위원회 유권해석(2021.08)·법무 자문(2021.12)
+      en: Article 58-2 (anonymized data) · PIPC interpretation (2021.08) · legal opinion (2021.12)
+      jp: 第58条の2（匿名情報）・保護委員会の有権解釈（2021.08）・法務意見（2021.12）
 poweredProducts:
   - id: insight
     name:

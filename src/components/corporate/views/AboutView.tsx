@@ -37,6 +37,8 @@ type AboutCopy = {
   companyIntro: string;
   companyIntro2: string;
   vmEyebrow: string;
+  missionStatement: string;
+  missionStatementSub: string;
   vision: string;
   visionLabel: string;
   missionLabel: string;
@@ -141,7 +143,8 @@ export default function AboutView({ locale }: { locale: Locale }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.vmEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">{t.vision}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">{t.missionStatement}</h2>
+            <p className="mt-3 text-lg text-gray-500 break-keep">{t.missionStatementSub}</p>
           </div>
 
           <div className="mb-12">

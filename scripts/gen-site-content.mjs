@@ -114,7 +114,7 @@ const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_F
 //    (a brand-canon SOT value) stay in code. ──
 const ABOUT_FLAT = [
   'badge', 'heroEyebrowCompany', 'heroMasterCompany', 'heroEyebrowOwner', 'heroMasterOwner',
-  'companyIntro', 'companyIntro2', 'vmEyebrow', 'vision', 'visionLabel', 'missionLabel', 'mission',
+  'companyIntro', 'companyIntro2', 'vmEyebrow', 'missionStatement', 'missionStatementSub', 'vision', 'visionLabel', 'missionLabel', 'mission',
   'storyEyebrow', 'storyHeading', 'storySub', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
   'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
@@ -172,9 +172,9 @@ const TECH_FLAT = [
   'problemEyebrow', 'problemTitle', 'problemSub', 'oldTag', 'oldTitle', 'newTag',
   'newTitle', 'howEyebrow', 'howTitle', 'howSub', 'demoEyebrow', 'demoTitle',
   'demoSub', 'demoCaption', 'demoAria', 'coreEyebrow', 'coreTitle', 'coreSub',
-  'learnMore', 'complianceEyebrow', 'complianceTitle', 'complianceSub', 'patentsLabel', 'patentsStackLine',
+  'learnMore', 'complianceEyebrow', 'complianceTitle', 'complianceSub', 'complianceDataSpec', 'patentsLabel', 'patentsStackLine',
   'poweredLabel', 'ctaBadge', 'ctaTitle', 'ctaSub', 'ctaPrimary', 'ctaSecondary',
-  'dilemmaOld', 'dilemmaNew',
+  'dilemmaOld', 'dilemmaNew', 'dilemmaNote',
 ];
 const technologyYaml = load('content/site/technology.yaml');
 const technologyFlat = toLocaleMajor(technologyYaml, TECH_FLAT);

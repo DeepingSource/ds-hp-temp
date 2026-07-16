@@ -601,13 +601,15 @@
       "companyIntro": "For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.",
       "companyIntro2": "DEEPINGSOURCE is here to reinvent it.",
       "vmEyebrow": "Vision & Mission",
+      "missionStatement": "REINVENT OFFLINE",
+      "missionStatementSub": "Reinvent offline",
       "vision": "From your space — to every space.",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "If you can measure it, you can improve it. We bring the force that remade online to the physical world.",
       "storyEyebrow": "Our Story",
       "storyHeading": "From anonymization to the physical world",
-      "storySub": "We started with anonymization. Reading space with vision AI, we met the physical world — where people work and live.",
+      "storySub": "We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.",
       "leadershipEyebrow": "Leadership",
       "leadershipHeading": "The people remaking space",
       "leadershipSub": "Roots in anonymization, global business, and engineering execution — three axes, one goal.",
@@ -663,13 +665,15 @@
       "companyIntro": "온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.",
       "companyIntro2": "딥핑소스는 그 현장을 다시 만듭니다.",
       "vmEyebrow": "Vision & Mission",
+      "missionStatement": "REINVENT OFFLINE",
+      "missionStatementSub": "오프라인을 다시 만든다",
       "vision": "당신의 공간에서, 모든 공간으로",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.",
       "storyEyebrow": "Our Story",
       "storyHeading": "익명화에서, 물리 세계로",
-      "storySub": "우리는 익명화에서 시작했습니다. 비전 AI로 공간을 읽다가, 사람이 일하는 물리 세계를 만났습니다.",
+      "storySub": "우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.",
       "leadershipEyebrow": "Leadership",
       "leadershipHeading": "공간을 다시 만드는 사람들",
       "leadershipSub": "익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.",
@@ -725,13 +729,15 @@
       "companyIntro": "オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。",
       "companyIntro2": "ディーピングソースは、その現場を作り直します。",
       "vmEyebrow": "Vision & Mission",
+      "missionStatement": "REINVENT OFFLINE",
+      "missionStatementSub": "オフラインを、つくりなおす",
       "vision": "あなたの空間から、すべての空間へ。",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。",
       "storyEyebrow": "Our Story",
       "storyHeading": "匿名化から、物理世界へ",
-      "storySub": "私たちは匿名化から始めました。ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。",
+      "storySub": "私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。",
       "leadershipEyebrow": "Leadership",
       "leadershipHeading": "空間を作り直す人々",
       "leadershipSub": "匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。",
@@ -783,8 +789,8 @@
     "en": {
       "loading": "Loading...",
       "eyebrow": "Talk to us about SAAI",
-      "provenLabel": "Proven impact",
-      "provenText": "Owners cut overnight labor costs by an average of ₩800,000 in the first month.",
+      "provenLabel": "Projected impact",
+      "provenText": "Overnight labor costs down about ₩800,000 a month — based on our own simulations.",
       "partnerLabel": "Trusted partners",
       "partnerText": "Leading brands chose us first, including Olive Young, BGF CU, Korea Seven, and CJ Foodville.",
       "contextFooter": "Have questions? Submit the form and our team will follow up.",
@@ -831,8 +837,8 @@
     "ko": {
       "loading": "로딩 중...",
       "eyebrow": "SAAI 도입 상담",
-      "provenLabel": "입증된 도입 효과",
-      "provenText": "도입 첫 달부터 야간 인건비 평균 80만 원 절감 효과 달성",
+      "provenLabel": "예상 도입 효과",
+      "provenText": "야간 인건비 월 약 80만 원 절감 — 자사 시뮬레이션 수치 기준",
       "partnerLabel": "신뢰받는 파트너",
       "partnerText": "올리브영, BGF CU, 코리아세븐, CJ푸드빌 등 주요 브랜드가 먼저 선택했습니다.",
       "contextFooter": "궁금한 점은 상담 신청 후 담당자에게 문의하세요.",
@@ -879,8 +885,8 @@
     "jp": {
       "loading": "読み込み中...",
       "eyebrow": "SAAI 導入のご相談",
-      "provenLabel": "実証された導入効果",
-      "provenText": "導入初月から、夜間人件費を平均80万ウォン削減する効果を達成しました。",
+      "provenLabel": "想定される導入効果",
+      "provenText": "夜間人件費を月あたり約80万ウォン削減 — 自社シミュレーション値ベース。",
       "partnerLabel": "信頼されるパートナー",
       "partnerText": "オリーブヤング、BGF CU、コリアセブン、CJフードビルなどの主要ブランドにいち早く選ばれています。",
       "contextFooter": "ご不明な点は、ご相談のお申し込み後に担当者へお問い合わせください。",
@@ -1287,6 +1293,7 @@
       "complianceEyebrow": "Privacy by Design",
       "complianceTitle": "Privacy by design, everywhere",
       "complianceSub": "The original is never stored and re-identification is impossible. Compliant with GDPR, CCPA, Korea’s PIPA — and SOC 2 certified.",
+      "complianceDataSpec": "Footage is anonymized in memory and never stored. What remains is personal-data-free statistics — coordinates, gender band, age band, gaze, and pickup only.",
       "patentsLabel": "Patents",
       "patentsStackLine": "Anonymizer · Spatial Intelligence · Agentic AI",
       "poweredLabel": "Products powered by this technology",
@@ -1307,6 +1314,7 @@
         "The original is never kept",
         "The movement that analysis needs stays at original quality"
       ],
+      "dilemmaNote": "Others analyze the original footage, then delete it. DeepingSource anonymizes first — the original is destroyed before analysis.",
       "demoItems": [
         {
           "label": "Anonymized at input",
@@ -1352,7 +1360,7 @@
         {
           "region": "KR",
           "law": "PIPA",
-          "desc": "Korea Personal Information Protection Act"
+          "desc": "Article 58-2 (anonymized data) · PIPC interpretation (2021.08) · legal opinion (2021.12)"
         }
       ],
       "poweredProducts": [
@@ -1399,6 +1407,7 @@
       "complianceEyebrow": "Privacy by Design",
       "complianceTitle": "어디서든, 프라이버시 바이 디자인",
       "complianceSub": "원본은 저장하지 않고, 재식별은 불가능합니다. GDPR·CCPA·국내 개인정보보호법, 그리고 SOC2 인증까지 충족합니다.",
+      "complianceDataSpec": "영상은 메모리에서 즉시 익명화되고 저장되지 않습니다. 남는 건 개인정보 없는 통계값 — 좌표·성별대·연령대·시선·픽업 여부뿐입니다.",
       "patentsLabel": "보유 특허",
       "patentsStackLine": "익명화 · 공간 지능 · 에이전트 AI",
       "poweredLabel": "이 기술이 구동하는 제품",
@@ -1419,6 +1428,7 @@
         "원본은 남기지 않는다",
         "분석에 필요한 흐름은 원본 품질로 유지"
       ],
+      "dilemmaNote": "타사는 원본을 분석한 뒤 삭제합니다. 딥핑소스는 익명화가 먼저 — 원본은 분석 전에 파기됩니다.",
       "demoItems": [
         {
           "label": "입력 시점 익명화",
@@ -1464,7 +1474,7 @@
         {
           "region": "KR",
           "law": "개인정보보호법",
-          "desc": "한국 개인정보보호법"
+          "desc": "제58조의2(익명정보) · 개인정보보호위원회 유권해석(2021.08)·법무 자문(2021.12)"
         }
       ],
       "poweredProducts": [
@@ -1511,6 +1521,7 @@
       "complianceEyebrow": "Privacy by Design",
       "complianceTitle": "どこでも、プライバシー・バイ・デザイン",
       "complianceSub": "原本は保存せず、再識別は不可能です。GDPR・CCPA・韓国の個人情報保護法、そしてSOC2認証まで満たします。",
+      "complianceDataSpec": "映像はメモリ上で即座に匿名化され、保存されません。残るのは個人情報のない統計値 — 座標・性別帯・年齢帯・視線・ピックアップの有無だけです。",
       "patentsLabel": "保有特許",
       "patentsStackLine": "匿名化 · 空間知能 · エージェントAI",
       "poweredLabel": "この技術が支える製品",
@@ -1531,6 +1542,7 @@
         "原本は残さない",
         "分析に必要な流れは原本品質で維持"
       ],
+      "dilemmaNote": "他社は原本を分析してから削除します。ディーピングソースは匿名化が先 — 原本は分析の前に破棄されます。",
       "demoItems": [
         {
           "label": "入力時点で匿名化",
@@ -1576,7 +1588,7 @@
         {
           "region": "KR",
           "law": "PIPA",
-          "desc": "韓国個人情報保護法"
+          "desc": "第58条の2（匿名情報）・保護委員会の有権解釈（2021.08）・法務意見（2021.12）"
         }
       ],
       "poweredProducts": [
@@ -2510,7 +2522,7 @@
     "contactEmail": "contact@deepingsource.io",
     "address": "5F 508, Eonju-ro, Gangnam-gu, Seoul, Republic of Korea",
     "tagline": "오프라인 공간 AI 플랫폼",
-    "companyIntro": "딥핑소스는 익명화 AI 기술로 세상 모든 오프라인 공간을 안전하게 이해하고 최적화하는 AI 기업입니다.",
+    "companyIntro": "딥핑소스는 익명화 AI로 오프라인 공간을 안전하게 이해하고, 매장 운영을 최적화하는 AI 기업입니다. 2018년 창업 이후 누적 약 300억 원을 투자받았습니다.",
     "platformIntro": "SAAI(사이)는 딥핑소스의 철학이 구현된 리테일 Spatial Agentic AI 플랫폼입니다.",
     "vision": "세상 모든 데이터를 안전하게, 세상 모든 공간을 완벽하게",
     "privacyPrinciple": "개인정보를 건드리지 않고 공간을 이해합니다."
@@ -3574,7 +3586,7 @@
       {
         "year": "2025",
         "title": "KDDI strategic investment · Global",
-        "desc": "Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan."
+        "desc": "Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan. Cumulative funding of about ₩30B."
       },
       {
         "year": "Today",
@@ -3615,7 +3627,7 @@
       {
         "year": "2025",
         "title": "KDDI 전략투자 · 글로벌",
-        "desc": "KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장."
+        "desc": "KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장. 누적 투자 약 300억 원."
       },
       {
         "year": "현재",
@@ -3656,7 +3668,7 @@
       {
         "year": "2025",
         "title": "KDDI 戦略投資 · グローバル",
-        "desc": "KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。"
+        "desc": "KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。累計調達額は約300億ウォン。"
       },
       {
         "year": "現在",

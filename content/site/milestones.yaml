@@ -51,9 +51,9 @@ items:
       en: KDDI strategic investment · Global
       jp: KDDI 戦略投資 · グローバル
     desc:
-      ko: KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장.
-      en: Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan.
-      jp: KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。
+      ko: KDDI 오픈이노베이션펀드 3호 전략투자, 해외 매출 비중 50% 돌파 — 일본 등 글로벌 확장. 누적 투자 약 300억 원.
+      en: Strategic investment from KDDI Open Innovation Fund III; overseas revenue passed 50% — global expansion incl. Japan. Cumulative funding of about ₩30B.
+      jp: KDDIオープンイノベーションファンド3号から戦略投資、海外売上比率50%突破 — 日本などグローバル展開。累計調達額は約300億ウォン。
   - id: patents
     highlight: true
     year: { ko: 현재, en: Today, jp: 現在 }

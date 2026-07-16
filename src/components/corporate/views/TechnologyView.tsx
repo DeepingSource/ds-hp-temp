@@ -36,6 +36,7 @@ type Copy = {
   problemEyebrow: string;
   problemTitle: string;
   problemSub: string;
+  dilemmaNote: string;
   oldTag: string;
   oldTitle: string;
   dilemmaOld: string[];
@@ -63,6 +64,7 @@ type Copy = {
   complianceEyebrow: string;
   complianceTitle: string;
   complianceSub: string;
+  complianceDataSpec: string;
   complianceItems: ComplianceItem[];
 
   patentsLabel: string;
@@ -186,6 +188,9 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               </div>
             </div>
           </div>
+          <p className="mt-8 max-w-4xl text-center text-sm sm:text-base text-gray-500 break-keep">
+            {t.dilemmaNote}
+          </p>
         </div>
       </AnimatedSection>
 
@@ -294,8 +299,11 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
                 <p className="text-sm font-bold text-gray-700 uppercase tracking-wide">{t.complianceEyebrow}</p>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3 break-keep">{t.complianceTitle}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-8 break-keep">
+              <p className="text-gray-500 text-sm leading-relaxed mb-3 break-keep">
                 {t.complianceSub}
+              </p>
+              <p className="text-gray-500 text-sm leading-relaxed mb-8 break-keep">
+                {t.complianceDataSpec}
               </p>
               <div className="space-y-4">
                 {t.complianceItems.map((item) => (

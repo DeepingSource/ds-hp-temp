@@ -30,6 +30,14 @@ vmEyebrow:
   ko: Vision & Mission
   en: Vision & Mission
   jp: Vision & Mission
+missionStatement:
+  ko: REINVENT OFFLINE
+  en: REINVENT OFFLINE
+  jp: REINVENT OFFLINE
+missionStatementSub:
+  ko: 오프라인을 다시 만든다
+  en: Reinvent offline
+  jp: オフラインを、つくりなおす
 vision:
   ko: 당신의 공간에서, 모든 공간으로
   en: From your space — to every space.
@@ -55,9 +63,9 @@ storyHeading:
   en: From anonymization to the physical world
   jp: 匿名化から、物理世界へ
 storySub:
-  ko: 우리는 익명화에서 시작했습니다. 비전 AI로 공간을 읽다가, 사람이 일하는 물리 세계를 만났습니다.
-  en: We started with anonymization. Reading space with vision AI, we met the physical world — where people work and live.
-  jp: 私たちは匿名化から始めました。ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。
+  ko: 우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.
+  en: We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.
+  jp: 私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。
 leadershipEyebrow:
   ko: Leadership
   en: Leadership
