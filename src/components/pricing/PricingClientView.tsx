@@ -78,6 +78,11 @@ export interface Content {
   submittedTitle: string;
   submittedSub: string;
   recalc: string;
+  countBadge: string;
+  countDesc: string;
+  countPrice: string;
+  countOptions: string[];
+  countCta: string;
   entBadge: string;
   entTitle: string;
   entDesc: string;

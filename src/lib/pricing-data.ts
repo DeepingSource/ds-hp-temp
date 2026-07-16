@@ -105,6 +105,12 @@ export const B2C_PRICING = {
   storeAgent: { free: 0, standard: 15_000, premium: 25_000 },
 } as const;
 
+/** saai count — B2B 상권·유입 진단 (대여형, 원/월). 매장 수·계약 기간에 따라 조정. */
+export const COUNT_PRICING = {
+  standard: 300_000, // Standard 대여형
+  pro: 400_000,      // Pro — LTE 실시간
+} as const;
+
 /** B2B 견적 (프랜차이즈 본사) */
 export const B2B_PRICING = {
   perCamera: 6_125,                                    // StoreCare Plus 카메라당 환산

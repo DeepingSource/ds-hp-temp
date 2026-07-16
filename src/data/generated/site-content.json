@@ -1023,6 +1023,14 @@
       "submittedTitle": "Your quote request has been received!",
       "submittedSub": "A specialist will review it and get in touch.",
       "recalc": "Recalculate",
+      "countBadge": "Trade-area · inflow diagnostics",
+      "countDesc": "One camera counts the footfall outside, the customers who walk in, and your inflow rate — every day. We adjust the setup to your store count and contract term.",
+      "countPrice": "From ₩300K/mo · Standard rental",
+      "countOptions": [
+        "Pro — real-time over LTE (₩400K/mo)",
+        "Connect — reuse existing CCTV (quoted separately)"
+      ],
+      "countCta": "Talk pricing",
       "entBadge": "Headquarters only",
       "entTitle": "Enterprise custom solution",
       "entDesc": "Nationwide store control, custom API integration, and a dedicated CS team",
@@ -1133,6 +1141,14 @@
       "submittedTitle": "견적 요청이 접수되었습니다!",
       "submittedSub": "담당자가 확인 후 연락드리겠습니다.",
       "recalc": "다시 계산하기",
+      "countBadge": "상권·유입 진단",
+      "countDesc": "매장 앞 통행·입장·유입률을 카메라 한 대로 매일 셉니다. 매장 수와 계약 기간에 따라 구성을 조정해 드립니다.",
+      "countPrice": "월 30만 원부터 · Standard 대여형",
+      "countOptions": [
+        "Pro — LTE 실시간 (월 40만 원)",
+        "Connect — 기존 CCTV 연동 (별도 견적)"
+      ],
+      "countCta": "요금 상담 신청",
       "entBadge": "본사 전용",
       "entTitle": "엔터프라이즈 맞춤 솔루션",
       "entDesc": "전국 가맹점 통합 관제, 커스텀 API 연동, 전담 CS 팀 배정",
@@ -1243,6 +1259,14 @@
       "submittedTitle": "見積もり依頼を受け付けました！",
       "submittedSub": "担当者が確認後、ご連絡いたします。",
       "recalc": "再計算する",
+      "countBadge": "商圏・流入診断",
+      "countDesc": "店の前の通行・入店・流入率を、カメラ1台で毎日数えます。店舗数と契約期間に合わせて構成を調整します。",
+      "countPrice": "月30万ウォンから · Standardレンタル",
+      "countOptions": [
+        "Pro — LTEリアルタイム（月40万ウォン）",
+        "Connect — 既存CCTV連携（別途見積）"
+      ],
+      "countCta": "料金のご相談",
       "entBadge": "本社専用",
       "entTitle": "エンタープライズ向けカスタムソリューション",
       "entDesc": "全国加盟店の統合管制、カスタムAPI連携、専任CSチームの配置",

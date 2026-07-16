@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, Mail, Users, Shield, AlertCircle } from 'lucide-react';
+import { Check, Mail, Users, Shield, AlertCircle, TrendingUp } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Spinner from '@/components/ui/Spinner';
 import { submitQuoteRequest } from '@/lib/contact-lead';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { B2B_PRICING } from '@/lib/pricing-data';
+import { productPrimary } from '@/lib/brand-canon';
 import { type Content } from './PricingClientView';
 
 // StoreCare Plus is priced per camera; 6,125/cam keeps the default (4 cams) at the
@@ -210,8 +211,28 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
           </div>
         </div>
 
-        {/* ── 엔터프라이즈 카드 ── */}
-        <div className="max-w-md mx-auto">
+        {/* ── saai count 진단 + 엔터프라이즈 카드 ── */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+          {/* saai count — 상권·유입 진단 (B2B 대여형) */}
+          <div className="relative p-7 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-lighter rounded-full text-xs font-bold text-primary mb-5 border border-primary/10">
+                <TrendingUp className="w-3.5 h-3.5" /> {t.countBadge}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">{productPrimary('count')}</h3>
+              <p className="text-sm font-bold text-primary mb-3">{t.countPrice}</p>
+              <p className="text-sm text-gray-500 leading-relaxed mb-6 break-keep">{t.countDesc}</p>
+              <ul className="space-y-3 mb-8">
+                {t.countOptions.map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-gray-600"><Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />{f}</li>
+                ))}
+              </ul>
+            </div>
+            <Link href={localeHref(locale, '/contact')} className="btn-secondary w-full text-center mt-auto">
+              {t.countCta}
+            </Link>
+          </div>
+
           {/* 엔터프라이즈 솔루션 */}
           <div className="relative p-7 bg-gray-900 text-white rounded-2xl overflow-hidden shadow-xl">
             <div className="absolute -right-10 -top-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
