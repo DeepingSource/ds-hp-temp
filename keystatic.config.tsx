@@ -188,6 +188,7 @@ export default config({
       '케이스스터디': ['caseStudies'],
       '문서 · 용어 사전': ['docs', 'glossary'],
       'FAQ': ['faq'],
+      '이벤트': ['events'],
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'milestones', 'career'],
@@ -532,6 +533,48 @@ export default config({
         }),
         draft: fields.checkbox({ label: '초안 (노출 안 됨)', defaultValue: false }),
         body: fields.mdx({ label: '답변', components: blogComponents }),
+      },
+    }),
+
+    // 이벤트 — content/events/*.mdx. 컨벤션·박람회·웨비나 페이지(SITE_IMPROVEMENT P2-2).
+    // URL /events/<슬러그> 고정. 번역은 -en/-jp 접미사. publishUntil 경과 시 목록에서 빠지고
+    // 페이지는 "지난 이벤트" 아카이브로 남는다. noindex = 초청 전용(검색·sitemap 제외).
+    events: collection({
+      label: '이벤트',
+      path: 'content/events/*',
+      slugField: 'slug',
+      format: { contentField: 'body' },
+      entryLayout: 'content',
+      columns: ['title', 'startDate', 'venue', 'lang', 'draft'],
+      schema: {
+        title: fields.text({ label: '제목', validation: { isRequired: true } }),
+        slug: fields.slug({ name: { label: 'URL 슬러그 (/events/<슬러그>. 번역은 -en/-jp 접미사)' } }),
+        subtitle: fields.text({ label: '부제 (한 줄 소개)', multiline: true }),
+        venue: fields.text({ label: '장소 (venue · 예: COEX Hall C)' }),
+        startDate: fields.date({ label: '시작일', validation: { isRequired: true } }),
+        endDate: fields.date({ label: '종료일 (선택 · 하루면 비움)' }),
+        publishFrom: fields.date({ label: '노출 시작일 (선택 · 이 날짜부터 목록 노출)' }),
+        publishUntil: fields.date({ label: '노출 종료일 (선택 · 경과 시 목록에서 제외, 페이지는 아카이브 유지)' }),
+        cover: fields.text({ label: '커버 이미지 경로 (선택 · /images/events/...)' }),
+        coverAlt: fields.text({ label: '커버 대체텍스트' }),
+        ctaLabel: fields.text({ label: 'CTA 버튼 라벨 (선택 · 예: 사전 등록)' }),
+        ctaHref: fields.text({ label: 'CTA 링크 (선택)' }),
+        lang: fields.select({
+          label: '언어',
+          options: [
+            { label: '한국어', value: 'ko' },
+            { label: 'English', value: 'en' },
+            { label: '日本語', value: 'jp' },
+          ],
+          defaultValue: 'ko',
+        }),
+        draft: fields.checkbox({ label: '초안 (노출 안 됨)', defaultValue: false }),
+        noindex: fields.checkbox({ label: '검색 비노출 (noindex · 초청 전용 페이지)', defaultValue: false }),
+        body: fields.mdx({
+          label: '본문',
+          components: blogComponents,
+          options: { image: { directory: 'public/images/events', publicPath: '/images/events/' } },
+        }),
       },
     }),
 

@@ -33,6 +33,7 @@ export const crumbLabels: Record<string, Tri> = {
   docs: { ko: '문서', en: 'Docs', jp: 'ドキュメント' },
   glossary: { ko: '용어 사전', en: 'Glossary', jp: '用語辞典' },
   faq: { ko: 'FAQ', en: 'FAQ', jp: 'FAQ' },
+  events: { ko: '이벤트', en: 'Events', jp: 'イベント' },
 
   // technology pages
   anonymizer: { ko: 'Anonymizer', en: 'Anonymizer', jp: 'Anonymizer' },

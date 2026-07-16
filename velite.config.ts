@@ -119,6 +119,35 @@ const faq = defineCollection({
   }),
 });
 
+/** Events — convention/expo/webinar pages (SITE_IMPROVEMENT P2-2). content/events/**\/*.mdx.
+ *  Shown at /events/[slug] (no suffix); per-locale files use -en/-jp while the URL uses the
+ *  base (logical) slug — see src/lib/events.ts. `publishUntil` past → dropped from the list
+ *  but the page stays live as an archive; `noindex` for invite-only pages. */
+const events = defineCollection({
+  name: 'Event',
+  pattern: 'events/**/*.mdx',
+  schema: s.object({
+    slug: s.string(),
+    title: s.string(),
+    subtitle: s.string().default(''),
+    venue: s.string().default(''),
+    startDate: s.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    endDate: s.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    // Optional visibility window (KST date). Outside it → not listed (page still resolves).
+    publishFrom: s.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    publishUntil: s.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    cover: s.string().optional(),
+    coverAlt: s.string().optional(),
+    ctaLabel: s.string().default(''),
+    ctaHref: s.string().default(''),
+    lang: s.enum(['en', 'ko', 'jp']).default('ko'),
+    draft: s.boolean().default(false),
+    // Invite-only pages: keep out of sitemap + set robots noindex.
+    noindex: s.boolean().default(false),
+    body: s.raw(),
+  }),
+});
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -127,5 +156,5 @@ export default defineConfig({
     base: '/static/',
     clean: true,
   },
-  collections: { articles, caseStudies, docs, faq },
+  collections: { articles, caseStudies, docs, faq, events },
 });

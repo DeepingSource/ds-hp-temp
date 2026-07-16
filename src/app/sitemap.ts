@@ -3,6 +3,8 @@ import { getAllArticlesMeta } from '@/lib/article-metadata';
 import { getAllCaseStudies } from '@/lib/case-studies';
 import { getDocsForLocale } from '@/lib/docs';
 import { logicalDocSlug } from '@/data/docs/types';
+import { getEventsForLocale } from '@/lib/events';
+import { logicalEventSlug } from '@/data/events/types';
 import { glossaryTerms } from '@/data/glossaryTerms';
 import { solutionsData } from '@/data/solutionsData';
 
@@ -142,5 +144,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     docPages = [];
   }
 
-  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages, ...caseStudyPages, ...docPages];
+  // Events → /events/[slug]. Listed per-locale content (own `lang`), excluding
+  // invite-only (noindex) events. Archived events drop out of the sitemap.
+  let eventPages: MetadataRoute.Sitemap = [];
+  try {
+    eventPages = (['en', 'ko', 'jp'] as const).flatMap((loc) => {
+      const prefix = loc === 'en' ? '' : `/${loc}`;
+      return getEventsForLocale(loc)
+        .filter((e) => e.lang === loc && !e.noindex)
+        .map((e) => ({
+          url: `${baseUrl}${prefix}/events/${logicalEventSlug(e.slug)}`,
+          lastModified: STABLE_LAST_MODIFIED,
+          changeFrequency: 'weekly' as const,
+          priority: 0.5,
+        }));
+    });
+  } catch {
+    eventPages = [];
+  }
+
+  return [...staticPages, ...glossaryPages, ...solutionPages, ...articlePages, ...caseStudyPages, ...docPages, ...eventPages];
 }

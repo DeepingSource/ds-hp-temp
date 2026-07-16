@@ -60,6 +60,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/resources/glossary',
   '/resources/faq',
   '/resources/blog',
+  '/events',
   // Legal: physical /ko·/jp mirrors carry the viewer locale so LegalDoc can show
   // the interim EN/JP "Korean is authoritative" notice (Korean body is unchanged).
   '/legal/privacy',
@@ -117,6 +118,12 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL(mainRedirect, request.url), 308);
     }
 
+    // QR short link (SITE_IMPROVEMENT P2-2): /e/<slug> → /events/<slug>.
+    const qr = pathname.match(/^\/e\/([a-zA-Z0-9_-]+)\/?$/);
+    if (qr) {
+      return NextResponse.redirect(new URL(`/events/${qr[1]}`, request.url), 307);
+    }
+
     // Locale for <html lang> — exposed to the root layout via request header
     // (read with headers() in app/layout.tsx). URL prefix decides: /ko→ko, /jp→jp, else en.
     const localeMatch = pathname.match(/^\/(ko|jp)(?:\/|$)/);
@@ -136,7 +143,8 @@ export async function proxy(request: NextRequest) {
         || base.startsWith('/solutions/')
         || base.startsWith('/resources/blog/')
         || base.startsWith('/resources/case-studies/')
-        || base.startsWith('/resources/docs/');
+        || base.startsWith('/resources/docs/')
+        || base.startsWith('/events/');
       if (!isTranslated) {
         const url = request.nextUrl.clone();
         url.pathname = base;
