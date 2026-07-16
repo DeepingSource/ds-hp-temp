@@ -3536,6 +3536,56 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "capture-rate",
+      "order": 20,
+      "category": "analytics",
+      "englishTitle": "Capture Rate",
+      "title": {
+        "ko": "유입률",
+        "en": "Capture Rate",
+        "jp": "流入率"
+      },
+      "tagline": {
+        "ko": "매장 앞을 지나간 사람 중 실제로 들어온 비율 — 입지 문제와 매장 문제를 가르는 지표",
+        "en": "The share of passers-by who actually walk in — the metric that tells a location problem from a store problem",
+        "jp": "店の前を通った人のうち実際に入店した割合 — 立地の問題と店舗の問題を見分ける指標です"
+      },
+      "definition": {
+        "ko": "유입률(Capture Rate)이란 매장 앞을 지나간 유동인구 중 실제로 매장에 입장한 고객의 비율입니다. 입장객 수를 통행 인구로 나눠 계산합니다. 통행 인구가 입지의 기초 체력이라면, 입장객은 매장이 만들어낸 실제 수요입니다. 유입률이 낮으면 간판·쇼윈도·입구 등 매장의 문제, 통행 자체가 적으면 입지의 문제로 원인이 갈립니다.",
+        "en": "Capture rate is the share of the footfall passing a store that actually enters, calculated as entries divided by passers-by. Footfall is the location's baseline; entries are the demand the store itself creates. A low capture rate points to a store problem — signage, window, entrance — while low footfall itself points to a location problem.",
+        "jp": "流入率（Capture Rate）とは、店の前を通った通行人のうち実際に入店した顧客の割合で、入店数を通行量で割って算出します。通行量が立地の基礎体力なら、入店数は店舗がつくり出した実需です。流入率が低ければ看板・ショーウィンドウ・入口など店舗側の問題、通行量そのものが少なければ立地の問題と、原因が分かれます。"
+      },
+      "relatedTerms": [
+        "footfall-analysis",
+        "purchase-conversion-rate",
+        "dwell-time",
+        "pos-data-limitations"
+      ],
+      "relatedIndustries": [
+        "convenience",
+        "drugstore",
+        "mart"
+      ],
+      "saaiUsage": "saai count는 카메라 한 대로 매장 앞 유동인구와 입장객을 함께 세어 기간별·시간대별 유입률(%)을 제공합니다. saai insight는 유입 이후의 동선·체류·전환을 이어서 분석해, 유입률과 구매 전환율을 하나의 퍼널로 연결합니다.",
+      "metaDescription": "유입률(Capture Rate)이란? 매장 앞 통행 인구 대비 입장객 비율. 입지 문제와 매장 문제를 구분하는 방법과 유입률을 높이는 요소를 설명합니다.",
+      "body": [
+        {
+          "heading": "유입률이 답하는 질문",
+          "paragraphs": [
+            "매출이 기대에 못 미칠 때 가장 먼저 갈리는 질문은 \"자리가 나쁜가, 매장이 못 끄는가\"입니다. POS는 결제한 고객만 기록하므로 이 질문에 답하지 못합니다. 유입률은 문 밖 통행과 입장을 함께 세어, 두 문제를 데이터로 구분합니다.",
+            "통행은 많은데 유입률이 낮다면 매장 전면 — 간판, 쇼윈도, 입구 개방감, 첫 진열 — 을 점검할 신호입니다. 반대로 유입률은 준수한데 통행이 적다면, 마케팅과 출점 전략 등 입지 차원의 대응이 필요합니다."
+          ]
+        },
+        {
+          "heading": "유입률을 읽는 법",
+          "paragraphs": [
+            "절대값보다 추이와 비교가 중요합니다. 같은 매장의 시간대별·요일별 변화, 전면 개선 전후의 변화, 그리고 인근 매장이나 동일 브랜드 매장과의 비교가 실질적인 판단 근거가 됩니다.",
+            "유입률은 퍼널의 첫 단계입니다. 유입 이후의 체류·픽업·구매 전환까지 이어 보면, 어느 단계에서 고객이 새는지 매장 운영의 병목이 드러납니다."
+          ]
+        }
+      ]
     }
   ],
   "leadership": {

@@ -33,6 +33,14 @@ type Copy = {
   fullAria: string;
   partialAria: string;
 
+  dataEyebrow: string;
+  dataTitle: string;
+  dataSub: string;
+  dataFields: { name: string; desc: string }[];
+  legalTitle: string;
+  legalItems: { region: string; law: string; quote: string }[];
+  legalTimeline: { date: string; event: string }[];
+
   integrationEyebrow: string;
   integrationTitle: string;
   integrationSub: string;
@@ -101,6 +109,31 @@ const ko: Copy = {
   partialLabel: '부분 익명화 · 활용성 중심',
   fullAria: '장면 전체를 노이즈로 익명화한 영상',
   partialAria: '신원 영역만 익명화하고 분석 신호는 남긴 부분 익명화 영상',
+
+  dataEyebrow: 'What Remains',
+  dataTitle: '익명화 후, 남는 것의 전부',
+  dataSub:
+    '영상은 RAM(단기 메모리)에서 즉시 익명화·분석되고, 저장되지 않습니다. 시스템에 남는 로우 데이터는 아래가 전부 — 개인정보·민감정보를 포함하지 않습니다.',
+  dataFields: [
+    { name: '좌표 (X·Y)', desc: '평면도 기준 객체의 위치' },
+    { name: '분석 일시', desc: '분석 일자와 시간' },
+    { name: '객체 ID', desc: '신원과 무관한 임의 식별자' },
+    { name: '성별대', desc: '성별 분석값' },
+    { name: '연령대', desc: '연령 분석값' },
+    { name: '직원 여부', desc: '직원·고객 구분' },
+    { name: '시선', desc: '고개 방향 분석값' },
+    { name: '픽업 여부', desc: '상호작용(집어 듦) 여부' },
+  ],
+  legalTitle: '각국 법이 정의한 익명 정보 — 그리고 우리가 확인한 것',
+  legalItems: [
+    { region: 'KR', law: '개인정보보호법 제58조의2', quote: '시간·비용·기술 등을 합리적으로 고려할 때 다른 정보를 사용하여도 더 이상 개인을 알아볼 수 없는 정보에는 적용하지 아니한다.' },
+    { region: 'EU', law: 'GDPR Recital 26', quote: 'Anonymous data is not considered personal data. — 익명 정보는 개인정보로 보지 않습니다.' },
+    { region: 'US', law: 'CCPA', quote: '비식별화된 소비자 정보의 수집·이용·보유를 제한하지 않습니다.' },
+  ],
+  legalTimeline: [
+    { date: '2021.08', event: '개인정보보호위원회 유권해석 취득' },
+    { date: '2021.12', event: '익명화 기술에 대한 법무 자문 완료' },
+  ],
 };
 
 const en: Copy = {
@@ -156,6 +189,31 @@ const en: Copy = {
   partialLabel: 'Partial · utility-first',
   fullAria: 'Footage with the entire scene anonymized to noise',
   partialAria: 'Partial anonymization — only identity regions erased, analysis signals kept',
+
+  dataEyebrow: 'What Remains',
+  dataTitle: 'Everything that remains after anonymization',
+  dataSub:
+    'Footage is anonymized and analyzed in RAM — volatile, never stored. The raw data the system keeps is all of the following, and none of it is personal or sensitive.',
+  dataFields: [
+    { name: 'Coordinates (X·Y)', desc: 'Position on the floor plan' },
+    { name: 'Date & time', desc: 'When the analysis ran' },
+    { name: 'Object ID', desc: 'Random identifier, unrelated to identity' },
+    { name: 'Gender band', desc: 'Estimated value' },
+    { name: 'Age band', desc: 'Estimated value' },
+    { name: 'Staff flag', desc: 'Staff vs. customer' },
+    { name: 'Gaze', desc: 'Head-direction estimate' },
+    { name: 'Pickup', desc: 'Interaction flag' },
+  ],
+  legalTitle: 'How the law defines anonymous data — and what we confirmed',
+  legalItems: [
+    { region: 'KR', law: 'PIPA Article 58-2', quote: 'The Act does not apply to information that can no longer identify an individual, even combined with other information, considering time, cost, and technology.' },
+    { region: 'EU', law: 'GDPR Recital 26', quote: 'Anonymous data is not considered personal data.' },
+    { region: 'US', law: 'CCPA', quote: 'Does not restrict a business’s ability to collect, use, retain, sell, or disclose consumer information that is deidentified.' },
+  ],
+  legalTimeline: [
+    { date: 'Aug 2021', event: 'Interpretation obtained from Korea’s Personal Information Protection Commission' },
+    { date: 'Dec 2021', event: 'Legal opinion on the anonymization technology completed' },
+  ],
 };
 
 const jp: Copy = {
@@ -211,6 +269,31 @@ const jp: Copy = {
   partialLabel: '部分・活用重視',
   fullAria: '場面全体をノイズで匿名化した映像',
   partialAria: '身元領域だけを匿名化し、分析信号は残した部分匿名化の映像',
+
+  dataEyebrow: 'What Remains',
+  dataTitle: '匿名化のあとに残るもの、そのすべて',
+  dataSub:
+    '映像はRAM（短期メモリ）上で即座に匿名化・分析され、保存されません。システムに残るローデータは以下がすべてで、個人情報・機微情報を含みません。',
+  dataFields: [
+    { name: '座標（X·Y）', desc: '平面図基準の位置' },
+    { name: '分析日時', desc: '分析の日付と時刻' },
+    { name: 'オブジェクトID', desc: '身元と無関係なランダム識別子' },
+    { name: '性別帯', desc: '推定値' },
+    { name: '年齢帯', desc: '推定値' },
+    { name: 'スタッフ判定', desc: 'スタッフ・顧客の区分' },
+    { name: '視線', desc: '頭の向きの推定値' },
+    { name: 'ピックアップ', desc: '手に取ったかどうか' },
+  ],
+  legalTitle: '各国の法が定義する匿名情報 — そして私たちが確認したこと',
+  legalItems: [
+    { region: 'KR', law: '個人情報保護法 第58条の2', quote: '時間・費用・技術などを合理的に考慮したとき、他の情報を用いてももはや個人を識別できない情報には適用しない。' },
+    { region: 'EU', law: 'GDPR Recital 26', quote: 'Anonymous data is not considered personal data. — 匿名情報は個人データとみなされません。' },
+    { region: 'US', law: 'CCPA', quote: '非識別化された消費者情報の収集・利用・保持を制限しません。' },
+  ],
+  legalTimeline: [
+    { date: '2021.08', event: '個人情報保護委員会の有権解釈を取得' },
+    { date: '2021.12', event: '匿名化技術に関する法務意見を完了' },
+  ],
 };
 
 const C: Record<Locale, Copy> = { ko, en, jp };
@@ -292,6 +375,46 @@ export default function SealView({ locale }: { locale: Locale }) {
               </div>
               <figcaption className="mt-3 text-sm font-medium text-primary break-keep">{t.partialLabel}</figcaption>
             </figure>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* What remains — raw-data spec + legal basis (개인정보보호 자료 260220) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.dataEyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.dataTitle}</h2>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.dataSub}</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-16">
+            {t.dataFields.map((f) => (
+              <div key={f.name} className="p-4 rounded-xl border border-gray-100 bg-gray-50/60">
+                <p className="text-sm font-bold text-gray-900 mb-1">{f.name}</p>
+                <p className="text-xs text-gray-500 break-keep">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 break-keep">{t.legalTitle}</h3>
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            {t.legalItems.map((item) => (
+              <div key={item.law} className="p-5 rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-700">{item.region}</span>
+                  <p className="text-sm font-bold text-gray-900">{item.law}</p>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed break-keep">“{item.quote}”</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            {t.legalTimeline.map((item) => (
+              <div key={item.date} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-lighter border border-primary/10">
+                <span className="text-sm font-bold font-mono text-primary shrink-0">{item.date}</span>
+                <span className="text-sm text-gray-700 break-keep">{item.event}</span>
+              </div>
+            ))}
           </div>
         </div>
       </AnimatedSection>

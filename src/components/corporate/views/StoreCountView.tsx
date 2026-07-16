@@ -63,6 +63,9 @@ type Copy = {
   accBigCap: string;
   accTiles: [AccTile, AccTile, AccTile];
   accNote: string;
+  installHeading: string;
+  installSteps: { step: string; desc: string }[];
+  installNote: string;
   privacyTitle: string;
   privacySub: string;
   privacy: [PrivacyItem, PrivacyItem, PrivacyItem];
@@ -118,6 +121,16 @@ const C: Record<Locale, Copy> = {
       { v: '95.1%', label: '복합문화공간', when: '2025 Q2' },
     ],
     accNote: '* 사람이 직접 센 결과 대비 카운팅 정확도 · 각 현장 검증 기준 · 측정 시점은 타일별 표기. 현장 조건에 따라 결과가 달라질 수 있습니다.',
+    installHeading: '설치는 6단계, 전원 1구면 됩니다',
+    installSteps: [
+      { step: '카메라 부착', desc: '흡착 마운트로 벽·유리에 — 대로와 출입구가 한 화면에 담기게' },
+      { step: 'AI 박스 연결', desc: '매장 안 전원 콘센트 1구에 꽂으면 자동으로 켜집니다' },
+      { step: '핸드폰 연결', desc: '키보드·마우스 없이 핸드폰 브라우저로 바로 설정' },
+      { step: '기준선 긋기', desc: '통행 선과 유입 선을 화면 위에 손가락으로' },
+      { step: '측정 시작', desc: '버튼 하나로 상시 측정이 시작됩니다' },
+      { step: '결과 받기', desc: 'CSV로 내려받아 엑셀에서 바로 엽니다' },
+    ],
+    installNote: '공사 없이 흡착 마운트로 고정합니다. 장기 측정은 상시 전원 연결을 권장합니다.',
     privacyTitle: 'Privacy by Design',
     privacySub: '익명화가 1번입니다 — SEAL 엔진',
     privacy: [
@@ -175,6 +188,16 @@ const C: Record<Locale, Copy> = {
       { v: '95.1%', label: 'Cultural complex', when: '2025 Q2' },
     ],
     accNote: '* Counting accuracy vs. our own manual hand count · per-site verification · measurement period noted per tile. Results may vary with on-site conditions.',
+    installHeading: 'Six steps to install — one outlet is all it takes',
+    installSteps: [
+      { step: 'Mount the camera', desc: 'Suction mount on a wall or glass — street and entrance in one frame' },
+      { step: 'Plug in the AI box', desc: 'One indoor outlet; it powers up on its own' },
+      { step: 'Connect your phone', desc: 'No keyboard or mouse — set up right from the phone browser' },
+      { step: 'Draw the lines', desc: 'Trace the footfall and entry lines on screen with a finger' },
+      { step: 'Start measuring', desc: 'One button starts always-on measurement' },
+      { step: 'Get the results', desc: 'Download as CSV and open straight in a spreadsheet' },
+    ],
+    installNote: 'No construction — the suction mount holds it. For long-running measurement, wire to constant power.',
     privacyTitle: 'Privacy by Design',
     privacySub: 'Anonymization comes first — the SEAL engine',
     privacy: [
@@ -232,6 +255,16 @@ const C: Record<Locale, Copy> = {
       { v: '95.1%', label: '複合文化空間', when: '2025 Q2' },
     ],
     accNote: '* 人が直接数えた結果に対するカウント精度 · 各現場の検証基準 · 測定時点はタイル別に表記。現場条件により結果は変わり得ます。',
+    installHeading: '設置は6ステップ、電源1口だけ',
+    installSteps: [
+      { step: 'カメラを取り付け', desc: '吸着マウントで壁・ガラスに — 通りと入口をひとつの画面に' },
+      { step: 'AIボックスを接続', desc: '店内のコンセント1口に挿すだけで自動起動' },
+      { step: 'スマホを接続', desc: 'キーボード・マウス不要、スマホのブラウザでそのまま設定' },
+      { step: '基準線を引く', desc: '通行ラインと流入ラインを画面上で指でなぞる' },
+      { step: '測定開始', desc: 'ボタンひとつで常時測定が始まります' },
+      { step: '結果を受け取る', desc: 'CSVでダウンロードし、表計算ソフトですぐ開けます' },
+    ],
+    installNote: '工事は不要 — 吸着マウントで固定します。長期間の測定は常時電源への接続をおすすめします。',
     privacyTitle: 'Privacy by Design',
     privacySub: '匿名化が1番です — SEAL エンジン',
     privacy: [
@@ -380,6 +413,23 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
               );
             })}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 설치 6단계 (설치·사용 설명서 v3) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center break-keep">{t.installHeading}</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {t.installSteps.map((s, i) => (
+              <div key={s.step} className="p-5 rounded-2xl border border-gray-100 bg-gray-50/60">
+                <p className="text-2xs font-mono font-medium text-primary mb-2">0{i + 1}</p>
+                <p className="text-sm font-bold text-gray-900 mb-1">{s.step}</p>
+                <p className="text-xs text-gray-500 leading-relaxed break-keep">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-center text-xs text-gray-500 break-keep">{t.installNote}</p>
         </div>
       </AnimatedSection>
 
