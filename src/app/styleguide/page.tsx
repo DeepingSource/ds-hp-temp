@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { Boxes } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -46,6 +47,7 @@ function Swatches({ title, items }: { title: string; items: ReturnType<typeof SW
 }
 
 export default function StyleguidePage() {
+  if (process.env.NODE_ENV === 'production') notFound();
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <Container>

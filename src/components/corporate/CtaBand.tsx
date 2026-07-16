@@ -11,10 +11,10 @@ import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
  * Localized; reassurance microcopy mirrors the contact success screen.
  */
 
-const dict: Record<Locale, { text: string; button: string; demo: string }> = {
-  ko: { text: '세 store를 한 흐름으로 — 우리 매장엔 어떤 조합이 맞을까요?', button: '맞는 조합 찾기', demo: '라이브 데모 보기' },
-  en: { text: 'Three stores, one flow — which mix fits yours?', button: 'Find your fit', demo: 'See the live demo' },
-  jp: { text: '三つの store をひとつの流れに — あなたの店舗にはどの組み合わせが?', button: '最適な組み合わせを見る', demo: 'ライブデモを見る' },
+const dict: Record<Locale, { text: string; button: string }> = {
+  ko: { text: '세 store를 한 흐름으로 — 우리 매장엔 어떤 조합이 맞을까요?', button: '맞는 조합 찾기' },
+  en: { text: 'Three stores, one flow — which mix fits yours?', button: 'Find your fit' },
+  jp: { text: '三つの store をひとつの流れに — あなたの店舗にはどの組み合わせが?', button: '最適な組み合わせを見る' },
 };
 
 const reassurance: Record<Locale, string> = {
@@ -43,14 +43,7 @@ export default function CtaBand({ locale }: { locale: Locale }) {
               {t.button}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
-            {/* Low-friction second path: see it work in the live simulator, no sales conversation needed */}
-            <Link
-              href={localeHref(locale, '/demo')}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/25 bg-white/80 px-6 py-3 text-base font-semibold text-primary transition-colors hover:border-primary/40 hover:bg-white"
-            >
-              {t.demo}
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
+            {/* /demo 링크 제거 (2026-07-16 리뷰) — 목업 갤러리는 내부 검토용, 프로덕션 비노출. */}
           </div>
         </div>
       </Container>
