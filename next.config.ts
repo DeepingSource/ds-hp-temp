@@ -37,19 +37,28 @@ if (isGhPages) {
     // /blog, /blog/:slug, /sample, /how-it-works → 미들웨어에서 처리 (미니사이트 충돌 방지)
     // 신 IA 전환 redirects (PLAN_v1.1 §2.3). exact source 매칭으로 하위경로·미니사이트 보호.
     return [
-      // ── 제품 라우트 정돈 (301) ──
-      { source: '/store-insight', destination: '/products/store-insight', permanent: true },
-      { source: '/storeinsight', destination: '/products/store-insight', permanent: true },
-      { source: '/storecare', destination: '/products/store-care', permanent: true },
-      { source: '/storeagent', destination: '/products/store-agent', permanent: true },
-      { source: '/storeagent/how-it-works', destination: '/products/store-agent#how-it-works', permanent: true },
+      // ── 제품 라우트: store-* → saai-* URL 전환 (P1-3, 301) ──
+      { source: '/products/store-insight', destination: '/products/saai-insight', permanent: true },
+      { source: '/products/store-care', destination: '/products/saai-care', permanent: true },
+      { source: '/products/store-agent', destination: '/products/saai-agent', permanent: true },
+      { source: '/products/store-count', destination: '/products/saai-count', permanent: true },
+      { source: '/:locale(ko|jp)/products/store-insight', destination: '/:locale/products/saai-insight', permanent: true },
+      { source: '/:locale(ko|jp)/products/store-care', destination: '/:locale/products/saai-care', permanent: true },
+      { source: '/:locale(ko|jp)/products/store-agent', destination: '/:locale/products/saai-agent', permanent: true },
+      { source: '/:locale(ko|jp)/products/store-count', destination: '/:locale/products/saai-count', permanent: true },
+      // 레거시 짧은 경로 → 최종 목적지로 직접(체인 1회 초과 금지)
+      { source: '/store-insight', destination: '/products/saai-insight', permanent: true },
+      { source: '/storeinsight', destination: '/products/saai-insight', permanent: true },
+      { source: '/storecare', destination: '/products/saai-care', permanent: true },
+      { source: '/storeagent', destination: '/products/saai-agent', permanent: true },
+      { source: '/storeagent/how-it-works', destination: '/products/saai-agent#how-it-works', permanent: true },
       { source: '/storeagent/pricing', destination: '/pricing', permanent: true },
 
       // ── 기술 라우트 정돈 (301) ──
       { source: '/seal', destination: '/technology/seal', permanent: true },
       { source: '/tech-anonymizer', destination: '/technology/anonymizer', permanent: true },
       { source: '/tech-spatial-ai', destination: '/technology/spatial-ai', permanent: true },
-      { source: '/tech-store-care-ai', destination: '/products/store-care', permanent: true },
+      { source: '/tech-store-care-ai', destination: '/products/saai-care', permanent: true },
 
       // ── 솔루션/업종 정돈 (301) ──
       { source: '/industries', destination: '/solutions', permanent: true },

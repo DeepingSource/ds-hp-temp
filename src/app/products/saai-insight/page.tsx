@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     'Read your store with an analyst’s composure. Enterprise spatial analytics that cross-analyze flow, dwell, and conversion to pinpoint what moves revenue. POS only knows what sold; store insight knows what almost sold.',
   keywords: ['saai insight', 'store insight', 'spatial analytics', 'store data', 'flow analysis', 'conversion', 'revenue analysis', 'DeepingSource'],
   alternates: {
-    canonical: '/products/store-insight',
+    canonical: '/products/saai-insight',
     languages: {
-      en: '/products/store-insight',
-      ko: '/ko/products/store-insight',
-      ja: '/jp/products/store-insight',
+      en: '/products/saai-insight',
+      ko: '/ko/products/saai-insight',
+      ja: '/jp/products/saai-insight',
     },
   },
   openGraph: {

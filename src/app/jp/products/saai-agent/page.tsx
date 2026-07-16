@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     'エグゼクティブの判断を店舗運営に加えます。今日、何を、どれだけ、どこに置くか — store agent がデータを意思決定へと移します。推奨はAIが、決定は人が。',
   keywords: ['saai agent', 'store agent', '店舗AI', '運営自動化', '意思決定AI', '発注自動化', 'DeepingSource'],
   alternates: {
-    canonical: '/jp/products/store-agent',
+    canonical: '/jp/products/saai-agent',
     languages: {
-      en: '/products/store-agent',
-      ko: '/ko/products/store-agent',
-      ja: '/jp/products/store-agent',
+      en: '/products/saai-agent',
+      ko: '/ko/products/saai-agent',
+      ja: '/jp/products/saai-agent',
     },
   },
   openGraph: {

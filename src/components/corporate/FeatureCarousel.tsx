@@ -41,19 +41,19 @@ type ProductStruct = {
 
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'count', name: productNaming.count.store, stage: 'Observe', icon: DoorOpen, href: '/products/store-count',
+    key: 'count', name: productNaming.count.store, stage: 'Observe', icon: DoorOpen, href: '/products/saai-count',
     images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {
-    key: 'insight', name: productNaming.insight.store, saaiName: productNaming.insight.saai, stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight',
+    key: 'insight', name: productNaming.insight.store, saaiName: productNaming.insight.saai, stage: 'Analyze', icon: Grid3x3, href: '/products/saai-insight',
     images: [{ src: '/images/storeinsight-heatmap.webp', primary: true }, { src: '/images/storeinsight-case1-chart.webp' }],
   },
   {
-    key: 'care', name: productNaming.care.store, saaiName: productNaming.care.saai, stage: 'Suggest', icon: Radar, href: '/products/store-care',
+    key: 'care', name: productNaming.care.store, saaiName: productNaming.care.saai, stage: 'Suggest', icon: Radar, href: '/products/saai-care',
     images: [{ src: '/images/storecare-contamination-detection.webp', primary: true }, { src: '/images/storecare-fridge-door-open.webp' }],
   },
   {
-    key: 'agent', name: productNaming.agent.store, saaiName: productNaming.agent.saai, stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent',
+    key: 'agent', name: productNaming.agent.store, saaiName: productNaming.agent.saai, stage: 'Learn', icon: ClipboardCheck, href: '/products/saai-agent',
     images: [{ src: '/images/storeagent-ai-pop-mockup.webp', primary: true }],
   },
 ];

@@ -35,10 +35,10 @@ const PRODUCTS = siteContent.products as Record<Locale, ProductsCopy>;
 
 type LoopStruct = { id: string; key: ProductKey; stageNo: string; stage: string; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
 const LOOP_STRUCT: LoopStruct[] = [
-  { id: 'store-count', key: 'count', stageNo: '01', stage: 'Observe', icon: DoorOpen, href: '/products/store-count' },
-  { id: 'store-insight', key: 'insight', stageNo: '02', stage: 'Analyze', icon: Grid3x3, href: '/products/store-insight' },
-  { id: 'store-care', key: 'care', stageNo: '03', stage: 'Suggest', icon: Radar, href: '/products/store-care' },
-  { id: 'store-agent', key: 'agent', stageNo: '04', stage: 'Learn', icon: ClipboardCheck, href: '/products/store-agent', emphasis: true },
+  { id: 'store-count', key: 'count', stageNo: '01', stage: 'Observe', icon: DoorOpen, href: '/products/saai-count' },
+  { id: 'store-insight', key: 'insight', stageNo: '02', stage: 'Analyze', icon: Grid3x3, href: '/products/saai-insight' },
+  { id: 'store-care', key: 'care', stageNo: '03', stage: 'Suggest', icon: Radar, href: '/products/saai-care' },
+  { id: 'store-agent', key: 'agent', stageNo: '04', stage: 'Learn', icon: ClipboardCheck, href: '/products/saai-agent', emphasis: true },
 ];
 
 type OwnerStruct = { id: string; name: string; href: string };

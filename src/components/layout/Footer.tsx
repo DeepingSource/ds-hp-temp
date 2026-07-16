@@ -11,10 +11,10 @@ const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
 type FLink = { href: string; label: Tri; external?: boolean };
 
 const productLinks: FLink[] = [
-  { href: '/products/store-count', label: L('store count', 'store count', 'store count') },
-  { href: '/products/store-insight', label: L('saai insight', 'saai insight', 'saai insight') },
-  { href: '/products/store-care', label: L('saai care', 'saai care', 'saai care') },
-  { href: '/products/store-agent', label: L('saai agent', 'saai agent', 'saai agent') },
+  { href: '/products/saai-count', label: L('store count', 'store count', 'store count') },
+  { href: '/products/saai-insight', label: L('saai insight', 'saai insight', 'saai insight') },
+  { href: '/products/saai-care', label: L('saai care', 'saai care', 'saai care') },
+  { href: '/products/saai-agent', label: L('saai agent', 'saai agent', 'saai agent') },
   { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store') },
   { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai') },
 ];

@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     'Bring an executive’s judgment to store operations. What to stock today, how much, and where — store agent turns data into decisions. The AI advises; people decide.',
   keywords: ['saai agent', 'store agent', 'store AI', 'operations automation', 'decision AI', 'replenishment', 'DeepingSource'],
   alternates: {
-    canonical: '/products/store-agent',
+    canonical: '/products/saai-agent',
     languages: {
-      en: '/products/store-agent',
-      ko: '/ko/products/store-agent',
-      ja: '/jp/products/store-agent',
+      en: '/products/saai-agent',
+      ko: '/ko/products/saai-agent',
+      ja: '/jp/products/saai-agent',
     },
   },
   openGraph: {

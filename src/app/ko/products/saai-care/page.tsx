@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     '작은 매장에도 든든한 눈 하나. 사고·도난·이상 상황을 살피고 알려주는 사장님용 안심 솔루션. 시급 34원, 월 14,900원부터. storecare.ai에서 운영됩니다.',
   keywords: ['saai care', 'store care', '사장님', '매장 안심', '도난 방지', 'CCTV AI', 'SMB', 'storecare.ai'],
   alternates: {
-    canonical: '/ko/products/store-care',
+    canonical: '/ko/products/saai-care',
     languages: {
-      en: '/products/store-care',
-      ko: '/ko/products/store-care',
-      ja: '/jp/products/store-care',
+      en: '/products/saai-care',
+      ko: '/ko/products/saai-care',
+      ja: '/jp/products/saai-care',
     },
   },
   openGraph: {

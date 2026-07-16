@@ -52,9 +52,9 @@ export default function NotFound() {
         {/* Quick links */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
           {[
-            { href: '/products/store-care', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-            { href: '/products/store-insight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
-            { href: '/products/store-agent', label: 'STOREAGENT', icon: Zap, color: 'text-primary-light bg-primary/10 border-primary/20' },
+            { href: '/products/saai-care', label: 'STORECARE', icon: Eye, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+            { href: '/products/saai-insight', label: 'STOREINSIGHT', icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
+            { href: '/products/saai-agent', label: 'STOREAGENT', icon: Zap, color: 'text-primary-light bg-primary/10 border-primary/20' },
           ].map((item) => {
             const Icon = item.icon;
             return (

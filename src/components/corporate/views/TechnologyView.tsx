@@ -84,9 +84,9 @@ const stackHrefs = [
 ];
 const stackIcons = [Fingerprint, ShieldCheck, Grid3x3];
 const poweredHrefs = [
-  '/products/store-insight',
-  '/products/store-agent',
-  '/products/store-care',
+  '/products/saai-insight',
+  '/products/saai-agent',
+  '/products/saai-care',
 ];
 
 const CMS = siteContent.technology as unknown as Record<Locale, Copy>;

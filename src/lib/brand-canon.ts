@@ -206,8 +206,8 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  * (naming reorg §14/§15, option B). `saai` = value brand = the PRIMARY public label;
  * `store` = domain implementation (the URL slug's name) = the secondary. store count
  * has NO `saai` — it's a SOURCE tool (verb), not a SOLUTION (§12.B), so it keeps its
- * store name. Names are locale-invariant (lowercase). URLs (/products/store-*) are
- * unchanged — this is surface labels only.
+ * store name. Names are locale-invariant (lowercase). URLs are /products/saai-* (P1-3);
+ * the old /products/store-* paths 301-redirect to them (see next.config.ts).
  */
 export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
 export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {

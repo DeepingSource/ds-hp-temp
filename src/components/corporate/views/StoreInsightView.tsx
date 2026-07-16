@@ -21,15 +21,15 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 // Below-the-fold framer-motion mockup → deferred so its chunk stays out of the
-// initial JS of /products/store-insight. Default SSR keeps the content prerendered.
+// initial JS of /products/saai-insight. Default SSR keeps the content prerendered.
 const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram'), {
   loading: () => <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />,
 });
 
 /**
  * StoreInsightView — shared store insight product-detail composition.
- * Rendered by `/products/store-insight` (en), `/ko/products/store-insight`,
- * `/jp/products/store-insight` with the locale prop. Product name stays identical.
+ * Rendered by `/products/saai-insight` (en), `/ko/products/saai-insight`,
+ * `/jp/products/saai-insight` with the locale prop. Product name stays identical.
  */
 
 const C: Record<Locale, {
@@ -219,14 +219,14 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: productPrimary('insight'), alternateName: productNaming.insight.store, description: t.heroSub, path: '/products/store-insight', locale })} />
+      <JsonLd data={softwareApplication({ name: productPrimary('insight'), alternateName: productNaming.insight.store, description: t.heroSub, path: '/products/saai-insight', locale })} />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-24 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('insight'), path: '/products/store-insight' }]} locale={locale} tone="light" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('insight'), path: '/products/saai-insight' }]} locale={locale} tone="light" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <BarChart3 className="w-4 h-4" />
             {productPrimary('insight')}
@@ -413,7 +413,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-2">Powered by store agent</p>
             <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{t.cardTitle}</h3>
             <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">{t.cardBody}</p>
-            <Link href={localeHref(locale, '/products/store-agent')} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
+            <Link href={localeHref(locale, '/products/saai-agent')} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
               {t.cardCta}
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -439,7 +439,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
               {t.finalCta}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <Link href={localeHref(locale, '/products/store-agent')} className="btn-ghost-dark">
+            <Link href={localeHref(locale, '/products/saai-agent')} className="btn-ghost-dark">
               {t.seeAgent}
             </Link>
           </div>

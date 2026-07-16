@@ -22,8 +22,8 @@ import { perfectSpace } from '@/lib/brand-canon';
 
 /**
  * StoreCountView — store count product-detail composition.
- * Rendered by `/products/store-count` (en), `/ko/products/store-count`,
- * `/jp/products/store-count` with the locale prop.
+ * Rendered by `/products/saai-count` (en), `/ko/products/saai-count`,
+ * `/jp/products/saai-count` with the locale prop.
  * Source of truth: StoreCount 리플렛(양면 A4 v2 · 상권분석 퍼널).
  * Narrative: 못 하고 있죠 → 우리가 대신 셉니다 → 무엇을 알 수 있나 →
  * 싸고 간편·여럿 동시·결정 근거 → From Store to Site → 정확도 → 프라이버시 → CTA.
@@ -253,7 +253,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
 
   return (
     <div className="bg-white min-h-screen">
-      <JsonLd data={softwareApplication({ name: 'store count', description: t.heroSub, path: '/products/store-count', locale })} />
+      <JsonLd data={softwareApplication({ name: 'store count', description: t.heroSub, path: '/products/saai-count', locale })} />
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
@@ -261,7 +261,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-40 lg:pb-20 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store count', path: '/products/store-count' }]} locale={locale} tone="light" className="mb-6 justify-center" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: 'store count', path: '/products/saai-count' }]} locale={locale} tone="light" className="mb-6 justify-center" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <TrendingUp className="w-4 h-4" />
             store count · {t.heroEyebrow}

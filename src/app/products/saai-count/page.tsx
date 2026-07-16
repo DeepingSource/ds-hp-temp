@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     'Count the footfall passing your store, the customers who walk in, and your inflow rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
   keywords: ['store count', 'footfall counting', 'trade area analysis', 'people counting', 'inflow rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
   alternates: {
-    canonical: '/products/store-count',
+    canonical: '/products/saai-count',
     languages: {
-      en: '/products/store-count',
-      ko: '/ko/products/store-count',
-      ja: '/jp/products/store-count',
+      en: '/products/saai-count',
+      ko: '/ko/products/saai-count',
+      ja: '/jp/products/saai-count',
     },
   },
   openGraph: {

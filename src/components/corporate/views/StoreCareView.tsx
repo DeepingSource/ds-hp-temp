@@ -13,8 +13,8 @@ import { crumb } from '@/lib/breadcrumb-labels';
 
 /**
  * StoreCareView — shared store care product-detail composition.
- * Rendered by `/products/store-care` (en), `/ko/products/store-care`,
- * `/jp/products/store-care` with the locale prop. Product name stays identical.
+ * Rendered by `/products/saai-care` (en), `/ko/products/saai-care`,
+ * `/jp/products/saai-care` with the locale prop. Product name stays identical.
  * External CTAs keep storecare.ai.
  */
 
@@ -159,14 +159,14 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <JsonLd data={softwareApplication({ name: productPrimary('care'), alternateName: productNaming.care.store, description: t.heroSub, path: '/products/store-care', locale })} />
+      <JsonLd data={softwareApplication({ name: productPrimary('care'), alternateName: productNaming.care.store, description: t.heroSub, path: '/products/saai-care', locale })} />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-40 lg:pb-20 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('care'), path: '/products/store-care' }]} locale={locale} tone="light" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('care'), path: '/products/saai-care' }]} locale={locale} tone="light" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
             <Store className="w-4 h-4" />
             {productPrimary('care')}
