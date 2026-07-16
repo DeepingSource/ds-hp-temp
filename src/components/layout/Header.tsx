@@ -57,7 +57,7 @@ const NAV: NavItem[] = [
     ],
   },
   {
-    type: 'menu', key: 'company', label: L('Company', 'Company', '会社'), base: '/company', items: [
+    type: 'menu', key: 'company', label: L('회사', 'Company', '会社'), base: '/company', items: [
       { href: '/company/about', label: L('회사 소개', 'About', '会社紹介'), desc: L('DeepingSource Inc.', 'DeepingSource Inc.', 'DeepingSource Inc.') },
       { href: '/company/news', label: L('보도자료', 'News', 'プレスリリース') },
       { href: '/company/career', label: L('채용', 'Careers', '採用') },
