@@ -71,9 +71,28 @@ export default function PopBeforeAfter() {
                   <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
                 </span>
                 <p className="mt-4 text-sm font-bold text-gray-900 break-keep">{s.title}</p>
+                {s.desc && <p className="mt-1 text-2xs text-gray-500 break-keep">{s.desc}</p>}
               </div>
             );
           })}
+        </div>
+
+        {/* 한 번에 만드는 POP 종류 (saai.store) */}
+        <div className="mt-10 flex flex-col items-center gap-3">
+          <p className="text-xs font-medium text-gray-400">{store.popTypesLabel}</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {store.popTypes.map((p) => (
+              <span key={p} className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-600">{p}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* POP메이커 바로 써보기 CTA */}
+        <div className="mt-8 text-center">
+          <a href={store.cta.href} target="_blank" rel="noopener noreferrer" className="btn-primary btn-lg inline-flex items-center gap-2">
+            {store.cta.label}
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>

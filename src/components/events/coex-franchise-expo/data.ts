@@ -1,6 +1,6 @@
 import {
   Filter, Users, TrendingUp, Wrench, Download, ShieldCheck,
-  ImageUp, Wand2, Rocket, Zap, MessageSquare, ClipboardList,
+  ImageUp, Wand2, Rocket, Zap, MessageSquare, ClipboardList, Palette,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -31,6 +31,7 @@ export interface DetectionCell {
 export interface FlowStep {
   icon: LucideIcon;
   title: string;
+  desc?: string;
 }
 
 const IMG = '/images';
@@ -89,10 +90,11 @@ export const store = {
   eyebrow: 'saai store',
   eyebrowSub: 'POP메이커',
   question: '할인특가 행사 중인데, 어떻게 눈에 띄게 알리지?',
-  lead: '상품과 문구만 입력하면 포스터부터 진열대 안내물까지, 매장에 필요한 홍보물을 빠르게 만들 수 있습니다.',
+  // saai.store/features/pop-maker 기준 정본 카피
+  lead: '상품 이미지와 행사 내용만 입력하면, 고객 눈에 띄는 POP을 1분 안에 만들어 바로 붙일 수 있습니다.',
   beforeAfter: {
-    heading: 'POP 하나로 달라집니다',
-    sub: '그냥 지나치기 쉬운 할인 표시도 매장 인상을 만듭니다. 시선을 잡는 POP로 지나가는 고객까지 멈추게 해보세요.',
+    heading: '상품이 더 잘 보이면, 판매도 더 쉬워집니다',
+    sub: '고객 눈에 띄는 POP을 쉽고 빠르게 만들어, 그냥 지나칠 고객까지 멈추게 해보세요.',
     beforeLabel: 'Before',
     afterLabel: 'After',
     // Before = 손글씨 느낌의 밋밋한 안내(CSS). After = AI가 만든 1+1 할인 POP(랜딩 전용 자산).
@@ -101,11 +103,20 @@ export const store = {
     afterImg: `${IMG}/events/coex-franchise-expo-84/pop-after.webp`,
     afterAlt: 'AI가 만든 1+1 이벤트 할인 POP',
   },
+  // saai.store 3스텝
   steps: [
-    { icon: ImageUp, title: '상품 이미지 올리고' },
-    { icon: Wand2, title: '문구 입력 & 분위기 설정' },
-    { icon: Rocket, title: '1분 만에 POP 완성!' },
+    { icon: ImageUp, title: '상품 이미지 업로드', desc: '팔고 싶은 상품 사진 한 장' },
+    { icon: Wand2, title: '행사 내용 입력', desc: '1+1 · 덤증정 · 신상 · 품절 등' },
+    { icon: Palette, title: '디자인 설정', desc: '배경 스타일 · 방향 선택' },
   ] as FlowStep[],
+  // 한 번에 만드는 POP 종류(saai.store)
+  popTypesLabel: '한 번에 만드는 POP',
+  popTypes: ['뱃지', '하이라이트', '띠지', '가격표', '광고지'],
+  // POP메이커 바로 써보기 CTA (saai.store "무료로 사용하기")
+  cta: {
+    label: '무료로 POP 만들기',
+    href: 'https://saai.store/pop?utm_source=coex-expo-84&utm_medium=event&utm_campaign=franchise2026',
+  },
 };
 
 /** 섹션 5 — 현장 프로그램 */
