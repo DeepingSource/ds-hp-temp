@@ -1,10 +1,11 @@
 import Image from 'next/image';
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { store } from '../data';
+import { PopMockup } from '../mockups';
 
 /**
- * 섹션 4 — saai store(POP메이커). 중앙 헤더 + before/after + 3스텝 플로우.
- * before는 밋밋한 손글씨 안내(CSS 재현), after는 AI POP(리포 자산).
+ * 섹션 4 — saai store(POP메이커). 중앙 헤더 + 생성 애니메이션 목업(손 안내문 → 완성 POP) + 3스텝 플로우.
+ * 목업은 실제 POP메이커 결과물(pop 폴더)을 순환 재현한다.
  */
 export default function PopBeforeAfter() {
   const ba = store.beforeAfter;
@@ -23,38 +24,10 @@ export default function PopBeforeAfter() {
           <p className="mt-4 text-gray-600 leading-relaxed break-keep">{store.lead}</p>
         </div>
 
-        {/* Before / After */}
-        <div className="mt-12 max-w-3xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 sm:gap-6">
-            {/* Before */}
-            <div className="flex-1 flex flex-col">
-              <span className="mb-2 text-center text-xs font-bold uppercase tracking-wide text-gray-400">{ba.beforeLabel}</span>
-              <div className="flex-1 rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 flex flex-col items-center justify-center py-10 px-6 text-center">
-                <p className="text-2xl font-medium text-gray-400" style={{ fontFamily: 'cursive' }}>{ba.beforeText}</p>
-                <p className="mt-1 text-lg text-gray-400" style={{ fontFamily: 'cursive' }}>{ba.beforeSubText}</p>
-              </div>
-            </div>
-
-            {/* 화살표 */}
-            <div className="flex items-center justify-center shrink-0" aria-hidden="true">
-              <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <ArrowRight className="hidden sm:block w-5 h-5" />
-                <ArrowDown className="sm:hidden w-5 h-5" />
-              </span>
-            </div>
-
-            {/* After */}
-            <div className="flex-1 flex flex-col">
-              <span className="mb-2 text-center text-xs font-bold uppercase tracking-wide text-primary">{ba.afterLabel}</span>
-              <div className="flex-1 rounded-2xl overflow-hidden border border-gray-100 shadow-sm bg-white">
-                <div className="relative aspect-[4/3]">
-                  <Image src={ba.afterImg} alt={ba.afterAlt} fill sizes="(max-width: 640px) 90vw, 40vw" className="object-cover" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 text-center">
+        {/* 생성 애니메이션 목업 */}
+        <div className="mt-12">
+          <PopMockup />
+          <div className="mt-6 text-center max-w-2xl mx-auto">
             <p className="font-bold text-gray-900 break-keep">{ba.heading}</p>
             <p className="mt-1.5 text-sm text-gray-500 leading-relaxed break-keep">{ba.sub}</p>
           </div>

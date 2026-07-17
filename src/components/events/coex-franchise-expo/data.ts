@@ -34,6 +34,18 @@ export interface FlowStep {
   desc?: string;
 }
 
+/** POP 메이커 before/after 예시 — 목업의 '생성 애니메이션'이 순환한다(실제 POP메이커 결과물). */
+export interface PopExample {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  /** 캔버스 하단 태그 pill */
+  tag: string;
+  /** 완성(after) 단계 캡션 */
+  caption: string;
+}
+
 const IMG = '/images';
 
 /** 섹션 1 — 히어로 */
@@ -95,14 +107,35 @@ export const store = {
   beforeAfter: {
     heading: '상품이 더 잘 보이면, 판매도 더 쉬워집니다',
     sub: '고객 눈에 띄는 POP을 쉽고 빠르게 만들어, 그냥 지나칠 고객까지 멈추게 해보세요.',
-    beforeLabel: 'Before',
-    afterLabel: 'After',
-    // Before = 손글씨 느낌의 밋밋한 안내(CSS). After = AI가 만든 1+1 할인 POP(랜딩 전용 자산).
-    beforeText: '할인특가',
-    beforeSubText: '1 + 1',
-    afterImg: `${IMG}/events/coex-franchise-expo-84/pop-after.webp`,
-    afterAlt: 'AI가 만든 1+1 이벤트 할인 POP',
   },
+  // 손 안내문 → saai POP 실제 결과물(saai.store POP메이커). 목업이 생성 과정을 순환 재현.
+  popPath: `${IMG}/events/coex-franchise-expo-84/pop`,
+  examples: [
+    {
+      before: `${IMG}/events/coex-franchise-expo-84/pop/ramen-before.webp`,
+      after: `${IMG}/events/coex-franchise-expo-84/pop/ramen-after.webp`,
+      beforeAlt: '라면에 날계란 추가를 손으로 적어 붙인 안내문',
+      afterAlt: 'saai가 만든 라면 날계란 500원 추가 행사 POP',
+      tag: '가격·행사 POP',
+      caption: '가격·행사를 눈에 띄게',
+    },
+    {
+      before: `${IMG}/events/coex-franchise-expo-84/pop/newitem-before.webp`,
+      after: `${IMG}/events/coex-franchise-expo-84/pop/newitem-after.webp`,
+      beforeAlt: '신상품 육포깡을 손으로 적어 붙인 안내문',
+      afterAlt: 'saai가 만든 육포깡 신상품 POP',
+      tag: '신상품 POP',
+      caption: '신상품을 돋보이게',
+    },
+    {
+      before: `${IMG}/events/coex-franchise-expo-84/pop/cleanup-before.webp`,
+      after: `${IMG}/events/coex-franchise-expo-84/pop/cleanup-after.webp`,
+      beforeAlt: '자리 정리를 손으로 적어 붙인 안내문',
+      afterAlt: 'saai가 만든 자리 정리 안내 POP',
+      tag: '매장 안내 POP',
+      caption: '매장 안내도 깔끔하게',
+    },
+  ] as PopExample[],
   // saai.store 3스텝
   steps: [
     { icon: ImageUp, title: '상품 이미지 업로드', desc: '팔고 싶은 상품 사진 한 장' },
@@ -129,8 +162,9 @@ export const program = {
   ] as FeatureCard[],
 };
 
-/** 섹션 6 — 방문 예약 CTA */
+/** 섹션 6 — 소개 자료 받기 CTA */
 export const booth = {
-  heading: '부스 방문을 미리 예약하시면 대기 없이 상담해 드립니다',
+  heading: '부스에서 만나기 전에, 제품 소개 자료를 먼저 받아보세요',
+  sub: '상권분석부터 매장 관리·POP 제작까지, 한눈에 보는 소개 자료를 보내드립니다.',
   icon: ClipboardList,
 };

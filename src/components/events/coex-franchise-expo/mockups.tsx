@@ -11,6 +11,7 @@ import { type Locale } from '@/lib/i18n';
 
 const StoreCountCountingMockup = dynamic(() => import('@/components/mockups/StoreCountCountingMockup'), { ssr: false });
 const StoreCareStatusMockup = dynamic(() => import('@/components/mockups/StoreCareStatusMockup'), { ssr: false });
+const PopMakerMockup = dynamic(() => import('./PopMakerMockup'), { ssr: false });
 
 /** saai count — 유동인구·유입 카운팅 앱(기준선 드로잉 + 실시간 카운트). */
 export function CountMockup({ locale }: { locale: Locale }) {
@@ -28,4 +29,9 @@ export function CareMockup({ locale }: { locale: Locale }) {
       <StoreCareStatusMockup active locale={locale} />
     </div>
   );
+}
+
+/** saai store — POP 메이커 생성 애니메이션(before → 생성 중 → 완성 POP 순환). */
+export function PopMockup() {
+  return <PopMakerMockup active />;
 }

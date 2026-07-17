@@ -41,6 +41,7 @@ public/feedback/
 new-image-generated*/
 new_image_*/
 new-images/
+/pop/
 _frames_tmp/
 asset-prompts/
 # internal business/pricing strategy doc — kept local, not in repo

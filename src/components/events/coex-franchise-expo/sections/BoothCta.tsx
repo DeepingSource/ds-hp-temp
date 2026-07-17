@@ -30,6 +30,7 @@ export default function BoothCta({ event, locale }: { event: Event; locale: Loca
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug break-keep">
               {booth.heading}
             </h2>
+            <p className="mt-4 text-slate-300 leading-relaxed break-keep">{booth.sub}</p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
               <span className="inline-flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-primary" aria-hidden="true" />
