@@ -121,7 +121,7 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
               </p>
             )}
 
-            <MobileTOC headings={headings} />
+            <MobileTOC headings={headings} locale={locale} />
 
             <div className="text-base">
               <MDXRemote
@@ -182,7 +182,7 @@ export default function DocDetailView({ doc, locale }: { doc: Doc; locale: Local
           </main>
 
           {/* Right — in-page table of contents (auto from h2) */}
-          <TableOfContents headings={headings} />
+          <TableOfContents headings={headings} locale={locale} />
         </div>
       </div>
     </div>

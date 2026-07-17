@@ -116,7 +116,7 @@ export default function BlogArticleView({ locale, article }: { locale: Locale; a
       <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex gap-10">
           <article id="article-content" className="flex-1 min-w-0 max-w-2xl">
-            <MobileTOC headings={headings} />
+            <MobileTOC headings={headings} locale={locale} />
             <ArticleRenderer body={article.body} />
 
             <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-gray-100">
@@ -131,7 +131,7 @@ export default function BlogArticleView({ locale, article }: { locale: Locale; a
             </div>
           </article>
 
-          <TableOfContents headings={headings} />
+          <TableOfContents headings={headings} locale={locale} />
         </div>
       </div>
 
