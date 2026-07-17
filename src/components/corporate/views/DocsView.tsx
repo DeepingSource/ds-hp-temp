@@ -33,9 +33,7 @@ const C: Record<Locale, {
     featuredTitle: 'store insight 사용자 매뉴얼',
     featuredDesc: '로그인·기간 설정부터 방문자 분석, 히트맵, 동선, 퍼널, 구매 전환율까지 — 대시보드 리포트 읽는 법을 안내합니다.',
     comingSoon: '준비 중',
-    comingSoonManuals: [
-      { title: 'store agent 사용자 매뉴얼', desc: '본사 권고를 점주 언어로 번역하고 운영 우선순위를 제안하는 store agent 매뉴얼입니다.' },
-    ],
+    comingSoonManuals: [],
   },
   en: {
     eyebrow: 'Docs',
@@ -46,9 +44,7 @@ const C: Record<Locale, {
     featuredTitle: 'store insight User Manual',
     featuredDesc: 'From login and date ranges to visitor analysis, heatmaps, flow, funnels, and purchase conversion — a guide to reading the dashboard report.',
     comingSoon: 'Coming soon',
-    comingSoonManuals: [
-      { title: 'store agent User Manual', desc: 'The store agent manual that translates HQ guidance into owner-friendly language and proposes operational priorities.' },
-    ],
+    comingSoonManuals: [],
   },
   jp: {
     eyebrow: 'Docs',
@@ -59,9 +55,7 @@ const C: Record<Locale, {
     featuredTitle: 'store insight ユーザーマニュアル',
     featuredDesc: 'ログイン・期間設定から、来店者分析、ヒートマップ、動線、ファネル、購買転換率まで — ダッシュボードレポートの読み方をご案内します。',
     comingSoon: '準備中',
-    comingSoonManuals: [
-      { title: 'store agent ユーザーマニュアル', desc: '本部の推奨を店主の言葉に翻訳し、運営の優先順位を提案する store agent のマニュアルです。' },
-    ],
+    comingSoonManuals: [],
   },
 };
 
@@ -81,7 +75,7 @@ export default function DocsView({ locale }: { locale: Locale }) {
     }))
     .filter((g) => g.items.length > 0);
   // Product-guide landings (store insight / store care), rendered as featured cards.
-  const productLandings = ['store-insight', 'store-care']
+  const productLandings = ['store-insight', 'store-care', 'store-agent']
     .map((s) => docs.find((d) => logicalDocSlug(d.slug) === s))
     .filter((d): d is NonNullable<typeof d> => !!d);
 

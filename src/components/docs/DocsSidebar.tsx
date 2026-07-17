@@ -15,6 +15,7 @@ import { docSectionOrder, docSectionLabelI18n, logicalDocSlug, type Doc } from '
 const PRODUCT_LABELS: Record<string, string> = {
   'store-insight': 'store insight',
   'store-care': 'store care',
+  'store-agent': 'store agent',
 };
 
 export default function DocsSidebar({ locale, currentSlug }: { locale: Locale; currentSlug?: string }) {
