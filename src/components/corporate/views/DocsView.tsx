@@ -75,7 +75,7 @@ export default function DocsView({ locale }: { locale: Locale }) {
     }))
     .filter((g) => g.items.length > 0);
   // Product-guide landings (store insight / store care), rendered as featured cards.
-  const productLandings = ['store-insight', 'store-care', 'store-agent']
+  const productLandings = ['store-insight', 'store-care', 'store-agent', 'store-count']
     .map((s) => docs.find((d) => logicalDocSlug(d.slug) === s))
     .filter((d): d is NonNullable<typeof d> => !!d);
 
