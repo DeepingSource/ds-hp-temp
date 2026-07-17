@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AgentMockupShowcase from '@/components/sections/AgentMockupShowcase';
+import EnterpriseAppShowcase from '@/components/mockups/EnterpriseAppShowcase';
 import ProcessStepper from '@/components/ui/ProcessStepper';
 import {
   BrainCircuit,
@@ -104,8 +105,11 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── Agent mockups (액션 카드·AI 채팅·푸시 알림) ── */}
+      {/* ── Agent mockups (액션 카드·AI 채팅·푸시 알림) — 사장님(폰) 뷰 ── */}
       <AgentMockupShowcase locale={locale} />
+
+      {/* ── Enterprise 웹앱 목업 (본사·점장 뷰, 6탭 재현) ── */}
+      <EnterpriseAppShowcase locale={locale} />
 
       {/* ── Pricing teaser ── */}
       <AnimatedSection className="py-16 lg:py-20 bg-white">
