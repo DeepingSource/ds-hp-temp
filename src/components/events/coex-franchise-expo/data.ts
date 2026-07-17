@@ -23,6 +23,9 @@ export interface DetectionCell {
   alt: string;
   label: string;
   desc: string;
+  /** 상태칩 라벨 + Tailwind 색 (정상=success·주의=warning·감지=error) */
+  status: string;
+  statusClass: string;
 }
 
 export interface FlowStep {
@@ -74,10 +77,10 @@ export const care = {
   question: '계속 지켜볼 수 없는데, 매장 상태는 괜찮을까?',
   lead: '매대가 비거나 바닥이 오염되고, 냉장고 온도가 오르는 등 확인이 필요한 상황을 AI가 빠르게 감지해 알려드립니다.',
   detections: [
-    { img: `${IMG}/storecare-equipment-detection.webp`, alt: '냉장 설비 온도 감지 화면', label: '설비 상태', desc: '냉장 온도가 오르면 알려요' },
-    { img: `${IMG}/storecare-front-facing-display.webp`, alt: '진열대 정면 상태 감지 화면', label: '진열 상태', desc: '빈 매대를 바로 알려요' },
-    { img: `${IMG}/storecare-contamination-detection.webp`, alt: '바닥 오염 감지 화면', label: '오염 상태', desc: '치워야 할 곳만 콕 짚어요' },
-    { img: `${IMG}/storecare-fridge-door-open.webp`, alt: '냉장고 문 열림 감지 화면', label: '문 열림 감지', desc: '냉장고·출입문 열림을 알려요' },
+    { img: `${IMG}/storecare-equipment-detection.webp`, alt: '냉장 설비 온도 감지 화면', label: '설비 상태', desc: '냉장 온도가 오르면 알려요', status: '정상', statusClass: 'text-success' },
+    { img: `${IMG}/storecare-front-facing-display.webp`, alt: '진열대 정면 상태 감지 화면', label: '진열 상태', desc: '빈 매대를 바로 알려요', status: '주의', statusClass: 'text-warning' },
+    { img: `${IMG}/storecare-contamination-detection.webp`, alt: '바닥 오염 감지 화면', label: '오염 상태', desc: '치워야 할 곳만 콕 짚어요', status: '감지', statusClass: 'text-error' },
+    { img: `${IMG}/storecare-fridge-door-open.webp`, alt: '냉장고 문 열림 감지 화면', label: '문 열림 감지', desc: '냉장고·출입문 열림을 알려요', status: '주의', statusClass: 'text-warning' },
   ] as DetectionCell[],
 };
 

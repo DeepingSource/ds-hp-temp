@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { type Locale } from '@/lib/i18n';
 import { care } from '../data';
 import { CareMockup } from '../mockups';
+import DetectionStatusBadge from '../DetectionStatusBadge';
 
 /**
  * 섹션 3 — saai care. 중앙 헤더 + 2열(왼쪽 2×2 감지 사진 그리드 · 오른쪽 실시간 알림 폰).
@@ -26,10 +27,11 @@ export default function DetectionGrid({ locale }: { locale: Locale }) {
         <div className="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* 2×2 감지 그리드 */}
           <div className="grid grid-cols-2 gap-4">
-            {care.detections.map((d) => (
+            {care.detections.map((d, i) => (
               <figure key={d.label} className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm">
                 <div className="relative aspect-[4/3]">
                   <Image src={d.img} alt={d.alt} fill sizes="(max-width: 1024px) 45vw, 22vw" className="object-cover" />
+                  <DetectionStatusBadge status={d.status} statusClass={d.statusClass} index={i} />
                 </div>
                 <figcaption className="p-3">
                   <p className="text-sm font-bold text-gray-900">{d.label}</p>
