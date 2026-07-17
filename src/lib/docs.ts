@@ -57,15 +57,32 @@ export function getDocsUsingTerm(termSlug: string, locale: Locale): Doc[] {
   return getDocsForLocale(locale).filter((d) => d.relatedTerms.includes(termSlug));
 }
 
-/** Prev/next within the same PRODUCT (parent) group, section→order flat (IA-2).
- *  Keeps navigation from crossing between store insight / store care / general docs. */
+/** Prev/next chain for a doc (IA-4). Three kinds of chain, matching the sidebar:
+ *  - a general doc (no parent, not a manual landing) → the other general docs;
+ *  - a product chapter (parent set) → its product's landing + chapters;
+ *  - a product landing (no parent, has chapters) → itself as head + its chapters.
+ *  So the landing leads into its first chapter and general docs never cross into a
+ *  product manual. Order within a chain stays section→order (getDocsForLocale sort). */
 export function getAdjacentDocs(logicalSlug: string, locale: Locale): { prev?: Doc; next?: Doc } {
   const all = getDocsForLocale(locale);
   const cur = all.find((d) => logicalDocSlug(d.slug) === logicalSlug);
   if (!cur) return {};
-  const list = all.filter((d) => (d.parent ?? null) === (cur.parent ?? null));
-  const i = list.findIndex((d) => logicalDocSlug(d.slug) === logicalSlug);
-  return { prev: i > 0 ? list[i - 1] : undefined, next: i < list.length - 1 ? list[i + 1] : undefined };
+
+  // A no-parent doc that owns chapters is a product landing → head of that product's chain.
+  const isLanding = !cur.parent && all.some((d) => d.parent === logicalDocSlug(cur.slug));
+  const productKey = cur.parent ?? (isLanding ? logicalDocSlug(cur.slug) : null);
+
+  let chain: Doc[];
+  if (productKey) {
+    const landing = all.find((d) => !d.parent && logicalDocSlug(d.slug) === productKey);
+    const chapters = all.filter((d) => d.parent === productKey);
+    chain = landing ? [landing, ...chapters] : chapters;
+  } else {
+    chain = all.filter((d) => !d.parent && d.section !== 'manual');
+  }
+
+  const i = chain.findIndex((d) => logicalDocSlug(d.slug) === logicalSlug);
+  return { prev: i > 0 ? chain[i - 1] : undefined, next: i < chain.length - 1 ? chain[i + 1] : undefined };
 }
 
 export type { Doc } from '@/data/docs/types';
