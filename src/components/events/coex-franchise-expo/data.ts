@@ -92,11 +92,11 @@ export const store = {
     sub: '그냥 지나치기 쉬운 할인 표시도 매장 인상을 만듭니다. 시선을 잡는 POP로 지나가는 고객까지 멈추게 해보세요.',
     beforeLabel: 'Before',
     afterLabel: 'After',
-    // Before = 손글씨 느낌의 밋밋한 안내(브로슈어 재현, CSS). After = AI POP(리포 자산).
+    // Before = 손글씨 느낌의 밋밋한 안내(CSS). After = AI가 만든 1+1 할인 POP(랜딩 전용 자산).
     beforeText: '할인특가',
-    beforeSubText: '2 + 1',
-    afterImg: `${IMG}/storeagent-ai-pop-mockup.webp`,
-    afterAlt: 'AI가 만든 컬러 할인 POP',
+    beforeSubText: '1 + 1',
+    afterImg: `${IMG}/events/coex-franchise-expo-84/pop-after.webp`,
+    afterAlt: 'AI가 만든 1+1 이벤트 할인 POP',
   },
   steps: [
     { icon: ImageUp, title: '상품 이미지 올리고' },
