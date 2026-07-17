@@ -109,7 +109,6 @@ export const store = {
     sub: '고객 눈에 띄는 POP을 쉽고 빠르게 만들어, 그냥 지나칠 고객까지 멈추게 해보세요.',
   },
   // 손 안내문 → saai POP 실제 결과물(saai.store POP메이커). 목업이 생성 과정을 순환 재현.
-  popPath: `${IMG}/events/coex-franchise-expo-84/pop`,
   examples: [
     {
       before: `${IMG}/events/coex-franchise-expo-84/pop/ramen-before.webp`,

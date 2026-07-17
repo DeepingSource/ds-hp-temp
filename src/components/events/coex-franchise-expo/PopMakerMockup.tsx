@@ -63,18 +63,23 @@ export default function PopMakerMockup({ active = true }: { active?: boolean }) 
 
         {/* 캔버스 — 다크 아트보드, object-contain으로 POP 전체 노출 */}
         <div className="relative aspect-[4/3] bg-gray-950 overflow-hidden">
-          {/* before (손 안내문) */}
+          {/* before (손 안내문) — key로 예시 경계에서 노드를 새로 마운트해 다음 예시 완성본의
+              스포일러 페이드아웃을 차단. 예시 내부(before→gen→after)는 key 불변 → 리빌 크로스페이드 유지. */}
           <Image
+            key={`${cur.ex}-before`}
             src={ex.before}
-            alt={ex.beforeAlt}
+            alt={showAfter ? '' : ex.beforeAlt}
+            aria-hidden={showAfter}
             fill
             sizes="(max-width: 640px) 90vw, 420px"
             className={`object-contain transition-opacity duration-500 ${showAfter ? 'opacity-0' : 'opacity-100'}`}
           />
           {/* after (완성 POP) */}
           <Image
+            key={`${cur.ex}-after`}
             src={ex.after}
-            alt={ex.afterAlt}
+            alt={showAfter ? ex.afterAlt : ''}
+            aria-hidden={!showAfter}
             fill
             sizes="(max-width: 640px) 90vw, 420px"
             className={`object-contain transition-opacity duration-500 ${showAfter ? 'opacity-100' : 'opacity-0'}`}
