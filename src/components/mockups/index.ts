@@ -18,6 +18,8 @@ export { default as MacBookFrame } from './MacBookFrame';
 // ── 폰 목업 ──────────────────────────────────────────────────────────────────
 export { default as StoreCareMockup } from './StoreCareMockup';
 export { default as StoreInsightMockup } from './StoreInsightMockup';
+export { default as StoreCountCountingMockup } from './StoreCountCountingMockup';
+export { default as StoreCareStatusMockup } from './StoreCareStatusMockup';
 export { default as ActionCardMockup } from './ActionCardMockup';
 export { default as ChatMockup } from './ChatMockup';
 export { default as PushNotificationMockup } from './PushNotificationMockup';

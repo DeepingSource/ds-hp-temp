@@ -9,23 +9,23 @@ import { type Locale } from '@/lib/i18n';
  * 서버 컴포넌트(ExpoLanding/ProductStory)는 이 래퍼를 media prop으로 주입한다.
  */
 
-const StoreInsightMockup = dynamic(() => import('@/components/mockups/StoreInsightMockup'), { ssr: false });
-const StoreCareMockup = dynamic(() => import('@/components/mockups/StoreCareMockup'), { ssr: false });
+const StoreCountCountingMockup = dynamic(() => import('@/components/mockups/StoreCountCountingMockup'), { ssr: false });
+const StoreCareStatusMockup = dynamic(() => import('@/components/mockups/StoreCareStatusMockup'), { ssr: false });
 
-/** saai count — 폰 대시보드(상권/유입 분석). */
+/** saai count — 유동인구·유입 카운팅 앱(기준선 드로잉 + 실시간 카운트). */
 export function CountMockup({ locale }: { locale: Locale }) {
   return (
     <div className="w-full max-w-[300px] mx-auto">
-      <StoreInsightMockup active locale={locale} />
+      <StoreCountCountingMockup active locale={locale} />
     </div>
   );
 }
 
-/** saai care — 실시간 매장 상태·알림 앱. */
+/** saai care — 매장 상태 홈(스코어·상태칩·감지 알림·온도 게이지). */
 export function CareMockup({ locale }: { locale: Locale }) {
   return (
     <div className="w-full max-w-[280px] mx-auto">
-      <StoreCareMockup active locale={locale} />
+      <StoreCareStatusMockup active locale={locale} />
     </div>
   );
 }
