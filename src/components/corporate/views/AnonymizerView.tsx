@@ -75,7 +75,7 @@ const ko: Copy = {
   heroTitleA: '신원은 지우고,',
   heroTitleB: '분석은 그대로 — 입력 시점의 익명화',
   heroSub:
-    '비전 AI는 결국 사람을 봅니다. 그 순간, 그건 개인정보가 됩니다. Anonymizer는 영상이 들어오는 첫 단계에서 얼굴과 신원을 지우고, 동선·자세·체류 같은 분석 신호는 그대로 남깁니다. 여러 사람을 동시에, 동의 없이도 보호하고 — 원본은 어디에도 남기지 않습니다.',
+    '비전 AI는 결국 사람을 봅니다. 그 순간, 그건 개인정보가 됩니다. Anonymizer는 영상이 들어오는 첫 단계에서 얼굴과 신원을 지우고, 동선·자세·체류 같은 분석 신호는 그대로 남깁니다. 여러 사람을 동시에, 동의 없이도 보호하고 — 원본은 어디에도 남기지 않습니다. Anonymizer는 익명화 엔진이며, 이를 기존 시스템에 내장하는 개발자 도구가 SEAL SDK입니다.',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: '신원을 지우는 네 단계',
@@ -152,7 +152,7 @@ const en: Copy = {
   heroTitleA: 'Erase the identity.',
   heroTitleB: 'Keep the analysis. Anonymized on input.',
   heroSub:
-    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, while keeping the signals analysis needs: movement, posture, dwell. It protects everyone in frame — privacy by design, with no individual opt-in needed — and keeps no original behind.',
+    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, while keeping the signals analysis needs: movement, posture, dwell. It protects everyone in frame — privacy by design, with no individual opt-in needed — and keeps no original behind. Anonymizer is the anonymization engine; SEAL SDK is the developer toolkit that embeds it into your systems.',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: 'Four steps that erase identity',
@@ -229,7 +229,7 @@ const jp: Copy = {
   heroTitleA: '身元は消し、',
   heroTitleB: '分析はそのまま — 入力時点で匿名化',
   heroSub:
-    'ビジョンAIは結局、人を見ます。その瞬間、それは個人情報になります。Anonymizerは映像が入ってくる最初の段階で顔と身元を消し、動線・姿勢・滞在といった分析信号はそのまま残します。複数の人を同時に、同意なしでも保護し — 原本はどこにも残しません。',
+    'ビジョンAIは結局、人を見ます。その瞬間、それは個人情報になります。Anonymizerは映像が入ってくる最初の段階で顔と身元を消し、動線・姿勢・滞在といった分析信号はそのまま残します。複数の人を同時に、同意なしでも保護し — 原本はどこにも残しません。Anonymizerは匿名化エンジンであり、それを既存システムに組み込む開発者向けツールがSEAL SDKです。',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: '身元を消す4ステップ',

@@ -61,7 +61,7 @@ const ko: Copy = {
   heroTitleA: '비전 AI는 사람을 봅니다.',
   heroTitleB: '그 순간, 신원을 지우는 SDK',
   heroSub:
-    'GDPR도, CCPA도, 국내 개인정보보호법도 얼굴과 신원을 그냥 두지 않습니다. SEAL SDK는 입력 시점에 신원을 지우고, 누구가 아니라 무엇을 어떻게만 남깁니다. 익명화·인식·공간 분석을 모듈로 제공해, 기존 시스템에 그대로 내장합니다.',
+    'GDPR도, CCPA도, 국내 개인정보보호법도 얼굴과 신원을 그냥 두지 않습니다. SEAL SDK는 입력 시점에 신원을 지우고, 누구가 아니라 무엇을 어떻게만 남깁니다. 익명화·인식·공간 분석을 모듈로 제공해, 기존 시스템에 그대로 내장합니다. 핵심 익명화 엔진은 Anonymizer이며, SEAL은 이를 SDK로 감싸 어떤 런타임에도 내장합니다.',
 
   promiseEyebrow: 'The SEAL Promise',
   promiseTitle: '네 글자에 담은 설계 원칙',
@@ -141,7 +141,7 @@ const en: Copy = {
   heroTitleA: 'Vision AI sees people.',
   heroTitleB: 'SEAL erases identity the instant it does.',
   heroSub:
-    'GDPR, CCPA, and privacy law won’t leave faces and identities alone. SEAL SDK strips identity at the moment of input and keeps only what and how — never who. Anonymization, recognition, and spatial analytics ship as modules you embed straight into your existing systems.',
+    'GDPR, CCPA, and privacy law won’t leave faces and identities alone. SEAL SDK strips identity at the moment of input and keeps only what and how — never who. Anonymization, recognition, and spatial analytics ship as modules you embed straight into your existing systems. The core anonymization engine is Anonymizer; SEAL wraps it as an SDK you can embed in any runtime.',
 
   promiseEyebrow: 'The SEAL Promise',
   promiseTitle: 'Design principles in four letters',
@@ -221,7 +221,7 @@ const jp: Copy = {
   heroTitleA: 'ビジョンAIは、人を見ます。',
   heroTitleB: 'その瞬間に身元を消すSDK',
   heroSub:
-    'GDPRもCCPAも、国内の個人情報保護法も、顔と身元をそのままにはしません。SEAL SDKは入力の時点で身元を消し、誰かではなく、何をどうだけを残します。匿名化・認識・空間分析をモジュールとして提供し、既存システムにそのまま組み込みます。',
+    'GDPRもCCPAも、国内の個人情報保護法も、顔と身元をそのままにはしません。SEAL SDKは入力の時点で身元を消し、誰かではなく、何をどうだけを残します。匿名化・認識・空間分析をモジュールとして提供し、既存システムにそのまま組み込みます。中核の匿名化エンジンはAnonymizerであり、SEALはそれをSDKとして包み、どのランタイムにも組み込みます。',
 
   promiseEyebrow: 'The SEAL Promise',
   promiseTitle: '4つの文字に込めた設計原則',
