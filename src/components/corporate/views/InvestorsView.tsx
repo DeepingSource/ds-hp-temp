@@ -48,8 +48,8 @@ type Copy = {
 const C: Record<Locale, Copy> = {
   ko: {
     badge: 'Investor Relations',
-    heroMaster: '모든 매장을',
-    heroMasterAccent: '한 매장처럼.',
+    heroMaster: '모든 공간을,',
+    heroMasterAccent: '완벽하게.',
     heroSub: 'Physical AI 시대, 익명화 기술로 오프라인 공간을 이해하고 운영을 자동화합니다.',
     visionEyebrow: 'Vision 2031',
     visionHeading: COMPANY.vision,
@@ -79,8 +79,8 @@ const C: Record<Locale, Copy> = {
   },
   en: {
     badge: 'Investor Relations',
-    heroMaster: 'Every store,',
-    heroMasterAccent: 'like one.',
+    heroMaster: 'Every space,',
+    heroMasterAccent: 'made perfect.',
     heroSub: 'In the Physical AI era, we understand offline spaces with anonymization technology and automate operations.',
     visionEyebrow: 'Vision 2031',
     visionHeading: 'All the world’s data, kept safe — all the world’s spaces, made perfect.',
@@ -110,8 +110,8 @@ const C: Record<Locale, Copy> = {
   },
   jp: {
     badge: 'Investor Relations',
-    heroMaster: 'すべての店舗を',
-    heroMasterAccent: 'ひとつの店舗のように。',
+    heroMaster: 'すべての空間を',
+    heroMasterAccent: '完璧に。',
     heroSub: 'Physical AIの時代、匿名化技術でオフライン空間を理解し、運営を自動化します。',
     visionEyebrow: 'Vision 2031',
     visionHeading: '世界中のすべてのデータを安全に、世界中のすべての空間を完璧に。',

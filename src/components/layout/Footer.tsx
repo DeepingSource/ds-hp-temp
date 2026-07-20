@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Linkedin, Instagram } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { productPrimary, type ProductKey } from '@/lib/brand-canon';
 import { stripLocale, localeHref, type Locale } from '@/lib/i18n';
@@ -83,14 +82,6 @@ export default function Footer() {
               <span className="font-brand text-xl font-bold text-white tracking-wide">DEEPINGSOURCE</span>
             </Link>
             <p className="text-sm text-gray-300 break-keep">{footerIntro[locale]}</p>
-            <div className="flex items-center gap-3 mt-4">
-              <span className="text-gray-700 opacity-30 cursor-not-allowed" title="준비 중" aria-hidden="true">
-                <Linkedin className="w-4 h-4" />
-              </span>
-              <span className="text-gray-700 opacity-30 cursor-not-allowed" title="준비 중" aria-hidden="true">
-                <Instagram className="w-4 h-4" />
-              </span>
-            </div>
           </div>
 
           {/* Link columns — 모바일 2열 그리드, sm+ 가로 배치 */}

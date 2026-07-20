@@ -1410,6 +1410,10 @@
       ],
       "poweredProducts": [
         {
+          "name": "saai count",
+          "desc": "Counts outside — footfall and trade area at the door"
+        },
+        {
           "name": "saai insight",
           "desc": "Reads yesterday — the space beyond sales"
         },
@@ -1524,6 +1528,10 @@
       ],
       "poweredProducts": [
         {
+          "name": "saai count",
+          "desc": "밖을 세다 — 문 앞의 유입과 상권"
+        },
+        {
           "name": "saai insight",
           "desc": "어제를 읽다 — 매출 너머의 공간"
         },
@@ -1637,6 +1645,10 @@
         }
       ],
       "poweredProducts": [
+        {
+          "name": "saai count",
+          "desc": "外を数える — 入口の流入と商圏"
+        },
         {
           "name": "saai insight",
           "desc": "昨日を読む — 売上の先にある空間"

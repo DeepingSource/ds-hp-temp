@@ -173,7 +173,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                     return (
                     <RevealItem key={sol.slug} className="h-full">
                     <Link
-                      href={`/solutions/${sol.slug}`}
+                      href={localeHref(locale, `/solutions/${sol.slug}`)}
                       className="group flex flex-col gap-3 h-full p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                     >
                       {/* 임팩트 수치 */}

@@ -44,7 +44,7 @@ const NAV: NavItem[] = [
       { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer'), desc: L('익명화 모듈', 'Anonymization', '匿名化モジュール') },
       { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('SDK', 'SDK', 'SDK') },
       { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI'), desc: L('MTMC', 'MTMC', 'MTMC') },
-      { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('20여 개 카탈로그', '20+ catalog', '20以上のカタログ') },
+      { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('모델 카탈로그', 'Model catalog', 'モデルカタログ') },
     ],
   },
   {

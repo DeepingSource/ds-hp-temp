@@ -43,7 +43,7 @@ export const crumbLabels: Record<string, Tri> = {
 
   // solution industries
   retail: { ko: '리테일·편의점', en: 'Retail', jp: '小売・コンビニ' },
-  'food-beverage': { ko: '카페·외식', en: 'Food & Beverage', jp: 'カフェ・飲食' },
+  'food-beverage': { ko: '카페·음식점', en: 'Food & Beverage', jp: 'カフェ・飲食' },
   drug: { ko: '드럭스토어', en: 'Drugstore', jp: 'ドラッグストア' },
   'large-space': { ko: '대형 공간', en: 'Large Spaces', jp: '大型空間' },
 };

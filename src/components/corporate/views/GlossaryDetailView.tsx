@@ -225,7 +225,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
                   return (
                     <Link
                       key={rel.slug}
-                      href={`/glossary/${rel.slug}`}
+                      href={localeHref(locale, `/glossary/${rel.slug}`)}
                       className="group flex items-center justify-between gap-3 p-4 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-[border-color,box-shadow]"
                     >
                       <div>

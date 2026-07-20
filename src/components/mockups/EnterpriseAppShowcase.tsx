@@ -47,7 +47,6 @@ const HEADER = {
     'Screens are illustrative and may differ from the actual service.',
     '画面は例であり、実際のサービスと異なる場合があります。',
   ),
-  live: tri('라이브 데모', 'Live demo', 'ライブデモ'),
 };
 
 const STORE = tri('강남역점', 'Gangnam Station', '江南駅店');
@@ -168,10 +167,6 @@ export default function EnterpriseAppShowcase({ locale = 'en' }: { locale?: Loca
                 <span className="text-sm font-bold text-gray-900 lowercase">{T(APP)}</span>
               </div>
               <div className="ml-auto flex items-center gap-2.5">
-                <span className="hidden sm:inline-flex items-center gap-1.5 text-2xs font-medium text-gray-500">
-                  <span className={`w-1.5 h-1.5 rounded-full bg-primary ${reduced ? '' : 'animate-pulse'}`} aria-hidden="true" />
-                  {T(HEADER.live)}
-                </span>
                 <span className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-600">
                   {T(STORE)} <ChevronDown className="w-3 h-3" aria-hidden="true" />
                 </span>

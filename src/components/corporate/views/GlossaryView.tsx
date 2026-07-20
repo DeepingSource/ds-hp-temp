@@ -5,7 +5,7 @@ import { glossaryCategoryI18n, glossaryCardI18n } from '@/data/glossary-i18n';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
-import { type Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTermSet } from '@/lib/structured-data';
 
 const C: Record<Locale, { eyebrow: string; heading: string; sub: (n: number) => string; count: (n: number) => string; setName: string }> = {
@@ -52,7 +52,7 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
     return {
       name: locale === 'ko' ? term.title : (overlay?.title ?? term.title),
       description: locale === 'ko' ? term.definition : (overlay?.definition ?? term.definition),
-      path: `/glossary/${term.slug}`,
+      path: localeHref(locale, `/glossary/${term.slug}`),
     };
   });
   return (
@@ -108,7 +108,7 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
                     return (
                       <Link
                         key={term.slug}
-                        href={`/glossary/${term.slug}`}
+                        href={localeHref(locale, `/glossary/${term.slug}`)}
                         className="group flex flex-col gap-2 p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                       >
                         <div className="flex items-start justify-between gap-2">
