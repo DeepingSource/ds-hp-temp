@@ -34,9 +34,9 @@ const TOPICS: Record<Locale, BlogTopic[]> = {
  * Each locale renders only its own `lang` articles (no cross-locale fallback);
  * en/jp show an empty "coming soon" state until their content is authored.
  *
- * Perf (P1-1): the first PAGE_SIZE cards render on the server (small initial DOM →
- * fast LCP while the page stays statically served); the rest are handed to a client
- * "load more" island that reveals them in batches on click, with no network round-trips.
+ * The hero is server-rendered; the card grid is a client island (BlogFilterList) because
+ * topic filtering runs in the browser. All article metadata (body stripped) is passed as
+ * props and paginated client-side (PAGE_SIZE at a time) with no network round-trips.
  */
 
 const PAGE_SIZE = 18;
@@ -59,7 +59,7 @@ const C: Record<Locale, {
     emptyBody: '곧 새로운 인사이트와 가이드로 찾아뵙겠습니다.',
     more: '더 보기',
     all: '전체',
-    filter: '카테고리 필터',
+    filter: '주제 필터',
   },
   en: {
     eyebrow: 'Blog',
@@ -69,7 +69,7 @@ const C: Record<Locale, {
     emptyBody: 'New insights and guides are coming soon.',
     more: 'Load more',
     all: 'All',
-    filter: 'Filter by category',
+    filter: 'Filter by topic',
   },
   jp: {
     eyebrow: 'Blog',
@@ -79,7 +79,7 @@ const C: Record<Locale, {
     emptyBody: '新しいインサイトとガイドをまもなくお届けします。',
     more: 'もっと見る',
     all: 'すべて',
-    filter: 'カテゴリで絞り込み',
+    filter: 'トピックで絞り込み',
   },
 };
 

@@ -68,21 +68,22 @@ export default function BlogFilterList({
 
   return (
     <>
-      {/* Topic tabs only make sense with more than one live topic. */}
+      {/* Topic toggles only make sense with more than one live topic. Plain toggle
+          buttons (aria-pressed) controlling the grid — not a full ARIA tab widget. */}
       {liveTopics.length > 1 && (
-        <div role="tablist" aria-label={filterLabel} className="flex flex-wrap gap-2 mb-8">
-          <button type="button" role="tab" aria-selected={active === 'all'} onClick={() => select('all')} className={pill(active === 'all')}>
+        <div role="group" aria-label={filterLabel} className="flex flex-wrap gap-2 mb-8">
+          <button type="button" aria-pressed={active === 'all'} aria-controls="blog-grid" onClick={() => select('all')} className={pill(active === 'all')}>
             {allLabel}
           </button>
           {liveTopics.map((t) => (
-            <button key={t.label} type="button" role="tab" aria-selected={active === t.label} onClick={() => select(t.label)} className={pill(active === t.label)}>
+            <button key={t.label} type="button" aria-pressed={active === t.label} aria-controls="blog-grid" onClick={() => select(t.label)} className={pill(active === t.label)}>
               {t.label}
             </button>
           ))}
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div id="blog-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {shown.map((article) => (
           <BlogCard key={article.slug} article={article} locale={locale} />
         ))}
