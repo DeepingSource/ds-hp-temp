@@ -1,8 +1,27 @@
 import { getBlogArticles } from '@/lib/articles';
 import type { ArticleMeta } from '@/lib/article-metadata';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import BlogFilterList from './BlogFilterList';
+import BlogFilterList, { type BlogTopic } from './BlogFilterList';
 import { type Locale } from '@/lib/i18n';
+
+/**
+ * Curated topic filters — the published feed is single-category (insight), so we group
+ * the freeform tags into a few meaningful themes. Each topic matches an article if any of
+ * its tags is in the set; only topics with matches render (see BlogFilterList). Blog is
+ * ko-primary today; en/jp stay empty until authored (topics can be added when they are).
+ */
+const TOPICS: Record<Locale, BlogTopic[]> = {
+  ko: [
+    { label: '데이터 분석', tags: ['데이터분석', '데이터', '고객분석', '동선분석', '분석', '히트맵', '체류'] },
+    { label: '매출 · 수익', tags: ['매출', '수익', '객단가', '구매전환', '전환'] },
+    { label: '매장 운영', tags: ['매장운영', '발주', '재고', '인력', '청소', '운영', '무인매장'] },
+    { label: '마케팅', tags: ['프로모션', '마케팅', '이벤트', '광고', '진열', 'VMD'] },
+    { label: '트렌드 · 시장', tags: ['트렌드', 'Trend', '시장분석', '시장', '시즌'] },
+    { label: '업종', tags: ['편의점', '드럭스토어', '카페', '대형마트', '물류', '패션', '전시'] },
+  ],
+  en: [],
+  jp: [],
+};
 
 /**
  * BlogIndexView — locale-scoped corporate blog index.
@@ -98,6 +117,7 @@ export default function BlogIndexView({ locale }: { locale: Locale }) {
               moreLabel={t.more}
               allLabel={t.all}
               filterLabel={t.filter}
+              topics={TOPICS[locale]}
             />
           )}
         </div>
