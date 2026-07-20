@@ -15,6 +15,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://deepingsource.io';
 const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [
   { path: '/', priority: 1, freq: 'weekly' },
   { path: '/products', priority: 0.9, freq: 'weekly' },
+  { path: '/products/functions', priority: 0.8, freq: 'monthly' },
   { path: '/products/saai-insight', priority: 0.8, freq: 'monthly' },
   { path: '/products/saai-agent', priority: 0.8, freq: 'monthly' },
   { path: '/products/saai-count', priority: 0.7, freq: 'monthly' },

@@ -28,11 +28,13 @@ const NAV: NavItem[] = [
   {
     type: 'menu', key: 'products', label: L('제품', 'Products', '製品'), base: '/products', items: [
       { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('운영 루프 한눈에', 'The operating loop at a glance', 'オペレーションループを一望') },
-      { header: L('엔터프라이즈 — 매장 운영 루프', 'Enterprise — operating loop', 'エンタープライズ — 店舗オペレーションループ') },
-      { href: '/products/saai-count', label: PN('count'), desc: L('store count · 상권·통행·유입률', 'store count · footfall outside', 'store count · 商圏・通行・流入率') },
-      { href: '/products/saai-insight', label: PN('insight'), desc: L('store insight · 동선·체류·전환', 'store insight · flow·dwell·conversion', 'store insight · 動線・滞在・転換') },
-      { href: '/products/saai-care', label: PN('care'), desc: L('store care · 손실예방·컴플라이언스', 'store care · loss prevention·compliance', 'store care · 防損・コンプライアンス') },
-      { href: '/products/saai-agent', label: PN('agent'), desc: L('store agent · 추천·발주·실행', 'store agent · recommend·order', 'store agent · 推奨・発注・実行') },
+      { header: L('엔터프라이즈 — 세 개의 모드', 'Enterprise — the three modes', 'エンタープライズ — 3つのモード') },
+      { href: '/products/saai-care', label: PN('care'), desc: L('탐지·감지 · 지금 무슨 일이 일어나는가', 'Detect · what is happening now', '検知 · 今、何が起きているか') },
+      { href: '/products/saai-insight', label: PN('insight'), desc: L('분석 · 어제까지 무엇이 있었나', 'Analyze · what happened until yesterday', '分析 · 昨日まで何があったか') },
+      { href: '/products/saai-agent', label: PN('agent'), desc: L('제안·운영 · 다음에 무엇을 할까', 'Advise · what to do next', '提案・運営 · 次に何をするか') },
+      { header: L('기능 — 세 모드를 가로지른다', 'Functions — they cross all three modes', '機能 — 3つのモードを横断') },
+      { href: '/products/functions', label: L('기능 라이브러리', 'Function library', '機能ライブラリ'), desc: L('count·trail·wait·shelf… 12개 기능 × 3모드', 'count·trail·wait·shelf… 12 functions × 3 modes', 'count・trail・wait・shelf… 12機能 × 3モード') },
+      { href: '/products/saai-count', label: L('store count', 'store count', 'store count'), desc: L('방문·재실 인원 — 상권·통행·유입률', 'Footfall & occupancy — trade area, passers-by, capture rate', '来店・滞在人数 — 商圏・通行・流入率') },
       { header: L('사장님을 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
       { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 사장님 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
       { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('사장님용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
