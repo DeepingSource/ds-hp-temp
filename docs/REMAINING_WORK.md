@@ -55,20 +55,17 @@
 
 ---
 
-## E. 프로젝트 폴더 / 로컬 자료 정리 (사용자 판단)
+## E. 프로젝트 폴더 / 로컬 자료 정리
 
-**정책**: 이번 세션에서 소스 자료·타 세션 WIP·스테이징 폴더는 **이동·삭제하지 않고** `.gitignore`로 로컬 전용 처리(디스크 보존, git status 클린). 아래는 현재 로컬에만 존재하는 항목 — 커밋할지·삭제할지 사용자가 결정.
+**완료 (2026-07-20):**
+- ✅ **중복 PDF 삭제** — 루트 `StoreCount ...복사본.pdf` 2건 제거. 원본은 `~/Downloads/자료 모음 1/`·`~/Downloads/storecount/` 에 보존.
+- ✅ **WIP 계획/스펙/피드백 14건 저장소 아카이브** — `docs/`로 커밋(루트 `coex-*.md` 2건은 루트→`docs/` 이동). 대부분 이미 SHIPPED된 계획서(STATUS §9~§17). 목록: `DOCS_WIKI_PLAN_v1`·`GROWTH_PLANNER_STATUS_REVIEW_260720`·`PLAN_ADDITIONAL_CONTENT_v1`·`PLAN_DEMO_ASSETS_v1`·`PLAN_STOREAGENT_MATERIALS_v1`·`SEAL_페이지_콘텐츠_반영_계획_v1`·`SITE_IMPROVEMENT_PLAN_260716`·`SPECS_NEXT_v1`·`SPECS_WEEK1_v1`·`USERGUIDE_IMPORT_PLAN_v1`·`콘텐츠_수정확장_실행계획_260716`·`2026-07-20_1250_Feedback`·`coex-expo-84-*`·`coex-franchise-expo-84-*`.
 
-**로컬 전용(gitignore) 처리됨 — 디스크 보존:**
+**로컬 전용(gitignore) 유지 — 디스크 보존:**
 - 스테이징 자산 폴더: `asset-hp-260720/`, `docs/SEAL_LEGACY_ASSETS/`, `pop/`, `new-images/`, `asset-prompts/`, `copy-review/`
-- 소스 PDF(루트): `floormap.pdf`, `StoreCount 사업계획 보고 복사본.pdf`, `StoreCount_설치사용설명서_v3 복사본.pdf`
-- 작업 폴더: `storeagent-demo-prep/`
-- 루트 WIP 계획: `coex-expo-84-*.md`, `coex-franchise-expo-84-*.md`
-- docs WIP 계획/피드백(11): `DOCS_WIKI_PLAN_v1`·`GROWTH_PLANNER_STATUS_REVIEW_260720`·`PLAN_ADDITIONAL_CONTENT_v1`·`PLAN_DEMO_ASSETS_v1`·`PLAN_STOREAGENT_MATERIALS_v1`·`SEAL_페이지_콘텐츠_반영_계획_v1`·`SITE_IMPROVEMENT_PLAN_260716`·`SPECS_NEXT_v1`·`SPECS_WEEK1_v1`·`USERGUIDE_IMPORT_PLAN_v1`·`콘텐츠_수정확장_실행계획_260716`·`2026-07-20_1250_Feedback`
+- 소스 파일: `floormap.pdf`(루트 소스 PDF), `storeagent-demo-prep/`(작업 폴더)
+- 루트 세션 플래닝: `DeepingSource_홈페이지_개선계획.md`·`DeepingSource_홈페이지_콘텐츠_분석.md` (기존 `/DeepingSource_*.md` 컨벤션대로 로컬 유지)
 
-**사용자 결정 필요:**
-- [ ] **중복 삭제 후보** — "복사본" PDF 2개(StoreCount) — 원본이 따로 있으면 삭제 가능.
-- [ ] **WIP 계획 문서 처리** — 위 docs WIP 11건은 대부분 **작업이 이미 SHIPPED된 계획서**(STATUS §9~§17). 아카이브로 커밋할지 / 로컬 보관 유지할지 / 삭제할지 결정. 커밋 원하면 `git add -f docs/<파일>`.
-- [ ] **스테이징 폴더** — 페이지 통합 완료분(`asset-hp-260720/`·`SEAL_LEGACY_ASSETS/`)은 필요 시 삭제 가능(public/에 산출물 배치 완료).
-
-> 참고: `.gitignore` 처리는 **되돌리기 쉬움**(해당 라인 삭제 → 다시 추적). 커밋해야 할 문서가 있으면 알려주세요.
+**남은 사용자 판단:**
+- [ ] **스테이징 폴더 삭제** — public/ 반영 완료분(`asset-hp-260720/`·`SEAL_LEGACY_ASSETS/`)은 필요 시 삭제 가능.
+- [ ] **루트 세션 플래닝 2건** — 로컬 유지가 기본. 아카이브 원하면 `git add -f <파일>`.

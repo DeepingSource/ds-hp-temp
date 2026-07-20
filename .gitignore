@@ -58,20 +58,7 @@ docs/BIZ_SERVICE_PLAN_v1.md
 copy-review/
 content/_import/
 
-# local-only working artifacts — source material + WIP plan docs, kept on disk, out of repo.
-# See docs/REMAINING_WORK.md §E for the inventory + how to commit any of these (git add -f).
+# local-only working artifacts — source material + working folders, kept on disk, out of repo.
+# See docs/REMAINING_WORK.md §E. (WIP plan/spec docs were archived into the repo 2026-07-20.)
 /*.pdf
-/coex-*.md
 storeagent-demo-prep/
-docs/DOCS_WIKI_PLAN_v1.md
-docs/GROWTH_PLANNER_STATUS_REVIEW_260720.md
-docs/PLAN_ADDITIONAL_CONTENT_v1.md
-docs/PLAN_DEMO_ASSETS_v1.md
-docs/PLAN_STOREAGENT_MATERIALS_v1.md
-docs/SITE_IMPROVEMENT_PLAN_260716.md
-docs/SPECS_NEXT_v1.md
-docs/SPECS_WEEK1_v1.md
-docs/USERGUIDE_IMPORT_PLAN_v1.md
-docs/2026-07-20_1250_Feedback.md
-docs/SEAL_페이지_콘텐츠_반영_계획_v1.md
-docs/콘텐츠_수정확장_실행계획_260716.md
