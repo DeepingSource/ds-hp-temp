@@ -4,7 +4,7 @@ import DrugView from '@/components/corporate/views/DrugView';
 export const metadata: Metadata = {
   title: 'ドラッグストアソリューション | DEEPINGSOURCE',
   description:
-    '陳列の一貫性、欠品の防止、顧客の動線まで。業種が違ってもひとつの店舗のように運営できるよう支援する、ドラッグストア向け運営ソリューションです。',
+    '陳列の一貫性、欠品の防止、顧客の動線まで。カテゴリーの多いドラッグストアの運営を同じ基準で整える、ドラッグストア向けソリューションです。',
   alternates: {
     canonical: '/jp/solutions/drug-store',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'ドラッグストアソリューション | DEEPINGSOURCE',
-    description: '陳列·欠品·動線を同じ基準で。業種が違ってもひとつの店舗のように運営されるドラッグストア。',
+    description: '陳列·欠品·動線を同じ基準で。カテゴリーが多くても乱れないドラッグストア。',
     url: '/jp/solutions/drug-store',
   },
 };

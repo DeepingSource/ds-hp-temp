@@ -4,7 +4,7 @@ import RetailView from '@/components/corporate/views/RetailView';
 export const metadata: Metadata = {
   title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
   description:
-    '欠品、店舗間の運営のばらつき、異常まで。業種が違ってもひとつの店舗のように運営できるよう支援する、リテール·コンビニ·ドラッグストア向けソリューションです。',
+    '欠品、店舗間の運営のばらつき、異常まで。店舗運営の核心的な課題を同じ基準で見守る、リテール·コンビニ·ドラッグストア向けソリューションです。',
   alternates: {
     canonical: '/jp/solutions/retail',
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
     description:
-      '欠品、運営のばらつき、異常検知まで。店舗運営の核心的な課題を一度に。業種が違ってもひとつの店舗のように。',
+      '欠品、運営のばらつき、異常検知まで。店舗運営の核心的な課題を一度に。欠品も異常も見逃さず。',
     url: '/jp/solutions/retail',
   },
 };

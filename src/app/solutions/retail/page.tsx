@@ -4,7 +4,7 @@ import RetailView from '@/components/corporate/views/RetailView';
 export const metadata: Metadata = {
   title: 'Retail & Convenience Solutions | DEEPINGSOURCE',
   description:
-    'Out-of-stock, store-to-store inconsistency, and anomalies. A retail, convenience, and drugstore solution that helps every format run like one store.',
+    'Out-of-stock, store-to-store inconsistency, and anomalies. A retail, convenience, and drugstore solution that watches the core problems of store operations by the same standard.',
   alternates: {
     canonical: '/solutions/retail',
     languages: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Retail & Convenience Solutions | DEEPINGSOURCE',
     description:
-      'Out-of-stock, inconsistency, and anomaly detection — the core problems of store operations, by the same standard. Different formats, run as one.',
+      'Out-of-stock, inconsistency, and anomaly detection — the core problems of store operations, by the same standard. Never miss what matters.',
     url: '/solutions/retail',
   },
 };

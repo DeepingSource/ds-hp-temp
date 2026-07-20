@@ -4,7 +4,7 @@ import FoodBeverageView from '@/components/corporate/views/FoodBeverageView';
 export const metadata: Metadata = {
   title: 'Café & F&B Solutions | DEEPINGSOURCE',
   description:
-    'Hygiene, waits and turnover, and reorder timing. A café and food-service solution that helps every format run like one store.',
+    'Hygiene, waits and turnover, and reorder timing. A café and food-service solution that standardizes busy-store operations under the same standard.',
   alternates: {
     canonical: '/solutions/food-beverage',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Café & F&B Solutions | DEEPINGSOURCE',
-    description: 'Hygiene, waits, and reordering, by the same standard. Food-service operations run like one store, whatever the format.',
+    description: 'Hygiene, waits, and reordering, by the same standard. Food-service operations by one standard across stores.',
     url: '/solutions/food-beverage',
   },
 };

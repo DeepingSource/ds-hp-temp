@@ -4,7 +4,7 @@ import LargeSpaceView from '@/components/corporate/views/LargeSpaceView';
 export const metadata: Metadata = {
   title: 'Large-Space Solutions | DEEPINGSOURCE',
   description:
-    'Hypermarkets, malls, and conventions — even vast spaces, run like one store. Crowd management, flow analysis, and anomaly detection, unified with MTMC Spatial AI.',
+    'Hypermarkets, malls, and conventions — even vast spaces, managed at a glance. Crowd management, flow analysis, and anomaly detection, unified with MTMC Spatial AI.',
   alternates: {
     canonical: '/solutions/large-space',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Large-Space Solutions | DEEPINGSOURCE',
-    description: 'Every space, like one. A large-space solution that helps vast spaces run like a single store.',
+    description: 'Even the largest space, at a glance. A large-space solution that unifies crowd, flow, and anomaly detection.',
     url: '/solutions/large-space',
   },
 };

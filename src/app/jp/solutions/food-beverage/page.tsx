@@ -4,7 +4,7 @@ import FoodBeverageView from '@/components/corporate/views/FoodBeverageView';
 export const metadata: Metadata = {
   title: 'カフェ·飲食店ソリューション | DEEPINGSOURCE',
   description:
-    '衛生管理、待ち時間·回転、発注のタイミングまで。業種が違ってもひとつの店舗のように運営できるよう支援する、カフェ·飲食店向け運営ソリューションです。',
+    '衛生管理、待ち時間·回転、発注のタイミングまで。忙しい飲食店の運営を同じ基準で標準化する、カフェ·飲食店向けソリューションです。',
   alternates: {
     canonical: '/jp/solutions/food-beverage',
     languages: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'カフェ·飲食店ソリューション | DEEPINGSOURCE',
-    description: '衛生·待ち時間·発注を同じ基準で。業種が違ってもひとつの店舗のように運営される飲食店運営。',
+    description: '衛生·待ち時間·発注を同じ基準で。店舗ごとに同じ基準で運営される飲食店。',
     url: '/jp/solutions/food-beverage',
   },
 };
