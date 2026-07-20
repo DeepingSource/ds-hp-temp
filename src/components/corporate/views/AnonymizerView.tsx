@@ -19,6 +19,7 @@ type SpecRow = { feature: string; detail: string; note: string };
 type FaqItem = { question: string; answer: string };
 type Mark = 'yes' | 'no' | 'partial';
 type LimitRow = { label: string; marks: Mark[]; seal?: boolean };
+type Scene = { label: string; alt: string; original: string; seal: string };
 
 type Copy = {
   heroBadge: string;
@@ -36,6 +37,11 @@ type Copy = {
   sliderAfter: string;
   sliderCaption: string;
   sliderAlt: string;
+
+  galleryEyebrow: string;
+  galleryTitle: string;
+  gallerySub: string;
+  galleryScenes: Scene[];
 
   demoEyebrow: string;
   demoTitle: string;
@@ -93,6 +99,17 @@ const ko: Copy = {
   sliderAfter: '익명화',
   sliderCaption: '손잡이를 끌어 보세요 — 첫 단계에서 익명화. 원본은 시스템 어디에도 남지 않습니다.',
   sliderAlt: '같은 인물의 익명화 전과 후 비교',
+
+  galleryEyebrow: 'Across Environments',
+  galleryTitle: '어떤 공간이든, 신원만 지웁니다',
+  gallerySub:
+    '공장·병원·영화관·학교처럼 서로 다른 환경에서도 같은 방식으로 작동합니다. 사람은 익명화되고, 공간과 상황은 그대로 읽힙니다. 손잡이를 끌어 원본과 비교해 보세요.',
+  galleryScenes: [
+    { label: '공장', alt: '공장 내부 영상의 익명화 전후 비교', original: '/images/technology/anonymizer/scene-factory-original.webp', seal: '/images/technology/anonymizer/scene-factory-seal.webp' },
+    { label: '병원', alt: '병원 영상의 익명화 전후 비교', original: '/images/technology/anonymizer/scene-hospital-original.webp', seal: '/images/technology/anonymizer/scene-hospital-seal.webp' },
+    { label: '영화관', alt: '영화관 영상의 익명화 전후 비교', original: '/images/technology/anonymizer/scene-cinema-original.webp', seal: '/images/technology/anonymizer/scene-cinema-seal.webp' },
+    { label: '학교', alt: '학교 영상의 익명화 전후 비교', original: '/images/technology/anonymizer/scene-school-original.webp', seal: '/images/technology/anonymizer/scene-school-seal.webp' },
+  ],
 
   demoEyebrow: '신원이 아니라, 정보를 읽습니다',
   demoTitle: '얼굴은 지워도, 맥락은 읽습니다.',
@@ -171,6 +188,17 @@ const en: Copy = {
   sliderCaption: "Drag the handle — anonymized at the first step. The original is left nowhere in the system.",
   sliderAlt: 'Before-and-after comparison of the same person, anonymized',
 
+  galleryEyebrow: 'Across Environments',
+  galleryTitle: 'Any space — only identity is erased',
+  gallerySub:
+    'It works the same way across very different environments — factories, hospitals, cinemas, schools. People are anonymized while the space and the situation stay readable. Drag the handle to compare with the original.',
+  galleryScenes: [
+    { label: 'Factory', alt: 'Factory-floor footage before and after anonymization', original: '/images/technology/anonymizer/scene-factory-original.webp', seal: '/images/technology/anonymizer/scene-factory-seal.webp' },
+    { label: 'Hospital', alt: 'Hospital footage before and after anonymization', original: '/images/technology/anonymizer/scene-hospital-original.webp', seal: '/images/technology/anonymizer/scene-hospital-seal.webp' },
+    { label: 'Cinema', alt: 'Cinema footage before and after anonymization', original: '/images/technology/anonymizer/scene-cinema-original.webp', seal: '/images/technology/anonymizer/scene-cinema-seal.webp' },
+    { label: 'School', alt: 'School footage before and after anonymization', original: '/images/technology/anonymizer/scene-school-original.webp', seal: '/images/technology/anonymizer/scene-school-seal.webp' },
+  ],
+
   demoEyebrow: 'We read information, not identity',
   demoTitle: 'The face is erased; the context is read.',
   demoBody:
@@ -247,6 +275,17 @@ const jp: Copy = {
   sliderAfter: '匿名化',
   sliderCaption: 'ハンドルを動かしてください——最初の段階で匿名化。原本はシステムのどこにも残しません。',
   sliderAlt: '同じ人物の匿名化前と後の比較',
+
+  galleryEyebrow: 'Across Environments',
+  galleryTitle: 'どんな空間でも、身元だけを消します',
+  gallerySub:
+    '工場・病院・映画館・学校のように異なる環境でも、同じ方式で作動します。人は匿名化され、空間と状況はそのまま読み取れます。ハンドルを動かして原本と比べてみてください。',
+  galleryScenes: [
+    { label: '工場', alt: '工場内部の映像の匿名化 前後比較', original: '/images/technology/anonymizer/scene-factory-original.webp', seal: '/images/technology/anonymizer/scene-factory-seal.webp' },
+    { label: '病院', alt: '病院の映像の匿名化 前後比較', original: '/images/technology/anonymizer/scene-hospital-original.webp', seal: '/images/technology/anonymizer/scene-hospital-seal.webp' },
+    { label: '映画館', alt: '映画館の映像の匿名化 前後比較', original: '/images/technology/anonymizer/scene-cinema-original.webp', seal: '/images/technology/anonymizer/scene-cinema-seal.webp' },
+    { label: '学校', alt: '学校の映像の匿名化 前後比較', original: '/images/technology/anonymizer/scene-school-original.webp', seal: '/images/technology/anonymizer/scene-school-seal.webp' },
+  ],
 
   demoEyebrow: '身元ではなく、情報を読みます',
   demoTitle: '顔は消しても、文脈は読みます。',
@@ -444,8 +483,33 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* Limitation — why conventional de-identification falls short (PPTX legacy comparison) */}
+      {/* Gallery — anonymization proven across different environments (scene set) */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.galleryEyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.galleryTitle}</h2>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.gallerySub}</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {t.galleryScenes.map((scene, i) => (
+              <BeforeAfterSlider
+                key={scene.label}
+                beforeSrc={scene.original}
+                afterSrc={scene.seal}
+                beforeLabel={t.sliderBefore}
+                afterLabel={t.sliderAfter}
+                caption={scene.label}
+                alt={scene.alt}
+                nudge={i === 0}
+              />
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Limitation — why conventional de-identification falls short (PPTX legacy comparison) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-12 max-w-2xl">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.limitEyebrow}</p>
@@ -485,7 +549,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* Spec table */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-12 max-w-2xl">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.specEyebrow}</p>
@@ -521,7 +585,7 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* FAQ */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.faqEyebrow}</p>
