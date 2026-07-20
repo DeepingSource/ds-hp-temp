@@ -3,7 +3,7 @@ import { HelpCircle, ArrowRight } from 'lucide-react';
 import Accordion from '@/components/ui/Accordion';
 import FaqAnswer from '@/components/faq/FaqAnswer';
 import { getFaqsByGroup, faqAnswerText } from '@/lib/faq';
-import { faqGroupOrder, faqGroupMeta } from '@/data/faq/types';
+import { faqGroupOrder, faqGroupMeta, faqGroupKind } from '@/data/faq/types';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -71,6 +71,7 @@ export default function FaqView({ locale }: { locale: Locale }) {
       return {
         id: group,
         label: meta.label[locale],
+        kind: faqGroupKind[group]?.[locale] ?? null,
         product: meta.product,
         faqs,
         items: faqs.map((f) => ({
@@ -111,6 +112,9 @@ export default function FaqView({ locale }: { locale: Locale }) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
           {sections.map((section) => (
             <div key={section.id} id={section.id} className="scroll-mt-24">
+              {section.kind && (
+                <p className="text-2xs font-mono font-medium uppercase tracking-wide text-gray-400">{section.kind}</p>
+              )}
               <h2 className="text-xl font-bold text-gray-900 mb-2">{section.label}</h2>
               <Accordion items={section.items} idPrefix={`faq-${section.id}`} />
               <div className="mt-4 text-right">
