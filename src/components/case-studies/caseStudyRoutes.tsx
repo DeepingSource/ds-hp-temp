@@ -14,9 +14,9 @@ import CaseStudyDetailView from './CaseStudyDetailView';
 type Params = Promise<{ slug: string }>;
 
 const TITLE_SUFFIX: Record<Locale, string> = {
-  ko: 'DeepingSource 고객 사례',
-  en: 'DeepingSource Case Studies',
-  jp: 'DeepingSource 導入事例',
+  ko: 'DEEPINGSOURCE 고객 사례',
+  en: 'DEEPINGSOURCE Case Studies',
+  jp: 'DEEPINGSOURCE 導入事例',
 };
 
 const NOT_FOUND_TITLE: Record<Locale, string> = {

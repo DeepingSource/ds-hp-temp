@@ -14,9 +14,9 @@ import { localePrefix, type Locale } from '@/lib/i18n';
 type Params = Promise<{ slug: string }>;
 
 const TITLE_SUFFIX: Record<Locale, string> = {
-  ko: 'DeepingSource 블로그',
-  en: 'DeepingSource Blog',
-  jp: 'DeepingSource ブログ',
+  ko: 'DEEPINGSOURCE 블로그',
+  en: 'DEEPINGSOURCE Blog',
+  jp: 'DEEPINGSOURCE ブログ',
 };
 
 const NOT_FOUND_TITLE: Record<Locale, string> = {
