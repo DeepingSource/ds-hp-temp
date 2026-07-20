@@ -563,7 +563,7 @@
         "to a tailored solution — free of charge."
       ],
       "ctaPrimary": "Request a free consultation",
-      "ctaSecondary": "View solutions by industry"
+      "ctaSecondary": "View case studies"
     },
     "ko": {
       "badge": "문제-해결 가이드",
@@ -586,7 +586,7 @@
         "맞춤 해결 방안을 안내해 드립니다."
       ],
       "ctaPrimary": "무료 상담 신청",
-      "ctaSecondary": "업종별 솔루션 보기"
+      "ctaSecondary": "도입 사례 보기"
     },
     "jp": {
       "badge": "課題解決ガイド",
@@ -609,7 +609,7 @@
         "無料でご案内します。"
       ],
       "ctaPrimary": "無料相談を申し込む",
-      "ctaSecondary": "業種別ソリューションを見る"
+      "ctaSecondary": "導入事例を見る"
     }
   },
   "about": {

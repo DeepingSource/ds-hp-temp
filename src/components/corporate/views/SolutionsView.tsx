@@ -229,7 +229,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/industries"
+              href={localeHref(locale, '/resources/case-studies')}
               className="btn-ghost-dark gap-2 w-full sm:w-auto"
             >
               {t.ctaSecondary}

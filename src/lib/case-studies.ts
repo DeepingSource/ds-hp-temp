@@ -39,4 +39,26 @@ export function getCaseStudyBySlug(slug: string, lang: Locale): CaseStudy | unde
   return sorted.find((c) => c.slug === slug && c.lang === lang);
 }
 
+/**
+ * 솔루션 업종(slug) → 대표 케이스 논리 slug. case study `industry`는 자유 텍스트라
+ * 직접 매칭이 어려워 명시 매핑을 둔다(유지보수 용이). fashion-pickup은 별도 vertical이라 제외.
+ */
+const SOLUTION_CASE_SLUGS: Record<string, string[]> = {
+  retail: ['cvs-100', 'smb-53'],
+  'food-beverage': ['cafe-sync'],
+  'drug-store': ['drug-translate'],
+  'large-space': ['space-remeasure'],
+};
+/** 로케일 접미사(-ko/-jp) 제거 — en은 접미사 없음. */
+const logicalCaseSlug = (slug: string): string => slug.replace(/-(ko|jp)$/, '');
+
+/** 특정 업종 페이지에 노출할 케이스(로케일별, 최대 limit건). 해당 로케일 케이스 없으면 빈 배열. */
+export function getCaseStudiesForSolution(solutionSlug: string, lang: Locale, limit = 2): CaseStudy[] {
+  const slugs = SOLUTION_CASE_SLUGS[solutionSlug];
+  if (!slugs) return [];
+  return getCaseStudiesByLocale(lang)
+    .filter((c) => slugs.includes(logicalCaseSlug(c.slug)))
+    .slice(0, limit);
+}
+
 export type { CaseStudy } from '@/data/case-studies/types';

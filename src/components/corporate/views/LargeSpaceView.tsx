@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
+import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -221,6 +222,8 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
           <p className="mt-2 text-center text-xs text-gray-400 break-keep">{t.resultsNote}</p>
         </div>
       </AnimatedSection>
+
+      <SolutionCaseStudies solutionSlug="large-space" locale={locale} />
 
       {/* ── 본사 도입 CTA ── */}
       <section className="py-20 bg-slate-950">
