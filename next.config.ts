@@ -63,6 +63,9 @@ if (isGhPages) {
       // ── 솔루션/업종 정돈 (301) ──
       { source: '/industries', destination: '/solutions', permanent: true },
       { source: '/industries/:slug', destination: '/solutions', permanent: true },
+      // 0-8: drug → drug-store slug 변경(부정 어감 제거)
+      { source: '/solutions/drug', destination: '/solutions/drug-store', permanent: true },
+      { source: '/:locale(ko|jp)/solutions/drug', destination: '/:locale/solutions/drug-store', permanent: true },
 
       // ── 회사 라우트 정돈 (301) ──
       { source: '/about', destination: '/company/about', permanent: true },

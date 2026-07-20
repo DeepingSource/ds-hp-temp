@@ -38,7 +38,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: '리테일·편의점', desc: '진열·동선·결제까지, 매장 운영을 한눈에 읽습니다.', alt: '편의점 매장 내부' },
       { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: '카페·음식점', desc: '대기와 좌석 회전, 피크 시간의 흐름을 파악합니다.', alt: '카페 좌석 공간' },
-      { key: 'drug', href: '/solutions/drug', icon: Pill, label: '드럭스토어', desc: '카테고리별 관심과 체류를 익명으로 분석합니다.', alt: '드럭스토어 매장 내부' },
+      { key: 'drug', href: '/solutions/drug-store', icon: Pill, label: '드럭스토어', desc: '카테고리별 관심과 체류를 익명으로 분석합니다.', alt: '드럭스토어 매장 내부' },
       { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '대형 공간(마트·물류)', desc: '넓은 공간의 동선과 혼잡, 안전을 함께 살핍니다.', alt: '대형 마트 매장 전경' },
       { key: 'exhibit', href: '/solutions', icon: Landmark, label: '전시·박물관', desc: '관람 동선과 인기 구역을 방문객 식별 없이 읽습니다.', alt: '전시관 관람 공간' },
       { key: 'unmanned', href: '/solutions', icon: MonitorOff, label: '무인매장', desc: '직원 없이도 이상 상황을 감지하고 바로 알립니다.', alt: '무인매장 내부' },
@@ -52,7 +52,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: 'Retail & convenience', desc: 'Read shelves, flow, and checkout — store operations at a glance.', alt: 'Convenience store interior' },
       { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: 'Cafés & restaurants', desc: 'See waiting, seat turnover, and the flow at peak hours.', alt: 'Café seating area' },
-      { key: 'drug', href: '/solutions/drug', icon: Pill, label: 'Drugstores', desc: 'Analyze interest and dwell by category, anonymously.', alt: 'Drugstore interior' },
+      { key: 'drug', href: '/solutions/drug-store', icon: Pill, label: 'Drugstores', desc: 'Analyze interest and dwell by category, anonymously.', alt: 'Drugstore interior' },
       { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: 'Large spaces (marts & logistics)', desc: 'Track flow, congestion, and safety across wide floors.', alt: 'Large mart floor' },
       { key: 'exhibit', href: '/solutions', icon: Landmark, label: 'Exhibits & museums', desc: 'Read visitor paths and popular zones without identifying anyone.', alt: 'Exhibition hall interior' },
       { key: 'unmanned', href: '/solutions', icon: MonitorOff, label: 'Unmanned stores', desc: 'Detect anomalies and alert instantly, with no staff on site.', alt: 'Unmanned store interior' },
@@ -66,7 +66,7 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: 'リテール・コンビニ', desc: '陳列・動線・会計まで、店舗運営をひと目で読み取ります。', alt: 'コンビニ店内' },
       { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: 'カフェ・飲食店', desc: '待ち時間や席の回転、ピーク時の流れを把握します。', alt: 'カフェの客席' },
-      { key: 'drug', href: '/solutions/drug', icon: Pill, label: 'ドラッグストア', desc: 'カテゴリーごとの関心と滞在を匿名で分析します。', alt: 'ドラッグストア店内' },
+      { key: 'drug', href: '/solutions/drug-store', icon: Pill, label: 'ドラッグストア', desc: 'カテゴリーごとの関心と滞在を匿名で分析します。', alt: 'ドラッグストア店内' },
       { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '大型空間(スーパー・物流)', desc: '広い空間の動線や混雑、安全をまとめて見守ります。', alt: '大型スーパーの売り場' },
       { key: 'exhibit', href: '/solutions', icon: Landmark, label: '展示・博物館', desc: '来場者を特定せずに観覧動線と人気エリアを読み取ります。', alt: '展示館の観覧空間' },
       { key: 'unmanned', href: '/solutions', icon: MonitorOff, label: '無人店舗', desc: 'スタッフがいなくても異常を検知し、すぐに知らせます。', alt: '無人店舗の店内' },

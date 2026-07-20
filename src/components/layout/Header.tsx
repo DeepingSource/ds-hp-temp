@@ -52,7 +52,7 @@ const NAV: NavItem[] = [
       { href: '/solutions', label: L('솔루션 전체', 'All solutions', 'ソリューション一覧') },
       { href: '/solutions/retail', label: L('리테일·편의점', 'Retail', '小売・コンビニ') },
       { href: '/solutions/food-beverage', label: L('카페·음식점', 'Food & Beverage', 'カフェ・飲食') },
-      { href: '/solutions/drug', label: L('드럭스토어', 'Drugstore', 'ドラッグストア') },
+      { href: '/solutions/drug-store', label: L('드럭스토어', 'Drugstore', 'ドラッグストア') },
       { href: '/solutions/large-space', label: L('대형 공간', 'Large space', '大型空間') },
     ],
   },

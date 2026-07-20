@@ -28,7 +28,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/solutions', priority: 0.8, freq: 'monthly' },
   { path: '/solutions/retail', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/food-beverage', priority: 0.7, freq: 'monthly' },
-  { path: '/solutions/drug', priority: 0.7, freq: 'monthly' },
+  { path: '/solutions/drug-store', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/large-space', priority: 0.7, freq: 'monthly' },
   { path: '/enterprise', priority: 0.8, freq: 'monthly' },
   { path: '/pricing', priority: 0.8, freq: 'monthly' },

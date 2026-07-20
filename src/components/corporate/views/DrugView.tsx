@@ -18,7 +18,7 @@ import siteContent from '@/data/generated/site-content.json';
 
 /**
  * DrugView — shared drugstore solution composition.
- * Rendered by `/solutions/drug` (en), `/ko/solutions/drug`, `/jp/solutions/drug`
+ * Rendered by `/solutions/drug-store` (en), `/ko/solutions/drug-store`, `/jp/solutions/drug-store`
  * with the locale prop (PLAN_v1.1 D6 path-prefix i18n).
  */
 
@@ -65,7 +65,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
         data={service({
           name: `${t.heroTitle[0]} ${t.heroTitle[1]}`,
           description: t.heroSub,
-          path: '/solutions/drug',
+          path: '/solutions/drug-store',
           locale,
           serviceType: t.badge,
         })}
@@ -89,7 +89,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('drug', locale), path: '/solutions/drug' }]} locale={locale} tone="dark" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('drug', locale), path: '/solutions/drug-store' }]} locale={locale} tone="dark" className="mb-6" />
           <HeroBadge tone="dark">
             <Pill className="w-3.5 h-3.5" />
             {t.badge}
