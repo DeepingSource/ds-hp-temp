@@ -23,6 +23,7 @@
 | 사이트 개선 260716 (P0~P3: 가이드 숨김·블로그 성능·이벤트·saai URL·운영 가이드) | ✅ 요청분 완료 | `SITE_IMPROVEMENT_PLAN_260716.md`(untracked) · [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md) · 이 문서 §9 |
 | 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
 | 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | `DeepingSource_홈페이지_개선계획.md`(untracked) · 이 문서 §15 |
+| 12:50 피드백 반영 (F-1~F-9 + §0 긴급) | 🟡 비게이트 5건 완료, 다수 Jamin/자산 대기 | [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · 이 문서 §16 |
 
 ---
 
@@ -242,6 +243,23 @@
 ### ⬜ P2 / P3 (미착수)
 - **P2** 제품 목업 개선(insight 17기능 그룹핑·care·agent) · FAQ 컴포넌트 재디자인 · 기술 시각(spatial-ai 카메라+지도·models 카탈로그).
 - **P3** 고객사 실명·로고(허가 리드타임) · 케이스 실측 전환 · 회사 빈 페이지 · 리소스 검색 · 세그먼트 폼 · 요금 계산기.
+
+## 16. 12:50 피드백 반영 (2026-07-20 · [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · F-1~F-9 + §0 긴급) 🟡
+
+Jamin 피드백 10건 + 진행 항목 코드 대조. **비게이트 우선순위 5건 완료(5커밋 `d736076c8`→`3b28898aa`).** 나머지 다수는 Jamin 확인/외부 자산 대기.
+
+### ✅ 완료
+- **§0.1 [3-10] 🔴 런칭 블로커**(마감 7/21) — 올리브영 실명 → 준실명("국내 1위 H&B 스토어") 익명화. `PartnerGrid` + `contact.yaml` 6곳, 되돌리기 쉬운 방식(PL-5). 나머지 7개 파트너 유지. `d736076c8`. ⚠️ 블로그/docs의 올리브영은 편집성 사례(공개 매출 인용)라 3-10 범위 밖.
+- **§0.2 [2-7]** 블로그 큐레이션 export — `scripts/export-blog-list.mjs`(`npm run export:blog-list`) + `docs/BLOG_CURATION_LIST.csv`(247편, 노출 124·초안 97). `bb40d28f7`.
+- **F-5** 업종 페이지 → 도입 사례. `getCaseStudiesForSolution` 명시 매핑 + `SolutionCaseStudies`(4뷰) + 허브 순환 CTA(`/industries`)를 `/resources/case-studies`로 전환. `f63b22a6d`.
+- **F-7 (blog nav)** 블로그 상세 관련 글 + 이전/다음. lang-aware `getRelatedBlogArticles`/`getAdjacentBlogArticles`(기존 getter는 전 로케일 혼합이라 부적합) + `/resources/blog` 경로 인라인 카드(`ArticleCard`는 `/storeagent/blog`라 미사용). `b4aecaa4e`. ⬜ **F-7 part4 CTA 감사(페이지별)는 잔여.**
+- **F-1 (1차)** 워드마크 정합 — blog/case `TITLE_SUFFIX` + `BlogArticleView` 이베로우 → DEEPINGSOURCE(+`font-brand`). 산문은 기존 규칙(brand-canon 2026-07-14: 타이틀·배지=DEEPINGSOURCE, 산문·JSON-LD·어원 예외)상 mixed-case 유지 = **item-3(산문 대문자화) 결정 완료(유지)**. `3b28898aa`. ⬜ **잔여 타이틀/메타 분류.**
+
+### 🙋 Jamin 확인 대기 (개발과 병렬 회신)
+- **3-11** 7곳 "누구가"→"누구나"/"누가" 문장별 확정 · **3-12** 홈 CTA 문구(권장 "전문가 상담 신청하기")
+- **F-4** 업종→제품 매핑 승인 · **F-6** 창업 스토리 발췌 검수 · **F-8** docs 구분 의도(허브 강화 vs URL 재구조화) · **F-9** FAQ 재디자인 시안
+- **F-3** 모델 리스트·데모 영상(제품팀) · **F-2** pete-anon 데모 원본(피트님) — 자산 도착까지 블로킹
+- **7개 파트너 브랜드** 실명 승인 여부(CU·코리아세븐·CJ푸드빌·롯데GRS·현대차·롯데월드·국립박물관재단)
 
 ## 잔여 항목 우선순위 제안
 
