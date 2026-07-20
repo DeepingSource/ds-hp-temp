@@ -1,6 +1,6 @@
 # STATUS — 현재 작업 상태 (완료 · 잔여)
 
-> **갱신** 2026-07-16 · **범위** 활성 작업 스트림의 완료/잔여 구분. 유지보수·이어받기용 단일 진입점.
+> **갱신** 2026-07-20 · **범위** 활성 작업 스트림의 완료/잔여 구분. 유지보수·이어받기용 단일 진입점.
 > **라이브 SOT** 는 여전히 repo-root [`/DESIGN.md`](../DESIGN.md) + 라이브 `src/`. 이 문서는 *진행 상태*만 추적한다.
 > 구 Phase 1–4 계획 산출물(`PLAN_v1`·`BRAND_v2`·`DESIGN_v2`·`CODE_v1`·`AUDIT_v1` 등)은 archive — [`docs/README.md`](./README.md) 참고.
 
@@ -22,6 +22,7 @@
 | 문서 위키화 + 콘텐츠 CMS화 (docs·FAQ·glossary·solutions·leadership 등) | ✅ 완료 (gated 메커니즘 포함, 활성화=env) | `DOCS_WIKI_PLAN_v1.md`(untracked WIP) · 이 문서 §9 |
 | 사이트 개선 260716 (P0~P3: 가이드 숨김·블로그 성능·이벤트·saai URL·운영 가이드) | ✅ 요청분 완료 | `SITE_IMPROVEMENT_PLAN_260716.md`(untracked) · [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md) · 이 문서 §9 |
 | 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
+| 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | `DeepingSource_홈페이지_개선계획.md`(untracked) · 이 문서 §15 |
 
 ---
 
@@ -203,6 +204,44 @@
 - **배선**: relatedTerms로 glossary 연결(heatmap→store-heatmap, inflow-rate→capture-rate, funnel→visit-funnel 등 명시 매핑).
 - 검증: 752페이지 빌드, en(기본)/ko 렌더·jp 폴백, 표·이미지·비디오·blockquote·doc링크·이미지 서빙·glossary 역링크, 48 테스트.
 - ⚠️ **잔여**: EN/JP는 레포 원본 번역 그대로 이식(품질 검수 미실시) · relatedSlugs(챕터 간)는 빈 배열(prev/next로 대체) · 랜딩 hero/일부 스타일(Screenshot 모바일 프레임·figcaption)은 플레인.
+
+## 15. 홈페이지 개선계획 실행 (2026-07-20 · `DeepingSource_홈페이지_개선계획.md` · 29P 전수분석 + 메모 19건) 🟡
+
+우선순위 P0(신뢰 버그)→P1(카피·IA)→P2(디자인·목업)→P3(자산). **P0 대부분 + P1 다수 완료 — 8커밋 `8202a934c`→`8463e4686`.**
+
+### ✅ P0 — 신뢰 버그 (11/14 · `8202a934c`·`7b872e27f`)
+- **0-1** 홈 카운터 "0개+" — `CountUp` 진입 전 실제값 유지 + rootMargin 선-트리거(즉시 0 리셋 회피). ⚠️ saai insight "0.0"(`StoreInsightDesktopMockup`)은 후속.
+- **0-2** /technology 축 카드 오링크 — Spatial AI 카드 `/seal`→`/spatial-ai`, Agentic→`/models`, 아이콘 정합(Fingerprint·Grid3x3·Zap).
+- **0-3** "이 기술이 구동하는 제품"에 saai count 추가 → 4제품(`technology.yaml` poweredProducts + `poweredHrefs`).
+- **0-4** `IntegratedLoopDiagram`에 saai count를 **'유입 관측' 입력 노드**로 추가(4-입력 지오메트리·MID 대칭, lead·svgDesc·tooltip 3로케일). 결정=관측 입력 배치("세 시간 축" 내러티브 유지).
+- **0-5** glossary(허브·상세)·solutions 카드 `localeHref`(404 방지). ⚠️ `/industries`는 next.config 301(`→/solutions`) 기반이라 제외.
+- **0-7** saai agent "라이브 데모" 뱃지 제거(실데이터 아님).
+- **0-8** `/solutions/drug`→`/solutions/drug-store` slug 변경 — 정적 라우트 3벌 rename + 메타/breadcrumb/JSON-LD/sitemap/proxy/SpacesShowcase/nav/editor guide + **301 리다이렉트**(루트+/ko·/jp). 검증: 새 라우트 로드 + 301.
+- **0-9** investors 태그라인 "모든 매장을 한 매장처럼"→**"모든 공간을, 완벽하게"**(3로케일).
+- **0-12** 푸터 "준비 중" placeholder(링크드인·인스타) 제거.
+- **0-13** models "20여 개" 과장 → "모델 카탈로그"(Header 내비). 실제=models 페이지 18종/카탈로그 목업 13종.
+- **0-14** food-beverage breadcrumb "카페·외식"→"카페·음식점"(`breadcrumb-labels`, 나머지 표기와 통일).
+
+### ⬜ P0 잔여
+- **0-6** saai count 헤드라인 "상권분석, 해야 하는데 못 하고 계셨죠?" — 정확한 띄어쓰기 오타 위치 **미확정**(분석 문서 미특정). `break-keep`은 전반 적용됨. *(사용자 확인)*
+- **0-10** 태그라인 전면 통일 — **스킵**(결정=맥락별 병행: 홈 "당신의 공간을" · B2B/투자자/메타 "모든 공간을").
+- **0-11** /company/about 리더십 잘림 — **현재 코드/데이터엔 재현 안 됨**(클램프·데이터 절단 없음). *(배포본 확인)*
+
+### ✅ P1 — 메시지·카피 (일부 · `ceb2f8c1e`·`fcb578113`·`9150b3cc3`·`8463e4686`)
+- **1-A** 홈 `heroSub` → 가치사슬(밖의 유입→동선·이상→다음 한 수) 재작성. ⚠️ 카테고리·CCTV 서술은 이미 H2에 존재(1-A 부분 stale). H1 "당신의 공간을" 유지.
+- **1-C** 솔루션 히어로 반복 템플릿("업종이 달라도/한 매장처럼") 해소, 업종별 재작성(retail=놓치지 않는·food=매장마다 같은 기준·drug-store=흐트러지지 않는 진열·large=한눈에 관리) + 솔루션 페이지 **메타 description 22곳 정합**.
+- **1-E#1** Anonymizer(엔진)↔SEAL(SDK) 관계 양 페이지 `heroSub`에 명시(3로케일).
+- **1-E#3** Spatial AI CES/KDDI/NVIDIA 레퍼런스 — 현행 완화 표현 **유지**(결정).
+- **1-E#4** FAQ **saai count 섹션 신설**(`store-count` 그룹, 5문항×3로케일, velite enum + `FaqGroup` 확장, 공통 다음 배치, FAQPage JSON-LD 포함).
+
+### ⬜ P1 잔여
+- **1-B** SAAI Suite 개념 도입 — **보류**(사용자). 다른 카피의 전제라 확정 선행 권장.
+- **1-D** /solutions 허브 flow 재설계(21카드→업종 선택형) — **구조 결정 필요**(대형 카드 vs 질문형 2문항).
+- **1-E#2** 요금↔엔터프라이즈 — B2B 시뮬레이터·엔터프라이즈 카드 기존 존재. "몇 개 매장부터 엔터프라이즈" **기준 숫자** 대기.
+
+### ⬜ P2 / P3 (미착수)
+- **P2** 제품 목업 개선(insight 17기능 그룹핑·care·agent) · FAQ 컴포넌트 재디자인 · 기술 시각(spatial-ai 카메라+지도·models 카탈로그).
+- **P3** 고객사 실명·로고(허가 리드타임) · 케이스 실측 전환 · 회사 빈 페이지 · 리소스 검색 · 세그먼트 폼 · 요금 계산기.
 
 ## 잔여 항목 우선순위 제안
 
