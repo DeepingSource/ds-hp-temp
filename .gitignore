@@ -44,6 +44,9 @@ new-images/
 /pop/
 _frames_tmp/
 asset-prompts/
+# SEAL/Spatial AI/Anonymizer asset staging (source imagery/video, processed to webp/mp4 under public/)
+/asset-hp-260720/
+docs/SEAL_LEGACY_ASSETS/
 # internal business/pricing strategy doc — kept local, not in repo
 docs/BIZ_SERVICE_PLAN_v1.md
 # session planning / evaluation reference docs (dropped in root, kept local)

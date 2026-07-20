@@ -24,6 +24,7 @@
 | 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
 | 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | `DeepingSource_홈페이지_개선계획.md`(untracked) · 이 문서 §15 |
 | 12:50 피드백 반영 (F-1~F-9 + §0 긴급) | 🟡 비게이트 완료(§0·F-1·F-5·F-7), 나머지 Jamin/자산 대기 | [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · 이 문서 §16 |
+| SEAL·Spatial AI·Anonymizer 콘텐츠 반영 (라이브 자산 이관) | ✅ 완료 (3페이지, 3커밋) | [`SEAL_페이지_콘텐츠_반영_계획_v1.md`](./SEAL_페이지_콘텐츠_반영_계획_v1.md) · 이 문서 §17 |
 
 ---
 
@@ -261,10 +262,22 @@ Jamin 피드백 10건 + 진행 항목 코드 대조. **비게이트 우선순위
 - **F-3** 모델 리스트·데모 영상(제품팀) · **F-2** pete-anon 데모 원본(피트님) — 자산 도착까지 블로킹
 - **7개 파트너 브랜드** 실명 승인 여부(CU·코리아세븐·CJ푸드빌·롯데GRS·현대차·롯데월드·국립박물관재단)
 
+## 17. SEAL·Spatial AI·Anonymizer 콘텐츠 반영 (2026-07-20 · [`SEAL_페이지_콘텐츠_반영_계획_v1.md`](./SEAL_페이지_콘텐츠_반영_계획_v1.md) · 3커밋 `ece1aa3f3`→`9788050a6`) ✅
+
+라이브 `deepingsource.io/ko/seal` 콘텐츠·자산을 새 사이트 3개 기술 페이지에 반영. 승인 방향=**제품 서사 복원(하이브리드)**. 라이선스=구매 stock 확인. 스테이징 폴더(`asset-hp-260720/`·`docs/SEAL_LEGACY_ASSETS/`)는 `.gitignore` 처리(디스크 보존).
+
+- **SEAL** (`ece1aa3f3`, `SealView.tsx` 전면 재작성) — SDK 단일서사 → 제품 우선 하이브리드 **12섹션**: Hero+인트로영상 → Problem → Before/After(드래그 슬라이더 4: 얼굴·번호판·매장·창구) → 전체/부분+데이터유용성 → Vision Tasks 8그리드 → 작동원리 3단(flow) → 비교표(SEAL·블러·마스크) → What Remains(기존) → 활용사례 4 → **SDK 블록 하단 재배치**(S/E/A/L + 코드목업 + 통합) → FAQ 병합(SDK 8 + 제품 4) → CTA. en/ko/jp 카피 + 제품 우선 title/description/OG. 인트로 영상 6.9MB→3.0MB 재인코딩+포스터.
+- **Spatial AI** (`cf17fa59d`, `SpatialTrajectoryMockup.tsx`) — 수제 SVG 궤적 → **MTMC 실영상** 교체. 헤더·스텝 파이프라인·설명카드 유지, 미사용 SVG 로직 제거. GIF 3.1MB→mp4 156KB(R8 권장, LoopVideo).
+- **Anonymizer** (`9788050a6`, `AnonymizerView.tsx`) — **"어떤 공간이든" 교차환경 갤러리** 신규 섹션(공장·병원·영화관·학교 슬라이더 4) + 배경 리듬 3섹션 스왑.
+
+**검증**: `tsc`+`eslint` 클린 · `next build` exit 0(3페이지 정적 프리렌더) · Playwright ko/en/jp 0 콘솔에러(SEAL 슬라이더 4·이미지 22 0깨짐·비교표 / Anonymizer 슬라이더 5·장면 8 / Spatial MTMC 교체·구 SVG 제거) · 자산 200.
+
+**결정(계획 R-시리즈)**: R1 제품 우선 톤 / R4 폼 대신 `/contact` CTA / R5 라이선스=구매 stock / R7 SEAL 4쌍·Anonymizer 4쌍 / R8 GIF 대신 mp4 루프. **잔여(자산 대기)**: F-2 pete-anon 데모 원본(Anonymizer 기존 데모, 범위 밖).
+
 ## 잔여 항목 우선순위 제안
 
 1. **배포 검증** — Vercel Deployment Protection 해제(또는 bypass 토큰) 후 배포본 1회 대조. *(사용자)*
 2. **leadership 인사 확인** — 자료 CTO(이수민) vs 사이트(CBO 금상호·VP 고봉경) 정합 후 bio 보강(§5-8) · 사회 안전 블록(§5-7)도 함께 판단. *(사용자)*
 3. **EN/JP 최종 사인오프** — 기계 검수 완료, 사람 확인만 잔여. *(사용자)*
 4. **A-2 slug 이중 입력 정리** — 콘텐츠 ~400파일 마이그레이션 + Keystatic 어드민 왕복 검증 필요 → GitHub 로그인 환경에서. *(어드민 게이트)*
-5. **배치 C #4 SpatialTrajectoryMockup 모션 개선**(프로토타입→검토) · **D-1 프리뷰**(GitHub 로그인 환경) · 배치 D #9 솔루션 히어로 분화(브랜드 카피 세션 권장).
+5. **D-1 프리뷰**(GitHub 로그인 환경) · 배치 D #9 솔루션 히어로 분화(브랜드 카피 세션 권장). *(배치 C #4 SpatialTrajectoryMockup은 §17에서 MTMC 실영상으로 교체 완료)*
