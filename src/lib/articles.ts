@@ -85,4 +85,43 @@ export function getAdjacentArticles(article: Article): {
   };
 }
 
+function stripBody(a: Article): ArticleMeta {
+  const { body: _body, ...meta } = a;
+  void _body;
+  return meta as ArticleMeta;
+}
+
+/**
+ * 블로그 상세용 관련 글(F-7) — 같은 로케일 + 블로그 노출 세트(getBlogArticles) 내에서
+ * relatedSlugs 우선, 그다음 tag/category 스코어, 부족하면 최신글로 폴백.
+ */
+export function getRelatedBlogArticles(article: Article, limit = 3): ArticleMeta[] {
+  const pool = getBlogArticles(article.lang).filter((a) => a.slug !== article.slug);
+  const explicit = (article.relatedSlugs ?? [])
+    .map(getArticleBySlug)
+    .filter((a): a is Article => !!a && a.lang === article.lang && a.slug !== article.slug);
+  const tagSet = new Set(article.tags);
+  const scored = pool
+    .filter((a) => !explicit.some((e) => e.slug === a.slug))
+    .map((a) => ({ a, score: a.tags.filter((t) => tagSet.has(t)).length * 2 + (a.category === article.category ? 1 : 0) }))
+    .sort((x, y) => y.score - x.score);
+  const related: Article[] = [...explicit, ...scored.filter(({ score }) => score > 0).map(({ a }) => a)];
+  // 폴백: 관련 글이 부족하면 같은 세트 최신글로 채움(빈 섹션 방지)
+  for (const a of pool) {
+    if (related.length >= limit) break;
+    if (!related.some((r) => r.slug === a.slug)) related.push(a);
+  }
+  return related.slice(0, limit).map(stripBody);
+}
+
+/** 블로그 상세용 이전/다음(F-7) — 같은 로케일 블로그 노출 세트, 발행일 오름차순. */
+export function getAdjacentBlogArticles(article: Article): { prev: ArticleMeta | undefined; next: ArticleMeta | undefined } {
+  const siblings = getBlogArticles(article.lang).slice().sort((a, b) => a.date.localeCompare(b.date));
+  const idx = siblings.findIndex((a) => a.slug === article.slug);
+  return {
+    prev: idx > 0 ? stripBody(siblings[idx - 1]) : undefined,
+    next: idx >= 0 && idx < siblings.length - 1 ? stripBody(siblings[idx + 1]) : undefined,
+  };
+}
+
 export type { Article, ArticleCategory } from '@/data/articles/types';
