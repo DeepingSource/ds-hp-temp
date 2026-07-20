@@ -19,8 +19,14 @@ const TOPICS: Record<Locale, BlogTopic[]> = {
     { label: '트렌드 · 시장', tags: ['트렌드', 'Trend', '시장분석', '시장', '시즌'] },
     { label: '업종', tags: ['편의점', '드럭스토어', '카페', '대형마트', '물류', '패션', '전시'] },
   ],
-  en: [],
-  jp: [],
+  en: [
+    { label: 'Product', tags: ['Product', 'saai agent', 'saai count', 'saai insight', 'saai care', 'AI agent'] },
+    { label: 'Technology', tags: ['Tech', 'Technology', 'anonymization', 'privacy'] },
+    { label: 'Trends', tags: ['Trend', 'Trends', 'trade-area analytics'] },
+    { label: 'Operations', tags: ['store operations', 'capture rate', 'inventory', 'staffing'] },
+    { label: 'Company', tags: ['Company'] },
+  ],
+  jp: [], // only 2 published jp articles today — a filter would be hidden by the guard anyway
 };
 
 /**
