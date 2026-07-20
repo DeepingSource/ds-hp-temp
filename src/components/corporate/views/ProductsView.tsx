@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ComponentType } from 'react';
-import { ArrowRight, ArrowUpRight, Cpu, DoorOpen, Grid3x3, Radar, ClipboardCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Cpu, Grid3x3, Radar, ClipboardCheck } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -12,7 +12,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
-import { productNaming, productSecondary, saaiPromiseLayer, categoryKeyword, type ProductKey } from '@/lib/brand-canon';
+import { productNaming, productSecondary, saaiPromiseLayer, categoryKeyword, operatingLoop, type ModeKey } from '@/lib/brand-canon';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
@@ -36,13 +36,29 @@ type ProductsCopy = {
 };
 const PRODUCTS = siteContent.products as Record<Locale, ProductsCopy>;
 
-type LoopStruct = { id: string; key: ProductKey; stageNo: string; stage: string; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
+/**
+ * The three modes, in matrix order (care → insight → agent).
+ *
+ * FIXED 2026-07-20 (reorg Phase 4): this list used to hold FOUR products mapped to four
+ * loop stages — count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn). Two things
+ * were wrong under Function × Mode Matrix v1.0: `count` is a FUNCTION, not a product,
+ * and 관찰/Observe belongs to care, not count. Stage labels now come from brand-canon
+ * `operatingLoop`, and count moved to the function library (/products/functions).
+ * `id` still matches the CMS copy keys in content/site/products.yaml.
+ */
+type LoopStruct = { id: string; key: ModeKey; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
 const LOOP_STRUCT: LoopStruct[] = [
-  { id: 'store-count', key: 'count', stageNo: '01', stage: 'Observe', icon: DoorOpen, href: '/products/saai-count' },
-  { id: 'store-insight', key: 'insight', stageNo: '02', stage: 'Analyze', icon: Grid3x3, href: '/products/saai-insight' },
-  { id: 'store-care', key: 'care', stageNo: '03', stage: 'Suggest', icon: Radar, href: '/products/saai-care' },
-  { id: 'store-agent', key: 'agent', stageNo: '04', stage: 'Learn', icon: ClipboardCheck, href: '/products/saai-agent', emphasis: true },
+  { id: 'store-care', key: 'care', icon: Radar, href: '/products/saai-care' },
+  { id: 'store-insight', key: 'insight', icon: Grid3x3, href: '/products/saai-insight' },
+  { id: 'store-agent', key: 'agent', icon: ClipboardCheck, href: '/products/saai-agent', emphasis: true },
 ];
+
+/** Function-library card that closes the row — count et al. live here, not on the loop. */
+const FUNCTIONS_CARD: Record<Locale, { stage: string; title: string; desc: string; cta: string }> = {
+  ko: { stage: '가로축', title: '기능 라이브러리', desc: 'count·trail·wait·shelf… 12개 기능은 한 제품에 속하지 않고 세 모드를 모두 가로지릅니다.', cta: '매트릭스 보기' },
+  en: { stage: 'Across', title: 'Function library', desc: 'count, trail, wait, shelf and eight more — capabilities that belong to no single product and cross all three modes.', cta: 'See the matrix' },
+  jp: { stage: '横軸', title: '機能ライブラリ', desc: 'count・trail・wait・shelf… 12の機能は一つの製品に属さず、3つのモードを横断します。', cta: 'マトリクスを見る' },
+};
 
 type OwnerStruct = { id: string; name: string; href: string };
 const OWNER_STRUCT: OwnerStruct[] = [
@@ -65,13 +81,20 @@ const HUB: Record<Locale, string> = {
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
   const promise = saaiPromiseLayer[locale];
-  const loop = LOOP_STRUCT.map((s) => ({
-    ...s,
-    name: productNaming[s.key].store,
-    saaiName: productNaming[s.key].saai,
-    secondary: productSecondary(s.key),
-    desc: c.loop[s.id]?.desc ?? '',
-  }));
+  // Stage label + time phase per mode, read from the loop SOT so the two never drift.
+  const loopSteps = operatingLoop[locale];
+  const loop = LOOP_STRUCT.map((s, i) => {
+    const step = loopSteps.find((x) => x.mode === s.key);
+    return {
+      ...s,
+      stageNo: String(i + 1).padStart(2, '0'),
+      stage: step ? `${step.label} · ${step.phase}` : '',
+      name: productNaming[s.key].store,
+      saaiName: productNaming[s.key].saai,
+      secondary: productSecondary(s.key),
+      desc: c.loop[s.id]?.desc ?? '',
+    };
+  });
   const owners = OWNER_STRUCT.map((s) => ({ ...s, desc: c.owners[s.id]?.desc ?? '' }));
 
   return (
@@ -161,6 +184,24 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                   </li>
                 );
               })}
+              {/* The horizontal axis — functions, which sit across the three modes. */}
+              <li className="stagger-child">
+                <Link
+                  href={localeHref(locale, '/products/functions')}
+                  className="group flex flex-col h-full rounded-2xl border border-dashed border-primary/40 bg-primary-lighter/30 p-6 hover:border-primary transition-colors no-underline"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-primary border border-primary/20 mb-5">
+                    <Grid3x3 className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <p className="text-2xs font-mono font-medium text-primary/70 mb-1">{FUNCTIONS_CARD[locale].stage}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{FUNCTIONS_CARD[locale].title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed break-keep mb-5 mt-2">{FUNCTIONS_CARD[locale].desc}</p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    {FUNCTIONS_CARD[locale].cta}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </Link>
+              </li>
             </ul>
           </AnimatedSection>
         </Container>

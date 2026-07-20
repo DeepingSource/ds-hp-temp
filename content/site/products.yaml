@@ -7,21 +7,21 @@ heroTitle:
   en: Perfect every space.
   jp: すべての空間を、完璧に。
 heroSub:
-  ko: 네 개의 제품, 하나의 운영 루프 — 문 밖의 통행부터 다음 한 수까지. SAAI로 익명화.
-  en: Four products, one operating loop — from the footfall outside to the next move. Anonymized by SAAI.
-  jp: 4つのプロダクト、ひとつのオペレーションループ — 店の外の通行から、次の一手まで。SAAIで匿名化。
+  ko: 세 개의 모드, 하나의 운영 루프 — 지금을 감지하고, 어제를 분석하고, 다음을 제안합니다. SAAI로 익명화.
+  en: Three modes, one operating loop — sensing the now, analyzing yesterday, proposing what comes next. Anonymized by SAAI.
+  jp: 3つのモード、ひとつのオペレーションループ — 今を検知し、昨日を分析し、次を提案する。SAAIで匿名化。
 loopEyebrow:
-  ko: 엔터프라이즈 · 매장 운영 루프
-  en: Enterprise · the operating loop
-  jp: エンタープライズ · 店舗オペレーションループ
+  ko: 엔터프라이즈 · 세 개의 모드
+  en: Enterprise · the three modes
+  jp: エンタープライズ · 3つのモード
 suiteTitle:
-  ko: SAAI Suite — 네 제품이 하나의 스위트로
-  en: The SAAI Suite — four products, one suite
-  jp: SAAI Suite — 4つのプロダクトが、ひとつのスイートに
+  ko: SAAI Suite — 세 모드가 하나의 루프로
+  en: The SAAI Suite — three modes, one loop
+  jp: SAAI Suite — 3つのモードが、ひとつのループに
 suiteSub:
-  ko: saai count가 데이터를 축적하고, insight가 분석하고, care가 제안하고, agent가 운영으로 잇습니다. 따로 쓰는 네 도구가 아니라, 하나의 루프로 맞물리는 한 벌입니다.
-  en: saai count accumulates the data, insight analyzes it, care suggests the move, and agent carries it into operations — not four separate tools, but one interlocking suite.
-  jp: saai count がデータを蓄積し、insight が分析し、care が提案し、agent が運営へつなぐ。別々の4つの道具ではなく、ひとつのループとして噛み合う一式です。
+  ko: care가 지금을 감지하고, insight가 어제를 분석하고, agent가 다음을 제안합니다. 그리고 학습이 루프를 닫아 결과를 다시 입력으로 되돌립니다. 기능은 이 세 모드를 모두 가로지릅니다.
+  en: care senses the now, insight analyzes yesterday, and agent proposes what comes next — then learning closes the loop and feeds the result back in. The functions cross all three modes.
+  jp: care が今を検知し、insight が昨日を分析し、agent が次を提案する。そして学習がループを閉じ、結果を再び入力へ戻します。機能はこの3つのモードを横断します。
 ownersEyebrow:
   ko: 도메인 구현 · 사장님을 위한 B2C (별도 사이트)
   en: Domain implementations · for owners, B2C (separate sites)
@@ -31,9 +31,9 @@ categoryTitle:
   en: One category — Anonymized Spatial AI
   jp: カテゴリーはひとつ — 匿名化空間AI
 categoryBody:
-  ko: 네 제품은 하나의 카테고리 위에 서 있습니다. 영상은 입력 시점에 익명화되어 저장되지 않고, 공간의 흐름만 데이터로 남습니다. 그 위에서 관찰(count)→분석(insight)→제안(care)→학습(agent)의 운영 루프가 돌아갑니다.
-  en: All four products stand on one category. Footage is anonymized at input and never stored — only the flow of the space remains as data. On top of that runs the operating loop, Observe (count) → Analyze (insight) → Suggest (care) → Learn (agent).
-  jp: 4つの製品は、ひとつのカテゴリーの上に立っています。映像は入力時点で匿名化されて保存されず、空間の流れだけがデータとして残ります。その上で、観察（count）→分析（insight）→提案（care）→学習（agent）のオペレーションループが回ります。
+  ko: 세 모드는 하나의 카테고리 위에 서 있습니다. 영상은 입력 시점에 익명화되어 저장되지 않고, 공간의 흐름만 데이터로 남습니다. 그 위에서 관찰(care)→분석(insight)→제안(agent)→학습의 운영 루프가 돌아가고, 기능은 그 세 모드를 모두 가로지릅니다.
+  en: The three modes stand on one category. Footage is anonymized at input and never stored — only the flow of the space remains as data. On top of that runs the operating loop, Observe (care) → Analyze (insight) → Suggest (agent) → Learn, and the functions cross all three modes.
+  jp: 3つのモードは、ひとつのカテゴリーの上に立っています。映像は入力時点で匿名化されて保存されず、空間の流れだけがデータとして残ります。その上で、観察（care）→分析（insight）→提案（agent）→学習のオペレーションループが回り、機能はその3つのモードを横断します。
 casesCta:
   ko: 도입 사례 보기
   en: See customer cases
