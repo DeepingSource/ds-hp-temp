@@ -19,6 +19,7 @@ import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { perfectSpace, productNaming, productPrimary } from '@/lib/brand-canon';
+import { FunctionModeStrip } from '@/components/corporate/FunctionModeMatrix';
 
 /**
  * StoreCountView — saai count product-detail composition.
@@ -27,7 +28,34 @@ import { perfectSpace, productNaming, productPrimary } from '@/lib/brand-canon';
  * Source of truth: StoreCount 리플렛(양면 A4 v2 · 상권분석 퍼널).
  * Narrative: 못 하고 있죠 → 우리가 대신 셉니다 → 무엇을 알 수 있나 →
  * 싸고 간편·여럿 동시·결정 근거 → From Store to Site → 정확도 → 프라이버시 → CTA.
+ *
+ * REFRAME (reorg Phase 4 · 2026-07-20): under Function × Mode Matrix v1.0 `count` is a
+ * FUNCTION, not a fourth product. The URL stays (/products/saai-count) so the footfall
+ * search equity is kept — no 301 — but the page now says what count is and how all
+ * three modes use it, and links out to the function library.
  */
+
+/** count-as-a-function framing. KO from the matrix SOT; EN/JP draft — 검수 대기. */
+const COUNT_AS_FUNCTION: Record<Locale, { eyebrow: string; title: string; sub: string; libraryCta: string }> = {
+  ko: {
+    eyebrow: '기능 × 3모드',
+    title: 'count는 기능입니다 — 네 번째 제품이 아닙니다',
+    sub: '기능은 한 제품에 속하지 않습니다. 같은 count를 care는 지금으로, insight는 어제로, agent는 다음으로 통과시킵니다.',
+    libraryCta: '기능 라이브러리 전체 보기',
+  },
+  en: {
+    eyebrow: 'Function × three modes',
+    title: 'count is a function — not a fourth product',
+    sub: 'A function does not belong to one product. The same count runs through care as now, through insight as yesterday, and through agent as next.',
+    libraryCta: 'See the whole function library',
+  },
+  jp: {
+    eyebrow: '機能 × 3モード',
+    title: 'count は機能です — 4番目の製品ではありません',
+    sub: '機能は一つの製品に属しません。同じ count を care は「今」として、insight は「昨日」として、agent は「次」として通します。',
+    libraryCta: '機能ライブラリをすべて見る',
+  },
+};
 
 type Stuck = { tag: string; h: string; d: string };
 type Metric = { label: string; desc: string };
@@ -329,6 +357,27 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      {/* ── count는 기능이다 — 3모드에서의 쓰임 (재정돈 Phase 4 · Matrix v1.0) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-primary mb-3 tracking-wide">{COUNT_AS_FUNCTION[locale].eyebrow}</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep mb-3">
+            {COUNT_AS_FUNCTION[locale].title}
+          </h2>
+          <p className="text-base text-gray-500 leading-relaxed break-keep mb-10 max-w-2xl">
+            {COUNT_AS_FUNCTION[locale].sub}
+          </p>
+          <FunctionModeStrip fn="count" locale={locale} />
+          <Link
+            href={localeHref(locale, '/products/functions')}
+            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+          >
+            {COUNT_AS_FUNCTION[locale].libraryCta}
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </AnimatedSection>
 
       {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
