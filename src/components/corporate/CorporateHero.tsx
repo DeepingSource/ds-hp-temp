@@ -5,7 +5,7 @@ import CorporateHeroFigure from '@/components/corporate/CorporateHeroFigure';
 import Container from '@/components/ui/Container';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
-import { perfectSpace, categoryKeyword } from '@/lib/brand-canon';
+import { categoryKeyword } from '@/lib/brand-canon';
 import { technologyImages } from '@/data/siteImages';
 
 /** Credential badges — real, hard credentials shown as proof pills (not a sentence). */
@@ -17,14 +17,25 @@ const credentials: Record<Locale, string[]> = {
 };
 
 /**
+ * Value-proposition headline (H1) — two lines: what we do to the space (read) and the
+ * outcome (change how you run it). States the product's job up front so a first-time
+ * visitor grasps "what this is" in one glance.
+ */
+const heroHeadline: Record<Locale, [string, string]> = {
+  ko: ['매장을 읽고,', '운영을 바꿉니다'],
+  en: ['Read your store,', 'change how you run it'],
+  jp: ['店舗を読み、', '運営を変える'],
+};
+
+/**
  * Keyword subheadline (H2) — promotes the category keyword into the heading hierarchy
- * for SEO/AEO weight. Emotional H1 stays; this carries the searchable term. The keyword
- * itself comes from the `categoryKeyword` SOT (brand-canon); only the tail lives here.
+ * for SEO/AEO weight; also carries the anonymization proof ("faceless, on the CCTV you
+ * already have"). The keyword comes from the `categoryKeyword` SOT; only the tail lives here.
  */
 const heroKeywordTail: Record<Locale, string> = {
-  ko: '얼굴 없이, CCTV 위에서',
-  en: 'faceless, on the CCTV you already have',
-  jp: '顔なしで、すでにあるCCTVの上で',
+  ko: '얼굴 없이, 이미 달린 CCTV 위에서.',
+  en: 'faceless, on the CCTV you already have.',
+  jp: '顔なしで、すでにあるCCTVの上で。',
 };
 
 /** Hero evidence overlay — proves face-free tracking (our anonymization moat, shown not told). */
@@ -65,7 +76,8 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               ANONYMIZED SPATIAL AI · SAAI
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display">
-              <WordRise text={perfectSpace.your[locale]} />
+              <WordRise text={heroHeadline[locale][0]} /><br />
+              <WordRise text={heroHeadline[locale][1]} />
             </h1>
             <h2 className="mt-4 text-lg sm:text-xl font-semibold text-gray-700 break-keep max-w-2xl animate-fade-in-up delay-100">
               {categoryKeyword[locale]} — {heroKeywordTail[locale]}

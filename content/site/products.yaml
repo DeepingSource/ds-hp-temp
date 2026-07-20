@@ -14,6 +14,14 @@ loopEyebrow:
   ko: 엔터프라이즈 · 매장 운영 루프
   en: Enterprise · the operating loop
   jp: エンタープライズ · 店舗オペレーションループ
+suiteTitle:
+  ko: SAAI Suite — 네 제품이 하나의 스위트로
+  en: The SAAI Suite — four products, one suite
+  jp: SAAI Suite — 4つのプロダクトが、ひとつのスイートに
+suiteSub:
+  ko: saai count가 데이터를 축적하고, insight가 분석하고, care가 제안하고, agent가 운영으로 잇습니다. 따로 쓰는 네 도구가 아니라, 하나의 루프로 맞물리는 한 벌입니다.
+  en: saai count accumulates the data, insight analyzes it, care suggests the move, and agent carries it into operations — not four separate tools, but one interlocking suite.
+  jp: saai count がデータを蓄積し、insight が分析し、care が提案し、agent が運営へつなぐ。別々の4つの道具ではなく、ひとつのループとして噛み合う一式です。
 ownersEyebrow:
   ko: 도메인 구현 · 사장님을 위한 B2C (별도 사이트)
   en: Domain implementations · for owners, B2C (separate sites)

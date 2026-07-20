@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic';
 import {
   BarChart3,
   ArrowRight,
+  ChevronRight,
   Users,
   Route,
   Repeat,
@@ -55,6 +56,7 @@ const C: Record<Locale, {
   featSub: string;
   features: { name: string; desc: string }[];
   featNote: string;
+  revenueOptLabel: string;
   installHeading: string;
   installSteps: { step: string; desc: string }[];
   installNote: string;
@@ -130,6 +132,7 @@ const C: Record<Locale, {
       { name: '에이전틱 AI *', desc: '행동 데이터에 매출·재고·날씨까지 결합해 예측·최적화' },
     ],
     featNote: '* 복수매장 통합 대시보드·에이전틱 AI는 별도 협의로 제공됩니다.',
+    revenueOptLabel: '선택 · 매출 데이터를 더하면 체류와 매출을 한 시간축에서 봅니다',
     installHeading: '도입은 이렇게 진행됩니다',
     installSteps: [
       { step: '1차 방문', desc: '현장 환경을 검토하고, 최적 화각의 기존 CCTV를 선택·연결합니다.' },
@@ -209,6 +212,7 @@ const C: Record<Locale, {
       { name: 'Agentic AI *', desc: 'Behavior data joined with sales, stock, and weather for prediction and optimization' },
     ],
     featNote: '* Multi-store dashboard and agentic AI are scoped separately.',
+    revenueOptLabel: 'Optional · add revenue data to see dwell and sales on one axis',
     installHeading: 'How onboarding works',
     installSteps: [
       { step: 'First visit', desc: 'We review the site and select and connect the existing CCTV with the best angles.' },
@@ -288,6 +292,7 @@ const C: Record<Locale, {
       { name: 'エージェンティックAI *', desc: '行動データに売上・在庫・天候まで結合し予測・最適化' },
     ],
     featNote: '※ 複数店舗統合ダッシュボード・エージェンティックAIは別途協議のうえ提供します。',
+    revenueOptLabel: 'オプション · 売上データを加えると、滞在と売上をひとつの時間軸で見られます',
     installHeading: '導入の進み方',
     installSteps: [
       { step: '初回訪問', desc: '現場環境を確認し、最適な画角の既存CCTVを選定・接続します。' },
@@ -309,6 +314,19 @@ const C: Record<Locale, {
     alreadyUsing: 'すでにご利用中ですか？',
     manual: 'ユーザーマニュアルを見る →',
   },
+};
+
+/**
+ * Feature taxonomy — groups the flat 19-item feature list into four scannable
+ * categories so the section reads as a map rather than a wall of tiles. FEATURE_CAT
+ * is index-aligned to C[locale].features (structure, locale-independent); group
+ * labels are localized in FEATURE_GROUPS.
+ */
+const FEATURE_CAT = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 2, 3, 3, 3];
+const FEATURE_GROUPS: Record<Locale, string[]> = {
+  ko: ['방문 · 유입', '동선 · 구역', '전환 · 성과', '리포트 · 확장'],
+  en: ['Traffic & entry', 'Flow & zones', 'Conversion & impact', 'Reports & scale'],
+  jp: ['来店 · 流入', '動線 · エリア', '転換 · 成果', 'レポート · 拡張'],
 };
 
 export default function StoreInsightView({ locale }: { locale: Locale }) {
@@ -495,11 +513,21 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.featHeading}</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{t.featSub}</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {t.features.map((f) => (
-              <div key={f.name} className="p-4 rounded-xl border border-gray-100 bg-gray-50/60">
-                <p className="text-sm font-bold text-gray-900 mb-1">{f.name}</p>
-                <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
+          <div className="space-y-8">
+            {FEATURE_GROUPS[locale].map((group, gi) => (
+              <div key={group}>
+                <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-3 break-keep">
+                  <span className="font-mono text-xs text-primary">0{gi + 1}</span>
+                  {group}
+                </h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {t.features.filter((_, i) => FEATURE_CAT[i] === gi).map((f) => (
+                    <div key={f.name} className="p-4 rounded-xl border border-gray-100 bg-gray-50/60">
+                      <p className="text-sm font-bold text-gray-900 mb-1">{f.name}</p>
+                      <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -524,8 +552,16 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
       {/* ── 숫자를 읽는 법 (period · peer · source) — 홈에서 이관 ── */}
       <ComparisonPrinciple locale={locale} />
 
-      {/* ── 매출을 끌어다 놓으면: 체류 + 매출 한 축에서 — 홈에서 이관 ── */}
-      <HubDataBand locale={locale} />
+      {/* ── 매출 결합은 선택·보조 (insight는 행동·체류가 주, 매출축은 옵션) — 기본 접힘 ── */}
+      <details className="group border-t border-gray-100 bg-gray-50">
+        <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors break-keep">
+            <ChevronRight className="w-4 h-4 shrink-0 transition-transform group-[[open]]:rotate-90" aria-hidden="true" />
+            {t.revenueOptLabel}
+          </div>
+        </summary>
+        <HubDataBand locale={locale} />
+      </details>
 
       {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">

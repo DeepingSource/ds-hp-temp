@@ -258,7 +258,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 기술 스택 갤러리 (4 서브) ── */}
+      {/* ── 기술 스택 갤러리 (3 축: anonymizer · spatial · agentic) ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-12">
@@ -266,7 +266,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.coreTitle}</h2>
             <p className="text-lg text-gray-500 max-w-xl break-keep">{t.coreSub}</p>
           </div>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {stack.map((s) => {
               const Icon = s.icon;
               return (

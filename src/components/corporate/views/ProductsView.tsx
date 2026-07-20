@@ -28,7 +28,7 @@ import siteContent from '@/data/generated/site-content.json';
 type CardCopy = { desc: string };
 type ProductsCopy = {
   eyebrow: string; heroTitle: string; heroSub: string;
-  loopEyebrow: string; ownersEyebrow: string;
+  loopEyebrow: string; suiteTitle: string; suiteSub: string; ownersEyebrow: string;
   categoryTitle: string; categoryBody: string; casesCta: string;
   detail: string; visit: string; seedLine: string; seedCta: string; cta: string;
   loop: Record<string, CardCopy>;
@@ -131,7 +131,11 @@ export default function ProductsView({ locale }: { locale: Locale }) {
       {/* ── ② Tier 1 — Enterprise · the operating loop ── */}
       <Section variant="default">
         <Container>
-          <Eyebrow className="mb-7">{c.loopEyebrow}</Eyebrow>
+          <Eyebrow className="mb-4">{c.loopEyebrow}</Eyebrow>
+          <div className="mb-9 max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{c.suiteTitle}</h2>
+            <p className="text-gray-500 leading-relaxed break-keep">{c.suiteSub}</p>
+          </div>
           <AnimatedSection>
             <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {loop.map((p) => {

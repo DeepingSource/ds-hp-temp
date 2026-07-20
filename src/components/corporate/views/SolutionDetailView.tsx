@@ -48,6 +48,10 @@ const C: Record<
     backToList: string;
     industryDetailSuffix: (label: string) => string;
     resultsNote: string;
+    productsUsedEyebrow: string;
+    caseStudiesEyebrow: string;
+    caseStudiesTitle: string;
+    caseStudiesCta: string;
   }
 > = {
   ko: {
@@ -67,6 +71,10 @@ const C: Record<
     backToList: '전체 솔루션 보기',
     industryDetailSuffix: (label) => `${label} 업종 상세`,
     resultsNote: '* 위 수치는 실제 운영 사례를 설명하기 위한 예시이며, 현장 조건에 따라 달라질 수 있습니다.',
+    productsUsedEyebrow: '이 솔루션에 쓰이는 제품',
+    caseStudiesEyebrow: '도입 사례',
+    caseStudiesTitle: '실제 매장에서 어떻게 작동했는지 확인하세요',
+    caseStudiesCta: '도입 사례 보기',
   },
   en: {
     breadcrumbHome: 'Solutions',
@@ -85,6 +93,10 @@ const C: Record<
     backToList: 'View all solutions',
     industryDetailSuffix: (label) => `${label} industry detail`,
     resultsNote: '* Figures above are illustrative examples of real deployments; actual results vary by site.',
+    productsUsedEyebrow: 'Products behind this solution',
+    caseStudiesEyebrow: 'Case studies',
+    caseStudiesTitle: 'See how it worked in real stores',
+    caseStudiesCta: 'View case studies',
   },
   jp: {
     breadcrumbHome: 'ソリューション',
@@ -103,10 +115,23 @@ const C: Record<
     backToList: 'すべてのソリューションを見る',
     industryDetailSuffix: (label) => `${label}の業種詳細`,
     resultsNote: '* 上記の数値は実際の運用事例を説明するための例であり、現場条件により異なります。',
+    productsUsedEyebrow: 'このソリューションを支える製品',
+    caseStudiesEyebrow: '導入事例',
+    caseStudiesTitle: '実際の店舗での成果をご覧ください',
+    caseStudiesCta: '導入事例を見る',
   },
 };
 
 const blue = { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-light', dot: 'bg-primary' };
+
+// SAAI 운영 루프 4제품 — 모든 솔루션이 딛는 공통 스택(관찰→분석→제안→학습).
+// solutionHeading('4단계 자동화')과 정합하는 제품 매핑 표기용.
+const SUITE_PRODUCTS = [
+  { name: 'saai count', href: '/products/saai-count' },
+  { name: 'saai insight', href: '/products/saai-insight' },
+  { name: 'saai care', href: '/products/saai-care' },
+  { name: 'saai agent', href: '/products/saai-agent' },
+] as const;
 
 /**
  * 솔루션 슬러그별 히어로 배경 — 문제 상황을 보여주는 CCTV 컷(저투명도 배경).
@@ -224,7 +249,7 @@ export default function SolutionDetailView({
             <ChevronRight className="w-3.5 h-3.5 opacity-40" />
             {industryMeta && (
               <>
-                <Link href={`${prefix}/industries/${sol.industry}`} className="hover:text-white transition-colors">
+                <Link href={`${prefix}/solutions#industry-${sol.industry}`} className="hover:text-white transition-colors">
                   {industryMetaLabel}
                 </Link>
                 <ChevronRight className="w-3.5 h-3.5 opacity-40" />
@@ -415,6 +440,35 @@ export default function SolutionDetailView({
             </div>
           )}
 
+          {/* 이 솔루션에 쓰이는 제품 (SAAI 운영 루프) */}
+          <div>
+            <p className="text-sm font-medium text-gray-500 mb-5 tracking-wider uppercase">{t.productsUsedEyebrow}</p>
+            <div className="flex flex-wrap gap-2">
+              {SUITE_PRODUCTS.map((p) => (
+                <Link
+                  key={p.name}
+                  href={`${prefix}${p.href}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary hover:text-primary transition-colors"
+                >
+                  {p.name}
+                  <ArrowRight className="w-3 h-3 opacity-50" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* 도입 사례 연결 (case-studies) */}
+          <div className="rounded-2xl border border-primary/20 bg-primary-lighter/40 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-1">{t.caseStudiesEyebrow}</p>
+              <p className="text-base font-bold text-gray-900 break-keep">{t.caseStudiesTitle}</p>
+            </div>
+            <Link href={`${prefix}/resources/case-studies`} className="btn-primary shrink-0 inline-flex items-center gap-2 whitespace-nowrap">
+              {t.caseStudiesCta}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
           {/* 솔루션 목록으로 */}
           <div className="flex items-center justify-between pt-6 border-t border-gray-100">
             <Link href={`${prefix}/solutions`} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors">
@@ -422,7 +476,7 @@ export default function SolutionDetailView({
               {t.backToList}
             </Link>
             {industryMeta && (
-              <Link href={`${prefix}/industries/${sol.industry}`} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors">
+              <Link href={`${prefix}/solutions#industry-${sol.industry}`} className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors">
                 {t.industryDetailSuffix(industryLabel)}
                 <ArrowRight className="w-4 h-4" />
               </Link>

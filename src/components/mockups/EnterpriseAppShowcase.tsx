@@ -621,7 +621,6 @@ function CctvPanel({ T }: { T: (t: Tri) => string }) {
             </div>
             <div className="absolute top-2 left-2 right-2 flex items-center justify-between">
               <span className="text-3xs font-medium text-white/90">{z.ch} · {T(z.name)}</span>
-              <span className="inline-flex items-center gap-1 text-3xs text-white/80"><span className="w-1.5 h-1.5 rounded-full bg-red-400" /> LIVE</span>
             </div>
           </div>
         ))}

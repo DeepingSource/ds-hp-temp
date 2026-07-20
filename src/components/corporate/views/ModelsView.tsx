@@ -158,6 +158,44 @@ const jp: Copy = {
 
 const C: Record<Locale, Copy> = { ko, en, jp };
 
+/**
+ * Model taxonomy — maps each model to a domain category so the catalog reads as a map
+ * (anonymization → recognition → space → flow/change → understanding) rather than a flat
+ * wall, and each category line frames when/what problem the group solves. MODEL_CATEGORY
+ * is index-aligned to model names (structure); MODEL_GROUPS is localized.
+ */
+const MODEL_CATEGORY: Record<string, number> = {
+  'face-anon': 0, 'body-anon': 0, 'plate-anon': 0,
+  'person-detect': 1, 'object-detect': 1, 'pose-estimate': 1, 'reid-embed': 1, 'mtmc-track': 1,
+  'cam-calibrate': 2, 'floor-project': 2,
+  'flow-density': 3, 'dwell-estimate': 3, 'queue-detect': 3, 'change-detect': 3, 'shelf-state': 3,
+  'event-classify': 4, 'scene-caption': 4, 'synth-frame': 4,
+};
+
+const MODEL_GROUPS: Record<Locale, { label: string; desc: string }[]> = {
+  ko: [
+    { label: '익명화', desc: '원본을 지우고 신원 신호를 제거 — 규제 준수와 프라이버시가 필요한 모든 곳에서.' },
+    { label: '인식', desc: '무엇이 어디 있고 어떤 자세·신원인지 — 검출과 추적의 토대.' },
+    { label: '공간', desc: '화면 좌표를 실제 평면으로 — 위치를 매장 지도 위에 올릴 때.' },
+    { label: '흐름·변화', desc: '밀도·체류·대기·이상 변화 — 혼잡, 병목, 이상 상황을 읽을 때.' },
+    { label: '이해·생성', desc: '이벤트 분류·장면 설명·합성 — 상황을 요약하고 학습 데이터를 만들 때.' },
+  ],
+  en: [
+    { label: 'Anonymization', desc: 'Erase the original and strip identity signals — wherever compliance and privacy are required.' },
+    { label: 'Recognition', desc: 'What is where, in what pose, which identity — the foundation for detection and tracking.' },
+    { label: 'Space', desc: 'Image coordinates onto the real floor plane — to place positions on your store map.' },
+    { label: 'Flow & change', desc: 'Density, dwell, queues, anomalies — to read congestion, bottlenecks, and unusual states.' },
+    { label: 'Understanding & generation', desc: 'Classify events, describe scenes, synthesize — to summarize situations and build training data.' },
+  ],
+  jp: [
+    { label: '匿名化', desc: '原本を消し、識別信号を除去 — 規制順守とプライバシーが必要なすべての場所で。' },
+    { label: '認識', desc: '何がどこにあり、どの姿勢・身元か — 検出と追跡の土台。' },
+    { label: '空間', desc: '画面座標を実際の平面へ — 位置を店舗マップ上に載せるとき。' },
+    { label: 'フロー・変化', desc: '密度・滞在・待機・異常の変化 — 混雑、ボトルネック、異常を読むとき。' },
+    { label: '理解・生成', desc: 'イベント分類・シーン説明・合成 — 状況を要約し、学習データをつくるとき。' },
+  ],
+};
+
 export default function ModelsView({ locale }: { locale: Locale }) {
   const t = C[locale];
 
@@ -212,32 +250,47 @@ export default function ModelsView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* Catalog grid */}
+      {/* Catalog grid — grouped by domain category (model ↔ problem mapping) */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {t.models.map((m) => (
-              <div key={m.name} className="card p-6 h-full flex flex-col">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-gray-100 mb-4 bg-gray-900">
-                  <Image
-                    src={`/images/models/${m.name}.webp`}
-                    alt={`${m.name} — ${m.promise}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover"
-                  />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-14">
+          {MODEL_GROUPS[locale].map((group, gi) => {
+            const groupModels = t.models.filter((m) => MODEL_CATEGORY[m.name] === gi);
+            if (groupModels.length === 0) return null;
+            return (
+              <div key={group.label}>
+                <div className="mb-5 max-w-2xl">
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-gray-900 mb-1 break-keep">
+                    <span className="font-mono text-sm text-primary">0{gi + 1}</span>
+                    {group.label}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed break-keep">{group.desc}</p>
                 </div>
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <code className="text-sm font-mono font-medium text-gray-900">{m.name}</code>
-                  <span className={`text-2xs font-medium px-2 py-0.5 rounded-full ${stageStyle[m.stage]}`}>
-                    {m.stage}
-                  </span>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {groupModels.map((m) => (
+                    <div key={m.name} className="card p-6 h-full flex flex-col">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-gray-100 mb-4 bg-gray-900">
+                        <Image
+                          src={`/images/models/${m.name}.webp`}
+                          alt={`${m.name} — ${m.promise}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between gap-3 mb-3">
+                        <code className="text-sm font-mono font-medium text-gray-900">{m.name}</code>
+                        <span className={`text-2xs font-medium px-2 py-0.5 rounded-full ${stageStyle[m.stage]}`}>
+                          {m.stage}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed break-keep">{m.promise}</p>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed break-keep">{m.promise}</p>
               </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-500 mt-6 break-keep">
+            );
+          })}
+          <p className="text-xs text-gray-500 break-keep">
             {t.catalogFootnote}
           </p>
         </div>

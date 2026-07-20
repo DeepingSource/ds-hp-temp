@@ -150,19 +150,13 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
                 <Reveal className="relative mb-8 h-36 sm:h-44 overflow-hidden rounded-2xl bg-slate-900">
                   {industry.heroImage && <ParallaxBannerImage src={industry.heroImage} />}
                   <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/85 via-surface-dark/55 to-surface-dark/20" aria-hidden="true" />
-                  <div className="absolute inset-0 flex items-center justify-between gap-3 px-5 sm:px-7">
+                  <div className="absolute inset-0 flex items-center gap-3 px-5 sm:px-7">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5 text-white" />
                       </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-white break-keep">{indLabel(industry.slug, industry.label)}</h3>
                     </div>
-                    <Link
-                      href={`/industries/${industry.slug}`}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-white/90 hover:text-white transition-colors shrink-0"
-                    >
-                      {t.industryDetail} <ArrowRight className="w-3 h-3" />
-                    </Link>
                   </div>
                 </Reveal>
 
