@@ -22,7 +22,7 @@
 | 문서 위키화 + 콘텐츠 CMS화 (docs·FAQ·glossary·solutions·leadership 등) | ✅ 완료 (gated 메커니즘 포함, 활성화=env) | `DOCS_WIKI_PLAN_v1.md`(untracked WIP) · 이 문서 §9 |
 | 사이트 개선 260716 (P0~P3: 가이드 숨김·블로그 성능·이벤트·saai URL·운영 가이드) | ✅ 요청분 완료 | `SITE_IMPROVEMENT_PLAN_260716.md`(untracked) · [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md) · 이 문서 §9 |
 | 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
-| 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | `DeepingSource_홈페이지_개선계획.md`(untracked) · 이 문서 §15 |
+| 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | [`docs/DeepingSource_홈페이지_개선계획.md`](./DeepingSource_홈페이지_개선계획.md) · 이 문서 §15 |
 | 12:50 피드백 반영 (F-1~F-9 + §0 긴급) | 🟡 비게이트 완료(§0·F-1·F-5·F-7), 나머지 Jamin/자산 대기 | [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · 이 문서 §16 |
 | SEAL·Spatial AI·Anonymizer 콘텐츠 반영 (라이브 자산 이관) | ✅ 완료 (3페이지, 3커밋) | [`SEAL_페이지_콘텐츠_반영_계획_v1.md`](./SEAL_페이지_콘텐츠_반영_계획_v1.md) · 이 문서 §17 |
 
@@ -207,7 +207,7 @@
 - 검증: 752페이지 빌드, en(기본)/ko 렌더·jp 폴백, 표·이미지·비디오·blockquote·doc링크·이미지 서빙·glossary 역링크, 48 테스트.
 - ⚠️ **잔여**: EN/JP는 레포 원본 번역 그대로 이식(품질 검수 미실시) · relatedSlugs(챕터 간)는 빈 배열(prev/next로 대체) · 랜딩 hero/일부 스타일(Screenshot 모바일 프레임·figcaption)은 플레인.
 
-## 15. 홈페이지 개선계획 실행 (2026-07-20 · `DeepingSource_홈페이지_개선계획.md` · 29P 전수분석 + 메모 19건) 🟡
+## 15. 홈페이지 개선계획 실행 (2026-07-20 · [`docs/DeepingSource_홈페이지_개선계획.md`](./DeepingSource_홈페이지_개선계획.md) · 29P 전수분석 + 메모 19건) 🟡
 
 우선순위 P0(신뢰 버그)→P1(카피·IA)→P2(디자인·목업)→P3(자산). **P0 대부분 + P1 다수 완료 — 8커밋 `8202a934c`→`8463e4686`.**
 
