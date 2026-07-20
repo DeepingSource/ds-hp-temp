@@ -521,7 +521,9 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
                   {group}
                 </h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {t.features.filter((_, i) => FEATURE_CAT[i] === gi).map((f) => (
+                  {/* Fallback: a feature whose index isn't in FEATURE_CAT lands in the last
+                      group rather than silently vanishing. */}
+                  {t.features.filter((_, i) => (FEATURE_CAT[i] ?? FEATURE_GROUPS[locale].length - 1) === gi).map((f) => (
                     <div key={f.name} className="p-4 rounded-xl border border-gray-100 bg-gray-50/60">
                       <p className="text-sm font-bold text-gray-900 mb-1">{f.name}</p>
                       <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>

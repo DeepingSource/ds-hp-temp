@@ -273,7 +273,10 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                   <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">
                     {active.mode ? (active.saaiName ?? active.name) : active.name}
                   </h3>
-                  {active.saaiName && (
+                  {/* Secondary store-label pill only when the heading shows the saai name
+                      (mode slides); for the count slide the heading is already the store
+                      name, so the pill would duplicate it. */}
+                  {active.mode && active.saaiName && (
                     <p className="mt-1.5">
                       <span className="inline-block rounded bg-white/10 px-2 py-0.5 text-2xs font-medium lowercase text-slate-300">{active.name}</span>
                     </p>

@@ -555,9 +555,6 @@
         "to on-site problems"
       ],
       "heroSub": "From overnight theft at retail stores to hazard detection in logistics centers. See how SAAI solves the real problems of each industry.",
-      "total": "{n} problem–solution guides",
-      "perIndustry": "{label} {n}",
-      "industryDetail": "Industry detail",
       "viewSolution": "View solution",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
@@ -578,9 +575,6 @@
         "검증된 해결책"
       ],
       "heroSub": "매장 야간 도난부터 물류센터 위험 감지까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.",
-      "total": "총 {n}개 문제-해결 가이드",
-      "perIndustry": "{label} {n}건",
-      "industryDetail": "업종 상세",
       "viewSolution": "솔루션 보기",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
@@ -601,9 +595,6 @@
         "実証された解決策"
       ],
       "heroSub": "店舗の夜間盗難から物流センターの危険検知まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。",
-      "total": "全 {n} 件の課題解決ガイド",
-      "perIndustry": "{label} {n} 件",
-      "industryDetail": "業種の詳細",
       "viewSolution": "ソリューションを見る",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [

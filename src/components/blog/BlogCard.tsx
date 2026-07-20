@@ -6,8 +6,8 @@ import { localeHref, type Locale } from '@/lib/i18n';
 
 /**
  * BlogCard — one article card for the /resources/blog index. Presentational and
- * client-safe (no server-only deps) so both the server-rendered first page and the
- * client "load more" island (BlogLoadMore) can render it from the same markup.
+ * client-safe (no server-only deps) so the client filter/load-more island
+ * (BlogFilterList) can render it from the same markup.
  */
 
 const READ_TIME: Record<Locale, (n: number) => string> = {

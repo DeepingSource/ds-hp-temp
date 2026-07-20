@@ -28,9 +28,6 @@ type SolutionsCopy = {
   badge: string;
   heroTitle: string[];
   heroSub: string;
-  total: string;        // interpolation template — {n}
-  perIndustry: string;  // interpolation template — {label} {n}
-  industryDetail: string;
   viewSolution: string;
   ctaEyebrow: string;
   ctaTitle: string[];

@@ -264,7 +264,10 @@ export default function ModelsView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-14">
           {MODEL_GROUPS[locale].map((group, gi) => {
-            const groupModels = t.models.filter((m) => MODEL_CATEGORY[m.name] === gi);
+            // Fallback: a model missing from MODEL_CATEGORY lands in the last group rather
+            // than silently vanishing from the catalog.
+            const lastGi = MODEL_GROUPS[locale].length - 1;
+            const groupModels = t.models.filter((m) => (MODEL_CATEGORY[m.name] ?? lastGi) === gi);
             if (groupModels.length === 0) return null;
             return (
               <div key={group.label}>
