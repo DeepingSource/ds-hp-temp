@@ -104,8 +104,7 @@ for (const loc of LOCALES) {
 // ── solutions — flat copy; heroTitle/ctaTitle/ctaSub are 2-line arrays, and
 //    total/perIndustry are interpolation templates ({n}/{label}) rebuilt in code. ──
 const SOLUTIONS_FLAT = [
-  'badge', 'heroTitle', 'heroSub', 'total', 'perIndustry',
-  'industryDetail', 'viewSolution', 'ctaEyebrow', 'ctaTitle', 'ctaSub',
+  'badge', 'heroTitle', 'heroSub', 'viewSolution', 'ctaEyebrow', 'ctaTitle', 'ctaSub',
   'ctaPrimary', 'ctaSecondary',
 ];
 const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_FLAT);

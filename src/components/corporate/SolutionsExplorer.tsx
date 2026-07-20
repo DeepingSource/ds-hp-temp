@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
@@ -41,13 +41,26 @@ export default function SolutionsExplorer({
 }) {
   const ui = UI[locale];
   const [active, setActive] = useState(groups[0]?.slug ?? '');
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Deep-link support: the solution-detail industry links point at
+  // `/solutions#industry-<slug>`. The flat list used to expose those anchors; the explorer
+  // doesn't, so read the hash on mount, open that industry, and scroll it into view.
+  useEffect(() => {
+    const m = window.location.hash.match(/^#industry-(.+)$/);
+    if (m && groups.some((g) => g.slug === m[1])) {
+      setActive(m[1]);
+      rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [groups]);
+
   const activeGroup = groups.find((g) => g.slug === active) ?? groups[0];
   const activeMeta = industryList.find((i) => i.slug === active);
   const activeColors = industryColorMap[activeMeta?.color ?? 'slate'] ?? industryColorMap.slate;
   const ActiveIcon = activeMeta?.icon;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <div ref={rootRef} className="max-w-5xl mx-auto px-4 sm:px-6 scroll-mt-24">
       {/* step indicator */}
       <ol className="flex items-center justify-center gap-2.5 text-xs font-medium mb-8 flex-wrap">
         <li className="text-primary">① {ui.step1}</li>
