@@ -3,21 +3,21 @@
     "en": {
       "masterCompany": "Perfect every space.",
       "masterOwner": "Our store, like the best.",
-      "heroSub": "On the CCTV you already have — not who, but what and how. Anonymized Spatial AI that keeps no footage.",
+      "heroSub": "From footfall at the door to in-store flow, anomalies, and the next move — read anonymously to run your store better. No footage is ever kept.",
       "ctaPrimary": "Talk to us",
       "ctaSecondary": "Explore products"
     },
     "ko": {
       "masterCompany": "모든 공간을, 완벽하게",
       "masterOwner": "우리 매장이 대표 매장처럼",
-      "heroSub": "이미 달린 CCTV 위에서 — 누구가 아니라 무엇을 어떻게. 영상은 남기지 않는, 익명화 공간 AI입니다.",
+      "heroSub": "밖의 유입부터 매장 안 동선·이상 상황, 다음 한 수까지 — 익명으로 읽어 매장 운영을 돕습니다. 영상은 남기지 않습니다.",
       "ctaPrimary": "도입 상담",
       "ctaSecondary": "제품 보기"
     },
     "jp": {
       "masterCompany": "すべての空間を、完璧に。",
       "masterOwner": "私たちの店が、代表店のように。",
-      "heroSub": "すでにあるCCTVの上で — 誰かではなく、何をどう。映像は残さない、匿名化された空間AIです。",
+      "heroSub": "店頭の流入から店内の動線・異常、次の一手まで — 匿名で読み取り、店舗運営を支援します。映像は残しません。",
       "ctaPrimary": "導入のご相談",
       "ctaSecondary": "製品を見る"
     }
@@ -1781,8 +1781,8 @@
     "en": {
       "badge": "Retail · Convenience · Drugstore",
       "heroTitle": [
-        "Different formats,",
-        "one store"
+        "Never miss a stockout",
+        "or an anomaly"
       ],
       "heroSub": "Out-of-stock, store-to-store inconsistency, and easy-to-miss anomalies. We watch the core problems of store operations by the same standard, for consistent operations.",
       "heroCta": "Request a consultation",
@@ -1837,8 +1837,8 @@
     "ko": {
       "badge": "리테일 · 편의점 · 드럭스토어",
       "heroTitle": [
-        "업종이 달라도",
-        "한 매장처럼"
+        "결품도 이상도,",
+        "놓치지 않는 매장"
       ],
       "heroSub": "결품, 매장 간 운영 편차, 놓치기 쉬운 이상 상황까지. 매장 운영의 핵심 문제를 같은 기준으로 살펴 일관된 운영을 돕습니다.",
       "heroCta": "도입 상담 신청",
@@ -1893,8 +1893,8 @@
     "jp": {
       "badge": "リテール · コンビニ · ドラッグストア",
       "heroTitle": [
-        "業種が違っても",
-        "ひとつの店舗のように"
+        "欠品も異常も、",
+        "見逃さない店舗"
       ],
       "heroSub": "欠品、店舗間の運営のばらつき、見逃しやすい異常まで。店舗運営の核心的な課題を同じ基準で見守り、一貫した運営を支援します。",
       "heroCta": "導入のご相談",
@@ -1951,8 +1951,8 @@
     "en": {
       "badge": "Drugstore",
       "heroTitle": [
-        "Different formats,",
-        "one store"
+        "Many categories,",
+        "displays that stay in order"
       ],
       "heroSub": "Display consistency, out-of-stock prevention, and customer flow. We watch the operations of category-heavy drugstores by the same standard, for clean and steady stores.",
       "heroCta": "Request a consultation",
@@ -1991,8 +1991,8 @@
     "ko": {
       "badge": "드럭스토어",
       "heroTitle": [
-        "업종이 달라도",
-        "한 매장처럼"
+        "카테고리가 많아도,",
+        "흐트러지지 않는 진열"
       ],
       "heroSub": "진열 일관성, 결품 방지, 고객 동선까지. 카테고리가 많은 드럭스토어 운영을 같은 기준으로 살펴 깔끔하고 안정적인 매장을 돕습니다.",
       "heroCta": "도입 상담 신청",
@@ -2031,8 +2031,8 @@
     "jp": {
       "badge": "ドラッグストア",
       "heroTitle": [
-        "業種が違っても",
-        "ひとつの店舗のように"
+        "カテゴリーが多くても、",
+        "乱れない陳列"
       ],
       "heroSub": "陳列の一貫性、欠品の防止、顧客の動線まで。カテゴリーの多いドラッグストアの運営を同じ基準で見守り、整った安定した店舗を支援します。",
       "heroCta": "導入のご相談",
@@ -2073,8 +2073,8 @@
     "en": {
       "badge": "Café & F&B",
       "heroTitle": [
-        "Different formats,",
-        "one store"
+        "Hygiene and service,",
+        "one standard across stores"
       ],
       "heroSub": "Hygiene, waits and turnover, and reorder timing. We watch the operations of busy food-service stores by the same standard, for service that never wavers.",
       "heroCta": "Request a consultation",
@@ -2113,8 +2113,8 @@
     "ko": {
       "badge": "카페 · 음식점",
       "heroTitle": [
-        "업종이 달라도",
-        "한 매장처럼"
+        "위생도 응대도,",
+        "매장마다 같은 기준으로"
       ],
       "heroSub": "위생, 대기와 회전, 발주 타이밍까지. 바쁜 외식 매장의 운영을 같은 기준으로 살펴 흔들림 없는 서비스를 돕습니다.",
       "heroCta": "도입 상담 신청",
@@ -2153,8 +2153,8 @@
     "jp": {
       "badge": "カフェ · 飲食店",
       "heroTitle": [
-        "業種が違っても",
-        "ひとつの店舗のように"
+        "衛生も接客も、",
+        "店舗ごとに同じ基準で"
       ],
       "heroSub": "衛生、待ち時間と回転、発注のタイミングまで。忙しい飲食店の運営を同じ基準で見守り、ぶれないサービスを支援します。",
       "heroCta": "導入のご相談",
@@ -2195,10 +2195,10 @@
     "en": {
       "badge": "Hypermarket · Mall · Convention",
       "heroTitle": [
-        "Every space,",
-        "like one."
+        "Even the largest space,",
+        "managed at a glance"
       ],
-      "heroSub": "However large the space, run it like one store. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.",
+      "heroSub": "However large the space, see it at a glance. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.",
       "heroCta": "Enterprise consultation",
       "scenariosEyebrow": "Operating challenges of large spaces",
       "scenariosHeading": "Even a vast space, one flow",
@@ -2244,10 +2244,10 @@
     "ko": {
       "badge": "하이퍼마켓 · 몰 · 컨벤션",
       "heroTitle": [
-        "모든 공간을,",
-        "한 매장처럼"
+        "넓은 공간도,",
+        "한눈에 관리"
       ],
-      "heroSub": "아무리 넓은 공간도 하나의 매장처럼. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.",
+      "heroSub": "아무리 넓은 공간도 한눈에. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.",
       "heroCta": "본사 도입 상담",
       "scenariosEyebrow": "대형 공간의 운영 과제",
       "scenariosHeading": "넓은 공간도, 하나의 흐름으로",
@@ -2293,10 +2293,10 @@
     "jp": {
       "badge": "ハイパーマーケット · モール · コンベンション",
       "heroTitle": [
-        "すべての空間を、",
-        "ひとつの店舗のように"
+        "広い空間も、",
+        "ひと目で管理"
       ],
-      "heroSub": "どれほど広い空間も、ひとつの店舗のように。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。",
+      "heroSub": "どれほど広い空間も、ひと目で。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。",
       "heroCta": "本社導入のご相談",
       "scenariosEyebrow": "大型空間の運営課題",
       "scenariosHeading": "広い空間も、ひとつの流れで",
