@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import SealView from '@/components/corporate/views/SealView';
 
 export const metadata: Metadata = {
-  title: 'SEAL SDK — De-identification Integration SDK | DEEPINGSOURCE',
+  title: 'SEAL — Video De-identification That Keeps Data Useful | DEEPINGSOURCE',
   description:
-    'SEAL SDK is a development kit for integrating video de-identification, recognition, and spatial-analytics pipelines into your application. It covers the four design principles: Secure, Embeddable, Adaptable, Lightweight.',
+    'SEAL removes every face and license plate from video while preserving the features AI needs — delivered as an embeddable SDK. See before/after, vision-task proof, and how it compares to blur and masking.',
   alternates: {
     canonical: '/technology/seal',
     languages: {
@@ -15,9 +15,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'SEAL SDK — De-identification Integration SDK | DEEPINGSOURCE',
-    description: 'An SDK for integrating the de-identification processing pipeline into your application.',
+    title: 'SEAL — Video De-identification That Keeps Data Useful | DEEPINGSOURCE',
+    description: 'Erase faces and license plates from video while keeping the data AI training needs — as an embeddable SDK.',
     url: '/technology/seal',
+    images: [{ url: '/images/og/seal.png', width: 2500, height: 1313, alt: 'SEAL — video de-identification that keeps data useful' }],
   },
 };
 

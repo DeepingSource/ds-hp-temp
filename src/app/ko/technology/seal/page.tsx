@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import SealView from '@/components/corporate/views/SealView';
 
 export const metadata: Metadata = {
-  title: 'SEAL SDK — 익명화 처리 통합 SDK | DEEPINGSOURCE',
+  title: 'SEAL — 데이터는 살리는 영상 비식별화 | DEEPINGSOURCE',
   description:
-    'SEAL SDK는 영상 익명화·인식·공간 분석 파이프라인을 애플리케이션에 통합하기 위한 개발 키트입니다. Secure, Embeddable, Adaptable, Lightweight 4가지 설계 원칙을 정리합니다.',
+    '영상 속 얼굴과 번호판을 지우면서 AI에 필요한 특징은 그대로 남기는 영상 비식별화 솔루션 SEAL. 비식별화 전후 비교, 비전 태스크 입증, 블러·마스크와의 차이, 내장 SDK까지.',
   alternates: {
     canonical: '/ko/technology/seal',
     languages: {
@@ -15,9 +15,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'SEAL SDK — 익명화 처리 통합 SDK | DEEPINGSOURCE',
-    description: '익명화 처리 파이프라인을 애플리케이션에 통합하기 위한 SDK.',
+    title: 'SEAL — 데이터는 살리는 영상 비식별화 | DEEPINGSOURCE',
+    description: '얼굴·번호판은 지우고 AI 학습에 필요한 데이터는 남기는 영상 비식별화 — 내장형 SDK로 제공.',
     url: '/ko/technology/seal',
+    images: [{ url: '/images/og/seal.png', width: 2500, height: 1313, alt: 'SEAL — 데이터는 살리는 영상 비식별화' }],
   },
 };
 
