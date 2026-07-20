@@ -11,6 +11,7 @@
   "scripts": {
     "gen:content": "node scripts/gen-site-content.mjs",
     "new:post": "node scripts/new-post.mjs",
+    "export:blog-list": "node scripts/export-blog-list.mjs",
     "predev": "npm run gen:content",
     "dev": "next dev",
     "prebuild": "npm run gen:content",
