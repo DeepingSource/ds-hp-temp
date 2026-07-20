@@ -23,7 +23,7 @@
 | 사이트 개선 260716 (P0~P3: 가이드 숨김·블로그 성능·이벤트·saai URL·운영 가이드) | ✅ 요청분 완료 | `SITE_IMPROVEMENT_PLAN_260716.md`(untracked) · [OPERATIONS_GUIDE](./OPERATIONS_GUIDE.md) · 이 문서 §9 |
 | 콘텐츠 수정·확장 통합 실행 (WP0~WP6 + 신규 콘텐츠 + P2-1 허브) | ✅ 완료 | [`종합_홈페이지_개선계획_260716.md`](./종합_홈페이지_개선계획_260716.md) · 이 문서 §10 |
 | 홈페이지 개선계획 (P0~P3 · 29P 전수분석 + 메모 19건) | 🟡 P0 11/14 + P1 다수 완료, 0-6·1-B/1-D·P2·P3 잔여 | `DeepingSource_홈페이지_개선계획.md`(untracked) · 이 문서 §15 |
-| 12:50 피드백 반영 (F-1~F-9 + §0 긴급) | 🟡 비게이트 5건 완료, 다수 Jamin/자산 대기 | [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · 이 문서 §16 |
+| 12:50 피드백 반영 (F-1~F-9 + §0 긴급) | 🟡 비게이트 완료(§0·F-1·F-5·F-7), 나머지 Jamin/자산 대기 | [`docs/2026-07-20_1250_Feedback.md`](./2026-07-20_1250_Feedback.md) · 이 문서 §16 |
 
 ---
 
@@ -252,8 +252,8 @@ Jamin 피드백 10건 + 진행 항목 코드 대조. **비게이트 우선순위
 - **§0.1 [3-10] 🔴 런칭 블로커**(마감 7/21) — 올리브영 실명 → 준실명("국내 1위 H&B 스토어") 익명화. `PartnerGrid` + `contact.yaml` 6곳, 되돌리기 쉬운 방식(PL-5). 나머지 7개 파트너 유지. `d736076c8`. ⚠️ 블로그/docs의 올리브영은 편집성 사례(공개 매출 인용)라 3-10 범위 밖.
 - **§0.2 [2-7]** 블로그 큐레이션 export — `scripts/export-blog-list.mjs`(`npm run export:blog-list`) + `docs/BLOG_CURATION_LIST.csv`(247편, 노출 124·초안 97). `bb40d28f7`.
 - **F-5** 업종 페이지 → 도입 사례. `getCaseStudiesForSolution` 명시 매핑 + `SolutionCaseStudies`(4뷰) + 허브 순환 CTA(`/industries`)를 `/resources/case-studies`로 전환. `f63b22a6d`.
-- **F-7 (blog nav)** 블로그 상세 관련 글 + 이전/다음. lang-aware `getRelatedBlogArticles`/`getAdjacentBlogArticles`(기존 getter는 전 로케일 혼합이라 부적합) + `/resources/blog` 경로 인라인 카드(`ArticleCard`는 `/storeagent/blog`라 미사용). `b4aecaa4e`. ⬜ **F-7 part4 CTA 감사(페이지별)는 잔여.**
-- **F-1 (1차)** 워드마크 정합 — blog/case `TITLE_SUFFIX` + `BlogArticleView` 이베로우 → DEEPINGSOURCE(+`font-brand`). 산문은 기존 규칙(brand-canon 2026-07-14: 타이틀·배지=DEEPINGSOURCE, 산문·JSON-LD·어원 예외)상 mixed-case 유지 = **item-3(산문 대문자화) 결정 완료(유지)**. `3b28898aa`. ⬜ **잔여 타이틀/메타 분류.**
+- **F-7 (blog nav + CTA 감사)** ① 블로그 상세 관련 글 + 이전/다음(lang-aware `getRelatedBlogArticles`/`getAdjacentBlogArticles` — 기존 getter는 전 로케일 혼합이라 부적합, `/resources/blog` 인라인 카드) `b4aecaa4e`. ② **CTA 감사(part4)**: Contact CTA 부재였던 DocsView·GlossaryView·EventsIndexView에 공용 `PageCta`(기능성 상담 배너) 추가 `c05010de6`. 상세 페이지(glossary/docs/news/career/faq/event detail)는 기존 CTA 확인.
+- **F-1 워드마크 정합** ① 1차 blog/case `TITLE_SUFFIX` + `BlogArticleView` 이베로우 → DEEPINGSOURCE(+`font-brand`) `3b28898aa`. ② 2차 OG siteName + '회사 소개' nav desc `5ef406398`. 산문은 규칙(brand-canon 2026-07-14: 타이틀·배지=DEEPINGSOURCE, 산문·JSON-LD·어원 예외)상 mixed-case 유지 = **item-3 결정 완료(유지)**. 미니사이트 푸터(별도 B2C·법인명)는 제외.
 
 ### 🙋 Jamin 확인 대기 (개발과 병렬 회신)
 - **3-11** 7곳 "누구가"→"누구나"/"누가" 문장별 확정 · **3-12** 홈 CTA 문구(권장 "전문가 상담 신청하기")
