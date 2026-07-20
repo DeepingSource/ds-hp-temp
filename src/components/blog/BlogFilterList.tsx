@@ -7,7 +7,7 @@ import type { ArticleMeta } from '@/lib/article-metadata';
 import { type Locale } from '@/lib/i18n';
 
 /**
- * BlogFilterList — blog index grid with topic tabs + client-side "load more".
+ * BlogFilterList — blog index grid with topic toggle buttons + client-side "load more".
  *
  * The published blog feed is effectively single-`category` (insight), so filtering by
  * category is useless. Instead we filter by curated TOPICS: each topic maps to a set of

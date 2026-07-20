@@ -124,12 +124,12 @@ const C: Record<
 
 const blue = { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-light', dot: 'bg-primary' };
 
-// SAAI 운영 루프 4제품 — 모든 솔루션이 딛는 공통 스택(관찰→분석→제안→학습).
-// solutionHeading('4단계 자동화')과 정합하는 제품 매핑 표기용.
+// SAAI 운영 루프의 세 모드 — care(관찰)·insight(분석)·agent(제안), 학습이 루프를 닫는다
+// (brand-canon operatingLoop SOT). 모든 솔루션이 딛는 공통 스택. count 등 기능은 세 모드를
+// 가로지르는 기능 라이브러리 소속이라 제품 목록에는 넣지 않는다.
 const SUITE_PRODUCTS = [
-  { name: 'saai count', href: '/products/saai-count' },
-  { name: 'saai insight', href: '/products/saai-insight' },
   { name: 'saai care', href: '/products/saai-care' },
+  { name: 'saai insight', href: '/products/saai-insight' },
   { name: 'saai agent', href: '/products/saai-agent' },
 ] as const;
 

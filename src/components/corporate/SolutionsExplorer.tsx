@@ -13,10 +13,13 @@ import { localeHref, type Locale } from '@/lib/i18n';
  * while keeping every solution one click away.
  *
  * SEO/crawlability: EVERY industry's panel (with all its solution-detail links) is rendered
- * into the server HTML; inactive panels are just `hidden`. So all links stay crawlable and
- * the `#industry-<slug>` anchor the detail pages deep-link to always exists in the DOM.
- * The `useEffect` opens the industry named in the URL hash on mount for JS visitors.
- * Icon/color/hero come from the shared industryList (by slug); copy is passed in.
+ * into the server HTML; inactive panels are just `hidden`, and each carries an
+ * `id="industry-<slug>"` anchor the detail pages deep-link to. The `useEffect` opens the
+ * industry named in the URL hash on mount for JS visitors.
+ *
+ * No-JS / pre-hydration: the toggle needs client JS, so a <noscript> style un-hides every
+ * panel — a no-JS visitor sees all industries (as the old flat list did) instead of only
+ * the first. Icon/color/hero come from the shared industryList (resolved once per group).
  */
 
 export type ExplorerSolution = {
@@ -47,9 +50,20 @@ export default function SolutionsExplorer({
   const [active, setActive] = useState(groups[0]?.slug ?? '');
   const rootRef = useRef<HTMLDivElement>(null);
 
+  // Resolve industryList metadata (icon/color/hero) once per group — used by both the
+  // selector and the panels below.
+  const resolved = groups.map((g) => {
+    const meta = industryList.find((i) => i.slug === g.slug);
+    return {
+      ...g,
+      meta,
+      colors: industryColorMap[meta?.color ?? 'slate'] ?? industryColorMap.slate,
+      Icon: meta?.icon,
+    };
+  });
+
   // Deep-link: open the industry named in the URL hash (#industry-<slug>) on mount and
-  // scroll it into view. The anchors themselves live on each panel (rendered below), so
-  // the hash target exists even before this runs.
+  // scroll it into view. The anchors live on each panel (below), so the target exists.
   useEffect(() => {
     const m = window.location.hash.match(/^#industry-(.+)$/);
     if (m && groups.some((g) => g.slug === m[1])) {
@@ -60,6 +74,11 @@ export default function SolutionsExplorer({
 
   return (
     <div ref={rootRef} className="max-w-5xl mx-auto px-4 sm:px-6 scroll-mt-24">
+      {/* No JS: the toggle can't run, so reveal every industry panel (old flat-list behavior). */}
+      <noscript>
+        <style>{`[data-industry-panel]{display:block !important}`}</style>
+      </noscript>
+
       {/* flow guide (describes the path — not live progress) */}
       <p className="flex items-center justify-center gap-2.5 text-xs font-medium text-gray-400 mb-8 flex-wrap">
         <span>① {ui.step1}</span>
@@ -71,48 +90,44 @@ export default function SolutionsExplorer({
 
       {/* step 1 — industry selector (toggle buttons controlling the panels below) */}
       <div role="group" aria-label={ui.pick} className="flex flex-wrap gap-2 justify-center mb-10">
-        {groups.map((g) => {
-          const meta = industryList.find((i) => i.slug === g.slug);
-          const colors = industryColorMap[meta?.color ?? 'slate'] ?? industryColorMap.slate;
-          const Icon = meta?.icon;
-          const isActive = g.slug === active;
+        {resolved.map(({ slug, label, solutions, colors, Icon }) => {
+          const isActive = slug === active;
           return (
             <button
-              key={g.slug}
+              key={slug}
               type="button"
               aria-pressed={isActive}
-              aria-controls={`industry-${g.slug}`}
-              onClick={() => setActive(g.slug)}
+              aria-controls={`industry-${slug}`}
+              onClick={() => setActive(slug)}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-colors cursor-pointer ${
                 isActive ? 'bg-primary text-white border-primary' : `${colors.bg} ${colors.text} ${colors.border} hover:opacity-80`
               }`}
             >
               {Icon && <Icon className="w-4 h-4" aria-hidden="true" />}
-              {g.label}
-              <span className={`text-2xs tabular-nums ${isActive ? 'text-white/70' : 'opacity-60'}`}>{g.solutions.length}</span>
+              {label}
+              <span className={`text-2xs tabular-nums ${isActive ? 'text-white/70' : 'opacity-60'}`}>{solutions.length}</span>
             </button>
           );
         })}
       </div>
 
       {/* step 2 — every industry's panel is in the DOM (all solution links crawlable);
-          only the active one is visible. */}
-      {groups.map((group) => {
-        const meta = industryList.find((i) => i.slug === group.slug);
-        const colors = industryColorMap[meta?.color ?? 'slate'] ?? industryColorMap.slate;
-        const Icon = meta?.icon;
-        const isActive = group.slug === active;
+          only the active one is visible. The decorative banner image is only rendered for
+          the active panel (hidden panels would ship an unused srcset for no gain). */}
+      {resolved.map(({ slug, label, solutions, meta, colors, Icon }) => {
+        const isActive = slug === active;
         return (
           <div
-            key={group.slug}
-            id={`industry-${group.slug}`}
+            key={slug}
+            id={`industry-${slug}`}
+            data-industry-panel=""
             role="region"
-            aria-label={group.label}
+            aria-label={label}
             hidden={!isActive}
             className={isActive ? 'animate-fade-in-up' : undefined}
           >
             <div className="relative mb-6 h-32 sm:h-40 overflow-hidden rounded-2xl bg-slate-900">
-              {meta?.heroImage && (
+              {isActive && meta?.heroImage && (
                 <Image src={meta.heroImage} alt="" fill sizes="(min-width: 1024px) 1024px, 100vw" className="object-cover" />
               )}
               <div className="absolute inset-0 bg-gradient-to-r from-surface-dark/85 via-surface-dark/55 to-surface-dark/20" aria-hidden="true" />
@@ -121,7 +136,7 @@ export default function SolutionsExplorer({
                   {Icon && <Icon className="w-5 h-5 text-white" aria-hidden="true" />}
                 </div>
                 <div className="min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white break-keep">{group.label}</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white break-keep">{label}</h2>
                   {locale === 'ko' && meta?.desc && (
                     <p className="text-xs text-white/70 line-clamp-1 break-keep">{meta.desc}</p>
                   )}
@@ -130,7 +145,7 @@ export default function SolutionsExplorer({
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {group.solutions.map((sol) => (
+              {solutions.map((sol) => (
                 <Link
                   key={sol.slug}
                   href={localeHref(locale, `/solutions/${sol.slug}`)}
