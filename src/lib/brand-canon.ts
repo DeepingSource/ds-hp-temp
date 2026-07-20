@@ -4,9 +4,15 @@ import { type Locale } from './i18n';
  * brand-canon.ts — single source for brand copy lifted from the brand-system SOT.
  *
  * SOT: SAAI_AI_Handoff.md
+ *      — Function_Mode_Matrix_v1.0 (제품=3모드 · 기능=가로축 12 — 정렬 중심)
  *      — Voice_v2.5 (messaging spine · two master copies)
  *      — Architecture_v4 (SEED·SOURCE·SOLUTION)
  *      — Copy_Decision_v1 (두 마스터)
+ *
+ * MODEL (Function × Mode Matrix v1.0 · 2026-07-20): the products are exactly three
+ * modes — care(탐지·감지) · insight(분석) · agent(제안·운영). Capabilities such as
+ * `count` are FUNCTIONS that cross all three; `count` is not a fourth product.
+ * See `MODES`, `FunctionKey`, `FUNCTION_MODE_MATRIX` below.
  *
  * RULE: do not invent copy here — only lift from the SOT. The two master copies
  * (모든 공간을, 완벽하게 / 우리 매장이 대표 매장처럼) live in i18n.ts homeCopy;
@@ -35,7 +41,21 @@ export const signature: Record<Locale, string> = {
   jp: '見るAIを超え、空間を運営するAI。',
 };
 
-/** Brand signature (5자) — SAAI_AI_Handoff.md · A2. EN/JP per the weaving frame. */
+/**
+ * Brand signature (5자) — SAAI_AI_Handoff.md · A2.
+ *
+ * ⚠️ WEAVING RETIRED (Naming Grammar v1.5 결정 18 · Architecture v4.0 §0-3):
+ * the Weaving 카피 서사 and the Seam·Thread·Knot·Weave engine names are retired,
+ * and the clover carries no assigned meaning (pure visual identifier now).
+ * The KO signature 「사이를 메웁니다」 SURVIVES — v4.0 keeps it explicitly.
+ *
+ * What still leans on the retired frame, and is NOT fixed here:
+ *   • the export name `seam` (renaming breaks consumers — reorg Phase 4)
+ *   • the EN rendering "We weave the in-between" / JP 「間を紡ぐ」
+ * This file's rule is to LIFT copy from the SOT, never invent it — so replacement
+ * EN/JP signatures must come from a copy round, not from this edit.
+ * Tracked as an open issue in brand-system `_current/INDEX.md`.
+ */
 export const seam: Record<Locale, string> = {
   ko: '사이를 메웁니다.',
   en: 'We weave the in-between.',
@@ -80,27 +100,40 @@ export const categoryKeyword: Record<Locale, string> = {
 
 /**
  * Operating loop — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
- * Replaces the retired 3-step Read·Alert·Act. phase = the time axis (어제/지금/알림/다음).
- * (KO/JP wording is a handoff-faithful draft pending brand sign-off.)
+ * Replaces the retired 3-step Read·Alert·Act. phase = the time axis.
+ *
+ * LOOP ↔ MODE (Function × Mode Matrix v1.0 §1 — reorg Phase 3, 2026-07-20):
+ *   관찰/Observe → saai care    · 지금 (탐지·감지 — "지금 무슨 일이 일어나는가")
+ *   분석/Analyze → saai insight · 어제 (분석     — "어제까지 무엇이 있었나")
+ *   제안/Suggest → saai agent   · 다음 (제안·운영 — "다음에 무엇을 할까")
+ *   학습/Learn   → (모드 없음)  · 다시 (루프 복귀 — 결과가 다음 관찰의 입력이 된다)
+ *
+ * The loop is the *time story*; the three modes are the *products* that live on it.
+ * The fourth step has no product — learning is what closes the loop, not a thing to sell.
+ *
+ * FIXED 2026-07-20: the phase axis was inverted (관찰=어제 · 분석=지금), which
+ * contradicted both the matrix and this repo's own `solutionsData.ts`
+ * (`01 관찰 · care` / `02 분석 · insight`). Now all three agree.
+ * `mode` is the machine-readable link — see `MODES` / `FUNCTION_MODE_MATRIX` below.
  */
-export const operatingLoop: Record<Locale, { label: string; phase: string }[]> = {
+export const operatingLoop: Record<Locale, { label: string; phase: string; mode: ModeKey | null }[]> = {
   ko: [
-    { label: '관찰', phase: '어제' },
-    { label: '분석', phase: '지금' },
-    { label: '제안', phase: '알림' },
-    { label: '학습', phase: '다음' },
+    { label: '관찰', phase: '지금', mode: 'care' },
+    { label: '분석', phase: '어제', mode: 'insight' },
+    { label: '제안', phase: '다음', mode: 'agent' },
+    { label: '학습', phase: '다시', mode: null },
   ],
   en: [
-    { label: 'Observe', phase: 'Yesterday' },
-    { label: 'Analyze', phase: 'Now' },
-    { label: 'Suggest', phase: 'Alert' },
-    { label: 'Learn', phase: 'Next' },
+    { label: 'Observe', phase: 'Now', mode: 'care' },
+    { label: 'Analyze', phase: 'Yesterday', mode: 'insight' },
+    { label: 'Suggest', phase: 'Next', mode: 'agent' },
+    { label: 'Learn', phase: 'Again', mode: null },
   ],
   jp: [
-    { label: '観察', phase: '昨日' },
-    { label: '分析', phase: '今' },
-    { label: '提案', phase: '通知' },
-    { label: '学習', phase: '次' },
+    { label: '観察', phase: '今', mode: 'care' },
+    { label: '分析', phase: '昨日', mode: 'insight' },
+    { label: '提案', phase: '次', mode: 'agent' },
+    { label: '学習', phase: '再び', mode: null },
   ],
 };
 
@@ -109,9 +142,15 @@ export const operatingLoop: Record<Locale, { label: string; phase: string }[]> =
  * Intelligence = 우산 브랜드 SAAI의 네 글자 = 모든 제품이 딛는 공통 토대(무순서 병렬,
  * 운영 루프와는 성격이 다른 "자산 지도"). 각 기둥은 이를 증명하는 tech(SEED) 페이지로
  * 연결된다(§13). anonymized-first: 익명화가 "먼저 서는 자리"임을 sub에 명시(§4.1).
- * NOTE: 카피는 재정비안 §8 초안 — 브랜드 카운슬 사인오프 대기(풀어쓰기 표기 §9-1 미확정
- * 이므로 선형 "Spatial Anonymized Agentic Intelligence"는 노출하지 않고 4-up이 스펠아웃).
- * jp = KO/EN 기준 렌더(검수 대상).
+ * SIGN-OFF STATUS (rechecked 2026-07-20 · reorg Phase 3): 🟡 STILL PENDING.
+ * 카피는 재정비안 §8 초안이고 브랜드 카운슬 사인오프가 아직 없다. 풀어쓰기 표기(§9-1)도
+ * 미확정이라 선형 "Spatial Anonymized Agentic Intelligence"는 노출하지 않고 4-up으로만
+ * 스펠아웃한다. jp = KO/EN 기준 렌더(검수 대상).
+ *
+ * This layer is orthogonal to the Function × Mode Matrix: the four pillars are the
+ * shared FOUNDATION every product stands on (무순서 병렬 자산 지도), while the matrix
+ * describes what the three modes DO. Do not present the pillars as a product list or
+ * as loop stages — see `MODES` / `FUNCTION_MODE_MATRIX` for those.
  */
 export type SaaiPillar = {
   key: 'spatial' | 'anonymized' | 'agentic' | 'intelligence';
@@ -210,6 +249,18 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  * Names are locale-invariant (lowercase). URLs are /products/saai-* (P1-3);
  * the old /products/store-* paths 301-redirect to them (see next.config.ts).
  */
+/**
+ * SURFACE KEY — the four page/route surfaces the site currently ships.
+ *
+ * ⚠️ `count` is in this union because it OWNS A PAGE (/products/saai-count),
+ * NOT because it is a product. Under Function × Mode Matrix v1.0 the products are
+ * exactly three modes (`ModeKey`) and `count` is one of twelve functions
+ * (`FunctionKey`) that cross all three. Do not read this type as "the product list".
+ *
+ * @deprecated as a *product* type. For product logic use `ModeKey`; for capability
+ * logic use `FunctionKey`. This alias stays so existing surfaces keep compiling
+ * while the page information architecture is reworked (reorg Phase 4).
+ */
 export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
 export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {
   count: { store: 'store count', saai: 'saai count' },
@@ -222,6 +273,163 @@ export const productPrimary = (k: ProductKey): string => productNaming[k].saai ?
 /** Secondary (store) label — null when the primary already IS the store name. */
 export const productSecondary = (k: ProductKey): string | null =>
   productNaming[k].saai ? productNaming[k].store : null;
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * FUNCTION × MODE MATRIX v1.0 — the code mirror of the brand SOT.
+ *
+ * SOT: brand-system/01_brand_system/SAAI_Function_Mode_Matrix_v1.0.md (🟢 확정 2026-07-20)
+ *
+ * THE MODEL IN ONE LINE:
+ *   제품은 세 개의 모드다 (care · insight · agent).
+ *   기능은 그 위를 가로지르는 도구다 — 한 제품에 속하지 않는다.
+ *
+ * This inverts the earlier model ("each tool has one home product"). A function is a
+ * neutral verb; a mode is the time axis and purpose you push it through. So
+ * `count` is not a fourth product — it is one row that all three modes read.
+ *
+ * EXTENSION RULE: a new capability adds ONE ROW and three mode experiences appear
+ * for free. No new product, no new name (Naming Grammar 확장 문법과 정합).
+ *
+ * NAMING: functions are lowercase verbs, spaced when prefixed — `store count`.
+ * One cell reads: "saai care가 store count를 돌린다".
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/** The three products. These — and only these — are products. */
+export type ModeKey = 'care' | 'insight' | 'agent';
+
+/** Mode definitions — matrix §1 (제품 · 고정). */
+export const MODES: Record<ModeKey, {
+  /** Public label, lowercase (naming reorg). */
+  name: string;
+  /** 모드 — what this product does to a function. */
+  mode: string;
+  /** The question this mode answers. */
+  question: string;
+  /** Time axis. */
+  tense: string;
+  /** What it hands the operator. */
+  output: string;
+}> = {
+  care:    { name: 'saai care',    mode: '탐지·감지',  question: '지금 무슨 일이 일어나는가',  tense: '지금', output: '실시간 감지 · 알림' },
+  insight: { name: 'saai insight', mode: '분석',      question: '어제까지 무엇이 있었나',    tense: '과거', output: '시계열 · 패턴 · 가설' },
+  agent:   { name: 'saai agent',   mode: '제안·운영',  question: '다음에 무엇을 할까',       tense: '미래', output: '우선순위 · 실행 제안' },
+};
+
+/**
+ * Mode order — care(감지) → insight(분석) → agent(제안·운영).
+ * The signal starts on the left; each step moves closer to a human decision.
+ * 결정과 책임은 사람의 자리 — agent는 제안까지, 실행 결정은 사람.
+ */
+export const MODE_ORDER: readonly ModeKey[] = ['care', 'insight', 'agent'] as const;
+
+/** The twelve capabilities. Locked at 12 rows in v1.0. */
+export type FunctionKey =
+  | 'count' | 'census' | 'trail' | 'gaze' | 'wait' | 'tide'
+  | 'keep' | 'shelf' | 'motion' | 'fit' | 'pop' | 'talk';
+
+/** Matrix row order — matches the SOT document. */
+export const FUNCTION_ORDER: readonly FunctionKey[] = [
+  'count', 'census', 'trail', 'gaze', 'wait', 'tide',
+  'keep', 'shelf', 'motion', 'fit', 'pop', 'talk',
+] as const;
+
+/**
+ * Function inventory — matrix §2. `note` carries the v1.1 review flag where one exists;
+ * merge candidates (tide≈wait, motion⊂trail+gaze) stay INDEPENDENT rows in v1.0.
+ */
+export const FUNCTIONS: Record<FunctionKey, { label: string; note?: string }> = {
+  count:  { label: '방문·재실 인원' },
+  census: { label: '익명 인구통계(결)' },
+  trail:  { label: '동선' },
+  gaze:   { label: '시선 · gaze→pick' },
+  wait:   { label: '대기·줄',        note: 'v1.1 — tide 병합 검토' },
+  tide:   { label: '혼잡(밀물/썰물)',  note: 'v1.1 — ≈ wait, 독립 유지' },
+  keep:   { label: '손실 방지' },
+  shelf:  { label: '매대·재고 상태' },
+  motion: { label: '행동',           note: 'v1.1 — ⊂ trail+gaze, 독립 유지' },
+  fit:    { label: '트렌드 적합' },
+  pop:    { label: '판촉물(POP)',     note: '고유어 예외 검토' },
+  talk:   { label: '다국어 응대',      note: '재조어 대기' },
+};
+
+/**
+ * The 36 cells — matrix §3. Every cell is filled: each function has a real job in
+ * every mode. Cell density is the roadmap (fit·pop·talk lean agent/insight — that
+ * is where SEED 지능 계열 investment shows up).
+ */
+export const FUNCTION_MODE_MATRIX: Record<FunctionKey, Record<ModeKey, string>> = {
+  count: {
+    care:    '지금 재실 인원·혼잡도 감지, 임계 초과 알림',
+    insight: '일·주·월 방문 시계열, 요일·시간대·전년 대비 추세',
+    agent:   '방문 예측 기반 인력 배치·영업시간·프로모션 타이밍 제안',
+  },
+  census: {
+    care:    '지금 방문객 구성(연령대·성비 추정) 파악',
+    insight: '시간대·요일별 방문객 결(segment) 변화 분석',
+    agent:   '타깃 세그먼트 맞춤 상품 구성·시간대 운영 제안',
+  },
+  trail: {
+    care:    '특정 구역 이상 정체·비정상 동선 감지',
+    insight: '구역별 통과·체류 히트맵, 주요 경로 분석',
+    agent:   '진열·레이아웃·안내 동선 개선 제안',
+  },
+  gaze: {
+    care:    '신규 진열·POP 앞 시선 반응 실시간 확인',
+    insight: '매대·상품별 주목도(gaze→pick 전환) 분석',
+    agent:   '골든존 배치·진열 우선순위 제안',
+  },
+  wait: {
+    care:    '계산대·대기열 임계 초과 실시간 알림',
+    insight: '대기시간 피크·요일/시간대 분석',
+    agent:   '인력 재배치·카운터 증설·셀프 유도 제안',
+  },
+  tide: {
+    care:    '매장 전체 혼잡 밀물/썰물 실시간 감지',
+    insight: '혼잡 주기·피크 패턴 분석',
+    agent:   '혼잡 완화 운영(인력·프로모션 분산) 제안',
+  },
+  keep: {
+    care:    '이상 행동·이탈·분실 위험 실시간 감지',
+    insight: '손실 발생 구역·시간·패턴 분석',
+    agent:   '집기 배치·동선 차단·집중 관리 구역 제안',
+  },
+  shelf: {
+    care:    '결품·흐트러짐·가격표 오류 실시간 감지',
+    insight: '결품 빈도·회전율·매대별 성과 분석',
+    agent:   '보충 주기·페이싱·진열 우선순위 제안',
+  },
+  motion: {
+    care:    '이상 행동(넘어짐·다툼 등) 실시간 감지',
+    insight: '매장 내 행동 유형·빈도 분석',
+    agent:   '안전·서비스 개입 지점 제안',
+  },
+  fit: {
+    care:    '신상품 초기 반응 이상 감지',
+    insight: '상품·매장의 트렌드 적합도 분석',
+    agent:   '발주·상품 구성·바이어 의사결정 제안',
+  },
+  pop: {
+    care:    '게시된 POP 노출·훼손 상태 감지',
+    insight: 'POP별 주목·전환 효과 분석',
+    agent:   'POP 문구·위치·교체 주기 제안·생성',
+  },
+  talk: {
+    care:    '외국어·도움 요청 상황 실시간 감지',
+    insight: '문의 유형·언어·빈도 분석',
+    agent:   '다국어 응대·안내 문구 제안·생성',
+  },
+};
+
+/** One cell — "what does {mode} do with {fn}?" */
+export const matrixCell = (fn: FunctionKey, mode: ModeKey): string => FUNCTION_MODE_MATRIX[fn][mode];
+
+/** Function name as written on a surface — lowercase, spaced. `store count`. */
+export const functionName = (fn: FunctionKey, prefix: 'store' | 'space' | 'saai' = 'store'): string =>
+  `${prefix} ${fn}`;
+
+/** One matrix cell as a sentence — "saai care가 store count를 돌린다". */
+export const matrixSentence = (fn: FunctionKey, mode: ModeKey): string =>
+  `${MODES[mode].name}가 ${functionName(fn)}를 돌린다`;
 
 /**
  * 점주/SMB 척추 CTA (Master Copy Decision §7 · D4).
