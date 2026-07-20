@@ -10,6 +10,7 @@ import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { ModelCatalogMockup } from '@/components/mockups';
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import LoopVideo from '@/components/ui/LoopVideo';
 
 type Stage = 'Live' | 'Building' | 'Planned';
 
@@ -159,6 +160,15 @@ const jp: Copy = {
 const C: Record<Locale, Copy> = { ko, en, jp };
 
 /**
+ * Per-model demo videos (#9.1). A model listed here renders a poster-first autoplay loop
+ * (LoopVideo) in place of the static image; others keep the image. To enable a demo:
+ *   1. drop the clip at `public/videos/models/<name>.mp4` (poster reuses the .webp still)
+ *   2. add `<name>` to this set
+ * Empty until video assets land — every card falls back to its static image today.
+ */
+const MODEL_DEMOS = new Set<string>([]);
+
+/**
  * Model taxonomy — maps each model to a domain category so the catalog reads as a map
  * (anonymization → recognition → space → flow/change → understanding) rather than a flat
  * wall, and each category line frames when/what problem the group solves. MODEL_CATEGORY
@@ -269,13 +279,22 @@ export default function ModelsView({ locale }: { locale: Locale }) {
                   {groupModels.map((m) => (
                     <div key={m.name} className="card p-6 h-full flex flex-col">
                       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-gray-100 mb-4 bg-gray-900">
-                        <Image
-                          src={`/images/models/${m.name}.webp`}
-                          alt={`${m.name} — ${m.promise}`}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover"
-                        />
+                        {MODEL_DEMOS.has(m.name) ? (
+                          <LoopVideo
+                            mp4={`/videos/models/${m.name}.mp4`}
+                            poster={`/images/models/${m.name}.webp`}
+                            ariaLabel={`${m.name} — ${m.promise}`}
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
+                        ) : (
+                          <Image
+                            src={`/images/models/${m.name}.webp`}
+                            alt={`${m.name} — ${m.promise}`}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover"
+                          />
+                        )}
                       </div>
                       <div className="flex items-center justify-between gap-3 mb-3">
                         <code className="text-sm font-mono font-medium text-gray-900">{m.name}</code>
