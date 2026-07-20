@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "DEEPINGSOURCE | Anonymized Spatial AI",
     description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 공간을, 완벽하게.",
     url: "https://deepingsource.io",
-    siteName: "DeepingSource",
+    siteName: "DEEPINGSOURCE",
     locale: "ko_KR",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "DeepingSource — Anonymized Spatial AI" }],
