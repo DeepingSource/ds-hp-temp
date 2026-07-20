@@ -15,11 +15,14 @@ const PN = (k: ProductKey): Tri => {
 };
 type FLink = { href: string; label: Tri; external?: boolean };
 
+// 세 모드(matrix order) → 기능 라이브러리 → B2C. count는 제품이 아니라 기능이므로
+// 기능 라이브러리 아래에 둔다 (Function × Mode Matrix v1.0 · reorg Phase 4).
 const productLinks: FLink[] = [
-  { href: '/products/saai-count', label: PN('count') },
-  { href: '/products/saai-insight', label: PN('insight') },
   { href: '/products/saai-care', label: PN('care') },
+  { href: '/products/saai-insight', label: PN('insight') },
   { href: '/products/saai-agent', label: PN('agent') },
+  { href: '/products/functions', label: L('기능 라이브러리', 'Function library', '機能ライブラリ') },
+  { href: '/products/saai-count', label: L('store count', 'store count', 'store count') },
   { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store') },
   { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai') },
 ];

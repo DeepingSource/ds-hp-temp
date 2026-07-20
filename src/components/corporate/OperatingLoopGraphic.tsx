@@ -1,28 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { DoorOpen, Grid3x3, Radar, ClipboardCheck, RotateCw } from 'lucide-react';
+import { Grid3x3, Radar, ClipboardCheck, RotateCw } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
-import { productPrimary, type ProductKey } from '@/lib/brand-canon';
+import { operatingLoop, productPrimary } from '@/lib/brand-canon';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * OperatingLoopGraphic — the /products hero visual (product-reorg D2, §10.5).
- * The four Tier-1 products as a clockwise cycle around the SAAI hub —
- * count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn), output feeding back
- * to input. Names lead with the value brand (saai …) — count included (2026-07-16).
- * Brand-blue single color + stage icons (no rainbow), agent emphasized.
+ *
+ * The OPERATING LOOP as a clockwise cycle around the SAAI hub, output feeding back
+ * to input. Four steps — 관찰 · 분석 · 제안 · 학습 — of which three carry a product:
+ *   관찰/Observe → saai care · 분석/Analyze → saai insight · 제안/Suggest → saai agent.
+ * The fourth (학습/Learn) closes the loop and has NO product — learning is what makes
+ * the cycle a cycle, not something we sell.
+ *
+ * FIXED 2026-07-20 (reorg Phase 4): the ring used to show FOUR PRODUCTS as four stages
+ * — count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn). Under Function × Mode
+ * Matrix v1.0 the products are exactly three modes and `count` is a FUNCTION, so it no
+ * longer sits on the ring (it lives in /products/functions). Steps and their order now
+ * come from brand-canon `operatingLoop`, which is the single source for the loop.
+ *
+ * Brand-blue single color + stage icons (no rainbow), the closing step emphasized.
  * Desktop = circular; mobile = vertical stack. Inline SVG ring, no raster.
  */
 
-type Stage = { no: string; key: ProductKey; stage: string; Icon: typeof DoorOpen; emphasis?: boolean };
-const STAGES: Stage[] = [
-  { no: '01', key: 'count', stage: 'Observe', Icon: DoorOpen },
-  { no: '02', key: 'insight', stage: 'Analyze', Icon: Grid3x3 },
-  { no: '03', key: 'care', stage: 'Suggest', Icon: Radar },
-  { no: '04', key: 'agent', stage: 'Learn', Icon: ClipboardCheck, emphasis: true },
-];
+const STEP_ICONS = [Radar, Grid3x3, ClipboardCheck, RotateCw] as const;
 // desktop ring positions: icon CENTER seated on the r=34 ring at top/right/bottom/left (clockwise)
 const POS = [
   'left-1/2 top-[16%] -translate-x-1/2 -translate-y-1/2', // 01 top
@@ -31,7 +35,31 @@ const POS = [
   'left-[16%] top-1/2 -translate-x-1/2 -translate-y-1/2', // 04 left
 ];
 
-function Node({ s }: { s: Stage }) {
+type Step = {
+  no: string;
+  /** Loop step label — 관찰 · 분석 · 제안 · 학습. */
+  label: string;
+  /** Time axis — 지금 · 어제 · 다음 · 다시. */
+  phase: string;
+  /** Product name, or null for the closing step (학습 has no product). */
+  product: string | null;
+  Icon: (typeof STEP_ICONS)[number];
+  emphasis?: boolean;
+};
+
+/** Steps come from the loop SOT; the closing step is emphasized as the thing that repeats. */
+function steps(locale: Locale): Step[] {
+  return operatingLoop[locale].map((s, i) => ({
+    no: String(i + 1).padStart(2, '0'),
+    label: s.label,
+    phase: s.phase,
+    product: s.mode ? productPrimary(s.mode) : null,
+    Icon: STEP_ICONS[i],
+    emphasis: s.mode === null,
+  }));
+}
+
+function Node({ s }: { s: Step }) {
   const { Icon } = s;
   return (
     <div className="relative">
@@ -43,8 +71,8 @@ function Node({ s }: { s: Stage }) {
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
       <span className="absolute left-1/2 top-full mt-2 w-32 -translate-x-1/2 text-center">
-        <span className="block text-2xs font-mono font-medium text-gray-400 whitespace-nowrap">{s.no} · {s.stage}</span>
-        <span className="block text-sm font-bold text-gray-900">{productPrimary(s.key)}</span>
+        <span className="block text-2xs font-mono font-medium text-gray-400 whitespace-nowrap">{s.no} · {s.label} · {s.phase}</span>
+        {s.product && <span className="block text-sm font-bold text-gray-900">{s.product}</span>}
       </span>
     </div>
   );
@@ -53,11 +81,12 @@ function Node({ s }: { s: Stage }) {
 export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale: Locale; hub: string; feedback: string }) {
   const { ref, isVisible: show } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const reduced = usePrefersReducedMotion();
+  const STAGES = steps(locale);
   const label = locale === 'ko'
-    ? 'saai count·saai insight·saai care·saai agent가 SAAI 허브를 중심으로 시계방향 순환을 이루는 운영 루프'
+    ? '운영 루프 — 관찰(saai care) · 분석(saai insight) · 제안(saai agent) · 학습이 SAAI 허브를 중심으로 시계방향 순환을 이룬다. 학습은 제품이 아니라 루프를 닫는 단계다.'
     : locale === 'jp'
-    ? 'saai count・saai insight・saai care・saai agentがSAAIハブを中心に時計回りに循環するオペレーションループ'
-    : 'DeepingSource operating loop: saai count, saai insight, saai care and saai agent as a clockwise cycle around the SAAI hub';
+    ? 'オペレーションループ — 観察(saai care)・分析(saai insight)・提案(saai agent)・学習がSAAIハブを中心に時計回りに循環する。学習は製品ではなくループを閉じる段階。'
+    : 'DeepingSource operating loop: Observe (saai care), Analyze (saai insight), Suggest (saai agent) and Learn as a clockwise cycle around the SAAI hub. Learn closes the loop and is not a product.';
 
   return (
     <div role="img" aria-label={label}>
@@ -102,7 +131,7 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
         {/* 4 nodes — fade in clockwise after the ring draws */}
         {STAGES.map((s, i) => (
           <motion.div
-            key={s.key}
+            key={s.label}
             className={`absolute ${POS[i]}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: show ? 1 : 0 }}
@@ -116,13 +145,13 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
       {/* Mobile — vertical stack */}
       <ol className="mx-auto flex max-w-xs flex-col gap-2 sm:hidden">
         {STAGES.map((s) => (
-          <li key={s.key} className="flex items-center gap-3 rounded-xl border border-primary/15 bg-primary-lighter/40 px-4 py-3">
+          <li key={s.label} className="flex items-center gap-3 rounded-xl border border-primary/15 bg-primary-lighter/40 px-4 py-3">
             <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white ${s.emphasis ? 'ring-2 ring-primary/30 ring-offset-1' : ''}`}>
               <s.Icon className="h-4 w-4" aria-hidden="true" />
             </span>
             <span>
-              <span className="block text-2xs font-mono font-medium text-gray-400">{s.no} · {s.stage}</span>
-              <span className="block text-sm font-bold text-gray-900">{productPrimary(s.key)}</span>
+              <span className="block text-2xs font-mono font-medium text-gray-400">{s.no} · {s.label} · {s.phase}</span>
+              {s.product && <span className="block text-sm font-bold text-gray-900">{s.product}</span>}
             </span>
           </li>
         ))}
