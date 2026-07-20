@@ -20,6 +20,7 @@ import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
 
 // Below-the-fold framer-motion mockup → deferred so its chunk stays out of the
 // initial JS of /products/saai-insight. Default SSR keeps the content prerendered.
@@ -592,6 +593,9 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           <p className="mt-8 max-w-3xl text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.boundaryLine}</p>
         </div>
       </AnimatedSection>
+
+      {/* ── 기능 × insight 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
+      <ModeFunctionSection mode="insight" locale={locale} />
 
       {/* ── CTA ── */}
       <AnimatedSection className="section-dark relative py-20 lg:py-28 overflow-hidden">

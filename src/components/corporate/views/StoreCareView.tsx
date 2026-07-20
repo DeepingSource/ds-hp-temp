@@ -10,6 +10,7 @@ import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
 
 /**
  * StoreCareView — shared saai care product-detail composition.
@@ -282,6 +283,9 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
           </div>
         </div>
       </AnimatedSection>
+
+      {/* ── 기능 × care 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
+      <ModeFunctionSection mode="care" locale={locale} />
 
       {/* ── Value (3 cards) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-white">
