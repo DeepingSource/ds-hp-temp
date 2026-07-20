@@ -19,9 +19,9 @@ partnerLabel:
   en: Trusted partners
   jp: 信頼されるパートナー
 partnerText:
-  ko: 올리브영, BGF CU, 코리아세븐, CJ푸드빌 등 주요 브랜드가 먼저 선택했습니다.
-  en: Leading brands chose us first, including Olive Young, BGF CU, Korea Seven, and CJ Foodville.
-  jp: オリーブヤング、BGF CU、コリアセブン、CJフードビルなどの主要ブランドにいち早く選ばれています。
+  ko: 국내 1위 H&B 스토어, BGF CU, 코리아세븐, CJ푸드빌 등 주요 브랜드가 먼저 선택했습니다.
+  en: Leading brands chose us first, including a top H&B retailer, BGF CU, Korea Seven, and CJ Foodville.
+  jp: 国内トップのH&Bストア、BGF CU、コリアセブン、CJフードビルなどの主要ブランドにいち早く選ばれています。
 contextFooter:
   ko: 궁금한 점은 상담 신청 후 담당자에게 문의하세요.
   en: Have questions? Submit the form and our team will follow up.
@@ -31,9 +31,9 @@ mobileTrustLabel:
   en: Trusted by leading brands
   jp: 信頼されるブランドとともに
 mobileTrustBrands:
-  ko: 올리브영 · BGF CU · 코리아세븐 · CJ푸드빌
-  en: Olive Young · BGF CU · Korea Seven · CJ Foodville
-  jp: オリーブヤング · BGF CU · コリアセブン · CJフードビル
+  ko: 국내 1위 H&B 스토어 · BGF CU · 코리아세븐 · CJ푸드빌
+  en: Top H&B retailer · BGF CU · Korea Seven · CJ Foodville
+  jp: 国内トップのH&Bストア · BGF CU · コリアセブン · CJフードビル
 formTitle:
   ko: 맞춤 무료 상담
   en: Request a free consultation
@@ -75,9 +75,9 @@ brandOptional:
   en: (optional)
   jp: （任意）
 brandPlaceholder:
-  ko: "예: CU, 올리브영"
-  en: e.g., CU, Olive Young
-  jp: 例：CU、オリーブヤング
+  ko: "예: CU, GS25"
+  en: e.g., CU, GS25
+  jp: 例：CU、GS25
 selectPlaceholder:
   ko: 선택해주세요
   en: Please select
