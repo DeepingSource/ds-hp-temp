@@ -61,10 +61,10 @@
 - ✅ **중복 PDF 삭제** — 루트 `StoreCount ...복사본.pdf` 2건 제거. 원본은 `~/Downloads/자료 모음 1/`·`~/Downloads/storecount/` 에 보존.
 - ✅ **WIP 계획/스펙/피드백 16건 저장소 아카이브** — 루트 → `docs/` 이동 후 커밋(대부분 이미 SHIPPED된 계획서, STATUS §9~§17). 목록: `DOCS_WIKI_PLAN_v1`·`GROWTH_PLANNER_STATUS_REVIEW_260720`·`PLAN_ADDITIONAL_CONTENT_v1`·`PLAN_DEMO_ASSETS_v1`·`PLAN_STOREAGENT_MATERIALS_v1`·`SEAL_페이지_콘텐츠_반영_계획_v1`·`SITE_IMPROVEMENT_PLAN_260716`·`SPECS_NEXT_v1`·`SPECS_WEEK1_v1`·`USERGUIDE_IMPORT_PLAN_v1`·`콘텐츠_수정확장_실행계획_260716`·`2026-07-20_1250_Feedback`·`coex-expo-84-*`·`coex-franchise-expo-84-*`·`DeepingSource_홈페이지_개선계획`·`DeepingSource_홈페이지_콘텐츠_분석`.
 - ✅ **저장소 루트 정돈** — 루트 `.md`는 SOT 3개(`DESIGN.md`·`README.md`·`SAAI_AI_Handoff.md`)만 유지.
+- ✅ **SEAL 스테이징 폴더 삭제** — public/ 반영 완료 확인 후 `asset-hp-260720/`(65M)·`docs/SEAL_LEGACY_ASSETS/`(11M) 제거, 죽은 gitignore 라인 정리. 원본은 사용자 stock 구매본 보유.
 
 **로컬 전용(gitignore) 유지 — 디스크 보존:**
-- 스테이징 자산 폴더: `asset-hp-260720/`, `docs/SEAL_LEGACY_ASSETS/`, `pop/`, `new-images/`, `asset-prompts/`, `copy-review/`
-- 소스 파일: `floormap.pdf`(루트 소스 PDF), `storeagent-demo-prep/`(작업 폴더)
+- 기타 스테이징/작업 폴더: `pop/`, `new-images/`, `asset-prompts/`, `copy-review/`, `storeagent-demo-prep/`
+- 소스 파일: `floormap.pdf`(루트 소스 PDF)
 
-**남은 사용자 판단:**
-- [ ] **스테이징 폴더 삭제** — public/ 반영 완료분(`asset-hp-260720/`·`SEAL_LEGACY_ASSETS/`)은 필요 시 삭제 가능.
+**남은 사용자 판단:** 없음 — 폴더 정돈 완료.
