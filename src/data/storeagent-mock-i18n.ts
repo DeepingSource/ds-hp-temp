@@ -311,9 +311,9 @@ export const showcaseCopy: Record<Locale, {
   tabs: { key: 'action' | 'chat' | 'push'; label: string; tagline: string; desc: string; features: string[] }[];
 }> = {
   ko: {
-    eyebrow: 'Interface',
-    heading: '사장님이 보는 화면',
-    sub: '액션 카드, AI 채팅, 푸시 알림 — 세 가지 방식으로 매장을 관리합니다',
+    eyebrow: 'Mobile',
+    heading: '모바일에서도 — 손 안의 매장 요약',
+    sub: '웹앱의 판단을 그대로 폰에서 — 액션 카드, AI 채팅, 푸시 알림으로.',
     tablistLabel: '인터페이스 유형 선택',
     disclaimer: '* 화면은 예시이며, 실제 서비스와 다를 수 있습니다.',
     tabs: [
@@ -323,9 +323,9 @@ export const showcaseCopy: Record<Locale, {
     ],
   },
   en: {
-    eyebrow: 'Interface',
-    heading: 'What the owner sees',
-    sub: 'Action cards, AI chat, push alerts — three ways to run your store',
+    eyebrow: 'Mobile',
+    heading: 'On mobile, too — the store in your hand',
+    sub: 'The same calls as the web app, on your phone — action cards, AI chat, push alerts.',
     tablistLabel: 'Select interface type',
     disclaimer: '* Screens are illustrative and may differ from the actual service.',
     tabs: [
@@ -335,9 +335,9 @@ export const showcaseCopy: Record<Locale, {
     ],
   },
   jp: {
-    eyebrow: 'Interface',
-    heading: '店主が見る画面',
-    sub: 'アクションカード、AIチャット、プッシュ通知 — 3つの方法で店舗を管理します',
+    eyebrow: 'Mobile',
+    heading: 'モバイルでも — 手元の店舗サマリー',
+    sub: 'ウェブアプリの判断をそのまま、スマホで — アクションカード、AIチャット、プッシュ通知で。',
     tablistLabel: 'インターフェースタイプの選択',
     disclaimer: '※ 画面はイメージであり、実際のサービスと異なる場合があります。',
     tabs: [

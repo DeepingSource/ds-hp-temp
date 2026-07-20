@@ -56,7 +56,7 @@ const homeCopy = toLocaleMajor(load('content/site/home.yaml'), HOME_FIELDS);
 
 // ── products — flat copy + id-keyed nested arrays (structure stays in code) ───
 const PRODUCTS_FLAT = [
-  'eyebrow', 'heroTitle', 'heroSub', 'loopEyebrow', 'ownersEyebrow',
+  'eyebrow', 'heroTitle', 'heroSub', 'loopEyebrow', 'suiteTitle', 'suiteSub', 'ownersEyebrow',
   'categoryTitle', 'categoryBody', 'casesCta',
   'detail', 'visit', 'seedLine', 'seedCta', 'cta',
 ];
@@ -116,7 +116,7 @@ const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_F
 const ABOUT_FLAT = [
   'badge', 'heroEyebrowCompany', 'heroMasterCompany', 'heroEyebrowOwner', 'heroMasterOwner',
   'companyIntro', 'companyIntro2', 'vmEyebrow', 'missionStatement', 'missionStatementSub', 'vision', 'visionLabel', 'missionLabel', 'mission',
-  'storyEyebrow', 'storyHeading', 'storySub', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
+  'storyEyebrow', 'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
   'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
   'methodEyebrow', 'methodHeading', 'methodIntro',

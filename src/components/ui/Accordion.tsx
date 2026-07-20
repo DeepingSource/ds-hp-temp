@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 interface AccordionItemProps {
   question: string;
@@ -20,28 +21,31 @@ function AccordionItem({
   const btnId = `${idPrefix}-btn-${index}`;
   const panelId = `${idPrefix}-panel-${index}`;
   return (
-    <div className="border-b border-gray-200 last:border-b-0">
+    <div className={`transition-colors duration-200 ${isOpen ? 'bg-primary-lighter/30' : ''}`}>
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full py-5 flex items-center justify-between text-left group transition-colors duration-200 rounded-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${isOpen ? 'pl-3 border-l-2 border-primary' : 'pl-0 border-l-2 border-transparent hover:pl-3 hover:border-primary/30'
-          }`}
+        className="w-full py-5 px-5 sm:px-6 flex items-start justify-between gap-4 text-left group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
         aria-expanded={isOpen}
         aria-controls={panelId}
         id={btnId}
       >
-        <span className={`pr-4 transition-colors ${isOpen ? 'font-medium text-primary' : 'font-medium text-gray-900 group-hover:text-primary'
-          }`}>
+        <span
+          className={`text-[15px] leading-relaxed break-keep transition-colors ${
+            isOpen ? 'font-semibold text-primary' : 'font-medium text-gray-900 group-hover:text-primary'
+          }`}
+        >
           {question}
         </span>
         <span
-          className={`text-xl text-gray-500 transition-transform duration-300 flex-shrink-0 ${isOpen ? 'rotate-180' : ''
-            }`}
+          className={`shrink-0 mt-0.5 flex h-7 w-7 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 ${
+            isOpen
+              ? 'bg-primary text-white rotate-180'
+              : 'bg-gray-100 text-gray-500 group-hover:bg-primary/10 group-hover:text-primary'
+          }`}
           aria-hidden="true"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+          <ChevronDown className="w-4 h-4" />
         </span>
       </button>
       <div
@@ -52,7 +56,7 @@ function AccordionItem({
         style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
       >
         <div className="overflow-hidden">
-          <div className="text-gray-600 leading-relaxed pb-5">{answer}</div>
+          <div className="px-5 sm:px-6 pb-5 text-[15px] text-gray-600 leading-relaxed break-keep">{answer}</div>
         </div>
       </div>
     </div>
@@ -72,7 +76,7 @@ export default function Accordion({ items, idPrefix = 'accordion' }: AccordionPr
   }, []);
 
   return (
-    <div>
+    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card divide-y divide-gray-100">
       {items.map((item, index) => (
         <AccordionItem
           key={item.question}

@@ -49,12 +49,12 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
   }, [tabs]);
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* 섹션 헤더 */}
-        <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
+    <section ref={ref} className="py-14 lg:py-20 bg-slate-50">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        {/* 섹션 헤더 — 웹앱(위)의 모바일 보조 뷰라 비중 축소 */}
+        <div className={`text-center mb-10 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
           <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{c.eyebrow}</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
             {c.heading}
           </h2>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
@@ -148,8 +148,8 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
           </div>
 
           {/* ── 오른쪽: 고정 프레임 + 내부 콘텐츠 전환 ── */}
-          <div className="w-full lg:w-auto lg:flex-shrink-0 flex justify-center min-h-[600px] lg:min-h-[850px]">
-            <div className="relative w-full max-w-[420px]">
+          <div className="w-full lg:w-auto lg:flex-shrink-0 flex justify-center min-h-[520px] lg:min-h-[660px]">
+            <div className="relative w-full max-w-[360px]">
               {/* 배경 글로우 */}
               <div className="absolute inset-0 bg-primary/10 rounded-3xl blur-3xl scale-90 pointer-events-none" aria-hidden="true" />
               {/* 프레임: grid 스택으로 항상 동일 크기 유지, opacity로 전환 */}

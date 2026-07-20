@@ -84,6 +84,23 @@ story:
     ko: 우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.
     en: We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.
     jp: 私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。
+  namingHeading:
+    ko: 이름에 대하여 — 딥핑소스
+    en: About the name — Deeping Source
+    jp: 名前について — Deeping Source
+  namingBody:
+    ko: >-
+      딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다.
+      모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻이죠. 창업자는 인텔에
+      합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가
+      AI의 미래임을 확신하고 딥핑소스를 시작했습니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)
+    en: >-
+      Deeping Source joins Deep Learning and Source Code — going deep into the source
+      that powers everything: data. After the founder's first venture (Olaworks) joined
+      Intel, watching GDPR and CCPA reshape AI convinced them that responsible data is
+      AI's future, and Deeping Source began. (It's Deeping Source, not dipping sauce.)
+    jp: >-
+      Deeping Source は Deep Learning と Source Code の組み合わせ。あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者は最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。（dipping sauce ではありません。）
 leadership:
   leadershipEyebrow:
     ko: Leadership

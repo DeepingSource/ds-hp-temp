@@ -1,8 +1,7 @@
 import { getBlogArticles } from '@/lib/articles';
 import type { ArticleMeta } from '@/lib/article-metadata';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import BlogCard from './BlogCard';
-import BlogLoadMore from './BlogLoadMore';
+import BlogFilterList from './BlogFilterList';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -24,6 +23,8 @@ const C: Record<Locale, {
   emptyTitle: string;
   emptyBody: string;
   more: string;
+  all: string;
+  filter: string;
 }> = {
   ko: {
     eyebrow: 'Blog',
@@ -32,6 +33,8 @@ const C: Record<Locale, {
     emptyTitle: '콘텐츠를 준비하고 있습니다',
     emptyBody: '곧 새로운 인사이트와 가이드로 찾아뵙겠습니다.',
     more: '더 보기',
+    all: '전체',
+    filter: '카테고리 필터',
   },
   en: {
     eyebrow: 'Blog',
@@ -40,6 +43,8 @@ const C: Record<Locale, {
     emptyTitle: 'Content is on the way',
     emptyBody: 'New insights and guides are coming soon.',
     more: 'Load more',
+    all: 'All',
+    filter: 'Filter by category',
   },
   jp: {
     eyebrow: 'Blog',
@@ -48,6 +53,8 @@ const C: Record<Locale, {
     emptyTitle: 'コンテンツを準備中です',
     emptyBody: '新しいインサイトとガイドをまもなくお届けします。',
     more: 'もっと見る',
+    all: 'すべて',
+    filter: 'カテゴリで絞り込み',
   },
 };
 
@@ -59,8 +66,6 @@ export default function BlogIndexView({ locale }: { locale: Locale }) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ({ body, ...meta }) => meta as ArticleMeta,
   );
-  const first = articles.slice(0, PAGE_SIZE);
-  const rest = articles.slice(PAGE_SIZE);
 
   return (
     <div className="bg-white min-h-screen">
@@ -86,16 +91,14 @@ export default function BlogIndexView({ locale }: { locale: Locale }) {
               <p className="text-sm text-gray-500 leading-relaxed break-keep">{t.emptyBody}</p>
             </div>
           ) : (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {first.map((article) => (
-                  <BlogCard key={article.slug} article={article} locale={locale} />
-                ))}
-              </div>
-              {rest.length > 0 && (
-                <BlogLoadMore rest={rest} locale={locale} batch={PAGE_SIZE} moreLabel={t.more} />
-              )}
-            </>
+            <BlogFilterList
+              articles={articles}
+              locale={locale}
+              batch={PAGE_SIZE}
+              moreLabel={t.more}
+              allLabel={t.all}
+              filterLabel={t.filter}
+            />
           )}
         </div>
       </AnimatedSection>

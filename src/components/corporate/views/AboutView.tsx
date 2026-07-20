@@ -46,6 +46,8 @@ type AboutCopy = {
   storyEyebrow: string;
   storyHeading: string;
   storySub: string;
+  namingHeading: string;
+  namingBody: string;
   leadershipEyebrow: string;
   leadershipHeading: string;
   leadershipSub: string;
@@ -211,6 +213,12 @@ export default function AboutView({ locale }: { locale: Locale }) {
 
           <div className="mb-16">
             <OriginStoryTimeline locale={locale} />
+          </div>
+
+          {/* 이름의 유래 — 딥핑소스 (블로그 창업/네이밍 서사 반영) */}
+          <div className="mb-16 mx-auto max-w-3xl rounded-3xl border border-primary/15 bg-white p-8 sm:p-10">
+            <p className="text-sm font-bold text-primary mb-3 tracking-wider uppercase">{t.namingHeading}</p>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
           </div>
 
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
