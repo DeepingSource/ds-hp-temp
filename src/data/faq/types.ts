@@ -1,14 +1,15 @@
 import type { Locale } from '@/lib/i18n';
 import { productPrimary } from '@/lib/brand-canon';
 
-export type FaqGroup = 'common' | 'store-care' | 'store-insight' | 'store-agent';
+export type FaqGroup = 'common' | 'store-count' | 'store-care' | 'store-insight' | 'store-agent';
 
 /** Section order on /resources/faq. */
-export const faqGroupOrder: FaqGroup[] = ['common', 'store-care', 'store-insight', 'store-agent'];
+export const faqGroupOrder: FaqGroup[] = ['common', 'store-count', 'store-care', 'store-insight', 'store-agent'];
 
 /** Per-group section label + the `?product=` value used by the section CTA. */
 export const faqGroupMeta: Record<FaqGroup, { product: string | null; label: Record<Locale, string> }> = {
   common: { product: null, label: { ko: '공통', en: 'Common', jp: '共通' } },
+  'store-count': { product: 'StoreCount', label: { ko: productPrimary('count'), en: productPrimary('count'), jp: productPrimary('count') } },
   'store-care': { product: 'StoreCare', label: { ko: productPrimary('care'), en: productPrimary('care'), jp: productPrimary('care') } },
   'store-insight': { product: 'StoreInsight', label: { ko: productPrimary('insight'), en: productPrimary('insight'), jp: productPrimary('insight') } },
   'store-agent': { product: 'StoreAgent', label: { ko: productPrimary('agent'), en: productPrimary('agent'), jp: productPrimary('agent') } },

@@ -111,7 +111,7 @@ const faq = defineCollection({
   schema: s.object({
     slug: s.string(),
     question: s.string(),
-    group: s.enum(['common', 'store-care', 'store-insight', 'store-agent']),
+    group: s.enum(['common', 'store-count', 'store-care', 'store-insight', 'store-agent']),
     order: s.number().default(0),
     lang: s.enum(['en', 'ko', 'jp']).default('ko'),
     draft: s.boolean().default(false),
