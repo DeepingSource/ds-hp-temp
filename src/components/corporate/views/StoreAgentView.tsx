@@ -13,6 +13,7 @@ import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
+import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
@@ -129,6 +130,9 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
           </Link>
         </div>
       </AnimatedSection>
+
+      {/* ── 기능 × agent 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
+      <ModeFunctionSection mode="agent" locale={locale} />
 
       {/* ── CTA ── */}
       <AnimatedSection className="section-dark relative py-20 lg:py-28 overflow-hidden">

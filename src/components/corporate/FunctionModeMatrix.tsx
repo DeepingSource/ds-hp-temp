@@ -1,4 +1,4 @@
-import { MODE_ORDER, FUNCTION_ORDER, type FunctionKey } from '@/lib/brand-canon';
+import { MODE_ORDER, FUNCTION_ORDER, type FunctionKey, type ModeKey } from '@/lib/brand-canon';
 import { MODE_COPY, FUNCTION_COPY, MATRIX_COPY } from '@/data/function-matrix-i18n';
 import type { Locale } from '@/lib/i18n';
 
@@ -35,6 +35,53 @@ export function FunctionModeStrip({ fn, locale }: { fn: FunctionKey; locale: Loc
     </div>
   );
 }
+
+/**
+ * One MODE's column — all twelve functions seen through a single mode.
+ *
+ * This is what a product page is: "how does this mode put every function to work?"
+ * It is the matrix read vertically instead of horizontally.
+ */
+export function FunctionModeColumn({ mode, locale }: { mode: ModeKey; locale: Locale }) {
+  const fnCopy = FUNCTION_COPY[locale];
+  const cells = MATRIX_COPY[locale];
+
+  return (
+    <ul className="grid gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 sm:grid-cols-2">
+      {FUNCTION_ORDER.map((fn) => (
+        <li key={fn} className="bg-white p-5">
+          <p className="font-mono text-sm font-bold text-gray-900">
+            store {fn}
+            <span className="ml-2 font-sans text-2xs font-medium text-gray-400">{fnCopy[fn]}</span>
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600 break-keep">{cells[fn][mode]}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Section copy for the per-product matrix column. */
+export const MODE_COLUMN_COPY: Record<Locale, { eyebrow: string; title: (mode: string) => string; sub: string; cta: string }> = {
+  ko: {
+    eyebrow: '기능 × 이 모드',
+    title: (m) => `${m}는 12개 기능을 이렇게 통과시킵니다`,
+    sub: '기능은 한 제품의 것이 아닙니다. 같은 기능을 이 모드가 어떤 시간축·목적으로 읽는지가 이 제품입니다.',
+    cta: '기능 라이브러리 전체 보기',
+  },
+  en: {
+    eyebrow: 'Functions × this mode',
+    title: (m) => `How ${m} puts all twelve functions to work`,
+    sub: 'Functions belong to no single product. What this product IS, is the time axis and purpose this mode reads them through.',
+    cta: 'See the whole function library',
+  },
+  jp: {
+    eyebrow: '機能 × このモード',
+    title: (m) => `${m} は12の機能をこう通します`,
+    sub: '機能は一つの製品のものではありません。同じ機能をこのモードがどの時間軸・目的で読むか — それがこの製品です。',
+    cta: '機能ライブラリをすべて見る',
+  },
+};
 
 /** The full 12 × 3 table. */
 export default function FunctionModeMatrix({
