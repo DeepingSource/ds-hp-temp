@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
+import PageCta from '@/components/corporate/PageCta';
 import { JsonLd, definedTermSet } from '@/lib/structured-data';
 
 const C: Record<Locale, { eyebrow: string; heading: string; sub: (n: number) => string; count: (n: number) => string; setName: string }> = {
@@ -132,6 +133,8 @@ export default function GlossaryView({ locale }: { locale: Locale }) {
           })}
         </div>
       </section>
+
+      <PageCta locale={locale} />
     </div>
   );
 }

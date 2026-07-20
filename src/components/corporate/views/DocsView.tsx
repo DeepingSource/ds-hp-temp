@@ -5,6 +5,7 @@ import DocsSidebar from '@/components/docs/DocsSidebar';
 import { DocIcon } from '@/components/docs/docIcons';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { type Locale, localeHref } from '@/lib/i18n';
+import PageCta from '@/components/corporate/PageCta';
 import { getDocsForLocale } from '@/lib/docs';
 import { docSectionOrder, docSectionLabelI18n, logicalDocSlug } from '@/data/docs/types';
 
@@ -171,6 +172,8 @@ export default function DocsView({ locale }: { locale: Locale }) {
           </main>
         </div>
       </div>
+
+      <PageCta locale={locale} />
     </div>
   );
 }
