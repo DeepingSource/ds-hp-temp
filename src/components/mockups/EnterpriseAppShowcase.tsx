@@ -1,12 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import {
   ArrowLeft, ThumbsUp, ThumbsDown, ListPlus, StickyNote, ChevronDown, Send,
 } from 'lucide-react';
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { useMockupLoop } from '@/hooks/useMockupLoop';
+import { useCountUp } from '@/hooks/useCountUp';
+import { springGentle } from '@/lib/spring-config';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -14,11 +19,20 @@ import { type Locale } from '@/lib/i18n';
  * "다시 그린" 목업(실제 스크린샷이 아닌 재현). 좌: 자연어 채팅 · 우: 전용 분석 화면.
  * 6탭(아침브리핑·차트질문·발주·선반·직원·CCTV). 소스: storeagent_demo_v2_20scenes.
  * 실제 앱의 초록 액센트는 사이트 One-Blue로 통일, 데모 매장명은 중립(강남역점)으로 치환.
- * 수치는 소스 스크린샷 발췌(예시). 반응형: 모바일 세로 스택.
+ * 수치는 소스 스크린샷 발췌(예시).
+ *
+ * 웹 화면 중심 라이브 데모: 고정 크기 브라우저 프레임 + 6탭 자동 순환(hover 시 일시정지).
+ * 탭 진입마다 채팅이 순차로 도착하고(질문→처리→핵심), 우측 화면이 열리며 차트가 자라고
+ * 수치가 카운트업된다. 클릭하면 즉시 그 시나리오로. reduced-motion이면 정적(최종 상태).
+ * SVG 라인은 이 스택에서 framer로 하이드레이션되지 않으므로 도넛은 CSS 트랜지션으로 채운다.
  */
 
 type Tri = { ko: string; en: string; jp: string };
 const tri = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
+
+// reduced-motion을 다수의 하위 카드/KPI에 프롭 드릴링 없이 전달
+const ReducedCtx = createContext(false);
+const useReduced = () => useContext(ReducedCtx);
 
 const HEADER = {
   eyebrow: tri('실제 제품 화면', 'The actual product', '実際の製品画面'),
@@ -33,6 +47,7 @@ const HEADER = {
     'Screens are illustrative and may differ from the actual service.',
     '画面は例であり、実際のサービスと異なる場合があります。',
   ),
+  live: tri('라이브 데모', 'Live demo', 'ライブデモ'),
 };
 
 const STORE = tri('강남역점', 'Gangnam Station', '江南駅店');
@@ -114,101 +129,142 @@ const CHAT: Record<string, { user: Tri; progress: Tri; core: Tri }> = {
 };
 
 export default function EnterpriseAppShowcase({ locale = 'en' }: { locale?: Locale }) {
-  const [active, setActive] = useState('briefing');
-  const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+  const reduced = usePrefersReducedMotion();
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>({ once: false });
+  const { step, goTo, hoverProps } = useMockupLoop({
+    steps: TAB_LABELS.length,
+    interval: 4600,
+    active: isVisible && !reduced,
+    pauseOnHover: true,
+  });
+  const active = TAB_LABELS[step]?.key ?? 'briefing';
   const T = (t: Tri) => t[locale];
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* 헤더 */}
-        <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
-          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{T(HEADER.eyebrow)}</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">{T(HEADER.heading)}</h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{T(HEADER.sub)}</p>
-        </div>
-
-        {/* 브라우저 크롬 프레임 */}
-        <div className={`rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden ${isVisible ? 'scroll-visible delay-200' : 'scroll-hidden'}`}>
-          {/* 크롬 상단바 */}
-          <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-gray-50">
-            <div className="flex items-center gap-1.5" aria-hidden="true">
-              <span className="w-3 h-3 rounded-full bg-red-400" />
-              <span className="w-3 h-3 rounded-full bg-yellow-400" />
-              <span className="w-3 h-3 rounded-full bg-green-400" />
-            </div>
-            <div className="flex items-center gap-2 ml-2">
-              <Image src="/images/saai-symbol.svg" alt="" width={16} height={16} aria-hidden="true" />
-              <span className="text-sm font-bold text-gray-900 lowercase">{T(APP)}</span>
-            </div>
-            <div className="ml-auto flex items-center gap-2">
-              <span className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-600">
-                {T(STORE)} <ChevronDown className="w-3 h-3" aria-hidden="true" />
-              </span>
-            </div>
+    <ReducedCtx.Provider value={reduced}>
+      <section id="demo" ref={ref} className="py-20 lg:py-28 bg-slate-50 scroll-mt-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* 헤더 */}
+          <div className={`text-center mb-12 ${isVisible ? 'scroll-visible' : 'scroll-hidden'}`}>
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{T(HEADER.eyebrow)}</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">{T(HEADER.heading)}</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{T(HEADER.sub)}</p>
           </div>
 
-          {/* 탭 바 */}
-          <div role="tablist" aria-label={T(HEADER.heading)} className="flex gap-1 px-2 sm:px-3 pt-2 border-b border-gray-100 overflow-x-auto">
-            {TAB_LABELS.map((tab) => {
-              const isActive = active === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(tab.key)}
-                  className={`relative whitespace-nowrap px-3 sm:px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
-                    isActive ? 'text-primary' : 'text-gray-500 hover:text-gray-800'
-                  }`}
+          {/* 브라우저 크롬 프레임 (hover 시 자동재생 일시정지) */}
+          <div
+            {...hoverProps}
+            className={`rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden ${isVisible ? 'scroll-visible delay-200' : 'scroll-hidden'}`}
+          >
+            {/* 크롬 상단바 */}
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-gray-50">
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="w-3 h-3 rounded-full bg-red-400" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400" />
+                <span className="w-3 h-3 rounded-full bg-green-400" />
+              </div>
+              <div className="flex items-center gap-2 ml-2">
+                <Image src="/images/saai-symbol.svg" alt="" width={16} height={16} aria-hidden="true" />
+                <span className="text-sm font-bold text-gray-900 lowercase">{T(APP)}</span>
+              </div>
+              <div className="ml-auto flex items-center gap-2.5">
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-2xs font-medium text-gray-500">
+                  <span className={`w-1.5 h-1.5 rounded-full bg-primary ${reduced ? '' : 'animate-pulse'}`} aria-hidden="true" />
+                  {T(HEADER.live)}
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-600">
+                  {T(STORE)} <ChevronDown className="w-3 h-3" aria-hidden="true" />
+                </span>
+              </div>
+            </div>
+
+            {/* 탭 바 */}
+            <div role="tablist" aria-label={T(HEADER.heading)} className="flex gap-1 px-2 sm:px-3 pt-2 border-b border-gray-100 overflow-x-auto">
+              {TAB_LABELS.map((tab, i) => {
+                const isActive = active === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => goTo(i)}
+                    className={`relative whitespace-nowrap px-3 sm:px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
+                      isActive ? 'text-primary' : 'text-gray-500 hover:text-gray-800'
+                    }`}
+                  >
+                    {T(tab.label)}
+                    {isActive && <SlidingIndicator layoutId="enterprise-tab" className="absolute left-2 right-2 bottom-0 h-0.5 rounded-full bg-primary" />}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 2분할 본문 — 고정 높이(웹 화면), 내부 스크롤 */}
+            <div className="grid lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:h-[560px]">
+              {/* 좌: 채팅 패널 (탭 진입마다 순차 도착) */}
+              <div key={`chat-${active}`} className="min-h-0 lg:h-[560px] lg:overflow-y-auto border-b lg:border-b-0 border-gray-100">
+                <ChatPanel tabKey={active} T={T} />
+              </div>
+              {/* 우: 전용 콘텐츠 패널 (화면이 열리며 빌드업) */}
+              <div key={`content-${active}`} className="relative min-h-0 lg:h-[560px] lg:overflow-y-auto bg-white p-5 sm:p-6 lg:border-l border-gray-100">
+                <motion.div
+                  initial={reduced ? false : { opacity: 0, y: 10 }}
+                  animate={reduced ? undefined : { opacity: 1, y: 0 }}
+                  transition={{ ...springGentle, delay: 0.55 }}
                 >
-                  {T(tab.label)}
-                  {isActive && <SlidingIndicator layoutId="enterprise-tab" className="absolute left-2 right-2 bottom-0 h-0.5 rounded-full bg-primary" />}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* 2분할 본문 */}
-          <div className="grid lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
-            {/* 좌: 채팅 패널 */}
-            <ChatPanel tabKey={active} T={T} />
-            {/* 우: 전용 콘텐츠 패널 */}
-            <div className="bg-white p-5 sm:p-6 min-h-[420px] border-t lg:border-t-0 lg:border-l border-gray-100">
-              <ContentPanel tabKey={active} T={T} />
+                  <ContentPanel tabKey={active} T={T} />
+                </motion.div>
+                {/* "화면이 열립니다" 링 플래시 */}
+                {!reduced && (
+                  <motion.div
+                    className="pointer-events-none absolute inset-0 ring-2 ring-inset ring-primary/40"
+                    initial={{ opacity: 0.7 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ duration: 1, delay: 0.55 }}
+                    aria-hidden="true"
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <p className="text-xs text-gray-400 mt-4 text-center">{T(HEADER.disclaimer)}</p>
-      </div>
-    </section>
+          <p className="text-xs text-gray-400 mt-4 text-center">{T(HEADER.disclaimer)}</p>
+        </div>
+      </section>
+    </ReducedCtx.Provider>
   );
 }
 
-// ── 좌측 채팅 패널 (공통) ─────────────────────────────────────────────────────
+// ── 좌측 채팅 패널 (공통, 순차 도착) ────────────────────────────────────────────
 function ChatPanel({ tabKey, T }: { tabKey: string; T: (t: Tri) => string }) {
+  const reduced = useReduced();
   const c = CHAT[tabKey];
+  // 질문(0) → 처리(0.5) → 핵심 답변(0.85) → 액션/추천/입력 순으로 도착
+  const enter = (delay: number) =>
+    reduced
+      ? {}
+      : { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, transition: { ...springGentle, delay } };
+
   return (
-    <div className="bg-gray-100/70 p-5 sm:p-6 flex flex-col gap-4">
+    <div className="h-full bg-gray-100/70 p-5 sm:p-6 flex flex-col gap-4">
       {/* 사용자 말풍선 */}
-      <div className="flex justify-end">
+      <motion.div className="flex justify-end" {...enter(0.05)}>
         <div className="rounded-2xl border border-primary/30 bg-white px-4 py-2.5 text-sm text-gray-800 max-w-[85%] break-keep">
           {T(c.user)}
         </div>
-      </div>
+      </motion.div>
 
       {/* 진행 상황 카드 */}
-      <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
+      <motion.div className="rounded-xl border border-gray-200 bg-white px-4 py-3" {...enter(0.5)}>
         <p className="text-2xs font-medium text-gray-400 mb-1">{T(tri('진행 상황 · 1/1 단계', 'Progress · step 1/1', '進行状況 · 1/1段階'))}</p>
         <p className="flex items-center gap-1.5 text-xs font-medium text-gray-700">
           <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center text-primary text-3xs">✓</span>
           {T(c.progress)}
         </p>
-      </div>
+      </motion.div>
 
       {/* AI 핵심 답변 */}
-      <div>
+      <motion.div {...enter(0.85)}>
         <p className="text-sm text-gray-800 leading-relaxed break-keep">
           <span className="font-bold text-primary">{T(tri('핵심', 'Key', '要点'))}: </span>
           {T(c.core)}
@@ -216,28 +272,28 @@ function ChatPanel({ tabKey, T }: { tabKey: string; T: (t: Tri) => string }) {
         <button className="mt-3 inline-flex items-center gap-1 text-xs text-gray-400" aria-hidden="true">
           <ChevronDown className="w-3.5 h-3.5" /> {T(tri('상세', 'Details', '詳細'))}
         </button>
-      </div>
+      </motion.div>
 
       {/* 피드백/실행 액션 */}
-      <div className="flex items-center gap-3 text-2xs text-gray-400 border-t border-gray-200 pt-3">
+      <motion.div className="flex items-center gap-3 text-2xs text-gray-400 border-t border-gray-200 pt-3" {...enter(1.05)}>
         <span className="inline-flex items-center gap-1"><ThumbsUp className="w-3.5 h-3.5" /> </span>
         <span className="inline-flex items-center gap-1"><ThumbsDown className="w-3.5 h-3.5" /> </span>
         <span className="inline-flex items-center gap-1 ml-1"><ListPlus className="w-3.5 h-3.5" /> {T(tri('Task로 등록', 'Add as task', 'タスク登録'))}</span>
         <span className="inline-flex items-center gap-1"><StickyNote className="w-3.5 h-3.5" /> {T(tri('메모', 'Note', 'メモ'))}</span>
-      </div>
+      </motion.div>
 
       {/* 추천 질문 칩 */}
-      <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+      <motion.div className="mt-auto flex flex-wrap gap-1.5 pt-2" {...enter(1.15)}>
         {SUGGESTIONS.map((s, i) => (
           <span key={i} className="rounded-full border border-gray-200 bg-white px-2.5 py-1 text-2xs text-gray-500">{T(s)}</span>
         ))}
-      </div>
+      </motion.div>
 
       {/* 입력창 */}
-      <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2">
+      <motion.div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2" {...enter(1.2)}>
         <span className="flex-1 text-2xs text-gray-300">{T(tri('무엇이든 물어보세요…', 'Ask anything…', '何でも聞いてください…'))}</span>
         <span className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center" aria-hidden="true"><Send className="w-3 h-3 text-white" /></span>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -272,18 +328,42 @@ function PanelHead({ T, crumb, title, right }: { T: (t: Tri) => string; crumb?: 
   );
 }
 
+// 숫자 카운트업 — 정수 값만 애니메이션(소수/기호 혼합은 정적). reduced-motion이면 즉시 최종값.
+function CountUp({ value }: { value: string }) {
+  const reduced = useReduced();
+  const m = value.match(/^([^\d.]*)(\d[\d,]*)([^\d]*)$/);
+  const target = m ? parseInt(m[2].replace(/,/g, ''), 10) : 0;
+  const n = useCountUp(target, !!m && !reduced, 900);
+  if (!m || reduced) return <>{value}</>;
+  return <>{m[1]}{n.toLocaleString()}{m[3]}</>;
+}
+
 // KPI 카드
 function Kpi({ label, value, note, alert }: { label: string; value: string; note?: string; alert?: boolean }) {
   return (
     <div className={`rounded-xl border p-3.5 ${alert ? 'border-primary/40 bg-primary/5' : 'border-gray-100 bg-white'}`}>
       <p className="text-2xs text-gray-500 mb-1">{label}</p>
-      <p className={`text-xl font-bold ${alert ? 'text-primary' : 'text-gray-900'}`}>{value}</p>
+      <p className={`text-xl font-bold ${alert ? 'text-primary' : 'text-gray-900'}`}><CountUp value={value} /></p>
       {note && <p className="text-3xs text-gray-400 mt-0.5">{note}</p>}
     </div>
   );
 }
 
-// 미니 차트 카드 (CSS 바)
+// 자라나는 막대 하나 (scaleY, bottom origin). reduced면 즉시 최종 높이.
+function Bar({ pct, className, delay = 0 }: { pct: number; className: string; delay?: number }) {
+  const reduced = useReduced();
+  return (
+    <motion.div
+      className={className}
+      style={{ height: `${pct}%`, transformOrigin: 'bottom' }}
+      initial={reduced ? false : { scaleY: 0 }}
+      animate={reduced ? undefined : { scaleY: 1 }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+    />
+  );
+}
+
+// 미니 차트 카드 (CSS 바, 진입 시 자라남)
 function MiniCard({ title, unit, bars, accent = false }: { title: string; unit?: string; bars: number[]; accent?: boolean }) {
   const max = Math.max(...bars, 1);
   return (
@@ -294,10 +374,11 @@ function MiniCard({ title, unit, bars, accent = false }: { title: string; unit?:
       </div>
       <div className="flex items-end gap-0.5 h-14">
         {bars.map((b, i) => (
-          <div
+          <Bar
             key={i}
+            pct={Math.max(6, (b / max) * 100)}
+            delay={0.65 + i * 0.03}
             className={`flex-1 rounded-t-sm ${accent ? 'bg-primary/70' : 'bg-primary/30'}`}
-            style={{ height: `${Math.max(6, (b / max) * 100)}%` }}
           />
         ))}
       </div>
@@ -334,6 +415,7 @@ function BriefingPanel({ T }: { T: (t: Tri) => string }) {
 
 // 탭 B — 차트를 누르면 질문이 된다
 function ChartQuestionPanel({ T }: { T: (t: Tri) => string }) {
+  const bars = [22, 30, 28, 41, 38, 52, 47, 60, 55, 44, 33, 25, 21, 18];
   return (
     <>
       <PanelHead T={T} title={tri('전환율 상세', 'Conversion detail', '転換率の詳細')} right={<span className="rounded-lg border border-primary/30 bg-primary/5 px-2.5 py-1 text-2xs font-medium text-primary">{T(tri('차트 클릭됨', 'chart tapped', 'チャート選択'))}</span>} />
@@ -344,8 +426,8 @@ function ChartQuestionPanel({ T }: { T: (t: Tri) => string }) {
           <p className="text-2xs text-gray-400">{T(tri('방문→영수증 비율', 'visit→receipt', '来店→レシート'))}</p>
         </div>
         <div className="flex items-end gap-1 h-28">
-          {[22, 30, 28, 41, 38, 52, 47, 60, 55, 44, 33, 25, 21, 18].map((b, i) => (
-            <div key={i} className={`flex-1 rounded-t ${i >= 10 ? 'bg-primary' : 'bg-primary/30'}`} style={{ height: `${b + 20}%` }} />
+          {bars.map((b, i) => (
+            <Bar key={i} pct={b + 20} delay={0.6 + i * 0.03} className={`flex-1 rounded-t ${i >= 10 ? 'bg-primary' : 'bg-primary/30'}`} />
           ))}
         </div>
         <p className="text-3xs text-gray-400 mt-2">{T(tri('최근 3일 하락 구간 강조 · 6.4% → 2.1%', 'Last 3 days highlighted · 6.4% → 2.1%', '直近3日の下落を強調 · 6.4% → 2.1%'))}</p>
@@ -458,8 +540,17 @@ function ShelfPanel({ T }: { T: (t: Tri) => string }) {
 
 // 탭 E — 직원 효율성 대시보드
 function StaffPanel({ T }: { T: (t: Tri) => string }) {
+  const reduced = useReduced();
   const score = 49.7;
   const circ = 2 * Math.PI * 42;
+  const full = (score / 100) * circ;
+  // 도넛은 SVG라 framer 미하이드레이션 → CSS 트랜지션으로 0에서 채운다(마운트 시).
+  const [dash, setDash] = useState(reduced ? full : 0);
+  useEffect(() => {
+    if (reduced) return;
+    const id = requestAnimationFrame(() => setDash(full));
+    return () => cancelAnimationFrame(id);
+  }, [reduced, full]);
   return (
     <>
       <PanelHead T={T} title={tri('직원 효율성 대시보드', 'Staff efficiency', 'スタッフ効率ダッシュボード')} right={<span className="rounded-lg bg-primary px-2.5 py-1 text-2xs font-bold text-white">{T(tri('분석 실행', 'Run', '分析実行'))}</span>} />
@@ -469,7 +560,8 @@ function StaffPanel({ T }: { T: (t: Tri) => string }) {
           <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
             <circle cx="50" cy="50" r="42" fill="none" stroke="#EEF2F7" strokeWidth="9" />
             <circle cx="50" cy="50" r="42" fill="none" stroke="#376AE2" strokeWidth="9" strokeLinecap="round"
-              strokeDasharray={`${(score / 100) * circ} ${circ}`} />
+              strokeDasharray={`${dash} ${circ}`}
+              style={reduced ? undefined : { transition: 'stroke-dasharray 1.1s cubic-bezier(0.22,1,0.36,1)' }} />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-2xl font-bold text-gray-900">{score}</span>
@@ -490,12 +582,17 @@ function StaffPanel({ T }: { T: (t: Tri) => string }) {
       </div>
       {/* Score Evidence 바 */}
       <p className="text-2xs font-bold text-gray-500 mb-2">{T(tri('SCORE EVIDENCE — 점수 근거', 'SCORE EVIDENCE', 'スコア根拠'))}</p>
-      <div className="flex h-6 rounded-lg overflow-hidden text-3xs font-bold text-white">
+      <motion.div
+        className="flex h-6 rounded-lg overflow-hidden text-3xs font-bold text-white origin-left"
+        initial={reduced ? false : { scaleX: 0 }}
+        animate={reduced ? undefined : { scaleX: 1 }}
+        transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="bg-primary flex items-center justify-center" style={{ width: '10.4%' }}>10.4</div>
         <div className="bg-primary/70 flex items-center justify-center" style={{ width: '14.9%' }}>14.9</div>
         <div className="bg-primary/45 flex items-center justify-center" style={{ width: '24.4%' }}>24.4</div>
         <div className="bg-gray-200 text-gray-500 flex items-center justify-center" style={{ width: '50.3%' }}>−50.3</div>
-      </div>
+      </motion.div>
       <p className="text-3xs text-gray-400 mt-1.5">{T(tri('카운터 10.4/40 + 진열대 14.9/30 + 활동 24.4/30 · 감점 50.3', 'Counter 10.4/40 + Shelf 14.9/30 + Activity 24.4/30 · −50.3', 'カウンター10.4/40 + 陳列14.9/30 + 活動24.4/30 · 減点50.3'))}</p>
     </>
   );

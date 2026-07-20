@@ -105,11 +105,11 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── Agent mockups (액션 카드·AI 채팅·푸시 알림) — 사장님(폰) 뷰 ── */}
-      <AgentMockupShowcase locale={locale} />
-
-      {/* ── Enterprise 웹앱 목업 (본사·점장 뷰, 6탭 재현) ── */}
+      {/* ── 메인 데모: Enterprise 웹앱 (본사·점장 뷰, 6탭 라이브 재현) · #demo 앵커 ── */}
       <EnterpriseAppShowcase locale={locale} />
+
+      {/* ── 보조: 사장님(폰) 뷰 목업 (액션 카드·AI 채팅·푸시 알림) ── */}
+      <AgentMockupShowcase locale={locale} />
 
       {/* ── Pricing teaser ── */}
       <AnimatedSection className="py-16 lg:py-20 bg-white">
