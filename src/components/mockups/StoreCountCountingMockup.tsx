@@ -20,7 +20,7 @@ import {
 } from '@/data/mockup-scenarios/storecount';
 
 /**
- * StoreCountCountingMockup — saai count(StoreCount) 카운팅 앱을 사이트 디자인 시스템으로
+ * StoreCountCountingMockup — store count(StoreCount) 카운팅 앱을 사이트 디자인 시스템으로
  * 재현한 다크 목업. 카메라 뷰 위에 기준선(유동인구 cyan 2 · 유입 pink 1)이 그려지고,
  * 사람 dot이 선을 가로지르며 하단 카드의 유동인구·유입·전환율이 카운트업된다.
  * ⚠️ SVG 라인은 CSS stroke-dashoffset로 드로잉(framer SVG는 이 스택에서 미하이드레이션),

@@ -34,7 +34,7 @@ const NAV: NavItem[] = [
       { href: '/products/saai-agent', label: PN('agent'), desc: L('제안·운영 · 다음에 무엇을 할까', 'Advise · what to do next', '提案・運営 · 次に何をするか') },
       { header: L('기능 — 세 모드를 가로지른다', 'Functions — they cross all three modes', '機能 — 3つのモードを横断') },
       { href: '/products/functions', label: L('기능 라이브러리', 'Function library', '機能ライブラリ'), desc: L('count·queue·pop·fit — 4개 기능 × 3모드', 'count·queue·pop·fit — 4 functions × 3 modes', 'count・queue・pop・fit — 4機能 × 3モード') },
-      { href: '/products/saai-count', label: L('store count', 'store count', 'store count'), desc: L('방문·재실 인원 — 상권·통행·유입률', 'Footfall & occupancy — trade area, passers-by, capture rate', '来店・滞在人数 — 商圏・通行・流入率') },
+      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('방문·재실 인원 — 상권·통행·유입률', 'Footfall & occupancy — trade area, passers-by, capture rate', '来店・滞在人数 — 商圏・通行・流入率') },
       { header: L('사장님을 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
       { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 사장님 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
       { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('사장님용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },

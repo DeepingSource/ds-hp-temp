@@ -44,7 +44,7 @@ type ProductStruct = {
  */
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'count', name: productNaming.count.store, saaiName: productNaming.count.saai, mode: null, icon: DoorOpen, href: '/products/saai-count',
+    key: 'count', name: productNaming.count.store, saaiName: productNaming.count.saai, mode: null, icon: DoorOpen, href: '/products/store-count',
     images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {

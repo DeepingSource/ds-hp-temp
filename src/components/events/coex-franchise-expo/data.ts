@@ -58,15 +58,15 @@ export const hero = {
   sub: '상권 분석 · 매장 관리 · POP 제작을 하나의 흐름으로',
   scrollLabel: '부스에서 보실 것',
   products: [
-    { key: 'count', label: 'saai count', sub: '상권분석' },
+    { key: 'count', label: 'store count', sub: '상권분석' },
     { key: 'care', label: 'saai care', sub: '이상 상황 알림' },
     { key: 'store', label: 'saai store', sub: 'POP메이커' },
   ],
 };
 
-/** 섹션 2 — saai count (상권분석) */
+/** 섹션 2 — store count (상권분석) */
 export const count = {
-  eyebrow: 'saai count',
+  eyebrow: 'store count',
   eyebrowSub: '상권분석',
   question: '매장을 열고 싶은데, 이 자리가 괜찮은 곳일까?',
   lead: '매장을 열고 싶은 자리의 유동인구와 주요 고객층을 확인해, 매장 입지를 선정하는 데 활용할 수 있습니다.',

@@ -24,7 +24,7 @@ import { MODE_COPY, FUNCTIONS_PAGE_COPY } from '@/data/function-matrix-i18n';
 
 /** Functions that currently own a page of their own. */
 const FUNCTION_LINKS: Partial<Record<string, string>> = {
-  count: '/products/saai-count',
+  count: '/products/store-count',
 };
 
 const MODE_HREF = {

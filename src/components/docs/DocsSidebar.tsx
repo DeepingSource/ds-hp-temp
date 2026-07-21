@@ -19,7 +19,7 @@ const PRODUCT_LABELS: Record<string, string> = {
   'store-insight': 'saai insight',
   'store-care': 'saai care',
   'store-agent': 'saai agent',
-  'store-count': 'saai count',
+  'store-count': 'store count',
 };
 
 const BLOCK_LABEL: Record<Locale, { general: string; products: string }> = {

@@ -45,11 +45,11 @@ if (isGhPages) {
       { source: '/products/store-insight', destination: '/products/saai-insight', permanent: true },
       { source: '/products/store-care', destination: '/products/saai-care', permanent: true },
       { source: '/products/store-agent', destination: '/products/saai-agent', permanent: true },
-      { source: '/products/store-count', destination: '/products/saai-count', permanent: true },
+      { source: '/products/saai-count', destination: '/products/store-count', permanent: true },
       { source: '/:locale(ko|jp)/products/store-insight', destination: '/:locale/products/saai-insight', permanent: true },
       { source: '/:locale(ko|jp)/products/store-care', destination: '/:locale/products/saai-care', permanent: true },
       { source: '/:locale(ko|jp)/products/store-agent', destination: '/:locale/products/saai-agent', permanent: true },
-      { source: '/:locale(ko|jp)/products/store-count', destination: '/:locale/products/saai-count', permanent: true },
+      { source: '/:locale(ko|jp)/products/saai-count', destination: '/:locale/products/store-count', permanent: true },
       // 레거시 짧은 경로 → 최종 목적지로 직접(체인 1회 초과 금지)
       { source: '/store-insight', destination: '/products/saai-insight', permanent: true },
       { source: '/storeinsight', destination: '/products/saai-insight', permanent: true },

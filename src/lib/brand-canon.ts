@@ -253,7 +253,7 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
 /**
  * SURFACE KEY — the four page/route surfaces the site currently ships.
  *
- * ⚠️ `count` is in this union because it OWNS A PAGE (/products/saai-count),
+ * ⚠️ `count` is in this union because it OWNS A PAGE (/products/store-count),
  * NOT because it is a product. Under Function × Mode Matrix v1.0 the products are
  * exactly three modes (`ModeKey`) and `count` is one of four functions
  * (`FunctionKey`) that cross all three. Do not read this type as "the product list".

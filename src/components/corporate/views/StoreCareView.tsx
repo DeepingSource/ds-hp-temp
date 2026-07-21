@@ -70,7 +70,7 @@ const C: Record<Locale, {
     entPillars: [
       { title: '표준화된 손실예방', desc: '도난과 영업 외 시간 이상 징후를, 그날 누가 근무하든 같은 기준으로 감지합니다. 여러 매장에서 반복되는 패턴은 본사 화면에 떠오릅니다. 개별 사건이 아니라 추세에 대응하세요.' },
       { title: '위생·설비, 기록으로', desc: '냉장 온도, 바닥 누수, 막힌 비상구, 열린 문 — 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
-      { title: '전 매장을 한 화면에', desc: 'saai count·saai insight처럼 saai care도 본사로 모입니다. 사고 건수로 매장을 정렬하고, 방문이 필요한 곳을 가려내고, 작은 실수가 리콜이 되기 전에 개입하세요.' },
+      { title: '전 매장을 한 화면에', desc: 'store count·saai insight처럼 saai care도 본사로 모입니다. 사고 건수로 매장을 정렬하고, 방문이 필요한 곳을 가려내고, 작은 실수가 리콜이 되기 전에 개입하세요.' },
     ],
     entPrivacy: 'SEAL이 촬영하는 순간 익명화합니다. 원본은 저장하지 않고 신원은 즉시 지워지며, 사건만 남습니다. 프라이버시를 내주지 않고도 지켜내는 컴플라이언스.',
     entCtaHq: '다점포 도입 상담하기',
@@ -103,7 +103,7 @@ const C: Record<Locale, {
     entPillars: [
       { title: 'Loss prevention, standardized', desc: "Theft and after-hours anomalies caught by one consistent standard in every store — not the judgment of whoever's on shift. Patterns that repeat across locations surface on the HQ screen, so you act on the trend, not just the incident." },
       { title: 'Hygiene & equipment, on the record', desc: 'Fridge temperatures, floor spills, blocked exits, doors left open — checked around the clock and time-stamped. Turn "we\'re pretty sure it\'s fine" into an audit trail you can show.' },
-      { title: 'The whole fleet, one screen', desc: 'Like saai count and saai insight, saai care rolls up to HQ. Rank stores by incidents, see which sites need a visit, and step in before a small lapse becomes a recall.' },
+      { title: 'The whole fleet, one screen', desc: 'Like store count and saai insight, saai care rolls up to HQ. Rank stores by incidents, see which sites need a visit, and step in before a small lapse becomes a recall.' },
     ],
     entPrivacy: 'Anonymized at the point of capture by SEAL. No footage is stored and identities are erased on the spot — only the events are kept. Compliance you can defend, without trading away privacy to get it.',
     entCtaHq: 'Talk to us about a fleet rollout',
@@ -136,7 +136,7 @@ const C: Record<Locale, {
     entPillars: [
       { title: '標準化された防損', desc: '盗難や営業時間外の異常の兆候を、その日に誰が勤務していても同じ基準で検知します。複数店舗で繰り返すパターンは本部の画面に浮かび上がります。個別の事件ではなく、傾向に対応してください。' },
       { title: '衛生・設備を記録に', desc: '冷蔵温度、床の水漏れ、塞がれた非常口、開いたままの扉 — 24時間点検し、時刻を残します。「たぶん大丈夫」を、提示できる監査証跡に変えます。' },
-      { title: '全店舗をひとつの画面に', desc: 'saai count・saai insight と同じく、saai care も本部に集約します。事故件数で店舗を並べ、訪問が必要な場所を見極め、小さな見落としがリコールになる前に対処してください。' },
+      { title: '全店舗をひとつの画面に', desc: 'store count・saai insight と同じく、saai care も本部に集約します。事故件数で店舗を並べ、訪問が必要な場所を見極め、小さな見落としがリコールになる前に対処してください。' },
     ],
     entPrivacy: 'SEAL が撮影する瞬間に匿名化します。原本は保存せず、身元は即座に消え、事象だけが残ります。プライバシーを手放さずに守るコンプライアンス。',
     entCtaHq: '多店舗導入のご相談',

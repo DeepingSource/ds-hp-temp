@@ -39,7 +39,7 @@ export default function ExpoLanding({ event, locale }: { event: Event; locale: L
     <div className="bg-white min-h-screen">
       <ExpoHero event={event} locale={locale} />
 
-      {/* 섹션 2 — saai count (상권분석) */}
+      {/* 섹션 2 — store count (상권분석) */}
       <ProductStory
         id="count"
         eyebrow={count.eyebrow}

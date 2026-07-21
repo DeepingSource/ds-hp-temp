@@ -23,7 +23,7 @@ relatedIndustries:
   - convenience
   - drugstore
   - mart
-saaiUsage: saai count는 카메라 한 대로 매장 앞 유동인구와 입장객을 함께 세어 기간별·시간대별 유입률(%)을 제공합니다. saai insight는 유입 이후의 동선·체류·전환을 이어서 분석해, 유입률과 구매 전환율을 하나의 퍼널로 연결합니다.
+saaiUsage: store count는 카메라 한 대로 매장 앞 유동인구와 입장객을 함께 세어 기간별·시간대별 유입률(%)을 제공합니다. saai insight는 유입 이후의 동선·체류·전환을 이어서 분석해, 유입률과 구매 전환율을 하나의 퍼널로 연결합니다.
 metaDescription: 유입률(Capture Rate)이란? 매장 앞 통행 인구 대비 입장객 비율. 입지 문제와 매장 문제를 구분하는 방법과 유입률을 높이는 요소를 설명합니다.
 body:
   - heading: 유입률이 답하는 질문

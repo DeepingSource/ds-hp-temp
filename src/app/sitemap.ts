@@ -18,7 +18,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/products/functions', priority: 0.8, freq: 'monthly' },
   { path: '/products/saai-insight', priority: 0.8, freq: 'monthly' },
   { path: '/products/saai-agent', priority: 0.8, freq: 'monthly' },
-  { path: '/products/saai-count', priority: 0.7, freq: 'monthly' },
+  { path: '/products/store-count', priority: 0.7, freq: 'monthly' },
   { path: '/products/saai-care', priority: 0.7, freq: 'monthly' },
   { path: '/products/saai', priority: 0.7, freq: 'monthly' },
   { path: '/technology', priority: 0.8, freq: 'monthly' },

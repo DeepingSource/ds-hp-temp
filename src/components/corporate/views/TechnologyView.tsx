@@ -88,7 +88,7 @@ const stackHrefs = [
 ];
 const stackIcons = [Fingerprint, Grid3x3, Zap];
 const poweredHrefs = [
-  '/products/saai-count',
+  '/products/store-count',
   '/products/saai-insight',
   '/products/saai-agent',
   '/products/saai-care',

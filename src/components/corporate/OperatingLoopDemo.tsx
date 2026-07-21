@@ -20,7 +20,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 type StageKey = 'observe' | 'analyze' | 'detect' | 'act';
 
 const STAGE_STRUCT: { key: StageKey; Icon: typeof Eye; href: string }[] = [
-  { key: 'observe', Icon: Eye, href: '/products/saai-count' },
+  { key: 'observe', Icon: Eye, href: '/products/store-count' },
   { key: 'analyze', Icon: Grid3x3, href: '/products/saai-insight' },
   { key: 'detect', Icon: Radar, href: '/products/saai-care' },
   { key: 'act', Icon: ClipboardCheck, href: '/products/saai-agent' },

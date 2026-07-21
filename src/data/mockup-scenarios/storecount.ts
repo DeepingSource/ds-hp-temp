@@ -1,5 +1,5 @@
 /**
- * saai count(StoreCount) 카운팅 목업 시나리오 — 로케일 무관 수치·좌표.
+ * store count(StoreCount) 카운팅 목업 시나리오 — 로케일 무관 수치·좌표.
  * 표시 문자열은 컴포넌트 내 C: Record<Locale,…>. 색은 앱 고유(사이트 브랜드 토큰과 분리).
  * 정본: StoreCount 설치·사용 설명서 p7·p10.
  */
