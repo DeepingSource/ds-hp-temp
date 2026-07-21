@@ -10,7 +10,7 @@ import VisionDiagram from '@/components/company/VisionDiagram';
 import MasterPair from '@/components/corporate/MasterPair';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
 import {
-  ArrowRight, Lock, Maximize, Calendar, Award, Handshake, ShieldCheck, Cpu,
+  ArrowRight, Calendar, Award, Handshake, ShieldCheck, Cpu,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
 import { milestoneHighlights } from '@/lib/company-milestones';
@@ -19,7 +19,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { companyLine, perfectSpace, purpose } from '@/lib/brand-canon';
+import { perfectSpace, purpose, saaiPromiseLayer } from '@/lib/brand-canon';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
@@ -79,9 +79,65 @@ const CERTS_STRUCT: { id: string; label: string; icon: typeof ShieldCheck }[] = 
 
 const METHOD_STEPS_STRUCT = [{ id: 'anonymizer' }, { id: 'spatial' }, { id: 'agentic' }] as const;
 
+/** ① 리드에서 primary로 강조할 단어(로케일별). '오프라인을 / 다시 만듭니다'의 '다시'. */
+const LEAD_HL: Record<Locale, string> = { ko: '다시', en: 'Reinvent', jp: 'つくりなおす' };
+
+/**
+ * ③ 향후 5년 — 다크 챕터 카피(목적지·방법·SAAI 핸드오프). bridge 상단(회사→SAAI)을 React로.
+ * bTitle/bLead는 method 카피 재사용(t.methodHeading·t.methodIntro), closing은 purpose SOT.
+ */
+const NEXT: Record<Locale, {
+  eyebrow: string; h2: string; aTitle: string; aLead: string; cTransition: string;
+  companyTag: string; companyPromise: string; connector: string;
+  saaiTag: string; saaiName: string; saaiPromise: string; lettersLabel: string; saaiLink: string;
+}> = {
+  ko: {
+    eyebrow: "What's next · 향후 5년",
+    h2: '5년 뒤, 우리가 설 자리 — 그리고 거기까지 가는 법.',
+    aTitle: 'Vision 2031 — 우리가 가려는 좌표',
+    aLead: "익명화·공간·운영이 겹치는 거의 유일한 자리. 시장이 'Physical AI'를 말할 때, 공간 쪽에서 가장 먼저 불리는 이름.",
+    cTransition: '이 세 축을, 하나의 플랫폼으로 묶었습니다.',
+    companyTag: '회사 · DeepingSource', companyPromise: '모든 공간을, 완벽하게.', connector: '모든 공간을 완벽하게 하려면 — 당신의 공간부터',
+    saaiTag: '플랫폼 · SAAI', saaiName: 'SAAI — 익명화 공간 AI', saaiPromise: '당신의 공간을, 완벽하게.', lettersLabel: 'S · A · A · I', saaiLink: 'SAAI란 무엇인가',
+  },
+  en: {
+    eyebrow: "What's next · Next 5 years",
+    h2: "Where we'll stand in five years — and how we get there.",
+    aTitle: 'Vision 2031 — the coordinates we aim for',
+    aLead: "One of the very few places where anonymization, space and operations overlap. When the market says 'Physical AI', the first name called on the spatial side.",
+    cTransition: 'We tied these three layers into one platform.',
+    companyTag: 'Company · DeepingSource', companyPromise: 'Every space, made perfect.', connector: 'To make every space perfect — start with your space',
+    saaiTag: 'Platform · SAAI', saaiName: 'SAAI — anonymized spatial AI', saaiPromise: 'Your space, made perfect.', lettersLabel: 'S · A · A · I', saaiLink: 'What is SAAI',
+  },
+  jp: {
+    eyebrow: "What's next · 今後5年",
+    h2: '5年後に立つ場所 — そして、そこまで行く方法。',
+    aTitle: 'Vision 2031 — 目指す座標',
+    aLead: '匿名化・空間・運営が重なる、ほぼ唯一の場所。市場が「Physical AI」を語るとき、空間の側で最初に呼ばれる名前。',
+    cTransition: 'この三つの軸を、一つのプラットフォームにまとめました。',
+    companyTag: '会社 · DeepingSource', companyPromise: 'すべての空間を、完璧に。', connector: 'すべての空間を完璧にするには — あなたの空間から',
+    saaiTag: 'プラットフォーム · SAAI', saaiName: 'SAAI — 匿名化空間AI', saaiPromise: 'あなたの空間を、完璧に。', lettersLabel: 'S · A · A · I', saaiLink: 'SAAIとは',
+  },
+};
+
+/** ① 리드: 2줄 스택 + 강조어만 primary. */
+function renderLead(text: string, hl: string) {
+  const i = text.indexOf(hl);
+  if (i < 0) return text;
+  return (
+    <>
+      {text.slice(0, i)}
+      <span className="text-primary">{hl}</span>
+      {text.slice(i + hl.length)}
+    </>
+  );
+}
+
 
 export default function AboutView({ locale }: { locale: Locale }) {
   const t = ABOUT[locale];
+  const nx = NEXT[locale];
+  const promise = saaiPromiseLayer[locale];
   // rebuild the COMPANY-count interpolations from their CMS templates
   const partnersHeading = t.partnersHeading.replace('{partnerBrands}', String(COMPANY.partnerBrands));
   const partnersSub = t.partnersSub
@@ -110,11 +166,13 @@ export default function AboutView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
 
-          {/* REINVENT OFFLINE — 두괄식 대문 (Mission을 히어로로 승격, 아래 VM 섹션과 중복 제거) */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-4">
+          {/* ① 선언 — REINVENT OFFLINE. 순수 히어로: H1 · 2줄 리드('다시' 파랑) · 대비카드 · 클로징 1줄 */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-5">
             <WordRise text={t.missionStatement} />
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300 mb-12 break-keep">{t.missionStatementSub}</p>
+          <p className="text-2xl sm:text-3xl font-bold text-white/90 leading-snug mb-14 break-keep whitespace-pre-line">
+            {renderLead(t.missionStatementSub, LEAD_HL[locale])}
+          </p>
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">
@@ -131,77 +189,126 @@ export default function AboutView({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <p className="mt-10 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
-            {companyLine[locale]}
-          </p>
-          <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
-            {t.companyIntro}
-          </p>
-          <p className="mt-3 text-lg text-white font-medium max-w-2xl mx-auto leading-relaxed break-keep">
+          <p className="mt-14 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
             {t.companyIntro2}
-          </p>
-          <p className="mt-6 text-sm text-slate-400 max-w-xl mx-auto break-keep">
-            {perfectSpace.your[locale]} → {perfectSpace.every[locale]}
           </p>
         </div>
       </section>
 
-      {/* ── 비전 / 미션 ── */}
+      {/* ── ② 비전 — 모든 공간을, 완벽하게 (About 유일 등장 · §5-3 파랑 앵커) ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.vmEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight break-keep">{perfectSpace.every[locale]}</h2>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-primary mb-5 tracking-wider uppercase">{t.vmEyebrow}</p>
+          <div className="border-l-4 border-primary pl-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight break-keep leading-tight">
+              {perfectSpace.every[locale]}
+            </h2>
           </div>
 
-          <div className="mb-12">
-            <VisionDiagram locale={locale} />
+          {/* 전개 — 당신의 공간 → 모든 공간 (SAAI 브릿지 복선) */}
+          <p className="mt-8 text-xl text-gray-700 font-medium break-keep">{t.vision}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-gray-200 bg-slate-50 px-4 py-2 text-sm font-bold text-gray-700 break-keep">{perfectSpace.your[locale]}</span>
+            <ArrowRight className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+            <span className="rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-bold text-primary break-keep">{perfectSpace.every[locale]}</span>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div className="p-8 rounded-3xl bg-slate-50 border border-gray-100">
-              <Lock className="w-6 h-6 text-primary mb-4" />
-              <p className="text-xs font-bold text-primary mb-2 tracking-wider uppercase">{t.visionLabel}</p>
-              <p className="text-gray-900 font-medium text-lg break-keep">{t.vision}</p>
-            </div>
-            <div className="p-8 rounded-3xl bg-slate-50 border border-gray-100">
-              <Maximize className="w-6 h-6 text-primary mb-4" />
-              <p className="text-xs font-bold text-primary mb-2 tracking-wider uppercase">{t.missionLabel}</p>
-              <p className="text-gray-900 font-medium text-lg break-keep">{t.mission}</p>
-            </div>
-          </div>
+          {/* 믿음 본문 */}
+          <p className="mt-10 text-lg text-gray-500 leading-relaxed break-keep max-w-2xl">{t.mission}</p>
         </div>
       </AnimatedSection>
 
       {/* ── 두 약속 미러 · 본부 ↔ 매장 ── */}
       <MasterPair locale={locale} />
 
-      {/* ── Vision 2031 좌표 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <VisionCoordinatesMockup locale={locale} />
+      {/* ── ③ 향후 5년 — 목적지 · 방법 · SAAI 핸드오프 (다크 챕터 · bridge 상단 회사→SAAI) ── */}
+      <section className="relative overflow-hidden bg-slate-950 py-20 lg:py-28">
+        <div className="absolute top-1/3 right-0 w-[36rem] h-[36rem] bg-primary/10 blur-[160px] rounded-full pointer-events-none" aria-hidden="true" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+          {/* 챕터 헤더 */}
+          <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
+            <p className="text-sm font-medium text-primary-light mb-4 tracking-wider uppercase">{nx.eyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight break-keep leading-tight">{nx.h2}</h2>
+          </AnimatedSection>
+
+          {/* 블록 A · 목적지 (2031) */}
+          <AnimatedSection className="mb-20">
+            <div className="flex items-baseline gap-3 mb-3">
+              <span className="text-2xs font-black font-mono text-primary-light">A</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white break-keep">{nx.aTitle}</h3>
+            </div>
+            <p className="text-slate-300 leading-relaxed break-keep max-w-2xl mb-8">{nx.aLead}</p>
+            <div className="rounded-3xl bg-white p-5 sm:p-7 shadow-card">
+              <VisionCoordinatesMockup locale={locale} />
+            </div>
+          </AnimatedSection>
+
+          {/* 블록 B · 어떻게 도달하나 (방법 3층) */}
+          <AnimatedSection className="mb-20">
+            <div className="flex items-baseline gap-3 mb-3">
+              <span className="text-2xs font-black font-mono text-primary-light">B</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white break-keep">{method.heading}</h3>
+            </div>
+            <p className="text-slate-300 leading-relaxed break-keep max-w-2xl mb-8">{method.intro}</p>
+            <div className="rounded-3xl bg-white p-6 sm:p-8 shadow-card">
+              <div className="mb-8">
+                <VisionDiagram locale={locale} />
+              </div>
+              <ProcessStepper
+                ariaLabel={method.heading}
+                steps={method.steps.map((s, i) => ({ label: `0${i + 1}`, title: s.term, desc: s.promise }))}
+              />
+            </div>
+          </AnimatedSection>
+
+          {/* 블록 C · SAAI 핸드오프 (그림 상단: 회사 → SAAI) */}
+          <AnimatedSection>
+            <div className="flex items-baseline gap-3 mb-8 justify-center">
+              <span className="text-2xs font-black font-mono text-primary-light">C</span>
+              <p className="text-lg sm:text-xl font-medium text-white break-keep text-center">{nx.cTransition}</p>
+            </div>
+
+            <div className="mx-auto max-w-2xl">
+              {/* 회사 노드 */}
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7">
+                <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-2xs font-bold uppercase tracking-wider text-slate-300 mb-3">{nx.companyTag}</span>
+                <p className="text-lg font-bold text-white break-keep">{nx.companyPromise}</p>
+              </div>
+              {/* 커넥터 */}
+              <div className="flex flex-col items-center py-3">
+                <span className="rounded-full bg-primary/15 border border-primary/25 px-4 py-1.5 text-xs font-medium text-primary-light break-keep text-center">{nx.connector}</span>
+                <ArrowRight className="w-5 h-5 text-primary-light rotate-90 mt-2" aria-hidden="true" />
+              </div>
+              {/* SAAI 노드 */}
+              <div className="rounded-3xl border-2 border-primary/50 bg-primary/10 p-6 sm:p-7">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="inline-block rounded-full bg-primary px-3 py-1 text-2xs font-bold uppercase tracking-wider text-white">{nx.saaiTag}</span>
+                  <Link href={localeHref(locale, '/products/saai')} className="inline-flex items-center gap-1 text-sm font-medium text-primary-light hover:text-white transition-colors no-underline">
+                    {nx.saaiLink} <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </Link>
+                </div>
+                <p className="text-lg font-bold text-white break-keep mb-1">{nx.saaiName}</p>
+                <p className="text-primary-light font-medium break-keep mb-5">{nx.saaiPromise}</p>
+                {/* S · A · A · I → 기술 딥링크 */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {promise.pillars.map((p) => (
+                    <Link
+                      key={p.key}
+                      href={localeHref(locale, p.tech)}
+                      className="group rounded-xl border border-white/10 bg-slate-900/40 p-3 hover:border-primary/40 transition-colors no-underline"
+                    >
+                      <span className="block text-lg font-black font-mono text-primary-light leading-none">{p.letter}</span>
+                      <span className="block text-2xs font-bold text-white mt-1 break-keep">{p.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <p className="mt-10 text-center text-base text-slate-400 italic break-keep">{method.closing}</p>
+          </AnimatedSection>
         </div>
-      </AnimatedSection>
-
-      {/* ── 우리가 일하는 법 · 익명화 → 공간 지능 → 에이전트 AI ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{method.eyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{method.heading}</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{method.intro}</p>
-          </div>
-
-          <ProcessStepper
-            ariaLabel={method.heading}
-            steps={method.steps.map((s, i) => ({ label: `0${i + 1}`, title: s.term, desc: s.promise }))}
-          />
-
-          <p className="mt-12 text-center text-base sm:text-lg text-gray-500 italic break-keep">
-            {method.closing}
-          </p>
-        </div>
-      </AnimatedSection>
+      </section>
 
       {/* ── 연혁 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">

@@ -618,10 +618,10 @@
       "heroMasterOwner": "stayed\nlargely the same.",
       "companyIntro": "For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.",
       "companyIntro2": "DEEPINGSOURCE is here to reinvent it.",
-      "vmEyebrow": "Vision & Mission",
+      "vmEyebrow": "Vision",
       "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "Reinvent offline",
-      "vision": "From your space — to every space.",
+      "missionStatementSub": "Reinvent\noffline.",
+      "vision": "Starting from your space — to every space.",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "If you can measure it, you can improve it. We bring the force that remade online to the physical world.",
@@ -649,7 +649,7 @@
       ],
       "methodEyebrow": "How we work",
       "methodHeading": "Spatial AI on anonymization, agents on top",
-      "methodIntro": "Vision AI ultimately looks at people. We start with anonymization, then read and run the space across three layers.",
+      "methodIntro": "We start with anonymization, then read and run the space across three layers.",
       "certs": {
         "soc2": {
           "sub": "Security controls certification (2024)"
@@ -683,11 +683,11 @@
       "heroEyebrowOwner": "현장은",
       "heroMasterOwner": "거의\n그대로였다",
       "companyIntro": "온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.",
-      "companyIntro2": "딥핑소스는 그 현장을 다시 만듭니다.",
-      "vmEyebrow": "Vision & Mission",
+      "companyIntro2": "딥핑소스는, 그 현장을 다시 만듭니다.",
+      "vmEyebrow": "Vision",
       "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "오프라인을 다시 만든다",
-      "vision": "당신의 공간에서, 모든 공간으로",
+      "missionStatementSub": "오프라인을\n다시 만듭니다",
+      "vision": "당신의 공간에서 시작해, 모든 공간으로.",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.",
@@ -715,7 +715,7 @@
       ],
       "methodEyebrow": "How we work",
       "methodHeading": "익명화 위에 공간 지능, 그 위에 에이전트 AI",
-      "methodIntro": "비전 AI는 결국 사람을 봅니다. 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.",
+      "methodIntro": "우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.",
       "certs": {
         "soc2": {
           "sub": "정보보안 통제 인증 (2024)"
@@ -750,10 +750,10 @@
       "heroMasterOwner": "ほぼ\nそのままだった。",
       "companyIntro": "オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。",
       "companyIntro2": "ディーピングソースは、その現場を作り直します。",
-      "vmEyebrow": "Vision & Mission",
+      "vmEyebrow": "Vision",
       "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "オフラインを、つくりなおす",
-      "vision": "あなたの空間から、すべての空間へ。",
+      "missionStatementSub": "オフラインを、\nつくりなおす。",
+      "vision": "あなたの空間から始めて、すべての空間へ。",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
       "mission": "測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。",
@@ -781,7 +781,7 @@
       ],
       "methodEyebrow": "How we work",
       "methodHeading": "匿名化の上に空間知能、その上にエージェントAI",
-      "methodIntro": "ビジョンAIは結局、人を見ます。私たちは匿名化から始め、三つの軸で空間を読み、運営します。",
+      "methodIntro": "私たちは匿名化から始め、三つの軸で空間を読み、運営します。",
       "certs": {
         "soc2": {
           "sub": "情報セキュリティ統制認証 (2024)"

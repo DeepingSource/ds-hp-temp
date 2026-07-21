@@ -39,26 +39,32 @@ hero:
     en: For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.
     jp: オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。
   companyIntro2:
-    ko: 딥핑소스는 그 현장을 다시 만듭니다.
+    ko: 딥핑소스는, 그 현장을 다시 만듭니다.
     en: DEEPINGSOURCE is here to reinvent it.
     jp: ディーピングソースは、その現場を作り直します。
 vm:
   vmEyebrow:
-    ko: Vision & Mission
-    en: Vision & Mission
-    jp: Vision & Mission
+    ko: Vision
+    en: Vision
+    jp: Vision
   missionStatement:
     ko: REINVENT OFFLINE
     en: REINVENT OFFLINE
     jp: REINVENT OFFLINE
   missionStatementSub:
-    ko: 오프라인을 다시 만든다
-    en: Reinvent offline
-    jp: オフラインを、つくりなおす
+    ko: |-
+      오프라인을
+      다시 만듭니다
+    en: |-
+      Reinvent
+      offline.
+    jp: |-
+      オフラインを、
+      つくりなおす。
   vision:
-    ko: 당신의 공간에서, 모든 공간으로
-    en: From your space — to every space.
-    jp: あなたの空間から、すべての空間へ。
+    ko: 당신의 공간에서 시작해, 모든 공간으로.
+    en: Starting from your space — to every space.
+    jp: あなたの空間から始めて、すべての空間へ。
   visionLabel:
     ko: Vision
     en: Vision
@@ -177,9 +183,9 @@ method:
     en: Spatial AI on anonymization, agents on top
     jp: 匿名化の上に空間知能、その上にエージェントAI
   methodIntro:
-    ko: 비전 AI는 결국 사람을 봅니다. 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.
-    en: Vision AI ultimately looks at people. We start with anonymization, then read and run the space across three layers.
-    jp: ビジョンAIは結局、人を見ます。私たちは匿名化から始め、三つの軸で空間を読み、運営します。
+    ko: 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.
+    en: We start with anonymization, then read and run the space across three layers.
+    jp: 私たちは匿名化から始め、三つの軸で空間を読み、運営します。
   methodSteps:
     - id: anonymizer
       term:
