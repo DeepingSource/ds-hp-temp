@@ -34,7 +34,7 @@ const dict: Record<
     lead: '딥핑소스는 2018년부터 영상 익명화를 깎아 온, 공간을 그대로 읽는 익명화 공간 AI 회사입니다. 신호는 받되, 누구인지는 남기지 않습니다.',
     facts: [
       { icon: RefreshCw, label: '무엇을', body: '어제를 분석하고(insight), 지금을 감지하고(care), 다음을 실행하는(agent) 하나의 운영 루프.' },
-      { icon: Building2, label: '누구를 위해', body: '전국 매장을 한 화면에서 보는 프랜차이즈·체인 본사부터, 개별 매장까지.' },
+      { icon: Building2, label: '누구를 위해', body: '전국 매장을 한 화면에서 보는 프랜차이즈·다점포 본사부터, 개별 매장까지.' },
       { icon: Camera, label: '어떻게', body: '새 장비 없이, 쓰던 CCTV 위에서.' },
       { icon: ShieldCheck, label: '왜 안전한가', body: '촬영 순간 익명화, 원본 미보존 (SEAL).' },
     ],
@@ -53,7 +53,7 @@ const dict: Record<
     lead: 'DeepingSource has honed video anonymization since 2018 — an Anonymized Spatial AI company that reads the space as it is. It receives the signals, yet leaves no one identifiable.',
     facts: [
       { icon: RefreshCw, label: 'What', body: 'One operating loop — analyze yesterday (insight), detect the now (care), act on next (agent).' },
-      { icon: Building2, label: 'For whom', body: 'From franchise & chain HQs that watch every store on one screen, to a single store.' },
+      { icon: Building2, label: 'For whom', body: 'From franchise & multi-store HQs that watch every store on one screen, to a single store.' },
       { icon: Camera, label: 'How', body: 'No new hardware — on the CCTV you already have.' },
       { icon: ShieldCheck, label: 'Why it’s safe', body: 'Anonymized at capture, no footage retained (SEAL).' },
     ],
@@ -72,7 +72,7 @@ const dict: Record<
     lead: 'ディーピングソースは2018年から映像の匿名化を磨いてきた、空間をそのまま読み取る匿名化空間AIの会社です。信号は受け取り、誰かは残しません。',
     facts: [
       { icon: RefreshCw, label: '何を', body: '昨日を分析し(insight)、今を検知し(care)、次を実行する(agent)、ひとつの運営ループ。' },
-      { icon: Building2, label: '誰のために', body: '全店舗をひとつの画面で見るフランチャイズ・チェーン本部から、個々の店舗まで。' },
+      { icon: Building2, label: '誰のために', body: '全店舗をひとつの画面で見るフランチャイズ・多店舗本部から、個々の店舗まで。' },
       { icon: Camera, label: 'どうやって', body: '新しい機器なしで、すでにあるCCTVの上で。' },
       { icon: ShieldCheck, label: 'なぜ安全か', body: '撮影の瞬間に匿名化、原本は保存しません(SEAL)。' },
     ],

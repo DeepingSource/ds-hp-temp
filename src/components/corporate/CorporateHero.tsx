@@ -16,11 +16,11 @@ const credentials: Record<Locale, string[]> = {
   jp: ['NVIDIA Inception Partner', `特許 ${COMPANY.patents}件`, `パートナー ${COMPANY.partnerBrands}社+`],
 };
 
-/** Hero secondary CTA — the HQ/chain path (랜딩_전환재정렬_v2 §2·§8). */
+/** Hero secondary CTA — the HQ/multi-store path (랜딩_전환재정렬_v2 §2·§8). */
 const heroEnterpriseCta: Record<Locale, string> = {
-  ko: '본사·체인 도입 보기',
-  en: 'For chains & HQ',
-  jp: '本部・チェーン導入',
+  ko: '본사·다점포 도입 보기',
+  en: 'For HQ & multi-store',
+  jp: '本部・多店舗導入',
 };
 
 /** Hero evidence overlay — proves face-free tracking (our anonymization moat, shown not told). */
@@ -41,7 +41,7 @@ const heroImg: Record<Locale, { alt: string; caption: string }> = {
  * BLUF: a QUESTION H1 ("지금 쓰는 AI는, 당신의 공간을 알고 있나요?") with a rotating spatial
  * noun (매장·현장·전시장·물류센터·카페·무인매장) — the grounding hook. The fixed token carries
  * SEO/SR; the rotation is a visual, aria-hidden layer (see RotatingNoun). Signal sub + the
- * SAAI spell-out, then two CTAs (도입 상담 → /contact · 본사·체인 → /enterprise). Right rail:
+ * SAAI spell-out, then two CTAs (도입 상담 → /contact · 본사·다점포 → /enterprise). Right rail:
  * one functional evidence visual — face-free MTMC tracking, the "공간의 신호" proof.
  */
 export default function CorporateHero({ locale }: { locale: Locale }) {
