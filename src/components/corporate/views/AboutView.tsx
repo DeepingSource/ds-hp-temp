@@ -133,11 +133,60 @@ function renderLead(text: string, hl: string) {
   );
 }
 
+/** ④ 왜냐하면 — 이건 중요한 문제였습니다. head는 ③ methodIntro서 이관한 임팩트 문구. */
+const WHY: Record<Locale, { eyebrow: string; head: string }> = {
+  ko: { eyebrow: '왜냐하면 · Why', head: '카메라는 결국, 사람을 봅니다.' },
+  en: { eyebrow: 'Why', head: 'A camera ultimately looks at people.' },
+  jp: { eyebrow: 'なぜなら · Why', head: 'カメラは結局、人を見ます。' },
+};
+
+/** ⑤ 누가 만드나 — 리더십 아래 아웃바운드(엔터프라이즈·파트너십). bridge rails. */
+const ROLES: Record<Locale, { strip: string; enterprise: string; partnership: string }> = {
+  ko: { strip: '함께 만드는 곳', enterprise: '엔터프라이즈 도입', partnership: '파트너십 · 협업 문의' },
+  en: { strip: 'Where it comes together', enterprise: 'For enterprise', partnership: 'Partnership & collaboration' },
+  jp: { strip: '共に創る場所', enterprise: 'エンタープライズ導入', partnership: 'パートナーシップ・協業のお問い合わせ' },
+};
+
+/** ⑥ 이제, 당신의 공간부터 — SAAI 하단 브릿지(SAAI → 제품 3모드 → 문의). */
+type ModeMini = { ph: string; name: string; tag: string; href: string };
+const BRIDGE2: Record<Locale, { eyebrow: string; head: string; sub: string; cta: string; modes: [ModeMini, ModeMini, ModeMini] }> = {
+  ko: {
+    eyebrow: '이제, 당신의 공간부터', head: '네 개의 근거가, 하나의 루프로', sub: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 하나의 운영 루프로.', cta: '제품 전체 보기',
+    modes: [
+      { ph: '어제 · Analyze', name: 'saai insight', tag: '어제를 읽다', href: '/products/saai-insight' },
+      { ph: '지금 · Detect', name: 'saai care', tag: '지금을 알리다', href: '/products/saai-care' },
+      { ph: '다음 · Act', name: 'saai agent', tag: '다음을 실행하다', href: '/products/saai-agent' },
+    ],
+  },
+  en: {
+    eyebrow: 'Now, start with your space', head: 'The grounds become one loop', sub: 'Read yesterday, flag the now, act on next — as one operating loop.', cta: 'See all products',
+    modes: [
+      { ph: 'Yesterday · Analyze', name: 'saai insight', tag: 'reads yesterday', href: '/products/saai-insight' },
+      { ph: 'Now · Detect', name: 'saai care', tag: 'flags the now', href: '/products/saai-care' },
+      { ph: 'Next · Act', name: 'saai agent', tag: 'acts on next', href: '/products/saai-agent' },
+    ],
+  },
+  jp: {
+    eyebrow: '今、あなたの空間から', head: '根拠が、一つのループに', sub: '昨日を読み、今を知らせ、次を実行する — 一つの運営ループで。', cta: '製品をすべて見る',
+    modes: [
+      { ph: '昨日 · Analyze', name: 'saai insight', tag: '昨日を読む', href: '/products/saai-insight' },
+      { ph: '今 · Detect', name: 'saai care', tag: '今を知らせる', href: '/products/saai-care' },
+      { ph: '次 · Act', name: 'saai agent', tag: '次を実行する', href: '/products/saai-agent' },
+    ],
+  },
+};
+
+/** ⑦ 함께하자 — Contact eyebrow. */
+const TOGETHER: Record<Locale, string> = { ko: '함께하자 · Together', en: 'Together', jp: '一緒に · Together' };
+
 
 export default function AboutView({ locale }: { locale: Locale }) {
   const t = ABOUT[locale];
   const nx = NEXT[locale];
   const promise = saaiPromiseLayer[locale];
+  const why = WHY[locale];
+  const roles = ROLES[locale];
+  const bridge = BRIDGE2[locale];
   // rebuild the COMPANY-count interpolations from their CMS templates
   const partnersHeading = t.partnersHeading.replace('{partnerBrands}', String(COMPANY.partnerBrands));
   const partnersSub = t.partnersSub
@@ -310,15 +359,16 @@ export default function AboutView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ── 연혁 ── */}
+      {/* ── ④ 왜냐하면 — 이건 중요한 문제였습니다 (연혁·원류 서사) ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.storyEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.storyHeading}
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{why.eyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 break-keep">
+              {why.head}
             </h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto break-keep">
+            <p className="text-sm font-semibold text-primary mb-5 break-keep">{t.storyHeading}</p>
+            <p className="text-lg text-gray-500 break-keep">
               {t.storySub}
             </p>
           </div>
@@ -414,13 +464,57 @@ export default function AboutView({ locale }: { locale: Locale }) {
               );
             })}
           </div>
+
+          {/* ⑤ 누가 · 어디서 — 엔터프라이즈 · 파트너십 아웃바운드 (bridge rails) */}
+          <p className="text-xs font-bold text-gray-400 mt-14 mb-4 tracking-wider uppercase">{roles.strip}</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href={localeHref(locale, '/enterprise')} className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline">
+              {roles.enterprise} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+            <Link href={localeHref(locale, '/contact')} className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline">
+              {roles.partnership} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </AnimatedSection>
 
-      {/* ── CTA ── */}
+      {/* ── ⑥ 이제, 당신의 공간부터 — SAAI 하단 브릿지 (SAAI → 제품 3모드 → 문의) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{bridge.eyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{bridge.head}</h2>
+            <p className="text-lg text-gray-500 break-keep">{bridge.sub}</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {bridge.modes.map((m) => (
+              <Link
+                key={m.name}
+                href={localeHref(locale, m.href)}
+                className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-card hover:border-primary-light transition-colors no-underline"
+              >
+                <p className="text-2xs font-mono font-medium text-primary mb-2 uppercase tracking-wide">{m.ph}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-1 lowercase">{m.name}</h3>
+                <p className="text-sm text-gray-500 break-keep mb-5">{m.tag}</p>
+                <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href={localeHref(locale, '/products')} className="btn-primary btn-lg gap-2 rounded-xl inline-flex items-center">
+              {bridge.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── ⑦ 함께하자 — Contact ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <Award className="w-12 h-12 text-primary mx-auto mb-8" />
+          <Award className="w-12 h-12 text-primary mx-auto mb-6" />
+          <p className="text-sm font-medium text-primary-light mb-4 tracking-wider uppercase">{TOGETHER[locale]}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep whitespace-pre-line">
             {t.ctaHeading}
           </h2>
