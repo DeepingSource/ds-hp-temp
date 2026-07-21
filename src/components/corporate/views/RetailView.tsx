@@ -12,6 +12,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import ProblemSignal from '@/components/solutions/ProblemSignal';
+import AdoptionJourney from '@/components/solutions/AdoptionJourney';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -210,6 +211,13 @@ export default function RetailView({ locale }: { locale: Locale }) {
           </div>
           <p className="mt-8 text-center text-base text-gray-600 break-keep">{t.resultsLine}</p>
           <p className="mt-2 text-center text-xs text-gray-400 break-keep">{t.resultsNote}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 도입 여정 (01→05 넘버 타임라인 · V5) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-slate-50 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <AdoptionJourney locale={locale} />
         </div>
       </AnimatedSection>
 

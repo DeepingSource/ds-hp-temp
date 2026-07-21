@@ -14,6 +14,7 @@ import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
 import CategoryHeroDemo from '@/components/solutions/CategoryHeroDemo';
 import ProblemSignal from '@/components/solutions/ProblemSignal';
+import AdoptionJourney from '@/components/solutions/AdoptionJourney';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -196,6 +197,13 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <BeforeAfterToggle category="food-beverage" locale={locale} />
+        </div>
+      </AnimatedSection>
+
+      {/* ── 도입 여정 (01→05 넘버 타임라인 · V5) ── */}
+      <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <AdoptionJourney locale={locale} />
         </div>
       </AnimatedSection>
 
