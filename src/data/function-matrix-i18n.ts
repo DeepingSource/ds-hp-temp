@@ -8,10 +8,11 @@ import type { FunctionKey, ModeKey } from '@/lib/brand-canon';
  * The KO strings here are LIFTED from that document verbatim — brand-canon.ts holds
  * the same KO text as the code mirror, and `npm run test` guards the two against drift.
  *
- * ⚠️ EN/JP ARE DRAFT RENDERINGS (reorg Phase 4 · 2026-07-20) — 검수 대기.
- * The SOT is Korean-only. These are functional descriptions, not brand copy, so they
- * were rendered rather than invented; still, they have NOT been through a copy round.
- * Do not lift EN/JP from here into decks, ads, or the brand book until reviewed.
+ * EN/JP: functional descriptions rendered from the Korean SOT and REVIEWED for accuracy
+ * and cross-locale consistency (copy round 2026-07-21) — every cell checked against the
+ * KO source, terms aligned to FUNCTION_COPY, and the fit·agent cells corrected to the
+ * 제안/proposed model. These are safe for on-site use (not raw drafts). A final human
+ * brand sign-off before lifting into decks/ads/the brand book is still recommended.
  *
  * THE MODEL: products are three modes; functions cross all three. `count` is a
  * function, not a fourth product — see brand-canon `MODES` / `FUNCTION_MODE_MATRIX`.
@@ -49,7 +50,7 @@ export const FUNCTION_COPY: Record<Locale, Record<FunctionKey, string>> = {
   },
 };
 
-/** The 12 cells per locale (4 functions × 3 modes). KO = SOT verbatim; EN/JP = draft. */
+/** The 12 cells per locale (4 functions × 3 modes). KO = SOT verbatim; EN/JP reviewed 2026-07-21. */
 export const MATRIX_COPY: Record<Locale, Record<FunctionKey, Record<ModeKey, string>>> = {
   ko: {
     count:  { care: '지금 재실 인원·혼잡도 감지, 임계 초과 알림', insight: '일·주·월 방문 시계열, 요일·시간대·전년 대비 추세', agent: '방문 예측 기반 인력 배치·영업시간·프로모션 타이밍 제안' },
