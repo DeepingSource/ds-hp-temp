@@ -3,7 +3,7 @@ heroTitle:
   en: Beyond seeing. AI that operates.
   jp: 見るAIを超え、運営するAIへ。
 heroSub:
-  ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장의 다음 한 수를 함께 결정합니다.
+  ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장에서 무엇을 바꿀지 함께 결정합니다.
   en: A dashboard shows you the numbers. saai agent tells you what to do with them — and makes the next move with you.
   jp: ダッシュボードは数字を見せます。saai agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。
 ctaPrimary:
@@ -15,7 +15,7 @@ ctaSecondary:
   en: See sample recommendations
   jp: ご提案の例を見る
 stepsHeading:
-  ko: 숫자에서, 다음 한 수까지
+  ko: 숫자에서, 무엇을 바꿀지까지
   en: From the number to the next move
   jp: 数字から、次の一手まで
 stepsSub:

@@ -37,9 +37,9 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
     allLabel: '전체 솔루션 보기',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: '리테일·편의점', desc: '진열·동선·결제까지, 매장 운영을 한눈에 읽습니다.', alt: '편의점 매장 내부' },
-      { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: '카페·음식점', desc: '대기와 좌석 회전, 피크 시간의 흐름을 파악합니다.', alt: '카페 좌석 공간' },
+      { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: '카페·음식점', desc: '대기와 좌석 회전, 피크 시간의 흐름을 읽습니다.', alt: '카페 좌석 공간' },
       { key: 'drug', href: '/solutions/drug-store', icon: Pill, label: '드럭스토어', desc: '카테고리별 관심과 체류를 익명으로 분석합니다.', alt: '드럭스토어 매장 내부' },
-      { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '대형 공간(마트·물류)', desc: '넓은 공간의 동선과 혼잡, 안전을 함께 살핍니다.', alt: '대형 마트 매장 전경' },
+      { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '대형 마트·물류', desc: '넓은 공간의 동선·혼잡·안전을 함께 읽습니다.', alt: '대형 마트 매장 전경' },
       { key: 'exhibit', href: '/solutions', icon: Landmark, label: '전시·박물관', desc: '관람 동선과 인기 구역을 방문객 식별 없이 읽습니다.', alt: '전시관 관람 공간' },
       { key: 'unmanned', href: '/solutions', icon: MonitorOff, label: '무인매장', desc: '직원 없이도 이상 상황을 감지하고 바로 알립니다.', alt: '무인매장 내부' },
     ],

@@ -36,7 +36,7 @@ const COPY: Record<Locale, Copy> = {
     videoAlt: '여러 대의 카메라에 걸쳐 같은 사람을 얼굴 없이 하나의 ID로 연속 추적하는 MTMC 실제 영상',
     cards: [
       { n: '01', title: 'Multi-Target Multi-Camera', body: '여러 카메라가 같은 사람을 연속으로 인식 — 공간 크기에 무관하게 작동합니다' },
-      { n: '02', title: 'Re-Identification (얼굴 아님)', body: '자세·옷·동선 패턴의 익명화 특징으로 매칭 — 개인을 식별하지 않고도 같은 사람임을 인식합니다' },
+      { n: '02', title: 'Re-Identification — 얼굴이 아니라, 특징으로', body: '자세·옷·동선 패턴의 익명화 특징으로 매칭 — 개인을 식별하지 않고도 같은 사람임을 인식합니다' },
       { n: '03', title: 'Any Environment', body: '작은 부티크부터 대형 물류 창고까지 — 카메라 수·공간 크기·레이아웃에 관계없이 같은 골격이 작동합니다' },
     ],
     emphasized: '핵심 차별점',
