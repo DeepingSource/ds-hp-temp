@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { Cpu, Award, Users } from 'lucide-react';
-import WordRise from '@/components/ui/WordRise';
+import RotatingNoun from '@/components/ui/RotatingNoun';
 import CorporateHeroFigure from '@/components/corporate/CorporateHeroFigure';
 import Container from '@/components/ui/Container';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
-import { perfectSpace } from '@/lib/brand-canon';
+import { categoryKeyword, heroQuestion, saaiSpellout } from '@/lib/brand-canon';
 import { technologyImages } from '@/data/siteImages';
 
 /** Credential badges — real, hard credentials shown as proof pills (not a sentence). */
@@ -16,14 +16,11 @@ const credentials: Record<Locale, string[]> = {
   jp: ['NVIDIA Inception Partner', `特許 ${COMPANY.patents}件`, `パートナー ${COMPANY.partnerBrands}社+`],
 };
 
-/**
- * Value-proposition subheadline (H2) — unpacks the SAAI promise in one line: read the
- * space with privacy intact, and change how the store is run. (랜딩 카피 개정안 v1 §1.)
- */
-const heroValueProp: Record<Locale, string> = {
-  ko: '개인정보 걱정 없이 공간을 해석해, 운영을 바꾸는 지능 — SAAI.',
-  en: 'Intelligence that reads your space — privacy intact — and changes how you run it. SAAI.',
-  jp: 'プライバシーを損なわず空間を読み解き、運営を変える知能 — SAAI。',
+/** Hero secondary CTA — the HQ/chain path (랜딩_전환재정렬_v2 §2·§8). */
+const heroEnterpriseCta: Record<Locale, string> = {
+  ko: '본사·체인 도입 보기',
+  en: 'For chains & HQ',
+  jp: '本部・チェーン導入',
 };
 
 /** Hero evidence overlay — proves face-free tracking (our anonymization moat, shown not told). */
@@ -40,14 +37,18 @@ const heroImg: Record<Locale, { alt: string; caption: string }> = {
 };
 
 /**
- * Home hero — Company layer (DESIGN_v2 §4).
- * BLUF: master company copy as h1 (conclusion), evidence sub, two CTAs.
- * Executive B/W + single blue accent. No marketing adjectives.
- * Right rail (lg+): one functional evidence visual — MTMC tracking, not decoration.
+ * Home hero — grounding · question form (랜딩_전환재정렬_v2 §2).
+ * BLUF: a QUESTION H1 ("지금 쓰는 AI는, 당신의 공간을 알고 있나요?") with a rotating spatial
+ * noun (매장·현장·전시장·물류센터·카페·무인매장) — the grounding hook. The fixed token carries
+ * SEO/SR; the rotation is a visual, aria-hidden layer (see RotatingNoun). Signal sub + the
+ * SAAI spell-out, then two CTAs (도입 상담 → /contact · 본사·체인 → /enterprise). Right rail:
+ * one functional evidence visual — face-free MTMC tracking, the "공간의 신호" proof.
  */
 export default function CorporateHero({ locale }: { locale: Locale }) {
   const t = homeCopy[locale];
+  const q = heroQuestion[locale];
   const img = heroImg[locale];
+  const pillars = saaiSpellout.linear.split(' ');
   return (
     <section className="relative overflow-hidden bg-[var(--layer-bg-hero,#FCFCFE)] border-b border-gray-100">
       <div className="absolute inset-0 bg-dot-light opacity-60 pointer-events-none" aria-hidden="true" />
@@ -61,26 +62,38 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">
             <p className="text-xs font-medium tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
-              ANONYMIZED SPATIAL AI · SAAI
+              {categoryKeyword[locale]} · SAAI
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display">
-              <WordRise text={perfectSpace.your[locale]} />
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display animate-fade-in-up delay-100">
+              {q.prefix}
+              <RotatingNoun fixed={q.fixed} words={q.words} />
+              {q.suffix}
             </h1>
-            <h2 className="mt-4 text-lg sm:text-xl font-semibold text-gray-700 break-keep max-w-2xl animate-fade-in-up delay-100">
-              {heroValueProp[locale]}
-            </h2>
-            <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
+            <p className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
               {t.heroSub}
             </p>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
+            {/* SAAI spell-out — the umbrella brand's four pillars, linear + 4-up (§10-3) */}
+            <div className="mt-6 animate-fade-in-up delay-300">
+              <p className="text-sm font-semibold tracking-tight text-gray-900">
+                {pillars.map((w, i) => (
+                  <span key={w}>
+                    {i > 0 && <span className="text-gray-300"> · </span>}
+                    <span className="text-primary">{w.charAt(0)}</span>
+                    {w.slice(1)}
+                  </span>
+                ))}
+              </p>
+              <p className="mt-1 text-xs text-gray-500 break-keep">{saaiSpellout.gloss[locale].join(' · ')}</p>
+            </div>
+            <div className="mt-9 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-400">
               <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
                 {t.ctaPrimary}
               </Link>
               <Link
-                href={localeHref(locale, '/products')}
+                href={localeHref(locale, '/enterprise')}
                 className="inline-flex items-center justify-center px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light hover:bg-gray-50 transition-colors"
               >
-                {t.ctaSecondary}
+                {heroEnterpriseCta[locale]}
               </Link>
             </div>
             <ul className="mt-10 flex flex-wrap gap-2.5 animate-fade-in-up delay-400">

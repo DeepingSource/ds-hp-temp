@@ -710,6 +710,23 @@ select[aria-invalid="true"]:focus-visible {
   }
 }
 
+/* Rotating spatial noun in the hero question (RotatingNoun.tsx). Each swap remounts the
+   node (React key), replaying a short rise+fade. aria-hidden layer only; the fixed token
+   carries SEO/SR. Halted under reduced-motion below. */
+.rotating-noun {
+  animation: nounSwap 0.5s var(--ease-out-cubic) both;
+}
+@keyframes nounSwap {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Draw-on-scroll for straight connector lines (nextrise-motion `draw` motif).
    scaleX grow from the left edge is the equivalent of an SVG stroke draw for a
    straight line — cheaper, and triggered by the existing `.scroll-visible` parent

@@ -7,9 +7,9 @@ masterOwner:
   en: Our store, like the best.
   jp: 私たちの店が、代表店のように。
 heroSub:
-  ko: 쓰던 CCTV 그대로, 진열된 물건부터 오가는 사람까지 — 공간 안의 모든 것을 읽습니다.
-  en: On the CCTV you already have — from the goods on the shelf to the people passing through, we read everything in the space.
-  jp: すでにあるCCTVのままで、棚の商品から行き交う人まで — 空間の中のすべてを読み取ります。
+  ko: "공간은 매 순간 신호를 냅니다 — 오가는 동선, 머무는 자리, 멈춘 매대. 그 신호를 받아야 AI가 일반론이 아닌 당신의 답을 합니다. SAAI는 쓰던 CCTV로 공간을 익명으로 읽고, 이해하고, 실행합니다."
+  en: "Your space signals every moment — the paths people take, where they linger, the shelf they stop at. Only an AI that receives those signals gives your answer, not a generic one. SAAI reads your space anonymously on the CCTV you already have — understands it, and acts."
+  jp: "空間は絶えず信号を発します — 人の動線、とどまる場所、足を止めた棚。その信号を受け取ってこそ、AIは一般論ではなくあなたの答えを返します。SAAIは、すでにあるCCTVで空間を匿名のまま読み取り、理解し、実行します。"
 ctaPrimary:
   ko: 도입 상담
   en: Talk to us

@@ -2,7 +2,9 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CorporateHero from './CorporateHero';
+import HomeOrientation from './HomeOrientation';
 import ProblemBeat from './ProblemBeat';
+import HomeEnterpriseBeat from './HomeEnterpriseBeat';
 import FeatureCarousel from './FeatureCarousel';
 import CaseBand from './CaseBand';
 import TrustCharter from './TrustCharter';
@@ -43,9 +45,10 @@ const SpatialTrajectoryMockup = dynamic(() => import('@/components/mockups/Spati
 // SAAI=사이 wordplay. EN/JP fall back to purpose.statement + seam (seam EN/JP under copy-round hold).
 const ctaDict: Record<
   Locale,
-  { heading: string; sub: string; close: string; reassure: string; revealLead?: string; revealSign?: string }
+  { kicker: string; heading: string; sub: string; close: string; reassure: string; revealLead?: string; revealSign?: string }
 > = {
   ko: {
+    kicker: 'REINVENT OFFLINE · 오프라인을, 다시.',
     heading: '당신의 공간을, 완벽하게 — 그리고 모든 공간을.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다. 도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '도입 상담',
@@ -54,12 +57,14 @@ const ctaDict: Record<
     revealSign: '사이를 메웁니다. 그게, SAAI.',
   },
   en: {
+    kicker: 'REINVENT OFFLINE',
     heading: 'Perfect your space — and every space.',
     sub: 'Change one store, and the whole operation changes. Talk to us and we’ll map the fastest path.',
     close: 'Map your fastest path',
     reassure: 'Free consultation · reply within 1–2 business days',
   },
   jp: {
+    kicker: 'REINVENT OFFLINE · オフラインを、もう一度。',
     heading: 'あなたの空間を、完璧に — そしてすべての空間を。',
     sub: '一店舗が変われば、運営全体が変わります。導入のご相談で、最短の道を見つけます。',
     close: '最短の道を見つける',
@@ -109,11 +114,17 @@ export default function HomeView({ locale }: { locale: Locale }) {
         )}
       />
 
-      {/* 1 — Hero (company conclusion + evidence) */}
+      {/* 1 — Hero (grounding question + evidence) */}
       <CorporateHero locale={locale} />
 
-      {/* 2 — Problem / tension */}
+      {/* 1.5 — Orientation: grounding logic + company identity + AEO facts (전환재정렬 v2 §4) */}
+      <HomeOrientation locale={locale} />
+
+      {/* 2 — Problem / tension (single store → HQ scale in the 3rd card) */}
       <ProblemBeat locale={locale} />
+
+      {/* 2.5 — HQ answer: variance → national standard, bridge to /enterprise (§6) */}
+      <HomeEnterpriseBeat locale={locale} />
 
       {/* 3 — Products at a glance: 4-product spotlight carousel (count→insight→care→agent) */}
       <FeatureCarousel locale={locale} />
@@ -155,6 +166,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
         {/* SAAI symbol watermark — the endcard signature (nextrise-motion), drifting on scroll */}
         <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-2xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-6">{cta.kicker}</p>
           <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">
             {cta.revealLead ?? purpose[locale].statement}
           </p>

@@ -54,7 +54,7 @@ const dict: Record<Locale, {
     pains: [
       { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '무엇이 팔렸는지는 알아도, 왜 안 팔렸는지는 모릅니다.' },
       { icon: Lock, title: 'CCTV는 쌓여도, 읽히지 않습니다', desc: '답은 매장 안 행동에 있는데, 얼굴이 걸리는 순간 분석이 멈춥니다.' },
-      { icon: LineChart, title: '그래서 같은 자리에서, 또 놓칩니다', desc: '어디서 손님이 돌아섰는지 모르면, 내일도 그 자리를 못 고칩니다.' },
+      { icon: LineChart, title: '매장이 100개면, 편차도 100개', desc: '본사는 어디서 새는지 모릅니다 — 잘되는 매장의 이유도, 안되는 매장의 원인도 한 화면에 없으니까요.' },
     ],
     bridge: signature.ko,
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
@@ -79,7 +79,7 @@ const dict: Record<Locale, {
     pains: [
       { icon: Receipt, title: 'Your POS keeps only the shoppers who paid', desc: 'It shows what sold — never why the rest didn’t.' },
       { icon: Lock, title: 'CCTV piles up, but goes unread', desc: 'The answer is in what happens on your floor — yet analysis stops the moment a face is involved.' },
-      { icon: LineChart, title: 'So you lose them again, in the same spot', desc: 'Not knowing where shoppers turned back, you can’t fix that spot tomorrow either.' },
+      { icon: LineChart, title: '100 stores mean 100 variances', desc: 'HQ can’t tell where it leaks — neither why the best store works nor why the worst doesn’t is on one screen.' },
     ],
     bridge: signature.en,
     methodTagline: 'We don’t stop at seeing — we act.',
@@ -104,7 +104,7 @@ const dict: Record<Locale, {
     pains: [
       { icon: Receipt, title: 'POSには決済した客しか残りません', desc: '何が売れたかは分かっても、なぜ売れなかったかは分かりません。' },
       { icon: Lock, title: 'CCTVは溜まっても、読み解かれません', desc: '答えは店内の行動にあるのに、顔が関わった瞬間に分析が止まります。' },
-      { icon: LineChart, title: 'だから同じ場所で、また取りこぼします', desc: 'どこで客が引き返したか分からなければ、明日もその場所を直せません。' },
+      { icon: LineChart, title: '店舗が100あれば、ばらつきも100', desc: '本部はどこで漏れているか分かりません — 良い店舗の理由も、悪い店舗の原因も、ひとつの画面にないからです。' },
     ],
     bridge: signature.jp,
     methodTagline: '見るだけで終わらせない — 実行まで。',

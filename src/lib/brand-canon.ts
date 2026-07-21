@@ -71,6 +71,49 @@ export const perfectSpace: { your: Record<Locale, string>; every: Record<Locale,
   every: { ko: '모든 공간을, 완벽하게', en: 'Perfect every space.', jp: 'すべての空間を、完璧に。' },
 };
 
+/**
+ * Hero question — the grounding hook (랜딩_전환재정렬_v2 §2·§10-4). The H1 is a QUESTION
+ * with a rotating spatial noun. `fixed` is the crawl/SR-stable token; `words` rotate as a
+ * visual, aria-hidden layer only. prefix + fixed + suffix must read as the SEO-fixed H1
+ * (§10-4): "지금 쓰는 AI는, 당신의 공간을 알고 있나요?". The KO/EN particle is baked into
+ * each token so grammar stays correct as it rotates (매장을 … 무인매장을); JP keeps を in
+ * the suffix, so its tokens are bare nouns.
+ */
+export const heroQuestion: Record<Locale, { prefix: string; fixed: string; suffix: string; words: string[] }> = {
+  ko: {
+    prefix: '지금 쓰는 AI는, 당신의 ',
+    fixed: '공간을',
+    suffix: ' 알고 있나요?',
+    words: ['매장을', '현장을', '전시장을', '물류센터를', '카페를', '무인매장을'],
+  },
+  en: {
+    prefix: 'Does the AI you use know your ',
+    fixed: 'space',
+    suffix: '?',
+    words: ['store', 'floor', 'showroom', 'warehouse', 'café', 'unmanned store'],
+  },
+  jp: {
+    prefix: 'いま使っているAIは、あなたの',
+    fixed: '空間',
+    suffix: 'を知っていますか?',
+    words: ['店舗', '現場', '展示場', '物流センター', 'カフェ', '無人店舗'],
+  },
+};
+
+/**
+ * SAAI linear spell-out (랜딩_전환재정렬_v2 §10-3) — the four pillars read as one line, in
+ * fixed pillar order S·A·A·I. Approved for exposure alongside the 4-up (`saaiPromiseLayer`);
+ * the KO/JP gloss unpacks each letter.
+ */
+export const saaiSpellout: { linear: string; gloss: Record<Locale, string[]> } = {
+  linear: 'Spatial Anonymized Agentic Intelligence',
+  gloss: {
+    ko: ['공간을', '익명으로', '실행까지', '배우며'],
+    en: ['Spatial', 'Anonymized', 'Agentic', 'Intelligence'],
+    jp: ['空間を', '匿名で', '実行まで', '学びながら'],
+  },
+};
+
 /** Category definition — the recurring thesis. */
 export const categoryLine: Record<Locale, string> = {
   ko: '이미 달린 CCTV 위에서, 누구가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
@@ -143,10 +186,11 @@ export const operatingLoop: Record<Locale, { label: string; phase: string; mode:
  * Intelligence = 우산 브랜드 SAAI의 네 글자 = 모든 제품이 딛는 공통 토대(무순서 병렬,
  * 운영 루프와는 성격이 다른 "자산 지도"). 각 기둥은 이를 증명하는 tech(SEED) 페이지로
  * 연결된다(§13). anonymized-first: 익명화가 "먼저 서는 자리"임을 sub에 명시(§4.1).
- * SIGN-OFF STATUS (rechecked 2026-07-20 · reorg Phase 3): 🟡 STILL PENDING.
- * 카피는 재정비안 §8 초안이고 브랜드 카운슬 사인오프가 아직 없다. 풀어쓰기 표기(§9-1)도
- * 미확정이라 선형 "Spatial Anonymized Agentic Intelligence"는 노출하지 않고 4-up으로만
- * 스펠아웃한다. jp = KO/EN 기준 렌더(검수 대상).
+ * SIGN-OFF STATUS (updated 2026-07-21 · 랜딩_전환재정렬_v2 §10-3): 🟢 선형 표기 허용.
+ * 카피는 재정비안 §8 초안이나, 랜딩 재정렬 결정으로 선형 풀어쓰기
+ * "Spatial Anonymized Agentic Intelligence"(= `saaiSpellout`) 노출을 허용한다. 4-up 병기
+ * 가능. 나머지 pillar promise 문구의 브랜드 카운슬 최종 사인오프는 계속 진행 중.
+ * jp = KO/EN 기준 렌더(검수 대상).
  *
  * This layer is orthogonal to the Function × Mode Matrix: the four pillars are the
  * shared FOUNDATION every product stands on (무순서 병렬 자산 지도), while the matrix
