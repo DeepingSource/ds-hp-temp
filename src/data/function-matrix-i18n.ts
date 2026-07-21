@@ -61,13 +61,13 @@ export const MATRIX_COPY: Record<Locale, Record<FunctionKey, Record<ModeKey, str
     count:  { care: 'Live occupancy and crowding, with alerts when a threshold is crossed', insight: 'Daily, weekly and monthly footfall trends by weekday, hour and year over year', agent: 'Staffing, opening hours and promotion timing proposed from forecast demand' },
     queue:  { care: 'Real-time alert when a queue or crowding crosses its threshold', insight: 'Waiting-time peaks and crowding cycles', agent: 'Staff reallocation, extra counters or self-checkout routing proposed' },
     pop:    { care: 'Whether posted POP is visible and intact', insight: 'Attention and conversion effect per POP', agent: 'POP wording, placement and refresh cadence proposed and generated' },
-    fit:    { care: 'Early warning when a new product reacts unexpectedly', insight: 'How well products and stores fit the trend', agent: 'Ordering, assortment and buyer decisions supported' },
+    fit:    { care: 'Early warning when a new product reacts unexpectedly', insight: 'How well products and stores fit the trend', agent: 'Ordering, assortment and buyer decisions proposed' },
   },
   jp: {
     count:  { care: '今の滞在人数・混雑度を検知し、閾値超過を通知', insight: '日・週・月の来店時系列、曜日・時間帯・前年比の推移', agent: '来店予測に基づく人員配置・営業時間・販促タイミングの提案' },
     queue:  { care: '待機列・混雑の閾値超過をリアルタイム通知', insight: '待ち時間のピーク・混雑周期を分析', agent: '人員再配置・レジ増設・セルフ誘導の提案' },
     pop:    { care: '掲出中のPOPの露出・破損状態を検知', insight: 'POP別の注目・転換効果を分析', agent: 'POP文言・位置・交換サイクルの提案・生成' },
-    fit:    { care: '新商品の初期反応の異常を検知', insight: '商品・店舗のトレンド適合度を分析', agent: '発注・商品構成・バイヤーの意思決定を支援' },
+    fit:    { care: '新商品の初期反応の異常を検知', insight: '商品・店舗のトレンド適合度を分析', agent: '発注・商品構成・バイヤーの意思決定を提案' },
   },
 };
 
