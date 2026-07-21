@@ -39,12 +39,19 @@ const SpatialTrajectoryMockup = dynamic(() => import('@/components/mockups/Spati
  * Dark sections (SolutionTimeline, final CTA) never sit adjacent.
  */
 
-const ctaDict: Record<Locale, { heading: string; sub: string; close: string; reassure: string }> = {
+// revealLead/revealSign: closing signature reveal (landing copy revision §10) — KO-only
+// SAAI=사이 wordplay. EN/JP fall back to purpose.statement + seam (seam EN/JP under copy-round hold).
+const ctaDict: Record<
+  Locale,
+  { heading: string; sub: string; close: string; reassure: string; revealLead?: string; revealSign?: string }
+> = {
   ko: {
     heading: '당신의 공간을, 완벽하게 — 그리고 모든 공간을.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다. 도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
+    revealLead: '본사와 매장, 사장과 손님 — 보이지 않던',
+    revealSign: '사이를 메웁니다. 그게, SAAI.',
   },
   en: {
     heading: 'Perfect your space — and every space.',
@@ -148,8 +155,12 @@ export default function HomeView({ locale }: { locale: Locale }) {
         {/* SAAI symbol watermark — the endcard signature (nextrise-motion), drifting on scroll */}
         <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">{purpose[locale].statement}</p>
-          <p className="text-xs font-medium tracking-[0.25em] text-primary-light mb-4">{seam[locale]}</p>
+          <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">
+            {cta.revealLead ?? purpose[locale].statement}
+          </p>
+          <p className="text-xs font-medium tracking-[0.25em] text-primary-light mb-4">
+            {cta.revealSign ?? seam[locale]}
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight font-display break-keep">
             {cta.heading}
           </h2>

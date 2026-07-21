@@ -4,7 +4,7 @@ heroTitle:
   jp: 見るAIを超え、運営するAIへ。
 heroSub:
   ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장에서 무엇을 바꿀지 함께 결정합니다.
-  en: A dashboard shows you the numbers. saai agent tells you what to do with them — and makes the next move with you.
+  en: A dashboard shows you the numbers. saai agent tells you what to do with them — and decides what to change with you.
   jp: ダッシュボードは数字を見せます。saai agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。
 ctaPrimary:
   ko: 도입 상담 신청
@@ -16,7 +16,7 @@ ctaSecondary:
   jp: ご提案の例を見る
 stepsHeading:
   ko: 숫자에서, 무엇을 바꿀지까지
-  en: From the number to the next move
+  en: From the number to what to change
   jp: 数字から、次の一手まで
 stepsSub:
   ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. POS도 비전도 한 엔진에서 — saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
@@ -40,7 +40,7 @@ finalHeading:
   jp: 見守るだけから、運営する側へ。
 finalSub:
   ko: 영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. saai agent가 매장의 다음을 함께 결정합니다.
-  en: We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides your store’s next move with you.
+  en: We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides what’s next for your store with you.
   jp: 映像は残しません。身元はその場で消し、動線と転換だけを記録します。saai agent が店舗の次を、ともに決めます。
 finalCta:
   ko: 도입 상담 신청

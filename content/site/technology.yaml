@@ -251,7 +251,7 @@ stack:
       jp: エージェントAI
     desc:
       ko: 범용 모델이 아니라, 공간 운영에 맞게 튜닝한 AI. 보는 데서 그치지 않고, 무엇을 바꿀지까지 판단합니다.
-      en: Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges the next move.
+      en: Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges what to change.
       jp: 汎用モデルではなく、空間運営に合わせてチューニングしたAI。見るだけで終わらず、次の一手まで判断します。
 complianceItems:
   - id: eu

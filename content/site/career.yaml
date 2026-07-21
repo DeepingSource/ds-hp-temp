@@ -123,7 +123,7 @@ culture:
       jp: 推奨はAI、決定は人
     desc:
       ko: 자동화가 사람을 대체하지 않습니다. AI는 무엇을 바꿀지 권하고, 마지막 결정은 사람이 내리는 방식으로 일합니다.
-      en: Automation doesn’t replace people. AI recommends the next move; the final call is always a person’s.
+      en: Automation doesn’t replace people. AI suggests what to change; the final call is always a person’s.
       jp: 自動化が人を置き換えることはありません。AIが次の一手を提案し、最後の決定は人が下す働き方です。
 benefits:
   - id: flexible

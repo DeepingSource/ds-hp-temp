@@ -144,16 +144,16 @@
   "storeAgent": {
     "en": {
       "heroTitle": "Beyond seeing. AI that operates.",
-      "heroSub": "A dashboard shows you the numbers. saai agent tells you what to do with them — and makes the next move with you.",
+      "heroSub": "A dashboard shows you the numbers. saai agent tells you what to do with them — and decides what to change with you.",
       "ctaPrimary": "Request a consultation",
       "ctaSecondary": "See sample recommendations",
-      "stepsHeading": "From the number to the next move",
+      "stepsHeading": "From the number to what to change",
       "stepsSub": "Running a perfect store means watching far too much for one person. POS and vision in one engine — saai agent shoulders the load and tells you what to do right now.",
       "pricingHeading": "Not one store — your whole brand",
       "pricingSub": "At HQ, every store across the country on one screen — footfall, purchases, and conversion, in real time. From a single store to a multi-location headquarters, configured to your scale.",
       "pricingCta": "See pricing",
       "finalHeading": "From watching to operating.",
-      "finalSub": "We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides your store’s next move with you.",
+      "finalSub": "We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides what’s next for your store with you.",
       "finalCta": "Request a consultation",
       "steps": {
         "restock": {
@@ -672,7 +672,7 @@
         },
         "agentic": {
           "term": "③ Agentic AI",
-          "promise": "It does not stop at seeing. It recommends the next move — AI advises, people decide."
+          "promise": "It does not stop at seeing. It points to what to change — AI advises, people decide."
         }
       }
     },
@@ -1391,7 +1391,7 @@
         {
           "tag": "③ Agentic AI",
           "title": "Agentic AI",
-          "desc": "Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges the next move."
+          "desc": "Not a general-purpose model — AI tuned for operating space. It doesn’t stop at seeing; it judges what to change."
         }
       ],
       "complianceItems": [
@@ -4256,7 +4256,7 @@
         },
         {
           "title": "AI advises, people decide",
-          "desc": "Automation doesn’t replace people. AI recommends the next move; the final call is always a person’s."
+          "desc": "Automation doesn’t replace people. AI suggests what to change; the final call is always a person’s."
         }
       ],
       "benefits": [

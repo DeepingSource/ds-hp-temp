@@ -206,7 +206,7 @@ method:
         jp: ③ エージェントAI · Agentic AI
       promise:
         ko: 보는 데서 그치지 않고 무엇을 바꿀지 권합니다. 권고는 AI가, 결정은 사람이.
-        en: It does not stop at seeing. It recommends the next move — AI advises, people decide.
+        en: It does not stop at seeing. It points to what to change — AI advises, people decide.
         jp: 見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。
 cta:
   ctaHeading:
