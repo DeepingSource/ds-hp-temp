@@ -50,8 +50,10 @@ function escapeSlackText(text: string): string {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-export async function sendSlackNotification(message: string): Promise<void> {
-  const url = process.env.SLACK_WEBHOOK_URL;
+export async function sendSlackNotification(message: string, webhookUrl?: string): Promise<void> {
+  // Optional per-call override (e.g. a dedicated enterprise channel); falls back to the
+  // default SLACK_WEBHOOK_URL when not provided or unset.
+  const url = webhookUrl || process.env.SLACK_WEBHOOK_URL;
   if (!url) return;
 
   const controller = new AbortController();
