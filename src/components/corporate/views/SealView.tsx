@@ -122,8 +122,8 @@ const ko: Copy = {
   heroTitleA: '개인정보는 지우고,',
   heroTitleB: 'AI가 볼 것은 남깁니다',
   heroSub:
-    '영상 속 얼굴과 번호판을 놓치지 않고 비식별화하면서, AI 학습에 필요한 특징은 그대로 남기는 영상 비식별화 솔루션입니다. 모자이크·블러와 달리 데이터 유용성을 보존하고, 엣지·온프레미스·기존 애플리케이션에 그대로 내장되는 SDK로 제공됩니다. 핵심 익명화 엔진은 Anonymizer이며, SEAL은 이를 SDK로 감싸 어떤 런타임에도 넣습니다.',
-  heroVideoAria: '영상 속 얼굴과 번호판이 실시간으로 비식별화되는 SEAL 데모',
+    '영상 속 얼굴과 번호판을 놓치지 않고 익명화하면서, AI 학습에 필요한 특징은 그대로 남기는 영상 익명화 솔루션입니다. 모자이크·블러와 달리 데이터 유용성을 보존하고, 엣지·온프레미스·기존 애플리케이션에 그대로 내장되는 SDK로 제공됩니다. 핵심 익명화 엔진은 Anonymizer이며, SEAL은 이를 SDK로 감싸 어떤 런타임에도 넣습니다.',
+  heroVideoAria: '영상 속 얼굴과 번호판이 실시간으로 익명화되는 SEAL 데모',
 
   problemEyebrow: 'The Problem',
   problemTitle: '영상에는 개인정보가 있고, 가리면 쓸모가 사라집니다',
@@ -147,14 +147,14 @@ const ko: Copy = {
   baEyebrow: 'Before / After',
   baTitle: '얼굴도 번호판도, 놓치지 않고 지웁니다',
   baSub:
-    '크기·디자인에 관계없이 번호판을, 연령·성별·인종에 관계없이 얼굴을 비식별화합니다. 매장·창구 같은 실제 공간에서도 신원만 지우고 장면은 그대로 남습니다. 손잡이를 드래그해 원본과 비교해 보세요.',
+    '크기·디자인에 관계없이 번호판을, 연령·성별·인종에 관계없이 얼굴을 익명화합니다. 매장·창구 같은 실제 공간에서도 신원만 지우고 장면은 그대로 남습니다. 손잡이를 드래그해 원본과 비교해 보세요.',
   baBeforeLabel: '원본',
   baAfterLabel: 'SEAL 익명화',
   baPairs: [
-    { label: '얼굴', alt: '얼굴 비식별화 전후 비교', original: '/images/technology/seal/face-original.webp', seal: '/images/technology/seal/face-seal.webp' },
-    { label: '번호판', alt: '자동차 번호판 비식별화 전후 비교', original: '/images/technology/seal/plate-original.webp', seal: '/images/technology/seal/plate-seal.webp' },
-    { label: '매장', alt: '매장 내부 영상 비식별화 전후 비교', original: '/images/technology/seal/scene-mart-original.webp', seal: '/images/technology/seal/scene-mart-seal.webp' },
-    { label: '창구', alt: '은행 창구 영상 비식별화 전후 비교', original: '/images/technology/seal/scene-bank-original.webp', seal: '/images/technology/seal/scene-bank-seal.webp' },
+    { label: '얼굴', alt: '얼굴 익명화 전후 비교', original: '/images/technology/seal/face-original.webp', seal: '/images/technology/seal/face-seal.webp' },
+    { label: '번호판', alt: '자동차 번호판 익명화 전후 비교', original: '/images/technology/seal/plate-original.webp', seal: '/images/technology/seal/plate-seal.webp' },
+    { label: '매장', alt: '매장 내부 영상 익명화 전후 비교', original: '/images/technology/seal/scene-mart-original.webp', seal: '/images/technology/seal/scene-mart-seal.webp' },
+    { label: '창구', alt: '은행 창구 영상 익명화 전후 비교', original: '/images/technology/seal/scene-bank-original.webp', seal: '/images/technology/seal/scene-bank-seal.webp' },
   ],
 
   compareEyebrow: '전체 vs 부분 익명화',
@@ -171,7 +171,7 @@ const ko: Copy = {
   utilityAlt: '블러·모자이크 처리본과 SEAL 처리본에서 AI 인식 결과가 달라지는 비교 이미지',
 
   visionEyebrow: 'Proven with Vision Tasks',
-  visionTitle: '비식별화해도, AI는 그대로 작동합니다',
+  visionTitle: '익명화해도, AI는 그대로 작동합니다',
   visionSub:
     'SEAL로 처리한 데이터는 다양한 AI 비전 태스크에 최적화되어, 개인정보를 보호하면서도 AI 유용성을 그대로 보존합니다.',
   visionTasks: VISION_TASKS([
@@ -186,7 +186,7 @@ const ko: Copy = {
   howSteps: [
     { title: '업로드', desc: '간단한 스크립트 또는 GUI로 이미지·동영상을 업로드합니다.' },
     { title: '개인정보 자동 삭제', desc: '얼굴·번호판 등 개인 식별 정보를 자동으로 찾아 지웁니다.' },
-    { title: '규정 준수', desc: '비식별화된 데이터를 내보내, AI 모델이 개인정보 보호 규정을 준수하도록 합니다.' },
+    { title: '규정 준수', desc: '익명화된 데이터를 내보내, AI 모델이 개인정보 보호 규정을 준수하도록 합니다.' },
   ],
 
   matrixEyebrow: 'Comparison',
@@ -241,7 +241,7 @@ const ko: Copy = {
   sdkSectionEyebrow: 'SEAL as an SDK',
   sdkSectionTitle: 'SEAL을 시스템에 넣는 법',
   sdkSectionSub:
-    '제품으로서의 SEAL은 SDK로 제공됩니다. 아래 네 가지 설계 원칙과 통합 단계로, 기존 시스템에 비식별화를 그대로 내장합니다.',
+    '제품으로서의 SEAL은 SDK로 제공됩니다. 아래 네 가지 설계 원칙과 통합 단계로, 기존 시스템에 익명화를 그대로 내장합니다.',
   promiseEyebrow: 'The SEAL Promise',
   promiseTitle: '네 글자에 담은 설계 원칙',
   promise: [
@@ -267,8 +267,8 @@ const ko: Copy = {
   faqTitle: '자주 묻는 질문',
   faqItems: [
     { question: 'SEAL은 무엇의 약자인가요?', answer: 'Secure, Embeddable, Adaptable, Lightweight — SDK의 4가지 설계 원칙을 나타냅니다.' },
-    { question: '동영상도 처리할 수 있나요?', answer: '네. 이미지뿐 아니라 동영상도 비식별화합니다. 도입 상담 시 샘플 영상으로 결과를 먼저 확인하실 수 있습니다.' },
-    { question: '무료로 먼저 사용해 볼 수 있나요?', answer: '평가용으로 이미지·샘플 영상을 비식별화해 결과를 미리 확인하실 수 있습니다. 필요한 분량을 알려 주시면 상담 시 안내드립니다.' },
+    { question: '동영상도 처리할 수 있나요?', answer: '네. 이미지뿐 아니라 동영상도 익명화합니다. 도입 상담 시 샘플 영상으로 결과를 먼저 확인하실 수 있습니다.' },
+    { question: '무료로 먼저 사용해 볼 수 있나요?', answer: '평가용으로 이미지·샘플 영상을 익명화해 결과를 미리 확인하실 수 있습니다. 필요한 분량을 알려 주시면 상담 시 안내드립니다.' },
     { question: '요금제는 어떻게 되나요?', answer: '처리하는 이미지 수·동영상 길이를 기준으로 하며, 대량 처리 시 할인이 적용됩니다. 요건을 공유해 주시면 견적을 드립니다.' },
     { question: 'SEAL 처리 후 데이터 라벨링도 가능한가요?', answer: '가능합니다. 작업·수량·형식·라벨 유형을 공유해 주시면, 견적과 라벨 제작 서비스를 함께 안내드립니다.' },
     { question: '신원은 언제 제거되나요?', answer: '입력 시점에 제거됩니다. 분석 이전, 데이터가 시스템에 들어오는 첫 순간에 얼굴과 신원을 지우고 — 그 뒤 단계는 익명화된 데이터만 다룹니다.' },
