@@ -54,8 +54,9 @@ const LOOP_STRUCT: LoopStruct[] = [
 
 /**
  * Specialized product — saai ads insight (gaze 승격, 기능페이지 §6). Not a core loop
- * mode; a vertical of the suite for signage·displays·shelf attention. Sits after the
- * three modes with a "특화 · 시선" stage label so it reads as an extension, not a 4th mode.
+ * mode; a saai product MODULE for signage·displays·shelf attention, adoptable on its own
+ * (제품_모듈체계_네이밍_v2). Sits after the three modes with a "특화 · 시선" stage label so it
+ * reads as a specialized module, not a 4th mode.
  */
 const ADS_CARD: Record<Locale, { stage: string; desc: string }> = {
   ko: { stage: '특화 · 시선', desc: '사이니지·전시물·매대 앞의 통행·주목(시선)·행동을 재고 — 무엇을 어디에 걸지 제안합니다.' },
@@ -174,8 +175,67 @@ const USE_CASE: Record<Locale, { eyebrow: string; title: string; body: string; i
   },
 };
 
+/**
+ * Modules — the pick-what-you-need layer (제품_모듈체계_네이밍_v2 §3). Sits right after the
+ * suite section so suite ↔ modules reads as "the whole thing ↔ pick and choose": modules are
+ * not add-ons bolted onto a core — each is its own entry. Chips are brand tokens (saai products
+ * · store functions), kept in code like ADS_CARD/FUNCTIONS_CARD. No unreleased names/dates —
+ * only a "more coming" growth signal (§6).
+ */
+type ModuleChip = { name: string; href: string; badge?: string; entry?: boolean };
+const MODULE_ITEMS: { saai: ModuleChip[]; store: ModuleChip[] } = {
+  saai: [
+    { name: 'insight', href: '/products/saai-insight' },
+    { name: 'care', href: '/products/saai-care' },
+    { name: 'agent', href: '/products/saai-agent' },
+    { name: 'ads insight', href: '/products/saai-ads-insight', badge: 'NEW' },
+  ],
+  store: [
+    { name: 'count', href: '/products/store-count', entry: true },
+    { name: 'queue', href: '/products/store-queue' },
+    { name: 'pop', href: '/products/store-pop' },
+    { name: 'fit', href: '/products/store-fit' },
+  ],
+};
+const MODULES: Record<Locale, {
+  eyebrow: string; title: string; sub: string;
+  saaiLabel: string; storeLabel: string; entryTag: string; growth: string; note: string;
+}> = {
+  ko: {
+    eyebrow: '모듈 · Modules',
+    title: '필요한 것부터, 전부까지 — 그리고 계속 늘어납니다.',
+    sub: 'SAAI는 골라 쓰는 모듈입니다. 기능 하나로 시작하거나, 세 모드를 saai suite로 한 번에 — 당신의 공간에 맞게. 새 공간·새 대상이 생기면, 새 모듈이 더해집니다.',
+    saaiLabel: 'saai 제품',
+    storeLabel: 'store 기능',
+    entryTag: '입문',
+    growth: '곧 더 늘어납니다.',
+    note: '어떤 조합이 맞을지는 상담에서.',
+  },
+  en: {
+    eyebrow: 'Modules',
+    title: 'From what you need, to the whole thing — always growing.',
+    sub: 'SAAI is modular. Start with a single function, or run all three modes together as saai suite — tuned to your space. A new space or target → a new module.',
+    saaiLabel: 'saai products',
+    storeLabel: 'store functions',
+    entryTag: 'entry',
+    growth: 'More coming soon.',
+    note: 'We’ll find the right mix with you.',
+  },
+  jp: {
+    eyebrow: 'モジュール · Modules',
+    title: '必要なものから、全部まで — そして増え続けます。',
+    sub: 'SAAIは選んで使うモジュールです。機能ひとつから始めても、3モードを saai suite でまとめても — あなたの空間に合わせて。新しい空間・対象には、新しいモジュールを。',
+    saaiLabel: 'saai 製品',
+    storeLabel: 'store 機能',
+    entryTag: '入門',
+    growth: 'まもなく、さらに。',
+    note: '最適な組み合わせはご相談で。',
+  },
+};
+
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
+  const mod = MODULES[locale];
   const promise = saaiPromiseLayer[locale];
   // Stage label + time phase per mode, read from the loop SOT so the two never drift.
   const loopSteps = operatingLoop[locale];
@@ -364,6 +424,59 @@ export default function ProductsView({ locale }: { locale: Locale }) {
               </li>
             </ul>
           </AnimatedSection>
+        </Container>
+      </Section>
+
+      {/* ── Modules — pick-what-you-need, right after suite (전부 다 ↔ 골라 쓰기) ── */}
+      <Section variant="alt">
+        <Container>
+          <div className="mb-8 max-w-2xl">
+            <Eyebrow className="mb-4">{mod.eyebrow}</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{mod.title}</h2>
+            <p className="text-gray-500 leading-relaxed break-keep">{mod.sub}</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <p className="text-2xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-3">{mod.saaiLabel}</p>
+              <ul className="flex flex-wrap gap-2">
+                {MODULE_ITEMS.saai.map((m) => (
+                  <li key={m.name}>
+                    <Link
+                      href={localeHref(locale, m.href)}
+                      className="group inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:border-primary-light hover:text-primary transition-colors no-underline"
+                    >
+                      {m.name}
+                      {m.badge && (
+                        <span className="rounded-full bg-primary px-1.5 py-0.5 text-2xs font-bold leading-none text-white">{m.badge}</span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-2xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-3">{mod.storeLabel}</p>
+              <ul className="flex flex-wrap gap-2">
+                {MODULE_ITEMS.store.map((m) => (
+                  <li key={m.name}>
+                    <Link
+                      href={localeHref(locale, m.href)}
+                      className="group inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:border-primary-light hover:text-primary transition-colors no-underline"
+                    >
+                      {m.name}
+                      {m.entry && <span className="text-2xs font-semibold text-primary">· {mod.entryTag}</span>}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
+            <span className="inline-flex w-fit items-center rounded-full border border-dashed border-primary/40 bg-primary-lighter/30 px-4 py-2 text-sm font-medium text-primary">
+              + {mod.growth}
+            </span>
+            <p className="text-sm text-gray-500 break-keep">{mod.note}</p>
+          </div>
         </Container>
       </Section>
 
