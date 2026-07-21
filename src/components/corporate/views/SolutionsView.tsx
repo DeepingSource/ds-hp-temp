@@ -70,6 +70,15 @@ const SOLUTION_TAG: Record<string, string> = {
   'logistics-ppe-compliance': 'saai care',
 };
 
+/** 업종 → 업종 종합 카테고리 페이지(4종). 무인·전시는 전용 카테고리가 없어 제외. */
+const INDUSTRY_CATEGORY: Record<string, string> = {
+  convenience: '/solutions/retail',
+  cafe: '/solutions/food-beverage',
+  drugstore: '/solutions/drug-store',
+  mart: '/solutions/large-space',
+  logistics: '/solutions/large-space',
+};
+
 export default function SolutionsView({ locale }: { locale: Locale }) {
   const t = SOLUTIONS[locale];
 
@@ -96,6 +105,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
         tag: SOLUTION_TAG[sol.slug],
       };
     }),
+    categoryHref: INDUSTRY_CATEGORY[industry.slug],
   }));
 
   return (

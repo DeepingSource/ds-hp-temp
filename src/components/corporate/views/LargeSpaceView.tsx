@@ -96,7 +96,11 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('large-space', locale), path: '/solutions/large-space' }]} locale={locale} tone="dark" className="mb-6" />
+          <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('large-space', locale), path: '/solutions/large-space' }]} locale={locale} tone="dark" className="mb-4" />
+          <Link href={localeHref(locale, '/solutions')} className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-light hover:text-white transition-colors">
+            {locale === 'ko' ? '다른 업종 문제 찾기' : locale === 'jp' ? '他の業種の課題を探す' : 'Browse other industries'}
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </Link>
           <HeroBadge tone="dark">
             <Building2 className="w-3.5 h-3.5" />
             {t.badge}

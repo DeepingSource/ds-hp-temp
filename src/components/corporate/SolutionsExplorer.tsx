@@ -31,12 +31,12 @@ export type ExplorerSolution = {
   /** Light product tag — saai care · saai insight · store queue · saai ads insight. */
   tag?: string;
 };
-export type ExplorerGroup = { slug: string; label: string; solutions: ExplorerSolution[] };
+export type ExplorerGroup = { slug: string; label: string; solutions: ExplorerSolution[]; categoryHref?: string };
 
-const UI: Record<Locale, { step1: string; step2: string; step3: string; pick: string; example: string; metricsNote: string }> = {
-  ko: { step1: '업종 선택', step2: '문제 선택', step3: '해결책 확인', pick: '업종을 선택하세요', example: '예시', metricsNote: '* 지표는 대표 예시 — 매장 조건에 따라 다릅니다.' },
-  en: { step1: 'Pick industry', step2: 'Pick problem', step3: 'See solution', pick: 'Choose an industry', example: 'Example', metricsNote: '* Figures are illustrative examples — actual results vary by store.' },
-  jp: { step1: '業種を選ぶ', step2: '課題を選ぶ', step3: '解決策を見る', pick: '業種を選択', example: '例', metricsNote: '* 指標は代表例 — 店舗の条件によって異なります。' },
+const UI: Record<Locale, { step1: string; step2: string; step3: string; pick: string; example: string; metricsNote: string; viewCategory: string }> = {
+  ko: { step1: '업종 선택', step2: '문제 선택', step3: '해결책 확인', pick: '업종을 선택하세요', example: '예시', metricsNote: '* 지표는 대표 예시 — 매장 조건에 따라 다릅니다.', viewCategory: '이 업종 종합 보기' },
+  en: { step1: 'Pick industry', step2: 'Pick problem', step3: 'See solution', pick: 'Choose an industry', example: 'Example', metricsNote: '* Figures are illustrative examples — actual results vary by store.', viewCategory: 'Full industry page' },
+  jp: { step1: '業種を選ぶ', step2: '課題を選ぶ', step3: '解決策を見る', pick: '業種を選択', example: '例', metricsNote: '* 指標は代表例 — 店舗の条件によって異なります。', viewCategory: 'この業種の総合ページ' },
 };
 
 export default function SolutionsExplorer({
@@ -116,7 +116,7 @@ export default function SolutionsExplorer({
       {/* step 2 — every industry's panel is in the DOM (all solution links crawlable);
           only the active one is visible. The decorative banner image is only rendered for
           the active panel (hidden panels would ship an unused srcset for no gain). */}
-      {resolved.map(({ slug, label, solutions, meta, colors, Icon }) => {
+      {resolved.map(({ slug, label, solutions, meta, colors, Icon, categoryHref }) => {
         const isActive = slug === active;
         return (
           <div
@@ -146,6 +146,17 @@ export default function SolutionsExplorer({
               </div>
             </div>
 
+            {categoryHref && (
+              <div className="mb-4 flex justify-end">
+                <Link
+                  href={localeHref(locale, categoryHref)}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+                >
+                  {ui.viewCategory}
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+            )}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {solutions.map((sol) => (
                 <Link
