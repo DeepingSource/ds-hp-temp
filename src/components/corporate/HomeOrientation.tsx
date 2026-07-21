@@ -23,7 +23,6 @@ const dict: Record<
     heading: string;
     lead: string;
     facts: Fact[];
-    enterprise: string;
     saai: string;
     footnote: string;
     faq: { question: string; answer: string }[];
@@ -32,14 +31,13 @@ const dict: Record<
   ko: {
     eyebrow: '왜 공간 AI인가',
     heading: '일반적인 답 말고 — 당신의 매장에 맞는 답.',
-    lead: '딥핑소스는 공간을 그대로 읽는 익명화 공간 AI 회사입니다. 언어를 읽는 AI로는 매대도 동선도 바뀌지 않습니다. 공간의 신호를 받아야, 당신의 매장이 바뀝니다.',
+    lead: '딥핑소스는 2018년부터 영상 익명화를 깎아 온, 공간을 그대로 읽는 익명화 공간 AI 회사입니다. 신호는 받되, 누구인지는 남기지 않습니다.',
     facts: [
       { icon: RefreshCw, label: '무엇을', body: '어제를 분석하고(insight), 지금을 감지하고(care), 다음을 실행하는(agent) 하나의 운영 루프.' },
       { icon: Building2, label: '누구를 위해', body: '전국 매장을 한 화면에서 보는 프랜차이즈·체인 본사부터, 개별 매장까지.' },
       { icon: Camera, label: '어떻게', body: '새 장비 없이, 쓰던 CCTV 위에서.' },
       { icon: ShieldCheck, label: '왜 안전한가', body: '촬영 순간 익명화, 원본 미보존 (SEAL).' },
     ],
-    enterprise: '본사·체인 도입',
     saai: 'SAAI란',
     footnote: '* 범용 AI(ChatGPT·Claude 등)는 텍스트·이미지엔 강하지만, 당신의 매대·동선은 보지 못합니다 — 그래서 답이 원론적입니다.',
     faq: [
@@ -52,14 +50,13 @@ const dict: Record<
   en: {
     eyebrow: 'Why spatial AI',
     heading: 'Not a generic answer — the answer for your store.',
-    lead: 'DeepingSource is an Anonymized Spatial AI company that reads the space as it is. An AI that reads language won’t change a shelf or a path. Only when it receives the signals of your space does your store change.',
+    lead: 'DeepingSource has honed video anonymization since 2018 — an Anonymized Spatial AI company that reads the space as it is. It receives the signals, yet leaves no one identifiable.',
     facts: [
       { icon: RefreshCw, label: 'What', body: 'One operating loop — analyze yesterday (insight), detect the now (care), act on next (agent).' },
       { icon: Building2, label: 'For whom', body: 'From franchise & chain HQs that watch every store on one screen, to a single store.' },
       { icon: Camera, label: 'How', body: 'No new hardware — on the CCTV you already have.' },
       { icon: ShieldCheck, label: 'Why it’s safe', body: 'Anonymized at capture, no footage retained (SEAL).' },
     ],
-    enterprise: 'For chains & HQ',
     saai: 'What is SAAI',
     footnote: '* General AI (ChatGPT, Claude, etc.) is strong on text and images, but it can’t see your shelves or paths — so its answers stay generic.',
     faq: [
@@ -72,14 +69,13 @@ const dict: Record<
   jp: {
     eyebrow: 'なぜ空間AIか',
     heading: '一般論ではなく — あなたの店舗に合った答え。',
-    lead: 'ディーピングソースは、空間をそのまま読み取る匿名化空間AIの会社です。言語を読むAIでは、棚も動線も変わりません。空間の信号を受け取ってこそ、あなたの店舗が変わります。',
+    lead: 'ディーピングソースは2018年から映像の匿名化を磨いてきた、空間をそのまま読み取る匿名化空間AIの会社です。信号は受け取り、誰かは残しません。',
     facts: [
       { icon: RefreshCw, label: '何を', body: '昨日を分析し(insight)、今を検知し(care)、次を実行する(agent)、ひとつの運営ループ。' },
       { icon: Building2, label: '誰のために', body: '全店舗をひとつの画面で見るフランチャイズ・チェーン本部から、個々の店舗まで。' },
       { icon: Camera, label: 'どうやって', body: '新しい機器なしで、すでにあるCCTVの上で。' },
       { icon: ShieldCheck, label: 'なぜ安全か', body: '撮影の瞬間に匿名化、原本は保存しません(SEAL)。' },
     ],
-    enterprise: '本部・チェーン導入',
     saai: 'SAAIとは',
     footnote: '* 汎用AI(ChatGPT・Claudeなど)はテキストや画像には強いものの、あなたの棚や動線は見えません — だから答えが一般論になります。',
     faq: [
@@ -105,17 +101,10 @@ export default function HomeOrientation({ locale }: { locale: Locale }) {
               {t.heading}
             </h2>
             <p className="mt-5 text-lg text-gray-600 leading-relaxed break-keep">{t.lead}</p>
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-1">
-              <Link
-                href={localeHref(locale, '/enterprise')}
-                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-primary"
-              >
-                {t.enterprise}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
+            <div className="mt-7">
               <Link
                 href={localeHref(locale, '/products/saai')}
-                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors"
+                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-primary"
               >
                 {t.saai}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

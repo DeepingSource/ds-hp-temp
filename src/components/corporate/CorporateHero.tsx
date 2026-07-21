@@ -72,20 +72,7 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
             <p className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
               {t.heroSub}
             </p>
-            {/* SAAI spell-out — the umbrella brand's four pillars, linear + 4-up (§10-3) */}
-            <div className="mt-6 animate-fade-in-up delay-300">
-              <p className="text-sm font-semibold tracking-tight text-gray-900">
-                {pillars.map((w, i) => (
-                  <span key={w}>
-                    {i > 0 && <span className="text-gray-300"> · </span>}
-                    <span className="text-primary">{w.charAt(0)}</span>
-                    {w.slice(1)}
-                  </span>
-                ))}
-              </p>
-              <p className="mt-1 text-xs text-gray-500 break-keep">{saaiSpellout.gloss[locale].join(' · ')}</p>
-            </div>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-400">
+            <div className="mt-9 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
               <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
                 {t.ctaPrimary}
               </Link>
@@ -96,7 +83,18 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
                 {heroEnterpriseCta[locale]}
               </Link>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-2.5 animate-fade-in-up delay-400">
+            {/* SAAI spell-out — brand reinforcement, demoted below the CTA to a single quiet line (§10-3) */}
+            <p className="mt-7 text-xs font-medium tracking-tight text-gray-500 animate-fade-in-up delay-400">
+              {pillars.map((w, i) => (
+                <span key={w}>
+                  {i > 0 && <span className="text-gray-300"> · </span>}
+                  <span className="font-bold text-primary">{w.charAt(0)}</span>
+                  <span className="text-gray-700">{w.slice(1)}</span>
+                </span>
+              ))}
+              <span className="text-gray-400"> — {saaiSpellout.gloss[locale].join(' · ')}</span>
+            </p>
+            <ul className="mt-8 flex flex-wrap gap-2.5 animate-fade-in-up delay-400">
               {credentials[locale].map((c, i) => {
                 const Icon = credIcons[i];
                 return (

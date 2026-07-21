@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Store, Target } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -64,28 +64,22 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
               </Link>
             </div>
 
-            {/* variance → standard: scattered stores collapse to one benchmark */}
+            {/* variance → standard: uneven per-store metrics collapse to one benchmark bar */}
             <div className="lg:col-span-5">
-              <div className="flex items-center justify-center gap-4 sm:gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="grid grid-cols-3 gap-1.5">
-                    {Array.from({ length: 9 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-gray-200 bg-white"
-                        style={{ opacity: 0.45 + (i % 3) * 0.18 }}
-                      >
-                        <Store className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
-                      </span>
+              <div className="flex items-end justify-center gap-6 sm:gap-8">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="flex h-24 items-end gap-1.5" aria-hidden="true">
+                    {[52, 80, 36, 64, 44, 88, 56].map((h, i) => (
+                      <span key={i} className="w-2.5 rounded-t-sm bg-gray-200" style={{ height: `${h}px` }} />
                     ))}
                   </div>
                   <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-gray-500">{t.before}</span>
                 </div>
-                <ArrowRight className="h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
-                <div className="flex flex-col items-center gap-2">
-                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-card">
-                    <Target className="h-7 w-7" aria-hidden="true" />
-                  </span>
+                <ArrowRight className="mb-9 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <div className="flex flex-col items-center gap-3">
+                  <div className="flex h-24 items-end" aria-hidden="true">
+                    <span className="w-9 rounded-t-md bg-primary shadow-card" style={{ height: '96px' }} />
+                  </div>
                   <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-primary">{t.after}</span>
                 </div>
               </div>
