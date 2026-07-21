@@ -255,7 +255,7 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  *
  * ⚠️ `count` is in this union because it OWNS A PAGE (/products/saai-count),
  * NOT because it is a product. Under Function × Mode Matrix v1.0 the products are
- * exactly three modes (`ModeKey`) and `count` is one of twelve functions
+ * exactly three modes (`ModeKey`) and `count` is one of four functions
  * (`FunctionKey`) that cross all three. Do not read this type as "the product list".
  *
  * @deprecated as a *product* type. For product logic use `ModeKey`; for capability
@@ -323,40 +323,30 @@ export const MODES: Record<ModeKey, {
  */
 export const MODE_ORDER: readonly ModeKey[] = ['care', 'insight', 'agent'] as const;
 
-/** The twelve capabilities. Locked at 12 rows in v1.0. */
-export type FunctionKey =
-  | 'count' | 'census' | 'trail' | 'gaze' | 'wait' | 'tide'
-  | 'keep' | 'shelf' | 'motion' | 'fit' | 'pop' | 'talk';
+/** The four library capabilities (기능페이지 작업문서 v1 §0). */
+export type FunctionKey = 'count' | 'queue' | 'pop' | 'fit';
 
-/** Matrix row order — matches the SOT document. */
+/** Matrix row order — matches the SOT document (기능페이지 작업문서 v1 §0). */
 export const FUNCTION_ORDER: readonly FunctionKey[] = [
-  'count', 'census', 'trail', 'gaze', 'wait', 'tide',
-  'keep', 'shelf', 'motion', 'fit', 'pop', 'talk',
+  'count', 'queue', 'pop', 'fit',
 ] as const;
 
 /**
- * Function inventory — matrix §2. `note` carries the v1.1 review flag where one exists;
- * merge candidates (tide≈wait, motion⊂trail+gaze) stay INDEPENDENT rows in v1.0.
+ * Function inventory — the library that crosses all three modes (기능페이지 작업문서 v1 §0).
+ * Reduced 2026-07-21 to four: count · queue(대기+혼잡) · pop · fit. Reassigned rows —
+ * gaze→saai ads insight, keep·shelf→store care 감지 항목, trail·census→기술, talk→숨김 —
+ * no longer live in the matrix.
  */
 export const FUNCTIONS: Record<FunctionKey, { label: string; note?: string }> = {
-  count:  { label: '방문·재실 인원' },
-  census: { label: '익명 인구통계(결)' },
-  trail:  { label: '동선' },
-  gaze:   { label: '시선 · gaze→pick' },
-  wait:   { label: '대기·줄',        note: 'v1.1 — tide 병합 검토' },
-  tide:   { label: '혼잡(밀물/썰물)',  note: 'v1.1 — ≈ wait, 독립 유지' },
-  keep:   { label: '손실 방지' },
-  shelf:  { label: '매대·재고 상태' },
-  motion: { label: '행동',           note: 'v1.1 — ⊂ trail+gaze, 독립 유지' },
-  fit:    { label: '트렌드 적합' },
-  pop:    { label: '판촉물(POP)',     note: '고유어 예외 검토' },
-  talk:   { label: '다국어 응대',      note: '재조어 대기' },
+  count: { label: '유입·재실' },
+  queue: { label: '대기·혼잡' },
+  pop:   { label: '판촉물(POP)' },
+  fit:   { label: '트렌드 적합' },
 };
 
 /**
- * The 36 cells — matrix §3. Every cell is filled: each function has a real job in
- * every mode. Cell density is the roadmap (fit·pop·talk lean agent/insight — that
- * is where SEED 지능 계열 investment shows up).
+ * The 12 cells (4 functions × 3 modes) — every cell is filled: each function has a
+ * real job in every mode. queue merges the old wait + tide (대기 + 혼잡).
  */
 export const FUNCTION_MODE_MATRIX: Record<FunctionKey, Record<ModeKey, string>> = {
   count: {
@@ -364,60 +354,20 @@ export const FUNCTION_MODE_MATRIX: Record<FunctionKey, Record<ModeKey, string>> 
     insight: '일·주·월 방문 시계열, 요일·시간대·전년 대비 추세',
     agent:   '방문 예측 기반 인력 배치·영업시간·프로모션 타이밍 제안',
   },
-  census: {
-    care:    '지금 방문객 구성(연령대·성비 추정) 파악',
-    insight: '시간대·요일별 방문객 결(segment) 변화 분석',
-    agent:   '타깃 세그먼트 맞춤 상품 구성·시간대 운영 제안',
-  },
-  trail: {
-    care:    '특정 구역 이상 정체·비정상 동선 감지',
-    insight: '구역별 통과·체류 히트맵, 주요 경로 분석',
-    agent:   '진열·레이아웃·안내 동선 개선 제안',
-  },
-  gaze: {
-    care:    '신규 진열·POP 앞 시선 반응 실시간 확인',
-    insight: '매대·상품별 주목도(gaze→pick 전환) 분석',
-    agent:   '골든존 배치·진열 우선순위 제안',
-  },
-  wait: {
-    care:    '계산대·대기열 임계 초과 실시간 알림',
-    insight: '대기시간 피크·요일/시간대 분석',
+  queue: {
+    care:    '대기열·혼잡 임계 초과 실시간 알림',
+    insight: '대기시간 피크·혼잡 주기 분석',
     agent:   '인력 재배치·카운터 증설·셀프 유도 제안',
-  },
-  tide: {
-    care:    '매장 전체 혼잡 밀물/썰물 실시간 감지',
-    insight: '혼잡 주기·피크 패턴 분석',
-    agent:   '혼잡 완화 운영(인력·프로모션 분산) 제안',
-  },
-  keep: {
-    care:    '이상 행동·이탈·분실 위험 실시간 감지',
-    insight: '손실 발생 구역·시간·패턴 분석',
-    agent:   '집기 배치·동선 차단·집중 관리 구역 제안',
-  },
-  shelf: {
-    care:    '결품·흐트러짐·가격표 오류 실시간 감지',
-    insight: '결품 빈도·회전율·매대별 성과 분석',
-    agent:   '보충 주기·페이싱·진열 우선순위 제안',
-  },
-  motion: {
-    care:    '이상 행동(넘어짐·다툼 등) 실시간 감지',
-    insight: '매장 내 행동 유형·빈도 분석',
-    agent:   '안전·서비스 개입 지점 제안',
-  },
-  fit: {
-    care:    '신상품 초기 반응 이상 감지',
-    insight: '상품·매장의 트렌드 적합도 분석',
-    agent:   '발주·상품 구성·바이어 의사결정 제안',
   },
   pop: {
     care:    '게시된 POP 노출·훼손 상태 감지',
     insight: 'POP별 주목·전환 효과 분석',
     agent:   'POP 문구·위치·교체 주기 제안·생성',
   },
-  talk: {
-    care:    '외국어·도움 요청 상황 실시간 감지',
-    insight: '문의 유형·언어·빈도 분석',
-    agent:   '다국어 응대·안내 문구 제안·생성',
+  fit: {
+    care:    '신상품 초기 반응 이상 감지',
+    insight: '상품·매장의 트렌드 적합도 분석',
+    agent:   '발주·상품 구성·바이어 의사결정 제안',
   },
 };
 

@@ -54,9 +54,9 @@ const LOOP_STRUCT: LoopStruct[] = [
 
 /** Function-library card that closes the row — count et al. live here, not on the loop. */
 const FUNCTIONS_CARD: Record<Locale, { stage: string; title: string; desc: string; cta: string }> = {
-  ko: { stage: '가로축', title: '기능 라이브러리', desc: 'count·trail·wait·shelf… 12개 기능은 한 제품에 속하지 않고 세 모드를 모두 가로지릅니다.', cta: '매트릭스 보기' },
-  en: { stage: 'Across', title: 'Function library', desc: 'count, trail, wait, shelf and eight more — capabilities that belong to no single product and cross all three modes.', cta: 'See the matrix' },
-  jp: { stage: '横軸', title: '機能ライブラリ', desc: 'count・trail・wait・shelf… 12の機能は一つの製品に属さず、3つのモードを横断します。', cta: 'マトリクスを見る' },
+  ko: { stage: '가로축', title: '기능 라이브러리', desc: 'count·queue·pop·fit — 네 개의 기능은 한 제품에 속하지 않고 세 모드를 모두 가로지릅니다.', cta: '매트릭스 보기' },
+  en: { stage: 'Across', title: 'Function library', desc: 'count, queue, pop, fit — four capabilities that belong to no single product and cross all three modes.', cta: 'See the matrix' },
+  jp: { stage: '横軸', title: '機能ライブラリ', desc: 'count・queue・pop・fit — 4つの機能は一つの製品に属さず、3つのモードを横断します。', cta: 'マトリクスを見る' },
 };
 
 type OwnerStruct = { id: string; name: string; href: string };

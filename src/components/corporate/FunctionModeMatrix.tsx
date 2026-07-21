@@ -37,7 +37,7 @@ export function FunctionModeStrip({ fn, locale }: { fn: FunctionKey; locale: Loc
 }
 
 /**
- * One MODE's column — all twelve functions seen through a single mode.
+ * One MODE's column — all four functions seen through a single mode.
  *
  * This is what a product page is: "how does this mode put every function to work?"
  * It is the matrix read vertically instead of horizontally.
@@ -65,25 +65,25 @@ export function FunctionModeColumn({ mode, locale }: { mode: ModeKey; locale: Lo
 export const MODE_COLUMN_COPY: Record<Locale, { eyebrow: string; title: (mode: string) => string; sub: string; cta: string }> = {
   ko: {
     eyebrow: '기능 × 이 모드',
-    title: (m) => `${m}는 12개 기능을 이렇게 통과시킵니다`,
+    title: (m) => `${m}는 네 개의 기능을 이렇게 통과시킵니다`,
     sub: '기능은 한 제품의 것이 아닙니다. 같은 기능을 이 모드가 어떤 시간축·목적으로 읽는지가 이 제품입니다.',
     cta: '기능 라이브러리 전체 보기',
   },
   en: {
     eyebrow: 'Functions × this mode',
-    title: (m) => `How ${m} puts all twelve functions to work`,
+    title: (m) => `How ${m} puts all four functions to work`,
     sub: 'Functions belong to no single product. What this product IS, is the time axis and purpose this mode reads them through.',
     cta: 'See the whole function library',
   },
   jp: {
     eyebrow: '機能 × このモード',
-    title: (m) => `${m} は12の機能をこう通します`,
+    title: (m) => `${m} は4つの機能をこう通します`,
     sub: '機能は一つの製品のものではありません。同じ機能をこのモードがどの時間軸・目的で読むか — それがこの製品です。',
     cta: '機能ライブラリをすべて見る',
   },
 };
 
-/** The full 12 × 3 table. */
+/** The full 4 × 3 table. */
 export default function FunctionModeMatrix({
   locale,
   highlight,

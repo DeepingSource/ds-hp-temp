@@ -15,7 +15,7 @@ import { MODE_COPY, FUNCTIONS_PAGE_COPY } from '@/data/function-matrix-i18n';
  *
  * SOT: brand-system/01_brand_system/SAAI_Function_Mode_Matrix_v1.0.md
  * This page exists to make ONE claim legible: the products are three modes, and the
- * twelve functions cross all of them. It is where `count` stops looking like a fourth
+ * four functions cross all of them. It is where `count` stops looking like a fourth
  * product. Rows/columns come from brand-canon, so the matrix cannot drift from code.
  *
  * ⚠️ EN/JP body copy is a draft rendering pending a copy round — see

@@ -6,7 +6,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { MODES, type ModeKey } from '@/lib/brand-canon';
 
 /**
- * ModeFunctionSection — "how this mode puts all twelve functions to work".
+ * ModeFunctionSection — "how this mode puts all four functions to work".
  *
  * One matrix COLUMN, dropped into each of the three product pages. This is the
  * Function × Mode Matrix v1.0 claim stated where a visitor actually lands: the
