@@ -36,11 +36,11 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
   ko: {
     eyebrow: '어제 · 지금 · 다음',
     heading: '세 store, 하나의 흐름',
-    sub: '세 개의 store가 하나의 흐름으로 — 어제를 읽고, 지금을 알리고, 다음을 실행합니다.',
+    sub: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 셋이 맞물려 하나의 루프로.',
     nodes: [
-      { key: 'insight', icon: History, product: productPrimary('insight'), desc: '어제를 읽습니다 — 매출이 미처 보지 못한 것을.', img: '/images/storeinsight-heatmap.webp', alt: '매장 히트맵 — 고객 체류·동선 분석', href: '/products/saai-insight' },
-      { key: 'care', icon: Radio, product: productPrimary('care'), desc: '지금을 짚어 알립니다 — 필요한 순간만 모아서.', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 매장 오염·이상 상황 실시간 감지 (익명화)', href: 'https://storecare.ai', external: true },
-      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: '다음을 제안하고 운영합니다 — 권고는 AI가, 결정은 사람이.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 다음 한 수 제안 화면', href: '/products/saai-agent' },
+      { key: 'insight', icon: History, product: productPrimary('insight'), desc: 'ANALYZE — 어제를 읽어, 오늘의 판단 재료를 만듭니다.', img: '/images/storeinsight-heatmap.webp', alt: '매장 히트맵 — 고객 체류·동선 분석', href: '/products/saai-insight' },
+      { key: 'care', icon: Radio, product: productPrimary('care'), desc: 'DETECT — 지금을 감지해, 놓치면 안 될 순간을 띄웁니다.', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 매장 오염·이상 상황 실시간 감지 (익명화)', href: 'https://storecare.ai', external: true },
+      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: 'ACT — 다음을 실행하고, 다시 내일의 데이터로 돌아옵니다.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 매장 운영 제안 화면', href: '/products/saai-agent' },
     ],
   },
   en: {

@@ -43,7 +43,7 @@ const ctaDict: Record<Locale, { heading: string; sub: string; close: string; rea
   ko: {
     heading: '당신의 공간을, 완벽하게 — 그리고 모든 공간을.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다. 도입 상담으로 가장 빠른 길을 함께 찾습니다.',
-    close: '우리 매장 진단받기',
+    close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
   },
   en: {
