@@ -1,0 +1,10 @@
+:HL["/_next/static/chunks/115bc51b46184ffb.css","style"]
+:HC["/",""]
+:HL["/images/docs/storecare/live/_images/anomaly-cards.png","image"]
+:HL["/images/docs/storecare/live/_images/ops-list-example.png","image"]
+:HL["/images/docs/storecare/live/_images/ops-detail-example.png","image"]
+:HL["/images/docs/storecare/live/_images/ops-empty.png","image"]
+:HL["/images/docs/storecare/live/_images/temp-list-example.png","image"]
+:HL["/images/docs/storecare/live/_images/temp-detail-example.png","image"]
+:HL["/images/docs/storecare/live/_images/temp-empty.png","image"]
+0:{"buildId":"a93gYdFdFSn48gdKhDe3w","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"ko","paramType":null,"paramKey":"ko","hasRuntimePrefetch":false,"slots":{"children":{"name":"resources","paramType":null,"paramKey":"resources","hasRuntimePrefetch":false,"slots":{"children":{"name":"docs","paramType":null,"paramKey":"docs","hasRuntimePrefetch":false,"slots":{"children":{"name":"slug","paramType":"d","paramKey":"storecare-anomalies","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/115bc51b46184ffb.css","style"]
+:HC["/",""]
+:HL["/images/docs/storeinsight/en/reports/space-value/_images/zone-analysis/01.png","image"]
+:HL["/images/docs/storeinsight/reports/space-value/_images/zone-analysis/02.png","image"]
+:HL["/images/docs/storeinsight/reports/space-value/_images/zone-analysis/03.png","image"]
+:HL["/images/docs/storeinsight/reports/space-value/_images/zone-analysis/04.png","image"]
+:HL["/images/docs/storeinsight/reports/space-value/_images/zone-analysis/05.png","image"]
+:HL["/images/docs/storeinsight/reports/space-value/_images/zone-analysis/06.png","image"]
+0:{"buildId":"a93gYdFdFSn48gdKhDe3w","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"resources","paramType":null,"paramKey":"resources","hasRuntimePrefetch":false,"slots":{"children":{"name":"docs","paramType":null,"paramKey":"docs","hasRuntimePrefetch":false,"slots":{"children":{"name":"slug","paramType":"d","paramKey":"storeinsight-zone-analysis","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
