@@ -5,7 +5,7 @@ import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import OperatingLoopGraphic from '@/components/corporate/OperatingLoopGraphic';
+import OperatingLoopDemo from '@/components/corporate/OperatingLoopDemo';
 import { localeHref, type Locale } from '@/lib/i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -64,18 +64,6 @@ const OWNER_STRUCT: OwnerStruct[] = [
   { id: 'saai-store', name: 'saai.store', href: 'https://saai.store' },
   { id: 'storecare-ai', name: 'storecare.ai', href: 'https://storecare.ai' },
 ];
-
-const FEEDBACK: Record<Locale, string> = {
-  ko: '결과가 다시 입력으로',
-  en: 'Output feeds back to input',
-  jp: '結果が再び入力へ',
-};
-
-const HUB: Record<Locale, string> = {
-  ko: 'SAAI 허브',
-  en: 'SAAI hub',
-  jp: 'SAAIハブ',
-};
 
 /** ② Who / What — 누구고 무엇을 주는가 (products 프런트 카피 v1 §②). */
 const WHO_WHAT: Record<Locale, { eyebrow: string; title: string; body: string }> = {
@@ -219,9 +207,15 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto break-keep mb-12 lg:mb-14">
             {c.heroSub}
           </p>
-          <OperatingLoopGraphic locale={locale} hub={HUB[locale]} feedback={FEEDBACK[locale]} />
         </div>
       </section>
+
+      {/* ── ★ Operating-loop demo — 단계를 누르면 실제 화면 (데모시각 설계 §2, 주인공) ── */}
+      <AnimatedSection className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <OperatingLoopDemo locale={locale} />
+        </div>
+      </AnimatedSection>
 
       {/* ── ② Who / What — 누구고 무엇을 주는가 ── */}
       <AnimatedSection className="py-16 lg:py-20 bg-white border-t border-gray-100">
