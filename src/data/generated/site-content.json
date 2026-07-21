@@ -1,21 +1,21 @@
 {
   "homeCopy": {
     "en": {
-      "masterCompany": "Perfect every space.",
+      "masterCompany": "Every store, as if it were one.",
       "masterOwner": "Our store, like the best.",
       "heroSub": "On the CCTV you already have — from the goods on the shelf to the people passing through, we read everything in the space.",
       "ctaPrimary": "Talk to us",
       "ctaSecondary": "Explore products"
     },
     "ko": {
-      "masterCompany": "모든 공간을, 완벽하게",
+      "masterCompany": "모든 매장을, 한 매장처럼",
       "masterOwner": "우리 매장이 대표 매장처럼",
       "heroSub": "쓰던 CCTV 그대로, 진열된 물건부터 오가는 사람까지 — 공간 안의 모든 것을 읽습니다.",
       "ctaPrimary": "도입 상담",
       "ctaSecondary": "제품 보기"
     },
     "jp": {
-      "masterCompany": "すべての空間を、完璧に。",
+      "masterCompany": "すべての店舗を、一つの店のように。",
       "masterOwner": "私たちの店が、代表店のように。",
       "heroSub": "すでにあるCCTVのままで、棚の商品から行き交う人まで — 空間の中のすべてを読み取ります。",
       "ctaPrimary": "導入のご相談",
@@ -627,7 +627,7 @@
       "mission": "If you can measure it, you can improve it. We bring the force that remade online to the physical world.",
       "storyEyebrow": "Our Story",
       "storyHeading": "From anonymization to the physical world",
-      "storySub": "We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.",
+      "storySub": "A camera ultimately looks at people. In 2018, as privacy regulation tightened, we chose to face that dilemma head-on — with 'anonymized AI' that erases identity at the moment of capture while keeping the features analysis needs. Starting from anonymization, we read space with vision AI and met the physical world where people work and live; today we read that space, safeguard it, and carry it through to operations.",
       "namingHeading": "About the name — Deeping Source",
       "namingBody": "Deeping Source joins Deep Learning and Source Code — going deep into the source that powers everything: data. After the founder's first venture (Olaworks) joined Intel, watching GDPR and CCPA reshape AI convinced them that responsible data is AI's future, and Deeping Source began. (It's Deeping Source, not dipping sauce.)",
       "leadershipEyebrow": "Leadership",
@@ -664,7 +664,7 @@
       "methodSteps": {
         "anonymizer": {
           "term": "① Anonymizer",
-          "promise": "Identity is erased at the moment of input. Never who — only what and how."
+          "promise": "Not blurring. Identity is erased irreversibly at the moment of input, yet the features analysis needs remain — reading the space at near-original accuracy."
         },
         "spatial": {
           "term": "② Spatial AI",
@@ -693,7 +693,7 @@
       "mission": "측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.",
       "storyEyebrow": "Our Story",
       "storyHeading": "익명화에서, 물리 세계로",
-      "storySub": "우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.",
+      "storySub": "카메라는 결국 사람을 봅니다. 개인정보 규제가 강해지던 2018년, 우리는 그 딜레마를 정면으로 풀기로 했습니다 — 촬영하는 그 순간 신원을 지우되, 분석에 필요한 특징은 남기는 '익명화된 AI'로. 익명화에서 출발해 비전 AI로 공간을 읽다가 사람이 일하고 사는 물리 세계를 만났고, 지금은 그 공간을 읽고 지키고 운영까지 잇습니다.",
       "namingHeading": "이름에 대하여 — 딥핑소스",
       "namingBody": "딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다. 모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻이죠. 창업자는 인텔에 합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가 AI의 미래임을 확신하고 딥핑소스를 시작했습니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)",
       "leadershipEyebrow": "Leadership",
@@ -730,7 +730,7 @@
       "methodSteps": {
         "anonymizer": {
           "term": "① 익명화 · Anonymizer",
-          "promise": "입력 시점에 신원을 지웁니다. 누구인지는 남기지 않고, 무엇을 어떻게만 봅니다."
+          "promise": "흐리게 가리는 게 아닙니다. 입력 시점에 신원을 되돌릴 수 없이 지우되, 분석에 필요한 특징은 남겨 — 원본에 가까운 정확도로 공간을 읽습니다."
         },
         "spatial": {
           "term": "② 공간 지능 · Spatial AI",
@@ -759,7 +759,7 @@
       "mission": "測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。",
       "storyEyebrow": "Our Story",
       "storyHeading": "匿名化から、物理世界へ",
-      "storySub": "私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。",
+      "storySub": "カメラは結局、人を見ます。個人情報規制が強まる2018年、私たちはその葛藤を正面から解くことにしました — 撮影するその瞬間に身元を消しつつ、分析に必要な特徴は残す「匿名化されたAI」で。匿名化から出発し、ビジョンAIで空間を読むうちに人が働き暮らす物理世界に出会い、いまはその空間を読み、守り、運営までつなぎます。",
       "namingHeading": "名前について — Deeping Source",
       "namingBody": "Deeping Source は Deep Learning と Source Code の組み合わせ。あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者は最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。（dipping sauce ではありません。）",
       "leadershipEyebrow": "Leadership",
@@ -796,7 +796,7 @@
       "methodSteps": {
         "anonymizer": {
           "term": "① 匿名化 · Anonymizer",
-          "promise": "入力の時点で身元を消します。誰かではなく、何をどうだけを見ます。"
+          "promise": "ぼかしではありません。入力の時点で身元を元に戻せない形で消し、分析に必要な特徴は残して — 原本に近い精度で空間を読みます。"
         },
         "spatial": {
           "term": "② 空間知能 · Spatial AI",
@@ -804,7 +804,7 @@
         },
         "agentic": {
           "term": "③ エージェントAI · Agentic AI",
-          "promise": "見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。"
+          "promise": "見るだけで終わらず、何を変えるべきかを示します。推奨はAI、決定は人。"
         }
       }
     }
@@ -4016,7 +4016,7 @@
     "en": [
       {
         "key": "ceo",
-        "name": "Tae-Hoon Kim",
+        "name": "Pete Kim (Tae-Hoon Kim)",
         "role": "Co-founder · CEO",
         "focus": "Vision · strategy · overall business",
         "bio": "Co-founded and served as CTO of the image-recognition startup Olaworks, acquired by Intel, then worked as a senior engineer at Intel before co-founding DeepingSource in 2018. He steers the direction of spatial AI built on anonymization.",
@@ -4068,7 +4068,7 @@
     "jp": [
       {
         "key": "ceo",
-        "name": "Tae-Hoon Kim (キム・テフン)",
+        "name": "Pete Kim (キム・テフン)",
         "role": "共同創業者 · 代表 (CEO)",
         "focus": "ビジョン · 戦略 · 事業全般",
         "bio": "画像認識スタートアップOlaworksを共同創業・CTOとして率いてインテルに売却後、インテルのシニアエンジニアを経て2018年にディーピングソースを共同創業。匿名化から始まる空間AIの方向を導きます。",
@@ -4101,9 +4101,9 @@
         "highlight": true
       },
       {
-        "year": "2020",
-        "title": "NVIDIA Inception · Series A",
-        "desc": "Joined as NVIDIA Inception Partner; raised a ~₩5.5B Series A (led by Japan’s KDDI).",
+        "year": "2019",
+        "title": "Series A",
+        "desc": "Raised a ~₩5.5B Series A (led by Japan’s KDDI).",
         "highlight": true
       },
       {
@@ -4142,9 +4142,9 @@
         "highlight": true
       },
       {
-        "year": "2020",
-        "title": "NVIDIA Inception · 시리즈 A",
-        "desc": "NVIDIA Inception 파트너 합류, 시리즈 A 약 55억 원 유치(일본 KDDI 리드).",
+        "year": "2019",
+        "title": "시리즈 A",
+        "desc": "시리즈 A 약 55억 원 유치(일본 KDDI 리드).",
         "highlight": true
       },
       {
@@ -4183,9 +4183,9 @@
         "highlight": true
       },
       {
-        "year": "2020",
-        "title": "NVIDIA Inception · シリーズA",
-        "desc": "NVIDIA Inception パートナーに参加、シリーズA 約55億ウォンを調達（日本KDDIがリード）。",
+        "year": "2019",
+        "title": "シリーズA",
+        "desc": "シリーズA 約55億ウォンを調達（日本KDDIがリード）。",
         "highlight": true
       },
       {

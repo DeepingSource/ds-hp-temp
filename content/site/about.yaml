@@ -81,9 +81,9 @@ story:
     en: From anonymization to the physical world
     jp: 匿名化から、物理世界へ
   storySub:
-    ko: 우리는 익명화에서 시작했습니다. 개인정보 규제가 강해지던 시기에 CCTV를 파고들었고, 비전 AI로 공간을 읽다가 사람이 일하는 물리 세계를 만났습니다. 지금은 매장을 최적화하고 보살피는 AI를 만듭니다.
-    en: We started with anonymization. As privacy regulation tightened we went deep on CCTV — and reading space with vision AI, we met the physical world, where people work and live. Today we build AI that optimizes and cares for stores.
-    jp: 私たちは匿名化から始めました。個人情報規制が強まる中でCCTVを掘り下げ、ビジョンAIで空間を読むうちに、人が働く物理世界に出会いました。いまは店舗を最適化し、見守るAIをつくっています。
+    ko: 카메라는 결국 사람을 봅니다. 개인정보 규제가 강해지던 2018년, 우리는 그 딜레마를 정면으로 풀기로 했습니다 — 촬영하는 그 순간 신원을 지우되, 분석에 필요한 특징은 남기는 '익명화된 AI'로. 익명화에서 출발해 비전 AI로 공간을 읽다가 사람이 일하고 사는 물리 세계를 만났고, 지금은 그 공간을 읽고 지키고 운영까지 잇습니다.
+    en: A camera ultimately looks at people. In 2018, as privacy regulation tightened, we chose to face that dilemma head-on — with 'anonymized AI' that erases identity at the moment of capture while keeping the features analysis needs. Starting from anonymization, we read space with vision AI and met the physical world where people work and live; today we read that space, safeguard it, and carry it through to operations.
+    jp: カメラは結局、人を見ます。個人情報規制が強まる2018年、私たちはその葛藤を正面から解くことにしました — 撮影するその瞬間に身元を消しつつ、分析に必要な特徴は残す「匿名化されたAI」で。匿名化から出発し、ビジョンAIで空間を読むうちに人が働き暮らす物理世界に出会い、いまはその空間を読み、守り、運営までつなぎます。
   namingHeading:
     ko: 이름에 대하여 — 딥핑소스
     en: About the name — Deeping Source
@@ -187,9 +187,9 @@ method:
         en: ① Anonymizer
         jp: ① 匿名化 · Anonymizer
       promise:
-        ko: 입력 시점에 신원을 지웁니다. 누구인지는 남기지 않고, 무엇을 어떻게만 봅니다.
-        en: Identity is erased at the moment of input. Never who — only what and how.
-        jp: 入力の時点で身元を消します。誰かではなく、何をどうだけを見ます。
+        ko: 흐리게 가리는 게 아닙니다. 입력 시점에 신원을 되돌릴 수 없이 지우되, 분석에 필요한 특징은 남겨 — 원본에 가까운 정확도로 공간을 읽습니다.
+        en: Not blurring. Identity is erased irreversibly at the moment of input, yet the features analysis needs remain — reading the space at near-original accuracy.
+        jp: ぼかしではありません。入力の時点で身元を元に戻せない形で消し、分析に必要な特徴は残して — 原本に近い精度で空間を読みます。
     - id: spatial
       term:
         ko: ② 공간 지능 · Spatial AI
@@ -207,7 +207,7 @@ method:
       promise:
         ko: 보는 데서 그치지 않고 무엇을 바꿀지 권합니다. 권고는 AI가, 결정은 사람이.
         en: It does not stop at seeing. It points to what to change — AI advises, people decide.
-        jp: 見るだけで終わらず、次の一手を提案します。推奨はAI、決定は人。
+        jp: 見るだけで終わらず、何を変えるべきかを示します。推奨はAI、決定は人。
 cta:
   ctaHeading:
     ko: |-

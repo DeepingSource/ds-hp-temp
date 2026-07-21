@@ -105,10 +105,16 @@ export default function AboutView({ locale }: { locale: Locale }) {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('about', locale), path: '/company/about' }]} locale={locale} tone="dark" className="mb-6" />
-          <HeroBadge tone="dark" className="mb-10">
+          <HeroBadge tone="dark" className="mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             {t.badge}
           </HeroBadge>
+
+          {/* REINVENT OFFLINE — 두괄식 대문 (Mission을 히어로로 승격, 아래 VM 섹션과 중복 제거) */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-4">
+            <WordRise text={t.missionStatement} />
+          </h1>
+          <p className="text-lg sm:text-xl text-slate-300 mb-12 break-keep">{t.missionStatementSub}</p>
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">
@@ -125,9 +131,9 @@ export default function AboutView({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <h1 className="mt-10 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
-            <WordRise text={companyLine[locale]} />
-          </h1>
+          <p className="mt-10 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
+            {companyLine[locale]}
+          </p>
           <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed break-keep">
             {t.companyIntro}
           </p>
@@ -145,8 +151,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.vmEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">{t.missionStatement}</h2>
-            <p className="mt-3 text-lg text-gray-500 break-keep">{t.missionStatementSub}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight break-keep">{perfectSpace.every[locale]}</h2>
           </div>
 
           <div className="mb-12">
