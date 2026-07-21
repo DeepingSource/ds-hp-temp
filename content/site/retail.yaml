@@ -1,8 +1,8 @@
 # Retail solution hub copy — Keystatic ("Retail — 리테일 카피"). 이미지·아이콘·metadata 코드 유지. 객체배열 id 순서=코드 인덱스, 재정렬 금지.
 badge:
-  ko: 리테일 · 편의점 · 드럭스토어
-  en: Retail · Convenience · Drugstore
-  jp: リテール · コンビニ · ドラッグストア
+  ko: 리테일 · 편의점
+  en: Retail · Convenience
+  jp: リテール · コンビニ
 heroTitle:
   ko:
     - 결품도 이상도,

@@ -1782,7 +1782,7 @@
   },
   "retail": {
     "en": {
-      "badge": "Retail · Convenience · Drugstore",
+      "badge": "Retail · Convenience",
       "heroTitle": [
         "Never miss a stockout",
         "or an anomaly"
@@ -1838,7 +1838,7 @@
       ]
     },
     "ko": {
-      "badge": "리테일 · 편의점 · 드럭스토어",
+      "badge": "리테일 · 편의점",
       "heroTitle": [
         "결품도 이상도,",
         "놓치지 않는 매장"
@@ -1894,7 +1894,7 @@
       ]
     },
     "jp": {
-      "badge": "リテール · コンビニ · ドラッグストア",
+      "badge": "リテール · コンビニ",
       "heroTitle": [
         "欠品も異常も、",
         "見逃さない店舗"

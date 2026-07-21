@@ -31,10 +31,10 @@ export type ExplorerSolution = {
 };
 export type ExplorerGroup = { slug: string; label: string; solutions: ExplorerSolution[] };
 
-const UI: Record<Locale, { step1: string; step2: string; step3: string; pick: string }> = {
-  ko: { step1: '업종 선택', step2: '문제 선택', step3: '해결책 확인', pick: '업종을 선택하세요' },
-  en: { step1: 'Pick industry', step2: 'Pick problem', step3: 'See solution', pick: 'Choose an industry' },
-  jp: { step1: '業種を選ぶ', step2: '課題を選ぶ', step3: '解決策を見る', pick: '業種を選択' },
+const UI: Record<Locale, { step1: string; step2: string; step3: string; pick: string; example: string; metricsNote: string }> = {
+  ko: { step1: '업종 선택', step2: '문제 선택', step3: '해결책 확인', pick: '업종을 선택하세요', example: '예시', metricsNote: '* 지표는 대표 예시 — 매장 조건에 따라 다릅니다.' },
+  en: { step1: 'Pick industry', step2: 'Pick problem', step3: 'See solution', pick: 'Choose an industry', example: 'Example', metricsNote: '* Figures are illustrative examples — actual results vary by store.' },
+  jp: { step1: '業種を選ぶ', step2: '課題を選ぶ', step3: '解決策を見る', pick: '業種を選択', example: '例', metricsNote: '* 指標は代表例 — 店舗の条件によって異なります。' },
 };
 
 export default function SolutionsExplorer({
@@ -151,8 +151,11 @@ export default function SolutionsExplorer({
                   href={localeHref(locale, `/solutions/${sol.slug}`)}
                   className="group flex flex-col gap-3 h-full p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] hover:border-gray-200 transition-[box-shadow,border-color] duration-300"
                 >
-                  <div className={`self-start px-2.5 py-1 rounded-lg text-xs font-bold ${colors.bg} ${colors.text}`}>
-                    {sol.impact} {sol.impactLabel}
+                  <div className="flex items-center gap-1.5 self-start">
+                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${colors.bg} ${colors.text}`}>
+                      {sol.impact} {sol.impactLabel}
+                    </span>
+                    <span className="text-2xs font-medium text-gray-400">{ui.example}</span>
                   </div>
                   <h3 className="text-base font-bold text-gray-900 leading-snug break-keep group-hover:text-primary transition-colors">
                     {sol.title}
@@ -168,6 +171,8 @@ export default function SolutionsExplorer({
           </div>
         );
       })}
+
+      <p className="mt-8 text-center text-2xs text-gray-400 break-keep">{ui.metricsNote}</p>
     </div>
   );
 }

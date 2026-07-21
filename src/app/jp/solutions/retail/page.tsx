@@ -4,7 +4,7 @@ import RetailView from '@/components/corporate/views/RetailView';
 export const metadata: Metadata = {
   title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
   description:
-    '欠品、店舗間の運営のばらつき、異常まで。店舗運営の核心的な課題を同じ基準で見守る、リテール·コンビニ·ドラッグストア向けソリューションです。',
+    '欠品、店舗間の運営のばらつき、異常まで。店舗運営の核心的な課題を同じ基準で見守る、リテール·コンビニ向けソリューションです。',
   alternates: {
     canonical: '/jp/solutions/retail',
     languages: {
