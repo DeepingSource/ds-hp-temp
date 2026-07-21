@@ -12,6 +12,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
+import CategoryHeroDemo from '@/components/solutions/CategoryHeroDemo';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -146,6 +147,13 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 카테고리 히어로 데모 (좌석·대기 게이지 · V3) ── */}
+      <AnimatedSection className="py-12 lg:py-16 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <CategoryHeroDemo category="food-beverage" locale={locale} />
         </div>
       </AnimatedSection>
 

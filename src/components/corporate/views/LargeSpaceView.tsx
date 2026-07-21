@@ -12,6 +12,7 @@ import {
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
+import CategoryHeroDemo from '@/components/solutions/CategoryHeroDemo';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -151,6 +152,13 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 카테고리 히어로 데모 (MTMC 멀티캠 → 하나의 좌표 · V3) ── */}
+      <AnimatedSection className="py-12 lg:py-16 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <CategoryHeroDemo category="large-space" locale={locale} />
         </div>
       </AnimatedSection>
 
