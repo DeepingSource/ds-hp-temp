@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Frequently Asked Questions | DEEPINGSOURCE',
     description: 'Answers to common questions about onboarding, pricing, and data security.',
     url: '/resources/faq',

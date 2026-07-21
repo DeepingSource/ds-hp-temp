@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'Spatial AI — MTMC 多カメラ分析 | DEEPINGSOURCE',
     description: '複数のカメラを一つの空間座標系に統合するMTMC技術の概要。',
     url: '/jp/technology/spatial-ai',

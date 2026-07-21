@@ -36,6 +36,7 @@ export async function generateMetadata({
       description: article.excerpt,
       url: `/storeagent/blog/${slug}`,
       type: 'article',
+      locale: 'ko_KR',
       publishedTime: `${article.date}T00:00:00+09:00`,
       tags: article.tags,
       images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

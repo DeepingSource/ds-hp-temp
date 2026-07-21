@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '도입 상담 | DEEPINGSOURCE',
     description: '딥핑소스 도입 상담을 신청하세요. 영업일 1-2일 내 담당자가 연락드립니다.',
     url: '/ko/contact',

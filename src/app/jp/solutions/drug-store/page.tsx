@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'ドラッグストアソリューション | DEEPINGSOURCE',
     description: '陳列·欠品·動線を同じ基準で。カテゴリーが多くても乱れないドラッグストア。',
     url: '/jp/solutions/drug-store',

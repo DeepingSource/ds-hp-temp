@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '용어 사전 | DEEPINGSOURCE',
     description: '프라이버시 AI와 공간 분석의 핵심 용어를 쉽게 설명합니다.',
     url: '/ko/resources/glossary',

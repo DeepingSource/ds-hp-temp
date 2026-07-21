@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '用語集 | DEEPINGSOURCE',
     description: 'プライバシーAIと空間分析の主要な用語をやさしく説明します。',
     url: '/jp/resources/glossary',

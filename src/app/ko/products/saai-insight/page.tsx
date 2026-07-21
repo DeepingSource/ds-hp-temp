@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai insight — store insight | DEEPINGSOURCE',
     description: '분석가의 침착함으로 매장을 읽습니다. 매출 변화의 원인을 데이터로.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

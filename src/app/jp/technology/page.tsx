@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'テクノロジー — 匿名化空間AI | DEEPINGSOURCE',
     description: `個人情報には一切触れません。データは失われません。${COMPANY.patents}件の特許に支えられたディーピングソースの技術。`,
     url: '/jp/technology',

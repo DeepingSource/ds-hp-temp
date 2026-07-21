@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: 'Anonymizer — 영상 익명화 모듈 | DEEPINGSOURCE',
     description: '개인 식별 정보는 제거하고 분석 신호는 보존하는 영상 익명화 모듈의 기술 개요.',
     url: '/ko/technology/anonymizer',

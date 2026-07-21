@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'SEAL — Video De-identification That Keeps Data Useful | DEEPINGSOURCE',
     description: 'Erase faces and license plates from video while keeping the data AI training needs — as an embeddable SDK.',
     url: '/technology/seal',

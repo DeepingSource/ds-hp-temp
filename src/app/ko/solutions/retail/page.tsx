@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '리테일·편의점 솔루션 | 딥핑소스',
     description:
       '결품, 운영 편차, 이상 감지까지 매장 운영의 핵심 문제를 한 번에. 결품도 이상도 놓치지 않게.',

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai agent — store agent | DEEPINGSOURCE',
     description: 'データを超えて、意思決定へ。店舗運営の次の一手をご提案します。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

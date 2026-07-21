@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Press & Media — DEEPINGSOURCE Inc.',
     description: `Press releases and media coverage from ${COMPANY.name}.`,
     url: 'https://www.deepingsource.io/company/news',

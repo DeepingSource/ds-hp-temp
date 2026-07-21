@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Solutions by Industry — Problem-Solution Guide | DEEPINGSOURCE',
     description: 'See how SAAI solves on-site problems by industry, with concrete cases.',
     url: '/solutions',

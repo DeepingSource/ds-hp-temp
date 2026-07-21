@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
+      locale: 'ja_JP',
       title,
       description,
       url: `/jp/solutions/${slug}`,

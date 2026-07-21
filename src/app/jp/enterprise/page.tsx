@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '法人・フランチャイズ導入 | DEEPINGSOURCE',
     description: '本部・スーパーバイザーのための多店舗運営の標準化 — Golden Case 5段階。',
     url: '/jp/enterprise',

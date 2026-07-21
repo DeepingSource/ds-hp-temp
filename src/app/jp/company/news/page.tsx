@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'プレス · メディア — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}のプレスリリースとメディア掲載。`,
     url: 'https://www.deepingsource.io/jp/company/news',

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Request a Consultation | DEEPINGSOURCE',
     description: 'Request a DeepingSource consultation. Our team will get in touch within 1-2 business days.',
     url: '/contact',

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Glossary | DEEPINGSOURCE',
     description: 'Plain-language explanations of the core privacy-AI and spatial-analytics terms.',
     url: '/resources/glossary',

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '기업·프랜차이즈 도입 | DEEPINGSOURCE',
     description: '본사·슈퍼바이저를 위한 다점포 운영 표준화 — Golden Case 5단계.',
     url: '/ko/enterprise',

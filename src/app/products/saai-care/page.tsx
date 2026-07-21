@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai care — store care | DEEPINGSOURCE',
     description: 'Peace of mind, by the hour. An owner’s solution that protects small stores.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

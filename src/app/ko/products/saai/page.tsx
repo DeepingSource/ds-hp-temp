@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai.store | DEEPINGSOURCE',
     description: '사장님을 위한 카메라리스 suite — 발주부터 POP까지, 하나의 흐름으로.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

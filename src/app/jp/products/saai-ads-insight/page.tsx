@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: 'saai ads insight — サイネージ・展示物の反応 | DEEPINGSOURCE',
     description: 'サイネージ・展示物前の通行・接近・注目・行動を匿名で計測、何をどこに掲げるかをデータで。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'store count — 商圏・流入カウンティング | DEEPINGSOURCE',
     description: 'やるべきなのにできなかった商圏分析 — カメラ1台で、毎日、人手なしで。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: 'saai ads insight — signage & display response | DEEPINGSOURCE',
     description: 'Traffic, approach, attention and action in front of signage and displays — measured anonymously.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'Vision Models — ビジョンモデルカタログ | DEEPINGSOURCE',
     description: '匿名化・認識・空間・フロー・変化・生成カテゴリのビジョンモデルカタログ。',
     url: '/jp/technology/models',

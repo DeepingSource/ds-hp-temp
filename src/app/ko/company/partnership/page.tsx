@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '파트너십 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}의 파트너 프로그램.`,
     url: 'https://www.deepingsource.io/ko/company/partnership',

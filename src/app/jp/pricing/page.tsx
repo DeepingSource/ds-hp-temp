@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '料金のご案内 | DEEPINGSOURCE',
     description: 'store care · store insight · store agent の料金を一目で比較できます。',
     url: '/jp/pricing',

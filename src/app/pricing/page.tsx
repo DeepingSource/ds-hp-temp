@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Pricing | DEEPINGSOURCE',
     description: 'Compare store care · store insight · store agent pricing at a glance.',
     url: '/pricing',

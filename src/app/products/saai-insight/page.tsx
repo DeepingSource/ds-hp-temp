@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai insight — store insight | DEEPINGSOURCE',
     description: 'Read your store with an analyst’s composure. The cause of revenue changes, in data.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

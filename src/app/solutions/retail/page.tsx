@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Retail & Convenience Solutions | DEEPINGSOURCE',
     description:
       'Out-of-stock, inconsistency, and anomaly detection — the core problems of store operations, by the same standard. Never miss what matters.',

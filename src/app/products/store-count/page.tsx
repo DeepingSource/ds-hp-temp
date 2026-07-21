@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'store count — footfall & capture rate | DEEPINGSOURCE',
     description: 'Trade-area analysis you knew you needed, from one camera — every day, no staff.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

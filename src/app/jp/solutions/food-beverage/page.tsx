@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'カフェ·飲食店ソリューション | DEEPINGSOURCE',
     description: '衛生·待ち時間·発注を同じ基準で。店舗ごとに同じ基準で運営される飲食店。',
     url: '/jp/solutions/food-beverage',

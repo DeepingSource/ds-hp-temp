@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Partnership — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}'s partner program.`,
     url: 'https://www.deepingsource.io/company/partnership',

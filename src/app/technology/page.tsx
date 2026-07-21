@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Technology — Anonymized Spatial AI | DEEPINGSOURCE',
     description: `We never touch personal data. You never lose the data. DeepingSource technology, backed by ${COMPANY.patents} patents.`,
     url: '/technology',

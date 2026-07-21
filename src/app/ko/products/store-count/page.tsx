@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'store count — 상권·유입 카운팅 | DEEPINGSOURCE',
     description: '해야 하는데 못 하던 상권분석 — 카메라 한 대로, 매일, 사람 없이.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

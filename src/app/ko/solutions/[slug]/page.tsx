@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
+      locale: 'ko_KR',
       title: sol.title,
       description: sol.metaDescription,
       url: `/ko/solutions/${slug}`,

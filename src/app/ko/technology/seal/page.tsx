@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: 'SEAL — 데이터는 살리는 영상 익명화 | DEEPINGSOURCE',
     description: '얼굴·번호판은 지우고 AI 학습에 필요한 데이터는 남기는 영상 익명화 — 내장형 SDK로 제공.',
     url: '/ko/technology/seal',

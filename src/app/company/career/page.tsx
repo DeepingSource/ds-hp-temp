@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Careers — DEEPINGSOURCE Inc.',
     description: `Join ${COMPANY.name} and build offline spatial AI with us.`,
     url: 'https://www.deepingsource.io/company/career',

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: 'IR · 투자 정보 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}의 비전과 시장 기회, 투자 정보.`,
     url: 'https://www.deepingsource.io/ko/company/investors',

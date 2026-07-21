@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Large-Space Solutions | DEEPINGSOURCE',
     description: 'Even the largest space, at a glance. A large-space solution that unifies crowd, flow, and anomaly detection.',
     url: '/solutions/large-space',

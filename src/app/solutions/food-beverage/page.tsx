@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Café & F&B Solutions | DEEPINGSOURCE',
     description: 'Hygiene, waits, and reordering, by the same standard. Food-service operations by one standard across stores.',
     url: '/solutions/food-beverage',

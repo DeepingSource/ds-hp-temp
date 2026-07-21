@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai care — store care | DEEPINGSOURCE',
     description: '시급 34원의 안심. 작은 매장을 지켜주는 사장님용 솔루션.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

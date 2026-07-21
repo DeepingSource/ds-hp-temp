@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'よくあるご質問 | DEEPINGSOURCE',
     description: '導入の流れ、料金、データセキュリティなど、よくあるご質問と回答。',
     url: '/jp/resources/faq',

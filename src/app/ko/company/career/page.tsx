@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '채용 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}와 함께할 동료를 찾습니다.`,
     url: 'https://www.deepingsource.io/ko/company/career',

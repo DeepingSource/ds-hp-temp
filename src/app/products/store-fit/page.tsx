@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store fit — trend fit | DEEPINGSOURCE',
     description: 'Whether a product will sell — you know in its first week on the shelf.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Resources | DEEPINGSOURCE',
     description: 'Blog, case studies, product docs, glossary, and FAQ in one place.',
     url: '/resources',

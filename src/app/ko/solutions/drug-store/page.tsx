@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '드럭스토어 솔루션 | 딥핑소스',
     description: '진열·결품·동선을 같은 기준으로. 카테고리가 많아도 흐트러지지 않는 드럭스토어.',
     url: '/ko/solutions/drug-store',

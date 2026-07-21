@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '보도자료 · 미디어 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}의 보도자료와 미디어 커버리지.`,
     url: 'https://www.deepingsource.io/ko/company/news',

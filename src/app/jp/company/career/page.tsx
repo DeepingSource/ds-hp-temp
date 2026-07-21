@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '採用 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}とともに働く仲間を探しています。`,
     url: 'https://www.deepingsource.io/jp/company/career',

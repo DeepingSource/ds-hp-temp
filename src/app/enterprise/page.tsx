@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Enterprise & Franchise | DEEPINGSOURCE',
     description: 'Multi-store operations standardization for HQ and supervisors — the 5-stage Golden Case.',
     url: '/enterprise',

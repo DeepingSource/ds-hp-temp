@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: 'saai ads insight — 사이니지·전시물 반응 | DEEPINGSOURCE',
     description: '사이니지·전시물 앞의 통행·접근·주목·행동을 익명으로 재, 무엇을 어디에 걸지 데이터로.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

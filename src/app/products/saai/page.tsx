@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai.store | DEEPINGSOURCE',
     description: 'Camera-less suite for store owners — from ordering to POP, in one flow.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

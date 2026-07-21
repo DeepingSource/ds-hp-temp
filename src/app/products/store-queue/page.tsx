@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store queue — queues & crowding | DEEPINGSOURCE',
     description: 'Waiting and crowding, measured live — move staff before it gets busy.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

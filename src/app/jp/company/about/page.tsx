@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '会社情報 — DEEPINGSOURCE Inc.',
     description: `ディーピングソースは、匿名化AI技術で世界中のすべてのオフライン空間を安全に理解し、最適化するAI企業です。特許${COMPANY.patents}件。`,
     url: 'https://www.deepingsource.io/jp/company/about',

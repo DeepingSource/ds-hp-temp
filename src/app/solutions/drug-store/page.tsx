@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Drugstore Solutions | DEEPINGSOURCE',
     description: 'Display, out-of-stock, and flow, by the same standard. Displays that stay in order, whatever the category.',
     url: '/solutions/drug-store',

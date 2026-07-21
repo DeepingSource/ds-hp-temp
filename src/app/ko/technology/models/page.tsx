@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: 'Vision Models — 비전 모델 카탈로그 | DEEPINGSOURCE',
     description: '익명화·인식·공간·흐름·변화·생성 카테고리의 비전 모델 카탈로그.',
     url: '/ko/technology/models',

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store fit — 트렌드 적합 | DEEPINGSOURCE',
     description: '잘 나갈 상품인지, 진열 첫 주에 압니다.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '업종별 솔루션 — 현장 문제-해결 가이드 | DEEPINGSOURCE',
     description: '업종별 현장 문제를 SAAI가 어떻게 해결하는지 구체적인 사례로 확인하세요.',
     url: '/ko/solutions',

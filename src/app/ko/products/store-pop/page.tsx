@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store pop — 판촉물(POP) | DEEPINGSOURCE',
     description: '붙여둔 POP이 정말 보이고 있나요? 노출·주목·전환을 숫자로.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

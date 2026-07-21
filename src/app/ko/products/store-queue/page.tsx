@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store queue — 대기·혼잡 | DEEPINGSOURCE',
     description: '대기와 혼잡을 실시간으로 재, 붐비기 전에 인력을 옮깁니다.',
     type: 'website',
+    locale: 'ko_KR',
   },
 };
 

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai.store | DEEPINGSOURCE',
     description: '店長向けのカメラレススイート — 発注からPOPまで、ひとつの流れで。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

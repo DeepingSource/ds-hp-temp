@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Anonymizer — Video De-identification Module | DEEPINGSOURCE',
     description:
       'A technical overview of a video de-identification module that removes personally identifiable information while preserving the analytical signal.',

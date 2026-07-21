@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
+      locale: 'ko_KR',
       title: `${term.title}(${term.englishTitle})란?`,
       description: term.metaDescription,
       url: `/ko/glossary/${slug}`,

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'SEAL — データを活かす映像匿名化 | DEEPINGSOURCE',
     description: '顔・ナンバープレートは消し、AI学習に必要なデータは残す映像匿名化 — 組み込み型SDKで提供。',
     url: '/jp/technology/seal',

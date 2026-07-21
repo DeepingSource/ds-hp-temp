@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store pop — 販促物(POP) | DEEPINGSOURCE',
     description: '貼ったPOP、本当に見られていますか? 露出・注目・転換を数字に。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

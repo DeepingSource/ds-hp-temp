@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '기술 — 익명화 공간 AI | DEEPINGSOURCE',
     description: `개인정보는 건드리지 않습니다. 데이터는 잃지 않습니다. ${COMPANY.patents}개 특허의 딥핑소스 기술.`,
     url: '/ko/technology',

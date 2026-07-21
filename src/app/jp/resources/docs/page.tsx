@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '製品ドキュメント | DEEPINGSOURCE',
     description: '製品の導入、連携、運用に必要な技術文書とマニュアル。',
     url: '/jp/resources/docs',

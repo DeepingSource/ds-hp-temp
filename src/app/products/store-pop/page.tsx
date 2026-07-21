@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store pop — in-store promotion (POP) | DEEPINGSOURCE',
     description: 'Is that POP actually being seen? Visibility, attention and conversion, as numbers.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

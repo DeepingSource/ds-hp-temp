@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'IR · 投資情報 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}のビジョンと市場機会、投資情報。`,
     url: 'https://www.deepingsource.io/jp/company/investors',

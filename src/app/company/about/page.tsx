@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'About — DEEPINGSOURCE Inc.',
     description: `DeepingSource is an AI company that safely understands and optimizes every offline space through anonymization AI. ${COMPANY.patents} patents.`,
     url: 'https://www.deepingsource.io/company/about',

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://agent.saai.store'),
   alternates: { canonical: 'https://agent.saai.store' },
   openGraph: {
+    locale: 'en_US',
     title: 'store agent — 편의점 AI 운영 비서',
     description: '매일 아침 편의점 맞춤 브리핑을 받아보세요. 발주, 진열, 프로모션까지 AI가 정리합니다.',
     url: 'https://agent.saai.store',

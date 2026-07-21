@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '카페·음식점 솔루션 | 딥핑소스',
     description: '위생·대기·발주를 같은 기준으로. 매장마다 같은 기준으로 운영되는 외식 매장.',
     url: '/ko/solutions/food-beverage',

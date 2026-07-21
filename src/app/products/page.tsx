@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'Products | DEEPINGSOURCE',
     description: 'Perfect every space. From enterprise analytics to owner peace-of-mind and B2C content.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 

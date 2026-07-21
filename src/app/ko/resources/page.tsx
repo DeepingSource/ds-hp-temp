@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '리소스 | DEEPINGSOURCE',
     description: '블로그, 케이스 스터디, 제품 문서, 용어 사전, FAQ를 한곳에서.',
     url: '/ko/resources',

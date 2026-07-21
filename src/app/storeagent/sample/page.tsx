@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       '매일 아침 상권에 맞춘 AI 브리핑을 체험해 보세요.',
     url: 'https://storeagent.kr/storeagent/sample',
     type: 'website',
+    locale: 'ko_KR',
   },
   twitter: {
     card: 'summary_large_image',

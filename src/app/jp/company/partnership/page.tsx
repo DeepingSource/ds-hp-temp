@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'パートナーシップ — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}のパートナープログラム。`,
     url: 'https://www.deepingsource.io/jp/company/partnership',

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'saai care — store care | DEEPINGSOURCE',
     description: '時給34ウォンの安心。小さな店舗を見守る店主向けソリューション。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

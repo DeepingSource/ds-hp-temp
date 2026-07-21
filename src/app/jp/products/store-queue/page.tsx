@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'store queue — 待ち・混雑 | DEEPINGSOURCE',
     description: '待ちと混雑をリアルタイムに測り、混む前に人員を動かします。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

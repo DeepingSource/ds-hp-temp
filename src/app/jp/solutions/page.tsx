@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: '業種別ソリューション — 現場の課題解決ガイド | DEEPINGSOURCE',
     description: '業種別の現場の課題を SAAI がどう解決するのか、具体的な事例でご確認ください。',
     url: '/jp/solutions',

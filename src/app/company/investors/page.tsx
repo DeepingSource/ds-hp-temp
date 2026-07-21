@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Investor Relations — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}'s vision, market opportunity, and investor information.`,
     url: 'https://www.deepingsource.io/company/investors',

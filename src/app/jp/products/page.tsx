@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: '製品 | DEEPINGSOURCE',
     description: 'すべての空間を、完璧に。エンタープライズ分析から店主向けの安心、B2Cコンテンツまで。',
     type: 'website',
+    locale: 'ja_JP',
   },
 };
 

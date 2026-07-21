@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Vision Models — Vision Model Catalog | DEEPINGSOURCE',
     description: 'A vision model catalog across the anonymization, recognition, space, flow, change, and generation categories.',
     url: '/technology/models',

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: '편의점·카페·무인매장 사장님을 위한 AI 기반 운영 인사이트. 가이드, 케이스스터디, 데이터 분석 리포트를 제공합니다.',
   alternates: { canonical: 'https://storeagent.kr/storeagent/blog' },
   openGraph: {
+    locale: 'ko_KR',
     title: '매장 운영 콘텐츠 | SAAI',
     description: '편의점·카페·무인매장 사장님을 위한 AI 기반 운영 인사이트.',
     url: 'https://storeagent.kr/storeagent/blog',

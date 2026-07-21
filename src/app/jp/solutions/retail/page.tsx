@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
     description:
       '欠品、運営のばらつき、異常検知まで。店舗運営の核心的な課題を一度に。欠品も異常も見逃さず。',

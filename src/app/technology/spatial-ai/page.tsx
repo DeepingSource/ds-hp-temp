@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'en_US',
     title: 'Spatial AI — MTMC Multi-Camera Analytics | DEEPINGSOURCE',
     description: 'A technical overview of MTMC, which unifies multiple cameras into a single spatial coordinate system.',
     url: '/technology/spatial-ai',

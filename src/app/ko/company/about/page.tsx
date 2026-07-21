@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '회사 소개 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.companyIntro} 특허 ${COMPANY.patentsLabel}.`,
     url: 'https://www.deepingsource.io/ko/company/about',

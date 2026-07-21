@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ja_JP',
     title: 'リソース | DEEPINGSOURCE',
     description: 'ブログ、ケーススタディ、製品ドキュメント、用語集、FAQ をひとつの場所に。',
     url: '/jp/resources',

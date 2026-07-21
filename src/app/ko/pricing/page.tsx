@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '요금 안내 | DEEPINGSOURCE',
     description: 'store care · store insight · store agent 요금을 한눈에 비교하세요.',
     url: '/ko/pricing',

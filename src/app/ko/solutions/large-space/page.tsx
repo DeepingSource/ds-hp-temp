@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    locale: 'ko_KR',
     title: '대형 공간 솔루션 | 딥핑소스',
     description: '넓은 공간도 한눈에. 혼잡·동선·이상을 같은 기준으로 통합 관리하는 대형 공간 솔루션.',
     url: '/ko/solutions/large-space',
