@@ -28,6 +28,8 @@ export type ExplorerSolution = {
   impactLabel: string;
   title: string;
   excerpt: string;
+  /** Light product tag — saai care · saai insight · store queue · saai ads insight. */
+  tag?: string;
 };
 export type ExplorerGroup = { slug: string; label: string; solutions: ExplorerSolution[] };
 
@@ -161,9 +163,12 @@ export default function SolutionsExplorer({
                     {sol.title}
                   </h3>
                   <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 break-keep flex-1">{sol.excerpt}</p>
-                  <div className="flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-primary transition-colors mt-1">
-                    {viewSolutionLabel}
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    {sol.tag && <span className="text-2xs font-semibold text-primary/70 lowercase break-keep">{sol.tag}</span>}
+                    <span className="flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-primary transition-colors ml-auto">
+                      {viewSolutionLabel}
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
                   </div>
                 </Link>
               ))}

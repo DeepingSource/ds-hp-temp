@@ -45,6 +45,31 @@ const grouped = industryList.map((ind) => ({
   solutions: solutionsData.filter((s) => s.industry === ind.slug),
 })).filter((g) => g.solutions.length > 0);
 
+/** 가벼운 제품 태그 — 문제 유형별(솔루션 작업문서 v1 §0·§1). 슬러그 → 표기 태그. */
+const SOLUTION_TAG: Record<string, string> = {
+  'convenience-night-theft': 'saai care',
+  'convenience-inventory-loss': 'saai care',
+  'convenience-planogram': 'saai insight',
+  'cafe-low-seat-turnover': 'saai insight',
+  'cafe-peak-hour-management': 'store queue',
+  'cafe-customer-wait-time': 'saai care',
+  'unmanned-theft-prevention': 'saai care',
+  'unmanned-anomaly-detection': 'saai care',
+  'unmanned-remote-monitoring': 'saai care',
+  'drugstore-vmd-optimization': 'saai insight',
+  'drugstore-zone-performance': 'saai insight',
+  'drugstore-tester-interaction': 'saai ads insight',
+  'mart-checkout-congestion': 'store queue',
+  'mart-cart-path-optimization': 'saai insight',
+  'mart-zone-conversion': 'saai insight',
+  'exhibition-visitor-dwell-time': 'saai insight',
+  'exhibition-booth-performance': 'saai ads insight',
+  'exhibition-crowd-flow': 'saai care',
+  'logistics-worker-safety': 'saai care',
+  'logistics-efficiency-zones': 'saai insight',
+  'logistics-ppe-compliance': 'saai care',
+};
+
 export default function SolutionsView({ locale }: { locale: Locale }) {
   const t = SOLUTIONS[locale];
 
@@ -68,6 +93,7 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
         impactLabel: c?.impactLabel ?? sol.impactLabel,
         title: c?.title ?? sol.title,
         excerpt: c?.excerpt ?? sol.excerpt,
+        tag: SOLUTION_TAG[sol.slug],
       };
     }),
   }));
