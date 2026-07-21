@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import StoreCountView from '@/components/corporate/views/StoreCountView';
 
 export const metadata: Metadata = {
-  title: 'saai count — store count | DEEPINGSOURCE',
+  title: 'store count — footfall & capture rate | DEEPINGSOURCE',
   description:
     'Count the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff. Trade-area analytics from store to site, privacy by design.',
   keywords: ['saai count', 'store count', 'footfall counting', 'trade area analysis', 'people counting', 'capture rate', 'inflow rate', 'retail analytics', 'anonymized counting', 'DeepingSource'],
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'saai count — store count | DEEPINGSOURCE',
+    title: 'store count — footfall & capture rate | DEEPINGSOURCE',
     description: 'Trade-area analysis you knew you needed, from one camera — every day, no staff.',
     type: 'website',
   },

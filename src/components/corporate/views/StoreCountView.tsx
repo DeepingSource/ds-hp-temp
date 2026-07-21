@@ -22,7 +22,7 @@ import { perfectSpace, productNaming, productPrimary } from '@/lib/brand-canon';
 import { FunctionModeStrip } from '@/components/corporate/FunctionModeMatrix';
 
 /**
- * StoreCountView — saai count product-detail composition.
+ * StoreCountView — store count product-detail composition.
  * Rendered by `/products/saai-count` (en), `/ko/products/saai-count`,
  * `/jp/products/saai-count` with the locale prop.
  * Source of truth: StoreCount 리플렛(양면 A4 v2 · 상권분석 퍼널).
@@ -55,6 +55,13 @@ const COUNT_AS_FUNCTION: Record<Locale, { eyebrow: string; title: string; sub: s
     sub: '機能は一つの製品に属しません。同じ count を care は「今」として、insight は「昨日」として、agent は「次」として通します。',
     libraryCta: '機能ライブラリをすべて見る',
   },
+};
+
+/** OBSERVE 입문 라벨 — count는 루프의 첫 걸음(관찰)이자 saai insight로 가는 다리 (기능페이지 작업문서 v1 §2). */
+const ENTRY_NOTE: Record<Locale, string> = {
+  ko: 'OBSERVE · 입문 도구 — saai insight로 가는 첫 걸음',
+  en: 'OBSERVE · entry tool — the first step toward saai insight',
+  jp: 'OBSERVE · 入門ツール — saai insight への第一歩',
 };
 
 type Stuck = { tag: string; h: string; d: string };
@@ -108,7 +115,7 @@ const C: Record<Locale, Copy> = {
     heroEyebrow: '상권분석 · 오프라인 현장 데이터',
     heroTitle: ['상권분석, 해야 하는데', '못 하고 계셨죠?'],
     heroSub:
-      '방법은 둘 중 하나였습니다 — 사람을 세워 비싸게 세거나, 부담돼 아예 손을 놓거나. saai count는 카메라 한 대로 매장 앞 유동인구부터 들어온 고객, 유입률까지 사람 없이 매일 상시로 셉니다.',
+      '방법은 둘 중 하나였습니다 — 사람을 세워 비싸게 세거나, 부담돼 아예 손을 놓거나. store count는 카메라 한 대로 매장 앞 유동인구부터 들어온 고객, 유입률까지 사람 없이 매일 상시로 셉니다.',
     ctaPrimary: '도입 문의',
     ctaSecondary: '무엇을 알 수 있나',
     problemHeading: '지금까지는, 둘 중 하나였습니다',
@@ -116,7 +123,7 @@ const C: Record<Locale, Copy> = {
       { tag: '지금 비싸게 하는 곳', h: '사람이 눈으로 셉니다', d: '카운터를 세워 직접 셉니다. 일당 부담에 며칠치 표본이 전부 — 매일, 전 매장을 보는 건 불가능합니다.' },
       { tag: '아예 못 하는 곳', h: '방법도, 예산도 없습니다', d: '통신사 데이터는 매장 단위로 비싸고, 결제 건수는 들어오기 전을 모릅니다. 그래서 시작조차 못 합니다.' },
     ],
-    turnKicker: '그래서 — saai count가 대신 셉니다',
+    turnKicker: '그래서 — store count가 대신 셉니다',
     turnTitle: ['매장 앞 유동인구부터,', '들어온 고객까지.'],
     turnDesc: '카메라 한 대로 매장 앞을 지나간 사람과 안으로 들어온 고객, 그리고 유입률까지 — 사람 없이, 매일 상시로 셉니다.',
     whatHeading: '무엇을 알 수 있나',
@@ -128,9 +135,9 @@ const C: Record<Locale, Copy> = {
       { label: '유입률', desc: '입점 / 유동인구' },
     ],
     pillarsHeading: '지금까지 못 하던 걸, 이제 합니다',
-    pillarsSub: '외주를 쓰든 사람을 쓰든 결국 한 매장의 며칠치 스냅샷입니다. saai count는 전국 매장의 상권을, 매일 이어서 봅니다.',
+    pillarsSub: '외주를 쓰든 사람을 쓰든 결국 한 매장의 며칠치 스냅샷입니다. store count는 전국 매장의 상권을, 매일 이어서 봅니다.',
     pillars: [
-      { no: '01', h: '싸고, 간편합니다', d: '외주 상권분석 한 번 값이면, saai count는 매달 상시로.', meta: '월 30만원 대여형 · 전원 1구와 와이파이면 5분 설치 — 공사도, 사람도 없이.' },
+      { no: '01', h: '싸고, 간편합니다', d: '외주 상권분석 한 번 값이면, store count는 매달 상시로.', meta: '월 30만원 대여형 · 전원 1구와 와이파이면 5분 설치 — 공사도, 사람도 없이.' },
       { no: '02', h: '빠르고, 여럿 동시에', d: '한 매장이 아니라 전국 매장을 같은 날, 같은 기준으로.', meta: '표본 며칠이 아니라 매일 — 상시 측정. 매장이 늘어도 기준은 하나.' },
       { no: '03', h: '결정의 근거가 됩니다', d: '매장이 잘 되고 있는지, 상권이 이상해지진 않았는지 — 본사 화면에서.', meta: '번거롭고 비싼 외부 조사 대신, 상시 데이터로 무엇을 바꿀지 정합니다.' },
     ],
@@ -175,7 +182,7 @@ const C: Record<Locale, Copy> = {
     heroEyebrow: 'Trade-area analytics · on-the-ground data',
     heroTitle: ['Trade-area analysis you knew you needed,', 'but never could.'],
     heroSub:
-      'There were only two options — pay people to count by eye, or give up entirely. saai count counts the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff.',
+      'There were only two options — pay people to count by eye, or give up entirely. store count counts the footfall passing your store, the customers who walk in, and your capture rate — from a single camera, every day, with no staff.',
     ctaPrimary: 'Talk to us',
     ctaSecondary: 'What you get',
     problemHeading: 'Until now, it was one of two',
@@ -183,7 +190,7 @@ const C: Record<Locale, Copy> = {
       { tag: 'The expensive way', h: 'People count by eye', d: 'You station counters to tally by hand. Day-rate costs cap you at a few days of sampling — counting every store, every day is impossible.' },
       { tag: 'The no way', h: 'No method, no budget', d: 'Carrier data is expensive per store, and payment counts miss everyone who never came in. So it never even starts.' },
     ],
-    turnKicker: 'So — saai count counts for you',
+    turnKicker: 'So — store count counts for you',
     turnTitle: ['From the footfall outside,', 'to the customers inside.'],
     turnDesc: 'One camera counts who passes your store, who walks in, and your capture rate — with no staff, every single day.',
     whatHeading: 'What you get',
@@ -195,11 +202,11 @@ const C: Record<Locale, Copy> = {
       { label: 'Capture rate', desc: 'Entries / footfall' },
     ],
     pillarsHeading: 'What you could not do before, you do now',
-    pillarsSub: 'Whether you outsource or staff it, it ends up a few-day snapshot of one store. saai count reads the trade area of every store, day after day.',
+    pillarsSub: 'Whether you outsource or staff it, it ends up a few-day snapshot of one store. store count reads the trade area of every store, day after day.',
     pillars: [
-      { no: '01', h: 'Cheap and simple', d: 'For the price of one outsourced study, saai count runs every month.', meta: 'Rental from 300K KRW/mo · 5-minute setup with one outlet and Wi-Fi — no construction, no staff.' },
+      { no: '01', h: 'Cheap and simple', d: 'For the price of one outsourced study, store count runs every month.', meta: 'Rental from 300K KRW/mo · 5-minute setup with one outlet and Wi-Fi — no construction, no staff.' },
       { no: '02', h: 'Fast, many at once', d: 'Not one store but every store, same day, same standard.', meta: 'Not a few days of sampling but daily, always-on. One standard, however many stores.' },
-      { no: '03', h: 'A basis for decisions', d: 'Whether a store is doing well, whether its trade area is shifting — on the HQ screen.', meta: 'Instead of costly one-off surveys, decide the next move on always-on data.' },
+      { no: '03', h: 'A basis for decisions', d: 'Whether a store is doing well, whether its trade area is shifting — on the HQ screen.', meta: 'Instead of costly one-off surveys, decide what to change on always-on data.' },
     ],
     hqKicker: 'Every store as one · From Store to Site',
     hqTitle: ['Read how the trade area shifts,', 'set the next-store strategy.'],
@@ -242,7 +249,7 @@ const C: Record<Locale, Copy> = {
     heroEyebrow: '商圏分析 · オフライン現場データ',
     heroTitle: ['商圏分析、やるべきなのに', 'できていませんでしたよね？'],
     heroSub:
-      '方法は二つに一つでした — 人を立てて高く数えるか、負担で手を止めるか。saai count はカメラ1台で、店前の通行人から入店客、流入率まで、人手なしで毎日常時数えます。',
+      '方法は二つに一つでした — 人を立てて高く数えるか、負担で手を止めるか。store count はカメラ1台で、店前の通行人から入店客、流入率まで、人手なしで毎日常時数えます。',
     ctaPrimary: '導入のお問い合わせ',
     ctaSecondary: '何がわかるか',
     problemHeading: 'これまでは、二つに一つでした',
@@ -250,7 +257,7 @@ const C: Record<Locale, Copy> = {
       { tag: '今、高く行うところ', h: '人が目で数えます', d: 'カウンターを立てて手で数えます。日当の負担で数日分のサンプルが精一杯 — 毎日、全店舗を見るのは不可能です。' },
       { tag: 'まったくできないところ', h: '方法も、予算もありません', d: '通信会社データは店舗単位で高く、決済件数は入店前を捉えません。だから始めることすらできません。' },
     ],
-    turnKicker: 'だから — saai count が代わりに数えます',
+    turnKicker: 'だから — store count が代わりに数えます',
     turnTitle: ['店前の通行人から、', '入ってきたお客様まで。'],
     turnDesc: 'カメラ1台で、店前を通り過ぎた人と中に入ったお客様、そして流入率まで — 人手なしで、毎日常時数えます。',
     whatHeading: '何がわかるか',
@@ -262,11 +269,11 @@ const C: Record<Locale, Copy> = {
       { label: '流入率', desc: '入店 / 通行人' },
     ],
     pillarsHeading: 'これまでできなかったことを、いまできます',
-    pillarsSub: '外注でも人手でも、結局は一店舗の数日分のスナップショットです。saai count は全国店舗の商圏を、毎日続けて見ます。',
+    pillarsSub: '外注でも人手でも、結局は一店舗の数日分のスナップショットです。store count は全国店舗の商圏を、毎日続けて見ます。',
     pillars: [
-      { no: '01', h: '安く、手軽です', d: '外注の商圏分析一回分で、saai count は毎月常時。', meta: '月30万 KRW のレンタル型 · 電源1口とWi-Fiで5分設置 — 工事も、人手も不要。' },
+      { no: '01', h: '安く、手軽です', d: '外注の商圏分析一回分で、store count は毎月常時。', meta: '月30万 KRW のレンタル型 · 電源1口とWi-Fiで5分設置 — 工事も、人手も不要。' },
       { no: '02', h: '速く、同時に多数', d: '一店舗ではなく全国店舗を、同じ日に、同じ基準で。', meta: '数日のサンプルではなく毎日 — 常時測定。店舗が増えても基準は一つ。' },
-      { no: '03', h: '意思決定の根拠に', d: '店舗が好調か、商圏が変調していないか — 本部の画面で。', meta: '面倒で高い外部調査の代わりに、常時データで次の一手を決めます。' },
+      { no: '03', h: '意思決定の根拠に', d: '店舗が好調か、商圏が変調していないか — 本部の画面で。', meta: '面倒で高い外部調査の代わりに、常時データで何を変えるかを決めます。' },
     ],
     hqKicker: 'すべての店舗をひとつの店舗のように · From Store to Site',
     hqTitle: ['商圏の変化を読み、', '次の出店戦略を。'],
@@ -330,9 +337,10 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
             <WordRise text={t.heroTitle[0]} /><br /><WordRise text={t.heroTitle[1]} className="text-primary" />
           </h1>
-          <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto break-keep mb-10">
+          <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto break-keep mb-4">
             {t.heroSub}
           </p>
+          <p className="mb-10 text-sm font-medium text-primary break-keep">{ENTRY_NOTE[locale]}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
               {t.ctaPrimary}

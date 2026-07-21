@@ -264,7 +264,7 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  */
 export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
 export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {
-  count: { store: 'store count', saai: 'saai count' },
+  count: { store: 'store count' },
   insight: { store: 'store insight', saai: 'saai insight' },
   care: { store: 'store care', saai: 'saai care' },
   agent: { store: 'store agent', saai: 'saai agent' },
