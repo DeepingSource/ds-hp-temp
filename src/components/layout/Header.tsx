@@ -152,7 +152,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav ref={navRef} className="hidden lg:flex items-center gap-0.5" aria-label="메인 내비게이션">
+        <nav ref={navRef} className="hidden lg:flex items-center gap-0.5" aria-label={L('메인 내비게이션', 'Main navigation', 'メインナビゲーション')[locale]}>
           {NAV.map((item) => {
             if (item.type === 'link') {
               const active = path === item.href;
@@ -249,7 +249,7 @@ export default function Header() {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="lg:hidden p-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
-          aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          aria-label={(isMenuOpen ? L('메뉴 닫기', 'Close menu', 'メニューを閉じる') : L('메뉴 열기', 'Open menu', 'メニューを開く'))[locale]}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
@@ -278,7 +278,7 @@ export default function Header() {
           <nav
             id="mobile-menu"
             className="bg-white/95 backdrop-blur-xl border-t border-gray-100 max-w-6xl mx-auto px-4 py-3 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto"
-            aria-label="모바일 내비게이션"
+            aria-label={L('모바일 내비게이션', 'Mobile navigation', 'モバイルナビゲーション')[locale]}
           >
             {NAV.map((item) => {
               if (item.type === 'link') {

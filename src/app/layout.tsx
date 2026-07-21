@@ -24,8 +24,8 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deepingsource.io"),
-  title: "DEEPINGSOURCE | Anonymized Spatial AI — 모든 공간을, 완벽하게",
-  description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. saai insight · saai agent · saai care · SAAI.",
+  title: "DEEPINGSOURCE | Anonymized Spatial AI — Every space, made perfect",
+  description: "DeepingSource safely understands and optimizes every offline space with anonymized spatial AI. saai insight · saai agent · saai care · SAAI.",
   alternates: {
     canonical: 'https://deepingsource.io',
     languages: {
@@ -45,17 +45,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "DEEPINGSOURCE | Anonymized Spatial AI",
-    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 공간을, 완벽하게.",
+    description: "Anonymized spatial AI that safely understands and optimizes every offline space. Every space, made perfect.",
     url: "https://deepingsource.io",
     siteName: "DEEPINGSOURCE",
-    locale: "ko_KR",
+    locale: "en_US",
+    alternateLocale: ["ko_KR", "ja_JP"],
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "DeepingSource — Anonymized Spatial AI" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "DEEPINGSOURCE | Anonymized Spatial AI",
-    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. 모든 공간을, 완벽하게.",
+    description: "Anonymized spatial AI that safely understands and optimizes every offline space. Every space, made perfect.",
     images: ["/twitter-image"],
   },
   robots: {
@@ -73,7 +74,7 @@ const jsonLd = [
     "@type": "WebSite",
     name: "DeepingSource",
     url: "https://deepingsource.io",
-    description: "익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다.",
+    description: "Anonymized spatial AI that safely understands and optimizes every offline space.",
     publisher: { "@type": "Organization", "@id": "https://deepingsource.io/#organization" },
   },
   {
@@ -82,7 +83,7 @@ const jsonLd = [
     "@id": "https://deepingsource.io/#organization",
     name: "DeepingSource (딥핑소스)",
     url: "https://deepingsource.io",
-    description: "딥핑소스는 익명화 공간 AI로 모든 오프라인 공간을 안전하게 이해하고 최적화합니다. saai insight · saai agent · saai care · SAAI.",
+    description: "DeepingSource safely understands and optimizes every offline space with anonymized spatial AI. saai insight · saai agent · saai care · SAAI.",
     foundingDate: String(COMPANY.foundingYear),
     sameAs: ["https://www.deepingsource.io", "https://storecare.ai", "https://saai.store"],
     logo: { "@type": "ImageObject", url: "https://deepingsource.io/icon.svg" },

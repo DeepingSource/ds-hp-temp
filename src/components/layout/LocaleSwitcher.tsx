@@ -23,10 +23,11 @@ export default function LocaleSwitcher({
 }) {
   const pathname = usePathname();
   const { locale: current, path } = stripLocale(pathname);
+  const langLabel = { ko: '언어 선택', en: 'Select language', jp: '言語選択' }[current];
 
   if (inline) {
     return (
-      <div className={`flex items-center gap-0.5 ${className}`} role="group" aria-label="언어 선택">
+      <div className={`flex items-center gap-0.5 ${className}`} role="group" aria-label={langLabel}>
         <Globe className="w-3.5 h-3.5 text-gray-400 mr-1" aria-hidden="true" />
         {locales.map((loc) => {
           const active = loc === current;
@@ -79,6 +80,8 @@ function LocaleDropdown({
     };
   }, [open]);
 
+  const langLabel = { ko: '언어 선택', en: 'Select language', jp: '言語選択' }[current];
+
   return (
     <div ref={ref} className={`relative ${className}`}>
       <button
@@ -87,7 +90,7 @@ function LocaleDropdown({
         className="inline-flex items-center gap-1 min-h-[44px] px-2 text-xs font-medium text-gray-500 hover:text-gray-700 rounded-lg transition-colors cursor-pointer"
         aria-haspopup="true"
         aria-expanded={open}
-        aria-label="언어 선택"
+        aria-label={langLabel}
       >
         <Globe className="w-3.5 h-3.5 text-gray-400" aria-hidden="true" />
         {localeLabels[current]}

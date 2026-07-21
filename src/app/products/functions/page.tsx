@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'Function library — functions cross all three modes | DEEPINGSOURCE',
     description: 'One count becomes live detection in care, trend analysis in insight, and an operating proposal in agent.',
     type: 'website',
+    locale: 'en_US',
   },
 };
 
