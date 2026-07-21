@@ -107,6 +107,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: '게시 상태(노출·훼손)부터 시선·전환까지 재, POP 한 장의 실제 효과를 숫자로.',
       what: ['게시 상태 — 붙었나·가려졌나·훼손', '주목 — 본 비율', '전환 — 구매로 이어진 비율'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: CONTACT.ko, href: '/contact' },
@@ -121,6 +122,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: 'From posting state (visible, damaged) to attention and conversion — the real effect of one POP, as numbers.',
       what: ['Posting state — up, hidden or damaged', 'Attention — share who saw it', 'Conversion — share that led to a purchase'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: CONTACT.en, href: '/contact' },
@@ -135,6 +137,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: '掲出状態(露出・破損)から視線・転換まで測り、POP1枚の実際の効果を数字に。',
       what: ['掲出状態 — 貼れたか・隠れたか・破損', '注目 — 見た割合', '転換 — 購入につながった割合'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: CONTACT.jp, href: '/contact' },
@@ -151,6 +154,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: '진열 첫날부터 상품 앞 시선·집어듦·재방문을 익명으로 재, 이 매장·손님층에 맞는지 점수로.',
       what: ['관심도 — 본 비율', 'gaze→pick — 집은 비율', '매장 적합 — 또래 대비'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: CONTACT.ko, href: '/contact' },
@@ -165,6 +169,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: 'From day one on the shelf, attention, pickup and return visits measured anonymously — scored for fit to this store and its shoppers.',
       what: ['Interest — share who looked', 'gaze→pick — share who picked it up', 'Store fit — versus peers'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: CONTACT.en, href: '/contact' },
@@ -179,6 +184,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       solution: '陳列初日から商品前の視線・手に取る・再来店を匿名で測り、この店・客層に合うかを点数に。',
       what: ['関心度 — 見た割合', 'gaze→pick — 手に取った割合', '店舗適合 — 同世代比'],
       connect: [
+        { label: 'saai ads insight', href: '/products/saai-ads-insight' },
         { label: 'saai insight', href: '/products/saai-insight' },
         { label: 'saai agent', href: '/products/saai-agent' },
         { label: CONTACT.jp, href: '/contact' },
