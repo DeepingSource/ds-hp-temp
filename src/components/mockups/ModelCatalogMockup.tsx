@@ -40,7 +40,7 @@ const COPY: Record<Locale, Copy> = {
     colInput: '입력',
     colOutput: '출력',
     colProduct: '연결 제품',
-    stageLabels: { Live: '제공 중', Building: '준비 중', Planned: '예정' },
+    stageLabels: { Live: 'Live', Building: '준비 중', Planned: '예정' },
     liveLabel: '라이브 오버레이',
     overlayLabels: {
       mosaic: '얼굴 모자이크', plate: '번호판 마스킹', bbox: '사람 검출',
@@ -57,7 +57,7 @@ const COPY: Record<Locale, Copy> = {
     colInput: 'Input',
     colOutput: 'Output',
     colProduct: 'Product',
-    stageLabels: { Live: 'Available Now', Building: 'In Progress', Planned: 'Planned' },
+    stageLabels: { Live: 'Live', Building: 'Coming soon', Planned: 'Planned' },
     liveLabel: 'Live overlay',
     overlayLabels: {
       mosaic: 'Face mosaic', plate: 'Plate masking', bbox: 'Person detect',
@@ -74,7 +74,7 @@ const COPY: Record<Locale, Copy> = {
     colInput: '入力',
     colOutput: '出力',
     colProduct: '連携製品',
-    stageLabels: { Live: '提供中', Building: '準備中', Planned: '予定' },
+    stageLabels: { Live: 'Live', Building: '準備中', Planned: '予定' },
     liveLabel: 'ライブオーバーレイ',
     overlayLabels: {
       mosaic: '顔モザイク', plate: 'ナンバーマスキング', bbox: '人物検出',
@@ -91,10 +91,11 @@ const productStyle: Record<Product, string> = {
   SAAI: 'bg-violet-50 text-violet-700',
 };
 
-// 3-state status (SOT: MODEL_STAGES). Live=제공 중, Building=준비 중, Planned=예정.
+// Status badge (SOT: MODEL_STAGES). Two classes shown now — Live(=제공 가용) + 준비 중 —
+// aligned to the catalog: Live=primary tone, Building/Planned=gray (technology_models §1·§3).
 const stageStyle: Record<ModelStage, string> = {
-  Live: 'bg-emerald-50 text-emerald-700',
-  Building: 'bg-amber-50 text-amber-700',
+  Live: 'bg-primary-lighter text-primary',
+  Building: 'bg-gray-100 text-gray-500',
   Planned: 'bg-gray-100 text-gray-500',
 };
 

@@ -8,7 +8,11 @@
 
 export type ModelStage = 'Live' | 'Building' | 'Planned';
 
-/** 모델 id → 출시 단계 (SOT). ModelsView·ModelCatalog 모두 참조. */
+/**
+ * 모델 id → 출시 단계 (ModelCatalogMockup SOT). technology_models_콘텐츠_v1 §1 정정:
+ * scene-caption(장면 설명 생성)만 준비 중(Building), 나머지는 전부 Live. ⚠️ Live는 실제
+ * 프로덕션 가용을 뜻하므로 배포 전 모델별 실가용 교차확인 필요(§6-1).
+ */
 export const MODEL_STAGES: Record<string, ModelStage> = {
   'face-anon': 'Live',
   'body-anon': 'Live',
@@ -18,16 +22,16 @@ export const MODEL_STAGES: Record<string, ModelStage> = {
   'pose-estimate': 'Live',
   'reid-embed': 'Live',
   'mtmc-track': 'Live',
-  'cam-calibrate': 'Building',
-  'floor-project': 'Building',
-  'flow-density': 'Building',
-  'dwell-estimate': 'Building',
-  'queue-detect': 'Building',
-  'change-detect': 'Building',
-  'shelf-state': 'Planned',
-  'event-classify': 'Planned',
-  'scene-caption': 'Planned',
-  'synth-frame': 'Planned',
+  'cam-calibrate': 'Live',
+  'floor-project': 'Live',
+  'flow-density': 'Live',
+  'dwell-estimate': 'Live',
+  'queue-detect': 'Live',
+  'change-detect': 'Live',
+  'shelf-state': 'Live',
+  'event-classify': 'Live',
+  'scene-caption': 'Building',
+  'synth-frame': 'Live',
 };
 
 export type CatalogProduct = 'Insight' | 'Care' | 'Agent' | 'SAAI';
