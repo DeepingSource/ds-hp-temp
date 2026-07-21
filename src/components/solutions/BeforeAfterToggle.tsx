@@ -68,6 +68,100 @@ const CONTENT: Record<string, Record<Locale, ToggleCopy>> = {
       },
     },
   },
+  'drug-store': {
+    ko: {
+      eyebrow: 'Before · After',
+      heading: '항의받고 채우기에서, 비기 전에 채우기로',
+      before: {
+        label: '지켜보던 운영',
+        lead: '결품도 흐트러짐도 손님이 말해줘야 압니다. 어느 매대가 팔리는지는 감으로.',
+        points: ['결품은 항의받은 뒤에야 확인', '진열·가격표 오류를 놓침', '잘 팔리는 매대는 감으로 판단'],
+      },
+      after: {
+        label: '먼저 아는 운영',
+        lead: '결품·매대 이상을 실시간 감지하고, 구역별 관심으로 진열을 바꿉니다.',
+        points: ['빈 매대·흐트러짐 실시간 감지', '가격표 오류·오염까지 확인', '구역 관심(HOT ZONE)으로 진열 최적화'],
+        tag: 'saai care · saai insight',
+      },
+    },
+    en: {
+      eyebrow: 'Before · After',
+      heading: 'From restocking after a complaint, to restocking before it runs out',
+      before: {
+        label: 'Watching',
+        lead: 'You learn of an out-of-stock or a mess only when a customer points it out — and which aisle sells is a guess.',
+        points: ['Out-of-stocks caught only after a complaint', 'Misplacements and price-tag errors missed', 'Best-selling aisles judged by gut'],
+      },
+      after: {
+        label: 'Knowing first',
+        lead: 'Out-of-stocks and shelf issues sensed live, and zone interest reshapes the display.',
+        points: ['Empty shelves and disarray sensed live', 'Price-tag errors and spills caught too', 'Zone interest (HOT ZONE) optimises the display'],
+        tag: 'saai care · saai insight',
+      },
+    },
+    jp: {
+      eyebrow: 'Before · After',
+      heading: 'クレームを受けてから補充から、切れる前に補充へ',
+      before: {
+        label: '見守る運営',
+        lead: '欠品も乱れも、お客様に言われて初めて分かります。どの棚が売れるかは勘で。',
+        points: ['欠品はクレーム後にしか分からない', '陳列・値札の誤りを見落とす', '売れる棚は勘で判断'],
+      },
+      after: {
+        label: '先に気づく運営',
+        lead: '欠品・棚の異常をリアルタイムで検知し、ゾーン別の関心で陳列を変えます。',
+        points: ['空き棚・乱れをリアルタイム検知', '値札の誤り・汚れまで確認', 'ゾーン関心(HOT ZONE)で陳列最適化'],
+        tag: 'saai care · saai insight',
+      },
+    },
+  },
+  'large-space': {
+    ko: {
+      eyebrow: 'Before · After',
+      heading: '카메라마다 따로 보기에서, 공간을 하나로 보기로',
+      before: {
+        label: '지켜보던 운영',
+        lead: '여러 대의 카메라를 따로 봅니다. 넓은 공간의 혼잡과 동선은 사각지대에 남죠.',
+        points: ['카메라별로 따로 모니터링', '층·구역 혼잡은 사후에 파악', '넓은 공간의 이상 동선을 놓침'],
+      },
+      after: {
+        label: '먼저 아는 운영',
+        lead: 'MTMC로 여러 카메라를 하나의 좌표로 이어, 혼잡·이상 동선을 먼저 감지합니다.',
+        points: ['여러 카메라 → 하나의 공간 좌표', '구역별 혼잡·체류를 실시간으로', '이상 동선을 임계 전에 감지'],
+        tag: 'saai care · MTMC',
+      },
+    },
+    en: {
+      eyebrow: 'Before · After',
+      heading: 'From watching each camera apart, to seeing the space as one',
+      before: {
+        label: 'Watching',
+        lead: 'You watch many cameras separately — and crowding and flow across a large space stay in the blind spots.',
+        points: ['Monitored camera by camera', 'Floor and zone crowding grasped after the fact', 'Unusual paths across a large space missed'],
+      },
+      after: {
+        label: 'Knowing first',
+        lead: 'MTMC links many cameras into one coordinate — sensing crowding and unusual paths first.',
+        points: ['Many cameras → one spatial coordinate', 'Zone crowding and dwell, live', 'Unusual paths sensed before the threshold'],
+        tag: 'saai care · MTMC',
+      },
+    },
+    jp: {
+      eyebrow: 'Before · After',
+      heading: 'カメラごとに見るから、空間を一つで見るへ',
+      before: {
+        label: '見守る運営',
+        lead: '複数のカメラを別々に見ます。広い空間の混雑や動線は死角に残ります。',
+        points: ['カメラごとに別々に監視', 'フロア・ゾーンの混雑は事後に把握', '広い空間の異常動線を見落とす'],
+      },
+      after: {
+        label: '先に気づく運営',
+        lead: 'MTMCで複数のカメラを一つの座標につなぎ、混雑・異常動線を先に検知。',
+        points: ['複数カメラ → 一つの空間座標', 'ゾーン別の混雑・滞在をリアルタイムで', '異常動線を閾値前に検知'],
+        tag: 'saai care · MTMC',
+      },
+    },
+  },
 };
 
 export default function BeforeAfterToggle({ category, locale }: { category: string; locale: Locale }) {

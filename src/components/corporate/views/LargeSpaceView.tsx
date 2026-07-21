@@ -15,6 +15,7 @@ import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import CategoryHeroDemo from '@/components/solutions/CategoryHeroDemo';
 import ProblemSignal from '@/components/solutions/ProblemSignal';
 import AdoptionJourney from '@/components/solutions/AdoptionJourney';
+import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -235,6 +236,13 @@ export default function LargeSpaceView({ locale }: { locale: Locale }) {
           </div>
           <p className="mt-8 text-center text-base text-gray-600 break-keep">{t.resultsLine}</p>
           <p className="mt-2 text-center text-xs text-gray-400 break-keep">{t.resultsNote}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── Before/After 토글 (지켜보던 ↔ 먼저 아는 · V2) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-slate-50 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <BeforeAfterToggle category="large-space" locale={locale} />
         </div>
       </AnimatedSection>
 
