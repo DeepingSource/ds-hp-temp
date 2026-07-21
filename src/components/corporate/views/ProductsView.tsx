@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ComponentType } from 'react';
-import { ArrowRight, ArrowUpRight, Cpu, Grid3x3, Radar, ClipboardCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Cpu, Grid3x3, Radar, ClipboardCheck, Eye } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -51,6 +51,17 @@ const LOOP_STRUCT: LoopStruct[] = [
   { id: 'store-care', key: 'care', icon: Radar, href: '/products/saai-care' },
   { id: 'store-agent', key: 'agent', icon: ClipboardCheck, href: '/products/saai-agent', emphasis: true },
 ];
+
+/**
+ * Specialized product — saai ads insight (gaze 승격, 기능페이지 §6). Not a core loop
+ * mode; a vertical of the suite for signage·displays·shelf attention. Sits after the
+ * three modes with a "특화 · 시선" stage label so it reads as an extension, not a 4th mode.
+ */
+const ADS_CARD: Record<Locale, { stage: string; desc: string }> = {
+  ko: { stage: '특화 · 시선', desc: '사이니지·전시물·매대 앞의 통행·주목(시선)·행동을 재고 — 무엇을 어디에 걸지 제안합니다.' },
+  en: { stage: 'Focus · gaze', desc: 'Traffic, attention (gaze) and action in front of signage, displays and shelves — suggesting what goes where.' },
+  jp: { stage: '特化 · 視線', desc: 'サイネージ・展示物・棚前の通行・注目(視線)・行動を計測 — 何をどこに掲げるか提案します。' },
+};
 
 /** Function-library card that closes the row — count et al. live here, not on the loop. */
 const FUNCTIONS_CARD: Record<Locale, { stage: string; title: string; desc: string; cta: string }> = {
@@ -188,9 +199,10 @@ export default function ProductsView({ locale }: { locale: Locale }) {
   return (
     <>
       <JsonLd
-        data={itemList(
-          loop.map((p) => softwareApplication({ name: p.saaiName ?? p.name, alternateName: p.secondary ?? undefined, description: p.desc, path: p.href, locale })),
-        )}
+        data={itemList([
+          ...loop.map((p) => softwareApplication({ name: p.saaiName ?? p.name, alternateName: p.secondary ?? undefined, description: p.desc, path: p.href, locale })),
+          softwareApplication({ name: 'saai ads insight', description: ADS_CARD[locale].desc, path: '/products/saai-ads-insight', locale }),
+        ])}
       />
 
       {/* ── Hero + operating-loop graphic ── */}
@@ -314,6 +326,24 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                   </li>
                 );
               })}
+              {/* Specialized product — saai ads insight (시선·주목), a vertical of the suite. */}
+              <li className="stagger-child">
+                <Link
+                  href={localeHref(locale, '/products/saai-ads-insight')}
+                  className="group flex flex-col h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-card hover:border-primary-light transition-colors no-underline"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white mb-5">
+                    <Eye className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <p className="text-2xs font-mono font-medium text-gray-400 mb-1">{ADS_CARD[locale].stage}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">saai ads insight</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed break-keep mb-5 mt-2">{ADS_CARD[locale].desc}</p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                    {c.detail}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </Link>
+              </li>
               {/* The horizontal axis — functions, which sit across the three modes. */}
               <li className="stagger-child">
                 <Link
