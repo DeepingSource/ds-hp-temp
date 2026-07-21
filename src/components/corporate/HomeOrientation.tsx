@@ -105,43 +105,53 @@ export default function HomeOrientation({ locale }: { locale: Locale }) {
               {t.heading}
             </h2>
             <p className="mt-5 text-lg text-gray-600 leading-relaxed break-keep">{t.lead}</p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-1">
               <Link
                 href={localeHref(locale, '/enterprise')}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-primary"
               >
                 {t.enterprise}
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
               <Link
                 href={localeHref(locale, '/products/saai')}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors"
+                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors"
               >
                 {t.saai}
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
           </div>
 
-          {/* RIGHT — the four facts (what · who · how · why safe) */}
+          {/* RIGHT — the four facts as a definition list (what · who · how · why safe).
+              Hairline rows, not cards — the last row (why it's safe · SEAL) carries the accent. */}
           <div className="lg:col-span-7">
-            <dl className="grid gap-4 sm:grid-cols-2">
-              {t.facts.map((f) => {
+            <dl className="border-t border-gray-200">
+              {t.facts.map((f, i) => {
                 const Icon = f.icon;
+                const seal = i === t.facts.length - 1;
                 return (
-                  <div key={f.label} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-card">
-                    <div className="flex items-center gap-2.5">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-                      </span>
-                      <dt className="text-2xs font-bold uppercase tracking-[0.15em] text-gray-400">{f.label}</dt>
+                  <div
+                    key={f.label}
+                    className="flex flex-col gap-2 border-b border-gray-200 py-5 sm:flex-row sm:gap-6"
+                  >
+                    <div className="flex w-full items-center gap-2.5 sm:w-36 sm:shrink-0">
+                      <Icon
+                        className={`h-4 w-4 shrink-0 ${seal ? 'text-primary' : 'text-gray-500'}`}
+                        aria-hidden="true"
+                      />
+                      <dt
+                        className={`text-xs font-bold uppercase tracking-[0.12em] ${seal ? 'text-primary' : 'text-gray-500'}`}
+                      >
+                        {f.label}
+                      </dt>
                     </div>
-                    <dd className="mt-3 text-sm text-gray-700 leading-relaxed break-keep">{f.body}</dd>
+                    <dd className="text-sm text-gray-700 leading-relaxed break-keep sm:text-base">{f.body}</dd>
                   </div>
                 );
               })}
             </dl>
-            <p className="mt-5 text-xs text-gray-400 leading-relaxed break-keep">{t.footnote}</p>
+            <p className="mt-6 text-xs text-gray-500 leading-relaxed break-keep">{t.footnote}</p>
           </div>
         </div>
       </Container>

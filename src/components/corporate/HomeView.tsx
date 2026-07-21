@@ -166,7 +166,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
         {/* SAAI symbol watermark — the endcard signature (nextrise-motion), drifting on scroll */}
         <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-2xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-6">{cta.kicker}</p>
+          <p className="text-2xs font-bold uppercase tracking-[0.25em] text-gray-400 mb-6">{cta.kicker}</p>
           <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">
             {cta.revealLead ?? purpose[locale].statement}
           </p>

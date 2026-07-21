@@ -79,7 +79,7 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
                       </span>
                     ))}
                   </div>
-                  <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-gray-400">{t.before}</span>
+                  <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-gray-500">{t.before}</span>
                 </div>
                 <ArrowRight className="h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
                 <div className="flex flex-col items-center gap-2">
