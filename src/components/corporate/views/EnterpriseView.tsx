@@ -6,6 +6,7 @@ import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import MasterPair from '@/components/corporate/MasterPair';
 import MultiStoreDashboardMockup from '@/components/mockups/MultiStoreDashboardMockup';
 import { HqMapDashboardMockup } from '@/components/mockups';
 
@@ -240,6 +241,9 @@ export default function EnterpriseView({ locale }: { locale: Locale }) {
           </Link>
         </div>
       </section>
+
+      {/* 본부 ↔ 매장 미러 (about에서 이관 — 본부·매장 약속의 새 집) */}
+      <MasterPair locale={locale} />
 
       {/* 핵심 과제 */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">

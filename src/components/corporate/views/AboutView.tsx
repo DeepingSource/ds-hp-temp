@@ -7,7 +7,6 @@ import { CountUp } from '@/components/ui/CountUp';
 import WordRise from '@/components/ui/WordRise';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import VisionDiagram from '@/components/company/VisionDiagram';
-import MasterPair from '@/components/corporate/MasterPair';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
 import {
   ArrowRight, Calendar, Award, Handshake, ShieldCheck, Cpu,
@@ -266,9 +265,6 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <p className="mt-10 text-lg text-gray-500 leading-relaxed break-keep max-w-2xl">{t.mission}</p>
         </div>
       </AnimatedSection>
-
-      {/* ── 두 약속 미러 · 본부 ↔ 매장 ── */}
-      <MasterPair locale={locale} />
 
       {/* ── ③ 향후 5년 — 목적지 · 방법 · SAAI 핸드오프 (다크 챕터 · bridge 상단 회사→SAAI) ── */}
       <section className="relative overflow-hidden bg-slate-950 py-20 lg:py-28">
