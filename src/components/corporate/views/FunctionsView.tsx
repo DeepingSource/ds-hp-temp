@@ -126,6 +126,14 @@ export default function FunctionsView({ locale }: { locale: Locale }) {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">{c.extensionTitle}</h2>
               <p className="text-base text-gray-600 leading-relaxed break-keep">{c.extension}</p>
+              <p className="mt-4 text-sm text-gray-500 leading-relaxed break-keep">{c.promoted}</p>
+              <Link
+                href={localeHref(locale, '/products/saai-ads-insight')}
+                className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors no-underline"
+              >
+                saai ads insight
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </Container>

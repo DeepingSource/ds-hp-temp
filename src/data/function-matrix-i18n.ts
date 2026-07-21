@@ -75,7 +75,7 @@ export const MATRIX_COPY: Record<Locale, Record<FunctionKey, Record<ModeKey, str
 export const FUNCTIONS_PAGE_COPY: Record<Locale, {
   eyebrow: string; title: string; sub: string;
   readingTitle: string; reading: string;
-  extensionTitle: string; extension: string;
+  extensionTitle: string; extension: string; promoted: string;
   countNote: string; cta: string;
   modeHeading: string; modeSub: string;
 }> = {
@@ -87,6 +87,7 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     reading: '“count 하나가 care로는 실시간 감지, insight로는 추세 분석, agent로는 운영 제안이 된다.” 한 칸은 이렇게 읽습니다 — saai care가 store count를 돌린다.',
     extensionTitle: '확장은 행 하나',
     extension: '새 기능이 들어오면 행 하나만 추가하면 됩니다. 세 모드 경험이 자동으로 생기고, 새 제품도 새 이름도 필요 없습니다.',
+    promoted: '예외가 하나 — 시선·주목은 사이니지·전시물이라는 별도 영역이라, 행이 아니라 독립 제품으로 승격했습니다.',
     countNote: 'count는 기능입니다 — 네 번째 제품이 아닙니다.',
     cta: '자세히 보기',
     modeHeading: '세로 — 세 개의 모드',
@@ -100,6 +101,7 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     reading: '“One count becomes live detection in care, trend analysis in insight, and an operating proposal in agent.” A single cell reads: saai care runs store count.',
     extensionTitle: 'Extension is one row',
     extension: 'A new capability adds one row — and three product experiences appear with it. No new product, no new name.',
+    promoted: 'One exception — attention (gaze) covers the distinct domain of signage and displays, so it graduated from a row to a standalone product.',
     countNote: 'count is a function — not a fourth product.',
     cta: 'See details',
     modeHeading: 'Down the side — the three modes',
@@ -113,6 +115,7 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     reading: '「一つの count が、care ではリアルタイム検知に、insight では推移分析に、agent では運営提案になる」。一つのマスはこう読みます — saai care が store count を回す。',
     extensionTitle: '拡張は一行',
     extension: '新しい機能は一行を足すだけ。3つのモードの体験が自動で生まれ、新しい製品も新しい名前も要りません。',
+    promoted: '例外が一つ — 注目（視線）はサイネージ・展示物という別領域のため、行ではなく独立製品に昇格しました。',
     countNote: 'count は機能です — 4番目の製品ではありません。',
     cta: '詳しく見る',
     modeHeading: '縦軸 — 3つのモード',
