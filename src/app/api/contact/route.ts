@@ -16,6 +16,9 @@ const contactSchema = z.object({
   plan: z.enum(['standard', 'premium', 'enterprise']).nullish(),
   inquiryType: z.string().max(30).optional(),
   message: z.string().max(1000).optional(),
+  // Lead source — which surface the form was submitted from (landing/enterprise/pricing/…).
+  // Routes/prefixes the Slack notification; extend the pipeline (Sheets/CRM) off this later.
+  source: z.enum(['enterprise', 'pricing', 'general']).optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -37,10 +40,18 @@ export async function POST(request: NextRequest) {
       return errorResponse(firstError, 400);
     }
 
-    const { name, contact, storeCount, affiliationType, brandName, product, plan, inquiryType, message } = result.data;
+    const { name, contact, storeCount, affiliationType, brandName, product, plan, inquiryType, message, source } = result.data;
+
+    // Enterprise leads get a distinct header + a store-count/brand highlight so HQ deals
+    // stand out in the channel; other sources keep the default.
+    const isEnterprise = source === 'enterprise';
+    const header = isEnterprise ? '🏢 [ENTERPRISE] 새 본사 상담 신청!' : '🎯 새 상담 신청!';
+    const emphasis = isEnterprise
+      ? `\n*🏬 매장 수:* *${slackEscape(storeCount)}*  ·  *브랜드:* *${brandName ? slackEscape(brandName) : '미입력'}*`
+      : '';
 
     await sendSlackNotification(
-      `🎯 새 상담 신청!\n\n*이름:* ${slackEscape(name)}\n*연락처:* ${slackEscape(contact)}\n*매장 수:* ${slackEscape(storeCount)}\n*소속:* ${affiliationType ? slackEscape(affiliationType) : '미선택'}\n*브랜드:* ${brandName ? slackEscape(brandName) : '미입력'}\n*제품:* ${product ? slackEscape(product) : '미선택'}\n*플랜:* ${plan ? slackEscape(plan) : '미선택'}\n*문의 유형:* ${inquiryType ? slackEscape(inquiryType) : '미선택'}\n*메시지:* ${message ? slackEscape(message) : '없음'}\n*시간:* ${koreaTime()}`,
+      `${header}${emphasis}\n\n*이름:* ${slackEscape(name)}\n*연락처:* ${slackEscape(contact)}\n*매장 수:* ${slackEscape(storeCount)}\n*소속:* ${affiliationType ? slackEscape(affiliationType) : '미선택'}\n*브랜드:* ${brandName ? slackEscape(brandName) : '미입력'}\n*제품:* ${product ? slackEscape(product) : '미선택'}\n*플랜:* ${plan ? slackEscape(plan) : '미선택'}\n*문의 유형:* ${inquiryType ? slackEscape(inquiryType) : '미선택'}\n*소스:* ${slackEscape(source ?? 'general')}\n*메시지:* ${message ? slackEscape(message) : '없음'}\n*시간:* ${koreaTime()}`,
     );
 
     return successResponse('상담 신청이 완료되었습니다');

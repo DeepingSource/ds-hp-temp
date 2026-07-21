@@ -236,13 +236,15 @@ export default function ContactFormPage({ locale = 'en' }: { locale?: Locale }) 
 
 function ContactForm({ locale }: { locale: Locale }) {
   const t = contactCopy(locale);
-  const [params, setParams] = useState<{ plan: string | null; product: string | null }>({ plan: null, product: null });
+  const [params, setParams] = useState<{ plan: string | null; product: string | null; source: string | null }>({ plan: null, product: null, source: null });
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    setParams({ plan: sp.get('plan'), product: sp.get('product') });
+    // `?type=enterprise` tags the lead source for Slack/CRM routing (see api/contact).
+    setParams({ plan: sp.get('plan'), product: sp.get('product'), source: sp.get('type') === 'enterprise' ? 'enterprise' : null });
   }, []);
   const planParam = params.plan;
   const productParam = params.product;
+  const sourceParam = params.source;
   const planLabel = planParam ? t.planLabels[planParam] : null;
   const productLabel = productParam ? t.productLabels[productParam] : null;
 
@@ -273,7 +275,7 @@ function ContactForm({ locale }: { locale: Locale }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...data, plan: planParam ?? undefined, product: productParam ?? undefined }),
+        body: JSON.stringify({ ...data, plan: planParam ?? undefined, product: productParam ?? undefined, source: sourceParam ?? undefined }),
         signal: controller.signal,
       });
 
