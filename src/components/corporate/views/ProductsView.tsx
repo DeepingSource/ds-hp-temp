@@ -37,19 +37,18 @@ type ProductsCopy = {
 const PRODUCTS = siteContent.products as Record<Locale, ProductsCopy>;
 
 /**
- * The three modes, in matrix order (care → insight → agent).
+ * The three modes, in temporal loop order (insight → care → agent · 어제 → 지금 → 다음).
  *
- * FIXED 2026-07-20 (reorg Phase 4): this list used to hold FOUR products mapped to four
- * loop stages — count(Observe)→insight(Analyze)→care(Suggest)→agent(Learn). Two things
- * were wrong under Function × Mode Matrix v1.0: `count` is a FUNCTION, not a product,
- * and 관찰/Observe belongs to care, not count. Stage labels now come from brand-canon
- * `operatingLoop`, and count moved to the function library (/products/functions).
- * `id` still matches the CMS copy keys in content/site/products.yaml.
+ * RELABELED 2026-07-21 (제품체계 재설계 v1 §3·§6.3): the loop now reads in time order
+ * to match the operating-loop story — insight(분석·어제) → care(감지·지금) → agent(실행·다음).
+ * count is NOT here: it's a FUNCTION (OBSERVE·입문), living in the function library
+ * (/products/functions). Stage labels come from brand-canon `operatingLoop` (care=Detect,
+ * agent=Act). `id` still matches the CMS copy keys in content/site/products.yaml.
  */
 type LoopStruct = { id: string; key: ModeKey; icon: ComponentType<{ className?: string }>; href: string; emphasis?: boolean };
 const LOOP_STRUCT: LoopStruct[] = [
-  { id: 'store-care', key: 'care', icon: Radar, href: '/products/saai-care' },
   { id: 'store-insight', key: 'insight', icon: Grid3x3, href: '/products/saai-insight' },
+  { id: 'store-care', key: 'care', icon: Radar, href: '/products/saai-care' },
   { id: 'store-agent', key: 'agent', icon: ClipboardCheck, href: '/products/saai-agent', emphasis: true },
 ];
 
@@ -78,6 +77,104 @@ const HUB: Record<Locale, string> = {
   jp: 'SAAIハブ',
 };
 
+/** ② Who / What — 누구고 무엇을 주는가 (products 프런트 카피 v1 §②). */
+const WHO_WHAT: Record<Locale, { eyebrow: string; title: string; body: string }> = {
+  ko: {
+    eyebrow: 'Who · What',
+    title: '보는 데서 멈추지 않습니다 — 운영까지.',
+    body: '딥핑소스는 익명화 AI로 오프라인 공간을 안전하게 읽는 회사입니다. saai suite는 어제를 분석하고(insight), 지금을 감지하고(care), 다음을 실행하는(agent) 하나의 운영 루프입니다. 영상은 남기지 않고, 결정은 언제나 사람이 합니다.',
+  },
+  en: {
+    eyebrow: 'Who · What',
+    title: 'It doesn’t stop at seeing — it operates.',
+    body: 'DeepingSource reads offline spaces safely with anonymized AI. saai suite is one operating loop that analyzes yesterday (insight), detects the now (care), and acts on next (agent). We keep no footage, and the decision is always a person’s.',
+  },
+  jp: {
+    eyebrow: 'Who · What',
+    title: '見るだけで終わりません — 運営まで。',
+    body: 'ディーピングソースは、匿名化AIでオフライン空間を安全に読み取る会社です。saai suite は、昨日を分析し（insight）、今を検知し（care）、次を実行する（agent）ひとつのオペレーションループです。映像は残さず、決定はいつも人が下します。',
+  },
+};
+
+/** ③ Three promises — 페이지 척추 (products 프런트 카피 v1 §③). 밝힘·덜어냄·가능케 함 → insight·care·agent. */
+type SpinePromise = { head: string; body: string; product: string; href: string };
+const SPINE: Record<Locale, { eyebrow: string; title: string; promises: [SpinePromise, SpinePromise, SpinePromise] }> = {
+  ko: {
+    eyebrow: 'Three promises',
+    title: '감으로 알던 매장을, 데이터로.',
+    promises: [
+      { head: '감으로 알던 매장을, 데이터로 읽습니다.', body: 'POS가 못 보던 매장 안까지 — “왜 안 팔렸는지”에 답합니다.', product: 'saai insight', href: '/products/saai-insight' },
+      { head: '종일 지켜보던 매장을, 필요한 순간만 봅니다.', body: '쏟아지는 알림 대신, 손쓸 순간만 손안으로. 지켜보는 일은 기계가, 결정은 사람이.', product: 'saai care', href: '/products/saai-care' },
+      { head: '사람이 못 하던 운영을, 매일 대신합니다.', body: '전국 매장을 같은 기준으로 — 다음에 할 일을 발주서까지. 권고는 AI가, 결정은 사람이.', product: 'saai agent', href: '/products/saai-agent' },
+    ],
+  },
+  en: {
+    eyebrow: 'Three promises',
+    title: 'From gut feel to data.',
+    promises: [
+      { head: 'The store you knew by gut feel — now read as data.', body: 'Past what POS could see, inside the store — it answers “why it didn’t sell.”', product: 'saai insight', href: '/products/saai-insight' },
+      { head: 'The store you watched all day — now only when it matters.', body: 'Instead of a flood of alerts, just the moments to act. Machines watch; people decide.', product: 'saai care', href: '/products/saai-care' },
+      { head: 'The operations no one could keep up with — now handled daily.', body: 'Every store to one standard — the next task, down to the order sheet. AI advises; people decide.', product: 'saai agent', href: '/products/saai-agent' },
+    ],
+  },
+  jp: {
+    eyebrow: 'Three promises',
+    title: '勘で見ていた店を、データで。',
+    promises: [
+      { head: '勘で見ていた店を、データで読みます。', body: 'POSでは見えなかった店内まで —「なぜ売れなかったか」に答えます。', product: 'saai insight', href: '/products/saai-insight' },
+      { head: '一日中見張っていた店を、必要な瞬間だけ。', body: 'あふれる通知ではなく、手を打つ瞬間だけ。見張るのは機械、決めるのは人。', product: 'saai care', href: '/products/saai-care' },
+      { head: '人には無理だった運営を、毎日代わりに。', body: '全店を同じ基準で — 次にやることを発注書まで。推奨はAI、決定は人。', product: 'saai agent', href: '/products/saai-agent' },
+    ],
+  },
+};
+
+/** ⑥ Use case — 업종·솔루션 연결 (products 프런트 카피 v1 §⑥, 가벼운 수준). */
+type IndustryLink = { label: string; desc: string; href: string };
+const USE_CASE: Record<Locale, { eyebrow: string; title: string; body: string; industries: IndustryLink[]; fieldLine: string }> = {
+  ko: {
+    eyebrow: 'Where',
+    title: '매장을 넘어, 모든 공간에서',
+    body: '익명화는 공간을 가리지 않습니다. 업종을 골라, 그 공간의 운영 루프를 확인하세요.',
+    industries: [
+      { label: '리테일·편의점', desc: '진열·동선·결제까지', href: '/solutions/retail' },
+      { label: '카페·음식점', desc: '대기·좌석 회전·피크 흐름', href: '/solutions/food-beverage' },
+      { label: '드럭스토어', desc: '카테고리별 관심·체류', href: '/solutions/drug-store' },
+      { label: '대형 마트·물류', desc: '동선·혼잡·안전', href: '/solutions/large-space' },
+      { label: '전시·박물관', desc: '관람 동선·인기 구역', href: '/solutions' },
+      { label: '무인매장', desc: '무인 감지·즉시 알림', href: '/solutions' },
+    ],
+    fieldLine: '현장에서 — 학원가 편의점, 동선 하나로 매출이. 시립 전시관, 동선으로 체류가.',
+  },
+  en: {
+    eyebrow: 'Where',
+    title: 'Beyond the store — in every space',
+    body: 'Anonymization works in any space. Pick an industry and see its operating loop.',
+    industries: [
+      { label: 'Retail & convenience', desc: 'Shelves, flow, checkout', href: '/solutions/retail' },
+      { label: 'Cafés & restaurants', desc: 'Waiting, seat turnover, peak flow', href: '/solutions/food-beverage' },
+      { label: 'Drugstores', desc: 'Interest & dwell by category', href: '/solutions/drug-store' },
+      { label: 'Large marts & logistics', desc: 'Flow, congestion, safety', href: '/solutions/large-space' },
+      { label: 'Exhibits & museums', desc: 'Visitor paths, popular zones', href: '/solutions' },
+      { label: 'Unmanned stores', desc: 'Unmanned detection, instant alerts', href: '/solutions' },
+    ],
+    fieldLine: 'On the floor — a campus-area store moved revenue with one path; a city exhibit grew dwell by route.',
+  },
+  jp: {
+    eyebrow: 'Where',
+    title: '店舗を超えて、すべての空間で',
+    body: '匿名化は空間を選びません。業種を選び、その空間のオペレーションループをご覧ください。',
+    industries: [
+      { label: 'リテール・コンビニ', desc: '陳列・動線・会計まで', href: '/solutions/retail' },
+      { label: 'カフェ・飲食店', desc: '待ち・席の回転・ピークの流れ', href: '/solutions/food-beverage' },
+      { label: 'ドラッグストア', desc: 'カテゴリー別の関心・滞在', href: '/solutions/drug-store' },
+      { label: '大型スーパー・物流', desc: '動線・混雑・安全', href: '/solutions/large-space' },
+      { label: '展示・博物館', desc: '観覧動線・人気エリア', href: '/solutions' },
+      { label: '無人店舗', desc: '無人検知・即時アラート', href: '/solutions' },
+    ],
+    fieldLine: '現場で — 学生街のコンビニは動線ひとつで売上が、市立展示館は動線で滞在が。',
+  },
+};
+
 export default function ProductsView({ locale }: { locale: Locale }) {
   const c = PRODUCTS[locale];
   const promise = saaiPromiseLayer[locale];
@@ -96,6 +193,9 @@ export default function ProductsView({ locale }: { locale: Locale }) {
     };
   });
   const owners = OWNER_STRUCT.map((s) => ({ ...s, desc: c.owners[s.id]?.desc ?? '' }));
+  const who = WHO_WHAT[locale];
+  const spine = SPINE[locale];
+  const useCase = USE_CASE[locale];
 
   return (
     <>
@@ -122,6 +222,42 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           <OperatingLoopGraphic locale={locale} hub={HUB[locale]} feedback={FEEDBACK[locale]} />
         </div>
       </section>
+
+      {/* ── ② Who / What — 누구고 무엇을 주는가 ── */}
+      <AnimatedSection className="py-16 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <Eyebrow className="mb-4 justify-center">{who.eyebrow}</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{who.title}</h2>
+          <p className="text-base text-gray-500 leading-relaxed break-keep">{who.body}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── ③ 세 가지 약속 — 페이지 척추 (밝힘·덜어냄·가능케 함 → insight·care·agent) ── */}
+      <Section variant="alt">
+        <Container>
+          <div className="mb-9 max-w-2xl">
+            <Eyebrow className="mb-4">{spine.eyebrow}</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">{spine.title}</h2>
+          </div>
+          <ul className="grid gap-5 lg:grid-cols-3">
+            {spine.promises.map((p) => (
+              <li key={p.product} className="stagger-child">
+                <Link
+                  href={localeHref(locale, p.href)}
+                  className="group flex flex-col h-full rounded-2xl border border-gray-200 bg-white p-7 shadow-card hover:border-primary-light transition-colors no-underline"
+                >
+                  <h3 className="text-lg font-bold text-gray-900 leading-snug mb-3 break-keep">{p.head}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed break-keep mb-6">{p.body}</p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary lowercase">
+                    {p.product}
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
 
       {/* ── ① SAAI 정의 — 약속 층 4-up (brand-canon saaiPromiseLayer SOT) ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-slate-50 border-t border-gray-100">
@@ -204,6 +340,43 @@ export default function ProductsView({ locale }: { locale: Locale }) {
               </li>
             </ul>
           </AnimatedSection>
+        </Container>
+      </Section>
+
+      {/* ── ⑥ 어디서 쓰나 — use case · solution 연결 ── */}
+      <Section variant="default">
+        <Container>
+          <div className="mb-9 max-w-2xl">
+            <Eyebrow className="mb-4">{useCase.eyebrow}</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{useCase.title}</h2>
+            <p className="text-gray-500 leading-relaxed break-keep">{useCase.body}</p>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {useCase.industries.map((ind) => (
+              <li key={ind.label}>
+                <Link
+                  href={localeHref(locale, ind.href)}
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 hover:border-primary-light transition-colors no-underline"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-sm font-bold text-gray-900 break-keep">{ind.label}</span>
+                    <span className="block text-xs text-gray-500 break-keep">{ind.desc}</span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-primary shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border border-gray-200 bg-slate-50 px-6 py-5">
+            <p className="flex-1 text-sm text-gray-600 leading-relaxed break-keep">{useCase.fieldLine}</p>
+            <Link
+              href={localeHref(locale, '/resources/case-studies')}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors shrink-0"
+            >
+              {c.casesCta}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
         </Container>
       </Section>
 

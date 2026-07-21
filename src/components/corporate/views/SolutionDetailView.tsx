@@ -124,7 +124,7 @@ const C: Record<
 
 const blue = { bg: 'bg-primary-lighter', text: 'text-primary-dark', border: 'border-primary-light', dot: 'bg-primary' };
 
-// SAAI 운영 루프의 세 모드 — care(관찰)·insight(분석)·agent(제안), 학습이 루프를 닫는다
+// SAAI 운영 루프의 세 모드 — insight(분석)·care(감지)·agent(실행), 학습이 루프를 닫는다
 // (brand-canon operatingLoop SOT). 모든 솔루션이 딛는 공통 스택. count 등 기능은 세 모드를
 // 가로지르는 기능 라이브러리 소속이라 제품 목록에는 넣지 않는다.
 const SUITE_PRODUCTS = [

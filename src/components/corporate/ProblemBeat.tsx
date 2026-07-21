@@ -116,7 +116,9 @@ const dict: Record<Locale, {
  * The agentic wedge: others stop at seeing; we close the loop and learn.
  * label + time-phase from operatingLoop; last step (Learn) emphasized.
  */
-const LOOP_ICONS = [Eye, LineChart, BellRing, RefreshCw] as const;
+// Order follows operatingLoop (insight·care·agent·learn) so each mode keeps its icon:
+// insight=LineChart(분석) · care=Eye(감지) · agent=BellRing(실행) · learn=RefreshCw(학습).
+const LOOP_ICONS = [LineChart, Eye, BellRing, RefreshCw] as const;
 
 function methodSteps(locale: Locale) {
   const steps = operatingLoop[locale];

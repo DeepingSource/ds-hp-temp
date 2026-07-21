@@ -27,7 +27,7 @@ export const MODE_COPY: Record<Locale, Record<ModeKey, { name: string; mode: str
   en: {
     care:    { name: 'saai care',    mode: 'Detect',   tense: 'Now',       question: 'What is happening right now?' },
     insight: { name: 'saai insight', mode: 'Analyze',  tense: 'Yesterday', question: 'What has been happening until yesterday?' },
-    agent:   { name: 'saai agent',   mode: 'Advise',   tense: 'Next',      question: 'What should we do next?' },
+    agent:   { name: 'saai agent',   mode: 'Act',      tense: 'Next',      question: 'What should we do next?' },
   },
   jp: {
     care:    { name: 'saai care',    mode: '検知',      tense: '今',   question: '今、何が起きているか' },

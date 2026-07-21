@@ -99,40 +99,41 @@ export const categoryKeyword: Record<Locale, string> = {
 };
 
 /**
- * Operating loop — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
- * Replaces the retired 3-step Read·Alert·Act. phase = the time axis.
+ * Operating loop — Analyze · Detect · Act · Learn (제품체계_saai_suite_재설계_v1 §3).
+ * Replaces the retired 3-step Read·Alert·Act. phase = the time axis, read 어제→지금→다음→다시.
  *
- * LOOP ↔ MODE (Function × Mode Matrix v1.0 §1 — reorg Phase 3, 2026-07-20):
- *   관찰/Observe → saai care    · 지금 (탐지·감지 — "지금 무슨 일이 일어나는가")
- *   분석/Analyze → saai insight · 어제 (분석     — "어제까지 무엇이 있었나")
- *   제안/Suggest → saai agent   · 다음 (제안·운영 — "다음에 무엇을 할까")
- *   학습/Learn   → (모드 없음)  · 다시 (루프 복귀 — 결과가 다음 관찰의 입력이 된다)
+ * LOOP ↔ MODE (제품체계 재설계 v1 §3 표준 — 2026-07-21):
+ *   분석/Analyze → saai insight · 어제 (분석 — "어제까지 무엇이 있었나")
+ *   감지/Detect  → saai care    · 지금 (탐지·감지 — "지금 무슨 일이 일어나는가")
+ *   실행/Act     → saai agent   · 다음 (제안·실행 — "다음에 무엇을 할까", 권고는 AI·결정은 사람)
+ *   학습/Learn   → (모드 없음)  · 다시 (루프 복귀 — 결과가 다음 분석의 입력이 된다)
  *
  * The loop is the *time story*; the three modes are the *products* that live on it.
  * The fourth step has no product — learning is what closes the loop, not a thing to sell.
  *
- * FIXED 2026-07-20: the phase axis was inverted (관찰=어제 · 분석=지금), which
- * contradicted both the matrix and this repo's own `solutionsData.ts`
- * (`01 관찰 · care` / `02 분석 · insight`). Now all three agree.
+ * ⚠️ RELABELED 2026-07-21 (제품체계 재설계 v1 §3·§6): care Observe→**Detect**,
+ * agent Suggest→**Act** — the labels now agree with the landing STAGE_LABEL and the
+ * suite standard. OBSERVE no longer belongs to care; it moves to `store count`, the
+ * SOURCE entry tool (유입을 세는 첫 걸음 → insight). Order is temporal: insight·care·agent·learn.
  * `mode` is the machine-readable link — see `MODES` / `FUNCTION_MODE_MATRIX` below.
  */
 export const operatingLoop: Record<Locale, { label: string; phase: string; mode: ModeKey | null }[]> = {
   ko: [
-    { label: '관찰', phase: '지금', mode: 'care' },
     { label: '분석', phase: '어제', mode: 'insight' },
-    { label: '제안', phase: '다음', mode: 'agent' },
+    { label: '감지', phase: '지금', mode: 'care' },
+    { label: '실행', phase: '다음', mode: 'agent' },
     { label: '학습', phase: '다시', mode: null },
   ],
   en: [
-    { label: 'Observe', phase: 'Now', mode: 'care' },
     { label: 'Analyze', phase: 'Yesterday', mode: 'insight' },
-    { label: 'Suggest', phase: 'Next', mode: 'agent' },
+    { label: 'Detect', phase: 'Now', mode: 'care' },
+    { label: 'Act', phase: 'Next', mode: 'agent' },
     { label: 'Learn', phase: 'Again', mode: null },
   ],
   jp: [
-    { label: '観察', phase: '今', mode: 'care' },
     { label: '分析', phase: '昨日', mode: 'insight' },
-    { label: '提案', phase: '次', mode: 'agent' },
+    { label: '検知', phase: '今', mode: 'care' },
+    { label: '実行', phase: '次', mode: 'agent' },
     { label: '学習', phase: '再び', mode: null },
   ],
 };

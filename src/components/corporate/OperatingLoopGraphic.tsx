@@ -26,7 +26,9 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
  * Desktop = circular; mobile = vertical stack. Inline SVG ring, no raster.
  */
 
-const STEP_ICONS = [Radar, Grid3x3, ClipboardCheck, RotateCw] as const;
+// Order follows operatingLoop (insight·care·agent·learn) so each mode keeps its icon:
+// insight=Grid3x3(분석) · care=Radar(감지) · agent=ClipboardCheck(실행) · learn=RotateCw(학습).
+const STEP_ICONS = [Grid3x3, Radar, ClipboardCheck, RotateCw] as const;
 // desktop ring positions: icon CENTER seated on the r=34 ring at top/right/bottom/left (clockwise)
 const POS = [
   'left-1/2 top-[16%] -translate-x-1/2 -translate-y-1/2', // 01 top
@@ -37,9 +39,9 @@ const POS = [
 
 type Step = {
   no: string;
-  /** Loop step label — 관찰 · 분석 · 제안 · 학습. */
+  /** Loop step label — 분석 · 감지 · 실행 · 학습. */
   label: string;
-  /** Time axis — 지금 · 어제 · 다음 · 다시. */
+  /** Time axis — 어제 · 지금 · 다음 · 다시. */
   phase: string;
   /** Product name, or null for the closing step (학습 has no product). */
   product: string | null;
@@ -83,10 +85,10 @@ export default function OperatingLoopGraphic({ locale, hub, feedback }: { locale
   const reduced = usePrefersReducedMotion();
   const STAGES = steps(locale);
   const label = locale === 'ko'
-    ? '운영 루프 — 관찰(saai care) · 분석(saai insight) · 제안(saai agent) · 학습이 SAAI 허브를 중심으로 시계방향 순환을 이룬다. 학습은 제품이 아니라 루프를 닫는 단계다.'
+    ? '운영 루프 — 분석(saai insight) · 감지(saai care) · 실행(saai agent) · 학습이 SAAI 허브를 중심으로 시계방향 순환을 이룬다. 학습은 제품이 아니라 루프를 닫는 단계다.'
     : locale === 'jp'
-    ? 'オペレーションループ — 観察(saai care)・分析(saai insight)・提案(saai agent)・学習がSAAIハブを中心に時計回りに循環する。学習は製品ではなくループを閉じる段階。'
-    : 'DeepingSource operating loop: Observe (saai care), Analyze (saai insight), Suggest (saai agent) and Learn as a clockwise cycle around the SAAI hub. Learn closes the loop and is not a product.';
+    ? 'オペレーションループ — 分析(saai insight)・検知(saai care)・実行(saai agent)・学習がSAAIハブを中心に時計回りに循環する。学習は製品ではなくループを閉じる段階。'
+    : 'DeepingSource operating loop: Analyze (saai insight), Detect (saai care), Act (saai agent) and Learn as a clockwise cycle around the SAAI hub. Learn closes the loop and is not a product.';
 
   return (
     <div role="img" aria-label={label}>
