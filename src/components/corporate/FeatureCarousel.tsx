@@ -30,8 +30,8 @@ import { cn } from '@/lib/cn';
 type ProductStruct = {
   key: 'count' | 'insight' | 'care' | 'agent';
   name: string;        // domain implementation — store {value} (locale-invariant, lowercase)
-  saaiName?: string;   // value-brand — saai {value}, the primary label (naming option B).
-                       // 2026-07-16: saai 전면 확정 — count 포함 (콘텐츠_수정확장_실행계획 §7 #2).
+  saaiName?: string;   // value-brand — saai {value}, the primary label for the 3 modes.
+                       // count reverted to store-only grammar (no saai alias) — it renders as store count.
   mode: ModeKey | null; // the mode this slide IS; null = a function, not a product
   icon: LucideIcon;
   href: string;
@@ -39,8 +39,9 @@ type ProductStruct = {
 };
 
 /**
- * The operating loop as four products, in loop order (랜딩 카피 개정안 v1 §4):
- * count(OBSERVE) → insight(ANALYZE) → care(DETECT) → agent(ACT).
+ * The operating loop in loop order: count(OBSERVE) → insight(ANALYZE) → care(DETECT)
+ * → agent(ACT). count is the OBSERVE entry tool (mode: null, store grammar); the three
+ * saai modes (insight·care·agent) are the products — framing aligned to /products.
  */
 const PRODUCTS: ProductStruct[] = [
   {
@@ -61,7 +62,7 @@ const PRODUCTS: ProductStruct[] = [
   },
 ];
 
-/** Verb label per product — the four steps of the operating loop. */
+/** Verb label per slide — the four stages of the operating loop (count = entry, then 3 modes). */
 const STAGE_LABEL: Record<ProductStruct['key'], string> = {
   count: 'OBSERVE', insight: 'ANALYZE', care: 'DETECT', agent: 'ACT',
 };
@@ -69,6 +70,7 @@ const STAGE_LABEL: Record<ProductStruct['key'], string> = {
 type Copy = {
   eyebrow: string;
   heading: string;
+  entryTag: string;    // suffix on the count slide's stage pill — marks it the OBSERVE entry (not a mode)
   sub: string;
   cta: string;
   taglines: Record<ProductStruct['key'], string>;
@@ -79,7 +81,8 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
   ko: {
     eyebrow: 'Products',
-    heading: '하나의 운영 루프, 네 개의 제품',
+    heading: '하나의 운영 루프 — 세 모드, 그리고 시작점 store count',
+    entryTag: '입문',
     sub: '문 밖의 흐름부터 무엇을 바꿀지까지 — SAAI가 익명으로 잇습니다.',
     cta: '제품 전체 보기',
     taglines: { count: '흐름을 재다', insight: solutionTaglines.insight.ko, care: solutionTaglines.care.ko, agent: solutionTaglines.agent.ko },
@@ -98,7 +101,8 @@ const COPY: Record<Locale, Copy> = {
   },
   en: {
     eyebrow: 'Products',
-    heading: 'One operating loop, four products',
+    heading: 'One operating loop — three modes, and the entry point, store count',
+    entryTag: 'entry',
     sub: 'From the footfall outside to what to change — SAAI connects it, anonymously.',
     cta: 'See all products',
     taglines: { count: 'Counts the flow', insight: solutionTaglines.insight.en, care: solutionTaglines.care.en, agent: solutionTaglines.agent.en },
@@ -117,7 +121,8 @@ const COPY: Record<Locale, Copy> = {
   },
   jp: {
     eyebrow: 'Products',
-    heading: 'ひとつの運営ループ、4つのプロダクト',
+    heading: 'ひとつの運営ループ — 三つのモードと、始点の store count',
+    entryTag: '入門',
     sub: '店の外の流れから、何を変えるかまで — SAAIが匿名でつなぎます。',
     cta: '製品をすべて見る',
     taglines: { count: '流れを数える', insight: solutionTaglines.insight.jp, care: solutionTaglines.care.jp, agent: solutionTaglines.agent.jp },
@@ -260,6 +265,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                 <motion.div key={active.key} {...swap(-24)}>
                   <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-2xs font-bold uppercase tracking-wider text-primary-light">
                     {STAGE_LABEL[active.key]}
+                    {active.mode === null && <span className="font-medium normal-case text-slate-300">· {t.entryTag}</span>}
                   </p>
                   <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">
                     {active.saaiName ?? active.name}
