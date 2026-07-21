@@ -14,7 +14,7 @@ import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, saaiPromiseLayer, productNaming, operatingLoop, type ModeKey } from '@/lib/brand-canon';
+import { solutionTaglines, saaiPromiseLayer, productNaming, type ModeKey } from '@/lib/brand-canon';
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import { cn } from '@/lib/cn';
 
@@ -39,41 +39,32 @@ type ProductStruct = {
 };
 
 /**
- * Three modes in loop order, then the function library.
- *
- * FIXED 2026-07-20 (reorg Phase 4): the deck used to be FOUR PRODUCTS with the stages
- * count(Observe)·insight(Analyze)·care(Suggest)·agent(Learn). Under Function × Mode
- * Matrix v1.0 the products are three modes, 관찰/Observe belongs to care, and `count`
- * is a FUNCTION. The count slide stays — it earns its place — but it is labeled as a
- * function and points at the library rather than posing as a fourth product.
- * `stage` is resolved per locale from brand-canon `operatingLoop`; `null` = a function.
+ * The operating loop as four products, in loop order (랜딩 카피 개정안 v1 §4):
+ * count(OBSERVE) → insight(ANALYZE) → care(DETECT) → agent(ACT).
  */
 const PRODUCTS: ProductStruct[] = [
   {
-    key: 'care', name: productNaming.care.store, saaiName: productNaming.care.saai, mode: 'care', icon: Radar, href: '/products/saai-care',
-    images: [{ src: '/images/storecare-contamination-detection.webp', primary: true }, { src: '/images/storecare-fridge-door-open.webp' }],
+    key: 'count', name: productNaming.count.store, saaiName: productNaming.count.saai, mode: null, icon: DoorOpen, href: '/products/saai-count',
+    images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
   },
   {
     key: 'insight', name: productNaming.insight.store, saaiName: productNaming.insight.saai, mode: 'insight', icon: Grid3x3, href: '/products/saai-insight',
     images: [{ src: '/images/storeinsight-heatmap.webp', primary: true }, { src: '/images/storeinsight-case1-chart.webp' }],
   },
   {
+    key: 'care', name: productNaming.care.store, saaiName: productNaming.care.saai, mode: 'care', icon: Radar, href: '/products/saai-care',
+    images: [{ src: '/images/storecare-contamination-detection.webp', primary: true }, { src: '/images/storecare-fridge-door-open.webp' }],
+  },
+  {
     key: 'agent', name: productNaming.agent.store, saaiName: productNaming.agent.saai, mode: 'agent', icon: ClipboardCheck, href: '/products/saai-agent',
     images: [{ src: '/images/storeagent-ai-pop-mockup.webp', primary: true }],
   },
-  {
-    key: 'count', name: productNaming.count.store, saaiName: productNaming.count.saai, mode: null, icon: DoorOpen, href: '/products/saai-count',
-    images: [{ src: '/images/cctv/cctv-cafe-hall.webp', primary: true }],
-  },
 ];
 
-/** Stage label for a slide — loop step for a mode, "기능" for a function. */
-const FUNCTION_STAGE: Record<Locale, string> = { ko: '기능', en: 'Function', jp: '機能' };
-function stageLabel(mode: ModeKey | null, locale: Locale): string {
-  if (!mode) return FUNCTION_STAGE[locale];
-  const step = operatingLoop[locale].find((s) => s.mode === mode);
-  return step ? `${step.label} · ${step.phase}` : '';
-}
+/** Verb label per product — the four steps of the operating loop. */
+const STAGE_LABEL: Record<ProductStruct['key'], string> = {
+  count: 'OBSERVE', insight: 'ANALYZE', care: 'DETECT', agent: 'ACT',
+};
 
 type Copy = {
   eyebrow: string;
@@ -88,15 +79,15 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
   ko: {
     eyebrow: 'Products',
-    heading: '하나의 운영 루프, 세 개의 모드',
-    sub: '지금을 감지하고, 어제를 분석하고, 다음을 제안합니다. 기능은 그 셋을 모두 가로지릅니다.',
+    heading: '하나의 운영 루프, 네 개의 제품',
+    sub: '문 밖의 흐름부터 무엇을 바꿀지까지 — SAAI가 익명으로 잇습니다.',
     cta: '제품 전체 보기',
     taglines: { count: '흐름을 재다', insight: solutionTaglines.insight.ko, care: solutionTaglines.care.ko, agent: solutionTaglines.agent.ko },
     desc: {
       count: '문 앞을 지난 사람과 들어온 사람 — 유입률로 상권을 읽습니다.',
       insight: '매출 너머의 공간 — 체류·동선·전환을 히트맵으로 읽습니다.',
       care: '필요한 순간만 — 이상을 감지해 실시간으로 알립니다.',
-      agent: '다음 한 수까지 — 권고는 AI가, 결정은 사람이.',
+      agent: '무엇을 바꿀지까지 — 권고는 AI가, 결정은 사람이.',
     },
     alt: {
       count: '매장 홀의 사람 흐름을 담은 CCTV 화면',
@@ -268,10 +259,10 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
               <AnimatePresence mode="wait">
                 <motion.div key={active.key} {...swap(-24)}>
                   <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-2xs font-bold uppercase tracking-wider text-primary-light">
-                    {stageLabel(active.mode, locale)}
+                    {STAGE_LABEL[active.key]}
                   </p>
                   <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                    {active.mode ? (active.saaiName ?? active.name) : active.name}
+                    {active.saaiName ?? active.name}
                   </h3>
                   {active.saaiName && (
                     <p className="mt-1.5">

@@ -170,12 +170,12 @@ export const saaiPromiseLayer: Record<Locale, {
   ko: {
     eyebrow: 'SAAI',
     heading: '네 글자에 담은 약속',
-    sub: '익명화 공간 AI — 모든 것은 익명화 위에서 시작합니다.',
+    sub: '익명화 공간 AI — 모든 것은 익명화에서 시작합니다.',
     pillars: [
       { key: 'spatial', letter: 'S', label: 'Spatial', promise: '공간을 읽습니다. POS 너머 흐름까지.', tech: '/technology/spatial-ai' },
-      { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '얼굴을 남기지 않습니다. 모든 것의 시작.', tech: '/technology/seal' },
-      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '다음 한 수를 제안합니다. 결정은 사람이.', tech: '/technology/models' },
-      { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '학습으로 기준을 높입니다.', tech: '/technology' },
+      { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '누구인지 남기지 않습니다. 모든 것의 시작.', tech: '/technology/seal' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '무엇을 바꿀지 짚어줍니다. 결정은 사람이.', tech: '/technology/models' },
+      { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '쓸수록 정확해집니다. 매장에 맞춰 학습하며.', tech: '/technology' },
     ],
     bridge: '네 개의 근거가, 하나의 루프로 돌아갑니다.',
   },
@@ -450,7 +450,7 @@ export type SealPromise = { key: 'no-original' | 'no-human' | 'no-reid'; term: s
 
 export const sealCharter: Record<Locale, { tagline: string; promises: SealPromise[] }> = {
   ko: {
-    tagline: '누구가 아니라, 무슨 일을 봅니다.',
+    tagline: '누구인지가 아니라, 무슨 일인지를 봅니다.',
     promises: [
       { key: 'no-original', term: '원본 미보존', line: '첫 단계에서 익명화. 원본은 시스템 어디에도 남지 않습니다.' },
       { key: 'no-human', term: '사람 미열람', line: '사람의 눈은 닿지 않습니다. 기계가 봅니다.' },

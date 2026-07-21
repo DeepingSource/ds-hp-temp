@@ -36,7 +36,7 @@ const dict: Record<Locale, {
 }> = {
   ko: {
     eyebrow: '보이지 않는 다수',
-    heading: '들어온 손님이 결제까지 가는 사이, 매장에서 무슨 일이 있었는지 — 알고 계신가요?',
+    heading: '어제 들어온 손님 10명 중 8명은, 결제 없이 나갑니다 — 어디서 놓쳤을까요?',
     posTag: 'POS 기록',
     legendInvisible: '보이지 않음',
     legendPos: 'POS 기록',
@@ -52,9 +52,9 @@ const dict: Record<Locale, {
     ],
     leak: { n: '317', label: '매장 안에서 보고·머물고·집어 든 행동 — POS엔 없습니다' },
     pains: [
-      { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '거래의 결과만 남고, 매장 안에서 일어난 행동은 사라집니다.' },
-      { icon: LineChart, title: '본 건 매출과 재고 — 거래의 결과뿐', desc: '체류·동선·손길은 POS에 없습니다. 왜 안 팔렸는지도.' },
-      { icon: Lock, title: 'CCTV는 흘러가고, 공간은 안 읽힙니다', desc: '답은 공간에 있는데, 얼굴을 다루는 순간 분석이 멈춥니다.' },
+      { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '무엇이 팔렸는지는 알아도, 왜 안 팔렸는지는 모릅니다.' },
+      { icon: Lock, title: 'CCTV는 쌓여도, 읽히지 않습니다', desc: '답은 매장 안 행동에 있는데, 얼굴이 걸리는 순간 분석이 멈춥니다.' },
+      { icon: LineChart, title: '그래서 같은 자리에서, 또 놓칩니다', desc: '어디서 손님이 돌아섰는지 모르면, 내일도 그 자리를 못 고칩니다.' },
     ],
     bridge: signature.ko,
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
