@@ -13,6 +13,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
 import CategoryHeroDemo from '@/components/solutions/CategoryHeroDemo';
+import ProblemSignal from '@/components/solutions/ProblemSignal';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -143,6 +144,7 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
                   <span className="self-start px-2.5 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary">{s.tag}</span>
                   <h3 className="text-lg font-bold text-gray-900 break-keep">{s.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed break-keep">{s.body}</p>
+                  <ProblemSignal icon={s.icon} locale={locale} />
                 </div>
               </div>
             ))}
