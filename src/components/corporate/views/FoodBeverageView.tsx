@@ -11,6 +11,7 @@ import {
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
+import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -178,6 +179,13 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
           </div>
           <p className="mt-8 text-center text-base text-gray-600 break-keep">{t.resultsLine}</p>
           <p className="mt-2 text-center text-xs text-gray-400 break-keep">{t.resultsNote}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── Before/After 토글 (지켜보던 ↔ 먼저 아는 · 솔루션 §3 · V2) ── */}
+      <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <BeforeAfterToggle category="food-beverage" locale={locale} />
         </div>
       </AnimatedSection>
 
