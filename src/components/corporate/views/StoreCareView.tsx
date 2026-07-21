@@ -153,6 +153,46 @@ const SCENARIO_IMGS = [
   '/images/cctv/cctv-intrusion-night-ir.webp',
 ];
 
+/**
+ * 감지 항목 카탈로그 — care가 '지금(DETECT)' 잡아내는 항목들. keep(손실 방지)·shelf(매대·재고)는
+ * 기능 라이브러리에서 care 감지 항목으로 편입(기능페이지 작업문서 v1 §6). 신원이 아니라 위험·상태만.
+ */
+const DETECTION_CATALOG: Record<Locale, { eyebrow: string; title: string; sub: string; items: { name: string; desc: string }[] }> = {
+  ko: {
+    eyebrow: '감지 항목',
+    title: '무엇을 감지하나',
+    sub: '실시간(지금)으로 잡아내는 항목들 — 신원이 아니라 위험·상태만 봅니다.',
+    items: [
+      { name: '손실 방지', desc: '이상 행동·이탈·분실 위험을 실시간으로 감지합니다. 신원이 아니라 위험 행동만.' },
+      { name: '매대·재고', desc: '결품·흐트러짐·가격표 오류·오염을 실시간으로 감지합니다.' },
+      { name: '위생·설비', desc: '냉장 온도 이탈·청결 상태·설비 이상을 실시간으로 감지합니다.' },
+      { name: '안전·이상 상황', desc: '넘어짐·정체·비정상 동선 등 개입이 필요한 순간을 감지합니다.' },
+    ],
+  },
+  en: {
+    eyebrow: 'What it detects',
+    title: 'The detection catalog',
+    sub: 'Caught live (now) — never identity, only risk and state.',
+    items: [
+      { name: 'Loss prevention', desc: 'Abnormal behavior, walk-outs and shrink risk, detected live. Never who — only the risky action.' },
+      { name: 'Shelf & stock', desc: 'Out-of-stock, disarray, price-tag errors and spills, detected live.' },
+      { name: 'Hygiene & equipment', desc: 'Fridge-temperature drift, cleanliness and equipment faults, detected live.' },
+      { name: 'Safety & incidents', desc: 'Falls, congestion and abnormal paths — the moments that need a person.' },
+    ],
+  },
+  jp: {
+    eyebrow: '検知項目',
+    title: '何を検知するか',
+    sub: 'リアルタイム(今)で捉える項目 — 身元ではなく、リスク・状態だけを見ます。',
+    items: [
+      { name: '防損', desc: '異常行動・離脱・紛失リスクをリアルタイムに検知します。身元ではなく、危険な行動だけを。' },
+      { name: '棚・在庫', desc: '欠品・乱れ・価格表示の誤り・汚れをリアルタイムに検知します。' },
+      { name: '衛生・設備', desc: '冷蔵温度の逸脱・清潔状態・設備の異常をリアルタイムに検知します。' },
+      { name: '安全・異常', desc: '転倒・滞留・不自然な動線など、介入が必要な瞬間を検知します。' },
+    ],
+  },
+};
+
 export default function StoreCareView({ locale }: { locale: Locale }) {
   const t = C[locale];
 
@@ -281,6 +321,28 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 감지 항목 카탈로그 (keep·shelf 편입 · 기능페이지 §6) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{DETECTION_CATALOG[locale].eyebrow}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{DETECTION_CATALOG[locale].title}</h2>
+            <p className="text-lg text-gray-500 leading-relaxed break-keep">{DETECTION_CATALOG[locale].sub}</p>
+          </div>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {DETECTION_CATALOG[locale].items.map((it) => (
+              <li key={it.name} className="rounded-2xl border border-gray-200 bg-white p-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+                  <h3 className="text-base font-bold text-gray-900 break-keep">{it.name}</h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">{it.desc}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </AnimatedSection>
 

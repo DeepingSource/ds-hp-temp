@@ -61,6 +61,7 @@ const ko: Copy = {
     { name: 'object-detect', promise: '일반 객체 영역 검출', stage: 'Live' },
     { name: 'pose-estimate', promise: '자세·키포인트 추정', stage: 'Live' },
     { name: 'reid-embed', promise: '객체 재식별 임베딩 추출', stage: 'Live' },
+    { name: 'person-attribute', promise: '연령대·성비 추정 (신원 식별 아님)', stage: 'Building' },
     { name: 'mtmc-track', promise: '다중 카메라 연속 추적', stage: 'Live' },
     { name: 'cam-calibrate', promise: '카메라 좌표 보정 추정', stage: 'Building' },
     { name: 'floor-project', promise: '화면 좌표의 평면 사상', stage: 'Building' },
@@ -100,6 +101,7 @@ const en: Copy = {
     { name: 'object-detect', promise: 'Detects general object regions', stage: 'Live' },
     { name: 'pose-estimate', promise: 'Estimates posture and keypoints', stage: 'Live' },
     { name: 'reid-embed', promise: 'Extracts object re-identification embeddings', stage: 'Live' },
+    { name: 'person-attribute', promise: 'Age band and gender-mix estimation (not identity)', stage: 'Building' },
     { name: 'mtmc-track', promise: 'Continuous multi-camera tracking', stage: 'Live' },
     { name: 'cam-calibrate', promise: 'Estimates camera coordinate calibration', stage: 'Building' },
     { name: 'floor-project', promise: 'Projects image coordinates onto a plane', stage: 'Building' },
@@ -139,6 +141,7 @@ const jp: Copy = {
     { name: 'object-detect', promise: '一般オブジェクト領域を検出', stage: 'Live' },
     { name: 'pose-estimate', promise: '姿勢・キーポイントを推定', stage: 'Live' },
     { name: 'reid-embed', promise: 'オブジェクト再識別の埋め込みを抽出', stage: 'Live' },
+    { name: 'person-attribute', promise: '年齢層・男女比の推定(身元識別ではない)', stage: 'Building' },
     { name: 'mtmc-track', promise: '複数カメラでの連続追跡', stage: 'Live' },
     { name: 'cam-calibrate', promise: 'カメラ座標の補正を推定', stage: 'Building' },
     { name: 'floor-project', promise: '画面座標を平面へ写像', stage: 'Building' },
@@ -176,7 +179,7 @@ const MODEL_DEMOS = new Set<string>([]);
  */
 const MODEL_CATEGORY: Record<string, number> = {
   'face-anon': 0, 'body-anon': 0, 'plate-anon': 0,
-  'person-detect': 1, 'object-detect': 1, 'pose-estimate': 1, 'reid-embed': 1, 'mtmc-track': 1,
+  'person-detect': 1, 'object-detect': 1, 'pose-estimate': 1, 'reid-embed': 1, 'person-attribute': 1, 'mtmc-track': 1,
   'cam-calibrate': 2, 'floor-project': 2,
   'flow-density': 3, 'dwell-estimate': 3, 'queue-detect': 3, 'change-detect': 3, 'shelf-state': 3,
   'event-classify': 4, 'scene-caption': 4, 'synth-frame': 4,

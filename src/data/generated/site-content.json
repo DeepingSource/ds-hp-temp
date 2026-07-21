@@ -1386,7 +1386,7 @@
         {
           "tag": "② Spatial AI",
           "title": "Spatial intelligence",
-          "desc": "Not who, but what and how. Detection, pose, re-ID, crowd density from a single feed — and MTMC stitches scattered cameras into one space, tracking a person as one even across cameras."
+          "desc": "Not who, but what and how. Detection, pose, re-ID, crowd density from a single feed — and MTMC stitches scattered cameras into one space, tracking a person as one even across cameras. On top of it, pass-through and dwell become zone heatmaps, with the routes people actually take and abnormal paths."
         },
         {
           "tag": "③ Agentic AI",
@@ -1504,7 +1504,7 @@
         {
           "tag": "② Spatial AI",
           "title": "공간 지능",
-          "desc": "누구인지가 아니라, 무엇을 어떻게. 검출·자세·재식별·군중 밀도를 하나의 영상에서 읽고, MTMC로 흩어진 카메라를 한 공간으로 정합해 카메라가 바뀌어도 한 사람으로 이어 추적합니다."
+          "desc": "누구인지가 아니라, 무엇을 어떻게. 검출·자세·재식별·군중 밀도를 하나의 영상에서 읽고, MTMC로 흩어진 카메라를 한 공간으로 정합해 카메라가 바뀌어도 한 사람으로 이어 추적합니다. 그 위에서 구역별 통과·체류를 히트맵으로, 대표 경로와 이상 동선까지 읽어냅니다."
         },
         {
           "tag": "③ Agentic AI",
@@ -1622,12 +1622,12 @@
         {
           "tag": "② Spatial AI",
           "title": "空間知能",
-          "desc": "誰かではなく、何をどう。人物検出・姿勢推定・再識別・群衆密度を一つの映像から読み取り、MTMCで散らばったカメラを一つの空間に整合し、カメラが変わっても一人として追跡し続けます。"
+          "desc": "誰かではなく、何をどう。人物検出・姿勢推定・再識別・群衆密度を一つの映像から読み取り、MTMCで散らばったカメラを一つの空間に整合し、カメラが変わっても一人として追跡し続けます。その上で、エリア別の通過・滞在をヒートマップに、主要経路や異常な動線まで読み解きます。"
         },
         {
           "tag": "③ Agentic AI",
           "title": "エージェントAI",
-          "desc": "汎用モデルではなく、空間運営に合わせてチューニングしたAI。見るだけで終わらず、次の一手まで判断します。"
+          "desc": "汎用モデルではなく、空間運営に合わせてチューニングしたAI。見るだけで終わらず、何を変えるかまで判断します。"
         }
       ],
       "complianceItems": [
