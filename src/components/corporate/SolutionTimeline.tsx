@@ -46,21 +46,21 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; node
   en: {
     eyebrow: 'Yesterday · Now · Next',
     heading: 'Three stores, one flow',
-    sub: 'Three stores, one flow — read yesterday, flag the now, act on next.',
+    sub: 'Read yesterday, flag the now, act on next — three interlocking parts, one loop.',
     nodes: [
-      { key: 'insight', icon: History, product: productPrimary('insight'), desc: 'Reads yesterday — what your sales numbers never showed you.', img: '/images/storeinsight-heatmap.webp', alt: 'Store heatmap — dwell and pathway analysis', href: '/products/saai-insight' },
-      { key: 'care', icon: Radio, product: productPrimary('care'), desc: 'Flags the now — only the moments that matter, in real time.', img: '/images/storecare-contamination-detection.webp', alt: 'store care — real-time detection of spills and store issues (anonymized)', href: 'https://storecare.ai', external: true },
-      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: 'Proposes and runs the next move — AI recommends, you decide.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — next-move proposal screen', href: '/products/saai-agent' },
+      { key: 'insight', icon: History, product: productPrimary('insight'), desc: 'ANALYZE — read yesterday and shape today’s call.', img: '/images/storeinsight-heatmap.webp', alt: 'Store heatmap — dwell and pathway analysis', href: '/products/saai-insight' },
+      { key: 'care', icon: Radio, product: productPrimary('care'), desc: 'DETECT — catch the now and surface what you can’t miss.', img: '/images/storecare-contamination-detection.webp', alt: 'store care — real-time detection of spills and store issues (anonymized)', href: 'https://storecare.ai', external: true },
+      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: 'ACT — act on next, then loop back to tomorrow’s data.', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — store operations proposal screen', href: '/products/saai-agent' },
     ],
   },
   jp: {
     eyebrow: '昨日 · 今 · 次',
     heading: '三つのstore、ひとつの流れ',
-    sub: '三つのstoreがひとつの流れに — 昨日を読み、今を知らせ、次を動かします。',
+    sub: '昨日を読み、今を知らせ、次を動かす — 3つが噛み合い、ひとつのループに。',
     nodes: [
-      { key: 'insight', icon: History, product: productPrimary('insight'), desc: '昨日を読みます — 売上が見落としていたものまで。', img: '/images/storeinsight-heatmap.webp', alt: '店舗ヒートマップ — 滞在・動線分析', href: '/products/saai-insight' },
-      { key: 'care', icon: Radio, product: productPrimary('care'), desc: '今を捉えて知らせます — 必要な瞬間だけを、リアルタイムで。', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 汚れ・異常をリアルタイム検知（匿名化）', href: 'https://storecare.ai', external: true },
-      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: '次を提案し、運営します — 推奨はAI、判断は人。', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 次の一手の提案画面', href: '/products/saai-agent' },
+      { key: 'insight', icon: History, product: productPrimary('insight'), desc: 'ANALYZE — 昨日を読み、今日の判断材料をつくります。', img: '/images/storeinsight-heatmap.webp', alt: '店舗ヒートマップ — 滞在・動線分析', href: '/products/saai-insight' },
+      { key: 'care', icon: Radio, product: productPrimary('care'), desc: 'DETECT — 今を感知し、見逃せない瞬間を浮かび上がらせます。', img: '/images/storecare-contamination-detection.webp', alt: 'store care — 汚れ・異常をリアルタイム検知（匿名化）', href: 'https://storecare.ai', external: true },
+      { key: 'agent', icon: Sparkles, product: productPrimary('agent'), desc: 'ACT — 次を動かし、また明日のデータへ戻ります。', img: '/images/storeagent-ai-pop-mockup.webp', alt: 'store agent — 店舗運営の提案画面', href: '/products/saai-agent' },
     ],
   },
 };

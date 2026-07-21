@@ -65,9 +65,9 @@ const dict: Record<Locale, { eyebrow: string; heading: string; sub: string; allL
     allLabel: 'すべて見る',
     spaces: [
       { key: 'retail', href: '/solutions/retail', icon: Store, label: 'リテール・コンビニ', desc: '陳列・動線・会計まで、店舗運営をひと目で読み取ります。', alt: 'コンビニ店内' },
-      { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: 'カフェ・飲食店', desc: '待ち時間や席の回転、ピーク時の流れを把握します。', alt: 'カフェの客席' },
+      { key: 'food', href: '/solutions/food-beverage', icon: Coffee, label: 'カフェ・飲食店', desc: '待ち時間や席の回転、ピーク時の流れを読み取ります。', alt: 'カフェの客席' },
       { key: 'drug', href: '/solutions/drug-store', icon: Pill, label: 'ドラッグストア', desc: 'カテゴリーごとの関心と滞在を匿名で分析します。', alt: 'ドラッグストア店内' },
-      { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '大型空間(スーパー・物流)', desc: '広い空間の動線や混雑、安全をまとめて見守ります。', alt: '大型スーパーの売り場' },
+      { key: 'large', href: '/solutions/large-space', icon: Warehouse, label: '大型スーパー・物流', desc: '広い空間の動線・混雑・安全をまとめて読み取ります。', alt: '大型スーパーの売り場' },
       { key: 'exhibit', href: '/solutions', icon: Landmark, label: '展示・博物館', desc: '来場者を特定せずに観覧動線と人気エリアを読み取ります。', alt: '展示館の観覧空間' },
       { key: 'unmanned', href: '/solutions', icon: MonitorOff, label: '無人店舗', desc: 'スタッフがいなくても異常を検知し、すぐに知らせます。', alt: '無人店舗の店内' },
     ],

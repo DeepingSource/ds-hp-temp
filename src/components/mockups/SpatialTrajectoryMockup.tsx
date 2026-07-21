@@ -49,7 +49,7 @@ const COPY: Record<Locale, Copy> = {
     videoAlt: 'Real MTMC footage tracking the same person across multiple cameras with a single ID, without faces',
     cards: [
       { n: '01', title: 'Multi-Target Multi-Camera', body: 'Many cameras recognize the same person continuously — regardless of space size' },
-      { n: '02', title: 'Re-Identification (not faces)', body: 'Matched on anonymized cues — pose, clothing, motion — recognizing the same person without identifying them' },
+      { n: '02', title: 'Re-Identification — features, not faces', body: 'Matched on anonymized cues — pose, clothing, motion — recognizing the same person without identifying them' },
       { n: '03', title: 'Any Environment', body: 'From a small boutique to a vast warehouse — the same skeleton works across any camera count, size, or layout' },
     ],
     emphasized: 'Key differentiator',
@@ -62,7 +62,7 @@ const COPY: Record<Locale, Copy> = {
     videoAlt: '複数のカメラにまたがって同一人物を顔なしで一つのIDで連続追跡するMTMCの実映像',
     cards: [
       { n: '01', title: 'Multi-Target Multi-Camera', body: '複数のカメラが同一人物を連続して認識します — 空間の大きさに左右されません' },
-      { n: '02', title: 'Re-Identification (顔ではありません)', body: '姿勢・服装・動線パターンの匿名化特徴で照合します — 個人を特定せずに同一人物だと認識します' },
+      { n: '02', title: 'Re-Identification — 顔ではなく、特徴で', body: '姿勢・服装・動線パターンの匿名化特徴で照合します — 個人を特定せずに同一人物だと認識します' },
       { n: '03', title: 'Any Environment', body: '小さなブティックから大型物流倉庫まで — カメラ数・空間の広さ・レイアウトを問わず同じ骨格が機能します' },
     ],
     emphasized: '核心的な差別化点',

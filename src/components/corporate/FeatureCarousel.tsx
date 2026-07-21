@@ -98,15 +98,15 @@ const COPY: Record<Locale, Copy> = {
   },
   en: {
     eyebrow: 'Products',
-    heading: 'One operating loop, three modes',
-    sub: 'Sensing the now, analyzing yesterday, proposing what comes next — and the functions cross all three.',
+    heading: 'One operating loop, four products',
+    sub: 'From the footfall outside to what to change — SAAI connects it, anonymously.',
     cta: 'See all products',
     taglines: { count: 'Counts the flow', insight: solutionTaglines.insight.en, care: solutionTaglines.care.en, agent: solutionTaglines.agent.en },
     desc: {
       count: 'Who passed by and who came in — capture rate reads the trade area.',
       insight: 'Beyond sales — dwell, flow and conversion on a heatmap.',
       care: 'Only the moments that matter — detect anomalies, alert in real time.',
-      agent: 'To the next move — AI advises, people decide.',
+      agent: 'To what to change — AI advises, people decide.',
     },
     alt: {
       count: 'CCTV view of footfall flowing through a store hall',
@@ -117,15 +117,15 @@ const COPY: Record<Locale, Copy> = {
   },
   jp: {
     eyebrow: 'Products',
-    heading: 'ひとつの運営ループ、3つのモード',
-    sub: '今を検知し、昨日を分析し、次を提案する。機能はその3つを横断します。',
+    heading: 'ひとつの運営ループ、4つのプロダクト',
+    sub: '店の外の流れから、何を変えるかまで — SAAIが匿名でつなぎます。',
     cta: '製品をすべて見る',
     taglines: { count: '流れを数える', insight: solutionTaglines.insight.jp, care: solutionTaglines.care.jp, agent: solutionTaglines.agent.jp },
     desc: {
       count: '店頭を通った人と入った人 — 流入率で商圏を読みます。',
       insight: '売上の先 — 滞在・動線・転換をヒートマップで。',
       care: '必要な瞬間だけ — 異常を検知し、リアルタイムで通知。',
-      agent: '次の一手まで — 推奨はAI、決定は人。',
+      agent: '何を変えるかまで — 推奨はAI、決定は人。',
     },
     alt: {
       count: '店舗ホールの人の流れを映したCCTV画面',
