@@ -11,8 +11,8 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
  * OperatingLoopGraphic — the /products hero visual (product-reorg D2, §10.5).
  *
  * The OPERATING LOOP as a clockwise cycle around the SAAI hub, output feeding back
- * to input. Four steps — 관찰 · 분석 · 제안 · 학습 — of which three carry a product:
- *   관찰/Observe → saai care · 분석/Analyze → saai insight · 제안/Suggest → saai agent.
+ * to input. Four steps — 분석 · 감지 · 실행 · 학습 — of which three carry a product:
+ *   분석/Analyze → saai insight · 감지/Detect → saai care · 실행/Act → saai agent.
  * The fourth (학습/Learn) closes the loop and has NO product — learning is what makes
  * the cycle a cycle, not something we sell.
  *

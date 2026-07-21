@@ -32,19 +32,19 @@ const C: Record<Locale, {
     eyebrow: '실제 화면',
     heading: '이런 화면으로 확인합니다',
     disclaimer: '화면은 예시이며 실제 서비스와 다를 수 있습니다.',
-    productLabels: { StoreCare: '01 관찰', StoreInsight: '02 분석', StoreAgent: '03 실행' },
+    productLabels: { StoreCare: '01 감지', StoreInsight: '02 분석', StoreAgent: '03 실행' },
   },
   en: {
     eyebrow: 'Live preview',
     heading: 'This is what you actually see',
     disclaimer: 'Screens are illustrative and may differ from the actual service.',
-    productLabels: { StoreCare: '01 Observe', StoreInsight: '02 Analyze', StoreAgent: '03 Act' },
+    productLabels: { StoreCare: '01 Detect', StoreInsight: '02 Analyze', StoreAgent: '03 Act' },
   },
   jp: {
     eyebrow: '実際の画面',
     heading: 'こんな画面で確認できます',
     disclaimer: '画面は例であり、実際のサービスと異なる場合があります。',
-    productLabels: { StoreCare: '01 観察', StoreInsight: '02 分析', StoreAgent: '03 実行' },
+    productLabels: { StoreCare: '01 検知', StoreInsight: '02 分析', StoreAgent: '03 実行' },
   },
 };
 

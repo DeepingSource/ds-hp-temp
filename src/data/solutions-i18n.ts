@@ -31,12 +31,12 @@ type Product = 'StoreCare' | 'StoreInsight' | 'StoreAgent';
 
 const PRODUCT_LABEL_I18N: Record<'en' | 'jp', Record<Product, string>> = {
   en: {
-    StoreCare: `01 Observe · ${productPrimary('care')}`,
+    StoreCare: `01 Detect · ${productPrimary('care')}`,
     StoreInsight: `02 Analyze · ${productPrimary('insight')}`,
     StoreAgent: `03 Act · ${productPrimary('agent')}`,
   },
   jp: {
-    StoreCare: `01 観察 · ${productPrimary('care')}`,
+    StoreCare: `01 検知 · ${productPrimary('care')}`,
     StoreInsight: `02 分析 · ${productPrimary('insight')}`,
     StoreAgent: `03 実行 · ${productPrimary('agent')}`,
   },

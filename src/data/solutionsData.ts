@@ -52,7 +52,7 @@ type Product = SolutionStep['product'];
  * scripts/migrate-solutions.mjs (deepStrictEqual gate).
  */
 const PRODUCT_LABEL_KO: Record<Product, string> = {
-  StoreCare: `01 관찰 · ${productPrimary('care')}`,
+  StoreCare: `01 감지 · ${productPrimary('care')}`,
   StoreInsight: `02 분석 · ${productPrimary('insight')}`,
   StoreAgent: `03 실행 · ${productPrimary('agent')}`,
 };

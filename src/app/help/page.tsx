@@ -10,15 +10,20 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
  * page. Static (reads the file at build).
  *
  * Access: the guide exposes the private repo slug + CMS/deploy process, so the
- * public route is EXCLUDED from production (VERCEL_ENV==='production' → notFound()).
- * It stays available on local dev + preview deploys; editors also see the same
- * content inside /keystatic. Override with ENABLE_EDITOR_GUIDE=true if ever needed.
+ * public route is EXCLUDED from any production build — Vercel prod OR a self-hosted
+ * server (AWS) where VERCEL_ENV is unset. It stays available on local dev + Vercel
+ * preview deploys; editors also see the same content inside /keystatic. Override with
+ * ENABLE_EDITOR_GUIDE=true if ever needed.
  */
 
 // Server-only gate (RSC): not a NEXT_PUBLIC var, never shipped to the client.
 function editorGuideEnabled(): boolean {
   if (process.env.ENABLE_EDITOR_GUIDE === 'true') return true;
-  return process.env.VERCEL_ENV !== 'production';
+  // On Vercel, VERCEL_ENV distinguishes preview/dev (show) from production (hide).
+  // Off Vercel (self-hosted AWS), VERCEL_ENV is unset — fall back to NODE_ENV so a
+  // production server still hides it instead of defaulting open.
+  if (process.env.VERCEL_ENV) return process.env.VERCEL_ENV !== 'production';
+  return process.env.NODE_ENV !== 'production';
 }
 
 export const metadata: Metadata = {

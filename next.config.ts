@@ -33,6 +33,10 @@ if (isGhPages) {
   nextConfig.trailingSlash = true;
   nextConfig.images = { ...nextConfig.images, unoptimized: true };
 } else {
+  // Self-host (AWS) friendly: emit a minimal standalone server bundle
+  // (.next/standalone) for containerized/EC2 deploys. Harmless on Vercel, which
+  // runs its own build pipeline. Not set in the export branch above.
+  nextConfig.output = 'standalone';
   nextConfig.redirects = async () => {
     // /blog, /blog/:slug, /sample, /how-it-works → 미들웨어에서 처리 (미니사이트 충돌 방지)
     // 신 IA 전환 redirects (PLAN_v1.1 §2.3). exact source 매칭으로 하위경로·미니사이트 보호.

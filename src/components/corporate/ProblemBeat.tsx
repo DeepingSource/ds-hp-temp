@@ -112,7 +112,7 @@ const dict: Record<Locale, {
 };
 
 /**
- * Operating-loop ribbon — Observe · Analyze · Suggest · Learn (SAAI_AI_Handoff.md · A4).
+ * Operating-loop ribbon — Analyze · Detect · Act · Learn (제품체계 재설계 v1 · A4).
  * The agentic wedge: others stop at seeing; we close the loop and learn.
  * label + time-phase from operatingLoop; last step (Learn) emphasized.
  */
@@ -211,7 +211,7 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
           {t.bridge}
         </p>
 
-        {/* Operating loop — Observe·Analyze·Suggest·Learn (close the loop, then learn) */}
+        {/* Operating loop — Analyze·Detect·Act·Learn (close the loop, then learn) */}
         <div className="mt-8">
           <div ref={loopRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {methodSteps(locale).map((s, i) => {

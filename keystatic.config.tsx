@@ -650,7 +650,7 @@ export default config({
     // 솔루션 시나리오 — content/solutions/*.yaml (구조화 데이터, MDX 아님). 한 파일 = 한
     // /solutions/<슬러그> 랜딩페이지. title/excerpt/impact/impactLabel·background.heading·
     // cause/step 제목·result 라벨은 KO/EN/JP; problem·본문·desc·stat·metaDescription 은 KO.
-    // step 의 productLabel(01 관찰 · store care)·색상, 업종 라벨은 코드에서 파생(저장 안 함).
+    // step 의 productLabel(01 감지 · saai care)·색상, 업종 라벨은 코드에서 파생(저장 안 함).
     solutionPages: collection({
       label: '솔루션 시나리오',
       path: 'content/solutions/*',
@@ -700,11 +700,11 @@ export default config({
         steps: fields.array(
           fields.object({
             product: fields.select({
-              label: '제품 (단계 = 관찰→분석→실행)',
+              label: '제품 (단계 = 감지→분석→실행)',
               options: [
-                { label: 'store care (01 관찰)', value: 'StoreCare' },
-                { label: 'store insight (02 분석)', value: 'StoreInsight' },
-                { label: 'store agent (03 실행)', value: 'StoreAgent' },
+                { label: 'saai care (01 감지)', value: 'StoreCare' },
+                { label: 'saai insight (02 분석)', value: 'StoreInsight' },
+                { label: 'saai agent (03 실행)', value: 'StoreAgent' },
               ],
               defaultValue: 'StoreCare',
             }),
