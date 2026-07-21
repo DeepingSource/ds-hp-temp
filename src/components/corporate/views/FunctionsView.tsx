@@ -7,7 +7,7 @@ import WordRise from '@/components/ui/WordRise';
 import FunctionModeMatrix from '@/components/corporate/FunctionModeMatrix';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { MODE_ORDER, productPrimary } from '@/lib/brand-canon';
+import { MODE_ORDER, FUNCTION_ORDER, productPrimary } from '@/lib/brand-canon';
 import { MODE_COPY, FUNCTIONS_PAGE_COPY } from '@/data/function-matrix-i18n';
 
 /**
@@ -25,6 +25,9 @@ import { MODE_COPY, FUNCTIONS_PAGE_COPY } from '@/data/function-matrix-i18n';
 /** Functions that currently own a page of their own. */
 const FUNCTION_LINKS: Partial<Record<string, string>> = {
   count: '/products/store-count',
+  queue: '/products/store-queue',
+  pop: '/products/store-pop',
+  fit: '/products/store-fit',
 };
 
 const MODE_HREF = {
@@ -96,15 +99,19 @@ export default function FunctionsView({ locale }: { locale: Locale }) {
         <Container>
           <FunctionModeMatrix locale={locale} />
           <p className="mt-6 text-sm font-medium text-primary break-keep">{c.countNote}</p>
-          {FUNCTION_LINKS.count && (
-            <Link
-              href={localeHref(locale, FUNCTION_LINKS.count)}
-              className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-primary"
-            >
-              store count
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          )}
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {FUNCTION_ORDER.filter((fn) => FUNCTION_LINKS[fn]).map((fn) => (
+              <li key={fn}>
+                <Link
+                  href={localeHref(locale, FUNCTION_LINKS[fn]!)}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline"
+                >
+                  store {fn}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
 
