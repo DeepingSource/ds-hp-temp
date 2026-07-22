@@ -79,10 +79,15 @@ export default function FunctionsView({ locale }: { locale: Locale }) {
                 href={localeHref(locale, MODE_HREF[m])}
                 className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-card transition hover:border-primary/40 hover:shadow-lg"
               >
-                <p className="text-2xs font-mono font-medium uppercase tracking-wide text-gray-400">
-                  {modes[m].mode} · {modes[m].tense}
-                </p>
-                <p className="mt-1 text-lg font-bold text-gray-900">{productPrimary(m)}</p>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-wide text-primary">
+                    {modes[m].mode} · {modes[m].tense}
+                  </p>
+                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-2xs font-semibold text-primary">
+                    {locale === 'ko' ? (m === 'care' ? '실시간 감지' : m === 'insight' ? '추세 분석' : '현장 제안') : m}
+                  </span>
+                </div>
+                <p className="mt-2 text-xl font-bold text-gray-900">{productPrimary(m)}</p>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600 break-keep">{modes[m].question}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                   {c.cta}
