@@ -35,7 +35,7 @@ const dict: Record<Locale, {
   posTag: string; legendInvisible: string; legendPos: string; funnelAria: string;
 }> = {
   ko: {
-    eyebrow: '보이지 않는 다수',
+    eyebrow: '공간 최적화의 첫 걸음 · 보이지 않는 다수',
     heading: '어제 들어온 손님 10명 중 8명은, 결제 없이 나갑니다 — 어디서 놓쳤을까요?',
     posTag: 'POS 기록',
     legendInvisible: '보이지 않음',
@@ -269,7 +269,14 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
               );
             })}
           </div>
-          <p className="mt-5 text-base text-gray-500 break-keep">{t.methodTagline}</p>
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
+            <p className="text-sm font-medium text-gray-700 break-keep">
+              💡 <strong>리테일·F&B·무인매장·대형 공간</strong> 등 업종별 실제 공간 최적화 유스케이스가 준비되어 있습니다.
+            </p>
+            <a href={`/${locale === 'en' ? '' : locale + '/'}solutions`} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline shrink-0">
+              업종별 유스케이스 보기 →
+            </a>
+          </div>
         </div>
       </Container>
     </Section>

@@ -101,7 +101,7 @@ const COPY: Record<Locale, Copy> = {
   },
   en: {
     eyebrow: 'Products',
-    heading: 'One operating loop — three modes, and the entry point, store count',
+    heading: 'One operating loop — three modes, and the entry point, saai count',
     entryTag: 'entry',
     sub: 'From the footfall outside to what to change — SAAI connects it, anonymously.',
     cta: 'See all products',

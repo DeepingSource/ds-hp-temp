@@ -33,10 +33,10 @@ const dict: Record<
     heading: '일반적인 답 말고 — 당신의 매장에 맞는 답.',
     lead: '딥핑소스는 2018년부터 영상 익명화를 깎아 온, 공간을 그대로 읽는 익명화 공간 AI 회사입니다. 신호는 받되, 누구인지는 남기지 않습니다.',
     facts: [
-      { icon: RefreshCw, label: '무엇을', body: '어제를 분석하고(insight), 지금을 감지하고(care), 다음을 실행하는(agent) 하나의 운영 루프.' },
-      { icon: Building2, label: '누구를 위해', body: '전국 매장을 한 화면에서 보는 프랜차이즈·다점포 본사부터, 개별 매장까지.' },
-      { icon: Camera, label: '어떻게', body: '새 장비 없이, 쓰던 CCTV 위에서.' },
-      { icon: ShieldCheck, label: '왜 안전한가', body: '촬영 순간 익명화, 원본 미보존 (SEAL).' },
+      { icon: Building2, label: '왜 공간 AI인가', body: '일반 텍스트 AI는 매장 동선과 매대를 보지 못합니다. 공간을 직접 읽어야 진짜 문제가 보입니다.' },
+      { icon: ShieldCheck, label: '무엇인가', body: '기존 CCTV를 통해 개인정보(얼굴)는 지우고 방문객 행동 신호만 데이터로 추출하는 익명화 공간 AI입니다.' },
+      { icon: RefreshCw, label: '어떻게 일하는가', body: '어제의 분석(Insight)부터 지금의 감지(Care), 현장의 즉시 실행(Agent)으로 이어지는 매장 통합 관리 체계입니다.' },
+      { icon: Camera, label: '도입 시 변화', body: '새 장비 없이 기존 CCTV만으로 바로 가동되며, 매장 현장부터 본사까지 운영 효율이 대폭 향상됩니다.' },
     ],
     saai: 'SAAI란',
     footnote: '* 범용 AI(ChatGPT·Claude 등)는 텍스트·이미지엔 강하지만, 당신의 매대·동선은 보지 못합니다 — 그래서 답이 원론적입니다.',
@@ -124,7 +124,7 @@ export default function HomeOrientation({ locale }: { locale: Locale }) {
                     key={f.label}
                     className="flex flex-col gap-2 border-b border-gray-200 py-5 sm:flex-row sm:gap-6"
                   >
-                    <div className="flex w-full items-center gap-2.5 sm:w-36 sm:shrink-0">
+                    <div className="flex w-full items-center gap-2.5 sm:w-44 sm:shrink-0">
                       <Icon
                         className={`h-4 w-4 shrink-0 ${seal ? 'text-primary' : 'text-gray-500'}`}
                         aria-hidden="true"

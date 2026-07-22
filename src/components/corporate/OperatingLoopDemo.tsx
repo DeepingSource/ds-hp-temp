@@ -57,7 +57,7 @@ const DEMO: Record<Locale, DemoCopy> = {
     detailCta: '자세히 보기',
     loopClose: '결과가 다시 입력으로 — 한 바퀴 돌 때마다, 사람의 손은 가벼워집니다.',
     stages: {
-      observe: { label: 'OBSERVE', tag: '관찰 · 입문', product: 'store count', caption: '문 앞을 지난 사람과 들어온 사람 — 유입의 시작점.' },
+      observe: { label: 'OBSERVE', tag: '관찰 · 입문', product: 'saai count', caption: '문 앞을 지난 사람과 들어온 사람 — 유입의 시작점.' },
       analyze: { label: 'ANALYZE', tag: '분석 · 어제', product: 'saai insight', caption: '어제의 흐름을 퍼널로 — 어디서 놓쳤는지 짚어냅니다.' },
       detect: { label: 'DETECT', tag: '감지 · 지금', product: 'saai care', caption: '쏟아지는 알림 대신, 지금 손쓸 순간만.' },
       act: { label: 'ACT', tag: '실행 · 다음', product: 'saai agent', caption: '다음에 할 일을 발주서까지 — 결정은 사람이.' },

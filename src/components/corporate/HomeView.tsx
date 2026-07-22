@@ -49,7 +49,7 @@ const ctaDict: Record<
 > = {
   ko: {
     kicker: 'REINVENT OFFLINE · 오프라인을, 다시.',
-    heading: '당신의 공간을, 완벽하게 — 그리고 모든 공간을.',
+    heading: '당신의 공간을 완벽하게.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다. 도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',

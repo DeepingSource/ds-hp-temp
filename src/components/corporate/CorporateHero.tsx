@@ -58,49 +58,49 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
         className="hero-glow pointer-events-none absolute -top-32 -left-24 h-[34rem] w-[34rem] rounded-full"
         style={{ background: 'radial-gradient(circle, color-mix(in oklab, var(--color-primary) 16%, transparent), transparent 70%)' }}
       />
-      <Container className="relative py-24 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="max-w-2xl">
+      <Container className="relative py-20 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-5 max-w-2xl">
             <p className="text-xs font-medium tracking-[0.2em] text-primary mb-4 animate-fade-in-up">
               {categoryKeyword[locale]} · SAAI
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 break-keep font-display animate-fade-in-up delay-100">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-gray-900 break-keep font-display animate-fade-in-up delay-100">
               {q.prefix}
               <RotatingNoun fixed={q.fixed} words={q.words} />
               {q.suffix}
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
+            <p className="mt-6 text-base sm:text-lg text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
               {t.heroSub}
             </p>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
               <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
                 {t.ctaPrimary}
               </Link>
               <Link
                 href={localeHref(locale, '/enterprise')}
-                className="inline-flex items-center justify-center px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light hover:bg-gray-50 transition-colors"
               >
                 {heroEnterpriseCta[locale]}
               </Link>
             </div>
-            {/* SAAI spell-out — brand reinforcement, demoted below the CTA to a single quiet line (§10-3) */}
-            <p className="mt-7 text-xs font-medium tracking-tight text-gray-500 animate-fade-in-up delay-400">
+            {/* SAAI spell-out — brand reinforcement with bold letter badges */}
+            <p className="mt-7 text-xs font-medium tracking-tight text-gray-600 animate-fade-in-up delay-400 flex flex-wrap items-center gap-1.5">
               {pillars.map((w, i) => (
-                <span key={w}>
-                  {i > 0 && <span className="text-gray-300"> · </span>}
-                  <span className="font-bold text-primary">{w.charAt(0)}</span>
-                  <span className="text-gray-700">{w.slice(1)}</span>
+                <span key={w} className="inline-flex items-center gap-1">
+                  {i > 0 && <span className="text-gray-300 mr-1">·</span>}
+                  <span className="font-extrabold text-primary bg-primary/10 px-1.5 py-0.5 rounded text-xs">{w.charAt(0)}</span>
+                  <span className="text-gray-800 font-semibold">{w.slice(1)}</span>
                 </span>
               ))}
-              <span className="text-gray-400"> — {saaiSpellout.gloss[locale].join(' · ')}</span>
+              <span className="text-gray-400 text-xs ml-1">({saaiSpellout.gloss[locale].join(' · ')})</span>
             </p>
-            <ul className="mt-8 flex flex-wrap gap-2.5 animate-fade-in-up delay-400">
+            <ul className="mt-7 flex flex-wrap gap-2 animate-fade-in-up delay-400">
               {credentials[locale].map((c, i) => {
                 const Icon = credIcons[i];
                 return (
                   <li
                     key={c}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-xs font-medium text-gray-700 shadow-card"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-700 shadow-card"
                   >
                     <Icon className="w-3.5 h-3.5 text-primary shrink-0" aria-hidden="true" />
                     <span className="break-keep">{c}</span>
@@ -109,13 +109,29 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               })}
             </ul>
           </div>
-          <figure className="animate-fade-in-up delay-200">
+          <figure className="lg:col-span-7 animate-fade-in-up delay-200 w-full">
             <CorporateHeroFigure src={technologyImages.mtmcWide.src} alt={img.alt} trackLabel={trackChip[locale]} />
             <figcaption className="mt-3 flex items-center gap-2 text-xs text-gray-500">
               <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
               <span className="break-keep">{img.caption}</span>
             </figcaption>
           </figure>
+        </div>
+
+        {/* Transition Bridge — "SAAI는 알고 있습니다" */}
+        <div className="mt-16 pt-10 border-t border-gray-200/80 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
+            Transition · SAAI’s Answer
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep font-display">
+            SAAI는 알고 있습니다.
+          </h3>
+          <p className="mt-2.5 text-sm sm:text-base text-gray-600 break-keep">
+            이미 달린 CCTV만으로 매장의 모든 동선과 행동을 데이터와 실시간 실행으로 바꾸는 방법.
+          </p>
+          <div className="mt-4 flex justify-center">
+            <span className="inline-block animate-bounce text-primary text-lg">↓</span>
+          </div>
         </div>
       </Container>
     </section>

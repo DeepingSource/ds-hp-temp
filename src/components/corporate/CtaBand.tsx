@@ -12,7 +12,7 @@ import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
  */
 
 const dict: Record<Locale, { text: string; button: string }> = {
-  ko: { text: '세 store를 한 흐름으로 — 우리 매장엔 어떤 조합이 맞을까요?', button: '맞는 조합 찾기' },
+  ko: { text: '분석·감지·실행을 하나로 — 우리 매장에 필요한 솔루션 조합 보기', button: '솔루션 조합 보기' },
   en: { text: 'Three stores, one flow — which mix fits yours?', button: 'Find your fit' },
   jp: { text: '三つの store をひとつの流れに — あなたの店舗にはどの組み合わせが?', button: '最適な組み合わせを見る' },
 };

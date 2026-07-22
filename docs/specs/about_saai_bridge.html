@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About → SAAI → Contact 연결 그림</title>
+<style>
+  :root{
+    --primary:#376AE2; --primary-dark:#2453C4; --primary-light:#5B86EA; --primary-lighter:#E5EDFC;
+    --dark:#0B1220; --dark2:#0E1730; --ink:#0B1220; --muted:#5b6472; --line:#e5e9f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Pretendard","Apple SD Gothic Neo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:#f6f8fc; color:var(--ink); line-height:1.5;
+    -webkit-font-smoothing:antialiased; padding:40px 20px;
+  }
+  .wrap{max-width:920px;margin:0 auto}
+  .doc-head{text-align:center;margin-bottom:8px}
+  .doc-head .ey{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--primary)}
+  .doc-head h1{font-size:26px;font-weight:800;margin-top:8px;letter-spacing:-.02em}
+  .doc-head p{color:var(--muted);font-size:14px;margin-top:8px}
+  .funnel{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:0}
+  .split-badge{max-width:720px;margin:34px auto 0;text-align:center;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--primary-dark);background:var(--primary-lighter);border:1px solid #cfdcfb;border-radius:999px;padding:7px 16px}
+  .section-divider{width:100%;max-width:760px;margin:14px auto;display:flex;align-items:center;text-align:center}
+  .section-divider span{font-size:11.5px;font-weight:800;color:var(--primary-dark);background:#eef3fe;border:1px dashed var(--primary-light);border-radius:999px;padding:6px 14px;margin:0 auto}
+  .mode-cta{max-width:760px;margin:14px auto 0;text-align:center}
+  .mode-cta .btn-line{display:inline-block;background:var(--primary);color:#fff;font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:11px}
+  .mode-cta .btn-line code,.mode-cta .btn-sub code{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+  .mode-cta .btn-sub{display:block;font-size:11.5px;color:var(--muted);margin-top:7px}
+
+  /* node card */
+  .node{width:100%;border-radius:22px;padding:26px 28px;position:relative}
+  .node .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .node h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .node .promise{font-size:15px;margin-top:8px}
+  .node .sub{font-size:13px;margin-top:6px}
+
+  /* company node (dark) */
+  .n-company{background:linear-gradient(160deg,var(--dark2),var(--dark));color:#fff;max-width:720px}
+  .n-company .tag{background:rgba(255,255,255,.12);color:#c7d2e6}
+  .n-company .promise{color:#fff;font-weight:700;font-size:20px}
+  .n-company .sub{color:#8f9bb3}
+  .n-company .own{position:absolute;top:22px;right:24px;font-size:11px;color:#6ee7ff;opacity:.0}
+  .scope{display:inline-block;margin-left:8px;font-size:12px;color:var(--primary-light);font-weight:700;border:1px solid rgba(91,134,234,.4);border-radius:999px;padding:2px 9px;vertical-align:middle}
+
+  /* connector */
+  .conn{display:flex;flex-direction:column;align-items:center;padding:6px 0}
+  .conn .lbl{font-size:12.5px;font-weight:700;color:var(--primary-dark);background:var(--primary-lighter);border:1px solid #cfdcfb;padding:5px 14px;border-radius:999px;margin:8px 0}
+  .conn .arw{width:2px;height:22px;background:linear-gradient(var(--primary),var(--primary-light))}
+  .conn .arw.top{height:16px}
+  .tri{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid var(--primary-light)}
+
+  /* saai node (primary) */
+  .n-saai{background:#fff;border:2px solid var(--primary);max-width:760px;box-shadow:0 12px 34px rgba(55,106,226,.14)}
+  .n-saai .tag{background:var(--primary);color:#fff}
+  .n-saai h2{color:var(--primary-dark)}
+  .n-saai .promise{color:var(--ink);font-weight:700;font-size:20px}
+  .n-saai .sub{color:var(--muted)}
+  .saai-letters{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .letter{flex:1;min-width:150px;border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbfcfe}
+  .letter .L{font-size:20px;font-weight:900;color:var(--primary);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .letter .nm{font-size:12px;font-weight:800;color:var(--ink);margin-top:2px}
+  .letter .pr{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}
+  .letter .lk{font-size:11px;color:var(--primary);margin-top:8px;font-weight:700}
+
+  /* products row */
+  .n-products{max-width:760px;display:flex;gap:12px;background:transparent;padding:0}
+  .mode{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:center}
+  .mode .ph{font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.1em;text-transform:uppercase}
+  .mode .nm{font-size:15px;font-weight:800;margin-top:6px}
+  .mode .tl{font-size:12.5px;color:var(--muted);margin-top:4px}
+
+  /* contact node */
+  .n-contact{background:linear-gradient(160deg,var(--primary),var(--primary-dark));color:#fff;max-width:520px;text-align:center;box-shadow:0 14px 34px rgba(55,106,226,.28)}
+  .n-contact .tag{background:rgba(255,255,255,.16);color:#eaf1ff}
+  .n-contact h2{color:#fff}
+  .n-contact .sub{color:#dbe6ff}
+  .btn{display:inline-block;margin-top:14px;background:#fff;color:var(--primary-dark);font-weight:800;font-size:14px;padding:11px 22px;border-radius:12px}
+
+  /* side rails: cross-links */
+  .rails{max-width:760px;margin:34px auto 0;border-top:1px dashed var(--line);padding-top:22px}
+  .rails h3{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:14px}
+  .rail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .rail{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+  .rail .from{font-size:11px;font-weight:800;color:var(--primary);white-space:nowrap}
+  .rail .to{font-size:12.5px;color:var(--ink)}
+  .rail .to b{color:var(--primary-dark)}
+  .rail .to span{color:var(--muted);display:block;font-size:11.5px;margin-top:2px}
+  .foot{max-width:760px;margin:26px auto 0;font-size:11.5px;color:var(--muted);text-align:center}
+  @media(max-width:640px){
+    .n-products{flex-direction:column}
+    .rail-grid{grid-template-columns:1fr}
+    .saai-letters .letter{min-width:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="doc-head">
+    <div class="ey">DEEPINGSOURCE · Connection Map</div>
+    <h1>About → SAAI → Contact 연결 그림</h1>
+    <p>회사(모든 공간) 에서 → 플랫폼(당신의 공간) 으로 → 제품으로 → 문의로. 하나의 funnel — <b>상단은 ③에, 하단은 ⑥에</b> 나눠 배치.</p>
+  </div>
+
+  <div class="split-badge s3">③ 향후 5년 섹션 — 방법이 곧 SAAI</div>
+  <div class="funnel">
+
+    <!-- 회사 -->
+    <div class="node n-company">
+      <span class="tag">회사 · DeepingSource</span>
+      <h2>우리는 오프라인을 다시 만듭니다 <span class="scope">About 페이지</span></h2>
+      <p class="promise">모든 공간을, 완벽하게.</p>
+      <p class="sub">2018년부터 영상의 익명화를 깎아 온 회사 · 익명화 공간 AI</p>
+    </div>
+
+    <div class="conn">
+      <div class="arw top"></div>
+      <div class="lbl">모든 공간을 완벽하게 하려면 — 당신의 공간부터</div>
+      <div class="arw"></div>
+      <div class="tri"></div>
+    </div>
+
+    <!-- SAAI -->
+    <div class="node n-saai">
+      <span class="tag">플랫폼 · SAAI</span>
+      <h2>SAAI — 익명화 공간 AI</h2>
+      <p class="promise">당신의 공간을, 완벽하게.</p>
+      <p class="sub">About ③ '어떻게'의 3층(익명화·공간·에이전트)을 하나의 플랫폼으로 구현한 것.</p>
+      <div class="saai-letters">
+        <div class="letter"><div class="L">S</div><div class="nm">Spatial</div><div class="pr">공간을 읽습니다. POS 너머 흐름까지.</div><div class="lk">→ /technology/spatial-ai</div></div>
+        <div class="letter"><div class="L">A</div><div class="nm">Anonymized</div><div class="pr">누구인지 남기지 않습니다. 모든 것의 시작.</div><div class="lk">→ /technology/seal</div></div>
+        <div class="letter"><div class="L">A</div><div class="nm">Agentic</div><div class="pr">무엇을 바꿀지 짚어줍니다. 결정은 사람이.</div><div class="lk">→ /technology/models</div></div>
+        <div class="letter"><div class="L">I</div><div class="nm">Intelligence</div><div class="pr">쓸수록 정확해집니다.</div><div class="lk">→ /technology</div></div>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <span>↑ ③ 향후 5년 (회사 → SAAI)　·　⑥ 이제 당신의 공간부터 (SAAI → 제품 → 문의) ↓</span>
+    </div>
+
+    <div class="conn">
+      <div class="arw top"></div>
+      <div class="lbl">네 개의 근거가, 하나의 루프로 — 제품으로</div>
+      <div class="arw"></div>
+      <div class="tri"></div>
+    </div>
+
+    <!-- 제품 3모드 -->
+    <div class="node n-products">
+      <div class="mode"><div class="ph">어제 · Analyze</div><div class="nm">saai insight</div><div class="tl">어제를 읽다</div></div>
+      <div class="mode"><div class="ph">지금 · Detect</div><div class="nm">saai care</div><div class="tl">지금을 알리다</div></div>
+      <div class="mode"><div class="ph">다음 · Act</div><div class="nm">saai agent</div><div class="tl">다음을 실행하다</div></div>
+    </div>
+
+    <div class="mode-cta"><span class="btn-line">제품 전체 보기 →&nbsp;<code>/products</code></span><span class="btn-sub">보조: SAAI 허브 <code>/products/saai</code></span></div>
+
+    <div class="conn">
+      <div class="arw top"></div>
+      <div class="lbl">도입 문의 · 협업 제안</div>
+      <div class="arw"></div>
+      <div class="tri"></div>
+    </div>
+
+    <!-- Contact -->
+    <div class="node n-contact">
+      <span class="tag">전환 · Contact</span>
+      <h2>사람이 사는 세상을, 함께</h2>
+      <p class="sub">도입 문의부터 협업 제안까지</p>
+      <span class="btn">문의하기 →</span>
+    </div>
+  </div>
+
+  <!-- cross-links -->
+  <div class="rails">
+    <h3>About 섹션별 아웃바운드 링크 (허브화)</h3>
+    <div class="rail-grid">
+      <div class="rail"><span class="from">③ 어떻게</span><span class="to"><b>→ /technology</b> (SEAL·spatial·models)<span>3층 각 pillar를 기술 페이지로 딥링크</span></span></div>
+      <div class="rail"><span class="from">③ 끝</span><span class="to"><b>→ /products/saai</b><span>"이 방법을 제품으로 — SAAI 보기"</span></span></div>
+      <div class="rail"><span class="from">⑥ SAAI 브릿지</span><span class="to"><b>→ /products</b> (메인) · /products/saai (보조)<span>제품 전체가 메인 전환</span></span></div>
+      <div class="rail"><span class="from">⑤ 파트너</span><span class="to"><b>→ /enterprise</b><span>제거한 본부/매장 약속의 새 집</span></span></div>
+      <div class="rail"><span class="from">⑤ 파트너</span><span class="to"><b>→ /contact (파트너십)</b><span>협업·리셀러 문의 경로</span></span></div>
+      <div class="rail"><span class="from">⑥ CTA</span><span class="to"><b>→ /contact (도입)</b><span>메인 전환 — 모든 경로가 수렴</span></span></div>
+    </div>
+  </div>
+  <p class="foot">* 브랜드 상수 근거: perfectSpace(your=SAAI · every=DeepingSource) · saaiPromiseLayer(S·A·A·I) · operatingLoop(insight·care·agent) · companyLine. 초안 v1 — 대화로 다듬을 예정.</p>
+</div>
+</body>
+</html>
