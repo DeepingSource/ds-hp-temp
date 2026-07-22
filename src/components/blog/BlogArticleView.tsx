@@ -201,7 +201,7 @@ export default function BlogArticleView({ locale, article }: { locale: Locale; a
         <div className="max-w-5xl mx-auto px-4 py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8 max-w-3xl mx-auto">
             <div>
-              <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2 font-brand">DEEPINGSOURCE</p>
+              <p className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2 font-brand">DEEPINGSOURCE</p>
               <h3 className="text-xl font-bold text-gray-900 mb-2 break-keep">
                 {t.ctaHeading}
               </h3>

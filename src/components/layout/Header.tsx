@@ -151,14 +151,9 @@ export default function Header() {
           {/* Logo */}
           <Link
             href={localeHref(locale, '/')}
-            className="flex items-center gap-2 text-xl font-bold text-gray-900 tracking-tight font-display hover:opacity-90 transition-opacity"
+            className="text-xl font-bold tracking-wider text-gray-900 font-display hover:opacity-90 transition-opacity"
           >
-            <span className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white font-mono text-sm font-bold shadow-sm">
-              S
-            </span>
-            <span className="flex items-center">
-              DEEPING<span className="text-primary font-extrabold">SOURCE</span>
-            </span>
+            DEEPINGSOURCE
           </Link>
 
           {/* Desktop Navigation */}
