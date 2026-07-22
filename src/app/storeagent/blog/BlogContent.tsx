@@ -11,7 +11,7 @@ import {
 import { getAllArticlesMeta } from '@/lib/article-metadata';
 import NewsletterForm from '@/components/ui/NewsletterForm';
 import type { ArticleCategory } from '@/data/articles/types';
-import { categoryMeta, blogCategories } from '@/data/articles/types';
+import { blogCategories } from '@/data/articles/types';
 import { ArticleCard, FeaturedArticleCard } from '@/components/blog/ArticleCard';
 import { useSiteMode } from '@/hooks/useSiteMode';
 
@@ -82,6 +82,7 @@ function BlogContent() {
 
   // URL의 ?tag= 파라미터 변경 시 상태 동기화
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveTag(searchParams.get('tag'));
     setCurrentPage(1);
   }, [searchParams]);

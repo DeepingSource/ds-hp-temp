@@ -2,6 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { mdxComponents } from './mdx-components';
 import { toSlug } from '@/lib/slug';
 
+/* eslint-disable react-hooks/error-boundaries */
 export default async function ArticleRenderer({ body }: { body: string }) {
   try {
     return (

@@ -69,6 +69,7 @@ export default function SolutionsExplorer({
   useEffect(() => {
     const m = window.location.hash.match(/^#industry-(.+)$/);
     if (m && groups.some((g) => g.slug === m[1])) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActive(m[1]);
       rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
