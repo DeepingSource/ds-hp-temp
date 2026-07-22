@@ -35,6 +35,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/products/saai-agent',
   '/products/saai-care',
   '/products/saai-ads-insight',
+  '/products/saai-for-owners',
   '/products/store-count',
   '/products/store-queue',
   '/products/store-pop',

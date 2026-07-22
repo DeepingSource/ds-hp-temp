@@ -23,7 +23,7 @@ const productLinks: FLink[] = [
   { href: '/products/saai-agent', label: PN('agent') },
   { href: '/products/functions', label: L('기능 라이브러리', 'Function library', '機能ライブラリ') },
   { href: '/products/store-count', label: L('saai count', 'saai count', 'saai count') },
-  { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store') },
+  { href: '/products/saai-for-owners', label: L('사장님 전용 SAAI 모음', 'SAAI for Store Owners', 'オーナー専用 SAAI 集') },
   { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai') },
 ];
 

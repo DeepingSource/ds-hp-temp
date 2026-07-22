@@ -4,19 +4,21 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import { stripLocale, localeHref, homeCopy, type Locale } from '@/lib/i18n';
-import { productPrimary, type ProductKey } from '@/lib/brand-canon';
+import { ChevronDown, ArrowRight } from 'lucide-react';
+
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
-import LocaleSwitcher from './LocaleSwitcher';
+import LocaleSwitcher from '@/components/layout/LocaleSwitcher';
+import { productPrimary, type ProductKey } from '@/lib/brand-canon';
+import { localeHref, stripLocale, type Locale, homeCopy } from '@/lib/i18n';
 
 type Tri = Record<Locale, string>;
 const L = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
-/** Product label from the naming SOT (locale-invariant lowercase). */
+
 const PN = (k: ProductKey): Tri => {
   const n = productPrimary(k);
   return L(n, n, n);
 };
+
 type NavLeaf =
   | { header: Tri }
   | { href: string; label: Tri; desc?: Tri; external?: boolean };
@@ -27,17 +29,17 @@ type NavItem =
 const NAV: NavItem[] = [
   {
     type: 'menu', key: 'products', label: L('제품', 'Products', '製品'), base: '/products', items: [
-      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('운영 루프 한눈에', 'The operating loop at a glance', 'オペレーションループを一望') },
-      { header: L('엔터프라이즈 — 세 개의 모드', 'Enterprise — the three modes', 'エンタープライズ — 3つのモード') },
+      { href: '/products', label: L('제품 전체', 'All products', '製品一覧'), desc: L('운영 체계 한눈에', 'The operating loop at a glance', 'オペレーションループを一望') },
+      { header: L('SAAI 3대 핵심 모드', 'SAAI 3 Core Modes', 'SAAI 3つのコアモード') },
       { href: '/products/saai-care', label: PN('care'), desc: L('탐지·감지 · 지금 무슨 일이 일어나는가', 'Detect · what is happening now', '検知 · 今、何が起きているか') },
       { href: '/products/saai-insight', label: PN('insight'), desc: L('분석 · 어제까지 무엇이 있었나', 'Analyze · what happened until yesterday', '分析 · 昨日まで何があったか') },
       { href: '/products/saai-agent', label: PN('agent'), desc: L('제안·운영 · 다음에 무엇을 할까', 'Advise · what to do next', '提案・運営 · 次に何をするか') },
-      { header: L('기능 — 세 모드를 가로지른다', 'Functions — they cross all three modes', '機能 — 3つのモードを横断') },
+      { header: L('기능 모듈 & 라인업', 'Modules & Functions', '機能モジュール') },
       { href: '/products/functions', label: L('기능 라이브러리', 'Function library', '機能ライブラリ'), desc: L('count·queue·pop·fit — 4개 기능 × 3모드', 'count·queue·pop·fit — 4 functions × 3 modes', 'count・queue・pop・fit — 4機能 × 3モード') },
-      { href: '/products/store-count', label: L('store count', 'store count', 'store count'), desc: L('방문·재실 인원 — 상권·통행·유입률', 'Footfall & occupancy — trade area, passers-by, capture rate', '来店・滞在人数 — 商圏・通行・流入率') },
-      { header: L('사장님을 위한 — B2C (별도 사이트)', 'For owners — B2C (separate sites)', '店長向け — B2C（別サイト）') },
-      { href: 'https://saai.store', external: true, label: L('saai.store', 'saai.store', 'saai.store'), desc: L('카메라리스 사장님 suite', 'Camera-less owner suite', 'カメラレス店長スイート') },
-      { href: 'https://storecare.ai', external: true, label: L('storecare.ai', 'storecare.ai', 'storecare.ai'), desc: L('사장님용 보안·이상 알림', 'Security & anomaly alerts', '店長向けセキュリティ・異常アラート') },
+      { href: '/products/store-count', label: L('saai count', 'saai count', 'saai count'), desc: L('방문·재실 인원 — 상권·통행·유입률', 'Footfall & occupancy — trade area, passers-by, capture rate', '来店・滞在人数 — 商圏・通行・流入率') },
+      { href: '/products/saai-ads-insight', label: L('saai ads insight', 'saai ads insight', 'saai ads insight'), desc: L('시선 · 주목도 전용 분석', 'Gaze & attention analytics', '視線・注目度分析') },
+      { header: L('소상공인·사장님 전용', 'For Store Owners', '店舗オーナー向け') },
+      { href: '/products/saai-for-owners', label: L('사장님 전용 SAAI 모음', 'SAAI for Store Owners', 'オーナー専用 SAAI 集'), desc: L('카메라리스 운영 & 보안 알림', 'Camera-less & Security Suite', 'カメラレス運営・セキュリティ') },
     ],
   },
   {
@@ -91,7 +93,6 @@ export default function Header() {
   const { locale, path } = stripLocale(pathname);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
-  // reading-progress bar — scroll-linked (user-driven, no autonomous motion)
   const { scrollYProgress } = useScroll();
 
   const handleEnter = useCallback((key: string) => {
@@ -132,224 +133,329 @@ export default function Header() {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    // 라우트 변경 시 열린 메뉴를 닫는다 (외부 시스템=router 와 동기화).
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMenuOpen(false); setOpenKey(null); setMobileOpenKey(null);
   }, [pathname]);
 
   useEffect(() => () => { if (closeTimeout.current) clearTimeout(closeTimeout.current); }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
-        isScrolled
-          ? 'bg-white/90 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.08)] border-b border-gray-100/80'
-          : 'bg-white/60 backdrop-blur-sm'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <Link href={localeHref(locale, '/')} className="flex items-center gap-2 shrink-0">
-          <span className="font-brand text-xl font-bold tracking-wide text-gray-900">DEEPINGSOURCE</span>
-        </Link>
-
-        {/* Desktop nav */}
-        <nav ref={navRef} className="hidden lg:flex items-center gap-0.5" aria-label={L('메인 내비게이션', 'Main navigation', 'メインナビゲーション')[locale]}>
-          {NAV.map((item) => {
-            if (item.type === 'link') {
-              const active = path === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={localeHref(locale, item.href)}
-                  className={`relative isolate px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                    active ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
-                  aria-current={active ? 'page' : undefined}
-                >
-                  {item.label[locale]}
-                  {active && (
-                    <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
-                  )}
-                </Link>
-              );
-            }
-            const active = path.startsWith(item.base);
-            const open = openKey === item.key;
-            return (
-              <div
-                key={item.key}
-                className="relative"
-                onMouseEnter={() => handleEnter(item.key)}
-                onMouseLeave={handleLeave}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenKey(open ? null : item.key)}
-                  className={`relative isolate flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
-                    active || open ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  } ${open ? 'bg-gray-50' : ''}`}
-                  aria-expanded={open}
-                  aria-haspopup="true"
-                >
-                  {item.label[locale]}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-                  {active && (
-                    <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
-                  )}
-                </button>
-                <div
-                  aria-hidden={!open}
-                  inert={!open || undefined}
-                  className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-200 ${
-                    open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
-                  }`}
-                >
-                  <div className="w-64 bg-white rounded-xl border border-gray-100 shadow-lg shadow-gray-200/60 py-2">
-                    {item.items.map((leaf, i) => {
-                      if ('header' in leaf) {
-                        return (
-                          <p key={i} className="px-4 pt-3 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
-                            {leaf.header[locale]}
-                          </p>
-                        );
-                      }
-                      const leafActive = !leaf.external && path === leaf.href;
-                      return (
-                        <Link
-                          key={leaf.href}
-                          href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
-                          {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                          className={`block px-4 py-2.5 text-sm transition-colors ${
-                            leafActive ? 'text-primary bg-primary-lighter font-medium' : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                          }`}
-                          aria-current={leafActive ? 'page' : undefined}
-                        >
-                          <span className="block font-medium">
-                            {leaf.label[locale]}
-                            {leaf.external && <span aria-hidden="true"> ↗</span>}
-                          </span>
-                          {leaf.desc && <span className="block text-xs text-gray-500">{leaf.desc[locale]}</span>}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
-          <LocaleSwitcher />
-          <Link href={localeHref(locale, '/contact')} className="px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors">
-            {homeCopy[locale].ctaPrimary}
-          </Link>
-        </div>
-
-        {/* Mobile button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden p-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
-          aria-label={(isMenuOpen ? L('메뉴 닫기', 'Close menu', 'メニューを閉じる') : L('메뉴 열기', 'Open menu', 'メニューを開く'))[locale]}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {isMenuOpen
-              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
-        </button>
-      </div>
-
-      {/* Reading-progress bar — fills left→right with scroll position */}
-      <motion.div
-        aria-hidden="true"
-        className="absolute top-16 left-0 right-0 h-0.5 origin-left bg-primary"
-        style={{ scaleX: scrollYProgress }}
-      />
-
-      {/* Mobile menu */}
+    <header className="fixed top-0 left-0 right-0 z-40">
       <div
-        className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
-          isMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        className={`relative transition-[background-color,border-color,backdrop-filter] duration-200 border-b ${
+          isScrolled || isMenuOpen || openKey
+            ? 'bg-white/95 backdrop-blur-md border-gray-200/80 shadow-sm'
+            : 'bg-white/80 backdrop-blur-sm border-gray-100'
         }`}
       >
-        <div className="overflow-hidden">
-          <nav
-            id="mobile-menu"
-            className="bg-white/95 backdrop-blur-xl border-t border-gray-100 max-w-6xl mx-auto px-4 py-3 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto"
-            aria-label={L('모바일 내비게이션', 'Mobile navigation', 'モバイルナビゲーション')[locale]}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          {/* Logo */}
+          <Link
+            href={localeHref(locale, '/')}
+            className="flex items-center gap-2 text-xl font-bold text-gray-900 tracking-tight font-display hover:opacity-90 transition-opacity"
           >
+            <span className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white font-mono text-sm font-bold shadow-sm">
+              S
+            </span>
+            <span className="flex items-center">
+              DEEPING<span className="text-primary font-extrabold">SOURCE</span>
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav ref={navRef} className="hidden lg:flex items-center gap-1" aria-label="Main menu">
             {NAV.map((item) => {
               if (item.type === 'link') {
+                const active = path === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={localeHref(locale, item.href)}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-3 py-3 rounded-lg text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
+                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors rounded-lg ${
+                      active ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                    aria-current={active ? 'page' : undefined}
                   >
                     {item.label[locale]}
+                    {active && (
+                      <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
+                    )}
                   </Link>
                 );
               }
-              const open = mobileOpenKey === item.key;
+
+              const open = openKey === item.key;
+              const active = path.startsWith(item.base);
+
               return (
-                <div key={item.key}>
+                <div
+                  key={item.key}
+                  className="relative"
+                  onMouseEnter={() => handleEnter(item.key)}
+                  onMouseLeave={handleLeave}
+                >
                   <button
-                    type="button"
-                    onClick={() => setMobileOpenKey(open ? null : item.key)}
-                    className="flex items-center justify-between w-full px-3 py-3 rounded-lg text-sm font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => setOpenKey(open ? null : item.key)}
+                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium transition-colors rounded-lg cursor-pointer ${
+                      active || open ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    } ${open ? 'bg-gray-50' : ''}`}
                     aria-expanded={open}
+                    aria-haspopup="true"
                   >
                     {item.label[locale]}
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                    {active && (
+                      <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
+                    )}
                   </button>
-                  <div className={`grid transition-[grid-template-rows] duration-200 ease-in-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                    <div className="overflow-hidden">
-                      <div className="pl-3 pr-1 py-1 space-y-0.5">
+
+                  {/* Dropdown / Mega Menu Panel */}
+                  <div
+                    aria-hidden={!open}
+                    inert={!open || undefined}
+                    className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-200 ${
+                      open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
+                    }`}
+                  >
+                    {item.key === 'products' ? (
+                      /* Mega Menu Panel for Products */
+                      <div className="w-[620px] bg-white rounded-2xl border border-gray-200/90 shadow-2xl shadow-gray-900/10 p-6 overflow-hidden">
+                        <div className="grid grid-cols-12 gap-6">
+                          {/* Left Column: SAAI 3 Core Modes */}
+                          <div className="col-span-7 space-y-2">
+                            <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+                              <p className="text-2xs font-bold uppercase tracking-wider text-primary">
+                                {L('SAAI 3대 핵심 모드', 'SAAI 3 Core Modes', 'SAAI 3つのコアモード')[locale]}
+                              </p>
+                              <Link href={localeHref(locale, '/products')} className="text-2xs font-semibold text-gray-500 hover:text-primary transition-colors">
+                                {L('제품 전체 →', 'All products →', 'すべて見る →')[locale]}
+                              </Link>
+                            </div>
+                            <div className="space-y-1.5 pt-1">
+                              <Link
+                                href={localeHref(locale, '/products/saai-care')}
+                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                              >
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">care</span>
+                                <div>
+                                  <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai care</p>
+                                  <p className="text-2xs text-gray-500 leading-normal">{L('지금 · 실시간 이상 감지', 'Detect · live anomaly', '検知 · 今、何が起きているか')[locale]}</p>
+                                </div>
+                              </Link>
+
+                              <Link
+                                href={localeHref(locale, '/products/saai-insight')}
+                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                              >
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">insight</span>
+                                <div>
+                                  <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai insight</p>
+                                  <p className="text-2xs text-gray-500 leading-normal">{L('어제 · 추세 분석', 'Analyze · trend analytics', '分析 · 昨日まで何があったか')[locale]}</p>
+                                </div>
+                              </Link>
+
+                              <Link
+                                href={localeHref(locale, '/products/saai-agent')}
+                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                              >
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">agent</span>
+                                <div>
+                                  <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai agent</p>
+                                  <p className="text-2xs text-gray-500 leading-normal">{L('다음 · 자율 현장 운영 제안', 'Advise · autonomous ops', '提案 · 次に何をするか')[locale]}</p>
+                                </div>
+                              </Link>
+                            </div>
+                          </div>
+
+                          {/* Right Column: Functions & Modules */}
+                          <div className="col-span-5 space-y-2">
+                            <p className="text-2xs font-bold uppercase tracking-wider text-gray-400 pb-2 border-b border-gray-100">
+                              {L('기능 모듈 & 라인업', 'Modules & Functions', '機能モジュール')[locale]}
+                            </p>
+                            <div className="space-y-1 pt-1">
+                              <Link href={localeHref(locale, '/products/functions')} className="block p-2.5 rounded-xl hover:bg-gray-50 transition-colors">
+                                <p className="text-xs font-bold text-gray-900">{L('기능 라이브러리', 'Function library', '機能ライブラリ')[locale]}</p>
+                                <p className="text-2xs text-gray-500">{L('4개 기능 × 3모드', '4 functions × 3 modes', '4機能 × 3モード')[locale]}</p>
+                              </Link>
+                              <Link href={localeHref(locale, '/products/store-count')} className="block p-2.5 rounded-xl hover:bg-gray-50 transition-colors">
+                                <p className="text-xs font-bold text-gray-900">saai count</p>
+                                <p className="text-2xs text-gray-500">{L('유동인구 · 입문 모듈', 'Footfall & entry module', '来店人数・入門')[locale]}</p>
+                              </Link>
+                              <Link href={localeHref(locale, '/products/saai-ads-insight')} className="block p-2.5 rounded-xl hover:bg-gray-50 transition-colors">
+                                <p className="text-xs font-bold text-gray-900">saai ads insight</p>
+                                <p className="text-2xs text-gray-500">{L('시선 · 주목도 전용 분석', 'Gaze & attention', '視線・注目度分析')[locale]}</p>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Banner for Store Owners (B2C) */}
+                        <div className="mt-4 pt-3 border-t border-gray-100">
+                          <Link
+                            href={localeHref(locale, '/products/saai-for-owners')}
+                            className="flex items-center justify-between p-3 rounded-xl bg-slate-900 text-white hover:bg-primary transition-colors group"
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className="flex h-5 w-5 items-center justify-center rounded bg-emerald-500 text-white font-bold text-2xs">B2C</span>
+                              <span className="text-xs font-semibold">{L('소상공인·매장 사장님이신가요? 사장님 전용 서비스 보기', 'For Store Owners · View dedicated owner suite', '店舗オーナー様向けサービスを見る')[locale]}</span>
+                            </div>
+                            <ArrowRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Standard Single Column Dropdown */
+                      <div className="w-64 bg-white rounded-xl border border-gray-100 shadow-lg shadow-gray-200/60 py-2">
                         {item.items.map((leaf, i) => {
                           if ('header' in leaf) {
                             return (
-                              <p key={i} className="px-3 pt-2 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
+                              <p key={i} className="px-4 pt-3 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
                                 {leaf.header[locale]}
                               </p>
                             );
                           }
+                          const leafActive = !leaf.external && path === leaf.href;
                           return (
                             <Link
                               key={leaf.href}
                               href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
                               {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors"
+                              className={`block px-4 py-2.5 text-sm transition-colors ${
+                                leafActive ? 'text-primary bg-primary-lighter font-medium' : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                              }`}
+                              aria-current={leafActive ? 'page' : undefined}
+                            >
+                              <span className="block font-medium">
+                                {leaf.label[locale]}
+                                {leaf.external && <span aria-hidden="true"> ↗</span>}
+                              </span>
+                              {leaf.desc && <span className="block text-xs text-gray-500">{leaf.desc[locale]}</span>}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </nav>
+
+          {/* Right Action */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <LocaleSwitcher />
+            <Link href={localeHref(locale, '/contact')} className="px-5 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors">
+              {homeCopy[locale].ctaPrimary}
+            </Link>
+          </div>
+
+          {/* Mobile button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+            aria-label={(isMenuOpen ? L('메뉴 닫기', 'Close menu', 'メニューを閉じる') : L('메뉴 열기', 'Open menu', 'メニューを開く'))[locale]}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMenuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
+        </div>
+
+        {/* Reading-progress bar */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute top-16 left-0 right-0 h-0.5 origin-left bg-primary"
+          style={{ scaleX: scrollYProgress }}
+        />
+
+        {/* Mobile menu */}
+        <div
+          className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+            isMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+          }`}
+        >
+          <div className="overflow-hidden">
+            <nav
+              id="mobile-menu"
+              className="max-w-7xl mx-auto px-4 sm:px-6 pt-2 pb-6 space-y-1 border-t border-gray-100 bg-white"
+              aria-label="Mobile menu"
+            >
+              {NAV.map((item) => {
+                if (item.type === 'link') {
+                  const active = path === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={localeHref(locale, item.href)}
+                      className={`block px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                        active ? 'text-primary bg-primary-lighter font-semibold' : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {item.label[locale]}
+                    </Link>
+                  );
+                }
+
+                const open = mobileOpenKey === item.key;
+                const active = path.startsWith(item.base);
+
+                return (
+                  <div key={item.key} className="rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => setMobileOpenKey(open ? null : item.key)}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors cursor-pointer ${
+                        active ? 'text-primary font-semibold' : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {item.label[locale]}
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                    </button>
+                    <div className={`grid transition-[grid-template-rows] duration-200 ease-in-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                      <div className="overflow-hidden bg-gray-50/70 rounded-xl my-1">
+                        {item.items.map((leaf, i) => {
+                          if ('header' in leaf) {
+                            return (
+                              <p key={i} className="px-6 pt-3 pb-1 text-2xs font-bold uppercase tracking-wider text-gray-400">
+                                {leaf.header[locale]}
+                              </p>
+                            );
+                          }
+                          const leafActive = !leaf.external && path === leaf.href;
+                          return (
+                            <Link
+                              key={leaf.href}
+                              href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
+                              {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                              className={`block px-6 py-2.5 text-sm transition-colors ${
+                                leafActive ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900'
+                              }`}
+                              aria-current={leafActive ? 'page' : undefined}
                             >
                               {leaf.label[locale]}
-                              {leaf.external && <span aria-hidden="true"> ↗</span>}
                             </Link>
                           );
                         })}
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-            <hr className="border-gray-100 my-1" />
-            <div className="px-3 py-2">
-              <LocaleSwitcher inline />
-            </div>
-            <div className="pt-1 pb-2">
-              <Link
-                href={localeHref(locale, '/contact')}
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full py-3 text-sm font-medium text-white bg-primary rounded-xl hover:bg-primary-dark transition-colors text-center"
-              >
-                {homeCopy[locale].ctaPrimary}
-              </Link>
-            </div>
-          </nav>
+                );
+              })}
+
+              <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
+                <LocaleSwitcher />
+                <Link
+                  href={localeHref(locale, '/contact')}
+                  className="flex-1 text-center px-5 py-3 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors"
+                >
+                  {homeCopy[locale].ctaPrimary}
+                </Link>
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
