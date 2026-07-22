@@ -40,7 +40,7 @@ export const MODE_COPY: Record<Locale, Record<ModeKey, { name: string; mode: str
 /** Function name + one-line definition. The name itself is locale-invariant (lowercase verb). */
 export const FUNCTION_COPY: Record<Locale, Record<FunctionKey, string>> = {
   ko: {
-    count: '유입·재실', queue: '대기·혼잡', pop: '판촉물(POP)', fit: '트렌드 적합',
+    count: '유동인구·유입 카운팅', queue: '대기열·혼잡도 분석', pop: '매장 POP·홍보물 효과', fit: '상품·트렌드 적합도',
   },
   en: {
     count: 'Footfall & occupancy', queue: 'Queues & crowding', pop: 'In-store promotion (POP)', fit: 'Trend fit',
@@ -53,10 +53,10 @@ export const FUNCTION_COPY: Record<Locale, Record<FunctionKey, string>> = {
 /** The 12 cells per locale (4 functions × 3 modes). KO = SOT verbatim; EN/JP reviewed 2026-07-21. */
 export const MATRIX_COPY: Record<Locale, Record<FunctionKey, Record<ModeKey, string>>> = {
   ko: {
-    count:  { care: '지금 재실 인원·혼잡도 감지, 임계 초과 알림', insight: '일·주·월 방문 시계열, 요일·시간대·전년 대비 추세', agent: '방문 예측 기반 인력 배치·영업시간·프로모션 타이밍 제안' },
-    queue:  { care: '대기열·혼잡 임계 초과 실시간 알림', insight: '대기시간 피크·혼잡 주기 분석', agent: '인력 재배치·카운터 증설·셀프 유도 제안' },
-    pop:    { care: '게시된 POP 노출·훼손 상태 감지', insight: 'POP별 주목·전환 효과 분석', agent: 'POP 문구·위치·교체 주기 제안·생성' },
-    fit:    { care: '신상품 초기 반응 이상 감지', insight: '상품·매장의 트렌드 적합도 분석', agent: '발주·상품 구성·바이어 의사결정 제안' },
+    count:  { care: '지금 재실 인원·혼잡도 감지, 임계 초과 실시간 알림', insight: '일·주·월 방문 시계열, 요일·시간대·전년 대비 추세 분석', agent: '방문 예측 기반 인력 배치·영업시간·프로모션 타이밍 제안' },
+    queue:  { care: '대기열 및 혼잡 임계 초과 시 실시간 알림', insight: '대기시간 피크 및 시간대별 혼잡 주기 분석', agent: '인력 재배치·카운터 증설·셀프 계산대 유도 제안' },
+    pop:    { care: '게시된 POP 노출 및 훼손 상태 감지', insight: 'POP별 고객 주목도 및 구매 전환 효과 분석', agent: 'POP 문구·설치 위치·교체 주기 최적화 제안' },
+    fit:    { care: '신상품 초기 반응 이상 및 주목도 감지', insight: '상품 및 매장별 트렌드 적합도 다각도 분석', agent: '발주량·상품 구성 및 바이어 의사결정 가이드 제안' },
   },
   en: {
     count:  { care: 'Live occupancy and crowding, with alerts when a threshold is crossed', insight: 'Daily, weekly and monthly footfall trends by weekday, hour and year over year', agent: 'Staffing, opening hours and promotion timing proposed from forecast demand' },
@@ -82,17 +82,17 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
 }> = {
   ko: {
     eyebrow: '기능 라이브러리',
-    title: '기능은 3모드를 가로지릅니다',
-    sub: '기능은 한 제품에 속하지 않습니다. foot fall이 count가 되면, count는 care·insight·agent 셋 모두에서 쓰입니다.',
-    readingTitle: '읽는 법',
-    reading: '“count 하나가 care로는 실시간 감지, insight로는 추세 분석, agent로는 운영 제안이 된다.” 한 칸은 이렇게 읽습니다 — saai care가 store count를 돌린다.',
-    extensionTitle: '확장은 행 하나',
-    extension: '새 기능이 들어오면 행 하나만 추가하면 됩니다. 세 모드 경험이 자동으로 생기고, 새 제품도 새 이름도 필요 없습니다.',
-    promoted: '예외가 하나 — 시선·주목은 사이니지·전시물이라는 별도 영역이라, 행이 아니라 독립 제품으로 승격했습니다.',
-    countNote: 'count는 기능입니다 — 네 번째 제품이 아닙니다.',
-    cta: '자세히 보기',
-    modeHeading: '세로 — 세 개의 모드',
-    modeSub: '제품은 세 개의 모드입니다. 같은 기능을 어떤 시간축·목적으로 통과시키는가가 제품을 가릅니다.',
+    title: '하나의 기능이 3가지 모드로 확장됩니다',
+    sub: '기능은 개별 제품에 갇히지 않습니다. 유동인구 카운팅(count) 하나만으로도 감지(Care), 분석(Insight), 실행(Agent) 3개 모드 전체에서 활용됩니다.',
+    readingTitle: '매트릭스 읽는 법',
+    reading: '“유동인구 분석 기능 하나가 saai care에서는 실시간 감지, saai insight에서는 추세 분석, saai agent에서는 인력/영업시간 추천으로 작동합니다.”',
+    extensionTitle: '쉽고 유연한 확장성',
+    extension: '새로운 분석 기능이 추가되면 별도 제품을 구매할 필요 없이 3가지 모드(감지·분석·실행) 경험이 자동으로 확장 적용됩니다.',
+    promoted: '시선·주목도 분석 등 특정 영역은 독립적인 전문 제품(saai ads insight)으로 제공됩니다.',
+    countNote: '유동인구·유입 카운팅(saai count)은 독립 제품을 넘어 모든 모드를 지원하는 핵심 기능입니다.',
+    cta: '모드별 자세히 보기',
+    modeHeading: '세로축 — SAAI의 3가지 핵심 모드',
+    modeSub: '동일한 기능이라도 시간축과 목적에 따라 어떤 모드를 적용하느냐에 따라 매장 운영 방식이 달라집니다.',
   },
   en: {
     eyebrow: 'Function library',

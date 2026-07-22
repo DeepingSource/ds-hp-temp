@@ -106,7 +106,7 @@ export default function FunctionsView({ locale }: { locale: Locale }) {
                   href={localeHref(locale, FUNCTION_LINKS[fn]!)}
                   className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline"
                 >
-                  store {fn}
+                  saai {fn}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </li>

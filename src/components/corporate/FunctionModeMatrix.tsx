@@ -50,9 +50,9 @@ export function FunctionModeColumn({ mode, locale }: { mode: ModeKey; locale: Lo
     <ul className="grid gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 sm:grid-cols-2">
       {FUNCTION_ORDER.map((fn) => (
         <li key={fn} className="bg-white p-5">
-          <p className="font-mono text-sm font-bold text-gray-900">
-            store {fn}
-            <span className="ml-2 font-sans text-2xs font-medium text-gray-400">{fnCopy[fn]}</span>
+          <p className="text-sm font-bold text-gray-900">
+            {fnCopy[fn]}
+            <span className="ml-2 font-mono text-xs font-normal text-gray-400">saai {fn}</span>
           </p>
           <p className="mt-2 text-sm leading-relaxed text-gray-600 break-keep">{cells[fn][mode]}</p>
         </li>
@@ -65,8 +65,8 @@ export function FunctionModeColumn({ mode, locale }: { mode: ModeKey; locale: Lo
 export const MODE_COLUMN_COPY: Record<Locale, { eyebrow: string; title: (mode: string) => string; sub: string; cta: string }> = {
   ko: {
     eyebrow: '기능 × 이 모드',
-    title: (m) => `${m}는 네 개의 기능을 이렇게 통과시킵니다`,
-    sub: '기능은 한 제품의 것이 아닙니다. 같은 기능을 이 모드가 어떤 시간축·목적으로 읽는지가 이 제품입니다.',
+    title: (m) => `${m} 모드는 4가지 주요 기능을 이렇게 실행합니다`,
+    sub: '기능은 개별 제품에 종속되지 않습니다. 동일한 기능이라도 이 모드가 어떤 목적과 시간축으로 읽어내는지에 따라 기능의 성격이 결정됩니다.',
     cta: '기능 라이브러리 전체 보기',
   },
   en: {
@@ -102,7 +102,7 @@ export default function FunctionModeMatrix({
         <thead>
           <tr className="border-b-2 border-gray-200">
             <th scope="col" className="py-4 pr-4 align-bottom text-sm font-bold text-gray-900">
-              {locale === 'ko' ? '기능' : locale === 'jp' ? '機能' : 'Function'}
+              {locale === 'ko' ? '기능 (Function)' : locale === 'jp' ? '機能 (Function)' : 'Function'}
             </th>
             {MODE_ORDER.map((m) => (
               <th key={m} scope="col" className="py-4 px-4 align-bottom">
@@ -121,8 +121,8 @@ export default function FunctionModeMatrix({
               className={`border-b border-gray-100 align-top ${highlight === fn ? 'bg-primary/5' : ''}`}
             >
               <th scope="row" className="py-4 pr-4 text-left">
-                <span className="block font-mono text-sm font-bold text-gray-900">{fn}</span>
-                <span className="block text-2xs text-gray-400 break-keep">{fnCopy[fn]}</span>
+                <span className="block text-sm font-bold text-gray-900 break-keep">{fnCopy[fn]}</span>
+                <span className="block font-mono text-2xs font-normal text-gray-400">saai {fn}</span>
               </th>
               {MODE_ORDER.map((m) => (
                 <td key={m} className="py-4 px-4 text-sm leading-relaxed text-gray-600 break-keep">
