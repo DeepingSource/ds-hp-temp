@@ -30,9 +30,11 @@ const mainSiteRedirects: Record<string, string> = {
 /** Base paths with fully-translated physical /ko·/jp routes (Tier-1). Not rewritten. */
 const TRANSLATED_PATHS = new Set<string>([
   '/products',
+  '/products/functions',
   '/products/saai-insight',
   '/products/saai-agent',
   '/products/saai-care',
+  '/products/saai-ads-insight',
   '/products/store-count',
   '/products/store-queue',
   '/products/store-pop',
