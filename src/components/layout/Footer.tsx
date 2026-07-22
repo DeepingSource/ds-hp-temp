@@ -28,6 +28,7 @@ const productLinks: FLink[] = [
 ];
 
 const techLinks: FLink[] = [
+  { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI') },
   { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer') },
   { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL') },
   { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI') },

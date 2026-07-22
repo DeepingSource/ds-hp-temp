@@ -26,6 +26,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/products/saai-care', priority: 0.7, freq: 'monthly' },
   { path: '/products/saai', priority: 0.7, freq: 'monthly' },
   { path: '/technology', priority: 0.8, freq: 'monthly' },
+  { path: '/technology/agentic-ai', priority: 0.8, freq: 'monthly' },
   { path: '/technology/anonymizer', priority: 0.7, freq: 'monthly' },
   { path: '/technology/seal', priority: 0.7, freq: 'monthly' },
   { path: '/technology/spatial-ai', priority: 0.7, freq: 'monthly' },

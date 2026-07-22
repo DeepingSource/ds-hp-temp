@@ -43,6 +43,7 @@ const NAV: NavItem[] = [
   {
     type: 'menu', key: 'technology', label: L('기술', 'Technology', '技術'), base: '/technology', items: [
       { href: '/technology', label: L('기술 개요', 'Overview', '技術概要'), desc: L('프라이버시 AI', 'Privacy AI', 'プライバシーAI') },
+      { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
       { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer'), desc: L('익명화 모듈', 'Anonymization', '匿名化モジュール') },
       { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('SDK', 'SDK', 'SDK') },
       { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI'), desc: L('MTMC', 'MTMC', 'MTMC') },

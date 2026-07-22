@@ -41,6 +41,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/products/store-fit',
   '/products/saai',
   '/technology',
+  '/technology/agentic-ai',
   '/technology/anonymizer',
   '/technology/seal',
   '/technology/spatial-ai',

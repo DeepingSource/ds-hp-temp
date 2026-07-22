@@ -8,7 +8,7 @@ import LoopVideo from '@/components/ui/LoopVideo';
 import IntegratedLoopDiagram from '@/components/mockups/IntegratedLoopDiagram';
 import {
   Fingerprint, Grid3x3, Shield, ArrowRight,
-  CheckCircle2, AlertCircle, Zap,
+  CheckCircle2, AlertCircle, Zap, BrainCircuit,
 } from 'lucide-react';
 import { PRIVACY_COPY } from '@/data/mockup-scenarios/technology';
 import { COMPANY } from '@/lib/company-data';
@@ -79,14 +79,14 @@ type Copy = {
   ctaSecondary: string;
 };
 
-// stack CMS는 3개 기술 축(anonymizer·spatial·agentic) 순서. href/icon을 축과 정합.
-// agentic 전용 페이지가 없어 Vision Models(튜닝된 AI 모델 카탈로그)로 연결.
+// stack CMS는 4개 기술 축(agentic · anonymizer · spatial · models) 순서. href/icon을 축과 정합.
 const stackHrefs = [
+  '/technology/agentic-ai',
   '/technology/anonymizer',
   '/technology/spatial-ai',
   '/technology/models',
 ];
-const stackIcons = [Fingerprint, Grid3x3, Zap];
+const stackIcons = [BrainCircuit, Fingerprint, Grid3x3, Zap];
 const poweredHrefs = [
   '/products/store-count',
   '/products/saai-insight',
