@@ -96,16 +96,18 @@ export default function MockupViewport({
 
   return (
     <div ref={outerRef} className={`relative w-full ${className}`}>
-      {/* 자리 예약 — 고정비 캔버스는 aspect-ratio(CLS 0), card는 측정 높이 × scale */}
+      {/* 자리 예약 — 고정비 캔버스는 aspect-ratio(CLS 0), card는 측정 높이 × scale.
+          maxWidth 캡: scale이 maxScale로 캡될 때 예약 박스도 함께 캡해야
+          컨테이너가 캔버스보다 넓을 때 하단·우측 여백이 생기지 않는다. */}
       <div
         style={
           canvas.h != null
-            ? { aspectRatio: `${canvas.w} / ${canvas.h}` }
+            ? { aspectRatio: `${canvas.w} / ${canvas.h}`, maxWidth: canvas.w * maxScale }
             : contentH != null
-              ? { height: contentH * scale }
-              : undefined
+              ? { height: contentH * scale, maxWidth: canvas.w * maxScale }
+              : { maxWidth: canvas.w * maxScale }
         }
-        className={canvas.h == null && contentH == null ? undefined : 'overflow-hidden'}
+        className={`mx-auto ${canvas.h == null && contentH == null ? '' : 'overflow-hidden'}`}
       >
         <div
           ref={contentRef}
