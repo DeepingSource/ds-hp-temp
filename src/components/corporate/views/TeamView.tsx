@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Users, ShieldCheck, HeartHandshake, Zap, Quote } from 'lucide-react';
+import { ArrowRight, Users, ShieldCheck, HeartHandshake, Zap, Quote, Sparkles, Award } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -16,7 +16,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 const GROUPS: { key: TeamGroup | 'All'; labelKo: string; labelEn: string; labelJp: string }[] = [
-  { key: 'All', labelKo: '전체 보기', labelEn: 'All People', labelJp: 'すべて' },
+  { key: 'All', labelKo: '전체 팀원', labelEn: 'All People', labelJp: 'すべて' },
   { key: 'Leadership', labelKo: '리더십', labelEn: 'Leadership', labelJp: 'リーダーシップ' },
   { key: 'Research & AI', labelKo: 'AI & 연구', labelEn: 'Research & AI', labelJp: 'AI & 研究' },
   { key: 'Engineering', labelKo: '엔지니어링', labelEn: 'Engineering', labelJp: 'エンジニアリング' },
@@ -72,21 +72,22 @@ export default function TeamView({ locale }: { locale: Locale }) {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* ── Beat 1 — Hero ── */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-slate-900 text-white noise-overlay overflow-hidden">
+      {/* ── Beat 1 — Hero (Dark Noise & Glassmorphism) ── */}
+      <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-slate-950 text-white noise-overlay overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-slate-950/80 pointer-events-none" />
         <Container className="relative z-10">
           <Breadcrumb items={[{ name: crumb('team', locale), path: '/company/team' }]} locale={locale} tone="dark" className="mb-6" />
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+          <div className="max-w-4xl">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-bold uppercase tracking-wider text-primary-light mb-6">
               <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
               {locale === 'ko' ? '딥핑소스 사람들 · People' : locale === 'jp' ? 'DEEPINGSOURCE の人々 · People' : 'DeepingSource People'}
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight font-display break-keep mb-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight font-display break-keep mb-8">
               <WordRise text={locale === 'ko' ? '물리적 공간을 다시 만드는 사람들.' : locale === 'jp' ? '物理的空間を再構築する人々。' : 'Reinventing physical space.'} />
             </h1>
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed break-keep max-w-2xl">
+            <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed break-keep max-w-3xl font-light">
               {locale === 'ko'
-                ? 'AI 연구자, 소프트웨어 엔지니어, 리테일 전문가, 데이터 분석가가 모여 오프라인 공간의 무한한 가능성을 현실로 바꿉니다.'
+                ? 'AI 연구자, 소프트웨어 엔지니어, 리테일 전문가, 데이터 분석가가 모여 오프라인 공간의 무한한 가능성을 데이터와 지능으로 바꿉니다.'
                 : locale === 'jp'
                 ? 'AI研究者、ソフトウェアエンジニア、リテール専門家、データアナリストが集まり、空間の無限の可能性を現実へと変えます。'
                 : 'AI researchers, software engineers, retail experts, and data analysts coming together to transform physical spaces.'}
@@ -95,39 +96,42 @@ export default function TeamView({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      {/* ── Beat 2 — Leadership (Large Ambassador Cards) ── */}
-      <Section variant="default" pad="default">
+      {/* ── Beat 2 — Leadership Glassmorphism Bento Grid ── */}
+      <Section variant="dark" pad="default" className="border-t border-slate-800">
         <Container>
-          <div className="mb-12 max-w-2xl">
-            <Eyebrow className="mb-2">LEADERSHIP</Eyebrow>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep">
+          <div className="mb-14 max-w-3xl">
+            <Eyebrow className="mb-2 text-primary-light">LEADERSHIP BENTO GRID</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-display break-keep mb-3">
               {locale === 'ko' ? '비전과 이노베이션을 이끄는 리더십' : locale === 'jp' ? 'ビジョンとイノベーションを導くリーダーシップ' : 'Leadership driving vision & innovation'}
             </h2>
+            <p className="text-base sm:text-lg text-slate-400">
+              {locale === 'ko' ? '세계 최고 수준의 프라이버시 공간 AI 기술을 현실로 구현하는 딥핑소스 리더들입니다.' : locale === 'jp' ? '世界最高水準の空間AIを現実へと実装するリーダーです。' : 'Leaders making privacy spatial AI real at scale.'}
+            </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {leaderships.map((m) => (
-              <MemberCard key={m.id} member={m} locale={locale} isHeroCard={true} />
+              <LeadershipBentoCard key={m.id} member={m} locale={locale} />
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* ── Beat 3 — People Gallery (Interactive Filter with Bold Large Cards) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50 border-y border-gray-100">
+      {/* ── Beat 3 — People Gallery (Interactive Filter & Bold Cards) ── */}
+      <AnimatedSection className="py-24 lg:py-32 bg-gray-50 border-y border-gray-200">
         <Container>
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <Eyebrow className="mb-2 justify-center">THE PEOPLE</Eyebrow>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <Eyebrow className="mb-2 justify-center">THE PEOPLE GALLERY</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-display break-keep mb-4">
               {locale === 'ko' ? '딥핑소스의 멋진 팀원들을 만나보세요' : locale === 'jp' ? 'DEEPINGSOURCE の素晴らしいチームメンバー' : 'Meet the team behind SAAI'}
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 break-keep">
+            <p className="text-base sm:text-xl text-gray-600 break-keep">
               {locale === 'ko' ? '각자의 영역에서 최고 수준의 몰입으로 오프라인 공간의 가치를 혁신합니다.' : locale === 'jp' ? 'それぞれの領域で最高レベルの熱量を持って空間の価値を革新します。' : 'Innovating physical space with deep expertise across engineering, research, and product.'}
             </p>
           </div>
 
           {/* Abstract Group Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-14">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
             {GROUPS.map((g) => {
               const active = selectedGroup === g.key;
               const count = g.key === 'All' ? TEAM_MEMBERS.length : TEAM_MEMBERS.filter((m) => m.group === g.key).length;
@@ -135,14 +139,14 @@ export default function TeamView({ locale }: { locale: Locale }) {
                 <button
                   key={g.key}
                   onClick={() => setSelectedGroup(g.key)}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                  className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-2.5 ${
                     active
-                      ? 'bg-slate-900 text-white shadow-md'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100'
+                      ? 'bg-slate-900 text-white shadow-xl scale-105'
+                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300'
                   }`}
                 >
                   <span>{locale === 'ko' ? g.labelKo : locale === 'jp' ? g.labelJp : g.labelEn}</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600'}`}>
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${active ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'}`}>
                     {count}
                   </span>
                 </button>
@@ -151,7 +155,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
           </div>
 
           {/* Grid of Bold Large Team Member Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {filteredMembers.map((m) => (
               <MemberCard key={m.id} member={m} locale={locale} />
             ))}
@@ -162,9 +166,9 @@ export default function TeamView({ locale }: { locale: Locale }) {
       {/* ── Beat 4 — Culture & Principles ── */}
       <Section variant="default">
         <Container>
-          <div className="mb-12 text-center max-w-2xl mx-auto">
+          <div className="mb-14 text-center max-w-2xl mx-auto">
             <Eyebrow className="mb-2 justify-center">OUR CULTURE</Eyebrow>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-display break-keep">
               {locale === 'ko' ? '딥핑소스가 일하는 문화' : locale === 'jp' ? 'DEEPINGSOURCE の働く文化' : 'How we work together'}
             </h2>
           </div>
@@ -173,14 +177,14 @@ export default function TeamView({ locale }: { locale: Locale }) {
             {CULTURE_ITEMS.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="p-8 rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div key={i} className="p-8 sm:p-10 rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
                   <div className="w-14 h-14 rounded-2xl bg-primary-lighter flex items-center justify-center mb-6 text-primary">
                     <Icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 break-keep">
                     {locale === 'ko' ? item.titleKo : locale === 'jp' ? item.titleJp : item.titleEn}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed break-keep">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep">
                     {locale === 'ko' ? item.descKo : locale === 'jp' ? item.descJp : item.descEn}
                   </p>
                 </div>
@@ -191,7 +195,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
       </Section>
 
       {/* ── Beat 5 — Join Us / Career CTA ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-950 text-white noise-overlay">
         <Container className="text-center max-w-3xl">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
             <Users className="w-3.5 h-3.5" />
@@ -222,38 +226,66 @@ export default function TeamView({ locale }: { locale: Locale }) {
   );
 }
 
-/** Bold & Large Individual Team Member Card with Outline Character Illustration */
-function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; locale: Locale; isHeroCard?: boolean }) {
+/** Glassmorphism Bento Card for Leadership Members */
+function LeadershipBentoCard({ member: m, locale }: { member: TeamMember; locale: Locale }) {
   const name = locale === 'en' ? m.nameEn : m.nameKo;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
   const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
   const groupLabel = locale === 'ko' ? GROUP_KO_MAP[m.group] : m.group;
 
   return (
-    <div
-      className={`p-7 sm:p-8 rounded-3xl border bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-card hover:border-primary-light/60 ${
-        isHeroCard ? 'border-primary/30 bg-gradient-to-b from-white via-primary/5 to-slate-50 shadow-md' : 'border-gray-200'
-      }`}
-    >
+    <div className="p-8 rounded-3xl border border-white/10 bg-slate-900/80 backdrop-blur-md shadow-2xl hover:border-primary-light/50 hover:bg-slate-900 transition-all duration-300 group flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-primary/40 bg-slate-800 shadow-xl relative group-hover:scale-105 transition-transform duration-300">
+            <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
+          </div>
+          <span className="px-3 py-1 rounded-full text-2xs font-bold uppercase tracking-wider bg-primary/20 border border-primary/30 text-primary-light">
+            LEADERSHIP
+          </span>
+        </div>
+
+        <h3 className="text-2xl font-bold text-white mb-1 font-display group-hover:text-primary-light transition-colors">{name}</h3>
+        <p className="text-sm font-bold text-primary mb-1 break-keep">{role}</p>
+        <p className="text-xs font-semibold text-slate-400 mb-6">{m.nameEn}</p>
+
+        <div className="p-5 rounded-2xl bg-white/5 border border-white/10 text-sm text-slate-200 leading-relaxed font-medium break-keep mb-6">
+          <Quote className="w-4 h-4 text-primary-light/40 mb-2" />
+          <p>"{quote}"</p>
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-white/10 flex items-center justify-between text-2xs font-bold text-slate-400 uppercase tracking-wider">
+        <span>{groupLabel}</span>
+        <span className="text-primary-light">DEEPINGSOURCE</span>
+      </div>
+    </div>
+  );
+}
+
+/** Bold & Large Individual Team Member Card */
+function MemberCard({ member: m, locale }: { member: TeamMember; locale: Locale }) {
+  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
+  const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
+  const groupLabel = locale === 'ko' ? GROUP_KO_MAP[m.group] : m.group;
+
+  return (
+    <div className="p-8 rounded-3xl border border-gray-200 bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-card hover:border-primary/50 group">
       <div>
         {/* Large Character Avatar Frame */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6 text-center sm:text-left">
           <div className="relative shrink-0">
-            <div className={`${isHeroCard ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-24 h-24 sm:w-28 sm:h-28'} rounded-3xl overflow-hidden border-2 border-gray-900 bg-slate-50 shadow-md relative transition-transform duration-300 hover:scale-105`}>
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden border-2 border-slate-900 bg-slate-50 shadow-lg relative group-hover:scale-105 transition-transform duration-300">
               <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
             </div>
           </div>
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-center sm:justify-start gap-2 mb-1 flex-wrap">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-display">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-display group-hover:text-primary transition-colors">
                 {name}
               </h3>
-              {m.isLeadership && (
-                <span className="px-2.5 py-0.5 rounded-full text-2xs font-bold uppercase bg-primary text-white shrink-0">
-                  {locale === 'ko' ? '리더십' : locale === 'jp' ? 'リード' : 'Lead'}
-                </span>
-              )}
             </div>
             <p className="text-sm sm:text-base font-bold text-primary mb-1 break-keep">{role}</p>
             <p className="text-xs font-semibold text-gray-400">{m.nameEn}</p>
@@ -261,14 +293,14 @@ function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; loc
         </div>
 
         {/* Large Highlighted Quote Speech Bubble */}
-        <div className="relative p-5 sm:p-6 rounded-2xl bg-slate-50 border border-gray-150 text-sm sm:text-base text-slate-800 leading-relaxed font-medium break-keep mb-4">
-          <Quote className="w-4 h-4 text-primary/30 absolute top-4 right-4" />
+        <div className="relative p-5 sm:p-6 rounded-2xl bg-slate-50 border border-gray-200 text-sm sm:text-base text-slate-800 leading-relaxed font-medium break-keep mb-6 shadow-inner">
+          <Quote className="w-4 h-4 text-primary/40 absolute top-4 right-4" />
           <p className="pr-4 text-slate-800">"{quote}"</p>
         </div>
       </div>
 
-      <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400 font-bold">
-        <span className="px-3 py-1 rounded-lg bg-gray-100 text-gray-600 uppercase tracking-wider">{groupLabel}</span>
+      <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400 font-bold">
+        <span className="px-3 py-1 rounded-xl bg-gray-100 text-gray-700 uppercase tracking-wider">{groupLabel}</span>
         <span className="text-primary font-semibold">SAAI TEAM</span>
       </div>
     </div>
