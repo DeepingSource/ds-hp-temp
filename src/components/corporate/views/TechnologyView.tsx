@@ -79,14 +79,14 @@ type Copy = {
   ctaSecondary: string;
 };
 
-// stack CMS는 4개 기술 축(agentic · anonymizer · spatial · models) 순서. href/icon을 축과 정합.
+// stack CMS는 3대 핵심 기술 축(Anonymizer · Spatial AI · Agentic AI) + 부차적 SDK(SEAL) 순서.
 const stackHrefs = [
-  '/technology/agentic-ai',
   '/technology/anonymizer',
   '/technology/spatial-ai',
-  '/technology/models',
+  '/technology/agentic-ai',
+  '/technology/seal',
 ];
-const stackIcons = [BrainCircuit, Fingerprint, Grid3x3, Zap];
+const stackIcons = [Fingerprint, Grid3x3, BrainCircuit, Shield];
 const poweredHrefs = [
   '/products/store-count',
   '/products/saai-insight',

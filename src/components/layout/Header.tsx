@@ -45,11 +45,13 @@ const NAV: NavItem[] = [
   },
   {
     type: 'menu', key: 'technology', label: L('기술', 'Technology', '技術'), base: '/technology', items: [
-      { href: '/technology', label: L('기술 개요', 'Overview', '技術概要'), desc: L('프라이버시 AI', 'Privacy AI', 'プライバシーAI') },
-      { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
-      { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer'), desc: L('익명화 모듈', 'Anonymization', '匿名化モジュール') },
-      { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('SDK', 'SDK', 'SDK') },
-      { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI'), desc: L('MTMC', 'MTMC', 'MTMC') },
+      { href: '/technology', label: L('기술 개요', 'Overview', '技術概要'), desc: L('프라이버시 공간 AI', 'Privacy Spatial AI', 'プライバシー空間AI') },
+      { header: L('3대 핵심 기술 파이프라인', '3 Core Tech Pipeline', '3大コア技術パイプライン') },
+      { href: '/technology/anonymizer', label: L('1. Anonymizer', '1. Anonymizer', '1. Anonymizer'), desc: L('원천 익명화 모듈', 'Source Anonymization', '元本匿名化モジュール') },
+      { href: '/technology/spatial-ai', label: L('2. Spatial AI', '2. Spatial AI', '2. Spatial AI'), desc: L('MTMC 3D 공간 인지', 'MTMC 3D Trajectory Sensing', 'MTMC 3D空間動線認識') },
+      { href: '/technology/agentic-ai', label: L('3. Agentic AI', '3. Agentic AI', '3. Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
+      { header: L('부차적 지원 모듈', 'Supporting Tech Modules', '補助技術モジュール') },
+      { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('Edge SDK', 'Edge SDK', 'Edge SDK') },
       { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('모델 카탈로그', 'Model catalog', 'モデルカタログ') },
     ],
   },

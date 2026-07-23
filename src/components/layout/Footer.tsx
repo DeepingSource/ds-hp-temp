@@ -28,10 +28,10 @@ const productLinks: FLink[] = [
 ];
 
 const techLinks: FLink[] = [
-  { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI') },
-  { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer') },
-  { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL') },
-  { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI') },
+  { href: '/technology/anonymizer', label: L('1. Anonymizer', '1. Anonymizer', '1. Anonymizer') },
+  { href: '/technology/spatial-ai', label: L('2. Spatial AI', '2. Spatial AI', '2. Spatial AI') },
+  { href: '/technology/agentic-ai', label: L('3. Agentic AI', '3. Agentic AI', '3. Agentic AI') },
+  { href: '/technology/seal', label: L('SEAL (SDK)', 'SEAL', 'SEAL') },
   { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models') },
 ];
 
