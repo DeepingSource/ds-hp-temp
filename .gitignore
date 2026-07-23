@@ -44,6 +44,9 @@ new-images/
 /pop/
 _frames_tmp/
 asset-prompts/
+# avatar generation intermediates (53MB of 1024px PNGs + pilot/contact sheets).
+# Shipped output is public/images/team/*.webp — regenerate via scripts/generate-brand-avatars.mjs.
+public/images/team-v2/
 # team avatar source material — real staff photos, kept local (privacy), not in repo
 /person-raw/
 public/images/team/_to_delete/
