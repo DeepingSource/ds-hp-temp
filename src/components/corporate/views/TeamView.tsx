@@ -73,7 +73,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
   return (
     <div className="bg-white min-h-screen">
       {/* ── Beat 1 — Hero ── */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-20 bg-slate-900 text-white noise-overlay overflow-hidden">
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-slate-900 text-white noise-overlay overflow-hidden">
         <Container className="relative z-10">
           <Breadcrumb items={[{ name: crumb('team', locale), path: '/company/team' }]} locale={locale} tone="dark" className="mb-6" />
           <div className="max-w-3xl">
@@ -95,7 +95,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      {/* ── Beat 2 — Leadership ── */}
+      {/* ── Beat 2 — Leadership (Large Ambassador Cards) ── */}
       <Section variant="default" pad="default">
         <Container>
           <div className="mb-12 max-w-2xl">
@@ -105,7 +105,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {leaderships.map((m) => (
               <MemberCard key={m.id} member={m} locale={locale} isHeroCard={true} />
             ))}
@@ -113,21 +113,21 @@ export default function TeamView({ locale }: { locale: Locale }) {
         </Container>
       </Section>
 
-      {/* ── Beat 3 — People Gallery (Interactive Filter) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-y border-gray-100">
+      {/* ── Beat 3 — People Gallery (Interactive Filter with Bold Large Cards) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-gray-50 border-y border-gray-100">
         <Container>
-          <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <Eyebrow className="mb-2 justify-center">THE PEOPLE</Eyebrow>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-3">
               {locale === 'ko' ? '딥핑소스의 멋진 팀원들을 만나보세요' : locale === 'jp' ? 'DEEPINGSOURCE の素晴らしいチームメンバー' : 'Meet the team behind SAAI'}
             </h2>
-            <p className="text-base text-gray-600 break-keep">
+            <p className="text-base sm:text-lg text-gray-600 break-keep">
               {locale === 'ko' ? '각자의 영역에서 최고 수준의 몰입으로 오프라인 공간의 가치를 혁신합니다.' : locale === 'jp' ? 'それぞれの領域で最高レベルの熱量を持って空間の価値を革新します。' : 'Innovating physical space with deep expertise across engineering, research, and product.'}
             </p>
           </div>
 
           {/* Abstract Group Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-14">
             {GROUPS.map((g) => {
               const active = selectedGroup === g.key;
               const count = g.key === 'All' ? TEAM_MEMBERS.length : TEAM_MEMBERS.filter((m) => m.group === g.key).length;
@@ -135,14 +135,14 @@ export default function TeamView({ locale }: { locale: Locale }) {
                 <button
                   key={g.key}
                   onClick={() => setSelectedGroup(g.key)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
                     active
                       ? 'bg-slate-900 text-white shadow-md'
-                      : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-100'
+                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100'
                   }`}
                 >
                   <span>{locale === 'ko' ? g.labelKo : locale === 'jp' ? g.labelJp : g.labelEn}</span>
-                  <span className={`px-1.5 py-0.5 rounded-full text-2xs ${active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'}`}>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600'}`}>
                     {count}
                   </span>
                 </button>
@@ -150,8 +150,8 @@ export default function TeamView({ locale }: { locale: Locale }) {
             })}
           </div>
 
-          {/* Grid of Team Members with Quotes */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Grid of Bold Large Team Member Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredMembers.map((m) => (
               <MemberCard key={m.id} member={m} locale={locale} />
             ))}
@@ -173,9 +173,9 @@ export default function TeamView({ locale }: { locale: Locale }) {
             {CULTURE_ITEMS.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="p-8 rounded-3xl border border-gray-200 bg-white">
-                  <div className="w-12 h-12 rounded-2xl bg-primary-lighter flex items-center justify-center mb-6 text-primary">
-                    <Icon className="w-6 h-6" />
+                <div key={i} className="p-8 rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-primary-lighter flex items-center justify-center mb-6 text-primary">
+                    <Icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 break-keep">
                     {locale === 'ko' ? item.titleKo : locale === 'jp' ? item.titleJp : item.titleEn}
@@ -222,7 +222,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
   );
 }
 
-/** Individual Team Member Card with Localized Role & Quote */
+/** Bold & Large Individual Team Member Card with Outline Character Illustration */
 function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; locale: Locale; isHeroCard?: boolean }) {
   const name = locale === 'en' ? m.nameEn : m.nameKo;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
@@ -231,51 +231,45 @@ function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; loc
 
   return (
     <div
-      className={`p-6 rounded-3xl border bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-card hover:border-primary-light/50 ${
-        isHeroCard ? 'border-primary/20 bg-gradient-to-b from-white to-primary/5' : 'border-gray-200'
+      className={`p-7 sm:p-8 rounded-3xl border bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-card hover:border-primary-light/60 ${
+        isHeroCard ? 'border-primary/30 bg-gradient-to-b from-white via-primary/5 to-slate-50 shadow-md' : 'border-gray-200'
       }`}
     >
       <div>
-        {/* Avatar & Header Info */}
-        <div className="flex items-center gap-3.5 mb-4">
+        {/* Large Character Avatar Frame */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6 text-center sm:text-left">
           <div className="relative shrink-0">
-            {m.avatarUrl ? (
-              <div className="w-13 h-13 rounded-2xl overflow-hidden border border-gray-200 shadow-sm relative">
-                <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
-              </div>
-            ) : (
-              <div
-                className={`w-13 h-13 rounded-2xl ${
-                  m.avatarColor ?? 'bg-gradient-to-br from-slate-800 to-gray-900 text-white'
-                } flex items-center justify-center font-bold text-base shadow-sm border border-white/20`}
-              >
-                {m.nameKo.slice(0, 1)}
-              </div>
-            )}
+            <div className={`${isHeroCard ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-24 h-24 sm:w-28 sm:h-28'} rounded-3xl overflow-hidden border-2 border-gray-900 bg-slate-50 shadow-md relative transition-transform duration-300 hover:scale-105`}>
+              <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
+            </div>
           </div>
-          <div className="min-w-0">
-            <h3 className="text-base font-bold text-gray-900 flex items-center gap-2 truncate">
-              <span>{name}</span>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-center sm:justify-start gap-2 mb-1 flex-wrap">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 font-display">
+                {name}
+              </h3>
               {m.isLeadership && (
-                <span className="px-2 py-0.5 rounded text-2xs font-bold uppercase bg-primary/10 text-primary shrink-0">
+                <span className="px-2.5 py-0.5 rounded-full text-2xs font-bold uppercase bg-primary text-white shrink-0">
                   {locale === 'ko' ? '리더십' : locale === 'jp' ? 'リード' : 'Lead'}
                 </span>
               )}
-            </h3>
-            <p className="text-xs font-semibold text-primary truncate">{role}</p>
+            </div>
+            <p className="text-sm sm:text-base font-bold text-primary mb-1 break-keep">{role}</p>
+            <p className="text-xs font-semibold text-gray-400">{m.nameEn}</p>
           </div>
         </div>
 
-        {/* Member Quote */}
-        <div className="relative p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs text-gray-700 leading-relaxed break-keep mb-3">
-          <Quote className="w-3.5 h-3.5 text-primary/30 absolute top-3 right-3" />
-          <p className="pr-3 font-medium text-slate-700">"{quote}"</p>
+        {/* Large Highlighted Quote Speech Bubble */}
+        <div className="relative p-5 sm:p-6 rounded-2xl bg-slate-50 border border-gray-150 text-sm sm:text-base text-slate-800 leading-relaxed font-medium break-keep mb-4">
+          <Quote className="w-4 h-4 text-primary/30 absolute top-4 right-4" />
+          <p className="pr-4 text-slate-800">"{quote}"</p>
         </div>
       </div>
 
-      <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-400 font-semibold">
-        <span>{groupLabel}</span>
-        <span>{m.nameEn}</span>
+      <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400 font-bold">
+        <span className="px-3 py-1 rounded-lg bg-gray-100 text-gray-600 uppercase tracking-wider">{groupLabel}</span>
+        <span className="text-primary font-semibold">SAAI TEAM</span>
       </div>
     </div>
   );
