@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Bell, Activity, Clock, Store, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
-import { useCountUp } from '@/hooks/useCountUp';
+import { useCountUpGroup } from '@/hooks/useCountUp';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { canonicalHq } from '@/data/mockup-scenarios/canonical';
 import MockupBadge from './MockupBadge';
@@ -19,10 +19,9 @@ import { type MockupStatus as Status, MOCKUP_STATUS_HEX, MOCKUP_STATUS_CLASS } f
 /** 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
  *
  * ⚠️ 아직 오버라이드 안 되는 것: `canonicalHq`(일일 알림 수·응답률·절감 시간·매장 수)와
- * `INTERIOR_POINTS`(지도 핀 좌표)는 이 컴포넌트가 정확히 4개 지표를 고정 순서로
- * 가정하고 useCountUp을 4번 개별 호출한다(MultiStoreDashboardMockup과 동일한 한계 —
- * docs/MOCKUP_SYSTEM_GUIDE.md 참고). 다른 본사/가맹 시나리오로 재사용하려면 먼저
- * 그 호출부를 배열 기반 훅으로 바꿔야 한다.
+ * `INTERIOR_POINTS`(지도 핀 좌표). KPI 카운트업은 useCountUpGroup(배열형, MM §2-C
+ * 리팩터)이지만 구조분해·표시 매핑이 4개 지표 구성을 전제한다 — 다른 본사/가맹
+ * 시나리오 재사용 시 canonicalHq 오버라이드 경로가 먼저 필요하다.
  */
 export interface HqMapDashboardCopy {
   sub: string;
@@ -173,10 +172,16 @@ export default function HqMapDashboardMockup({
   const activeIndex = pins.findIndex((p) => p.id === activePin.id);
 
   const countActive = isVisible && active && !reducedMotion;
-  const alerts = useCountUp(canonicalHq.dailyAlerts, countActive);
-  const response = useCountUp(canonicalHq.responseRate, countActive);
-  const savedX10 = useCountUp(Math.round(canonicalHq.dailyHoursSaved * 10), countActive);
-  const stores = useCountUp(canonicalHq.totalStores, countActive);
+  // KPI 카운트업 — 고정 4회 useCountUp 나열을 그룹 훅 한 번으로 (MM §2-C 리팩터)
+  const [alerts, response, savedX10, stores] = useCountUpGroup(
+    [
+      canonicalHq.dailyAlerts,
+      canonicalHq.responseRate,
+      Math.round(canonicalHq.dailyHoursSaved * 10),
+      canonicalHq.totalStores,
+    ],
+    countActive,
+  );
 
   const displayAlerts = reducedMotion ? canonicalHq.dailyAlerts : alerts;
   const displayResponse = reducedMotion ? canonicalHq.responseRate : response;

@@ -15,7 +15,7 @@ import { type DeepPartial, mergeMockupContent } from './types';
 
 const S = MOCKUP_SCHEME.light;
 const D = MOCKUP_DEVICE.desktop;
-import { useCountUp } from '@/hooks/useCountUp';
+import { useCountUpGroup } from '@/hooks/useCountUp';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { stores, chartSets, statusMeta, kpiConfigs } from '@/data/mockup-scenarios/enterprise';
@@ -30,12 +30,10 @@ const kpiIconMap: Record<KpiConfig['iconName'], LucideIcon> = {
  * 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: C[locale].
  *
  * ⚠️ 아직 오버라이드 안 되는 것: `stores`/`chartSets`/`kpiConfigs`(숫자 데이터,
- * data/mockup-scenarios/enterprise.ts)는 이 컴포넌트가 정확히 4개 KPI를 고정
- * 순서로 가정하고 useCountUp을 4번 개별 호출한다(React 훅 규칙상 개수가 가변이면
- * 안전하지 않음). 다른 매장 구성으로 재사용하려면 먼저 useCountUp 호출부를
- * kpiConfigs.length 기반의 배열형 훅으로 바꾸는 선행 작업이 필요하다 — 지금은
- * "문구만" 오버라이드 가능한 상태다. 후속 작업으로 docs/MOCKUP_SYSTEM_GUIDE.md에
- * 남겨둔다.
+ * data/mockup-scenarios/enterprise.ts). KPI 카운트업은 useCountUpGroup(배열형,
+ * MM §2-C 리팩터)으로 kpiConfigs 길이를 따라가므로 훅 규칙 제약은 해소됐지만,
+ * 구조분해 변수·필드 매핑이 4개 KPI 구성을 전제하므로 여전히 "문구만"
+ * 오버라이드 가능한 상태다.
  */
 export interface MultiStoreDashboardCopy {
   storeNames: Record<number, string>;
@@ -159,11 +157,12 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
   const chartMax = Math.max(...chartData);
   const sm = statusMeta[store.status];
 
-  // Hooks must be called unconditionally — one per KPI config (fixed order)
-  const revenue  = useCountUp(store.revenue,  kpiActive, kpiConfigs[0].countUpDuration);
-  const visitors = useCountUp(store.visitors, kpiActive, kpiConfigs[1].countUpDuration);
-  const alrtCnt  = useCountUp(store.alerts,   kpiActive, kpiConfigs[2].countUpDuration);
-  const perf     = useCountUp(store.perf,     kpiActive, kpiConfigs[3].countUpDuration);
+  // KPI 카운트업 — 고정 4회 useCountUp 나열을 그룹 훅 한 번으로 (MM §2-C 리팩터)
+  const [revenue, visitors, alrtCnt, perf] = useCountUpGroup(
+    [store.revenue, store.visitors, store.alerts, store.perf],
+    kpiActive,
+    kpiConfigs.map((c) => c.countUpDuration),
+  );
 
   const kpiValuesByField: Record<string, number> = { revenue, visitors, alerts: alrtCnt, perf };
 
