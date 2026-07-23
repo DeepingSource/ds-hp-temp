@@ -28,7 +28,7 @@ const ctaDict: Record<
   ko: {
     kicker: 'REINVENT OFFLINE · 오프라인을, 다시.',
     heading: '당신의 공간을 완벽하게.',
-    sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다. 도입 상담으로 가장 빠른 길을 함께 찾습니다.',
+    sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다.\n도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
     revealLead: '본사와 매장, 사장과 손님 — 보이지 않던',
@@ -142,7 +142,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight font-display break-keep">
             {cta.heading}
           </h2>
-          <p className="text-lg text-gray-300 mb-10 max-w-xl mx-auto break-keep">{cta.sub}</p>
+          <p className="text-lg text-gray-300 mb-10 max-w-xl mx-auto break-keep whitespace-pre-line">{cta.sub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
               {cta.close}

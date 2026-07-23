@@ -19,7 +19,7 @@ const COPY: Record<Locale, {
 }> = {
   ko: {
     eyebrow: 'DEEPINGSOURCE · 가이드의 자격',
-    headline: '2018년부터, 우리는 오프라인을 읽는 법을 깎아 왔습니다.',
+    headline: '2018년부터, 오프라인을 읽는 컴퓨터비전을 만들어 왔습니다.',
     sub: '얼굴과 신원은 지우고, 오직 의미 있는 매장의 흐름만 남깁니다. 기술 보안 특허 103건과 글로벌 파트너십이 입증하는 오프라인 전용 AI 전문성.',
     patentsLabel: '기술 특허 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier 파트너',
@@ -28,7 +28,7 @@ const COPY: Record<Locale, {
   },
   en: {
     eyebrow: 'DEEPINGSOURCE · YOUR GUIDE',
-    headline: 'Since 2018, we have perfected how to read physical offline spaces.',
+    headline: 'Since 2018, we have built computer vision that reads offline spaces.',
     sub: 'Erasing faces and identity on the spot — retaining only meaningful store dynamics. Backed by 103 patents and global enterprise partnerships.',
     patentsLabel: 'Tech Patents (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier Partner',
@@ -37,8 +37,8 @@ const COPY: Record<Locale, {
   },
   jp: {
     eyebrow: 'DEEPINGSOURCE · ガイドの資格',
-    headline: '2018年から、私たちはオフラインを読み解く術を磨いてきました。',
-    sub: '顔と身元はその場で消去し、価値ある店舗の動선と流れだけを残します。103件の特許とグローバルパートナーシップが証明する技術。',
+    headline: '2018年から、オフラインを読み解くコンピュータビジョンを開発してきました。',
+    sub: '顔と身元はその場で消去し、価値ある店舗の動線と流れだけを残します。103件の特許とグローバルパートナーシップが証明する技術。',
     patentsLabel: '技術特許 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier パートナー',
     partnersLabel: '全国主要リテール・フランチャイズパートナー',

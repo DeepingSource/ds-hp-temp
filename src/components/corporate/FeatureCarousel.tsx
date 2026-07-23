@@ -209,9 +209,11 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">
             {locale === 'ko' ? '복잡함 없이 3단계로 시작합니다' : locale === 'jp' ? '複雑さなし、3ステップで開始' : 'Simple 3-step operation loop'}
           </h2>
-          <p className="text-lg leading-relaxed text-gray-600 break-keep">
-            {locale === 'ko' ? '① 쓰던 CCTV 그대로 연결 → ② 어제를 읽고(insight), 지금을 알리고(care), 다음을 실행(agent) → ③ 본사 한 화면에서 표준화' : locale === 'jp' ? '① 既存CCTV接続 → ② 過去を分析・今を検知・次を提案 → ③ 本部画面で標準化' : '① Connect existing CCTVs → ② Analyze past, detect live, advise next → ③ Standardize fleet-wide.'}
-          </p>
+          <div className="text-base sm:text-lg leading-relaxed text-gray-700 break-keep space-y-1.5 font-medium max-w-xl mx-auto text-left sm:text-center">
+            <p>{locale === 'ko' ? '① 쓰던 CCTV 그대로 연결' : locale === 'jp' ? '① 既存CCTV接続' : '① Connect existing CCTVs'}</p>
+            <p>{locale === 'ko' ? '② 어제를 읽고(insight) · 지금을 알리고(care) · 다음을 실행(agent)' : locale === 'jp' ? '② 過去を分析(insight) · 今を検知(care) · 次を提案(agent)' : '② Analyze past (insight) · detect live (care) · advise next (agent)'}</p>
+            <p>{locale === 'ko' ? '③ 본사 한 화면에서 표준화' : locale === 'jp' ? '③ 本部画面で標準化' : '③ Standardize fleet-wide'}</p>
+          </div>
         </div>
 
         <motion.div

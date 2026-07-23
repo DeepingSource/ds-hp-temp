@@ -72,15 +72,17 @@ export default function TrustCharter({ locale }: { locale: Locale }) {
               <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <BeforeAfterSlider
-            beforeSrc="/images/technology/tech-anon-slider-before.webp"
-            afterSrc="/images/technology/tech-anon-slider-after.webp"
-            beforeLabel={t.sliderBefore}
-            afterLabel={t.sliderAfter}
-            caption={t.caption}
-            alt={t.imgAlt}
-            nudge
-          />
+          <div className="w-full max-w-md sm:max-w-lg mx-auto">
+            <BeforeAfterSlider
+              beforeSrc="/images/technology/tech-anon-slider-before.webp"
+              afterSrc="/images/technology/tech-anon-slider-after.webp"
+              beforeLabel={t.sliderBefore}
+              afterLabel={t.sliderAfter}
+              caption={t.caption}
+              alt={t.imgAlt}
+              nudge
+            />
+          </div>
         </div>
         <ul className="grid sm:grid-cols-3 gap-5">
           {charter.promises.map((p) => {

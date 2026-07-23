@@ -81,13 +81,12 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-gray-900 break-keep font-display animate-fade-in-up delay-100">
                 {/* Line 1: lead phrase — block on mobile, inline on desktop */}
                 <span className="block sm:inline">{q.lead}</span>
-                {/* Line 2: "당신의 {매장을}" / "know your {store}?" — always together */}
-                <span className="block sm:inline whitespace-nowrap">
+                {/* Line 2: "당신의 {매장을} 알고 있나요?" — noun + suffix flow together without artificial sizer gaps */}
+                <span className="inline-flex flex-wrap items-baseline gap-x-1 sm:inline">
                   <span>{q.your}</span>
-                  <RotatingNoun fixed={q.fixed} words={q.words} suffix={locale === 'en' ? q.suffix : undefined} />
+                  <RotatingNoun fixed={q.fixed} words={q.words} suffix={locale !== 'en' ? q.suffix : undefined} />
+                  {locale === 'en' && <span className="whitespace-nowrap">{q.suffix}</span>}
                 </span>
-                {/* Line 3 (ko/jp only): suffix "알고 있나요?" — block on mobile */}
-                {locale !== 'en' && <span className="block sm:inline whitespace-nowrap">{q.suffix}</span>}
               </h1>
               <p className="mt-6 text-base sm:text-lg text-gray-600 font-medium leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
                 {locale === 'ko' ? '쓰던 CCTV 그대로 — 얼굴은 지우고, 흐름만 읽습니다.' : locale === 'jp' ? '既存のCCTVのまま — 顔は消し、流れだけを読み取ります。' : 'Keep existing CCTVs — erasing faces on the spot, reading physical flow.'}

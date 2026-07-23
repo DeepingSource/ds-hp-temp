@@ -29,12 +29,16 @@ type Pain = { icon: typeof Receipt; title: string; desc: string };
 type FunnelStep = { n: string; pct: number; label: string };
 
 const dict: Record<Locale, {
+  leakEyebrow: string; leakTitle: string; leakSub: string;
   eyebrow: string; heading: string; pains: Pain[]; bridge: string;
   funnelTitle: string; funnel: FunnelStep[]; leak: { n: string; label: string };
   methodTagline: string;
   posTag: string; legendInvisible: string; legendPos: string; funnelAria: string;
 }> = {
   ko: {
+    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakTitle: '공간의 신호는 \'사이\'에서 샙니다',
+    leakSub: '카메라와 결정 사이, 감과 데이터 사이, 본사와 매장 사이 — 신호는 늘 그 틈에서 사라집니다.',
     eyebrow: '공간 최적화의 첫 걸음 · 보이지 않는 다수',
     heading: '어제 들어온 손님 10명 중 8명은, 결제 없이 나갑니다 — 어디서 놓쳤을까요?',
     posTag: 'POS 기록',
@@ -60,6 +64,9 @@ const dict: Record<Locale, {
     methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
   },
   en: {
+    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakTitle: 'Signals leak in the space between',
+    leakSub: 'Between camera and decision, intuition and data, HQ and store — signals vanish in the gap.',
     eyebrow: 'The invisible majority',
     heading: 'Of every 10 who came in yesterday, 8 left without paying — where did you lose them?',
     posTag: 'In POS',
@@ -85,13 +92,16 @@ const dict: Record<Locale, {
     methodTagline: 'We don’t stop at seeing — we act.',
   },
   jp: {
+    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakTitle: '空間の信号は「隙間」で漏れています',
+    leakSub: 'カメラと決断の間、勘とデータの間、本部と店舗の間——信号は常にその隙間で消えていきます。',
     eyebrow: '見えない多数',
     heading: '昨日入った10人のうち8人は、決済せずに出ていきます — どこで取りこぼしたのでしょう?',
     posTag: 'POS記録',
     legendInvisible: '見えない',
     legendPos: 'POS記録',
     funnelAria: '昨日入店382人のうち会計まで到達した転換ファネル',
-    funnelTitle: '昨日、店内で',
+    funnelTitle: '昨日, 店内で',
     funnel: [
       { n: '382', pct: 100, label: '入店' },
       { n: '300', pct: 79, label: '棚へ' },
@@ -102,8 +112,8 @@ const dict: Record<Locale, {
     ],
     leak: { n: '317', label: '見て・滞まり・手に取った行動 — POSにはありません' },
     pains: [
-      { icon: Receipt, title: 'POSには決済した客しか残りません', desc: '何が売れたかは分かっても、なぜ売れなかったかは分かりません。' },
-      { icon: Lock, title: 'CCTVは溜まっても、読み解かれません', desc: '答えは店内の行動にあるのに、顔が関わった瞬間に分析が止まります。' },
+      { icon: Receipt, title: 'POSには決済した客しか残りません', desc: '何が売れたかは分かっても, なぜ売れなかったかは分かりません。' },
+      { icon: Lock, title: 'CCTVは溜まっても, 読み解かれません', desc: '答えは店内の行動にあるのに、顔が関わった瞬間に分析が止まります。' },
       { icon: LineChart, title: '店舗が100あれば、ばらつきも100', desc: '本部はどこで漏れているか分かりません — 良い店舗の理由も、悪い店舗の原因も、ひとつの画面にないからです。' },
     ],
     bridge: signature.jp,
@@ -138,6 +148,21 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
   return (
     <Section variant="alt">
       <Container>
+        {/* Bridge Section — Where Signals Leak */}
+        <div className="mb-14 p-8 sm:p-10 rounded-2xl bg-white border border-gray-200/80 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 bg-primary/5 rounded-full blur-xl pointer-events-none" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            {t.leakEyebrow}
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep font-display">
+            {t.leakTitle}
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep max-w-3xl">
+            {t.leakSub}
+          </p>
+        </div>
+
         <div className="mb-10 max-w-3xl">
           <Eyebrow tone="primary" className="mb-3">{t.eyebrow}</Eyebrow>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display">{t.heading}</h2>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { Layers, Map, Grid3x3, Route, ArrowRight } from 'lucide-react';
+import { Layers, Map, Grid3x3, ArrowRight, TrendingUp, ShieldCheck } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -19,19 +19,25 @@ type Copy = {
   heroTitleB: string;
   heroSub: string;
 
-  demoEyebrow: string;
-  demoTitle: string;
-  demoBody: string;
-  demoCaption: string;
-  demoAria: string;
+  mechanismSections: Section[];
 
-  landmarkEyebrow: string;
-  landmarkTitle: string;
-  landmarkBody: string;
-  landmarkCaption: string;
-  landmarkAria: string;
+  impactEyebrow: string;
+  impactTitle: string;
+  impactBody: string;
 
-  sections: Section[];
+  whyEyebrow: string;
+  whyTitle: string;
+  whyBody: string;
+
+  demo1Title: string;
+  demo1Body: string;
+  demo1Caption: string;
+  demo1Aria: string;
+
+  demo2Title: string;
+  demo2Body: string;
+  demo2Caption: string;
+  demo2Aria: string;
 
   referencesEyebrow: string;
   referencesBody: string;
@@ -41,42 +47,59 @@ type Copy = {
   ctaPrimary: string;
 };
 
-const sectionIcons = [Layers, Map, Grid3x3, Route];
+const mechanismIcons = [Layers, Map, Grid3x3];
 
 const ko: Copy = {
   heroBadge: 'Spatial AI · 공간 지능',
   heroTitleA: '공간을 읽는 것이,',
   heroTitleB: '먼저입니다',
   heroSub:
-    '물리 공간에서 일하려면, 먼저 그 공간을 읽고 흐름을 이해해야 합니다. 익명화 위에서 공간 지능이 일합니다 — 누구인지가 아니라, 무엇을 어떻게 하는지를.',
+    '물리 공간에서 일하려면, 먼저 그 공간을 읽고 흐름을 이해해야 합니다. 딥핑소스는 이미 매장에 달린 CCTV를 하나의 좌표로 묶어, 사람과 사물이 공간에서 무엇을 어떻게 하는지 읽어냅니다.',
 
-  demoEyebrow: '신원이 아니라, 정보를 읽습니다',
-  demoTitle: '얼굴은 지워도, 맥락은 읽습니다.',
-  demoBody:
-    '신원은 되돌릴 수 없게 지우고, AI가 장면을 이해하는 데 필요한 최소 특징만 남깁니다. 그래서 익명화된 영상에서도 성별·연령대, 동선과 자세, 관심과 체류를 읽습니다 — 누구인지는 모른 채로.',
-  demoCaption: '얼굴은 노이즈. 그래도 읽히는 것 — 연령대·시선·발화. 신원은 없습니다.',
-  demoAria: '얼굴이 노이즈로 익명화된 인물에서 나이·성별·시선·발화 같은 속성을 읽어내는 데모 영상',
-
-  landmarkEyebrow: '비전 모델 · 얼굴 검출',
-  landmarkTitle: '찾아내는 건, 지우기 위해서입니다',
-  landmarkBody:
-    '비전 모델은 얼굴의 특징점을 정밀하게 찾아냅니다 — 누구인지 알아내기 위해서가 아니라, 어디를 지워야 하는지 짚기 위해서입니다. 검출은 그대로 익명화의 첫 단계로 이어집니다.',
-  landmarkCaption: '얼굴 특징점 검출. 찾은 자리는 곧 익명화됩니다 — 신원은 남지 않습니다.',
-  landmarkAria: '식탁의 두 인물 얼굴에 특징점 메시가 표시되는 얼굴 검출 데모 영상',
-
-  sections: [
-    { label: 'Spatial AI', title: '누구인지가 아니라, 무엇을 어떻게', body: '비전 AI는 결국 사람을 봅니다. 공간 지능은 그 시선을 바꿉니다 — 누구인지를 가려내는 대신, 사람들이 무엇을 어떻게 하는지를 읽습니다. 신원은 익명화 단계에서 이미 지워졌고, 남은 건 공간의 흐름뿐입니다.' },
-    { label: 'Vision Models', title: 'SOTA급 비전 모델', body: '사람 검출, 자세 추정, 재식별, 군중 밀도 — SOTA급 비전 모델들이 하나의 영상에서 이만큼을 읽습니다. 어디서 멈추고, 어떻게 움직이고, 얼마나 모이는지. 공간 위에서 일어나는 일을, 매장에 이미 달린 카메라로 그대로 봅니다.' },
-    { label: 'MTMC', title: 'MTMC — 흩어진 카메라를 하나로', body: '한 대의 카메라만으로는 공간의 한 조각밖에 보지 못합니다. MTMC(Multi-Target Multi-Camera)가 흩어진 카메라들을 하나의 공간 좌표로 정합합니다. 카메라가 바뀌어도, 한 사람으로 이어 추적합니다 — 사각지대를 가로질러, 끊김 없이.' },
-    { label: 'Output', title: '하나의 공간 좌표로', body: '여러 카메라의 관측이 하나의 좌표계로 모이면, 입장부터 퇴장까지의 연속 동선과 공간 단위의 체류·밀도·이동 패턴이 드러납니다. 보는 것을 넘어 매장을 운영하는 AI — 그 첫 단계가, 공간을 정확히 읽는 일입니다.' },
+  mechanismSections: [
+    {
+      label: 'Spatial AI',
+      title: '누구인지가 아니라, 무엇을 어떻게',
+      body: '비전 AI는 결국 사람을 봅니다. 공간 지능은 그 시선을 바꿉니다 — 누구인지 가려내는 대신, 사람들이 무엇을 어떻게 하는지 읽습니다.',
+    },
+    {
+      label: 'Vision Models',
+      title: 'SOTA급 비전 모델',
+      body: '사람 검출, 자세 추정, 재식별, 군중 밀도 — SOTA급 비전 모델들이 하나의 영상에서 이만큼을 읽습니다. 어디서 멈추고, 어떻게 움직이고, 얼마나 모이는지. 공간 위에서 일어나는 일을, 매장에 이미 달린 카메라로 그대로 봅니다.',
+    },
+    {
+      label: 'MTMC',
+      title: 'MTMC — 흩어진 카메라를 하나로',
+      body: '한 대의 카메라만으로는 공간의 한 조각밖에 보지 못합니다. MTMC(Multi-Target Multi-Camera)가 흩어진 카메라들을 하나의 공간 좌표로 정합합니다. 카메라가 바뀌어도, 한 사람으로 이어 추적합니다 — 사각지대를 가로질러, 끊김 없이.',
+    },
   ],
+
+  impactEyebrow: 'Output · 운영 임팩트',
+  impactTitle: '하나의 공간 좌표로, 매장이 데이터가 됩니다',
+  impactBody:
+    '여러 카메라의 관측이 하나의 좌표계로 모이면, 입장부터 퇴장까지의 동선과 구역별 체류·밀도·이동 패턴이 통째로 드러납니다. 어디서 사람이 머물다 돌아서는지, 어느 구역이 늘 비어 있는지, 무엇이 상품 앞에서 일어나는지 — 그동안 감으로 판단하던 것들이 근거를 갖게 됩니다. 레이아웃을 다시 짤 근거, 인력을 배치할 근거, 다음 캠페인을 설계할 근거. 보는 것에서 그치지 않고 매장을 운영하는 AI로 이어지는 첫 단계입니다.',
+
+  whyEyebrow: '이게 가능한 이유',
+  whyTitle: '2018년부터 영상 익명화만 파온 회사이기 때문입니다',
+  whyBody:
+    '신원을 지우는 기술이 먼저 있었기에, 공간 전체를 동의 절차나 규제 리스크 없이 분석할 수 있습니다. GDPR·CCPA·국내 개인정보보호법 기준을 충족하면서, 카메라가 사람을 담아도 신원은 입력 시점에 사라지고 분석에 필요한 신호만 남습니다.',
+
+  demo1Title: '얼굴은 지워도, 맥락은 읽습니다',
+  demo1Body: '신원은 되돌릴 수 없게 지우고, 장면 이해에 필요한 최소 특징만 남깁니다.',
+  demo1Caption: '얼굴은 노이즈. 그래도 읽히는 것 — 연령대·시선·발화. 신원은 없습니다.',
+  demo1Aria: '얼굴이 노이즈로 익명화된 인물에서 나이·성별·시선·발화 같은 속성을 읽어내는 데모 영상',
+
+  demo2Title: '찾아내는 건, 지우기 위해서입니다',
+  demo2Body: '얼굴의 특징점을 정밀하게 찾아내는 이유는 하나 — 어디를 지워야 하는지 짚기 위해서입니다.',
+  demo2Caption: '얼굴 특징점 검출. 찾은 자리는 곧 익명화됩니다 — 신원은 남지 않습니다.',
+  demo2Aria: '식탁의 두 인물 얼굴에 특징점 메시가 표시되는 얼굴 검출 데모 영상',
 
   referencesEyebrow: 'References',
   referencesBody:
-    '딥핑소스의 공간 지능은 CES 전시, KDDI와의 협업, NVIDIA 생태계 등에서 소개·참조된 바 있습니다. 관련 발표·협업 내역은 참고 자료로 안내해 드립니다.',
+    '2018년부터 영상 익명화 기술을 다듬어 온 딥핑소스는, 그 위에서 공간 지능을 CES 전시, KDDI와의 협업, NVIDIA 생태계 등에서 소개·검증해 왔습니다. 관련 발표·협업 내역은 참고 자료로 안내해 드립니다.',
 
   ctaTitle: '공간을 읽는 방식을, 함께 설계합니다',
-  ctaSub: '카메라 배치, 좌표화 요건, 분석 목표 — 기술 팀이 직접 답변합니다.',
+  ctaSub: '카메라 배치, 좌표화 요건, 분석 목표 — 기술 팀이 직접 답변합니다. 지금 있는 CCTV 그대로, 도입 가능 여부부터 확인해 드립니다.',
   ctaPrimary: '기술 검토 문의',
 };
 
@@ -85,36 +108,53 @@ const en: Copy = {
   heroTitleA: 'Reading the space',
   heroTitleB: 'comes first',
   heroSub:
-    'To work in the physical world, you first have to read the space and understand how it flows. Spatial AI works on top of anonymization — not who is there, but what people do and how.',
+    'To work in physical space, you must first read the space and understand its flow. DeepingSource ties existing store CCTVs into a single coordinate system to read what people and objects do in the space and how.',
 
-  demoEyebrow: 'We read information, not identity',
-  demoTitle: 'The face is erased; the context is read.',
-  demoBody:
-    'Identity is erased beyond recovery; only the minimum features the AI needs to understand the scene are kept. So even on anonymized footage we read gender and age range, movement and posture, attention and dwell — without ever knowing who.',
-  demoCaption: 'The face is noise. Still readable — age range, gaze, speaking. No identity.',
-  demoAria: 'A demo reading attributes like age, gender, gaze, and speech from a person whose face is anonymized to noise',
-
-  landmarkEyebrow: 'Vision Models · Face detection',
-  landmarkTitle: 'We find it only to erase it',
-  landmarkBody:
-    'Vision models locate facial keypoints precisely — not to learn who someone is, but to mark exactly what must be erased. Detection feeds straight into the first anonymization step.',
-  landmarkCaption: "Face-keypoint detection. What's found is then anonymized — no identity remains.",
-  landmarkAria: "A face-detection demo with a keypoint mesh over two people's faces at a table",
-
-  sections: [
-    { label: 'Spatial AI', title: 'Not who, but what and how', body: 'Vision AI ultimately looks at people. Spatial intelligence changes what it looks for: instead of singling out who someone is, it reads what people do and how they move. Identity is already erased at the anonymization stage — all that remains is the flow of the space.' },
-    { label: 'Vision Models', title: 'State-of-the-art vision models', body: 'Person detection, pose estimation, re-identification, crowd density — a stack of SOTA vision models reads all of this from a single feed. Where people pause, how they move, how densely they gather. Everything happening on the floor, read on the cameras already mounted in your store.' },
-    { label: 'MTMC', title: 'MTMC — scattered cameras, one space', body: 'A single camera only ever sees a sliver of the space. MTMC (Multi-Target Multi-Camera) registers scattered cameras into one spatial coordinate system. When the camera changes, the person stays one person — tracked across blind spots, without a break.' },
-    { label: 'Output', title: 'Into one spatial coordinate', body: 'Once observations from many cameras converge into one coordinate system, you get the full path from entry to exit, plus space-level dwell, density, and movement patterns. The first step toward AI that goes beyond seeing to operate the space — reading it precisely.' },
+  mechanismSections: [
+    {
+      label: 'Spatial AI',
+      title: 'Not who, but what and how',
+      body: 'Vision AI ultimately looks at people. Spatial intelligence shifts that gaze — instead of identifying who someone is, it reads what people do and how they act.',
+    },
+    {
+      label: 'Vision Models',
+      title: 'State-of-the-art vision models',
+      body: 'Person detection, pose estimation, re-identification, crowd density — SOTA vision models read all of this from a single video feed. Where people pause, how they move, how densely they gather. Seeing what happens on the floor directly through existing store cameras.',
+    },
+    {
+      label: 'MTMC',
+      title: 'MTMC — scattered cameras into one',
+      body: 'A single camera sees only a slice of the space. MTMC (Multi-Target Multi-Camera) merges scattered cameras into a single spatial coordinate system. Even as cameras change, a person is tracked seamlessly across blind spots as one continuous subject.',
+    },
   ],
+
+  impactEyebrow: 'Output · Operational Impact',
+  impactTitle: 'With a single spatial coordinate, the store becomes data',
+  impactBody:
+    'When observations from multiple cameras converge into a single coordinate system, the full path from entry to exit and zone-by-zone dwell, density, and movement patterns are entirely revealed. Where people pause and turn back, which zones remain empty, what happens in front of products — decisions once based on intuition now gain data-driven evidence. Rationale for layout changes, staffing allocation, and campaign design. The first step toward AI that doesn’t just view the store, but operates it.',
+
+  whyEyebrow: 'Why This Is Possible',
+  whyTitle: 'Because we’ve specialized in video anonymization since 2018',
+  whyBody:
+    'Because identity-erasing technology came first, we can analyze entire spaces without consent procedures or compliance risks. Meeting GDPR, CCPA, and Korean Privacy Act standards, even when cameras capture people, identity disappears at input while preserving only the signals required for analysis.',
+
+  demo1Title: 'Faces erased, context preserved',
+  demo1Body: 'Identity is permanently erased, retaining only minimum features needed for scene understanding.',
+  demo1Caption: 'Faces masked as noise. Still readable — age, gaze, speech. Zero identity.',
+  demo1Aria: 'A demo reading attributes like age, gender, gaze, and speech from a person whose face is anonymized to noise',
+
+  demo2Title: 'Detected only to be erased',
+  demo2Body: 'Facial keypoints are detected with precision for one single reason: to pinpoint exactly what needs to be erased.',
+  demo2Caption: 'Facial keypoint detection. Detected areas are immediately anonymized — no identity remains.',
+  demo2Aria: 'A face-detection demo with a keypoint mesh over two people’s faces at a table',
 
   referencesEyebrow: 'References',
   referencesBody:
-    'DeepingSource’s spatial intelligence has been presented and referenced at venues such as CES exhibitions, the collaboration with KDDI, and the NVIDIA ecosystem. Related presentations and collaboration records are available as reference materials.',
+    'DeepingSource, refining video anonymization technology since 2018, has presented and validated spatial intelligence at CES, in collaboration with KDDI, and within the NVIDIA ecosystem. Relevant presentation and collaboration records are available as reference materials.',
 
-  ctaTitle: 'Let’s design how your space gets read',
-  ctaSub: 'Camera placement, coordinatization requirements, analysis goals — answered directly by our technical team.',
-  ctaPrimary: 'Request a technical review',
+  ctaTitle: 'Let’s design how your space is read',
+  ctaSub: 'Camera placement, coordinate mapping requirements, analysis goals — answered directly by our technical team. We’ll verify feasibility right away using your existing CCTVs.',
+  ctaPrimary: 'Request technical review',
 };
 
 const jp: Copy = {
@@ -122,35 +162,52 @@ const jp: Copy = {
   heroTitleA: '空間を読むことが、',
   heroTitleB: '先です',
   heroSub:
-    '物理空間で働くには、まずその空間を読み、流れを理解する必要があります。匿名化の上で空間知能が働きます——誰かではなく、何をどうしているのかを。',
+    '物理空間で働くには、まずその空間を読み、流れを理解する必要があります。ディーピングソースは店舗にすでにあるCCTVを一つの座標にまとめ、人やモノが空間で何をどうしているかを読み取ります。',
 
-  demoEyebrow: '身元ではなく、情報を読みます',
-  demoTitle: '顔は消しても、文脈は読みます。',
-  demoBody:
-    '身元は復元できないように消し、AIが場面を理解するのに必要な最小限の特徴だけを残します。だから匿名化された映像でも、性別・年代、動線と姿勢、関心と滞在を読みます——誰かは分からないまま。',
-  demoCaption: '顔はノイズ。それでも読めるもの——年代・視線・発話。身元はありません。',
-  demoAria: '顔がノイズに匿名化された人物から、年齢・性別・視線・発話などの属性を読み取るデモ映像',
-
-  landmarkEyebrow: 'ビジョンモデル · 顔検出',
-  landmarkTitle: '見つけるのは、消すためです',
-  landmarkBody:
-    'ビジョンモデルは顔の特徴点を精密に見つけます——誰かを知るためではなく、どこを消すべきかを捉えるためです。検出はそのまま匿名化の最初の段階へつながります。',
-  landmarkCaption: '顔特徴点の検出。見つけた場所はすぐ匿名化されます——身元は残りません。',
-  landmarkAria: '食卓の二人の顔に特徴点メッシュが表示される顔検出のデモ映像',
-
-  sections: [
-    { label: 'Spatial AI', title: '誰かではなく、何をどう', body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定するのではなく、人々が何をどう動いているのかを読みます。身元は匿名化の段階ですでに消されており、残るのは空間の流れだけです。' },
-    { label: 'Vision Models', title: 'SOTA級のビジョンモデル', body: '人物検出、姿勢推定、再識別、群衆密度——SOTA級のビジョンモデルが、一つの映像からこれだけを読みます。どこで止まり、どう動き、どれだけ集まるか。空間の上で起きていることを、店舗にすでにあるカメラでそのまま見ます。' },
-    { label: 'MTMC', title: 'MTMC — 散らばったカメラを一つに', body: '一台のカメラでは空間の一片しか見えません。MTMC（Multi-Target Multi-Camera）が、散らばったカメラを一つの空間座標へ整合します。カメラが変わっても、一人として追跡を引き継ぎます——死角を横断し、途切れることなく。' },
-    { label: 'Output', title: '一つの空間座標へ', body: '複数カメラの観測が一つの座標系に集まると、入店から退店までの連続した動線、そして空間単位の滞在・密度・移動パターンが見えてきます。見ることを超えて空間を運営するAI——その第一歩が、空間を正確に読むことです。' },
+  mechanismSections: [
+    {
+      label: 'Spatial AI',
+      title: '誰かではなく、何をどう',
+      body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定하는のではなく、人々が何をどう動いているのかを読みます。',
+    },
+    {
+      label: 'Vision Models',
+      title: 'SOTA級のビジョンモデル',
+      body: '人物検出、姿勢推定、再識別、群衆密度——SOTA級のビジョンモデルが、一つの映像からこれだけを読みます。どこで止まり、どう動き、どれだけ集まるか。空間の上で起きていることを、店舗にすでにあるカメラでそのまま見ます。',
+    },
+    {
+      label: 'MTMC',
+      title: 'MTMC — 散らばったカメラを一つに',
+      body: '一台のカメラでは空間の一片しか見えません。MTMC（Multi-Target Multi-Camera）が、散らばったカメラを一つの空間座標へ整合します。カメラが変わっても、一人として追跡を引き継ぎます——死角を横断し、途切れることなく。',
+    },
   ],
+
+  impactEyebrow: 'Output · 運営インパクト',
+  impactTitle: '一つの空間座標で、店舗がデータになります',
+  impactBody:
+    '複数カメラの観測が一つの座標系に集まると、入店から退店までの動線やエリアごとの滞在・密度・移動パターンが丸ごと可視化されます。どこで人が立ち止まって引き返すのか、どのエリアが常に空いているのか、商品の前で何が起きているのか——これまで勘で判断していたことに根拠が生まれます。レイアウトを再設計する根拠、スタッフを配置する根拠、次のキャンペーンを企画する根拠。見るにとどまらず、店舗を運営するAIへとつながる第一歩です。',
+
+  whyEyebrow: 'これが可能な理由',
+  whyTitle: '2018年から映像匿名化を一筋に追求してきた会社だからです',
+  whyBody:
+    '身元を消す技術が先行していたからこそ、同意手続きや規制リスクなしに空間全体を分析できます。GDPR・CCPA・日本の個人情報保護法等の基準を満たし、カメラが人を捉えても身元は入力時点で消去され、分析に必要なシグナルだけが残ります。',
+
+  demo1Title: '顔は消しても、文脈は読みます',
+  demo1Body: '身元は復元不可能な形で消去し、場面の理解に必要な最小限の特徴だけを残します。',
+  demo1Caption: '顔はノイズ。それでも読めるもの——年代・視線・発話。身元はありません。',
+  demo1Aria: '顔がノイズに匿名化された人物から、年齢・性別・視線・発話などの属性を読み取るデモ映像',
+
+  demo2Title: '見つけるのは、消すためです',
+  demo2Body: '顔の特徴点を精密に検出する理由は一つ——どこを消すべきかを特定するためです。',
+  demo2Caption: '顔特徴点検出。見つけた場所は直ちに匿名化されます——身元は残りません。',
+  demo2Aria: '食卓の二人の顔に特徴点メッシュが表示される顔検出のデモ映像',
 
   referencesEyebrow: 'References',
   referencesBody:
-    'ディーピングソースの空間知能は、CES展示、KDDIとの協業、NVIDIAエコシステムなどで紹介・参照されてきました。関連する発表・協業の実績は参考資料としてご案内します。',
+    '2018年から映像匿名化技術を磨いてきたディーピングソースは、その上で空間知能をCES展示、KDDIとの協業、NVIDIAエコシステムなどで紹介・検証してきました。関連する発表・協業実績は参考資料としてご案内いたします。',
 
   ctaTitle: '空間の読み方を、一緒に設計します',
-  ctaSub: 'カメラ配置、座標化の要件、分析目標——技術チームが直接お答えします。',
+  ctaSub: 'カメラ配置、座標化要件、分析目標——技術チームが直接お答えします。既存のCCTVのまま、導入可能性からご確認いただけます。',
   ctaPrimary: '技術検討のお問い合わせ',
 };
 
@@ -158,13 +215,13 @@ const C: Record<Locale, Copy> = { ko, en, jp };
 
 export default function SpatialAiView({ locale }: { locale: Locale }) {
   const t = C[locale];
-  const sections = t.sections.map((s, i) => ({ ...s, icon: sectionIcons[i] }));
+  const mechanisms = t.mechanismSections.map((s, i) => ({ ...s, icon: mechanismIcons[i] }));
 
   return (
     <div className="bg-white min-h-screen">
       <JsonLd data={definedTerm({ name: t.heroBadge, description: t.heroSub, path: '/technology/spatial-ai', locale })} />
 
-      {/* Hero */}
+      {/* 1. 공간을 이해할 수 있다 — Hero */}
       <section className="relative pt-28 pb-20 lg:pt-36 bg-slate-50 border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <Breadcrumb items={[{ name: crumb('technology', locale), path: '/technology' }, { name: crumb('spatial-ai', locale), path: '/technology/spatial-ai' }]} locale={locale} tone="light" className="mb-6" />
@@ -196,78 +253,29 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* MTMC trajectory mockup — centerpiece visual */}
+      {/* 2. 이런 기술로 가능하다 — MTMC Mockup + 3 Mechanism Cards */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-900">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 space-y-12">
+          {/* MTMC trajectory centerpiece */}
           <SpatialTrajectoryMockup locale={locale} />
-        </div>
-      </AnimatedSection>
 
-      {/* Demo — anonymized face, attributes still read (what-not-who, shown) */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
-              <LoopVideo
-                mp4="/videos/pete-anon-demo.mp4"
-                webm="/videos/pete-anon-demo.webm"
-                poster="/images/technology/pete-anon-poster.webp"
-                ariaLabel={t.demoAria}
-                className="w-full h-auto block"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.demoEyebrow}</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.demoTitle}</h2>
-              <p className="text-gray-600 leading-relaxed break-keep mb-6">{t.demoBody}</p>
-              <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.demoCaption}</p>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Face detection — landmark mesh, framed as "find in order to erase" */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div>
-              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.landmarkEyebrow}</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.landmarkTitle}</h2>
-              <p className="text-gray-600 leading-relaxed break-keep mb-6">{t.landmarkBody}</p>
-              <p className="text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.landmarkCaption}</p>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 shadow-card">
-              <LoopVideo
-                mp4="/videos/face-landmark-demo.mp4"
-                webm="/videos/face-landmark-demo.webm"
-                poster="/images/technology/face-landmark-poster.webp"
-                ariaLabel={t.landmarkAria}
-                className="w-full h-auto block"
-              />
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* 4 mechanism sections */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="space-y-6">
-            {sections.map((s, i) => {
+          {/* 3 mechanism cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {mechanisms.map((s, i) => {
               const Icon = s.icon;
               return (
-                <div key={s.title} className="card p-8 lg:p-10">
-                  <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                    <div className="flex items-center gap-4 lg:w-64 shrink-0">
-                      <div className="w-12 h-12 rounded-2xl bg-primary-lighter flex items-center justify-center shrink-0">
-                        <Icon className="w-6 h-6 text-primary" />
+                <div key={s.title} className="rounded-2xl bg-slate-950 p-6 ring-1 ring-white/10 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-primary-light" />
                       </div>
-                      <div>
-                        <p className="text-xs font-mono font-medium text-gray-500 mb-1">0{i + 1} · {s.label}</p>
-                        <h2 className="text-lg font-bold text-gray-900">{s.title}</h2>
-                      </div>
+                      <span className="font-mono text-xs text-primary-light font-medium uppercase tracking-wider">
+                        0{i + 1} · {s.label}
+                      </span>
                     </div>
-                    <p className="text-gray-600 leading-relaxed break-keep flex-1">{s.body}</p>
+                    <h3 className="text-base font-bold text-white mb-3 break-keep">{s.title}</h3>
+                    <p className="text-sm text-gray-400 leading-relaxed break-keep">{s.body}</p>
                   </div>
                 </div>
               );
@@ -276,17 +284,102 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* Citations / references */}
+      {/* 3. 이건 이래서 중요하다 — Output · 운영 임팩트 (신설) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-50 border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="card p-8 lg:p-12 border-primary/20 bg-white shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
+            
+            <div className="flex items-center gap-2 mb-4">
+              <span className="p-2 rounded-lg bg-primary/10 text-primary">
+                <TrendingUp className="w-5 h-5" />
+              </span>
+              <p className="text-sm font-semibold text-primary tracking-wider uppercase">{t.impactEyebrow}</p>
+            </div>
+            
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 break-keep leading-snug">
+              {t.impactTitle}
+            </h2>
+            
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep">
+              {t.impactBody}
+            </p>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* 4. 우리는 이것 때문에 이걸 가능하게 한다 — 익명화 (공통 인트로 + 데모 2개) */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          {/* 공통 인트로 */}
+          <div className="max-w-3xl mb-14">
+            <div className="flex items-center gap-2 mb-3">
+              <ShieldCheck className="w-5 h-5 text-primary" />
+              <p className="text-sm font-semibold text-primary tracking-wider uppercase">{t.whyEyebrow}</p>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">
+              {t.whyTitle}
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed break-keep">
+              {t.whyBody}
+            </p>
+          </div>
+
+          {/* 2 데모 (축소·통합 배치) */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Demo 1 */}
+            <div className="rounded-2xl border border-gray-200 bg-slate-50 p-6 flex flex-col justify-between shadow-sm">
+              <div className="space-y-4 mb-6">
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-900">
+                  <LoopVideo
+                    mp4="/videos/pete-anon-demo.mp4"
+                    webm="/videos/pete-anon-demo.webm"
+                    poster="/images/technology/pete-anon-poster.webp"
+                    ariaLabel={t.demo1Aria}
+                    className="w-full h-auto block"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 break-keep">{t.demo1Title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">{t.demo1Body}</p>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-3">
+                {t.demo1Caption}
+              </p>
+            </div>
+
+            {/* Demo 2 */}
+            <div className="rounded-2xl border border-gray-200 bg-slate-50 p-6 flex flex-col justify-between shadow-sm">
+              <div className="space-y-4 mb-6">
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-900">
+                  <LoopVideo
+                    mp4="/videos/face-landmark-demo.mp4"
+                    webm="/videos/face-landmark-demo.webm"
+                    poster="/images/technology/face-landmark-poster.webp"
+                    ariaLabel={t.demo2Aria}
+                    className="w-full h-auto block"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 break-keep">{t.demo2Title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">{t.demo2Body}</p>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-3">
+                {t.demo2Caption}
+              </p>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* 5. 우리를 믿고 연락달라 — References + CTA */}
       <AnimatedSection className="py-16 bg-slate-50 border-y border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.referencesEyebrow}</p>
+          <p className="text-sm font-semibold text-primary mb-3 tracking-wider uppercase">{t.referencesEyebrow}</p>
           <p className="text-gray-600 leading-relaxed break-keep">
             {t.referencesBody}
           </p>
         </div>
       </AnimatedSection>
 
-      {/* CTA */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5 break-keep">
