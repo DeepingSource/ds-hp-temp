@@ -7,6 +7,7 @@ import { motion, useScroll } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import LocaleSwitcher from '@/components/layout/LocaleSwitcher';
 import { productPrimary, type ProductKey } from '@/lib/brand-canon';
 import { localeHref, stripLocale, type Locale, homeCopy } from '@/lib/i18n';
@@ -218,7 +219,7 @@ export default function Header() {
                           {/* Left Column: SAAI 3 Core Modes */}
                           <div className="col-span-7 space-y-2">
                             <div className="flex items-center justify-between pb-2 border-b border-gray-100">
-                              <p className="text-2xs font-bold uppercase tracking-wider text-primary">
+                              <p className="text-2xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5"><SaaiSymbol className="w-4 h-2.5 text-primary" ariaHidden={true} />
                                 {L('SAAI 3대 핵심 모드', 'SAAI 3 Core Modes', 'SAAI 3つのコアモード')[locale]}
                               </p>
                               <Link href={localeHref(locale, '/products')} className="text-2xs font-semibold text-gray-500 hover:text-primary transition-colors">
@@ -230,7 +231,7 @@ export default function Header() {
                                 href={localeHref(locale, '/products/saai-care')}
                                 className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">care</span>
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />care</span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai care</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('지금 · 실시간 이상 감지', 'Detect · live anomaly', '検知 · 今、何が起きているか')[locale]}</p>
@@ -241,7 +242,7 @@ export default function Header() {
                                 href={localeHref(locale, '/products/saai-insight')}
                                 className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">insight</span>
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />insight</span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai insight</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('어제 · 추세 분석', 'Analyze · trend analytics', '分析 · 昨日まで何があったか')[locale]}</p>
@@ -252,7 +253,7 @@ export default function Header() {
                                 href={localeHref(locale, '/products/saai-agent')}
                                 className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase">agent</span>
+                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />agent</span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai agent</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('다음 · 자율 현장 운영 제안', 'Advise · autonomous ops', '提案 · 次に何をするか')[locale]}</p>

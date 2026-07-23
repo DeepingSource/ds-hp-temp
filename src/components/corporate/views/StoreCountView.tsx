@@ -1,3 +1,4 @@
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';
@@ -331,7 +332,7 @@ export default function StoreCountView({ locale }: { locale: Locale }) {
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-40 lg:pb-20 text-center">
           <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('count'), path: '/products/store-count' }]} locale={locale} tone="light" className="mb-6 justify-center" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
-            <TrendingUp className="w-4 h-4" />
+            <SaaiSymbol className="w-4 h-4 text-primary" />
             {productPrimary('count')} · {t.heroEyebrow}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">

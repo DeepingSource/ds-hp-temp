@@ -1,3 +1,4 @@
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AgentMockupShowcase from '@/components/sections/AgentMockupShowcase';

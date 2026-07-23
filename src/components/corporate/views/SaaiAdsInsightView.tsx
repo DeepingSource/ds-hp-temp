@@ -1,3 +1,4 @@
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeft, ShieldCheck, Star } from 'lucide-react';
 import Section from '@/components/ui/Section';

@@ -1,3 +1,4 @@
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection from '@/components/ui/AnimatedSection';

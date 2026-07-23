@@ -11,6 +11,7 @@ import {
   Sparkles,
   ChevronRight
 } from 'lucide-react';
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -113,7 +114,7 @@ export default function SaaiForOwnersView({ locale }: { locale: Locale }) {
 
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 mb-6 backdrop-blur-sm">
-              <Store className="w-4 h-4" />
+              <SaaiSymbol className="w-3.5 h-3.5 text-emerald-300" />
               {c.eyebrow}
             </span>
 
