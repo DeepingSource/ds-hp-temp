@@ -26,7 +26,7 @@ const COPY: Record<
   }
 > = {
   en: {
-    heading: '1,247 alerts a day. You need three.',
+    heading: '1,353 alerts a day. You need three.',
     legacyTitle: 'Legacy CCTV alerts',
     legacySub: 'unfiltered event stream',
     alertsToday: 'alerts today',
@@ -35,7 +35,7 @@ const COPY: Record<
     priorities: 'priorities',
   },
   ko: {
-    heading: '하루 1,247건의 알림. 필요한 건 3장입니다.',
+    heading: '하루 1,353건의 알림. 필요한 건 3장입니다.',
     legacyTitle: 'Legacy CCTV alerts',
     legacySub: '필터 없는 이벤트 스트림',
     alertsToday: 'alerts today',
@@ -44,7 +44,7 @@ const COPY: Record<
     priorities: 'priorities',
   },
   jp: {
-    heading: '1日1,247件の通知。必要なのは3枚です。',
+    heading: '1日1,353件の通知。必要なのは3枚です。',
     legacyTitle: 'Legacy CCTV alerts',
     legacySub: 'フィルタなしのイベント列',
     alertsToday: 'alerts today',

@@ -219,10 +219,10 @@ const DEMOS: DemoItem[] = [
   },
   {
     id: 'hq-map',
-    label: '#9 본부 200점 지도',
+    label: '#9 본부 217점 지도',
     product: '공통',
     device: 'desktop',
-    description: '한국 지도 200점(187/9/4) + KPI 1,247건·89%·2.4h. "모든 공간을, 완벽하게."',
+    description: '한국 지도 217점(203/10/4) + KPI 1,353건·89%·2.4h. "모든 공간을, 완벽하게."',
     render: ({ active, locale }) => <HqMapDashboardMockup active={active} locale={locale} />,
   },
   {
@@ -288,7 +288,7 @@ const DEMOS: DemoItem[] = [
     label: '#17 알림 피로 비교',
     product: 'StoreAgent',
     device: 'experience',
-    description: '"하루 1,247건 vs 3장" — 좌 소란(블러 노이즈) / 우 고요(우선순위 3장) 대비.',
+    description: '"하루 1,353건 vs 3장" — 좌 소란(블러 노이즈) / 우 고요(우선순위 3장) 대비.',
     render: ({ active, locale }) => <AlertFatigueComparison active={active} locale={locale} />,
   },
   {

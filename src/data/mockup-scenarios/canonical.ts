@@ -49,17 +49,23 @@ export const canonicalStoreName = {
 } as const;
 
 /**
- * 본부(HQ) 200점 뷰 데이터 — 박람회 TF 가상가맹점데이터시나리오 §2·§4 기반.
+ * 본부(HQ) 217점 뷰 데이터 — 박람회 TF 가상가맹점데이터시나리오 §2·§4 기반.
  * HqMapDashboard(#9)·MultiStore·ROI 산식이 공유한다.
+ *
+ * 수 생성 원칙 (D6 — "그럴싸한 가상 숫자"): 모든 가상 수치는 벤포드 법칙을 어기지
+ * 않게 만든다 — 200·240·1,000 같은 반올림 흔적 금지, 화면 안에서 합계·비율이
+ * 산술적으로 맞아야 한다. 값을 바꿀 때는 이 파일을 서술하는 카피 리터럴
+ * (HqMapDashboard sub/mapDesc, AlertFatigue 헤딩, MockupGallery 설명 등)도
+ * 3로케일 동시로 갱신할 것.
  */
 export const canonicalHq = {
-  /** 전체 가맹점 수 */
-  totalStores: 200,
-  /** 상태 분포 (정상/주의/긴급) — 합 200 */
-  statusDistribution: { normal: 187, warning: 9, critical: 4 },
-  /** 일일 본부 알림 총건수 */
-  dailyAlerts: 1247,
-  /** 점주 평균 응답률 (%) — 200점 평균 */
+  /** 전체 가맹점 수 (D6: 200 → 217 — 반올림 흔적 제거) */
+  totalStores: 217,
+  /** 상태 분포 (정상/주의/긴급) — 합 217 */
+  statusDistribution: { normal: 203, warning: 10, critical: 4 },
+  /** 일일 본부 알림 총건수 — 217점 비례 재산정 (첫자리 1, 벤포드 정합) */
+  dailyAlerts: 1353,
+  /** 점주 평균 응답률 (%) — 217점 평균 */
   responseRate: 89,
   /** 점포당 일일 운영시간 절감 (시간) */
   dailyHoursSaved: 2.4,
@@ -67,6 +73,11 @@ export const canonicalHq = {
   regionSplit: { metro: 60, nonMetro: 40 },
   /** 업종 분포 (편의점/외식/뷰티·기타 %) */
   industrySplit: { convenience: 80, food: 15, beautyEtc: 5 },
+  /**
+   * 점주 체인 규모 — StoreInsightDesktop "전체 12개 매장" 등 점주 시점 목업의
+   * 체인 크기 (본부 217점과 별개 세계관: 12점 규모 개인 체인. 첫자리 1 — 정합).
+   */
+  ownerChainStores: 12,
 } as const;
 
 // ── 강남역점의 하루 (#16 StoreDayTimelapse SOT) ──────────────────────────────

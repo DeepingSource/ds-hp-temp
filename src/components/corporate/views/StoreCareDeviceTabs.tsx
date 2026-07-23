@@ -15,12 +15,12 @@ import { type Locale } from '@/lib/i18n';
  * Replaces the two back-to-back phone mockups with a single segmented-toggle
  * device that crossfades between "what the store sees" (the many raw signals)
  * and "what reaches you" (the three distilled alerts) — making the section's own
- * 1,247 → 3 funnel literal. Auto-toggles while in view; a click pins the choice.
+ * 1,353 → 3 funnel literal. Auto-toggles while in view; a click pins the choice.
  * StoreCareMockup / KakaoAlertMockup keep their own internal loops (gated by `active`).
  */
 
 const TABS = [
-  { key: 'store', icon: Eye, count: '1,247' },
+  { key: 'store', icon: Eye, count: '1,353' },
   { key: 'phone', icon: Bell, count: '3' },
 ] as const;
 

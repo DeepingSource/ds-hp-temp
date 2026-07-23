@@ -72,7 +72,7 @@ const DEMO: Record<Locale, DemoCopy> = {
       ],
       insight: '음료 매대 체류 2배',
     },
-    detect: { totalLabel: '들어온 알림', total: '1,247건', actLabel: '손쓸 일', act: '3건', items: ['냉장고 문 열림', '바닥 오염', '빈 매대'] },
+    detect: { totalLabel: '들어온 알림', total: '1,353건', actLabel: '손쓸 일', act: '3건', items: ['냉장고 문 열림', '바닥 오염', '빈 매대'] },
     act: { badge: '오늘의 액션', title: '삼각김밥 40개, 오픈 전 입고', reason: '어제 오전 품절 · 재발 확률 높음', approve: '승인' },
   },
   en: {
@@ -98,7 +98,7 @@ const DEMO: Record<Locale, DemoCopy> = {
       ],
       insight: 'Beverage aisle dwell ×2',
     },
-    detect: { totalLabel: 'Alerts in', total: '1,247', actLabel: 'To act on', act: '3', items: ['Fridge door open', 'Floor spill', 'Empty shelf'] },
+    detect: { totalLabel: 'Alerts in', total: '1,353', actLabel: 'To act on', act: '3', items: ['Fridge door open', 'Floor spill', 'Empty shelf'] },
     act: { badge: "Today's action", title: 'Restock 40 rice balls before open', reason: 'Sold out yesterday AM · likely to recur', approve: 'Approve' },
   },
   jp: {
@@ -124,7 +124,7 @@ const DEMO: Record<Locale, DemoCopy> = {
       ],
       insight: '飲料棚の滞在2倍',
     },
-    detect: { totalLabel: '受信アラート', total: '1,247件', actLabel: '対応すべき', act: '3件', items: ['冷蔵庫の扉が開放', '床の汚れ', '欠品棚'] },
+    detect: { totalLabel: '受信アラート', total: '1,353件', actLabel: '対応すべき', act: '3件', items: ['冷蔵庫の扉が開放', '床の汚れ', '欠品棚'] },
     act: { badge: '本日のアクション', title: 'おにぎり40個を開店前に入荷', reason: '昨日午前に欠品 · 再発の可能性大', approve: '承認' },
   },
 };

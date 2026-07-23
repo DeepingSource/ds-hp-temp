@@ -43,7 +43,7 @@ export interface HqMapDashboardCopy {
 
 const COPY: Record<Locale, HqMapDashboardCopy> = {
   ko: {
-    sub: '200개 가맹점의 상태를 본사 한 화면에서.',
+    sub: '217개 가맹점의 상태를 본사 한 화면에서.',
     kpiAlerts: '본부 확인 필요',
     kpiAlertsSub: '전체 신호',
     kpiAlertsUnit: '건',
@@ -51,7 +51,7 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
     kpiSaved: '점포당 일일 절감',
     kpiStores: '전체 매장',
     mapTitle: '전국 가맹점 상태 지도',
-    mapDesc: '대한민국 전역 200개 가맹점의 실시간 상태 분포. 정상 187, 주의 9, 긴급 4.',
+    mapDesc: '대한민국 전역 217개 가맹점의 실시간 상태 분포. 정상 203, 주의 10, 긴급 4.',
     legend: { normal: '정상', warning: '주의', critical: '긴급' },
     statusLabel: { normal: '정상', warning: '주의', critical: '긴급' },
     cardAlerts: '알림',
@@ -60,7 +60,7 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
     storeNames: ['서초중앙점', '판교테크노점', '광안리점', '둔산로점', '전대후문점', '송도국제점'],
   },
   en: {
-    sub: '200 franchise stores, one HQ view.',
+    sub: '217 franchise stores, one HQ view.',
     kpiAlerts: 'Needs HQ review',
     kpiAlertsSub: 'of all signals',
     kpiAlertsUnit: '',
@@ -68,7 +68,7 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
     kpiSaved: 'Saved / store / day',
     kpiStores: 'Total stores',
     mapTitle: 'Nationwide store status map',
-    mapDesc: 'Live status of 200 stores across Korea. Normal 187, warning 9, critical 4.',
+    mapDesc: 'Live status of 217 stores across Korea. Normal 203, warning 10, critical 4.',
     legend: { normal: 'Normal', warning: 'Warning', critical: 'Critical' },
     statusLabel: { normal: 'Normal', warning: 'Warning', critical: 'Critical' },
     cardAlerts: 'Alerts',
@@ -77,7 +77,7 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
     storeNames: ['Seocho Central', 'Pangyo Techno', 'Gwangalli', 'Dunsan-ro', 'Jeondae Back Gate', 'Songdo Intl'],
   },
   jp: {
-    sub: '200店舗の状態を、本部の一画面で。',
+    sub: '217店舗の状態を、本部の一画面で。',
     kpiAlerts: '本部の確認が必要',
     kpiAlertsSub: '全シグナル',
     kpiAlertsUnit: '件',
@@ -85,7 +85,7 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
     kpiSaved: '店舗あたり日次削減',
     kpiStores: '全店舗',
     mapTitle: '全国店舗ステータスマップ',
-    mapDesc: '韓国全域200店舗のリアルタイム状態。正常187、注意9、緊急4。',
+    mapDesc: '韓国全域217店舗のリアルタイム状態。正常203、注意10、緊急4。',
     legend: { normal: '正常', warning: '注意', critical: '緊急' },
     statusLabel: { normal: '正常', warning: '注意', critical: '緊急' },
     cardAlerts: 'アラート',
@@ -97,15 +97,16 @@ const COPY: Record<Locale, HqMapDashboardCopy> = {
 
 // Store coordinates in the korea-map.svg coordinate space (viewBox 0 0 800 1200),
 // hand-placed on real regions (수도권 cluster · 강원 · 충청 · 호남 · 영남 · 제주).
-// Deterministic — no Math.random at render (SSR-safe). The first 13 slots are the
-// abnormal stores (9 warning + 4 critical) and are ALWAYS rendered so the legend
-// (187/9/4) matches the on-screen abnormal count. The rest are a thinned subset of
+// Deterministic — no Math.random at render (SSR-safe). The first 14 slots are the
+// abnormal stores (10 warning + 4 critical) and are ALWAYS rendered so the legend
+// (203/10/4) matches the on-screen abnormal count. The rest are a thinned subset of
 // normal stores for visual texture (a realistic west/south-weighted spread).
 const INTERIOR_POINTS: { x: number; y: number }[] = [
-  // --- 9 warning (rendered first), spread nationwide ---
+  // --- 10 warning (rendered first), spread nationwide ---
   { x: 310, y: 235 }, { x: 260, y: 280 }, { x: 430, y: 230 },
   { x: 340, y: 430 }, { x: 210, y: 650 }, { x: 500, y: 560 },
   { x: 250, y: 760 }, { x: 470, y: 720 }, { x: 170, y: 1120 },
+  { x: 380, y: 380 },
   // --- 4 critical (near key metros) ---
   { x: 300, y: 275 }, { x: 600, y: 740 }, { x: 360, y: 490 }, { x: 430, y: 690 },
   // --- normal stores (thinned subset for texture) ---
@@ -117,7 +118,7 @@ const INTERIOR_POINTS: { x: number; y: number }[] = [
   { x: 580, y: 640 }, { x: 440, y: 760 }, { x: 210, y: 1130 }, { x: 130, y: 1140 },
 ];
 
-// Build pins from fixed interior coordinates. All 13 abnormal pins (9 warning +
+// Build pins from fixed interior coordinates. All 14 abnormal pins (10 warning +
 // 4 critical) are rendered; normal pins fill the remaining interior slots.
 function buildPins() {
   const dist = canonicalHq.statusDistribution;
@@ -195,7 +196,7 @@ export default function HqMapDashboardMockup({
     activePin.status === 'critical' ? -18 : activePin.status === 'warning' ? -6 : 8;
 
   // KPI #1 is reframed: the headline number is the count that needs HQ review
-  // (warning + critical = 13), with the full daily signal pool (1,247) demoted
+  // (warning + critical = 14), with the full daily signal pool (1,353) demoted
   // to subtext — avoids glorifying alert overload (see AlertFatigueComparison).
   const needsReview =
     canonicalHq.statusDistribution.warning + canonicalHq.statusDistribution.critical;
