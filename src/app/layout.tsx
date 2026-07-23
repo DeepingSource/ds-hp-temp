@@ -143,21 +143,27 @@ export default function RootLayout({
         </a>
         <HtmlLangSync />
         <LanguageSuggestion />
-        {/* ?lp=1 → header hidden; otherwise → normal header */}
-        <Suspense fallback={<Header />}>
-          <HeaderWrapper />
-        </Suspense>
-        <main id="main-content" className="pt-16">
-          <MotionProvider>{children}</MotionProvider>
-        </main>
-        {/* ?lp=1 → footer/mobileStickyBar hidden; otherwise → shown */}
-        <Suspense fallback={<><Footer /><MobileStickyBar /></>}>
-          <FooterWrapper />
-        </Suspense>
-        {/* ?lp=1 → show sticky bottom CTA */}
-        <Suspense fallback={null}>
-          <LandingStickyCta />
-        </Suspense>
+        {/* MotionProvider wraps every framer-motion consumer (Header included) so
+            reducedMotion="user" actually reaches the nav's SlidingIndicator/scroll
+            progress bar — it used to only wrap {children}, leaving Header outside
+            the provider despite its own comments assuming global coverage. */}
+        <MotionProvider>
+          {/* ?lp=1 → header hidden; otherwise → normal header */}
+          <Suspense fallback={<Header />}>
+            <HeaderWrapper />
+          </Suspense>
+          <main id="main-content" className="pt-16">
+            {children}
+          </main>
+          {/* ?lp=1 → footer/mobileStickyBar hidden; otherwise → shown */}
+          <Suspense fallback={<><Footer /><MobileStickyBar /></>}>
+            <FooterWrapper />
+          </Suspense>
+          {/* ?lp=1 → show sticky bottom CTA */}
+          <Suspense fallback={null}>
+            <LandingStickyCta />
+          </Suspense>
+        </MotionProvider>
         {/* Umami — NEXT_PUBLIC_UMAMI_* 미설정 시 스스로 null 반환 */}
         <Analytics />
         {/* GA4 — 측정 ID 있을 때만 로드(@next/third-parties, lazy) */}

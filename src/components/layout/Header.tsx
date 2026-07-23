@@ -96,22 +96,44 @@ export default function Header() {
   const pathname = usePathname();
   const { locale, path } = stripLocale(pathname);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll();
 
-  const handleEnter = useCallback((key: string) => {
-    if (closeTimeout.current) clearTimeout(closeTimeout.current);
-    setOpenKey(key);
+  // Clears any pending open/close timers — called before every state change
+  // below so a stale timer can never fire after a newer, more-explicit action
+  // (a click, Escape, route change, or outside click) already decided the state.
+  const clearOpenCloseTimers = useCallback(() => {
+    if (openTimeout.current) { clearTimeout(openTimeout.current); openTimeout.current = null; }
+    if (closeTimeout.current) { clearTimeout(closeTimeout.current); closeTimeout.current = null; }
   }, []);
 
+  // Hover-intent: opening waits ~100ms so a pointer merely passing over the bar
+  // (e.g. gliding from "제품" toward "요금") doesn't flash the mega menu open.
+  // Closing keeps its existing 150ms grace period so moving into the dropdown
+  // panel itself doesn't prematurely close it.
+  const handleEnter = useCallback((key: string) => {
+    clearOpenCloseTimers();
+    openTimeout.current = setTimeout(() => setOpenKey(key), 100);
+  }, [clearOpenCloseTimers]);
+
   const handleLeave = useCallback(() => {
+    clearOpenCloseTimers();
     closeTimeout.current = setTimeout(() => setOpenKey(null), 150);
-  }, []);
+  }, [clearOpenCloseTimers]);
+
+  // Click is an explicit, immediate action — it should never wait on the hover
+  // intent delay, and it cancels any pending hover timer so a click-close isn't
+  // silently reopened a moment later by a leftover hover-enter timeout.
+  const handleToggleClick = useCallback((key: string, isOpen: boolean) => {
+    clearOpenCloseTimers();
+    setOpenKey(isOpen ? null : key);
+  }, [clearOpenCloseTimers]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { setIsMenuOpen(false); setOpenKey(null); }
+      if (e.key === 'Escape') { clearOpenCloseTimers(); setIsMenuOpen(false); setOpenKey(null); }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('keydown', handleKeyDown);
@@ -119,16 +141,19 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [clearOpenCloseTimers]);
 
   useEffect(() => {
     if (!openKey) return;
     const handleClick = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenKey(null);
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        clearOpenCloseTimers();
+        setOpenKey(null);
+      }
     };
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [openKey]);
+  }, [openKey, clearOpenCloseTimers]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -137,18 +162,19 @@ export default function Header() {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    clearOpenCloseTimers();
     setIsMenuOpen(false); setOpenKey(null); setMobileOpenKey(null);
-  }, [pathname]);
+  }, [pathname, clearOpenCloseTimers]);
 
-  useEffect(() => () => { if (closeTimeout.current) clearTimeout(closeTimeout.current); }, []);
+  useEffect(() => () => clearOpenCloseTimers(), [clearOpenCloseTimers]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40">
+    <header className="fixed top-0 left-0 right-0 z-[var(--z-header)]">
       <div
-        className={`relative transition-[background-color,border-color,backdrop-filter] duration-200 border-b ${
+        className={`relative backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-200 ease-[var(--ease-out-cubic)] border-b ${
           isScrolled || isMenuOpen || openKey
-            ? 'bg-white/95 backdrop-blur-md border-gray-200/80 shadow-sm'
-            : 'bg-white/80 backdrop-blur-sm border-gray-100'
+            ? 'bg-white/95 border-gray-200/80 shadow-sm'
+            : 'bg-white/80 border-gray-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -169,8 +195,8 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={localeHref(locale, item.href)}
-                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors rounded-lg ${
-                      active ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    className={`relative px-3.5 py-2 text-sm font-medium transition-colors ease-[var(--ease-out-cubic)] rounded-lg ${
+                      active ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                     aria-current={active ? 'page' : undefined}
                   >
@@ -193,15 +219,15 @@ export default function Header() {
                   onMouseLeave={handleLeave}
                 >
                   <button
-                    onClick={() => setOpenKey(open ? null : item.key)}
-                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium transition-colors rounded-lg cursor-pointer ${
-                      active || open ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    onClick={() => handleToggleClick(item.key, open)}
+                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium transition-colors ease-[var(--ease-out-cubic)] rounded-lg cursor-pointer ${
+                      active || open ? 'text-primary' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     } ${open ? 'bg-gray-50' : ''}`}
                     aria-expanded={open}
                     aria-haspopup="true"
                   >
                     {item.label[locale]}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ease-[var(--ease-out-cubic)] ${open ? 'rotate-180' : ''}`} />
                     {active && (
                       <SlidingIndicator layoutId="nav-indicator" className="absolute inset-0 -z-10 rounded-lg bg-primary-lighter" />
                     )}
@@ -211,7 +237,7 @@ export default function Header() {
                   <div
                     aria-hidden={!open}
                     inert={!open || undefined}
-                    className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-200 ${
+                    className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-200 ease-[var(--ease-out-cubic)] ${
                       open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
                     }`}
                   >
@@ -381,7 +407,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         <div
-          className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+          className={`lg:hidden grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-out-cubic)] ${
             isMenuOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
@@ -398,8 +424,8 @@ export default function Header() {
                     <Link
                       key={item.href}
                       href={localeHref(locale, item.href)}
-                      className={`block px-4 py-3 text-base font-medium rounded-xl transition-colors ${
-                        active ? 'text-primary bg-primary-lighter font-semibold' : 'text-gray-700 hover:bg-gray-50'
+                      className={`block px-4 py-3 text-base font-medium rounded-xl transition-colors ease-[var(--ease-out-cubic)] ${
+                        active ? 'text-primary bg-primary-lighter' : 'text-gray-700 hover:bg-gray-50'
                       }`}
                       aria-current={active ? 'page' : undefined}
                     >
@@ -415,14 +441,14 @@ export default function Header() {
                   <div key={item.key} className="rounded-xl overflow-hidden">
                     <button
                       onClick={() => setMobileOpenKey(open ? null : item.key)}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors cursor-pointer ${
-                        active ? 'text-primary font-semibold' : 'text-gray-700 hover:bg-gray-50'
+                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors ease-[var(--ease-out-cubic)] cursor-pointer ${
+                        active ? 'text-primary' : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >
                       {item.label[locale]}
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ease-[var(--ease-out-cubic)] ${open ? 'rotate-180' : ''}`} />
                     </button>
-                    <div className={`grid transition-[grid-template-rows] duration-200 ease-in-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                    <div className={`grid transition-[grid-template-rows] duration-300 ease-[var(--ease-out-cubic)] ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                       <div className="overflow-hidden bg-gray-50/70 rounded-xl my-1">
                         {item.items.map((leaf, i) => {
                           if ('header' in leaf) {
@@ -438,8 +464,8 @@ export default function Header() {
                               key={leaf.href}
                               href={leaf.external ? leaf.href : localeHref(locale, leaf.href)}
                               {...(leaf.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                              className={`block px-6 py-2.5 text-sm transition-colors ${
-                                leafActive ? 'text-primary font-semibold' : 'text-gray-600 hover:text-gray-900'
+                              className={`block px-6 py-2.5 text-sm transition-colors ease-[var(--ease-out-cubic)] ${
+                                leafActive ? 'text-primary' : 'text-gray-600 hover:text-gray-900'
                               }`}
                               aria-current={leafActive ? 'page' : undefined}
                             >
