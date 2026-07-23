@@ -51,7 +51,7 @@ import StoreDayTimelapse from './StoreDayTimelapse';
 type Product = 'StoreAgent' | 'StoreCare' | 'StoreInsight' | '공통';
 type Device = 'phone' | 'desktop' | 'diagram' | 'tech' | 'experience';
 
-interface DemoItem {
+export interface DemoItem {
   id: string;
   label: string;
   product: Product;
@@ -62,7 +62,8 @@ interface DemoItem {
 
 const defaultArea = areaTypes[0];
 
-const DEMOS: DemoItem[] = [
+// DEMOS는 /demo 갤러리와 /demo/harness(3폭×3로케일 검증, MM 0-6)가 공유한다.
+export const DEMOS: DemoItem[] = [
   {
     id: 'briefing',
     label: '데일리 브리핑',
