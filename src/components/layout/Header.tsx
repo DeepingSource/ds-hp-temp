@@ -47,9 +47,9 @@ const NAV: NavItem[] = [
     type: 'menu', key: 'technology', label: L('기술', 'Technology', '技術'), base: '/technology', items: [
       { href: '/technology', label: L('기술 개요', 'Overview', '技術概要'), desc: L('프라이버시 공간 AI', 'Privacy Spatial AI', 'プライバシー空間AI') },
       { header: L('3대 핵심 기술 파이프라인', '3 Core Tech Pipeline', '3大コア技術パイプライン') },
-      { href: '/technology/anonymizer', label: L('1. Anonymizer', '1. Anonymizer', '1. Anonymizer'), desc: L('원천 익명화 모듈', 'Source Anonymization', '元本匿名化モジュール') },
-      { href: '/technology/spatial-ai', label: L('2. Spatial AI', '2. Spatial AI', '2. Spatial AI'), desc: L('MTMC 3D 공간 인지', 'MTMC 3D Trajectory Sensing', 'MTMC 3D空間動線認識') },
-      { href: '/technology/agentic-ai', label: L('3. Agentic AI', '3. Agentic AI', '3. Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
+      { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer'), desc: L('원천 익명화 모듈', 'Source Anonymization', '元本匿名化モジュール') },
+      { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI'), desc: L('MTMC 3D 공간 인지', 'MTMC 3D Trajectory Sensing', 'MTMC 3D空間動線認識') },
+      { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
       { header: L('부차적 지원 모듈', 'Supporting Tech Modules', '補助技術モジュール') },
       { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('Edge SDK', 'Edge SDK', 'Edge SDK') },
       { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('모델 카탈로그', 'Model catalog', 'モデルカタログ') },
@@ -231,9 +231,12 @@ export default function Header() {
                             <div className="space-y-1.5 pt-1">
                               <Link
                                 href={localeHref(locale, '/products/saai-care')}
-                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                                className="group flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />care</span>
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-white text-2xs font-bold uppercase leading-none shrink-0 whitespace-nowrap">
+                                  <SaaiSymbol className="w-2.5 h-2.5 shrink-0 text-white" />
+                                  care
+                                </span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai care</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('지금 · 실시간 이상 감지', 'Detect · live anomaly', '検知 · 今、何が起きているか')[locale]}</p>
@@ -242,9 +245,12 @@ export default function Header() {
 
                               <Link
                                 href={localeHref(locale, '/products/saai-insight')}
-                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                                className="group flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />insight</span>
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-white text-2xs font-bold uppercase leading-none shrink-0 whitespace-nowrap">
+                                  <SaaiSymbol className="w-2.5 h-2.5 shrink-0 text-white" />
+                                  insight
+                                </span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai insight</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('어제 · 추세 분석', 'Analyze · trend analytics', '分析 · 昨日まで何があったか')[locale]}</p>
@@ -253,9 +259,12 @@ export default function Header() {
 
                               <Link
                                 href={localeHref(locale, '/products/saai-agent')}
-                                className="group flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
+                                className="group flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors"
                               >
-                                <span className="mt-0.5 rounded-md bg-primary text-white text-2xs px-1.5 py-0.5 font-bold uppercase flex items-center gap-1"><SaaiSymbol className="w-2.5 h-1.5 text-white" />agent</span>
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary text-white text-2xs font-bold uppercase leading-none shrink-0 whitespace-nowrap">
+                                  <SaaiSymbol className="w-2.5 h-2.5 shrink-0 text-white" />
+                                  agent
+                                </span>
                                 <div>
                                   <p className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">saai agent</p>
                                   <p className="text-2xs text-gray-500 leading-normal">{L('다음 · 자율 현장 운영 제안', 'Advise · autonomous ops', '提案 · 次に何をするか')[locale]}</p>
