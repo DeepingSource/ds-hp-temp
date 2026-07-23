@@ -3,26 +3,29 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowLeft, X, Users, ShieldCheck, HeartHandshake, Zap, Quote } from 'lucide-react';
+import { ArrowRight, ArrowLeft, X, Users, ShieldCheck, HeartHandshake, Zap, Quote, Maximize2 } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import SaaiSymbol from '@/components/ui/SaaiSymbol';
-import { TEAM_MEMBERS, type TeamGroup, type TeamMember } from '@/data/teamMembers';
+import { TEAM_MEMBERS, memberShort, memberStory, type TeamGroup, type TeamMember, type VoiceTheme } from '@/data/teamMembers';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
- * TeamView — light-toned "portrait wall + spotlight" (DESIGN_v2 §6.3: no full-page
+ * TeamView — light-toned "compact roster + spotlight" (DESIGN_v2 §6.3: no full-page
  * dark for marketing; dark reserved for the closing CTA via Section variant="dark").
  *
- * Focus-on-people pattern: the wall stays quiet (illustration + name + role only,
- * per-person pastel tint unified with mix-blend-multiply), and depth lives in the
- * SPOTLIGHT — click any tile to open an accessible dialog with the large portrait,
- * quote, and prev/next browsing (arrow keys / Esc). Leadership leads with larger
- * tiles + a visible one-line quote; everyone else sits in the denser gallery grid.
+ * Avatars stay SMALL by default: every tile is a compact card with a circular
+ * avatar (pastel tint + mix-blend-multiply) beside name/role — the wall reads as
+ * a quiet roster, not an image gallery. The LARGE portrait lives only in the
+ * SPOTLIGHT — click any card to open an accessible dialog with the full-size
+ * portrait, quote, and prev/next browsing (arrow keys / Esc). Leadership uses a
+ * slightly larger avatar + a visible one-line quote; everyone else sits in the
+ * denser roster grid.
  */
 
 const GROUPS: { key: TeamGroup | 'All'; labelKo: string; labelEn: string; labelJp: string }[] = [
@@ -42,6 +45,31 @@ const GROUP_KO_MAP: Record<TeamGroup, string> = {
   'Business & Operations': '비즈니스 & 운영',
 };
 
+/** Voice theme labels (PLAN_TEAM_VOICES §2.1) — shown as a second filter axis
+ *  and as a badge in the spotlight. Only rendered once voice data exists. */
+const THEME_META: Record<VoiceTheme, { ko: string; en: string; jp: string }> = {
+  craft: { ko: '제품 · 기술', en: 'Craft', jp: 'プロダクト・技術' },
+  culture: { ko: '팀 · 문화', en: 'Team & Culture', jp: 'チーム・文化' },
+  philosophy: { ko: '철학', en: 'Philosophy', jp: '哲学' },
+};
+const THEME_ORDER: VoiceTheme[] = ['craft', 'culture', 'philosophy'];
+
+function themeLabel(t: VoiceTheme, locale: Locale): string {
+  return locale === 'ko' ? THEME_META[t].ko : locale === 'jp' ? THEME_META[t].jp : THEME_META[t].en;
+}
+
+/** Round-robin by theme so the wall never reads 3+ same-theme cards in a row.
+ *  Members without voice data keep their relative order in a fourth bucket. */
+function interleaveByTheme(list: TeamMember[]): TeamMember[] {
+  if (!list.some((m) => m.voice)) return list;
+  const buckets: TeamMember[][] = [...THEME_ORDER.map((t) => list.filter((m) => m.voice?.theme === t)), list.filter((m) => !m.voice)];
+  const out: TeamMember[] = [];
+  for (let i = 0; out.length < list.length; i++) {
+    for (const b of buckets) if (i < b.length) out.push(b[i]);
+  }
+  return out;
+}
+
 /** Per-person pastel tints — soft, brand-adjacent. Illustrations sit on top with
  *  mix-blend-multiply so their white/near-white backgrounds take the tint. */
 const TINTS = ['#EEF3FE', '#FDF3E7', '#EFF6EF', '#FBF0F3', '#F3F0FB', '#FDF8E8'] as const;
@@ -54,6 +82,9 @@ function tintFor(m: TeamMember): string {
   return TINTS[Math.abs(h) % TINTS.length];
 }
 
+/** Each principle is the company's sentence; `voiceOf` attaches members whose
+ *  testimony PROVES it (declaration → evidence, PLAN_TEAM_VOICES Beat 4).
+ *  Quotes come from the member data, so they update as real voices arrive. */
 const CULTURE_ITEMS = [
   {
     icon: ShieldCheck,
@@ -63,6 +94,7 @@ const CULTURE_ITEMS = [
     descKo: '단 한 사람의 개인정보도 남기지 않으면서 오프라인 공간을 완벽하게 이해하는 기술적 자부심을 공유합니다.',
     descEn: 'We hold pride in perfectly understanding physical spaces while leaving zero personal identity.',
     descJp: '個人情報を残さずにオフライン空間を完璧に理解する技術的誇りを共有します。',
+    voiceOf: ['taehoon-kim'],
   },
   {
     icon: Zap,
@@ -72,6 +104,7 @@ const CULTURE_ITEMS = [
     descKo: 'AI 기술로 현장 종사자의 번거로움을 줄이고, 인간의 결정과 서비스 가치를 극대화합니다.',
     descEn: 'We use AI to eliminate frontline friction and maximize human decision-making and service value.',
     descJp: 'AI技術で現場の煩わしさを減らし、人間の決定とサービス価値を最大化します。',
+    voiceOf: ['bongkyung-ko'],
   },
   {
     icon: HeartHandshake,
@@ -81,18 +114,27 @@ const CULTURE_ITEMS = [
     descKo: '각자의 분야에서 뛰어난 몰입과 주도성을 갖고, 수평적이고 솔직한 커뮤니케이션으로 제품을 만듭니다.',
     descEn: 'We thrive on high autonomy and deep ownership, creating products through honest and flat collaboration.',
     descJp: '高い自律と深いオーナーシップを持ち、フラットで率直なコミュニケーションで製品を作ります。',
+    voiceOf: ['sumin-lee'],
   },
 ];
 
 export default function TeamView({ locale }: { locale: Locale }) {
   const [selectedGroup, setSelectedGroup] = useState<TeamGroup | 'All'>('All');
+  const [selectedTheme, setSelectedTheme] = useState<VoiceTheme | 'All'>('All');
   const [spotlightId, setSpotlightId] = useState<string | null>(null);
 
   const leaderships = useMemo(() => TEAM_MEMBERS.filter((m) => m.isLeadership), []);
-  const filteredMembers = useMemo(
-    () => (selectedGroup === 'All' ? TEAM_MEMBERS : TEAM_MEMBERS.filter((m) => m.group === selectedGroup)),
-    [selectedGroup],
-  );
+  // Theme filter axis appears only once real voice data exists.
+  const themesPresent = useMemo(() => {
+    const s = new Set<VoiceTheme>();
+    TEAM_MEMBERS.forEach((m) => m.voice && s.add(m.voice.theme));
+    return THEME_ORDER.filter((t) => s.has(t));
+  }, []);
+  const filteredMembers = useMemo(() => {
+    const byGroup = selectedGroup === 'All' ? TEAM_MEMBERS : TEAM_MEMBERS.filter((m) => m.group === selectedGroup);
+    const byTheme = selectedTheme === 'All' ? byGroup : byGroup.filter((m) => m.voice?.theme === selectedTheme);
+    return selectedTheme === 'All' ? interleaveByTheme(byTheme) : byTheme;
+  }, [selectedGroup, selectedTheme]);
 
   // Spotlight browses within the list the user is currently looking at; if the
   // clicked person isn't in the active filter (e.g. a leadership tile), browse all.
@@ -138,6 +180,8 @@ export default function TeamView({ locale }: { locale: Locale }) {
                 {locale === 'ko' ? `${TEAM_MEMBERS.length}명이 함께 만들고 있습니다` : locale === 'jp' ? `${TEAM_MEMBERS.length}名のチーム` : `${TEAM_MEMBERS.length} people and growing`}
               </p>
             </div>
+            {/* First testimony — the page speaks in members' voices from the hero */}
+            <HeroVoiceTicker locale={locale} onOpen={setSpotlightId} />
           </div>
         </Container>
       </section>
@@ -173,7 +217,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
               {locale === 'ko' ? '딥핑소스의 팀원들을 만나보세요' : locale === 'jp' ? 'チームメンバーに会いましょう' : 'Meet the team behind SAAI'}
             </h2>
             <p className="text-sm sm:text-base text-gray-600 break-keep">
-              {locale === 'ko' ? '카드를 누르면 각 팀원의 이야기를 볼 수 있어요.' : locale === 'jp' ? 'カードを押すと各メンバーのストーリーが見られます。' : 'Tap any card to read each person’s story.'}
+              {locale === 'ko' ? '카드를 누르면 큰 초상과 각 팀원의 이야기를 볼 수 있어요.' : locale === 'jp' ? 'カードを押すと大きなポートレートと各メンバーのストーリーが見られます。' : 'Tap any card to see the full portrait and each person’s story.'}
             </p>
           </div>
 
@@ -200,7 +244,35 @@ export default function TeamView({ locale }: { locale: Locale }) {
             })}
           </div>
 
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+          {/* Theme filter — "무엇에 대한 이야기인가" 축. voice 데이터가 생기면 나타난다. */}
+          {themesPresent.length > 0 && (
+            <div
+              className="-mt-6 mb-12 flex flex-wrap items-center justify-center gap-2"
+              role="group"
+              aria-label={locale === 'ko' ? '이야기 주제 필터' : locale === 'jp' ? 'ストーリーテーマフィルター' : 'Story theme filter'}
+            >
+              <span className="text-xs font-semibold text-gray-400 mr-1">
+                {locale === 'ko' ? '이야기 주제' : locale === 'jp' ? 'ストーリー' : 'Stories about'}
+              </span>
+              {(['All', ...themesPresent] as (VoiceTheme | 'All')[]).map((t) => {
+                const active = selectedTheme === t;
+                return (
+                  <button
+                    key={t}
+                    onClick={() => setSelectedTheme(t)}
+                    aria-pressed={active}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                      active ? 'bg-primary text-white' : 'bg-white text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-gray-900'
+                    }`}
+                  >
+                    {t === 'All' ? (locale === 'ko' ? '전체' : locale === 'jp' ? 'すべて' : 'All') : themeLabel(t, locale)}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {filteredMembers.map((m) => (
               <li key={m.id}>
                 <PortraitTile member={m} locale={locale} size="sm" onOpen={() => setSpotlightId(m.id)} />
@@ -223,16 +295,48 @@ export default function TeamView({ locale }: { locale: Locale }) {
             {CULTURE_ITEMS.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-card transition-shadow duration-300">
+                <div key={i} className="p-8 rounded-2xl border border-gray-200 bg-white hover:shadow-card transition-shadow duration-300 flex flex-col">
                   <div className="w-12 h-12 rounded-xl bg-primary-lighter flex items-center justify-center mb-5 text-primary">
                     <Icon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2.5 break-keep">
                     {locale === 'ko' ? item.titleKo : locale === 'jp' ? item.titleJp : item.titleEn}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep flex-1">
                     {locale === 'ko' ? item.descKo : locale === 'jp' ? item.descJp : item.descEn}
                   </p>
+                  {/* 선언 아래, 그 원칙을 증언하는 구성원의 문장 (클릭 → 스포트라이트) */}
+                  {item.voiceOf?.map((id) => {
+                    const m = TEAM_MEMBERS.find((x) => x.id === id);
+                    if (!m) return null;
+                    const vName = locale === 'en' ? m.nameEn : m.nameKo;
+                    return (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => setSpotlightId(id)}
+                        aria-haspopup="dialog"
+                        aria-label={locale === 'ko' ? `${vName}의 이야기 크게 보기` : `Open ${vName}'s story`}
+                        className="group mt-5 w-full text-left flex items-start gap-3 rounded-xl bg-gray-50 p-3.5 cursor-pointer transition-colors hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        <span
+                          className="relative shrink-0 w-8 h-8 rounded-full overflow-hidden ring-1 ring-black/5"
+                          style={{ backgroundColor: tintFor(m) }}
+                          aria-hidden="true"
+                        >
+                          <Image src={m.avatarUrl} alt="" width={32} height={32} unoptimized className="w-full h-full object-cover mix-blend-multiply" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-xs text-gray-600 leading-relaxed break-keep line-clamp-3">
+                            “{memberShort(m, locale)}”
+                          </span>
+                          <span className="mt-1 block text-2xs font-bold text-gray-400 group-hover:text-primary transition-colors">
+                            {vName}
+                          </span>
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               );
             })}
@@ -265,6 +369,9 @@ export default function TeamView({ locale }: { locale: Locale }) {
             <Link href={localeHref(locale, '/company/about')} className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors">
               <span>{locale === 'ko' ? '회사 소개' : locale === 'jp' ? '会社紹介' : 'About DeepingSource'}</span>
             </Link>
+            <Link href={localeHref(locale, '/company/investors')} className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors">
+              <span>{locale === 'ko' ? '투자자 정보' : locale === 'jp' ? '投資家情報' : 'For investors'}</span>
+            </Link>
           </div>
         </Container>
       </Section>
@@ -283,8 +390,9 @@ export default function TeamView({ locale }: { locale: Locale }) {
   );
 }
 
-/** PortraitTile — the quiet unit of the wall: pastel tint + illustration + name/role.
- *  All depth (quote, browsing) lives in the spotlight the tile opens. */
+/** PortraitTile — compact roster card: SMALL circular avatar (pastel tint) beside
+ *  name/role. The large portrait is intentionally NOT here — all depth (full-size
+ *  image, quote, browsing) lives in the spotlight dialog the card opens. */
 function PortraitTile({
   member: m,
   locale,
@@ -300,44 +408,120 @@ function PortraitTile({
 }) {
   const name = locale === 'en' ? m.nameEn : m.nameKo;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
-  const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
+  const short = memberShort(m, locale);
+  const theme = m.voice?.theme;
   const tint = tintFor(m);
   const lg = size === 'lg';
+  const avatarPx = lg ? 72 : 56;
 
   return (
     <button
       type="button"
       onClick={onOpen}
-      aria-label={locale === 'ko' ? `${name} — ${role}, 자세히 보기` : `${name} — ${role}, view profile`}
+      aria-label={locale === 'ko' ? `${name} — ${role}, 크게 보기` : `${name} — ${role}, view large profile`}
       aria-haspopup="dialog"
-      className="group w-full text-left rounded-2xl bg-white border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300 hover:border-primary/40 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      className={`group relative w-full text-left rounded-2xl bg-white border border-gray-200 cursor-pointer transition-all duration-300 hover:border-primary/40 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${lg ? 'p-5' : 'p-4'}`}
     >
-      <div className="relative aspect-square overflow-hidden" style={{ backgroundColor: tint }}>
-        <Image
-          src={m.avatarUrl}
-          alt=""
-          fill
-          sizes={lg ? '(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw' : '(min-width:1024px) 25vw, (min-width:640px) 33vw, 50vw'}
-          loading={eager ? 'eager' : 'lazy'}
-          unoptimized
-          className="object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.04]"
-        />
-        {m.isLeadership && !lg && (
-          <span className="absolute left-3 top-3 px-2 py-0.5 rounded-full bg-white/85 backdrop-blur text-2xs font-bold uppercase tracking-wider text-gray-700">
-            Lead
+      <span className="flex items-start gap-4">
+        {/* Small avatar — the wall stays quiet; the big portrait lives in the dialog */}
+        <span
+          className="relative shrink-0 rounded-full overflow-hidden ring-1 ring-black/5"
+          style={{ backgroundColor: tint, width: avatarPx, height: avatarPx }}
+          aria-hidden="true"
+        >
+          <Image
+            src={m.avatarUrl}
+            alt=""
+            width={avatarPx}
+            height={avatarPx}
+            loading={eager ? 'eager' : 'lazy'}
+            unoptimized
+            className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.06]"
+          />
+        </span>
+
+        <span className="min-w-0 flex-1 pr-6">
+          <span className="flex items-center gap-1.5">
+            <h3 className={`truncate font-bold text-gray-900 font-display group-hover:text-primary transition-colors ${lg ? 'text-lg' : 'text-base'}`}>
+              {name}
+            </h3>
+            {m.isLeadership && !lg && (
+              <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-gray-100 text-2xs font-bold uppercase tracking-wider text-gray-600">
+                Lead
+              </span>
+            )}
           </span>
-        )}
-      </div>
-      <div className={lg ? 'p-6' : 'p-4'}>
-        <h3 className={`font-bold text-gray-900 font-display group-hover:text-primary transition-colors ${lg ? 'text-xl' : 'text-base'}`}>
-          {name}
-        </h3>
-        <p className={`font-semibold text-primary break-keep ${lg ? 'text-sm mt-1' : 'text-xs mt-0.5'}`}>{role}</p>
-        {lg && (
-          <p className="mt-3 text-sm text-gray-500 leading-relaxed break-keep line-clamp-2">“{quote}”</p>
-        )}
-      </div>
+          <p className={`font-semibold text-primary break-keep ${lg ? 'text-sm mt-0.5' : 'text-xs mt-0.5'}`}>{role}</p>
+          {/* 한 줄 자랑 — 벽이 '사람 목록'이 아니라 '말풍선 벽'이 되게 (voice.short → 없으면 기존 인용구) */}
+          <p className={`text-gray-500 leading-relaxed break-keep line-clamp-2 ${lg ? 'mt-2.5 text-sm' : 'mt-1.5 text-xs'}`}>
+            “{short}”
+          </p>
+          {theme && (
+            <span className="mt-2 inline-flex px-2 py-0.5 rounded-full bg-gray-100 text-2xs font-bold uppercase tracking-wider text-gray-500">
+              {themeLabel(theme, locale)}
+            </span>
+          )}
+        </span>
+      </span>
+
+      {/* Enlarge affordance — appears on hover/focus, signals "view large" */}
+      <span
+        className={`absolute top-1/2 -translate-y-1/2 text-gray-300 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:text-primary ${lg ? 'right-5' : 'right-4'}`}
+        aria-hidden="true"
+      >
+        <Maximize2 className="w-4 h-4" />
+      </span>
     </button>
+  );
+}
+
+/** HeroVoiceTicker — one testimony at a time in the hero, rotating every 5s.
+ *  Pauses on hover/focus (WCAG 2.2.2); static under prefers-reduced-motion.
+ *  Click opens the member's spotlight. */
+function HeroVoiceTicker({ locale, onOpen }: { locale: Locale; onOpen: (id: string) => void }) {
+  const reduced = usePrefersReducedMotion();
+  const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const list = TEAM_MEMBERS;
+
+  useEffect(() => {
+    if (reduced || paused || list.length < 2) return;
+    const t = setInterval(() => setIdx((v) => (v + 1) % list.length), 5000);
+    return () => clearInterval(t);
+  }, [reduced, paused, list.length]);
+
+  const m = list[idx % list.length];
+  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
+
+  return (
+    <div className="mt-6 max-w-2xl" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <button
+        type="button"
+        onClick={() => onOpen(m.id)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        aria-haspopup="dialog"
+        aria-label={locale === 'ko' ? `${name}의 이야기 크게 보기` : `Open ${name}'s story`}
+        className="group w-full text-left flex items-start gap-3 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur px-4 py-3.5 cursor-pointer transition-all duration-300 hover:border-primary/40 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      >
+        <span key={m.id} className="flex items-start gap-3 min-w-0 animate-fade-in">
+          <span
+            className="relative shrink-0 w-9 h-9 rounded-full overflow-hidden ring-1 ring-black/5"
+            style={{ backgroundColor: tintFor(m) }}
+            aria-hidden="true"
+          >
+            <Image src={m.avatarUrl} alt="" width={36} height={36} unoptimized className="w-full h-full object-cover mix-blend-multiply" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm text-gray-700 leading-relaxed break-keep line-clamp-2">“{memberShort(m, locale)}”</span>
+            <span className="mt-1 block text-xs font-semibold text-gray-400 truncate group-hover:text-primary transition-colors">
+              {name} · {role}
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
   );
 }
 
@@ -389,9 +573,11 @@ function SpotlightDialog({
 
   const name = locale === 'en' ? m.nameEn : m.nameKo;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
-  const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
+  const short = memberShort(m, locale);
+  const story = memberStory(m, locale);
   const groupLabel = locale === 'ko' ? GROUP_KO_MAP[m.group] : m.group;
   const tint = tintFor(m);
+  const endorsed = m.endorses ? TEAM_MEMBERS.find((x) => x.id === m.endorses) : undefined;
 
   return (
     <div
@@ -430,8 +616,15 @@ function SpotlightDialog({
 
           {/* Story */}
           <div className="p-7 sm:p-9 flex flex-col">
-            <span className="inline-flex self-start px-2.5 py-1 rounded-full bg-gray-100 text-2xs font-bold uppercase tracking-wider text-gray-600 mb-4">
-              {groupLabel}
+            <span className="flex flex-wrap items-center gap-1.5 mb-4">
+              <span className="inline-flex px-2.5 py-1 rounded-full bg-gray-100 text-2xs font-bold uppercase tracking-wider text-gray-600">
+                {groupLabel}
+              </span>
+              {m.voice && (
+                <span className="inline-flex px-2.5 py-1 rounded-full bg-primary/10 text-2xs font-bold uppercase tracking-wider text-primary">
+                  {themeLabel(m.voice.theme, locale)}
+                </span>
+              )}
             </span>
             <h3 id="team-spotlight-name" className="text-2xl sm:text-3xl font-bold text-gray-900 font-display">
               {name}
@@ -439,9 +632,43 @@ function SpotlightDialog({
             <p className="mt-1 text-sm font-bold text-primary break-keep">{role}</p>
             {locale !== 'en' && <p className="mt-0.5 text-xs font-semibold text-gray-500">{m.nameEn}</p>}
 
-            <blockquote className="mt-6 flex-1">
+            <blockquote className="mt-6 flex-1 min-h-0 overflow-y-auto pr-1">
               <Quote className="w-5 h-5 text-primary/30 mb-2" aria-hidden="true" />
-              <p className="text-base sm:text-lg text-gray-800 leading-relaxed font-medium break-keep">“{quote}”</p>
+              <p className="text-base sm:text-lg text-gray-800 leading-relaxed font-medium break-keep">“{short}”</p>
+              {/* voice.story가 있으면 2~3문단 일화 — 클릭 보상 강화 */}
+              {story.map((p, i) => (
+                <p key={i} className="mt-3 text-sm text-gray-600 leading-relaxed break-keep">
+                  {p}
+                </p>
+              ))}
+              {m.voice?.askMeAbout && m.voice.askMeAbout.length > 0 && (
+                <div className="mt-5">
+                  <p className="text-2xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    {locale === 'ko' ? '이런 이야기를 물어보세요' : locale === 'jp' ? 'こんな話を聞いてください' : 'Ask me about'}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {m.voice.askMeAbout.map((chip) => (
+                      <span key={chip} className="px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-gray-600">
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {endorsed && (
+                <button
+                  type="button"
+                  onClick={() => onNavigate(endorsed.id)}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                >
+                  {locale === 'ko'
+                    ? `${endorsed.nameKo}님 이야기 보기`
+                    : locale === 'jp'
+                    ? `${endorsed.nameKo}さんのストーリーを見る`
+                    : `See ${endorsed.nameEn}'s story`}
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </button>
+              )}
             </blockquote>
 
             {/* Prev / next browsing */}
