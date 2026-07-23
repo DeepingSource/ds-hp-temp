@@ -1,392 +1,421 @@
-import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight, ArrowUpRight, ShieldCheck, Eye, Bell, CheckCircle2, Lock, HelpCircle, Layers } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreCareDeviceTabs from '@/components/corporate/views/StoreCareDeviceTabs';
 import HqRollupDashboardMockup from '@/components/mockups/HqRollupDashboardMockup';
-import { Store, ArrowUpRight, ShieldCheck, Eye, Bell } from 'lucide-react';
+import SaaiSymbol from '@/components/ui/SaaiSymbol';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Eyebrow from '@/components/ui/Eyebrow';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import WordRise from '@/components/ui/WordRise';
+import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
-import { JsonLd, softwareApplication } from '@/lib/structured-data';
-import WordRise from '@/components/ui/WordRise';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import siteContent from '@/data/generated/site-content.json';
 
-/**
- * StoreCareView — shared saai care product-detail composition.
- * Rendered by `/products/saai-care` (en), `/ko/products/saai-care`,
- * `/jp/products/saai-care` with the locale prop. Product name stays identical.
- * External CTAs keep storecare.ai.
- */
-
-const C: Record<Locale, {
+const COPY: Record<Locale, {
+  badge: string;
   heroTitle: string;
   heroSub: string;
   heroCta: string;
-  heroPrice: string;
-  mockupHeading: string;
-  mockupSub: string;
-  mockupNote: string;
-  mockupTabs: { store: string; phone: string };
-  scenariosHeading: string;
-  scenariosSub: string;
-  scenarios: string[];
-  values: { title: string; desc: string }[];
-  valueCta: string;
-  valueNote: [string, string];
-  otherProducts: string;
-  entEyebrow: string;
-  entHeadline: string;
-  entSub: string;
-  entPillars: { title: string; desc: string }[];
-  entPrivacy: string;
-  entCtaHq: string;
-  entCtaOwner: string;
-  entDashAria: string;
+  ownerLink: string;
+  threatEyebrow: string;
+  threatTitle: string;
+  threatBody: string;
+  ladderEyebrow: string;
+  ladderTitle: string;
+  ladderSub: string;
+  ladderItems: { b2c: string; b2b: string; desc: string }[];
+  dashTitle: string;
+  dashSub: string;
+  dashPillars: { title: string; desc: string }[];
+  privacyTitle: string;
+  privacySub: string;
+  faqTitle: string;
+  faqs: { q: string; a: string }[];
+  ctaTitle: string;
+  ctaSub: string;
+  ctaButton: string;
 }> = {
   ko: {
-    heroTitle: '누가 일해도, 언제나 완벽한 매장.',
-    heroSub: '인건비는 오르고 사람 구하긴 어렵죠. saai care는 24시간 매장을 대신 지켜보는 눈 — 공간에 직원 한 명이 더 있는 셈입니다. 빈 매대도, 바닥 오염도, 냉장고 문 열림도, 채워야 할 그 순간을 짚어드려요.',
-    heroCta: 'saai care 시작하기',
-    heroPrice: '월 14,900원부터 · storecare.ai에서 운영돼요',
-    mockupHeading: '필요한 순간만, 손안으로',
-    mockupSub: '하루 1,247건 쏟아지는 알림 대신 — 정작 필요한 세 건만 골라 휴대폰으로 바로 알려드려요.',
-    mockupNote: '* AI 분석 예시 화면이에요.',
-    mockupTabs: { store: '매장이 보는 것', phone: '내 손에 오는 것' },
-    scenariosHeading: '이런 순간을, 놓치지 않아요',
-    scenariosSub: '고객이 떠난 뒤에야 알게 되는 진열, 퇴근 후엔 확인할 수 없는 온도, 녹화만 되고 들여다볼 시간 없는 CCTV — saai care가 대신 살핍니다.',
-    scenarios: ['빈 매대', '냉장고 문 열림', '바닥 오염', '심야 이상 상황'],
-    values: [
-      { title: '24시간, 직원 한 명 더', desc: '매장을 비워도 괜찮아요. saai care가 곳곳을 대신 지켜봐요.' },
-      { title: '필요한 세 건만', desc: '빈 매대·바닥 오염·냉장고 문 열림·심야 이상 상황까지, 손쓸 순간만 콕 짚어 알려줘요.' },
-      { title: '대응 시간이 줄어요', desc: '진열 공백 대응 45분→15분, 오염 대응 30분→8분 — 자사 실험 매장 기준 예시예요. 빠른 대응이 매출과 경험을 지켜요.' },
+    badge: 'DETECT · 24시간 실시간 이상 감지',
+    heroTitle: '모든 매장을, 한 매장처럼 지켜봅니다.',
+    heroSub: '누가 근무하든 같은 기준으로 — 도난·위생·설비 이상을 전 매장에서 실시간 감지해 본사 한 화면으로 모옵니다. 기존 CCTV 그대로, 원본 영상은 남기지 않고.',
+    heroCta: '본사 도입 상담하기',
+    ownerLink: '한 매장만 운영하시나요? storecare.ai 셀프 서비스 바로가기 ↗',
+    threatEyebrow: 'SCALE RISK · 본사 관측의 한계',
+    threatTitle: '매장이 100개면, 사고와 위험도 100가지 편차.',
+    threatBody: '본사는 매장에서 일어나는 개별 사건만 겨우 전달받을 뿐, 전체 추세는 보이지 않습니다. 작은 실수가 리콜이나 브랜드 손상으로 번지기 전에, 지금 전 매장을 누가 동일하게 보고 있습니까?',
+    ladderEyebrow: 'VALUE LADDER · 가치 번역',
+    ladderTitle: '사장님의 안심을, 본사의 강력한 통제력으로.',
+    ladderSub: 'storecare.ai가 1개 매장 사장님을 지키는 방식 그대로 — 본사 규모의 표준화된 운영 체계로 승격합니다.',
+    ladderItems: [
+      { b2c: '24시간 안심', b2b: '전국 매장에 동일한 눈', desc: '누가 근무하든 브랜드 전 매장에서 같은 기준으로 도난과 이탈을 감지합니다.' },
+      { b2c: '새벽 3시 냉장고 알림', b2b: '폐기·클레임·리콜 체인 사전 차단', desc: '개별 매장의 설비 이상이 프랜차이즈 전체의 대형 리콜이나 위생 파문으로 번지는 것을 예방합니다.' },
+      { b2c: 'CCTV 확인 45분 → 15분', b2b: '본사 관측 부담 & 인건비 대폭 절감', desc: '매장당 절감된 대응 시간이 N개 매장 전체로 누적되어 본사의 현장 점검 인건비를 줄여줍니다.' },
+      { b2c: '필요한 알림만 골라 받기', b2b: '알림 수만 건 → 손쓸 곳 3곳 매장 랭킹', desc: 'SV 한 명이 담당하는 수십 개 매장의 알림 데이터 중 실제 개입이 필요한 순서로 매장을 정돈합니다.' },
+      { b2c: '매장 사진 본사 미공유 약속', b2b: 'SEAL 원본 미보존 — 프라이버시 컴플라이언스', desc: '본사는 사건과 추세 데이터만 봅니다. 가맹점 감시가 아닌, 원본 미보존으로 가맹점 반발을 해결합니다.' },
     ],
-    valueCta: 'storecare.ai 바로가기',
-    valueNote: ['saai care는 DeepingSource의 사장님용 서비스로, 별도 사이트 storecare.ai에서 운영됩니다.', ''],
-    otherProducts: '다른 제품 보기',
-    entEyebrow: '다점포 본사를 위한 · 손실예방 & 컴플라이언스',
-    entHeadline: '모든 매장을 같은 기준으로 지켜봅니다 — 한 화면에서.',
-    entSub: 'saai care는 도난·위생·설비를 모든 매장에서 같은 눈으로 살피고, 모든 알림을 본사로 모읍니다. 원본 영상은 남기지 않습니다.',
-    entPillars: [
-      { title: '표준화된 손실예방', desc: '도난과 영업 외 시간 이상 징후를, 그날 누가 근무하든 같은 기준으로 감지합니다. 여러 매장에서 반복되는 패턴은 본사 화면에 떠오릅니다. 개별 사건이 아니라 추세에 대응하세요.' },
-      { title: '위생·설비, 기록으로', desc: '냉장 온도, 바닥 누수, 막힌 비상구, 열린 문 — 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
-      { title: '전 매장을 한 화면에', desc: 'store count·saai insight처럼 saai care도 본사로 모입니다. 사고 건수로 매장을 정렬하고, 방문이 필요한 곳을 가려내고, 작은 실수가 리콜이 되기 전에 개입하세요.' },
+    dashTitle: '전 매장을 한 화면에서 — 관측의 회복',
+    dashSub: '전국 매장의 이상 감지·위생/온도 컴플라이언스·매장 랭킹·실시간 알림을 종합 롤업합니다.',
+    dashPillars: [
+      { title: '표준화된 손실예방', desc: '도난과 영업 외 시간 이상 징후를 그날 누가 근무하든 같은 기준으로 감지합니다. 반복 패턴을 본사 화면에서 가려내어 추세에 대응합니다.' },
+      { title: '위생·설비, 감사 증빙 기록', desc: '냉장 온도, 바닥 누수, 비상구 상태를 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
+      { title: '수만 건 알림 대신, 손쓸 매장 3곳', desc: '사고 건수와 긴급도로 전 매장을 자동으로 정돈하고, 현장 SV가 즉시 방문해야 할 우선순위를 추천합니다.' },
     ],
-    entPrivacy: 'SEAL이 촬영하는 순간 익명화합니다. 원본은 저장하지 않고 신원은 즉시 지워지며, 사건만 남습니다. 프라이버시를 내주지 않고도 지켜내는 컴플라이언스.',
-    entCtaHq: '다점포 도입 상담하기',
-    entCtaOwner: '한 매장만 운영하세요? storecare.ai에서 시작',
-    entDashAria: '전국 매장의 이상 감지·위생/온도 컴플라이언스·매장 랭킹·실시간 알림을 한 화면에 보여주는 saai care 본사 대시보드',
+    privacyTitle: '본사는 감시가 아니라, 브랜드 품질 표준을 지킵니다.',
+    privacySub: 'SEAL이 촬영하는 순간 익명화합니다. 원본 비디오는 남지 않으며 신원은 즉시 지워집니다. 가맹점주는 자기 매장을 자기 콘솔(storecare.ai)에서 보고, 본사는 사건과 컴플라이언스 지표만 관측하여 가맹점과의 프라이버시 갈등을 완벽히 소쇄합니다.',
+    faqTitle: '본사 도입에 관한 자주 묻는 질문 (B2B FAQ)',
+    faqs: [
+      { q: '기존 매장에 설치된 CCTV를 그대로 사용할 수 있나요?', a: '네, 기존에 설치된 RTSP/IP CCTV 카메라를 교체 없이 100% 그대로 활용할 수 있어 추가 장비 구축 비용을 최소화합니다.' },
+      { q: '가맹점주가 "매장 감시"라며 반발하지 않을까요?', a: 'SEAL 기술이 엣지 단계에서 영상 원본을 실시간 삭제하고 익명화합니다. 본사에는 사건 및 지표만 롤업되어 가맹점주의 프라이버시를 안전하게 보호합니다.' },
+      { q: '오알림이 너무 많이 발생해서 현장에서 무시하면 어쩌나요?', a: 'saai care의 다단계 노이즈 필터링은 수천 건의 알림 대신 실제 손쓸 순간만을 정밀 필터링하여 알려드립니다.' },
+      { q: '이상 발생 시 누가 대응하나요?', a: '매장 근무자 휴대폰 앱 알림과 본사 SV 대시보드로 동시 전송되어, 1차는 매장 자율 해결, 2차는 본사 지원 체계로 이원화 대응합니다.' },
+      { q: '시범 도입(Pilot) 후 확장도 가능한가요?', a: '권장 드리는 방식입니다. 직영점 5~10개 매장에서 먼저 4주간 실증을 거친 후 전 매장으로 확산할 수 있습니다.' },
+      { q: '개인정보보호법 컴플라이언스 문제는 없나요?', a: '촬영 순간 사람의 얼굴과 신원이 픽셀 단위로 불가역 익명화되어 개인정보보호법 규제를 완벽히 준수합니다.' },
+    ],
+    ctaTitle: '전 매장의 손실을 막고, 품질 표준을 세우세요.',
+    ctaSub: '직영점 5개 매장 파일럿부터 전 매장 인프라 확장까지, 딥핑소스 엔터프라이즈 팀이 함께합니다.',
+    ctaButton: '본사 맞춤 파일럿 & 도입 상담',
   },
   en: {
-    heroTitle: 'Always the perfect store — no matter who’s on shift.',
-    heroSub: 'Labor costs climb, good help is hard to find. saai care is a second set of eyes on your store, 24/7 — like one more employee on the floor. Empty shelves, a dirty aisle, a fridge door left open: it catches the moment that needs you.',
-    heroCta: 'Get started with saai care',
-    heroPrice: 'From 14,900 KRW/month · Operated on storecare.ai',
-    mockupHeading: 'Only the moments that matter — in your hand',
-    mockupSub: 'Most tools flood you with 1,247 alerts a day. saai care surfaces the three that actually need you, straight to your phone.',
-    mockupNote: '* Sample AI analysis screen.',
-    mockupTabs: { store: 'What the store sees', phone: 'What reaches you' },
-    scenariosHeading: 'It won’t miss moments like these',
-    scenariosSub: 'Displays you only hear about after the customer walks out, temperatures you can’t check after closing, CCTV that records but never gets watched — saai care keeps watch for you.',
-    scenarios: ['Empty shelf', 'Fridge door open', 'Floor spill', 'After-hours anomaly'],
-    values: [
-      { title: 'One more employee, 24/7', desc: 'Leave the floor with confidence. saai care keeps watch across the whole store.' },
-      { title: 'Just the three that matter', desc: 'Empty shelves, a dirty aisle, an open fridge door, after-hours anomalies — it flags the moment to act, and only that.' },
-      { title: 'Faster response', desc: 'Restock response 45→15 min, cleanup 30→8 min — illustrative figures from our own test stores. Acting sooner protects sales and the customer experience.' },
+    badge: 'DETECT · 24/7 Real-Time Anomaly Sensing',
+    heroTitle: 'Oversee every store — as one floor.',
+    heroSub: 'No matter who is on shift — detect stock-outs, sanitation, and after-hours anomalies across all locations live on one dashboard. Zero video retained.',
+    heroCta: 'Request HQ Consultation',
+    ownerLink: 'Operating a single store? Visit storecare.ai self-service ↗',
+    threatEyebrow: 'SCALE RISK · Limits of HQ Visibility',
+    threatTitle: 'With 100 stores comes 100 different operational risks.',
+    threatBody: 'Headquarters only gets isolated incident reports, never the big picture. Before small mistakes turn into brand-damaging recalls, who is keeping a consistent watch across all your locations?',
+    ladderEyebrow: 'VALUE LADDER · Translation of Care',
+    ladderTitle: 'From single-store peace of mind to enterprise-grade control.',
+    ladderSub: 'Translating the value of storecare.ai into a standardized operational system for retail franchises.',
+    ladderItems: [
+      { b2c: '24/7 Peace of mind', b2b: 'Equal eyes across nationwide stores', desc: 'Enforcing identical standards for theft and safety detection regardless of who is working.' },
+      { b2c: '3 AM Fridge Alert', b2b: 'Preventing chain-wide recall & claims', desc: 'Stopping equipment failures from escalating into brand-wide hygiene scandals or massive inventory write-offs.' },
+      { b2c: 'CCTV Check: 45 min → 15 min', b2b: 'Drastic reduction in HQ audit costs', desc: 'Saved response time per store accumulates across N stores to lower field audit labor costs.' },
+      { b2c: 'Filter out noise', b2b: '10,000 alerts → Top 3 priority store ranking', desc: 'Ranking stores by urgency so field supervisors visit the exact locations needing immediate intervention.' },
+      { b2c: 'Private store data', b2b: 'SEAL zero-video — Privacy Compliance', desc: 'HQ only sees events and trend metrics. Zero raw video is stored, eliminating franchise privacy friction.' },
     ],
-    valueCta: 'Go to storecare.ai',
-    valueNote: ['saai care is DeepingSource’s service for store owners, operated on the separate site storecare.ai.', ''],
-    otherProducts: 'See other products',
-    entEyebrow: 'For multi-store HQ · loss prevention & compliance',
-    entHeadline: 'Every store watched to the same standard — from one screen.',
-    entSub: 'saai care puts the same trained eye on theft, hygiene, and equipment in every location — and rolls every alert up to headquarters. No raw footage, ever.',
-    entPillars: [
-      { title: 'Loss prevention, standardized', desc: "Theft and after-hours anomalies caught by one consistent standard in every store — not the judgment of whoever's on shift. Patterns that repeat across locations surface on the HQ screen, so you act on the trend, not just the incident." },
-      { title: 'Hygiene & equipment, on the record', desc: 'Fridge temperatures, floor spills, blocked exits, doors left open — checked around the clock and time-stamped. Turn "we\'re pretty sure it\'s fine" into an audit trail you can show.' },
-      { title: 'The whole fleet, one screen', desc: 'Like store count and saai insight, saai care rolls up to HQ. Rank stores by incidents, see which sites need a visit, and step in before a small lapse becomes a recall.' },
+    dashTitle: 'All stores on one screen — Restoring visibility',
+    dashSub: 'Consolidating live anomaly detection, hygiene compliance, store rankings, and alerts in one HQ view.',
+    dashPillars: [
+      { title: 'Standardized Loss Prevention', desc: 'Detect after-hours anomalies and theft using identical standards regardless of floor staff.' },
+      { title: 'Audit-ready Records', desc: '24/7 inspection of fridge temperatures, leaks, and exit doors transformed into verifiable audit proofs.' },
+      { title: 'Top 3 Actionable Stores', desc: 'Automatically sort store urgency so field supervisors spend time where it matters most.' },
     ],
-    entPrivacy: 'Anonymized at the point of capture by SEAL. No footage is stored and identities are erased on the spot — only the events are kept. Compliance you can defend, without trading away privacy to get it.',
-    entCtaHq: 'Talk to us about a fleet rollout',
-    entCtaOwner: 'Running a single store? Start on storecare.ai',
-    entDashAria: 'saai care HQ dashboard: fleet-wide incidents, hygiene and temperature compliance, store ranking and a live alert feed across stores.',
+    privacyTitle: 'HQ enforces brand standards, not employee surveillance.',
+    privacySub: 'SEAL anonymizes footage at the instant of capture. Raw video is destroyed immediately, and franchisees view their own store on storecare.ai while HQ monitors compliance metrics.',
+    faqTitle: 'Frequently Asked Questions for Franchise HQ (B2B FAQ)',
+    faqs: [
+      { q: 'Can we use our existing CCTV cameras?', a: 'Yes. Existing RTSP/IP CCTV cameras work 100% as-is without equipment replacement.' },
+      { q: 'Will franchisees oppose this as employee surveillance?', a: 'No. SEAL destroys raw video instantly at the edge. HQ only receives anonymous metric events.' },
+      { q: 'How do you prevent false alert fatigue?', a: 'saai care multi-stage noise filters eliminate false alarms and only deliver actionable incidents.' },
+      { q: 'Who responds when an anomaly occurs?', a: 'Alerts are dispatched to both floor staff mobile apps and HQ supervisor dashboards for multi-tiered resolution.' },
+      { q: 'Can we start with a pilot program?', a: 'Yes, we recommend a 4-week pilot across 5-10 flagship locations before nationwide rollout.' },
+      { q: 'Does this comply with privacy regulations?', a: 'Yes. Irreversible pixel-level anonymization ensures complete compliance with global privacy laws.' },
+    ],
+    ctaTitle: 'Prevent store loss and establish brand-wide standards.',
+    ctaSub: 'From 5-store pilots to enterprise rollout, DeepingSource Enterprise Team is here to help.',
+    ctaButton: 'Request Enterprise Pilot',
   },
   jp: {
-    heroTitle: '誰が働いても、いつも完璧な店舗。',
-    heroSub: '人件費は上がり、人手は集まりにくい時代です。saai care は24時間、店舗を代わりに見守る目 — 売り場にもう一人スタッフがいるようなもの。空いた棚も、床の汚れも、冷蔵庫の扉の開けっ放しも、手を打つべきその瞬間をお知らせします。',
-    heroCta: 'saai care を始める',
-    heroPrice: '月額14,900 KRWから · storecare.ai で運営しています',
-    mockupHeading: '必要な瞬間だけ、手のひらに',
-    mockupSub: '1日1,247件あふれる通知ではなく — 本当に必要な3件だけを選んで、スマートフォンへすぐにお知らせします。',
-    mockupNote: '※ AI分析のサンプル画面です。',
-    mockupTabs: { store: '店舗が見ているもの', phone: '手元に届くもの' },
-    scenariosHeading: 'こんな瞬間を、見逃しません',
-    scenariosSub: 'お客様が帰ったあとに気づく陳列、退勤後には確かめられない温度、録画されるだけで見る時間のないCCTV — saai care が代わりに見守ります。',
-    scenarios: ['空いた棚', '冷蔵庫の扉開き', '床の汚れ', '深夜の異常'],
-    values: [
-      { title: '24時間、もう一人のスタッフ', desc: '店舗を離れても大丈夫。saai care がすみずみを代わりに見守ります。' },
-      { title: '必要な3件だけ', desc: '空いた棚・床の汚れ・冷蔵庫の扉開き・深夜の異常まで、手を打つべき瞬間だけを的確にお知らせします。' },
-      { title: '対応時間が短くなる', desc: '陳列の空白対応は45分→15分、汚れ対応は30分→8分 — 自社実験店舗ベースの例です。早い対応が売上と体験を守ります。' },
+    badge: 'DETECT · 24時間リアルタイム異常検知',
+    heroTitle: 'すべての店舗を、ひとつの店舗のように。',
+    heroSub: '誰が働いていても同じ基準で — 万引き・衛生・設備異常を全店舗でリアルタイム検知し、本部一画面に集約。既存CCTVそのまま、動画は残さず。',
+    heroCta: '本部導入のご相談',
+    ownerLink: '1店舗のみお持ちですか？ storecare.ai セルフサービス ↗',
+    threatEyebrow: 'SCALE RISK · 本部視界の限界',
+    threatTitle: '店舗が100あれば、事故とリスクも100のバラツキ。',
+    threatBody: '本部は個別の事故報告を後から受けるだけで、全体のトレンドは見えません。小さなミスがブランド毀損になる前に、誰が全店舗を同じ目で見ていますか？',
+    ladderEyebrow: 'VALUE LADDER · 価値の翻訳',
+    ladderTitle: 'オーナーの安心を、本部の強力な統制力へ。',
+    ladderSub: 'storecare.aiが1店舗のオーナーを守る仕組みそのままに — フランチャイズ規模の標準化された運用体系へと昇華。',
+    ladderItems: [
+      { b2c: '24時間安心', b2b: '全国店舗に同じ目', desc: '誰が働いていても全店舗で同じ基準で異常を検知します。' },
+      { b2c: '深夜3時の冷蔵庫アラート', b2b: '回収・クレーマー・リコールの事前遮断', desc: '設備の異常がチェーン全体の巨大リコールや衛生問題へ発展するのを防ぎます。' },
+      { b2c: 'CCTV確認 45分 → 15分', b2b: '本部観測負担 & 人件費の大幅削減', desc: '店舗あたりの削減時間が全店舗で蓄積され、臨店点検コストを抑えます。' },
+      { b2c: '必要な通知だけ', b2b: '数万件の通知 → 介入すべき店舗3箇所のランキング', desc: 'SVが担当する数十店舗のデータから、今すぐ訪問すべき店舗を自動整理。' },
+      { b2c: '店舗写真の非共有約束', b2b: 'SEAL動画未保存 — プライバシーコンプライアンス', desc: '本部は事件と指標のみ観測。加盟店の反発を動画非保存で解消します。' },
     ],
-    valueCta: 'storecare.ai へ',
-    valueNote: ['saai care は DeepingSource の店主向けサービスで、別サイトの storecare.ai で運営しています。', ''],
-    otherProducts: '他の製品を見る',
-    entEyebrow: '多店舗本部向け · 防損 & コンプライアンス',
-    entHeadline: 'すべての店舗を同じ基準で見守る — ひとつの画面で。',
-    entSub: 'saai care は盗難・衛生・設備をすべての店舗で同じ目で見張り、すべてのアラートを本部に集約します。元映像は残しません。',
-    entPillars: [
-      { title: '標準化された防損', desc: '盗難や営業時間外の異常の兆候を、その日に誰が勤務していても同じ基準で検知します。複数店舗で繰り返すパターンは本部の画面に浮かび上がります。個別の事件ではなく、傾向に対応してください。' },
-      { title: '衛生・設備を記録に', desc: '冷蔵温度、床の水漏れ、塞がれた非常口、開いたままの扉 — 24時間点検し、時刻を残します。「たぶん大丈夫」を、提示できる監査証跡に変えます。' },
-      { title: '全店舗をひとつの画面に', desc: 'store count・saai insight と同じく、saai care も本部に集約します。事故件数で店舗を並べ、訪問が必要な場所を見極め、小さな見落としがリコールになる前に対処してください。' },
+    dashTitle: '全店舗を一画面で — 観測の回復',
+    dashSub: '全国店舗の異常検知・コンプライアンス・店舗ランキングを一画面に統合。',
+    dashPillars: [
+      { title: '標準化された損失予防', desc: '夜間異常や万引きの兆候を勤務者に関わらず同一基準で検知。' },
+      { title: '監査証跡としての記録', desc: '冷蔵温度や非常口の状態を24時間点検し、確かな記録として残します。' },
+      { title: '介入すべき3店舗の推奨', desc: '緊急度で全店舗を自動整列し、SVが訪問すべき優先順位を提示。' },
     ],
-    entPrivacy: 'SEAL が撮影する瞬間に匿名化します。原本は保存せず、身元は即座に消え、事象だけが残ります。プライバシーを手放さずに守るコンプライアンス。',
-    entCtaHq: '多店舗導入のご相談',
-    entCtaOwner: '一店舗のみの運営ですか? storecare.ai で開始',
-    entDashAria: '全国店舗の異常検知・衛生/温度コンプライアンス・店舗ランキング・リアルタイムアラートをひとつの画面で示す saai care 本部ダッシュボード',
-  },
-};
-
-/** 탐지 시나리오 대표 CCTV 컷 (로케일 무관) — 라벨 순서와 1:1 대응 */
-const SCENARIO_IMGS = [
-  '/images/cctv/cctv-hero-shelf-empty.webp',
-  '/images/cctv/cctv-hero-fridge-open.webp',
-  '/images/cctv/cctv-contam-floor-spill.webp',
-  '/images/cctv/cctv-intrusion-night-ir.webp',
-];
-
-/**
- * 감지 항목 카탈로그 — care가 '지금(DETECT)' 잡아내는 항목들. keep(손실 방지)·shelf(매대·재고)는
- * 기능 라이브러리에서 care 감지 항목으로 편입(기능페이지 작업문서 v1 §6). 신원이 아니라 위험·상태만.
- */
-const DETECTION_CATALOG: Record<Locale, { eyebrow: string; title: string; sub: string; items: { name: string; desc: string }[] }> = {
-  ko: {
-    eyebrow: '감지 항목',
-    title: '무엇을 감지하나',
-    sub: '실시간(지금)으로 잡아내는 항목들 — 신원이 아니라 위험·상태만 봅니다.',
-    items: [
-      { name: '손실 방지', desc: '이상 행동·이탈·분실 위험을 실시간으로 감지합니다. 신원이 아니라 위험 행동만.' },
-      { name: '매대·재고', desc: '결품·흐트러짐·가격표 오류·오염을 실시간으로 감지합니다.' },
-      { name: '위생·설비', desc: '냉장 온도 이탈·청결 상태·설비 이상을 실시간으로 감지합니다.' },
-      { name: '안전·이상 상황', desc: '넘어짐·정체·비정상 동선 등 개입이 필요한 순간을 감지합니다.' },
+    privacyTitle: '本部は監視ではなく、品質標準を守ります。',
+    privacySub: 'SEALが撮影した瞬間匿名化。動画は残らず、加盟店は自店を自分のコンソール(storecare.ai)で確認し、本部はコンプライアンス指標のみ観測します。',
+    faqTitle: '本部導入に関するよくある質問 (B2B FAQ)',
+    faqs: [
+      { q: '既存のCCTVカメラをそのまま使えますか？', a: 'はい、既存のRTSP/IPカメラを100%そのまま活用可能です。' },
+      { q: '加盟店から「監視」だと反発されませんか？', a: 'SEAL技術がエッジ段階で動画を即座に破棄するため、本部は匿名イベントのみを受신します。' },
+      { q: '誤検知が多くて現場で無視されませんか？', a: 'saai careのマルチノイズフィルタが誤アラートを排除し、必要な瞬間のみを伝えます。' },
+      { q: '異常発生時は誰が対応しますか？', a: '店舗スタッフのアプリと本部のSVダッシュボードへ同時送信され、二段構えで対応します。' },
+      { q: 'パイロット導入からの開始は可能ですか？', a: 'はい、直営5〜10店舗での4週間実証を経てからの全体展開を推奨しています。' },
+      { q: '個人情報保護法のコンプライアンスは問題ありませんか？', a: '撮影の瞬間にピクセル単位で不可逆匿名化されるため、完全に対応しています。' },
     ],
-  },
-  en: {
-    eyebrow: 'What it detects',
-    title: 'The detection catalog',
-    sub: 'Caught live (now) — never identity, only risk and state.',
-    items: [
-      { name: 'Loss prevention', desc: 'Abnormal behavior, walk-outs and shrink risk, detected live. Never who — only the risky action.' },
-      { name: 'Shelf & stock', desc: 'Out-of-stock, disarray, price-tag errors and spills, detected live.' },
-      { name: 'Hygiene & equipment', desc: 'Fridge-temperature drift, cleanliness and equipment faults, detected live.' },
-      { name: 'Safety & incidents', desc: 'Falls, congestion and abnormal paths — the moments that need a person.' },
-    ],
-  },
-  jp: {
-    eyebrow: '検知項目',
-    title: '何を検知するか',
-    sub: 'リアルタイム(今)で捉える項目 — 身元ではなく、リスク・状態だけを見ます。',
-    items: [
-      { name: '防損', desc: '異常行動・離脱・紛失リスクをリアルタイムに検知します。身元ではなく、危険な行動だけを。' },
-      { name: '棚・在庫', desc: '欠品・乱れ・価格表示の誤り・汚れをリアルタイムに検知します。' },
-      { name: '衛生・設備', desc: '冷蔵温度の逸脱・清潔状態・設備の異常をリアルタイムに検知します。' },
-      { name: '安全・異常', desc: '転倒・滞留・不自然な動線など、介入が必要な瞬間を検知します。' },
-    ],
+    ctaTitle: '全店舗の損失を防ぎ、品質標準を確立しましょう。',
+    ctaSub: '5店舗のパイロットから全店舗展開まで、エンタープライズチームがサポートします。',
+    ctaButton: '本部パイロット & 導入相談',
   },
 };
 
 export default function StoreCareView({ locale }: { locale: Locale }) {
-  const t = C[locale];
-
-  const valueIcons = [Eye, Bell, ShieldCheck];
+  const c = COPY[locale];
 
   return (
-    <>
-      <JsonLd data={softwareApplication({ name: productPrimary('care'), alternateName: productNaming.care.store, description: t.heroSub, path: '/products/saai-care', locale })} />
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-16 lg:pt-40 lg:pb-20 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('care'), path: '/products/saai-care' }]} locale={locale} tone="light" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
-            <SaaiSymbol className="w-4 h-4 text-primary" />
-            {productPrimary('care')}
-            <span className="font-normal text-primary/55">· {productNaming.care.store} · storecare.ai</span>
+    <div className="bg-white min-h-screen">
+      <JsonLd
+        data={softwareApplication({
+          name: productNaming.care.saai ?? 'saai care',
+          description: c.heroSub,
+          path: '/products/saai-care',
+          locale,
+        })}
+      />
+
+      {/* ── Beat 1 — Hero (Franchise HQ First Frame) ── */}
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-slate-900 text-white noise-overlay overflow-hidden">
+        <Container className="relative z-10">
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productNaming.care.saai ?? 'saai care', path: '/products/saai-care' }]} locale={locale} tone="dark" className="mb-6" />
+
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+                <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
+                {c.badge}
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight font-display break-keep mb-6">
+                <WordRise text={c.heroTitle} />
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed break-keep mb-8">
+                {c.heroSub}
+              </p>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
+                <Link
+                  href={localeHref(locale, '/contact?product=saai-care')}
+                  className="btn-primary btn-lg inline-flex items-center justify-center gap-2"
+                >
+                  <span>{c.heroCta}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="https://storecare.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-6 py-3.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+                >
+                  <span>{c.ownerLink}</span>
+                </a>
+              </div>
+            </div>
+
+            {/* HQ Rollup Dashboard Preview in Hero */}
+            <div className="lg:col-span-5">
+              <div className="rounded-3xl border border-white/10 bg-slate-800/80 p-2 shadow-2xl backdrop-blur-md">
+                <HqRollupDashboardMockup locale={locale} ariaLabel={c.dashTitle} />
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
-            <WordRise text={t.heroTitle} />
-          </h1>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">
-            {solutionTaglines.care[locale]}
-          </p>
-          <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto break-keep mb-10">
-            {t.heroSub}
-          </p>
-          <a
-            href="https://storecare.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary btn-lg"
-          >
-            {t.heroCta}
-            <ArrowUpRight className="w-5 h-5 ml-2" />
-          </a>
-          <p className="mt-4 text-sm text-gray-500">{t.heroPrice}</p>
-        </div>
+        </Container>
       </section>
 
-      {/* ── 엔터프라이즈 — 다점포 본사 (HQ 롤업, dual-face) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-10 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase break-keep">{t.entEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.entHeadline}</h2>
-            <p className="text-lg text-gray-600 leading-relaxed break-keep">{t.entSub}</p>
+      {/* ── Beat 2 — Scale Risk (Agitation) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-slate-950 text-white noise-overlay border-t border-slate-800">
+        <Container className="max-w-4xl text-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-rose-400 mb-3 block">
+            {c.threatEyebrow}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-display break-keep">
+            "{c.threatTitle}"
+          </h2>
+          <p className="text-lg text-slate-300 leading-relaxed break-keep">
+            {c.threatBody}
+          </p>
+        </Container>
+      </AnimatedSection>
+
+      {/* ── Beat 3 — Value Ladder Translation (Signature Table) ── */}
+      <Section variant="default" pad="default">
+        <Container>
+          <div className="mb-12 text-center max-w-3xl mx-auto">
+            <Eyebrow className="mb-2 justify-center">{c.ladderEyebrow}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-4">
+              {c.ladderTitle}
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 break-keep">
+              {c.ladderSub}
+            </p>
           </div>
 
-          <div className="mb-10">
-            <HqRollupDashboardMockup locale={locale} ariaLabel={t.entDashAria} />
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {c.ladderItems.map((item, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl border border-gray-200 bg-white hover:border-primary-light hover:shadow-card transition-all grid sm:grid-cols-12 gap-4 items-center"
+              >
+                <div className="sm:col-span-4 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                  <span className="text-2xs font-bold uppercase text-gray-400 block mb-1">storecare.ai (사장님 1개 매장)</span>
+                  <p className="text-sm font-bold text-gray-700 break-keep">{item.b2c}</p>
+                </div>
+                <div className="hidden sm:flex sm:col-span-1 justify-center text-primary">
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+                <div className="sm:col-span-7 p-4 rounded-xl bg-primary/5 border border-primary/15">
+                  <span className="text-2xs font-bold uppercase text-primary block mb-1">saai care for 프랜차이즈 (본사 전 매장)</span>
+                  <h3 className="text-base font-bold text-gray-900 mb-1 break-keep">{item.b2b}</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed break-keep">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* ── Beat 4 — HQ Rollup & Pillars ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-gray-50 border-y border-gray-100">
+        <Container>
+          <div className="mb-12 max-w-3xl">
+            <Eyebrow className="mb-2">HEADQUARTERS ROLLUP</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-3">
+              {c.dashTitle}
+            </h2>
+            <p className="text-base text-gray-600 break-keep">
+              {c.dashSub}
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5 mb-8">
-            {t.entPillars.map((p, i) => (
-              <div key={i} className="rounded-2xl border border-gray-200 bg-white p-6">
-                <span className="text-2xs font-mono font-medium text-gray-400">0{i + 1}</span>
-                <h3 className="mt-2 text-base font-bold text-gray-900 mb-2 break-keep">{p.title}</h3>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {c.dashPillars.map((p, i) => (
+              <div key={i} className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-primary-lighter text-primary font-bold text-sm flex items-center justify-center mb-6">
+                  0{i + 1}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 break-keep">{p.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep">{p.desc}</p>
               </div>
             ))}
           </div>
+        </Container>
+      </AnimatedSection>
 
-          <p className="flex items-start gap-3 rounded-2xl border border-primary/20 bg-white p-5 text-sm text-gray-600 leading-relaxed break-keep mb-8">
-            <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-            {t.entPrivacy}
+      {/* Interactive Device & Scene Mockups */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white">
+        <Container>
+          <StoreCareDeviceTabs
+            locale={locale}
+            labels={
+              locale === 'ko'
+                ? { store: '매장이 보는 것 (1,247건)', phone: '본사/손안에 오르는 것 (3건)' }
+                : locale === 'jp'
+                ? { store: '店舗が見るもの', phone: '本部に届くもの' }
+                : { store: 'What the store sees', phone: 'What reaches HQ' }
+            }
+          />
+        </Container>
+      </AnimatedSection>
+
+      {/* ── Beat 6 — Privacy & Franchise Harmony (SEAL 3 Pledges) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
+        <Container className="max-w-4xl text-center">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-4">
+            <Lock className="w-3.5 h-3.5" />
+            PRIVACY COMPLIANCE & RECONCILIATION
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
+            {c.privacyTitle}
+          </h2>
+          <p className="text-lg text-slate-300 leading-relaxed mb-10 break-keep">
+            {c.privacySub}
           </p>
+          <div className="grid sm:grid-cols-3 gap-4 text-left">
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
+              <p className="text-sm font-bold text-white mb-1">원본 비디오 미보존</p>
+              <p className="text-xs text-slate-400">촬영 즉시 익명화 후 원본 영상을 삭제하여 서버에 남지 않습니다.</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
+              <p className="text-sm font-bold text-white mb-1">가맹점 전용 콘솔 분리</p>
+              <p className="text-xs text-slate-400">가맹점주는 storecare.ai에서 자기 매장 알림만 자주독립 수신합니다.</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
+              <p className="text-sm font-bold text-white mb-1">본사 사건/지표 롤업</p>
+              <p className="text-xs text-slate-400">본사는 감시가 아닌, 위생·설비 이상 및 브랜드 컴플라이언스만 관측합니다.</p>
+            </div>
+          </div>
+        </Container>
+      </AnimatedSection>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link href={localeHref(locale, '/contact') + '?product=StoreCare'} className="btn-primary">
-              {t.entCtaHq}
+      {/* ── Beat 7 — B2B FAQ ── */}
+      <Section variant="alt" pad="default">
+        <Container className="max-w-4xl">
+          <div className="mb-12 text-center">
+            <Eyebrow className="mb-2 justify-center">B2B FAQ</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep">
+              {c.faqTitle}
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            {c.faqs.map((faq, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm">
+                <h3 className="text-base font-bold text-gray-900 mb-2 flex items-start gap-2.5">
+                  <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <span>{faq.q}</span>
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed pl-7 break-keep">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <ModeFunctionSection mode="care" locale={locale} />
+      <RelatedGlossary
+        slugs={['stockout-detection', 'store-operations-automation', 'anonymized-cctv', 'retail-ai']}
+        locale={locale}
+      />
+
+      {/* ── Final HQ CTA ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-950 text-white noise-overlay">
+        <Container className="text-center max-w-3xl">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+            <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
+            ENTERPRISE CARE
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
+            {c.ctaTitle}
+          </h2>
+          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl mx-auto break-keep">
+            {c.ctaSub}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href={localeHref(locale, '/contact?product=saai-care')}
+              className="btn-primary btn-lg inline-flex items-center gap-2"
+            >
+              <span>{c.ctaButton}</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="https://storecare.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-6 py-3 text-sm font-bold text-gray-700 border border-gray-300 rounded-xl hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors"
             >
-              {t.entCtaOwner}
-              <ArrowUpRight className="w-4 h-4" />
+              <span>storecare.ai 사장님 셀프 ↗</span>
             </a>
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
-
-      {/* ── 목업 미리보기 (실시간 알림 화면) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-white overflow-hidden">
-        <div className="max-w-md mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">
-              {t.mockupHeading}
-            </h2>
-            <p className="text-base text-gray-500 break-keep">
-              {t.mockupSub}
-            </p>
-          </div>
-          <StoreCareDeviceTabs locale={locale} labels={t.mockupTabs} />
-          <p className="mt-6 text-center text-xs text-gray-500 break-keep">
-            {t.mockupNote}
-          </p>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 탐지 시나리오 (무엇을 잡아내는가) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{t.scenariosHeading}</h2>
-            <p className="text-base text-gray-500 leading-relaxed break-keep">{t.scenariosSub}</p>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {t.scenarios.map((label, i) => (
-              <div key={label} className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-                <div className="relative aspect-[16/9] w-full bg-slate-900">
-                  <Image
-                    src={SCENARIO_IMGS[i]}
-                    alt={label}
-                    fill
-                    sizes="(min-width:1024px) 25vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="px-4 py-3 text-sm font-bold text-gray-900 break-keep">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 감지 항목 카탈로그 (keep·shelf 편입 · 기능페이지 §6) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-10 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{DETECTION_CATALOG[locale].eyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{DETECTION_CATALOG[locale].title}</h2>
-            <p className="text-lg text-gray-500 leading-relaxed break-keep">{DETECTION_CATALOG[locale].sub}</p>
-          </div>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {DETECTION_CATALOG[locale].items.map((it) => (
-              <li key={it.name} className="rounded-2xl border border-gray-200 bg-white p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-                  <h3 className="text-base font-bold text-gray-900 break-keep">{it.name}</h3>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed break-keep">{it.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 기능 × care 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
-      <ModeFunctionSection mode="care" locale={locale} />
-
-      {/* ── Value (3 cards) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid sm:grid-cols-3 gap-6">
-            {t.values.map((v, i) => {
-              const Icon = valueIcons[i];
-              return (
-                <div key={v.title} className="card flex flex-col">
-                  <div className="w-11 h-11 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0 mb-4">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
-                  <p className="text-base text-gray-500 leading-relaxed break-keep">{v.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-12 text-center">
-            <a
-              href="https://storecare.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary btn-lg"
-            >
-              {t.valueCta}
-              <ArrowUpRight className="w-5 h-5 ml-2" />
-            </a>
-            <p className="mt-6 text-sm text-gray-500 break-keep">
-              {t.valueNote[0]}{' '}
-              <Link href={localeHref(locale, '/products')} className="text-primary hover:text-primary-dark transition-colors">
-                {t.otherProducts}
-              </Link>
-            </p>
-          </div>
-        </div>
-      </AnimatedSection>
-    </>
+    </div>
   );
 }
