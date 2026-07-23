@@ -59,7 +59,7 @@ const MEMBERS = [
 ];
 
 /**
- * Creates high-resolution Hand-drawn Outline Character Illustration SVG (PNG compatible)
+ * Creates high-resolution Hand-drawn Outline Character Illustration SVG
  */
 function createOutlineCharacterSvg(item) {
   const initial = item.name.slice(-2);
@@ -121,12 +121,16 @@ function createOutlineCharacterSvg(item) {
 </svg>`;
 }
 
-console.log('🎨 Building Outline Character Avatars for public/images/team/...');
+console.log('🎨 Regenerating Valid SVG Team Avatars for public/images/team/*.svg ...');
 
+// Clean up fake png files
 for (const m of MEMBERS) {
+  const fakePng = path.join(teamDir, `${m.id}.png`);
+  if (fs.existsSync(fakePng)) {
+    fs.unlinkSync(fakePng);
+  }
   const svgData = createOutlineCharacterSvg(m);
-  fs.writeFileSync(path.join(teamDir, `${m.id}.png`), svgData, 'utf8');
   fs.writeFileSync(path.join(teamDir, `${m.id}.svg`), svgData, 'utf8');
 }
 
-console.log(`✅ Saved ${MEMBERS.length} avatar images (.png/.svg) into public/images/team/`);
+console.log(`✅ Cleaned up old fake PNGs and generated ${MEMBERS.length} valid SVG avatar files in public/images/team/`);

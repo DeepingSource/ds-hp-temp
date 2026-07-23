@@ -238,7 +238,7 @@ function LeadershipBentoCard({ member: m, locale }: { member: TeamMember; locale
       <div>
         <div className="flex items-center justify-between mb-6">
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-primary/40 bg-slate-800 shadow-xl relative group-hover:scale-105 transition-transform duration-300">
-            <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
+            <Image src={m.avatarUrl} alt={name} fill unoptimized className="object-cover" />
           </div>
           <span className="px-3 py-1 rounded-full text-2xs font-bold uppercase tracking-wider bg-primary/20 border border-primary/30 text-primary-light">
             LEADERSHIP
@@ -277,7 +277,7 @@ function MemberCard({ member: m, locale }: { member: TeamMember; locale: Locale 
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6 text-center sm:text-left">
           <div className="relative shrink-0">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden border-2 border-slate-900 bg-slate-50 shadow-lg relative group-hover:scale-105 transition-transform duration-300">
-              <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
+              <Image src={m.avatarUrl} alt={name} fill unoptimized className="object-cover" />
             </div>
           </div>
 
