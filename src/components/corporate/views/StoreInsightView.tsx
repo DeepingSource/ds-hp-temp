@@ -33,7 +33,9 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
 
-const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram'), {
+// 홈 ProblemBeat에서 이식한 매장 전체 퍼널(382→65·−317) — 정제계획 §8-2 · C2.
+// Beat 4 kpis(1,160·382·317·65)와 같은 숫자 세계관 (매대 단위 FunnelDiagram 대체).
+const InsightFunnelBlock = dynamic(() => import('@/components/corporate/InsightFunnelBlock'), {
   loading: () => <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />,
 });
 
@@ -498,9 +500,9 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          {/* Interactive Funnel Mockup */}
-          <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm mb-12">
-            <FunnelDiagram locale={locale} />
+          {/* Store-wide behavior funnel — 홈에서 이식한 증거 블록 (§8-2) */}
+          <div className="mb-12">
+            <InsightFunnelBlock locale={locale} />
           </div>
 
           {/* Before & After Box */}

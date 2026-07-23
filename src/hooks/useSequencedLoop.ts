@@ -20,6 +20,9 @@ import { useEffect, useRef } from 'react';
  * @param onStatic   render the final/resting state (reduced-motion or no-JS fallback)
  * @param pauseMs    gap after a pass before the next begins
  * @param deps       values that, when changed, rebuild the loop
+ * @param once       play a single pass then stop on the final state (no restart);
+ *                   replay by bumping a value in `deps`. reduced-motion still calls `onStatic`.
+ * @param onComplete called once when a `once` pass finishes (sequential-play chaining)
  */
 export function useSequencedLoop(
   run: (sched: (fn: () => void, ms: number) => void) => number,
@@ -29,18 +32,24 @@ export function useSequencedLoop(
     onStatic,
     pauseMs = 0,
     deps = [],
+    once = false,
+    onComplete,
   }: {
     active: boolean;
     reducedMotion: boolean;
     onStatic?: () => void;
     pauseMs?: number;
     deps?: unknown[];
+    once?: boolean;
+    onComplete?: () => void;
   },
 ): void {
   const runRef = useRef(run);
   runRef.current = run;
   const staticRef = useRef(onStatic);
   staticRef.current = onStatic;
+  const completeRef = useRef(onComplete);
+  completeRef.current = onComplete;
 
   useEffect(() => {
     if (!active) return;
@@ -50,6 +59,7 @@ export function useSequencedLoop(
     }
 
     let cancelled = false;
+    let completed = false; // once: 한 패스 종료 후 재시작·재동기화 차단
     const timers: ReturnType<typeof setTimeout>[] = [];
     const sched = (fn: () => void, ms: number) => {
       const t = setTimeout(() => {
@@ -62,13 +72,20 @@ export function useSequencedLoop(
       if (cancelled) return;
       timers.splice(0).forEach(clearTimeout);
       const total = runRef.current(sched);
-      sched(loop, total + pauseMs);
+      if (once) {
+        sched(() => {
+          completed = true;
+          completeRef.current?.();
+        }, total);
+      } else {
+        sched(loop, total + pauseMs);
+      }
     };
 
     loop();
 
     const handleVisibility = () => {
-      if (!document.hidden) {
+      if (!document.hidden && !completed) {
         cancelled = true;
         timers.splice(0).forEach(clearTimeout);
         cancelled = false;
@@ -83,5 +100,5 @@ export function useSequencedLoop(
       document.removeEventListener('visibilitychange', handleVisibility);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, reducedMotion, pauseMs, ...deps]);
+  }, [active, reducedMotion, pauseMs, once, ...deps]);
 }

@@ -11,13 +11,15 @@ import { getLocaleFromPath, localeHref, type Locale } from '@/lib/i18n';
  *  • ?lp=1 (ad landing mode): shown immediately on any page, forwards UTM params.
  *  • Organic homepage (/, /ko, /jp): shown after the visitor scrolls past the hero,
  *    closing the long-page conversion leak. Localized per path-prefix locale.
+ *  • Hidden while the page's closing CTA section (#closing-cta) is on screen —
+ *    the bar must not cover the final CTA it duplicates (홈 정제계획 B4 · F5).
  * (Legacy minisite product pages keep their own MobileStickyBar.)
  */
 
 const dict: Record<Locale, { tagline: string; button: string; aria: string }> = {
-  ko: { tagline: 'AI 매장 관리, 지금 바로 시작하세요', button: '무료 상담 신청', aria: '상담 신청' },
+  ko: { tagline: 'AI 매장 관리, 지금 바로 시작하세요', button: '도입 상담', aria: '도입 상담' },
   en: { tagline: 'AI store operations — start today', button: 'Talk to us', aria: 'Contact us' },
-  jp: { tagline: 'AI店舗運営、今すぐ始めましょう', button: '無料相談', aria: '相談する' },
+  jp: { tagline: 'AI店舗運営、今すぐ始めましょう', button: '導入相談', aria: '導入相談' },
 };
 
 const HOME_PATHS = ['/', '/ko', '/jp'];
@@ -31,6 +33,7 @@ export default function LandingStickyCta() {
   const lpMode = params.get('lp') === '1';
   const isHome = HOME_PATHS.includes(pathname);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [closingCtaOnScreen, setClosingCtaOnScreen] = useState(false);
 
   useEffect(() => {
     if (lpMode || !isHome) return;
@@ -40,7 +43,22 @@ export default function LandingStickyCta() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [lpMode, isHome]);
 
-  const visible = lpMode || (isHome && scrolledPastHero);
+  // 최종 CTA 섹션이 보이는 동안 고정바 숨김 (전역 마운트라 DOM id로만 참조 가능)
+  useEffect(() => {
+    const target = document.getElementById('closing-cta');
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setClosingCtaOnScreen(entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(target);
+    return () => {
+      observer.disconnect();
+      setClosingCtaOnScreen(false); // 페이지 이동 시 이전 상태 잔류 방지
+    };
+  }, [pathname]);
+
+  const visible = (lpMode || (isHome && scrolledPastHero)) && !closingCtaOnScreen;
   if (!visible) return null;
 
   // Build contact URL, forwarding UTM params if present (lp ad traffic)

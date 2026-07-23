@@ -16,12 +16,21 @@ interface UseScrollAnimationOptions {
    * JS 없이도 보이게 한다.
    */
   immediate?: boolean;
+  /**
+   * `false`면 3초 safety-net 타임아웃을 걸지 않는다.
+   *
+   * 기본값 `true`는 리빌(opacity) 소비자용 — observer가 어떤 이유로든 안 오면
+   * 3초 뒤 콘텐츠를 강제 표시해 빈 블록을 막는다. 반면 **1회 재생(once) 목업의
+   * 재생 게이트**로 쓰면 뷰포트 밖에서 3초 뒤 재생이 시작돼 1회뿐인 시퀀스가
+   * 화면 밖에서 소진된다(홈 모션 정책 D4 위반) — 그런 소비자는 `false`로 끈다.
+   */
+  safetyNet?: boolean;
 }
 
 export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
   options: UseScrollAnimationOptions = {}
 ) {
-  const { threshold = 0.15, once = true, immediate = false } = options;
+  const { threshold = 0.15, once = true, immediate = false, safetyNet = true } = options;
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(immediate);
   const reducedMotion = usePrefersReducedMotion();
@@ -48,9 +57,12 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
     }
 
     // Safety net: IntersectionObserver가 3초 내 트리거되지 않으면 콘텐츠 표시
-    const timeout = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
+    // (safetyNet=false인 재생 게이트 소비자는 실제 진입만 신호로 쓴다)
+    const timeout = safetyNet
+      ? setTimeout(() => {
+          setIsVisible(true);
+        }, 3000)
+      : undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -75,7 +87,7 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
       observer.disconnect();
       clearTimeout(timeout);
     };
-  }, [threshold, once, reducedMotion, immediate]);
+  }, [threshold, once, reducedMotion, immediate, safetyNet]);
 
   return { ref, isVisible };
 }

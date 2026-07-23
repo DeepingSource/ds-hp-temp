@@ -39,6 +39,14 @@ interface UseMockupLoopOptions {
   initialStep?: number;
   /** true면 hoverProps를 스프레드한 요소에 마우스/포커스가 머무는 동안 루프 일시정지. */
   pauseOnHover?: boolean;
+  /**
+   * 'loop'(기본): 무한 순환 — 기존 동작.
+   * 'once': 한 바퀴 재생 후 마지막 단계에서 정지(done=true). replay()로 재재생.
+   * reduced-motion + once는 재생 없이 마지막 단계를 정적 표시한다.
+   */
+  mode?: 'loop' | 'once';
+  /** mode='once'에서 재생이 끝났을 때 1회 호출 (순차 재생 체이닝용) */
+  onComplete?: () => void;
 }
 
 /** pauseOnHover 사용 시 루트 요소에 스프레드할 핸들러 */
@@ -62,6 +70,10 @@ interface UseMockupLoopReturn {
   loopKey: number;
   /** pauseOnHover=true일 때 루트 요소에 스프레드 (그 외엔 빈 객체) */
   hoverProps: HoverPauseProps | Record<string, never>;
+  /** mode='once'에서 한 바퀴 재생이 끝나 정지한 상태 */
+  done: boolean;
+  /** mode='once' 정지 상태에서 처음부터 다시 재생 */
+  replay: () => void;
 }
 
 export function useMockupLoop({
@@ -72,14 +84,19 @@ export function useMockupLoop({
   transitionDuration = 200,
   initialStep = 0,
   pauseOnHover = false,
+  mode = 'loop',
+  onComplete,
 }: UseMockupLoopOptions): UseMockupLoopReturn {
   const reducedMotion = usePrefersReducedMotion(); // SSR-safe, reactive
   const [step, setStep] = useState(initialStep);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [loopKey, setLoopKey] = useState(0);
   const [isHoverPaused, setIsHoverPaused] = useState(false);
+  const [done, setDone] = useState(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const cancelledRef = useRef(false);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
   // goTo로 점프 시 루프를 그 step부터 재개 (기본값 initialStep → 기존 동작 동일)
   const startStepRef = useRef(initialStep);
   // intervals는 호출부에서 인라인 배열로 넘어오는 경우가 많아(렌더마다 새 참조)
@@ -123,10 +140,30 @@ export function useMockupLoop({
     setStep(s => (s + 1) % steps);
   }, [steps]);
 
+  // once 정지 상태에서 처음부터 재재생
+  const replay = useCallback(() => {
+    clearTimers();
+    cancelledRef.current = true;
+    startStepRef.current = initialStep;
+    setStep(initialStep);
+    setDone(false);
+    requestAnimationFrame(() => {
+      cancelledRef.current = false;
+      setLoopKey(k => k + 1);
+    });
+  }, [initialStep, clearTimers]);
+
   useEffect(() => {
     if (!effectiveActive || steps <= 1) return;
+    if (mode === 'once' && done) return; // 재생 완료 — replay 전까지 정지
     if (reducedMotion) {
-      setStep(initialStep);
+      // once는 '최종 결과' 프레임을 정적 표시, loop은 기존처럼 시작 프레임
+      if (mode === 'once') {
+        setStep(steps - 1);
+        setDone(true);
+      } else {
+        setStep(initialStep);
+      }
       return;
     }
 
@@ -162,17 +199,25 @@ export function useMockupLoop({
       elapsed += iv ? iv[i] : interval;
     }
 
-    // 마지막 단계 후 루프 재시작 — 다음 바퀴는 initialStep부터 (자연 순환)
-    sched(() => {
-      startStepRef.current = initialStep;
-      setLoopKey(k => k + 1);
-    }, elapsed);
+    if (mode === 'once') {
+      // 마지막 단계에서 정지 — 최종 프레임 유지
+      sched(() => {
+        setDone(true);
+        onCompleteRef.current?.();
+      }, elapsed);
+    } else {
+      // 마지막 단계 후 루프 재시작 — 다음 바퀴는 initialStep부터 (자연 순환)
+      sched(() => {
+        startStepRef.current = initialStep;
+        setLoopKey(k => k + 1);
+      }, elapsed);
+    }
 
     return () => {
       cancelledRef.current = true;
       clearTimers();
     };
-  }, [effectiveActive, reducedMotion, steps, interval, intervalsKey, transitionDuration, initialStep, loopKey, clearTimers, sched]);
+  }, [effectiveActive, reducedMotion, steps, interval, intervalsKey, transitionDuration, initialStep, loopKey, mode, done, clearTimers, sched]);
 
   const hoverProps: HoverPauseProps | Record<string, never> = pauseOnHover
     ? {
@@ -183,5 +228,5 @@ export function useMockupLoop({
       }
     : {};
 
-  return { step, isTransitioning, goTo, next, loopKey, hoverProps };
+  return { step, isTransitioning, goTo, next, loopKey, hoverProps, done, replay };
 }

@@ -1,11 +1,12 @@
 'use client';
 
 import { BarChart3, TrendingUp, Users, ArrowUpRight, ArrowDownRight, LayoutGrid, Clock, Calendar, Settings, Timer, Target } from 'lucide-react';
-import { useEffect, useState, memo } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { AnimatePresence, motion } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
+import MockupReplayButton from '@/components/ui/MockupReplayButton';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
 import IosSegmentedControl from '@/components/ui/IosSegmentedControl';
@@ -122,16 +123,26 @@ interface Props {
   locale?: Locale;
   /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: C[locale] */
   content?: DeepPartial<StoreInsightMockupCopy>;
+  /**
+   * 'loop'(기본): 탭 무한 순환 — 기존 동작.
+   * 'once': 카운트업 + 탭 한 바퀴(sales→visitors→sales) 후 정지 + ↻ 재생 버튼
+   * (홈 모션 정책 D4 — 뷰포트당 1회 재생).
+   */
+  playMode?: 'loop' | 'once';
 }
 
-function StoreInsightMockup({ active = true, storeName, locale = 'en', content }: Props) {
+function StoreInsightMockup({ active = true, storeName, locale = 'en', content, playMode = 'loop' }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const t = mergeMockupContent(C[locale] ?? C.en, content);
   const resolvedStoreName = storeName ?? t.storeName;
   const [activeTab, setActiveTab]           = useState<InsightTab>('sales');
   const [countProgress, setCountProgress]   = useState(0);
   const [insightVisible, setInsightVisible] = useState(false);
-  const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const [done, setDone]                     = useState(false);
+  const [replayKey, setReplayKey]           = useState(0);
+  const doneRef = useRef(false); // done을 effect deps에 넣지 않기 위한 가드(카운트업 리셋 방지)
+  // once 재생 게이트는 실제 뷰포트 진입만 신호로 — 3초 폴백이 켜져 있으면 화면 밖 소진
+  const { ref: containerRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3, safetyNet: playMode === 'loop' });
 
   // 현재 시각(클라이언트 전용). 차트는 10~16시 → 현재 시각 이후 칸은 "예측" 구간으로 표기.
   // SSR/첫 페인트에는 null → 전 구간 실측으로 렌더(하이드레이션 안정) 후 클라이언트에서 보정.
@@ -141,6 +152,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content }
 
   useEffect(() => {
     if (!isVisible || !active) return;
+    if (playMode === 'once' && doneRef.current) return; // 재생 완료 — replay 전까지 정지
     if (reducedMotion) {
       setCountProgress(1);
       setInsightVisible(true);
@@ -171,24 +183,40 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content }
 
     sched(() => setInsightVisible(true), 1100);
 
-    // Tab cycling (every 5s)
-    // setActiveTab은 exit 애니메이션이 시작된 후 별도 tick에 적용 (React 18 batching 방지)
-    let isVisitors = false;
-    const tabInterval = setInterval(() => {
-      if (cancelled) return;
-      isVisitors = !isVisitors;
-      setInsightVisible(false);
-      sched(() => setActiveTab(isVisitors ? 'visitors' : 'sales'), 180);
-      sched(() => setInsightVisible(true), 420);
-    }, 5000);
+    // Tab cycling — setActiveTab은 exit 애니메이션이 시작된 후 별도 tick에 적용
+    // (React 18 batching 방지)
+    let tabInterval: ReturnType<typeof setInterval> | undefined;
+    if (playMode === 'once') {
+      // 한 바퀴만: sales(5s) → visitors(5s) → sales 복귀 후 정지 (D4 최종 프레임)
+      const swapTab = (tab: InsightTab, at: number) => {
+        sched(() => setInsightVisible(false), at);
+        sched(() => setActiveTab(tab), at + 180);
+        sched(() => setInsightVisible(true), at + 420);
+      };
+      swapTab('visitors', 5000);
+      swapTab('sales', 10000);
+      sched(() => {
+        doneRef.current = true;
+        setDone(true);
+      }, 10800);
+    } else {
+      let isVisitors = false;
+      tabInterval = setInterval(() => {
+        if (cancelled) return;
+        isVisitors = !isVisitors;
+        setInsightVisible(false);
+        sched(() => setActiveTab(isVisitors ? 'visitors' : 'sales'), 180);
+        sched(() => setInsightVisible(true), 420);
+      }, 5000);
+    }
 
     return () => {
       cancelled = true;
-      clearInterval(tabInterval);
+      if (tabInterval) clearInterval(tabInterval);
       timers.forEach(clearTimeout);
       cancelAnimationFrame(countRaf.id);
     };
-  }, [isVisible, active, reducedMotion]);
+  }, [isVisible, active, reducedMotion, playMode, replayKey]);
 
   const revStr   = (phoneKpiTargets.revenue * countProgress).toFixed(1);
   const visitStr = Math.round(phoneKpiTargets.visitors * countProgress).toString();
@@ -196,7 +224,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content }
   const convStr  = Math.round(phoneKpiTargets.conversionRate * countProgress).toString();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="relative">
     <PhoneFrame>
     <PhoneScreen statusBarBg="bg-white" homeBg="bg-white">
 
@@ -364,6 +392,19 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content }
       </div>
     </PhoneScreen>
     </PhoneFrame>
+    {playMode === 'once' && done && !reducedMotion && (
+      <MockupReplayButton
+        locale={locale}
+        onReplay={() => {
+          doneRef.current = false;
+          setDone(false);
+          setActiveTab('sales');
+          setCountProgress(0);
+          setInsightVisible(false);
+          setReplayKey(k => k + 1);
+        }}
+      />
+    )}
     </div>
   );
 }

@@ -1,238 +1,118 @@
 'use client';
 
-import { Receipt, LineChart, Lock, Eye, BellRing, RefreshCw, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
-import Card from '@/components/ui/Card';
-import IconChip from '@/components/ui/IconChip';
-import { CountUp } from '@/components/ui/CountUp';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
-import { type Locale } from '@/lib/i18n';
-import { signature, operatingLoop } from '@/lib/brand-canon';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { localeHref, type Locale } from '@/lib/i18n';
 
 /**
- * ProblemBeat — the tension before the solution (home #2).
- * Gives the rest of the page stakes, grounded in the funnel: between walking in
- * and checking out, most of what happens in the store goes unseen. Pain language
- * lifted from the
- * launch film (00:4–00:7, 01:2): POS only keeps who paid, the funnel of the
- * invisible majority who browse and leave, and the answer waiting in the space.
- * The funnel is drawn from the copy's own numbers (language-neutral, all locales).
- * Resolves into the SAAI answer (보는 AI를 넘어, 누구가 아니라 무엇을).
+ * ProblemBeat — 공감·실증 (home #2, 홈 정제계획 §8-2 재구성).
+ * Hero가 주장(범용 AI는 공간을 못 본다)을 선언한 뒤, 여러 공간이 실제로 겪는 문제를
+ * 나열해 공감을 만든다. 예전의 리테일 퍼널(382→65·−317)은 saai insight 페이지로
+ * 이식했다(InsightFunnelBlock — 리테일 편중 해소). 마무리 한 줄이 공통 원인
+ * ("공간을 읽는 눈이 없습니다")으로 수렴해 GuideIntro(해결자 자격)로 넘긴다.
+ * 공간 라벨은 SpacesShowcase(7번 섹션)와 수미 호응.
  */
 
-type Pain = { icon: typeof Receipt; title: string; desc: string };
-type FunnelStep = { n: string; pct: number; label: string };
+type SpaceProblem = { label: string; problem: string; href: string };
 
 const dict: Record<Locale, {
   leakEyebrow: string; leakTitle: string; leakSub: string;
-  eyebrow: string; heading: string; pains: Pain[]; bridge: string;
-  funnelTitle: string; funnel: FunnelStep[]; leak: { n: string; label: string };
-  methodTagline: string;
-  posTag: string; legendInvisible: string; legendPos: string; funnelAria: string;
+  spaces: SpaceProblem[]; linkLabel: string;
+  convergePre: string; convergeStrong: string;
 }> = {
   ko: {
-    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakEyebrow: '신호가 새는 곳',
     leakTitle: '공간의 신호는 \'사이\'에서 샙니다',
     leakSub: '카메라와 결정 사이, 감과 데이터 사이, 본사와 매장 사이 — 신호는 늘 그 틈에서 사라집니다.',
-    eyebrow: '공간 최적화의 첫 걸음 · 보이지 않는 다수',
-    heading: '어제 들어온 손님 10명 중 8명은, 결제 없이 나갑니다 — 어디서 놓쳤을까요?',
-    posTag: 'POS 기록',
-    legendInvisible: '보이지 않음',
-    legendPos: 'POS 기록',
-    funnelAria: '어제 입장 382명 중 결제까지 17%만 도달한 전환 퍼널',
-    funnelTitle: '어제, 우리 매장 안에서',
-    funnel: [
-      { n: '382', pct: 100, label: '입장' },
-      { n: '300', pct: 79, label: '매대 방문' },
-      { n: '214', pct: 56, label: '머묾' },
-      { n: '138', pct: 36, label: '응시' },
-      { n: '88', pct: 23, label: '픽업' },
-      { n: '65', pct: 17, label: '결제' },
+    spaces: [
+      { label: '리테일·편의점', problem: '들어온 손님 10명 중 8명이 결제 없이 나갑니다 — 어디서 놓쳤는지는 아무도 모릅니다.', href: '/solutions#industry-convenience' },
+      { label: '카페·음식점', problem: '피크타임 대기에 지친 손님이 돌아섭니다 — 몇 명을 놓쳤는지 세는 사람이 없습니다.', href: '/solutions#industry-cafe' },
+      { label: '대형마트·물류', problem: '혼잡과 안전사고는 늘 일이 터진 뒤에야 알게 됩니다.', href: '/solutions#industry-mart' },
+      { label: '전시·박물관', problem: '어느 전시 앞에 사람이 머무는지, 여전히 감으로 판단합니다.', href: '/solutions#industry-exhibition' },
+      { label: '무인매장', problem: '이상 상황을 알아챌 사람이 현장에 없습니다.', href: '/solutions#industry-unmanned' },
+      { label: '본사 · 다점포', problem: '지점이 100개면 편차도 100개 — 원인이 한 화면에 모이지 않습니다.', href: '/enterprise' },
     ],
-    leak: { n: '317', label: '매장 안에서 보고·머물고·집어 든 행동 — POS엔 없습니다' },
-    pains: [
-      { icon: Receipt, title: 'POS엔 결제한 손님만 남습니다', desc: '무엇이 팔렸는지는 알아도, 왜 안 팔렸는지는 모릅니다.' },
-      { icon: Lock, title: 'CCTV는 쌓여도, 읽히지 않습니다', desc: '답은 매장 안 행동에 있는데, 얼굴이 걸리는 순간 분석이 멈춥니다.' },
-      { icon: LineChart, title: '매장이 100개면, 편차도 100개', desc: '본사는 어디서 새는지 모릅니다 — 잘되는 매장의 이유도, 안되는 매장의 원인도 한 화면에 없으니까요.' },
-    ],
-    bridge: signature.ko,
-    methodTagline: '보는 데서 멈추지 않습니다 — 실행까지.',
+    linkLabel: '해결 방법 보기',
+    convergePre: '문제는 제각각이지만 원인은 하나 —',
+    convergeStrong: '공간을 읽는 눈이 없습니다.',
   },
   en: {
-    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakEyebrow: 'Where signals leak',
     leakTitle: 'Signals leak in the space between',
     leakSub: 'Between camera and decision, intuition and data, HQ and store — signals vanish in the gap.',
-    eyebrow: 'The invisible majority',
-    heading: 'Of every 10 who came in yesterday, 8 left without paying — where did you lose them?',
-    posTag: 'In POS',
-    legendInvisible: 'Invisible',
-    legendPos: 'In POS',
-    funnelAria: 'Yesterday: of 382 who entered, only 17% reached checkout',
-    funnelTitle: 'Yesterday, inside your store',
-    funnel: [
-      { n: '382', pct: 100, label: 'entered' },
-      { n: '300', pct: 79, label: 'at a shelf' },
-      { n: '214', pct: 56, label: 'paused' },
-      { n: '138', pct: 36, label: 'looked' },
-      { n: '88', pct: 23, label: 'picked up' },
-      { n: '65', pct: 17, label: 'checked out' },
+    spaces: [
+      { label: 'Retail & convenience', problem: 'Eight of every ten visitors leave without paying — and no one knows where you lost them.', href: '/solutions#industry-convenience' },
+      { label: 'Cafés & restaurants', problem: 'Guests tired of the peak-time wait walk away — and no one counts how many.', href: '/solutions#industry-cafe' },
+      { label: 'Marts & logistics', problem: 'Congestion and safety incidents surface only after something happens.', href: '/solutions#industry-mart' },
+      { label: 'Exhibitions & museums', problem: 'Which exhibit holds people is still judged by gut feel.', href: '/solutions#industry-exhibition' },
+      { label: 'Unmanned stores', problem: 'No one is on site to notice when something goes wrong.', href: '/solutions#industry-unmanned' },
+      { label: 'HQ · multi-store', problem: '100 locations mean 100 variances — the causes never meet on one screen.', href: '/enterprise' },
     ],
-    leak: { n: '317', label: 'looked, paused, reached for it — none of it in your POS' },
-    pains: [
-      { icon: Receipt, title: 'Your POS keeps only the shoppers who paid', desc: 'It shows what sold — never why the rest didn’t.' },
-      { icon: Lock, title: 'CCTV piles up, but goes unread', desc: 'The answer is in what happens on your floor — yet analysis stops the moment a face is involved.' },
-      { icon: LineChart, title: '100 stores mean 100 variances', desc: 'HQ can’t tell where it leaks — neither why the best store works nor why the worst doesn’t is on one screen.' },
-    ],
-    bridge: signature.en,
-    methodTagline: 'We don’t stop at seeing — we act.',
+    linkLabel: 'See the solution',
+    convergePre: 'The problems differ, but the cause is one —',
+    convergeStrong: 'no eyes that read the space.',
   },
   jp: {
-    leakEyebrow: 'WHERE SIGNALS LEAK',
+    leakEyebrow: '信号が漏れる場所',
     leakTitle: '空間の信号は「隙間」で漏れています',
     leakSub: 'カメラと決断の間、勘とデータの間、本部と店舗の間——信号は常にその隙間で消えていきます。',
-    eyebrow: '見えない多数',
-    heading: '昨日入った10人のうち8人は、決済せずに出ていきます — どこで取りこぼしたのでしょう?',
-    posTag: 'POS記録',
-    legendInvisible: '見えない',
-    legendPos: 'POS記録',
-    funnelAria: '昨日入店382人のうち会計まで到達した転換ファネル',
-    funnelTitle: '昨日, 店内で',
-    funnel: [
-      { n: '382', pct: 100, label: '入店' },
-      { n: '300', pct: 79, label: '棚へ' },
-      { n: '214', pct: 56, label: '滞留' },
-      { n: '138', pct: 36, label: '注視' },
-      { n: '88', pct: 23, label: '手に取る' },
-      { n: '65', pct: 17, label: '会計' },
+    spaces: [
+      { label: '小売・コンビニ', problem: '入店した10人のうち8人が決済せずに出ていきます — どこで逃したのか、誰にも分かりません。', href: '/solutions#industry-convenience' },
+      { label: 'カフェ・飲食店', problem: 'ピークタイムの行列に疲れた客が引き返します — 何人逃したか、数える人がいません。', href: '/solutions#industry-cafe' },
+      { label: '大型マート・物流', problem: '混雑や安全事故は、いつも起きた後にしか分かりません。', href: '/solutions#industry-mart' },
+      { label: '展示・博物館', problem: 'どの展示の前に人が留まるのか、いまだに勘で判断しています。', href: '/solutions#industry-exhibition' },
+      { label: '無人店舗', problem: '異常に気づける人が現場にいません。', href: '/solutions#industry-unmanned' },
+      { label: '本部・多店舗', problem: '拠点が100あれば、ばらつきも100 — 原因がひとつの画面に集まりません。', href: '/enterprise' },
     ],
-    leak: { n: '317', label: '見て・滞まり・手に取った行動 — POSにはありません' },
-    pains: [
-      { icon: Receipt, title: 'POSには決済した客しか残りません', desc: '何が売れたかは分かっても, なぜ売れなかったかは分かりません。' },
-      { icon: Lock, title: 'CCTVは溜まっても, 読み解かれません', desc: '答えは店内の行動にあるのに、顔が関わった瞬間に分析が止まります。' },
-      { icon: LineChart, title: '店舗が100あれば、ばらつきも100', desc: '本部はどこで漏れているか分かりません — 良い店舗の理由も、悪い店舗の原因も、ひとつの画面にないからです。' },
-    ],
-    bridge: signature.jp,
-    methodTagline: '見るだけで終わらせない — 実行まで。',
+    linkLabel: '解決方法を見る',
+    convergePre: '問題はそれぞれでも、原因はひとつ —',
+    convergeStrong: '空間を読む目がないのです。',
   },
 };
 
-/**
- * Operating-loop ribbon — Analyze · Detect · Act · Learn (제품체계 재설계 v1 · A4).
- * The agentic wedge: others stop at seeing; we close the loop and learn.
- * label + time-phase from operatingLoop; last step (Learn) emphasized.
- */
-// Order follows operatingLoop (insight·care·agent·learn) so each mode keeps its icon:
-// insight=LineChart(분석) · care=Eye(감지) · agent=BellRing(실행) · learn=RefreshCw(학습).
-const LOOP_ICONS = [LineChart, Eye, BellRing, RefreshCw] as const;
-
-function methodSteps(locale: Locale) {
-  const steps = operatingLoop[locale];
-  return steps.map((s, i) => ({
-    icon: LOOP_ICONS[i],
-    label: s.label,
-    phase: s.phase,
-    emphasis: i === steps.length - 1,
-  }));
-}
-
 export default function ProblemBeat({ locale }: { locale: Locale }) {
   const t = dict[locale];
-  const { ref: funnelRef, isVisible: barsShow } = useScrollAnimation<HTMLUListElement>({ threshold: 0.4 });
-  const { ref: loopRef, isVisible: loopShow } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
-  const reduced = usePrefersReducedMotion();
   return (
     <Section variant="alt">
       <Container>
-        {/* Bridge Section — Where Signals Leak */}
-        <div className="mb-14 p-8 sm:p-10 rounded-2xl bg-white border border-gray-200/80 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 bg-primary/5 rounded-full blur-xl pointer-events-none" />
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            {t.leakEyebrow}
-          </span>
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep font-display">
+        <div className="mb-12 max-w-3xl">
+          <Eyebrow tone="primary" className="mb-3">{t.leakEyebrow}</Eyebrow>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display mb-4">
             {t.leakTitle}
-          </h3>
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep max-w-3xl">
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep">
             {t.leakSub}
           </p>
         </div>
 
-        <div className="mb-10 max-w-3xl">
-          <Eyebrow tone="primary" className="mb-3">{t.eyebrow}</Eyebrow>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display">{t.heading}</h2>
-        </div>
-
-        {/* Evidence band — funnel (the invisible majority) beside its consequence (−317 + why POS can't tell you) */}
-        <StaggerContainer className="grid gap-6 lg:grid-cols-12 items-stretch">
-          {/* LEFT — funnel hero: horizontal bars narrowing top→bottom; the last row is the only one POS keeps */}
-          <StaggerItem className="lg:col-span-7 flex">
-            <Card className="p-6 sm:p-8 flex flex-1 flex-col justify-center">
-              <div className="mb-5 flex items-center justify-between gap-3">
-                <p className="text-2xs font-bold uppercase tracking-[0.2em] text-gray-500">{t.funnelTitle}</p>
-                <div className="flex items-center gap-3 text-2xs text-gray-400">
-                  <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-primary/20" aria-hidden="true" />{t.legendInvisible}</span>
-                  <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-primary" aria-hidden="true" />{t.legendPos}</span>
+        {/* 공간 유형별 실제 문제 — [라벨 + 문제 1문장 + 해당 솔루션 링크] × 6 */}
+        <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {t.spaces.map((s) => (
+            <StaggerItem key={s.label} className="flex">
+              <Link
+                href={localeHref(locale, s.href)}
+                className="group flex flex-1 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-card transition-colors hover:border-primary/40"
+              >
+                <div>
+                  <h3 className="text-sm font-bold text-gray-900 break-keep">{s.label}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed break-keep">{s.problem}</p>
                 </div>
-              </div>
-              <ul ref={funnelRef} className="space-y-2" aria-label={t.funnelAria}>
-                {t.funnel.map((s, i) => {
-                  const paid = i === t.funnel.length - 1;
-                  return (
-                    <li key={s.label} className="flex items-center gap-3 sm:gap-4">
-                      <span className="w-9 sm:w-12 shrink-0 text-right text-base sm:text-lg font-bold text-gray-900 tabular-nums">
-                        <CountUp to={Number(s.n)} />
-                      </span>
-                      <span className="w-12 sm:w-16 shrink-0 text-2xs sm:text-xs text-gray-500 break-keep leading-tight">{s.label}</span>
-                      <div className="relative h-7 flex-1 overflow-hidden rounded-md bg-gray-100">
-                        <div
-                          className={`absolute inset-y-0 left-0 origin-left rounded-md ${paid ? 'bg-primary' : 'bg-primary/20'}`}
-                          style={{
-                            width: `${Math.max(s.pct, 6)}%`,
-                            transform: barsShow ? 'scaleX(1)' : 'scaleX(0)',
-                            transition: reduced ? undefined : 'transform 0.5s var(--ease-out-cubic)',
-                            transitionDelay: reduced ? undefined : `${0.1 + i * 0.08}s`,
-                          }}
-                        />
-                        {paid && <span className="absolute inset-y-0 right-2 flex items-center text-2xs font-bold text-primary">{t.posTag}</span>}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Card>
-          </StaggerItem>
-
-          <StaggerItem className="lg:col-span-5">
-            <div className="rounded-2xl border border-primary/15 bg-primary-lighter/50 p-6">
-              <p className="text-5xl font-bold text-primary tabular-nums leading-none">−<CountUp to={Number(t.leak.n)} /></p>
-              <p className="mt-3 text-sm text-gray-700 break-keep leading-relaxed">{t.leak.label}</p>
-            </div>
-            <ul className="mt-5 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white">
-              {t.pains.map((p) => {
-                const Icon = p.icon;
-                return (
-                  <li key={p.title} className="flex gap-4 p-5">
-                    <IconChip size="sm">
-                      <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
-                    </IconChip>
-                    <div>
-                      <h3 className="text-sm font-bold text-gray-900 break-keep">{p.title}</h3>
-                      <p className="mt-1 text-xs text-gray-500 leading-relaxed break-keep">{p.desc}</p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </StaggerItem>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-80 transition-opacity group-hover:opacity-100">
+                  {t.linkLabel} <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+              </Link>
+            </StaggerItem>
+          ))}
         </StaggerContainer>
-        <p className="mt-12 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
-          {t.bridge}
+
+        {/* 공통 원인 수렴 → GuideIntro(해결자 자격)로 전환 */}
+        <p className="mt-12 text-2xl sm:text-3xl font-bold text-gray-900 break-keep font-display tracking-tight">
+          {t.convergePre} <span className="text-primary">{t.convergeStrong}</span>
         </p>
       </Container>
     </Section>

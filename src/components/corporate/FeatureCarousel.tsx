@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, type MouseEvent } from 'react';
+import { useCallback, useState, type MouseEvent } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,12 +15,8 @@ import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, saaiPromiseLayer, productNaming, type ModeKey } from '@/lib/brand-canon';
+import { solutionTaglines, productNaming, type ModeKey } from '@/lib/brand-canon';
 import { cn } from '@/lib/cn';
-
-const IntegratedLoopDiagram = dynamic(() => import('@/components/mockups/IntegratedLoopDiagram'), {
-  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-gray-100" />,
-});
 
 const ActionCardMockup = dynamic(() => import('@/components/mockups/ActionCardMockup'), {
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
@@ -100,7 +96,7 @@ const dict: Record<
   ko: {
     eyebrow: 'SAAI SUITE · 한눈에 보는 솔루션',
     heading: '세 제품, 하나의 흐름.',
-    sub: '지켜보고(care) · 읽어내고(insight) · 실행하는(agent) 세 개의 눈이 매장의 하루를 함께 관리합니다.',
+    sub: '세 제품이 매장의 어제·지금·다음을 나눠 맡습니다.',
     cta: '전체 제품 비교해 보기',
     steps: {
       care: '1단계 · 실시간 감지',
@@ -124,7 +120,7 @@ const dict: Record<
   en: {
     eyebrow: 'SAAI SUITE · SOLUTIONS AT A GLANCE',
     heading: 'Three products, one unified flow.',
-    sub: 'Watch (care), read (insight), and act (agent) — three engines guiding your daily operations.',
+    sub: "Three products split the work — your store's yesterday, right now, and next.",
     cta: 'Compare all products',
     steps: {
       care: 'Step 1 · Live Detection',
@@ -148,7 +144,7 @@ const dict: Record<
   jp: {
     eyebrow: 'SAAI SUITE · 一覧で見るソリューション',
     heading: '三つの製品、ひとつの流れ。',
-    sub: '見守り(care)・読み解き(insight)・実行する(agent)三つの目が店舗の一日を管理します。',
+    sub: '三つの製品が、店舗の昨日・今・次を分担します。',
     cta: '全製品を比較する',
     steps: {
       care: 'ステップ 1 · リアルタイム検知',
@@ -180,14 +176,15 @@ const swap = (y = 12) => ({
 
 export default function FeatureCarousel({ locale }: { locale: Locale }) {
   const t = dict[locale];
-  const promise = saaiPromiseLayer[locale];
   const reduced = usePrefersReducedMotion();
   const { ref: sectionRef, isVisible: sectionShow } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
-  const { step, hoverProps } = useMockupLoop({
+  // 방문자가 탭/스와이프로 직접 고른 뒤에는 자동 순환을 멈춘다
+  const [manual, setManual] = useState(false);
+  const { step, hoverProps, goTo } = useMockupLoop({
     steps: PRODUCTS.length,
     interval: 3800,
-    active: sectionShow,
+    active: sectionShow && !manual,
     pauseOnHover: true,
   });
 
@@ -201,9 +198,17 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
 
   const spotlight = useMotionTemplate`radial-gradient(450px circle at ${mouseX}px ${mouseY}px, rgba(55, 106, 226, 0.18), transparent 80%)`;
   const active = PRODUCTS[step];
-  const goTo = (i: number) => {
-    // navigate step
-  };
+
+  const selectStep = useCallback((i: number) => {
+    setManual(true);
+    goTo(i);
+  }, [goTo]);
+
+  const handleDragEnd = useCallback((_: unknown, info: PanInfo) => {
+    const SWIPE_PX = 60;
+    if (info.offset.x < -SWIPE_PX) selectStep(step + 1);
+    else if (info.offset.x > SWIPE_PX) selectStep(step - 1);
+  }, [selectStep, step]);
 
   return (
     <Section variant="default" className="overflow-hidden">
@@ -218,36 +223,6 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        {/* Promise layer — 4 pillars */}
-        <div className="mx-auto mb-10 max-w-5xl">
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 sm:gap-4">
-            {promise.pillars.map((p) => (
-              <div key={p.letter + p.label} className="card flex flex-col justify-between p-5 sm:p-6">
-                <div>
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 font-mono text-xs font-bold text-primary">
-                      {p.letter}
-                    </span>
-                    <span className="text-2xs font-semibold uppercase tracking-wider text-gray-600">{p.label}</span>
-                  </div>
-                  <h3 className="text-sm font-bold text-gray-900 break-keep sm:text-base">{p.label}</h3>
-                  <p className="mt-1.5 text-xs text-gray-600 leading-relaxed break-keep">{p.promise}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bridge — promise layer → product layer (§6) */}
-        <p className="mx-auto mb-8 max-w-xl text-center text-sm font-semibold tracking-wide text-primary break-keep">
-          {promise.bridge}
-        </p>
-
-        {/* Integrated Loop Diagram (Task 1-4) */}
-        <div className="mx-auto mb-14 max-w-5xl">
-          <IntegratedLoopDiagram locale={locale} />
-        </div>
-
         <div id="plan-section" className="mx-auto mb-12 max-w-3xl text-center">
           <Eyebrow className="mb-3">{locale === 'ko' ? '계획 & 작동 방식' : locale === 'jp' ? '計画と仕組み' : 'Plan & Operation'}</Eyebrow>
           <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">
@@ -255,7 +230,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           </h2>
           <div className="text-base sm:text-lg leading-relaxed text-gray-700 break-keep space-y-1.5 font-medium max-w-xl mx-auto text-left sm:text-center">
             <p>{locale === 'ko' ? '① 쓰던 CCTV 그대로 연결' : locale === 'jp' ? '① 既存CCTV接続' : '① Connect existing CCTVs'}</p>
-            <p>{locale === 'ko' ? '② 어제를 읽고(insight) · 지금을 알리고(care) · 다음을 실행(agent)' : locale === 'jp' ? '② 過去を分析(insight) · 今を検知(care) · 次を提案(agent)' : '② Analyze past (insight) · detect live (care) · advise next (agent)'}</p>
+            <p>{locale === 'ko' ? '② 매장마다 세 제품이 함께 돌아갑니다' : locale === 'jp' ? '② 各店舗で三つの製品が一緒に動きます' : '② Three products run together in every store'}</p>
             <p>{locale === 'ko' ? '③ 본사 한 화면에서 표준화' : locale === 'jp' ? '③ 本部画面で標準化' : '③ Standardize fleet-wide'}</p>
           </div>
         </div>
@@ -266,6 +241,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.12}
+          onDragEnd={handleDragEnd}
           className="group relative touch-pan-y overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-6 shadow-card sm:p-10"
         >
           {/* mouse spotlight */}
@@ -285,7 +261,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                 <button
                   key={p.key}
                   type="button"
-                  onClick={() => goTo(i)}
+                  onClick={() => selectStep(i)}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
                     'relative flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-xs font-bold transition-all sm:px-4 sm:py-3 sm:text-sm',
@@ -298,14 +274,6 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                 >
                   <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span className="break-keep">{p.saaiName ?? p.name}</span>
-                  {isActive && (
-                    <motion.span
-                      layoutId="activePill"
-                      className="absolute inset-0 rounded-xl bg-primary"
-                      style={{ zIndex: -1 }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </button>
               );
             })}
@@ -336,7 +304,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
             </div>
 
             {/* image/mockup panel */}
-            <div className="relative aspect-[4/3] w-full">
+            <div className="relative aspect-[4/3] w-full lg:col-span-6">
               <AnimatePresence mode="wait">
                 <motion.div key={active.key} className="absolute inset-0" {...swap(28)}>
                   {active.key === 'agent' ? (

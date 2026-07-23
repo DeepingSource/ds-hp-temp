@@ -1,48 +1,63 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight, ShieldCheck, Award, Building2 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import { COMPANY } from '@/lib/company-data';
+import { signature } from '@/lib/brand-canon';
 import { localeHref, type Locale } from '@/lib/i18n';
 
+/**
+ * GuideIntroBeat — 해결자 자격 (home #3, 정제계획 §2-2 · D8).
+ * 자격 논리 3단: ① 연차 부정(오래 한 것 자체는 자격이 아니다) → ② 필요조건(공간의
+ * 문제는 Physical AI를 요구한다) → ③ 자격 주장(그것을 2018년부터 만들어 왔다).
+ * 특허·NVIDIA·파트너 지표 카드와 로고 밴드는 결론의 증거로 유지.
+ * 하단 브릿지 킥커(signature)가 다크 해답 섹션(SpaceAiAnswerBeat)으로 넘긴다 (§2-1 · D6).
+ */
 const COPY: Record<Locale, {
   eyebrow: string;
   headline: string;
   sub: string;
   patentsLabel: string;
   nvidiaLabel: string;
+  partnersMetric: string;
   partnersLabel: string;
+  trustedByLabel: string;
   aboutLinkText: string;
 }> = {
   ko: {
-    eyebrow: 'DEEPINGSOURCE · 가이드의 자격',
-    headline: '2018년부터, 오프라인을 읽는 컴퓨터비전을 만들어 왔습니다.',
-    sub: '얼굴과 신원은 지우고, 오직 의미 있는 매장의 흐름만 남깁니다. 기술 보안 특허 103건과 글로벌 파트너십이 입증하는 오프라인 전용 AI 전문성.',
+    eyebrow: '딥핑소스 · 왜 우리인가',
+    headline: '오래 해서 잘하는 게 아닙니다. 이 문제가 그런 AI를 요구합니다.',
+    sub: '매장의 문제는 텍스트가 아니라 공간에서 일어납니다. 동선과 체류를 좌표로 읽는 Physical AI — 얼굴을 지운 채로. 우리는 2018년부터 이것 하나를 만들어 왔습니다.',
     patentsLabel: '기술 특허 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier 파트너',
+    partnersMetric: '주요 브랜드 8+',
     partnersLabel: '전국 주요 리테일·프랜차이즈 파트너',
-    aboutLinkText: '딥핑소스 철학 및 미션 자세히 보기',
+    trustedByLabel: '함께하는 기업들',
+    aboutLinkText: '딥핑소스가 일하는 방식 보기',
   },
   en: {
-    eyebrow: 'DEEPINGSOURCE · YOUR GUIDE',
-    headline: 'Since 2018, we have built computer vision that reads offline spaces.',
-    sub: 'Erasing faces and identity on the spot — retaining only meaningful store dynamics. Backed by 103 patents and global enterprise partnerships.',
+    eyebrow: 'DEEPINGSOURCE · WHY US',
+    headline: "Years alone don't qualify us. This problem demands a different kind of AI.",
+    sub: "Store problems happen in space, not in text. Physical AI that reads movement and dwell as coordinates — with faces erased. We have built exactly this, and only this, since 2018.",
     patentsLabel: 'Tech Patents (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier Partner',
+    partnersMetric: '8+ Major Brands',
     partnersLabel: 'National Retail & Franchise Partners',
-    aboutLinkText: 'Learn about DEEPINGSOURCE mission',
+    trustedByLabel: 'Companies we work with',
+    aboutLinkText: 'See how DEEPINGSOURCE works',
   },
   jp: {
-    eyebrow: 'DEEPINGSOURCE · ガイドの資格',
-    headline: '2018年から、オフラインを読み解くコンピュータビジョンを開発してきました。',
-    sub: '顔と身元はその場で消去し、価値ある店舗の動線と流れだけを残します。103件の特許とグローバルパートナーシップが証明する技術。',
+    eyebrow: 'DEEPINGSOURCE · なぜ私たちか',
+    headline: '長くやってきたから、ではありません。この問題が、そういうAIを求めているのです。',
+    sub: '店舗の問題はテキストではなく、空間で起きています。動線と滞在を座標で読むPhysical AI — 顔を消したまま。私たちは2018年から、これひとつを作り続けてきました。',
     patentsLabel: '技術特許 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier パートナー',
+    partnersMetric: '主要ブランド 8+',
     partnersLabel: '全国主要リテール・フランチャイズパートナー',
-    aboutLinkText: 'DEEPINGSOURCE のミッション詳細',
+    trustedByLabel: '共に歩む企業',
+    aboutLinkText: 'DEEPINGSOURCEの仕事の進め方を見る',
   },
 };
 
@@ -111,7 +126,7 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
               <div className="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center mb-3">
                 <Building2 className="w-5 h-5" />
               </div>
-              <p className="text-3xl font-bold text-gray-900 mb-1">8+ Major Brands</p>
+              <p className="text-3xl font-bold text-gray-900 mb-1">{t.partnersMetric}</p>
               <p className="text-xs font-semibold text-gray-700">{t.partnersLabel}</p>
             </div>
           </div>
@@ -120,7 +135,7 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
         {/* Partner Logo Ribbon */}
         <div className="pt-6 border-t border-gray-100">
           <p className="text-2xs font-bold uppercase tracking-widest text-gray-400 mb-4">
-            TRUSTED BY LEADING ENTERPRISES
+            {t.trustedByLabel}
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
             {PARTNERS.map((brand, i) => (
@@ -130,6 +145,11 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+
+        {/* Bridge kicker — 자격의 결론 → 다크 해답 섹션(SpaceAiAnswerBeat) 진입 (§2-1 · D6) */}
+        <p className="mt-14 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
+          {signature[locale]}
+        </p>
       </div>
     </AnimatedSection>
   );

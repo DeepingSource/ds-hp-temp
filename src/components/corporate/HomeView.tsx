@@ -28,12 +28,12 @@ const ctaDict: Record<
 > = {
   ko: {
     kicker: 'REINVENT OFFLINE · 오프라인을, 다시.',
-    heading: '당신의 공간을 완벽하게.',
+    heading: '당신의 공간을, 완벽하게.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다.\n도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
-    revealLead: '본사와 매장, 사장과 손님 — 보이지 않던',
-    revealSign: '사이를 메웁니다. 그게, SAAI (Spatial·Anonymized·Agentic·Intelligence).',
+    revealLead: '본사와 매장, 사장과 손님 — 보이지 않던 사이를 메웁니다.',
+    revealSign: '그것이 SAAI입니다 (Spatial·Anonymized·Agentic·Intelligence).',
   },
   en: {
     kicker: 'REINVENT OFFLINE',
@@ -41,17 +41,17 @@ const ctaDict: Record<
     sub: 'Change one store, and the whole operation changes. Talk to us and we’ll map the fastest path.',
     close: 'Map your fastest path',
     reassure: 'Free consultation · reply within 1–2 business days',
-    revealLead: 'Connecting stores, staff, and customers — filling the gap.',
+    revealLead: "HQ and store, owner and customer — we fill the gap you couldn't see.",
     revealSign: 'That is SAAI (Spatial·Anonymized·Agentic·Intelligence).',
   },
   jp: {
     kicker: 'REINVENT OFFLINE · オフラインを、もう一度。',
-    heading: 'あなたの空間を、完璧に — 그리고 모든 공간을.',
+    heading: 'あなたの空間を、完璧に — そしてすべての空間を。',
     sub: '一店舗が変われば、運営全体が変わります。導入のご相談で、最短の道を見つけます。',
     close: '最短の道を見つける',
     reassure: '無料相談・営業日1〜2日以内に返信',
-    revealLead: '本部と店舗、店主とお客様 — 見えなかった',
-    revealSign: '隙間を埋めます。それが、SAAI (Spatial·Anonymized·Agentic·Intelligence)。',
+    revealLead: '本部と店舗、店主とお客様 — 見えなかった隙間を埋めます。',
+    revealSign: 'それが SAAI です (Spatial·Anonymized·Agentic·Intelligence)。',
   },
 };
 
@@ -95,43 +95,45 @@ export default function HomeView({ locale }: { locale: Locale }) {
         )}
       />
 
-      {/* Beat 1 — Hero (Question H1 + 1-line sub + single primary CTA) */}
+      {/* Beat 1 — Hero (Question H1 + claim sub: 범용 AI 부정 → Spatial AI 필요) */}
       <CorporateHero locale={locale} />
 
-      {/* Beat 2 — Guide Introduction (Who we are + early proof & credentials) */}
-      <GuideIntroBeat locale={locale} />
-
-      {/* Beat 3 — Problem Empathy (The leak & invisible majority) */}
+      {/* Beat 2 — Problem Empathy (공간 유형별 문제 나열 → "공간을 읽는 눈이 없습니다") */}
       <ProblemBeat locale={locale} />
 
-      {/* Diagnosis v2 Launcher Banner */}
+      {/* Beat 3 — Guide (해결자 자격: 3단 논리 + 지표·로고 증거 + signature 브릿지) */}
+      <GuideIntroBeat locale={locale} />
+
+      {/* Beat 4 — Spatial AI Answer ("For spaces, spatial AI." — 목업 비교 증명) */}
+      <SpaceAiAnswerBeat locale={locale} />
+
+      {/* Beat 5 — Products (3-step plan + product carousel) */}
+      <FeatureCarousel locale={locale} />
+
+      {/* Diagnosis v2 Launcher Banner — 제품을 본 뒤 "우리 매장엔 뭐가 맞나" 진단 유도 */}
       <section className="py-8 bg-gray-50/50">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <DiagnosisLauncher variant="banner" locale={locale} />
         </div>
       </section>
 
-      {/* Beat 4 — Spatial AI Answer ("For spaces, spatial AI.") */}
-      <SpaceAiAnswerBeat locale={locale} />
-
-      {/* Beat 5 — Plan & Operation Loop (3-step loop + 1-time product showcase) */}
-      <FeatureCarousel locale={locale} />
+      {/* Beat 6 — Case (현장 시나리오) */}
       <CaseBand locale={locale} />
 
-      {/* Beat 6 — Scale & HQ Vision ("Every store, like one store.") */}
+      {/* Beat 7 — Scale: Enterprise + Spaces (한 섹션 두 블록, "확장" 메시지) */}
       <HomeEnterpriseBeat locale={locale} />
       <SpacesShowcase locale={locale} />
 
-      {/* Beat 7 — Trust & Safety (SEAL Anonymization + MTMC Face-free tracking) */}
+      {/* Beat 8 — Trust: 컴팩트 신뢰 밴드 + MTMC (한 섹션 두 블록, "신뢰·기술 검증") */}
       <TrustCharter locale={locale} />
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
+      <AnimatedSection className="pb-16 pt-2 lg:pb-20 bg-[var(--layer-section-alt,#F7F9FC)]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SpatialTrajectoryMockup locale={locale} />
+          <SpatialTrajectoryMockup locale={locale} playMode="once" />
         </div>
       </AnimatedSection>
 
-      {/* Beat 8 — Closing CTA & SAAI Spellout Reveal */}
-      <AnimatedSection className="relative py-20 lg:py-28 section-dark noise-overlay overflow-hidden">
+      {/* Beat 9 — Closing CTA & SAAI Spellout Reveal */}
+      <AnimatedSection id="closing-cta" className="relative py-20 lg:py-28 section-dark noise-overlay overflow-hidden">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-40"

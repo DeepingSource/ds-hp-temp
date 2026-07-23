@@ -18,6 +18,7 @@ import { areaTypes } from '@/data/briefingData';
 import { BriefingMockup } from './BriefingMockup';
 import ActionCardMockup from './ActionCardMockup';
 import ChatMockup from './ChatMockup';
+import GenericAiMockup from './GenericAiMockup';
 import PushNotificationMockup from './PushNotificationMockup';
 import StoreCareMockup from './StoreCareMockup';
 import StoreInsightMockup from './StoreInsightMockup';
@@ -87,6 +88,14 @@ const DEMOS: DemoItem[] = [
     device: 'phone',
     description: '점주 질문에 대한 AI 응답 흐름. 메시지 타이핑·순차 등장 루프.',
     render: ({ active, locale }) => <ChatMockup active={active} locale={locale} />,
+  },
+  {
+    id: 'generic-ai',
+    label: '범용 AI 챗봇 (대비용)',
+    product: '공통',
+    device: 'desktop',
+    description: '홈 비교 섹션 좌측 데모 — 매장을 볼 수 없어 일반론만 답하는 무채색 데스크톱 챗봇. 1회 재생 후 정지 + ↻.',
+    render: ({ active, locale }) => <GenericAiMockup active={active} locale={locale} />,
   },
   {
     id: 'push',

@@ -599,6 +599,16 @@ select[aria-invalid="true"]:focus-visible {
   z-index: 2;
 }
 
+/* 이 언레이어드 규칙은 @layer의 Tailwind 유틸리티보다 항상 이기므로, absolute/fixed
+   데코 자식(배경 글로우·워터마크)이 relative로 강제되어 플로우에 참여해 버린다
+   (홈 F6 데드존의 근원 — 640px 글로우가 섹션 상단을 밀어냄). 명시적으로 복원한다. */
+.noise-overlay > .absolute {
+  position: absolute;
+}
+.noise-overlay > .fixed {
+  position: fixed;
+}
+
 /* Grid pattern — subtle engineering grid for tech sections */
 .bg-grid-pattern {
   background-image:

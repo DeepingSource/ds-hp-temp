@@ -7,12 +7,15 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import LoopVideo from '@/components/ui/LoopVideo';
+import MockupReplayButton from '@/components/ui/MockupReplayButton';
 import type { Locale } from '@/lib/i18n';
 
 interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 'loop'(기본): 라벨 무한 순환. 'once': 한 바퀴 후 정지 + ↻ (홈 모션 정책 D4). */
+  playMode?: 'loop' | 'once';
 }
 
 type PromiseCard = { n: string; title: string; body: string };
@@ -30,7 +33,7 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
   ko: {
     eyebrow: 'Spatial AI · MTMC Tracking',
-    heading: '카메라가 여러 대여도, 같은 사람을 연속 추적합니다 — 얼굴 없이',
+    heading: '카메라가 몇 대든, 같은 사람을 이어서 추적합니다 — 얼굴 없이',
     lead: '대형마트·쇼핑몰·물류 센터에서 한 사람의 동선을 여러 카메라에 걸쳐 추적해야 합니다. 그러나 얼굴 인식 없이. MTMC가 이 두 요구를 동시에 풉니다.',
     steps: ['픽셀', '카메라', '공간 좌표'],
     videoAlt: '여러 대의 카메라에 걸쳐 같은 사람을 얼굴 없이 하나의 ID로 연속 추적하는 MTMC 실제 영상',
@@ -73,17 +76,20 @@ export default function SpatialTrajectoryMockup({
   active = true,
   locale = 'en',
   className = '',
+  playMode = 'loop',
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const t = COPY[locale] ?? COPY.en;
-  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  // once 재생 게이트는 실제 뷰포트 진입만 신호로 — 3초 폴백이 켜져 있으면 화면 밖 소진
+  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3, safetyNet: playMode === 'loop' });
 
   // 3-step label loop: Pixel → Camera → Spatial coords
-  const { step: labelStep, hoverProps } = useMockupLoop({
+  const { step: labelStep, hoverProps, done, replay } = useMockupLoop({
     steps: 3,
     interval: 1600,
     active: isVisible && active,
     pauseOnHover: true,
+    mode: playMode,
   });
 
   const activeLabel = reducedMotion ? 1 : labelStep;
@@ -186,6 +192,10 @@ export default function SpatialTrajectoryMockup({
           );
         })}
       </div>
+
+      {playMode === 'once' && done && !reducedMotion && (
+        <MockupReplayButton locale={locale} onReplay={replay} tone="dark" />
+      )}
     </div>
   );
 }

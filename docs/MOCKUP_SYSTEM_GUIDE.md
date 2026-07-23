@@ -38,10 +38,14 @@
 | `AutonomyLadderTimeline.tsx` | `content?: DeepPartial<AutonomyLadderCopy>` 추가, 외곽 프레임 + 체크 배지에 `shadow-card` | `steps` 배열은 훅에 길이가 묶여 있지 않아 길이를 바꿔도 안전(단, 그라데이션 분포는 total에 비례해 달라짐) |
 
 **Tier 0 (홈페이지 `HomeView.tsx` & 6개 섹션) 배치 완료**:
-- `CorporateHero.tsx`: Transition Bridge i18n 번역 추가 + 배경 무드 이미지 오버레이 적용.
-- `SpaceAiAnswerBeat.tsx`: `ChatMockup` & `StoreInsightMockup` 동적 import & comparison 카드에 라이브 목업 통합.
+- `CorporateHero.tsx`: Transition Bridge i18n 번역 추가 + 배경 무드 이미지 오버레이 적용. (→ 이후 `홈_랜딩_정제발전_종합계획_v1_260723.md` §8-1로 Transition Bridge·스펠아웃·크리덴셜 필 제거)
+- `SpaceAiAnswerBeat.tsx`: `ChatMockup` & `StoreInsightMockup` 동적 import & comparison 카드에 라이브 목업 통합. (→ 이후 좌측 카드는 전용 `GenericAiMockup`으로 교체 — 아래 참조)
 - `HomeEnterpriseBeat.tsx`: `MultiStoreDashboardMockup` 동적 import & 본사 대시보드 실시간 뷰 통합.
-- `FeatureCarousel.tsx`: `IntegratedLoopDiagram` & `ActionCardMockup` 동적 import 및 SAAI 약속 루프/agent 라이브 실행 연동.
+- `FeatureCarousel.tsx`: `IntegratedLoopDiagram` & `ActionCardMockup` 동적 import 및 SAAI 약속 루프/agent 라이브 실행 연동. (→ 이후 정제계획 D5로 `IntegratedLoopDiagram`은 홈에서 제거 — 제품/기술 페이지 소관)
+
+**홈 랜딩 정제 배치 (`홈_랜딩_정제발전_종합계획_v1_260723.md`) — 신규 목업 & 모션 정책**:
+- `GenericAiMockup.tsx` **신규**: 홈 비교 섹션 좌측 "범용 AI" 전용 데모. 데스크톱 챗 창(`BrowserChrome` light 재사용), 의도적 무채색 slate 팔레트(브랜드색 배제 — "범용"의 익명성 연출, 컴포넌트 주석 참조), 4메시지 시나리오(피크타임 질문 → 일반론 → 재질문 → 접근 불가), 내부 `COPY: Record<Locale,…>` 3로케일. `onComplete` prop으로 우측 SAAI 목업과 순차 재생 체이닝.
+- 홈 모션 정책(D4): 홈에 배치된 목업은 **뷰포트 진입 시 1회 재생 → 최종 프레임 정지 + ↻ 재생 버튼**(`MockupReplayButton` 공용 컴포넌트, `ui/`). `useMockupLoop`에 `mode: 'once'`(+`done`/`replay`/`onComplete`), `useSequencedLoop`에 `once`/`onComplete` 옵션 추가 — 기본값이 기존 동작이라 제품 페이지 사용처는 무변경. `StoreInsightMockup`·`SpatialTrajectoryMockup`은 `playMode?: 'loop' | 'once'` prop(기본 loop).
 
 **Spatial AI / Agentic AI 기술 페이지 보강 완료 (`SPATIAL_AGENTIC_DIAGRAM_WORK_ORDER_v1.md`)**:
 - `SpatialAiView.tsx`: MTMC 메커니즘 카드에 픽셀→카메라→공간 좌표 파이프라인 스트립 통합.
