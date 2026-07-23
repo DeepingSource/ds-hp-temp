@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문제 진단 v2 — 대화형 모달 목업 · 딥핑소스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --primary:#376AE2; --primary-dark:#2453C4; --primary-light:#5B86EA; --primary-lighter:#E5EDFC;
+  --blue-25:#F7F9FD; --blue-50:#EBF0FC; --blue-900:#172D5F;
+  --g50:#F9FAFB; --g100:#F3F4F6; --g200:#E5E7EB; --g300:#D1D5DB; --g400:#9CA3AF; --g500:#6B7280; --g600:#4B5563; --g700:#374151; --g900:#111827;
+  --sh-card:0 1px 3px rgba(23,45,95,.08),0 1px 2px rgba(23,45,95,.04);
+  --sh-elevated:0 20px 50px rgba(23,45,95,.22),0 4px 12px rgba(23,45,95,.10);
+  --ease:cubic-bezier(0.215,0.61,0.355,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Pretendard',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,'Segoe UI',sans-serif;color:var(--g900);background:#fff;line-height:1.7;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ── demo strip ─────────────────────────── */
+.demo-strip{background:var(--blue-900);color:#fff;font-size:12px;padding:8px 20px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
+.demo-strip b{font-weight:700}
+.demo-strip span{opacity:.75}
+
+/* ── fake site chrome ───────────────────── */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--g100)}
+.site-header .inner{max-width:1152px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:32px}
+.logo{font-weight:700;font-size:17px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.logo .dot{width:10px;height:10px;border-radius:3px;background:var(--primary)}
+.nav{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--g600)}
+.nav a:hover{color:var(--g900)}
+.header-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;border-radius:12px;padding:10px 18px;transition:all .18s var(--ease)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-ghost{border:1px solid var(--g200);color:var(--g700)}
+.btn-ghost:hover{border-color:var(--primary-light);color:var(--primary)}
+.inline-diag{display:block;margin-top:10px;font-size:14px;font-weight:600;color:var(--primary);padding:0}
+.inline-diag:hover{color:var(--primary-dark);text-decoration:underline}
+
+.page{max-width:1152px;margin:0 auto;padding:72px 24px 120px}
+.crumb{font-size:13px;color:var(--g400);margin-bottom:20px}
+.crumb b{color:var(--g600);font-weight:500}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+h1{font-size:38px;font-weight:700;line-height:1.4;letter-spacing:-.02em;margin-bottom:16px}
+.sub{color:var(--g500);font-size:17px;max-width:620px;margin-bottom:48px}
+
+.fake-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px}
+.fake-card{border:1px solid var(--g200);border-radius:16px;padding:24px;background:#fff}
+.fake-card .tag{display:inline-block;font-size:11px;font-weight:700;color:var(--primary-dark);background:var(--primary-lighter);border-radius:8px;padding:3px 9px;margin-bottom:12px}
+.fake-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.fake-card p{font-size:13px;color:var(--g500);line-height:1.65}
+
+/* contextual launcher banner */
+.launcher-banner{border:1px solid var(--blue-50);background:var(--blue-25);border-radius:20px;padding:32px 36px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.launcher-banner .txt{flex:1;min-width:260px}
+.launcher-banner .kicker{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--primary);text-transform:uppercase;margin-bottom:8px}
+.launcher-banner h2{font-size:22px;font-weight:700;line-height:1.45;margin-bottom:6px}
+.launcher-banner p{font-size:14px;color:var(--g500)}
+
+/* ── modal ──────────────────────────────── */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(23,45,95,.42);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s var(--ease)}
+.overlay.open{opacity:1;pointer-events:auto}
+@media(min-width:640px){.overlay{align-items:center;padding:32px}}
+.modal{background:#fff;width:100%;max-width:600px;height:92dvh;max-height:720px;border-radius:24px 24px 0 0;display:flex;flex-direction:column;box-shadow:var(--sh-elevated);transform:translateY(24px);transition:transform .26s var(--ease)}
+@media(min-width:640px){.modal{border-radius:20px;height:min(680px,88dvh)}}
+.overlay.open .modal{transform:translateY(0)}
+.modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.modal-head .m-title{font-size:14px;font-weight:700}
+.modal-head .m-sub{font-size:12px;color:var(--g400);font-weight:500}
+.m-close{margin-left:auto;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:18px;line-height:1}
+.m-close:hover{background:var(--g100);color:var(--g700)}
+.progress{height:3px;background:var(--g100);flex-shrink:0}
+.progress i{display:block;height:100%;background:var(--primary);width:0;transition:width .4s var(--ease);border-radius:0 2px 2px 0}
+
+.chat{flex:1;overflow-y:auto;padding:24px 22px 12px;scroll-behavior:smooth}
+.msg{display:flex;margin-bottom:14px;animation:rise .32s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{justify-content:flex-start}
+.msg.user{justify-content:flex-end}
+.bubble{max-width:82%;padding:12px 16px;font-size:14.5px;line-height:1.65;border-radius:16px}
+.bot .bubble{background:#fff;border:1px solid var(--g200);border-bottom-left-radius:6px;color:var(--g700)}
+.bot .bubble b{color:var(--g900)}
+.user .bubble{background:var(--primary-lighter);color:var(--blue-900);font-weight:500;border-bottom-right-radius:6px;position:relative}
+.edit-link{font-size:11px;font-weight:600;color:var(--g400);margin-top:4px;text-align:right;opacity:0;transition:opacity .15s}
+.user-wrap:hover .edit-link{opacity:1}
+.edit-link button:hover{color:var(--primary)}
+.user-wrap{display:flex;flex-direction:column;align-items:flex-end;max-width:82%}
+.user-wrap .bubble{max-width:100%}
+
+.typing{display:inline-flex;gap:4px;padding:14px 16px;background:#fff;border:1px solid var(--g200);border-radius:16px;border-bottom-left-radius:6px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--g300);animation:blink 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px;animation:rise .32s var(--ease)}
+.chip{border:1px solid var(--g200);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:500;color:var(--g700);background:#fff;transition:all .15s var(--ease);text-align:left}
+.chip:hover{border-color:var(--primary-light);background:var(--blue-25);color:var(--primary-dark)}
+.chip.subtle{border-style:dashed;color:var(--g400);font-weight:400}
+.chip.subtle:hover{color:var(--g600);border-color:var(--g300);background:var(--g50)}
+.chips.grid2{display:grid;grid-template-columns:1fr 1fr}
+.chips.grid2 .chip{border-radius:14px;padding:12px 14px}
+@media(max-width:480px){.chips.grid2{grid-template-columns:1fr}}
+
+/* result panel inside chat */
+.result{border:1px solid var(--g200);border-radius:18px;padding:24px;margin:6px 0 18px;box-shadow:var(--sh-card)}
+.result>div{animation:rise .4s var(--ease) both}
+.r-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+.r-impact{display:inline-block;font-size:12px;font-weight:700;background:var(--primary-lighter);color:var(--primary-dark);border-radius:8px;padding:4px 10px;margin-bottom:12px}
+.r-problem{font-size:12.5px;font-weight:500;color:var(--g400);margin-bottom:6px}
+.r-title{font-size:21px;font-weight:700;line-height:1.4;margin-bottom:8px}
+.r-excerpt{font-size:14px;color:var(--g500);margin-bottom:20px}
+.r-h{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g400);margin:20px 0 10px}
+.r-step{display:flex;gap:12px;padding:12px 14px;border:1px solid var(--g100);background:var(--g50);border-radius:12px;margin-bottom:8px}
+.r-step .n{flex-shrink:0;width:22px;height:22px;border-radius:8px;background:#fff;border:1px solid var(--g200);color:var(--primary);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.r-step a.pbadge{font-size:11px;font-weight:700;color:var(--primary);display:inline-flex;align-items:center;gap:3px}
+.r-step a.pbadge:hover{text-decoration:underline}
+.r-step .st{font-size:13.5px;font-weight:700;margin:2px 0}
+.r-step .sd{font-size:12.5px;color:var(--g500);line-height:1.6}
+.r-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.r-stat{background:var(--g50);border-radius:12px;padding:14px 8px;text-align:center}
+.r-stat b{display:block;font-size:18px;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
+.r-stat span{font-size:11px;color:var(--g500);line-height:1.45;display:block;margin-top:3px}
+.r-note{font-size:11px;color:var(--g400);margin-top:8px}
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:480px){.hub{grid-template-columns:1fr}}
+.hub a{border:1px solid var(--g200);border-radius:12px;padding:12px 14px;display:block;transition:all .15s var(--ease)}
+.hub a:hover{border-color:var(--primary-light);box-shadow:var(--sh-card)}
+.hub .h-k{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);margin-bottom:3px}
+.hub a:hover .h-k{color:var(--primary)}
+.hub .h-t{font-size:13px;font-weight:700;color:var(--g900);line-height:1.45}
+.hub .h-d{font-size:11.5px;color:var(--g500);margin-top:2px;line-height:1.5}
+.r-cta{display:flex;align-items:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.r-cta .restart{font-size:13px;font-weight:500;color:var(--g400);margin-left:auto}
+.r-cta .restart:hover{color:var(--g600)}
+
+.foot-note{padding:10px 22px 16px;font-size:11px;color:var(--g400);text-align:center;flex-shrink:0}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-strip">
+  <b>목업 — 문제 진단 v2 (대화형 모달)</b>
+  <span>실데이터 21개 시나리오 내장 · 결과 링크는 실제 배포 사이트로 연결</span>
+  <span>진입 A: 본문 인라인 링크(컨텍스트 없음) · 진입 B: 페이지 배너(업종 프리셋) — 전역 내비 노출 없음</span>
+</div>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="logo" href="#"><span class="dot"></span>Deeping Source</a>
+    <nav class="nav">
+      <a href="#">제품</a><a href="#">솔루션</a><a href="#">기술</a><a href="#">회사</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary" href="https://ds-hp-temp.vercel.app/ko/contact" target="_blank">문의하기</a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="crumb">솔루션 · <b>카페 · 음식점</b> <span style="opacity:.5">(런처 데모용 가상 페이지)</span></div>
+  <div class="eyebrow">Food &amp; Beverage</div>
+  <h1>카페·음식점을 위한 공간 AI</h1>
+  <p class="sub">피크 시간 혼잡부터 좌석 회전율까지 — 기존 CCTV로 매장의 운영 문제를 진단하고 실행까지 연결합니다.
+    <button class="inline-diag" onclick="openDiag(null)">어떤 문제부터 볼지 모르겠다면, 30초 진단으로 시작하세요 →</button></p>
+
+  <div class="fake-cards">
+    <div class="fake-card"><span class="tag">혼잡 관리</span><h3>피크 시간 주문 폭주</h3><p>점심·저녁 피크에 주문이 몰려 대기가 길어지는 문제를 다룹니다.</p></div>
+    <div class="fake-card"><span class="tag">대기 이탈</span><h3>줄 보고 나가는 고객</h3><p>카운터 앞 대기 행렬로 인한 고객 이탈을 감지하고 줄입니다.</p></div>
+    <div class="fake-card"><span class="tag">회전율</span><h3>낮은 좌석 회전율</h3><p>장시간 점유 좌석과 사각 구역을 데이터로 파악합니다.</p></div>
+  </div>
+
+  <div class="launcher-banner">
+    <div class="txt">
+      <div class="kicker">30초 진단</div>
+      <h2>우리 매장·공간, 어디서부터 최적화해야 할까요?</h2>
+      <p>질문 3개면 충분합니다. 상황을 알려주시면 맞는 사례와 제품을 바로 보여드립니다.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openDiag('cafe')">진단 시작하기 →</button>
+  </div>
+</main>
+
+<!-- ══ 진단 모달 ══ -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="30초 문제 진단">
+  <div class="modal">
+    <div class="modal-head">
+      <span style="width:9px;height:9px;border-radius:3px;background:var(--primary);flex-shrink:0"></span>
+      <span class="m-title">30초 진단</span>
+      <span class="m-sub" id="mSub">질문 몇 개로 맞는 솔루션 찾기</span>
+      <button class="m-close" onclick="closeDiag()" aria-label="닫기">×</button>
+    </div>
+    <div class="progress"><i id="pbar"></i></div>
+    <div class="chat" id="chat"></div>
+    <div class="foot-note">선택지 기반 진단입니다 · 수치는 실제 운영 사례의 예시이며 현장 조건에 따라 달라질 수 있습니다</div>
+  </div>
+</div>
+
+<script>
+/* ─────────── 데이터 (사이트 실데이터에서 추출) ─────────── */
+const SOLUTIONS = [{"slug": "convenience-night-theft", "industry": "convenience", "title": "편의점 야간 도난 방지", "excerpt": "야간 무인·1인 운영 중 도난과 이상 행동을 AI가 실시간으로 감지하는 방법", "impact": "-68%", "impactLabel": "야간 도난 손실 감소", "steps": [{"product": "StoreCare", "title": "야간 이상 행동 실시간 포착", "desc": "AI가 현장 내 고객의 행동 패턴을 실시간으로 파악합니다. 특정 구역 장시간 배회(설정값 초과), 무릎을 굽히거나 몸을 숨기는 비정상적 자세, 그룹 행동 패턴을 인식하면 즉시 안내를 발송합니다."}, {"product": "StoreInsight", "title": "시간대별 도난 위험 패턴 분석", "desc": "어느 시간대, 어느 구역에서 이상 탐지 빈도가 높은지 누적 데이터로 파악합니다. 주간 리포트로 도난 위험이 높은 구역과 시간을 확인해 카메라 추가 설치나 진열 재배치에 활용합니다."}, {"product": "StoreAgent", "title": "이상 발생 시 자동 알림 및 대응", "desc": "이상 포착 시 점주 앱으로 15초 이내에 푸시 알림과 영상 캡처가 전송됩니다. 경고 방송 자동 실행, 원격 잠금 시스템과 연동도 가능합니다."}], "results": [{"stat": "-68%", "label": "야간 도난 손실 감소"}, {"stat": "98.2%", "label": "이상 감지 정확도"}, {"stat": "15초", "label": "알림 발송 소요 시간"}], "related": ["convenience-inventory-loss", "unmanned-theft-prevention", "unmanned-remote-monitoring"]}, {"slug": "convenience-inventory-loss", "industry": "convenience", "title": "편의점 결품 및 재고 손실 관리", "excerpt": "AI 카메라로 결품 발생을 실시간 감지해 매출 손실과 고객 이탈을 방지하는 방법", "impact": "-42%", "impactLabel": "결품으로 인한 매출 손실 감소", "steps": [{"product": "StoreCare", "title": "주요 매대 결품 자동 확인", "desc": "지정한 주요 매대의 진열 상태를 AI 카메라가 주기적으로 확인합니다. 진열 공간의 일정 비율 이상이 비어 있거나 상품이 쓰러진 상태가 발견되면 실시간 통보를 발송합니다."}, {"product": "StoreInsight", "title": "결품 빈도 및 손실 패턴 분석", "desc": "어느 매대, 어느 상품이 어떤 시간대에 결품이 자주 발생하는지 누적 데이터로 파악합니다. 결품 지속 시간과 빈도를 기반으로 발주 주기 조정을 위한 인사이트를 제공합니다."}, {"product": "StoreAgent", "title": "보충 안내 자동 발송", "desc": "결품 발견 시 근무자 또는 점주에게 \"A 매대 음료 보충 필요\"와 같은 구체적인 푸시 전송이 이루어집니다. 알림에는 해당 매대의 현재 상태 사진이 포함되어 바로 확인할 수 있습니다."}], "results": [{"stat": "-42%", "label": "결품 지속 시간 감소"}, {"stat": "+23%", "label": "매대 구매 전환율 상승"}, {"stat": "<5분", "label": "결품 알림 발송 시간"}], "related": ["convenience-night-theft", "convenience-planogram", "mart-checkout-congestion"]}, {"slug": "convenience-planogram", "industry": "convenience", "title": "편의점 진열 최적화 (플래노그램)", "excerpt": "고객 행동 데이터로 어떤 진열이 실제로 매출을 올리는지 검증하는 방법", "impact": "+18%", "impactLabel": "진열 최적화 후 매출 증가", "steps": [{"product": "StoreCare", "title": "구역별 고객 접촉 패턴 인식", "desc": "각 매대 앞에서 고객이 멈추는 빈도, 상품을 집어 드는 횟수, 체류 시간을 자동으로 포착합니다. 픽업 후 내려놓는 행동도 기록해 구매 전 단계 데이터를 수집합니다."}, {"product": "StoreInsight", "title": "매대별 전환율 및 주목도 분석", "desc": "매대별 방문률, 평균 체류 시간, 픽업 대비 구매 전환율을 파악합니다. 진열 개편 전후를 A/B 형태로 비교해 어떤 배치가 더 효과적인지 데이터로 확인합니다."}, {"product": "StoreAgent", "title": "진열 최적화 제안 자동 전송", "desc": "주간 인사이트 리포트에 \"C 매대의 픽업률이 높지만 전환율이 낮습니다 — 가격 또는 포장 검토를 권장합니다\"와 같은 actionable 제안이 포함됩니다."}], "results": [{"stat": "+18%", "label": "진열 최적화 후 매출 증가"}, {"stat": "+31%", "label": "픽업률 상승 품목 전환율"}, {"stat": "3주", "label": "첫 인사이트 도출 기간"}], "related": ["convenience-inventory-loss", "drugstore-vmd-optimization", "mart-zone-conversion"]}, {"slug": "cafe-low-seat-turnover", "industry": "cafe", "title": "카페 낮은 좌석 회전율 개선", "excerpt": "피크 타임 장시간 체류 고객으로 인한 좌석 회전율 문제를 데이터로 해결하는 방법", "impact": "+22%", "impactLabel": "피크 타임 좌석 회전율 향상", "steps": [{"product": "StoreCare", "title": "테이블별 착석 여부 실시간 인식", "desc": "AI 카메라가 테이블별 착석 시작과 이석을 자동으로 파악합니다. 각 테이블의 실시간 점유 상태, 현재 체류 시간, 장시간 체류 여부를 대시보드에서 확인할 수 있습니다."}, {"product": "StoreInsight", "title": "좌석 회전율 및 체류 시간 분석", "desc": "시간대별, 요일별, 테이블별 평균 체류 시간과 회전율을 파악합니다. 장시간 체류가 집중되는 패턴(예: 오후 2–4시 특정 구역)을 확인해 운영 전략 수립에 활용합니다."}, {"product": "StoreAgent", "title": "피크 타임 혼잡 예측 및 준비 안내", "desc": "테이블 체류 시간이 설정 기준(예: 3시간)을 초과하면 푸시 전송이 이루어집니다. 피크 타임 30분 전 예상 혼잡도를 예측해 직원 배치와 사전 준비를 도웁니다."}], "results": [{"stat": "+22%", "label": "피크 타임 좌석 회전율 향상"}, {"stat": "-15분", "label": "평균 테이블 대기 시간 감소"}, {"stat": "정확도 95%", "label": "착석 감지 정확도"}], "related": ["cafe-peak-hour-management", "cafe-customer-wait-time", "exhibition-visitor-dwell-time"]}, {"slug": "cafe-peak-hour-management", "industry": "cafe", "title": "카페 혼잡 시간대 운영 최적화", "excerpt": "점심·저녁 피크 타임의 혼잡과 대기를 데이터 기반으로 사전에 관리하는 방법", "impact": "-28%", "impactLabel": "피크 타임 평균 대기 시간 감소", "steps": [{"product": "StoreCare", "title": "시간대별 방문객 수 자동 집계", "desc": "입구 카메라가 시간대별 입장 고객 수를 자동으로 집계합니다. 대기 줄 길이, 줄 해소 시간, 대기 중 이탈 고객 수도 측정합니다."}, {"product": "StoreInsight", "title": "방문 패턴 분석 및 피크 예측", "desc": "2–4주간 누적 데이터로 요일별·시간대별 방문 패턴 모델을 구성합니다. 날씨, 주변 이벤트 등 외부 요인과 연동해 다음 주 혼잡도를 예측합니다."}, {"product": "StoreAgent", "title": "피크 예측 안내 및 준비 가이드", "desc": "피크 타임 30분 전 예상 방문객 수와 준비 사항을 실시간 통보로 전송합니다. \"오늘 오후 1시 예상 피크 — 음료 3인 체제 준비 권장\"과 같이 구체적인 행동 제안이 포함됩니다."}], "results": [{"stat": "-28%", "label": "피크 타임 평균 대기 시간"}, {"stat": "+15%", "label": "피크 시간 주문 처리량"}, {"stat": "4주", "label": "패턴 예측 모델 완성 기간"}], "related": ["cafe-low-seat-turnover", "cafe-customer-wait-time", "mart-checkout-congestion"]}, {"slug": "cafe-customer-wait-time", "industry": "cafe", "title": "카페 고객 대기 시간 단축", "excerpt": "대기 중 이탈 고객을 줄이고 주문부터 제공까지 흐름을 최적화하는 방법", "impact": "+19%", "impactLabel": "대기 고객 전환율 향상", "steps": [{"product": "StoreCare", "title": "대기 줄 길이 및 이탈 고객 실시간 파악", "desc": "입구와 카운터 카메라로 대기 줄 인원과 이탈 고객 수를 자동으로 집계합니다. 줄 길이가 임계치를 초과 시 즉시 안내를 발송합니다."}, {"product": "StoreInsight", "title": "대기 패턴 분석 및 병목 구간 파악", "desc": "시간대별 대기 인원, 평균 대기 시간, 이탈률을 파악합니다. 주문/결제/픽업 단계별 소요 시간을 비교해 병목 구간을 찾아냅니다."}, {"product": "StoreAgent", "title": "대기 최소화를 위한 운영 제안", "desc": "대기 줄이 기준치를 넘으면 추가 카운터 오픈 안내를 전송합니다. 피크 예측 데이터를 기반으로 미리 준비해 대기 발생 자체를 줄이는 전략을 제안합니다."}], "results": [{"stat": "+19%", "label": "대기 고객 구매 전환율"}, {"stat": "-22%", "label": "평균 대기 줄 길이"}, {"stat": "-31%", "label": "대기 이탈 고객 수"}], "related": ["cafe-peak-hour-management", "cafe-low-seat-turnover", "mart-checkout-congestion"]}, {"slug": "unmanned-theft-prevention", "industry": "unmanned", "title": "무인매장 도난 방지 시스템", "excerpt": "사람이 없는 환경에서 AI가 24시간 매장을 지키는 완전 자동화 도난 방지 방법", "impact": "-35%", "impactLabel": "무인 운영 손실률 감소", "steps": [{"product": "StoreCare", "title": "무인 환경 특화 이상 행동 탐지", "desc": "영업 시간 외 침입, 상품을 봉지나 가방에 넣는 행동, 카메라 가리기 시도, 비정상적인 장시간 체류를 실시간으로 포착합니다. 이상 포착 시 경고 방송을 자동 실행합니다."}, {"product": "StoreInsight", "title": "도난 위험 패턴 누적 분석", "desc": "이상 탐지 이벤트 로그를 확인해 도난 위험이 높은 시간대와 구역을 파악합니다. 반복적으로 이상 행동이 발견되는 고객 패턴을 조사해 예방적 조치를 준비합니다."}, {"product": "StoreAgent", "title": "다중 알림 및 원격 대응", "desc": "이상 확인 시 점주 앱, 경비 업체 연동 알림을 동시에 발송합니다. 원격 잠금, 경보음 활성화, 경고 방송 자동 실행으로 즉각 대응이 가능합니다."}], "results": [{"stat": "-35%", "label": "무인 운영 손실률 감소"}, {"stat": "98.2%", "label": "이상 감지 정확도"}, {"stat": "15초", "label": "알림 발송 소요 시간"}], "related": ["convenience-night-theft", "unmanned-remote-monitoring", "unmanned-anomaly-detection"]}, {"slug": "unmanned-anomaly-detection", "industry": "unmanned", "title": "무인매장 이상 감지 자동화", "excerpt": "침입, 파손, 냉장 이상까지 무인 환경의 모든 이상 상황을 AI가 자동으로 감지하는 방법", "impact": "-82%", "impactLabel": "이상 상황 발견 지연 시간 감소", "steps": [{"product": "StoreCare", "title": "다유형 이상 상황 동시 탐지", "desc": "도난 의심 행동, 냉장 도어 장시간 열림, 상품 쏟아짐, 장시간 체류, 영업 외 시간 침입을 각각 독립적으로 인식합니다. 이상 유형별로 알림 수신자와 대응 방식을 다르게 설정할 수 있습니다."}, {"product": "StoreInsight", "title": "이상 이벤트 로그 및 통계 분석", "desc": "일별·주별 이상 이벤트 발생 건수, 유형별 분포, 해결 완료 시간을 집계해 운영 개선 방향을 도출합니다."}, {"product": "StoreAgent", "title": "이상 유형별 자동 대응 실행", "desc": "냉장 도어 장시간 열림 → 경고 방송, 침입 확인 → 경보음 + 점주 알림 + 경비 업체 알림, 상품 쏟아짐 → 담당자 알림과 같이 이상 유형별로 미리 설정한 대응을 자동으로 실행합니다."}], "results": [{"stat": "-82%", "label": "이상 상황 발견 지연 시간"}, {"stat": "5가지", "label": "동시 감지 이상 유형 수"}, {"stat": "24시간", "label": "무중단 자동 모니터링"}], "related": ["unmanned-theft-prevention", "unmanned-remote-monitoring", "convenience-night-theft"]}, {"slug": "unmanned-remote-monitoring", "industry": "unmanned", "title": "무인매장 원격 관리 및 모니터링", "excerpt": "스마트폰 하나로 여러 무인매장을 동시에 관리하는 원격 운영 방법", "impact": "-60%", "impactLabel": "현장 방문 없이 처리 가능한 이슈 증가", "steps": [{"product": "StoreCare", "title": "다점포 실시간 상태 통합 대시보드", "desc": "여러 무인매장의 현재 상태(방문객 수, 이상 여부, 시설 상태)를 하나의 앱에서 실시간으로 확인합니다. 이상이 있는 지점만 강조 표시되어 우선 확인이 가능합니다."}, {"product": "StoreInsight", "title": "지점별 운영 성과 비교 분석", "desc": "지점별 방문객 수, 이상 탐지 빈도, 결품 발생 건수를 비교해 운영 효율이 낮은 지점과 개선이 필요한 부분을 파악합니다."}, {"product": "StoreAgent", "title": "이상 발생 시에만 선택적 방문 알림", "desc": "일반적인 상태에서는 모든 것이 정상으로 표시됩니다. 방문이 필요한 이상 상황(결품, 시설 이상, 도난 의심)이 확인된 경우에만 실시간 통보로 방문을 권고합니다."}], "results": [{"stat": "-60%", "label": "불필요한 현장 방문 감소"}, {"stat": "10개+", "label": "동시 모니터링 가능 매장 수"}, {"stat": "15초", "label": "이상 알림 발송 시간"}], "related": ["unmanned-theft-prevention", "unmanned-anomaly-detection", "convenience-night-theft"]}, {"slug": "drugstore-vmd-optimization", "industry": "drugstore", "title": "드럭스토어 VMD 최적화", "excerpt": "구역별 고객 체류 데이터로 고마진 상품 구역의 주목도를 높이는 방법", "impact": "+12%", "impactLabel": "고마진 구역 구매 단가 상승", "steps": [{"product": "StoreCare", "title": "구역별 체류 시간 및 테스터 접촉 포착", "desc": "각 진열 구역의 고객 체류 시간, 방문 빈도, 테스터 상품 접촉 횟수를 자동으로 측정합니다. 어떤 상품 구역이 주목받고 있는지 실시간으로 파악합니다."}, {"product": "StoreInsight", "title": "구역 성과 비교 및 동선 패턴 분석", "desc": "고마진 구역과 저마진 구역의 체류 시간 비율, 방문 후 구매 전환율을 비교합니다. 고객이 어떤 경로로 공간을 돌아다니는지 동선을 확인해 유도 전략을 수립합니다."}, {"product": "StoreAgent", "title": "VMD 최적화 제안 및 효과 측정", "desc": "진열 개편 후 해당 구역의 체류 시간과 전환율 변화를 자동으로 측정합니다. \"A 구역 체류 시간이 전월 대비 18% 증가했습니다\" 형태로 개편 효과를 주간 리포트에 포함합니다."}], "results": [{"stat": "+12%", "label": "고마진 구역 구매 단가 상승"}, {"stat": "+25%", "label": "테스터 구역 체류 시간 증가"}, {"stat": "4주", "label": "첫 VMD 인사이트 도출 기간"}], "related": ["drugstore-zone-performance", "convenience-planogram", "mart-zone-conversion"]}, {"slug": "drugstore-zone-performance", "industry": "drugstore", "title": "드럭스토어 구역별 성과 분석", "excerpt": "매장 내 어떤 구역이 매출에 기여하고 어떤 구역이 사각지대인지 파악하는 방법", "impact": "+20%", "impactLabel": "사각지대 구역 방문률 향상", "steps": [{"product": "StoreCare", "title": "전 구역 방문률 및 체류 시간 측정", "desc": "공간을 최대 20개 가상 구역으로 분할해 각 구역의 방문 고객 수, 체류 시간, 재방문 패턴을 자동으로 측정합니다."}, {"product": "StoreInsight", "title": "구역별 성과 히트맵 및 이동 경로 분석", "desc": "전체 공간 구역을 방문률 기반 색상 히트맵으로 시각화합니다. 고객이 어떤 경로로 이동하는지 확인해 사각지대 원인을 파악합니다."}, {"product": "StoreAgent", "title": "사각지대 개선 제안", "desc": "\"D 구역 방문률이 평균 대비 40% 낮습니다 — 입구 사인물 추가 또는 프로모션 상품 배치를 권장합니다\"와 같은 구체적 개선 제안을 자동으로 제공합니다."}], "results": [{"stat": "+20%", "label": "사각지대 구역 방문률 향상"}, {"stat": "3배", "label": "레이아웃 개편 효과 측정 속도"}, {"stat": "20개", "label": "동시 분석 가능 구역 수"}], "related": ["drugstore-vmd-optimization", "mart-zone-conversion", "exhibition-booth-performance"]}, {"slug": "drugstore-tester-interaction", "industry": "drugstore", "title": "드럭스토어 테스터 상호작용 분석", "excerpt": "어떤 위치의 테스터가 실제 구매로 이어지는지 데이터로 검증하는 방법", "impact": "+16%", "impactLabel": "테스터 구역 구매 전환율 향상", "steps": [{"product": "StoreCare", "title": "테스터 접촉 행동 자동 인식", "desc": "특정 상품을 집어 드는 행동, 얼굴에 가져가는 테스트 동작을 AI가 포착하고 횟수를 집계합니다. 테스터 구역 체류 시간도 함께 측정합니다."}, {"product": "StoreInsight", "title": "테스터 접촉 대비 구매 전환율 분석", "desc": "테스터를 체험한 고객 중 해당 상품 또는 인근 상품을 구매한 비율을 POS 데이터와 연동해 확인합니다. 시간대별, 테스터 위치별 효과 비교도 가능합니다."}, {"product": "StoreAgent", "title": "최적 테스터 배치 제안", "desc": "체험 빈도는 높지만 구매 전환율이 낮은 테스터 상품을 식별하고 개선 방향(가격 조정, 위치 변경, 함께 배치할 상품 추가)을 제안합니다."}], "results": [{"stat": "+16%", "label": "테스터 구역 구매 전환율"}, {"stat": "+34%", "label": "테스터 접촉 후 체류 시간"}, {"stat": "2배", "label": "테스터 ROI 측정 정확도"}], "related": ["drugstore-vmd-optimization", "drugstore-zone-performance", "convenience-planogram"]}, {"slug": "mart-checkout-congestion", "industry": "mart", "title": "마트 계산대 혼잡 관리", "excerpt": "계산대 앞 대기 줄을 데이터로 예측하고 최적화해 고객 이탈을 방지하는 방법", "impact": "-32%", "impactLabel": "계산대 평균 대기 시간 감소", "steps": [{"product": "StoreCare", "title": "계산대별 대기 줄 실시간 모니터링", "desc": "각 계산대의 대기 인원과 예상 대기 시간을 실시간으로 측정합니다. 설정 임계치(예: 5명 이상)를 초과 시 즉시 안내를 발송합니다."}, {"product": "StoreInsight", "title": "피크 타임 계산대 수요 예측", "desc": "현장 내 방문객 수와 구역별 체류 패턴을 파악해 15–30분 후 계산대로 이동할 예상 인원을 예측합니다."}, {"product": "StoreAgent", "title": "계산대 선제적 운영 안내", "desc": "\"15분 후 계산대 예상 대기 15명 — 추가 계산대 오픈 권장\" 푸시 전송을 피크 시작 전에 보내 선제적 대응을 지원합니다."}], "results": [{"stat": "-32%", "label": "계산대 평균 대기 시간"}, {"stat": "-18%", "label": "계산대 이탈 고객 수"}, {"stat": "15분", "label": "피크 예측 선행 시간"}], "related": ["mart-cart-path-optimization", "cafe-peak-hour-management", "cafe-customer-wait-time"]}, {"slug": "mart-cart-path-optimization", "industry": "mart", "title": "마트 카트 동선 및 체류 시간 최적화", "excerpt": "고객이 마트를 어떻게 돌아다니는지 파악해 매출 동선을 설계하는 방법", "impact": "+20%", "impactLabel": "평균 체류 시간 및 구매 금액 증가", "steps": [{"product": "StoreCare", "title": "다중 카메라 연속 동선 연결", "desc": "카메라 간 핸드오버 기술로 익명화된 객체의 입장부터 퇴장까지 전체 이동 경로를 연속으로 연결합니다. 개인정보 없이 동선 데이터만 수집합니다."}, {"product": "StoreInsight", "title": "동선 패턴 및 구역 방문률 분석", "desc": "가장 많이 이용되는 동선과 생략되는 구역을 히트맵으로 시각화합니다. 시간대별 동선 변화도 파악해 레이아웃 개편 방향을 결정합니다."}, {"product": "StoreAgent", "title": "동선 최적화 레이아웃 제안", "desc": "방문률이 낮은 구역의 원인(접근성 불편, 사인물 부족 등)을 진단하고 구체적인 개선 제안을 제공합니다."}], "results": [{"stat": "+20%", "label": "평균 체류 시간 증가"}, {"stat": "+15%", "label": "구역별 방문률 균형 향상"}, {"stat": "3주", "label": "동선 패턴 분석 완성 기간"}], "related": ["mart-checkout-congestion", "mart-zone-conversion", "drugstore-zone-performance"]}, {"slug": "mart-zone-conversion", "industry": "mart", "title": "마트 구역별 전환율 분석", "excerpt": "어느 구역의 방문이 실제 구매로 이어지는지 파악해 배치를 최적화하는 방법", "impact": "+17%", "impactLabel": "고마진 구역 전환율 향상", "steps": [{"product": "StoreCare", "title": "구역별 방문객 수 및 체류 행동 측정", "desc": "각 구역을 방문한 고객 수, 평균 체류 시간, 상품 접촉(픽업) 빈도를 자동으로 측정합니다."}, {"product": "StoreInsight", "title": "POS 연동 구역별 전환율 계산", "desc": "구역별 방문객 수와 POS 해당 카테고리 매출을 연동해 구역별 전환율을 산출합니다. 전환율 낮은 구역의 원인 진단(체류 시간, 픽업 대비 구매율)을 제공합니다."}, {"product": "StoreAgent", "title": "전환율 개선 구역 우선순위 제안", "desc": "\"E 구역 방문률 상위 30%이지만 전환율 하위 20% — 가격 표시 또는 상품 구성 개선 필요\" 형태의 우선순위 개선 과제를 자동으로 제안합니다."}], "results": [{"stat": "+17%", "label": "고마진 구역 전환율"}, {"stat": "3배", "label": "개선 과제 파악 속도"}, {"stat": "20개", "label": "동시 분석 가능 구역 수"}], "related": ["mart-checkout-congestion", "mart-cart-path-optimization", "drugstore-vmd-optimization"]}, {"slug": "exhibition-visitor-dwell-time", "industry": "exhibition", "title": "전시 공간 방문객 체류 시간 분석", "excerpt": "어떤 전시물이 관람객의 주목을 끌고 얼마나 오래 머무르게 하는지 측정하는 방법", "impact": "+28%", "impactLabel": "관람 만족도 향상", "steps": [{"product": "StoreCare", "title": "부스·작품별 체류 시간 자동 측정", "desc": "전시 공간 내 각 구역(부스, 작품, 설치물)의 방문객 수와 체류 시간을 실시간으로 자동 집계합니다."}, {"product": "StoreInsight", "title": "관람 동선 및 주목도 분석", "desc": "관람객의 이동 경로와 체류 시간을 히트맵으로 시각화합니다. 어떤 작품이 가장 주목받았는지, 어떤 구역이 상대적으로 방문이 적었는지 파악합니다."}, {"product": "StoreAgent", "title": "행사 종료 후 인사이트 리포트 자동 생성", "desc": "행사 기간 동안의 방문객 통계, 피크 시간, 구역별 주목도 순위 등이 담긴 종합 리포트를 자동으로 생성해 다음 행사 기획에 활용합니다."}], "results": [{"stat": "+28%", "label": "관람 만족도 향상"}, {"stat": "전 부스", "label": "실시간 체류 시간 측정"}, {"stat": "자동", "label": "행사 종료 후 리포트 생성"}], "related": ["exhibition-booth-performance", "exhibition-crowd-flow", "cafe-low-seat-turnover"]}, {"slug": "exhibition-booth-performance", "industry": "exhibition", "title": "전시 부스 성과 분석", "excerpt": "각 참가 기업 부스의 방문객 유치 성과를 객관적 데이터로 측정하는 방법", "impact": "3배", "impactLabel": "부스 성과 측정 정확도 향상", "steps": [{"product": "StoreCare", "title": "부스별 방문객 수 자동 집계", "desc": "전시 공간 전체 카메라로 부스별 방문객 수, 체류 시간, 혼잡도를 자동으로 측정합니다."}, {"product": "StoreInsight", "title": "부스 성과 비교 및 위치 효과 분석", "desc": "부스 위치(입구 근처 vs 안쪽), 크기, 디자인 요소별 방문률 차이를 비교합니다. 동일 행사 내 부스 성과 순위를 객관적으로 산출합니다."}, {"product": "StoreAgent", "title": "참가사별 성과 리포트 자동 제공", "desc": "행사 종료 후 각 참가사에게 \"귀사 부스 방문객 수, 평균 체류 시간, 전체 대비 성과 비교\" 리포트를 자동으로 제공합니다."}], "results": [{"stat": "3배", "label": "부스 성과 측정 정확도"}, {"stat": "전 부스", "label": "방문객 수 자동 집계"}, {"stat": "자동", "label": "행사 종료 후 리포트 자동화"}], "related": ["exhibition-visitor-dwell-time", "exhibition-crowd-flow"]}, {"slug": "exhibition-crowd-flow", "industry": "exhibition", "title": "전시 공간 인파 흐름 관리", "excerpt": "특정 구역의 과밀 집중을 실시간으로 감지하고 관람 흐름을 분산하는 방법", "impact": "-25%", "impactLabel": "관람 혼잡 발생 건수 감소", "steps": [{"product": "StoreCare", "title": "구역별 실시간 혼잡도 모니터링", "desc": "전시 공간 전체 구역의 동시 체류 인원을 실시간으로 측정합니다. 설정 임계치를 초과 시 푸시 전송이 이루어집니다."}, {"product": "StoreInsight", "title": "인파 흐름 패턴 분석", "desc": "행사 기간 중 인파 집중이 발생하는 시간대, 구역, 원인을 파악합니다. 다음 행사의 레이아웃 설계에 활용합니다."}, {"product": "StoreAgent", "title": "혼잡 조기 포착 및 분산 알림", "desc": "혼잡이 예상되는 15분 전에 담당자에게 실시간 통보를 발송합니다. \"A 구역 혼잡 예상 — 인근 직원 배치 또는 안내 방송 권장\" 형태로 구체적인 대응 방안을 제안합니다."}], "results": [{"stat": "-25%", "label": "혼잡 발생 건수 감소"}, {"stat": "15분", "label": "혼잡 예측 선행 시간"}, {"stat": "전 구역", "label": "실시간 모니터링 범위"}], "related": ["exhibition-visitor-dwell-time", "exhibition-booth-performance", "mart-checkout-congestion"]}, {"slug": "logistics-worker-safety", "industry": "logistics", "title": "물류 작업자 안전 모니터링", "excerpt": "AI 카메라로 창고 내 안전 사각지대와 위험 행동을 실시간으로 감지하는 방법", "impact": "-45%", "impactLabel": "안전 사고 위험 요소 감소", "steps": [{"product": "StoreCare", "title": "보호구 착용 및 위험 구역 접근 실시간 확인", "desc": "작업자의 헬멧·안전 조끼 착용 여부를 AI가 자동으로 인식합니다. 위험 구역(가상 경계선 설정)에 사람이 접근하면 자동으로 경보음과 알림을 발송합니다."}, {"product": "StoreInsight", "title": "구역별 안전 위반 패턴 분석", "desc": "안전 위반이 발생하는 구역, 시간대, 작업 유형을 누적 집계합니다. 반복적으로 위반이 발생하는 패턴을 파악해 근본적인 환경 개선에 활용합니다."}, {"product": "StoreAgent", "title": "실시간 경보 및 자동 기록", "desc": "안전 위반 확인 시 자동으로 현장 경보음 + 관리자 앱 푸시 전송이 이루어집니다. 모든 이벤트는 자동으로 기록되어 안전 감사와 규정 준수 증빙에 활용합니다."}], "results": [{"stat": "-45%", "label": "안전 위험 요소 감지 지연 감소"}, {"stat": "24시간", "label": "무중단 자동 모니터링"}, {"stat": "24/7", "label": "위반 이벤트 자동 기록"}], "related": ["logistics-efficiency-zones", "logistics-ppe-compliance", "unmanned-anomaly-detection"]}, {"slug": "logistics-efficiency-zones", "industry": "logistics", "title": "물류 구역별 작업 효율 분석", "excerpt": "어느 구역에서 작업 병목이 발생하는지 데이터로 파악하고 물류 동선을 최적화하는 방법", "impact": "+15%", "impactLabel": "구역별 처리량 효율 향상", "steps": [{"product": "StoreCare", "title": "구역별 작업자 분포 및 이동 패턴 측정", "desc": "물류센터 내 각 구역의 작업자 수, 평균 체류 시간, 이동 거리를 자동으로 측정합니다. 특정 구역 과밀이나 공백을 실시간으로 파악합니다."}, {"product": "StoreInsight", "title": "작업 병목 구간 및 효율 저하 패턴 분석", "desc": "시간대별 구역별 처리량을 집계해 병목이 발생하는 시간대와 구역을 파악합니다. 불필요하게 긴 이동 동선을 식별해 레이아웃 개선 방향을 제안합니다."}, {"product": "StoreAgent", "title": "실시간 작업 배분 최적화 알림", "desc": "특정 구역에 작업자가 과밀하거나 부족할 때 즉시 안내를 발송합니다. 주간 리포트로 구역별 효율 트렌드를 제공해 시프트 계획 최적화를 지원합니다."}], "results": [{"stat": "+15%", "label": "구역별 처리량 효율 향상"}, {"stat": "-20%", "label": "불필요 이동 거리 감소"}, {"stat": "전 구역", "label": "실시간 효율 모니터링"}], "related": ["logistics-worker-safety", "logistics-ppe-compliance"]}, {"slug": "logistics-ppe-compliance", "industry": "logistics", "title": "물류 보호구 착용 준수 자동화", "excerpt": "AI로 모든 작업자의 안전 보호구 착용 여부를 자동으로 확인하는 방법", "impact": "-70%", "impactLabel": "보호구 미착용 사고 위험 감소", "steps": [{"product": "StoreCare", "title": "보호구 착용 여부 AI 자동 검출", "desc": "카메라가 작업자의 헬멧, 안전 조끼, 안전화 착용 여부를 자동으로 확인합니다. 미착용 발견 시 경고 방송 + 관리자 알림이 자동 발송됩니다."}, {"product": "StoreInsight", "title": "구역별·시간대별 준수율 분석", "desc": "어느 구역에서 어느 시간대에 미착용이 많은지 확인합니다. 반복적으로 미착용이 발견되는 패턴을 파악해 집중 교육 대상과 환경 개선 방향을 제안합니다."}, {"product": "StoreAgent", "title": "PPE 준수율 자동 리포트", "desc": "일별·주별 PPE 준수율, 미착용 이벤트 수, 구역별 현황을 자동 리포트로 제공합니다. 산업안전보건법 준수 증빙 자료로도 활용 가능합니다."}], "results": [{"stat": "-70%", "label": "PPE 미착용 이벤트 감소"}, {"stat": "+90%", "label": "PPE 준수율 달성"}, {"stat": "24/7", "label": "미착용 이벤트 자동 기록"}], "related": ["logistics-worker-safety", "logistics-efficiency-zones"]}];
+const BY_SLUG = Object.fromEntries(SOLUTIONS.map(s=>[s.slug,s]));
+
+const SITE = 'https://ds-hp-temp.vercel.app/ko';
+const PERSONAS = [
+  {id:'owner', label:'매장을 혼자 운영하는 점주예요'},
+  {id:'hq_sv', label:'여러 매장을 관리하는 본사·SV예요'},
+  {id:'exec',  label:'전사 도입을 검토하는 전략·임원이에요'},
+];
+const INDUSTRIES = [
+  {slug:'convenience', label:'편의점'},
+  {slug:'cafe', label:'카페·음식점'},
+  {slug:'unmanned', label:'무인매장'},
+  {slug:'drugstore', label:'드럭스토어'},
+  {slug:'mart', label:'대형마트'},
+  {slug:'exhibition', label:'전시 공간'},
+  {slug:'logistics', label:'물류·창고'},
+];
+const CLUSTER_MAP = {
+  'convenience-night-theft':'theft_loss','convenience-inventory-loss':'inventory','convenience-planogram':'merchandising',
+  'cafe-peak-hour-management':'congestion','cafe-customer-wait-time':'congestion','cafe-low-seat-turnover':'merchandising',
+  'drugstore-vmd-optimization':'merchandising','drugstore-zone-performance':'merchandising','drugstore-tester-interaction':'merchandising',
+  'mart-checkout-congestion':'congestion','mart-cart-path-optimization':'merchandising','mart-zone-conversion':'merchandising',
+  'exhibition-crowd-flow':'congestion','exhibition-visitor-dwell-time':'merchandising','exhibition-booth-performance':'merchandising',
+  'logistics-worker-safety':'ops_safety','logistics-ppe-compliance':'ops_safety','logistics-efficiency-zones':'ops_safety',
+  'unmanned-theft-prevention':'security_ops','unmanned-anomaly-detection':'security_ops','unmanned-remote-monitoring':'security_ops',
+};
+const CLUSTER_LABEL = {
+  'convenience:theft_loss':'도난·손실 관리','convenience:inventory':'결품·재고 관리','convenience:merchandising':'진열·동선 최적화',
+  'cafe:congestion':'혼잡·대기 관리','cafe:merchandising':'좌석·회전율 최적화',
+  'drugstore:merchandising':'진열·구역 성과 최적화',
+  'mart:congestion':'계산대 혼잡 관리','mart:merchandising':'동선·구역 전환 최적화',
+  'exhibition:congestion':'관람객 혼잡 관리','exhibition:merchandising':'부스·전시 성과 측정',
+  'logistics:ops_safety':'작업 효율·안전 관리','unmanned:security_ops':'보안·운영 관리',
+};
+const TIEBREAK = {
+  'cafe:congestion':{q:'어떤 상황에 더 가까우신가요?',opts:[
+    {slug:'cafe-peak-hour-management',label:'점심·저녁 피크에 주문이 몰려 대기가 길어져요'},
+    {slug:'cafe-customer-wait-time',label:'카운터 앞 줄을 보고 고객이 그냥 나가요'}]},
+  'drugstore:merchandising':{q:'무엇이 가장 궁금하신가요?',opts:[
+    {slug:'drugstore-vmd-optimization',label:'어떤 진열 방식이 고마진 구역 유도에 효과적인지'},
+    {slug:'drugstore-zone-performance',label:'유독 방문이 적은 구역이 왜 그런지'},
+    {slug:'drugstore-tester-interaction',label:'테스터 배치가 실제 판매에 얼마나 도움이 되는지'}]},
+  'mart:merchandising':{q:'무엇이 가장 궁금하신가요?',opts:[
+    {slug:'mart-cart-path-optimization',label:'고객이 어떤 경로로 이동하고 어디서 머무는지'},
+    {slug:'mart-zone-conversion',label:'방문은 많은데 특정 구역 전환율이 낮은 이유'}]},
+  'exhibition:merchandising':{q:'무엇을 측정하고 싶으신가요?',opts:[
+    {slug:'exhibition-visitor-dwell-time',label:'어떤 전시물이 인상적인지, 어디서 오래 머무는지'},
+    {slug:'exhibition-booth-performance',label:'부스별 방문객 유치 성과를 참가사에 보고해야 해요'}]},
+  'logistics:ops_safety':{q:'어떤 상황에 가장 가까우신가요?',opts:[
+    {slug:'logistics-ppe-compliance',label:'보호구(헬멧·안전화·조끼) 착용을 일일이 확인하기 어려워요'},
+    {slug:'logistics-worker-safety',label:'위험 구역 진입 등 안전 규정 위반을 실시간으로 못 잡아요'},
+    {slug:'logistics-efficiency-zones',label:'특정 구역에 작업이 몰리는 원인을 모르겠어요'}]},
+  'unmanned:security_ops':{q:'어떤 상황에 가장 가까우신가요?',opts:[
+    {slug:'unmanned-theft-prevention',label:'도난이 발생해도 다음 날에야 알게 돼요'},
+    {slug:'unmanned-anomaly-detection',label:'냉장고 문 열림 같은 사소한 이상이 방치돼요'},
+    {slug:'unmanned-remote-monitoring',label:'여러 지점을 매번 방문해서 확인해야 해요'}]},
+};
+const CASE_STUDY = { // 업종 → 매칭 고객 사례
+  cafe:{slug:'cafe-sync',label:'카페 프랜차이즈 운영 동기화 사례'},
+  convenience:{slug:'cvs-100',label:'편의점 100개점 적용 사례'},
+  drugstore:{slug:'drug-translate',label:'드럭스토어 현장 적용 사례'},
+  exhibition:{slug:'space-remeasure',label:'공간 재측정 사례'},
+};
+const PRODUCT_URL = {StoreCare:SITE+'/products/saai-care',StoreInsight:SITE+'/products/saai-insight',StoreAgent:SITE+'/products/saai-agent'};
+const PRODUCT_LABEL = {StoreCare:'01 감지 · saai care',StoreInsight:'02 분석 · saai insight',StoreAgent:'03 실행 · saai agent'};
+
+/* ─────────── 상태 & 헬퍼 ─────────── */
+const chat = document.getElementById('chat');
+const overlay = document.getElementById('overlay');
+const pbar = document.getElementById('pbar');
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let S = null; // session state
+
+function openDiag(presetIndustry){
+  S = {persona:null,industry:null,cluster:null,queue:Promise.resolve(),checkpoints:[]};
+  chat.innerHTML=''; setProgress(0);
+  overlay.classList.add('open'); document.body.style.overflow='hidden';
+  log('diagnosis_open', presetIndustry?'banner:'+presetIndustry:'header');
+  if(presetIndustry){
+    const ind = INDUSTRIES.find(i=>i.slug===presetIndustry);
+    bot(`안녕하세요. 질문 몇 개로 지금 상황에 맞는 솔루션을 찾아드릴게요.`);
+    bot(`<b>${ind.label}</b> 페이지에서 오셨네요. 맞는 현장인지 먼저 확인할게요.`,()=>{
+      chips([
+        {label:`네, ${ind.label} 현장이에요`,fn:()=>{S.industry=ind.slug;user(`네, ${ind.label} 현장이에요`,'preset');askPersona(true);}},
+        {label:'다른 업종이에요',fn:()=>{user('다른 업종이에요','preset');askPersona(false);}},
+      ]);
+    });
+  } else {
+    bot(`안녕하세요. 질문 몇 개로 지금 상황에 맞는 솔루션을 찾아드릴게요.`,()=>askPersona(false,true));
+  }
+}
+function closeDiag(){overlay.classList.remove('open');document.body.style.overflow='';}
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeDiag()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeDiag()});
+
+function setProgress(r){pbar.style.width=(r*100)+'%';}
+function log(ev,detail){console.log('[umami-stub]',ev,detail||'');}
+function scrollEnd(){chat.scrollTop=chat.scrollHeight;}
+
+function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstElementChild;}
+
+/* 어시스턴트 발화: 타이핑 인디케이터 → 말풍선 (순차 큐) */
+function bot(html,after){
+  S.queue = S.queue.then(()=>new Promise(res=>{
+    const t = el(`<div class="msg bot"><span class="typing"><i></i><i></i><i></i></span></div>`);
+    chat.appendChild(t); scrollEnd();
+    setTimeout(()=>{
+      t.remove();
+      chat.appendChild(el(`<div class="msg bot"><div class="bubble">${html}</div></div>`));
+      scrollEnd(); if(after)after(); res();
+    }, REDUCED?0:420+Math.min(html.length*4,400));
+  }));
+}
+function user(text,checkpointId){
+  S.queue = S.queue.then(()=>{
+    const w = el(`<div class="msg user"><div class="user-wrap"><div class="bubble">${text}</div><div class="edit-link"><button>수정</button></div></div></div>`);
+    w.querySelector('button').onclick=()=>rewind(checkpointId);
+    chat.appendChild(w); scrollEnd();
+  });
+}
+/* 칩 그룹: 클릭 시 그룹 제거 후 fn 실행 */
+function chips(items,grid){
+  S.queue = S.queue.then(()=>{
+    const g = el(`<div class="chips${grid?' grid2':''}"></div>`);
+    items.forEach(it=>{
+      const c = el(`<button class="chip${it.subtle?' subtle':''}">${it.label}</button>`);
+      c.onclick=()=>{g.remove();it.fn();};
+      g.appendChild(c);
+    });
+    chat.appendChild(g); scrollEnd();
+    // checkpoint: 현재 DOM 위치 기록 (수정 되감기용)
+    S.checkpoints.push({node:g, snapshot:chat.children.length-1});
+  });
+}
+/* 수정: 해당 사용자 답변 이후를 지우고 그 질문의 칩을 복원 — 목업에선 간단히 재시작 지점으로 */
+function rewind(){ // 단순화: 전체 재시작 (실서비스는 스텝 단위 되감기)
+  const preset = S.industry && !S.persona ? S.industry : null;
+  bot('알겠습니다, 다시 여쭤볼게요.');
+  setTimeout(()=>openDiag(null),REDUCED?0:600);
+}
+
+/* ─────────── 플로우 ─────────── */
+function askPersona(industryPreset,first){
+  setProgress(industryPreset?0.33:0.25);
+  bot(`지금 어떤 자리에서 보고 계세요?`,()=>{
+    chips(PERSONAS.map(p=>({label:p.label,fn:()=>{
+      user(p.label,'persona'); S.persona=p.id; log('diagnosis_step','persona:'+p.id);
+      if(p.id==='owner') return exitOwner(industryPreset);
+      industryPreset? askProblem() : askIndustry();
+    }})));
+  });
+}
+function exitOwner(industryPreset){
+  bot(`말씀하신 상황엔 이쪽이 더 맞을 것 같아요. 한 매장을 직접 운영하신다면, 엔터프라이즈 suite보다 <b>사장님을 위한 별도 제품</b>이 맞습니다 — 카메라 없이 발주부터 POP까지 챙기는 saai 사장님 스위트예요.`,()=>{
+    chips([
+      {label:'saai for owners 보러 가기 →',fn:()=>window.open(SITE+'/products/saai-for-owners','_blank')},
+      {label:'그래도 계속 진단해볼게요',subtle:true,fn:()=>{user('그래도 계속 진단해볼게요','owner-cont'); S.persona='hq_sv'; S.industry? askProblem(): askIndustry();}},
+    ]);
+  });
+}
+function askIndustry(){
+  setProgress(0.5);
+  bot(`어떤 현장이신가요?`,()=>{
+    chips(INDUSTRIES.map(ind=>({label:ind.label,fn:()=>{
+      user(ind.label,'industry'); S.industry=ind.slug; log('diagnosis_step','industry:'+ind.slug);
+      askProblem();
+    }})),true);
+  });
+}
+function askProblem(){
+  setProgress(0.7);
+  const scen = SOLUTIONS.filter(s=>s.industry===S.industry);
+  const byCluster = {};
+  scen.forEach(s=>{const c=CLUSTER_MAP[s.slug];(byCluster[c]=byCluster[c]||[]).push(s.slug);});
+  const opts = Object.entries(byCluster).map(([cid,slugs])=>({
+    label: CLUSTER_LABEL[`${S.industry}:${cid}`]||cid,
+    fn: ()=>{
+      user(CLUSTER_LABEL[`${S.industry}:${cid}`],'cluster'); log('diagnosis_step','cluster:'+cid);
+      if(slugs.length===1) return showResult(slugs[0]);
+      S.cluster = `${S.industry}:${cid}`; askTiebreak();
+    }
+  }));
+  opts.push({label:'개인정보·컴플라이언스가 궁금해요',subtle:true,fn:()=>{user('개인정보·컴플라이언스가 궁금해요','privacy');exitPrivacy();}});
+  opts.push({label:'아직 잘 모르겠어요, 전반적으로 궁금해요',subtle:true,fn:()=>{user('아직 잘 모르겠어요','unsure');exitUnsure();}});
+  bot(`요즘 가장 걸리는 문제는 무엇인가요?`,()=>chips(opts));
+}
+function exitPrivacy(){
+  bot(`이 질문엔 기술로 답합니다. 얼굴을 남기지 않고도 분석이 가능한 이유는 익명화 엔진 <b>Anonymizer(SEAL)</b>에 있어요 — 원본 미보존 · 사람 미열람 · 재식별 불가, 세 가지 약속으로 설계되어 있습니다.`,()=>{
+    chips([
+      {label:'기술 페이지 보기 →',fn:()=>window.open(SITE+'/technology/anonymizer','_blank')},
+      {label:'다시 진단하기',subtle:true,fn:()=>openDiag(null)},
+    ]);
+  });
+}
+function exitUnsure(){
+  const ind = INDUSTRIES.find(i=>i.slug===S.industry);
+  bot(`우선 업종 전체를 보여드릴게요. 아직 문제를 콕 집기 어려우시다면, <b>${ind.label}</b>에서 자주 나오는 문제들을 먼저 넓게 보시는 게 좋습니다.`,()=>{
+    chips([
+      {label:'전체 솔루션 보기 →',fn:()=>window.open(SITE+`/solutions#industry-${S.industry}`,'_blank')},
+      {label:'다시 진단하기',subtle:true,fn:()=>openDiag(null)},
+    ]);
+  });
+}
+function askTiebreak(){
+  setProgress(0.85);
+  const tb = TIEBREAK[S.cluster];
+  bot(`마지막 질문이에요. ${tb.q}`,()=>{
+    chips(tb.opts.map(o=>({label:o.label,fn:()=>{
+      user(o.label,'tiebreak'); showResult(o.slug);
+    }})));
+  });
+}
+
+/* ─────────── 결과 ─────────── */
+function showResult(slug){
+  setProgress(1); log('diagnosis_result',slug);
+  const s = BY_SLUG[slug];
+  bot(`조건에 맞는 사례를 확인하고 있어요…`);
+  S.queue = S.queue.then(()=>new Promise(res=>setTimeout(res,REDUCED?0:800)));
+  bot(`이 문제가 맞다면, 접근 방법과 실제 결과까지 정리해드릴게요.`,()=>{
+    const hub = buildHub(s);
+    const r = el(`<div class="result">
+      <div style="animation-delay:.05s">
+        <div class="r-kicker">진단 결과</div>
+        <span class="r-impact">${s.impact} ${s.impactLabel}</span>
+        <div class="r-problem">이런 문제, 맞을까요</div>
+        <div class="r-title">${s.title}</div>
+        <div class="r-excerpt">${s.excerpt}</div>
+      </div>
+      <div style="animation-delay:.35s">
+        <div class="r-h">이렇게 접근합니다</div>
+        ${s.steps.map((st,i)=>`<div class="r-step"><span class="n">${i+1}</span><div>
+          <a class="pbadge" href="${PRODUCT_URL[st.product]}" target="_blank">${PRODUCT_LABEL[st.product]} ↗</a>
+          <div class="st">${st.title}</div><div class="sd">${st.desc}</div></div></div>`).join('')}
+      </div>
+      <div style="animation-delay:.65s">
+        <div class="r-h">실제 결과</div>
+        <div class="r-stats">${s.results.map(r=>`<div class="r-stat"><b>${r.stat}</b><span>${r.label}</span></div>`).join('')}</div>
+        <div class="r-note">* 수치는 실제 운영 사례를 설명하기 위한 예시이며, 현장 조건에 따라 달라질 수 있습니다.</div>
+      </div>
+      <div style="animation-delay:.95s">
+        <div class="r-h">다음으로 볼 콘텐츠</div>
+        <div class="hub">${hub.map(h=>`<a href="${h.url}" target="_blank" onclick="log('diagnosis_route_click','${h.k}')">
+          <div class="h-k">${h.k}</div><div class="h-t">${h.t}</div><div class="h-d">${h.d}</div></a>`).join('')}</div>
+        <div class="r-cta">
+          <a class="btn btn-primary" href="${SITE}/contact?solution=${s.slug}" target="_blank">무료 상담 신청 →</a>
+          <a class="btn btn-ghost" href="${SITE}/solutions/${s.slug}" target="_blank">자세히 보기</a>
+          <button class="restart" onclick="openDiag(null)">다시 진단하기</button>
+        </div>
+      </div>
+    </div>`);
+    S.queue = S.queue.then(()=>{chat.appendChild(r);scrollEnd();setTimeout(scrollEnd,REDUCED?0:400);});
+  });
+}
+/* 라우팅 허브: 신호 → 콘텐츠, 우선순위 사례>제품>가격>기술, 최대 4장 */
+function buildHub(s){
+  const out=[];
+  const cs = CASE_STUDY[s.industry];
+  if(cs) out.push({k:'고객 사례',t:cs.label,d:'같은 업종 현장의 실제 적용 이야기',url:`${SITE}/resources/case-studies/${cs.slug}`});
+  else out.push({k:'고객 사례',t:'전체 고객 사례 보기',d:'현장별 적용 사례 모음',url:`${SITE}/resources/case-studies`});
+  out.push({k:'제품',t:'saai — 감지·분석·실행 3제품',d:'이 답을 만드는 제품 구성 한눈에 보기',url:`${SITE}/products/saai`});
+  if(S.persona==='exec'||S.persona==='hq_sv')
+    out.push({k:'가격',t:'요금 시뮬레이터',d:'매장 수 기준 도입 비용 바로 확인',url:`${SITE}/pricing/simulator`});
+  if(S.persona==='exec')
+    out.push({k:'엔터프라이즈',t:'전사 도입 안내',d:'보안 검토·PoC·전개 프로세스',url:`${SITE}/enterprise`});
+  else
+    out.push({k:'기술',t:'Anonymizer (SEAL)',d:'원본 미보존 · 사람 미열람 · 재식별 불가',url:`${SITE}/technology/anonymizer`});
+  return out.slice(0,4);
+}
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@ import ProblemSignal from '@/components/solutions/ProblemSignal';
 import AdoptionJourney from '@/components/solutions/AdoptionJourney';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
 import siteContent from '@/data/generated/site-content.json';
@@ -121,6 +122,13 @@ export default function RetailView({ locale }: { locale: Locale }) {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Contextual Diagnosis Launcher */}
+      <section className="py-6 bg-gray-50/70 border-y border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <DiagnosisLauncher variant="banner" preset={{ industry: 'convenience' }} locale={locale} />
         </div>
       </section>
 

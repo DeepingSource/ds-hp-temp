@@ -12,6 +12,7 @@ import OperatingLoopDemo from '@/components/corporate/OperatingLoopDemo';
 import SaaiPillarsSection from '@/components/corporate/products/SaaiPillarsSection';
 import SaaiSuiteSection from '@/components/corporate/products/SaaiSuiteSection';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
@@ -167,9 +168,10 @@ export default function ProductsView({ locale }: { locale: Locale }) {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight font-display break-keep mb-6">
               <WordRise text={c.heroTitle} />
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl">
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl mb-6">
               {c.heroSub}
             </p>
+            <DiagnosisLauncher variant="inline" locale={locale} />
           </div>
         </Container>
       </section>

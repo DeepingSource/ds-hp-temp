@@ -33,6 +33,19 @@ export const DIAGNOSIS_UI: Record<
     resultsNote: string;
     /** Entry-point link shown on /solutions pointing into this flow. */
     entryLinkLabel: string;
+    chatConnectors: {
+      understanding: string;
+      finalQuestion: string;
+      analyzing: string;
+      rewindHover: string;
+      relatedContentHeading: string;
+    };
+    launcherBanner: {
+      defaultTitle: string;
+      defaultSub: string;
+      ctaText: string;
+    };
+    launcherInline: string;
   }
 > = {
   ko: {
@@ -54,6 +67,19 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: '자세히 보기',
     resultsNote: '* 수치는 실제 운영 사례를 설명하기 위한 예시이며, 현장 조건에 따라 달라질 수 있습니다.',
     entryLinkLabel: '질문 3개로 빠르게 찾기',
+    chatConnectors: {
+      understanding: '네, 알겠습니다.',
+      finalQuestion: '마지막 질문이에요.',
+      analyzing: '조건에 맞는 사례와 제품을 확인하고 있어요...',
+      rewindHover: '수정',
+      relatedContentHeading: '다음으로 볼 추천 콘텐츠',
+    },
+    launcherBanner: {
+      defaultTitle: '우리 매장·공간, 어디서부터 최적화해야 할까요?',
+      defaultSub: '질문 3개면 충분합니다. 내 현장에 꼭 맞는 답을 찾아드립니다.',
+      ctaText: '30초 진단 시작하기',
+    },
+    launcherInline: '이 현장에 내 문제에 맞는 솔루션 확인하기',
   },
   en: {
     eyebrow: '30-second diagnosis',
@@ -74,6 +100,19 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: 'View detail',
     resultsNote: '* Figures are illustrative examples of real deployments; actual results vary by site.',
     entryLinkLabel: 'Find it in 3 questions',
+    chatConnectors: {
+      understanding: 'Understood.',
+      finalQuestion: 'One last question.',
+      analyzing: 'Finding matching cases and products...',
+      rewindHover: 'Edit',
+      relatedContentHeading: 'Recommended Next Content',
+    },
+    launcherBanner: {
+      defaultTitle: 'Where should you start optimizing your store or venue?',
+      defaultSub: '3 questions are enough to find the right answer for your site.',
+      ctaText: 'Start 30s Diagnosis',
+    },
+    launcherInline: 'Check if there is a solution matching your site',
   },
   jp: {
     eyebrow: '30秒診断',
@@ -94,6 +133,19 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: '詳しく見る',
     resultsNote: '* 数値は実際の運用事例を説明するための例であり、現場条件により異なります。',
     entryLinkLabel: '3つの質問で素早く見つける',
+    chatConnectors: {
+      understanding: '承知いたしました。',
+      finalQuestion: '最後の質問です。',
+      analyzing: '条件に合う事例と製品を探しています...',
+      rewindHover: '修正',
+      relatedContentHeading: '次に見るおすすめコンテンツ',
+    },
+    launcherBanner: {
+      defaultTitle: '店舗・空間の最適化、どこから始めるべきですか？',
+      defaultSub: '3つの質問で、あなたの現場に合う答えを見つけます。',
+      ctaText: '30秒診断を始める',
+    },
+    launcherInline: 'この現場に合うソリューションを確認する',
   },
 };
 

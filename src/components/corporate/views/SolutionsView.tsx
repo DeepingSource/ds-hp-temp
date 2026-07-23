@@ -7,6 +7,7 @@ import { industryLabelI18n, solutionCardI18n } from '@/data/solutions-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { DIAGNOSIS_UI } from '@/data/diagnosis-i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -167,14 +168,9 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           </p>
 
           {/* Entry point into the guided Q&A alternative */}
-          <Link
-            href={localeHref(locale, '/solutions/diagnosis')}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/15 transition-colors backdrop-blur-sm mb-10"
-          >
-            <Wand2 className="w-4 h-4 text-primary-light" aria-hidden="true" />
-            {diagnosisUi.entryLinkLabel}
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-          </Link>
+          <div className="mb-10 flex justify-center">
+            <DiagnosisLauncher variant="button" locale={locale} />
+          </div>
 
           {/* Early Proof & Trust Band */}
           <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-slate-400 font-semibold">

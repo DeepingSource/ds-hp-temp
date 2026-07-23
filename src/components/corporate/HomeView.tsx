@@ -11,6 +11,7 @@ import HomeEnterpriseBeat from './HomeEnterpriseBeat';
 import SpacesShowcase from './SpacesShowcase';
 import TrustCharter from './TrustCharter';
 import ParallaxWatermark from './ParallaxWatermark';
+import DiagnosisLauncher from './diagnosis/DiagnosisLauncher';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { seam, purpose, productPrimary, productSecondary, type ProductKey } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
@@ -102,6 +103,13 @@ export default function HomeView({ locale }: { locale: Locale }) {
 
       {/* Beat 3 — Problem Empathy (The leak & invisible majority) */}
       <ProblemBeat locale={locale} />
+
+      {/* Diagnosis v2 Launcher Banner */}
+      <section className="py-8 bg-gray-50/50">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <DiagnosisLauncher variant="banner" locale={locale} />
+        </div>
+      </section>
 
       {/* Beat 4 — Spatial AI Answer ("For spaces, spatial AI.") */}
       <SpaceAiAnswerBeat locale={locale} />

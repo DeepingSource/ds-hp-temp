@@ -15,6 +15,7 @@ import { COMPANY } from '@/lib/company-data';
 import siteContent from '@/data/generated/site-content.json';
 import { localeHref, type Locale } from '@/lib/i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -125,9 +126,12 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               <WordRise text={t.heroTitleA} /><br className="hidden sm:block" />
               <WordRise text={t.heroTitleB} className="text-primary-light" />
             </h1>
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl break-keep">
+            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-6 max-w-2xl break-keep">
               {t.heroSub}
             </p>
+            <div className="mb-8">
+              <DiagnosisLauncher variant="inline" locale={locale} className="text-primary-light hover:text-white" />
+            </div>
             <div className="inline-flex items-center gap-4 px-6 py-4 bg-white/5 border border-white/15 rounded-2xl backdrop-blur-sm">
               <div className="text-center">
                 <CountUp to={COMPANY.patents} className="text-4xl font-bold text-white tabular-nums" />

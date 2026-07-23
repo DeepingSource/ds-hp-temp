@@ -8,6 +8,7 @@ import HeaderWrapper from "@/components/layout/HeaderWrapper";
 import FooterWrapper from "@/components/layout/FooterWrapper";
 import LandingStickyCta from "@/components/layout/LandingStickyCta";
 import MotionProvider from "@/components/providers/MotionProvider";
+import { DiagnosisProvider } from "@/components/corporate/diagnosis/DiagnosisContext";
 import HtmlLangSync from "@/components/layout/HtmlLangSync";
 import LanguageSuggestion from "@/components/layout/LanguageSuggestion";
 import { COMPANY } from "@/lib/company-data";
@@ -148,21 +149,26 @@ export default function RootLayout({
             progress bar — it used to only wrap {children}, leaving Header outside
             the provider despite its own comments assuming global coverage. */}
         <MotionProvider>
-          {/* ?lp=1 → header hidden; otherwise → normal header */}
-          <Suspense fallback={<Header />}>
-            <HeaderWrapper />
-          </Suspense>
-          <main id="main-content" className="pt-16">
-            {children}
-          </main>
-          {/* ?lp=1 → footer/mobileStickyBar hidden; otherwise → shown */}
-          <Suspense fallback={<><Footer /><MobileStickyBar /></>}>
-            <FooterWrapper />
-          </Suspense>
-          {/* ?lp=1 → show sticky bottom CTA */}
-          <Suspense fallback={null}>
-            <LandingStickyCta />
-          </Suspense>
+          {/* DiagnosisProvider는 Suspense로 감싸지 않는다 — URL 파라미터 읽기는
+              내부 DiagnosisUrlSync가 자체 경계로 격리한다(감싸면 헤더/본문/푸터가
+              통째로 프리렌더에서 빠진다). */}
+          <DiagnosisProvider>
+              {/* ?lp=1 → header hidden; otherwise → normal header */}
+              <Suspense fallback={<Header />}>
+                <HeaderWrapper />
+              </Suspense>
+              <main id="main-content" className="pt-16">
+                {children}
+              </main>
+              {/* ?lp=1 → footer/mobileStickyBar hidden; otherwise → shown */}
+              <Suspense fallback={<><Footer /><MobileStickyBar /></>}>
+                <FooterWrapper />
+              </Suspense>
+              {/* ?lp=1 → show sticky bottom CTA */}
+              <Suspense fallback={null}>
+                <LandingStickyCta />
+              </Suspense>
+          </DiagnosisProvider>
         </MotionProvider>
         {/* Umami — NEXT_PUBLIC_UMAMI_* 미설정 시 스스로 null 반환 */}
         <Analytics />
