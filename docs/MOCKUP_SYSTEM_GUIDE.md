@@ -43,6 +43,15 @@
 - `HomeEnterpriseBeat.tsx`: `MultiStoreDashboardMockup` 동적 import & 본사 대시보드 실시간 뷰 통합.
 - `FeatureCarousel.tsx`: `IntegratedLoopDiagram` & `ActionCardMockup` 동적 import 및 SAAI 약속 루프/agent 라이브 실행 연동.
 
+**Spatial AI / Agentic AI 기술 페이지 보강 완료 (`SPATIAL_AGENTIC_DIAGRAM_WORK_ORDER_v1.md`)**:
+- `SpatialAiView.tsx`: MTMC 메커니즘 카드에 픽셀→카메라→공간 좌표 파이프라인 스트립 통합.
+- `AgenticAiTechView.tsx`: 신설 "차별점" 섹션(하네스·온톨로지·도메인 지식 3-pillar 다이어그램) 추가, "데이터 연결" 카드에 `PosJoinDiagram` 통합, 컴파운딩 학습 루프 `LearningFlywheelDiagram` 신규 생성 및 배치, L0~L5 사다리 그리드를 `AutonomyLadderTimeline` 컴포넌트(각 수치 가림 footnote 적용)로 대체.
+
+**회사소개 About 페이지 재설계 완료 (`회사소개_About_점검·발전계획_260723.md`)**:
+- `AboutView.tsx`: 6비트 서사 구조(선언 H1 → 자격/원류 Origin → 방법 3층 스택 `SpatialStackDiagram` → 좌표 Vision 2031 → 사람 Leadership 초상 및 팀 전체 링크 → 파트너 신뢰 & SAAI 하단 브릿지 & 최종 CTA)로 재정렬.
+- `SpatialStackDiagram.tsx`: 3층 수직 스택(01 익명화 → 02 공간지능 → 03 에이전트AI) 신규 컴포넌트 추가 및 렌더링.
+- `leadership.yaml`: 리더십 인원에 실제 초상화 자산 경로 지정 및 팀 페이지와의 시각적 언어 통일.
+
 이 8종 중 숫자/구조 오버라이드까지 가능한 건 없음(문구만) — `ActionCardMockup`은 위 5-장 제약, `CaseStudyChartMockup`은 실측 데이터 원칙, 나머지는 원래도 문구 위주 컴포넌트라 자연스러운 스코프.
 
 ## 1. 세 가지 목표와 대응 방법

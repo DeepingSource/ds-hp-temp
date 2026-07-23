@@ -36,7 +36,7 @@ const techLinks: FLink[] = [
 ];
 
 const companyLinks: FLink[] = [
-  { href: '/company/about', label: L('회사 소개', 'About', '회사紹介') },
+  { href: '/company/about', label: L('회사 소개', 'About', '会社紹介') },
   { href: '/company/team', label: L('팀원 & 사람', 'People & Team', 'チーム & 人々') },
   { href: '/company/news', label: L('보도자료', 'News', 'プレスリリース') },
   { href: '/events', label: L('이벤트', 'Events', 'イベント') },

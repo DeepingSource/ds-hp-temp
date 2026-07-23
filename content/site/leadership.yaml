@@ -20,7 +20,7 @@ leaders:
       ko: 김
       en: TK
       jp: TK
-    photo: ""
+    photo: "/images/team/taehoon-kim.webp"
   - key: cbo
     name:
       ko: 금상호
@@ -42,7 +42,7 @@ leaders:
       ko: 금
       en: SK
       jp: SK
-    photo: ""
+    photo: "/images/team/sangho-kum.webp"
   - key: vpe
     name:
       ko: 고봉경
@@ -64,4 +64,4 @@ leaders:
       ko: 고
       en: BK
       jp: BK
-    photo: ""
+    photo: "/images/team/bongkyung-ko.webp"

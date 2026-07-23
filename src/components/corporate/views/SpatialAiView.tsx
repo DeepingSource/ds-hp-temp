@@ -168,7 +168,7 @@ const jp: Copy = {
     {
       label: 'Spatial AI',
       title: '誰かではなく、何をどう',
-      body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定하는のではなく、人々が何をどう動いているのかを読みます。',
+      body: 'ビジョンAIは結局、人を見ます。空間知能はその視点を変えます——誰かを特定するのではなく、人々が何をどう動いているのかを読みます。',
     },
     {
       label: 'Vision Models',
@@ -274,8 +274,19 @@ export default function SpatialAiView({ locale }: { locale: Locale }) {
                         0{i + 1} · {s.label}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-white mb-3 break-keep">{s.title}</h3>
-                    <p className="text-sm text-gray-400 leading-relaxed break-keep">{s.body}</p>
+                    <h3 className="text-lg font-bold text-white mb-2 break-keep">{s.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed break-keep">{s.body}</p>
+
+                    {/* Task 3-5: Pipeline strip for MTMC card */}
+                    {s.label === 'MTMC' && (
+                      <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-between gap-1 text-2xs font-semibold text-slate-300 font-mono">
+                        <span className="px-2 py-1 rounded bg-slate-800 border border-slate-700">{locale === 'ko' ? '픽셀' : locale === 'jp' ? 'ピクセル' : 'Pixels'}</span>
+                        <span className="text-primary-light font-bold">→</span>
+                        <span className="px-2 py-1 rounded bg-slate-800 border border-slate-700">{locale === 'ko' ? '카메라' : locale === 'jp' ? 'カメラ' : 'Camera'}</span>
+                        <span className="text-primary-light font-bold">→</span>
+                        <span className="px-2.5 py-1 rounded bg-primary/20 border border-primary/40 text-primary-light font-bold">{locale === 'ko' ? '공간 좌표' : locale === 'jp' ? '空間座標' : 'Coordinates'}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               );

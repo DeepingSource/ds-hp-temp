@@ -680,7 +680,7 @@
   },
   "about": {
     "en": {
-      "badge": "About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
       "heroEyebrowCompany": "Online",
       "heroMasterCompany": "got optimized\nby measurement.",
       "heroEyebrowOwner": "The physical world",
@@ -688,8 +688,8 @@
       "companyIntro": "For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.",
       "companyIntro2": "DEEPINGSOURCE is here to reinvent it.",
       "vmEyebrow": "Vision",
-      "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "Reinvent\noffline.",
+      "missionStatement": "Online was optimized for 20 years.\nPhysical space remained almost untouched.",
+      "missionStatementSub": "DeepingSource is here to\nreinvent it.",
       "vision": "Starting from your space — to every space.",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
@@ -746,7 +746,7 @@
       }
     },
     "ko": {
-      "badge": "About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
       "heroEyebrowCompany": "온라인은",
       "heroMasterCompany": "측정으로\n최적화됐다",
       "heroEyebrowOwner": "현장은",
@@ -754,8 +754,8 @@
       "companyIntro": "온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.",
       "companyIntro2": "딥핑소스는, 그 현장을 다시 만듭니다.",
       "vmEyebrow": "Vision",
-      "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "오프라인을\n다시 만듭니다",
+      "missionStatement": "온라인은 20년간 최적화됐습니다.\n현장은, 거의 그대로입니다.",
+      "missionStatementSub": "딥핑소스는, 그 현장을\n다시 만듭니다",
       "vision": "당신의 공간에서 시작해, 모든 공간으로.",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
@@ -812,7 +812,7 @@
       }
     },
     "jp": {
-      "badge": "About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
       "heroEyebrowCompany": "オンラインは",
       "heroMasterCompany": "測定で\n最適化された。",
       "heroEyebrowOwner": "現場は",
@@ -820,8 +820,8 @@
       "companyIntro": "オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。",
       "companyIntro2": "ディーピングソースは、その現場を作り直します。",
       "vmEyebrow": "Vision",
-      "missionStatement": "REINVENT OFFLINE",
-      "missionStatementSub": "オフラインを、\nつくりなおす。",
+      "missionStatement": "オンラインは20年間最適化されました。\n現場は、ほとんどそのままです。",
+      "missionStatementSub": "ディーピングソースは、\nその現場をつくりなおす。",
       "vision": "あなたの空間から始めて、すべての空間へ。",
       "visionLabel": "Vision",
       "missionLabel": "Mission",
@@ -1748,9 +1748,15 @@
       "philosophyEyebrow": "Principles",
       "philosophyHeading": "Three principles behind the way we build agentic AI",
       "philosophySub": "Before asking how far the technology could go, we decided where it should stop.",
+      "differentiatorEyebrow": "Differentiator",
+      "differentiatorHeading": "Why our agent excels is not the LLM",
+      "differentiatorBody1": "Those judgements are not something just anyone can produce.",
+      "differentiatorBody2": "Agent capabilities are no longer determined by which LLM is used. Frontier model performance is largely comparable. The true difference lies in harness, ontology, and domain knowledge — the scaffolding that makes models operate safely and repeatedly in real workflows, the data structure that precisely represents physical retail stores, and the domain wisdom of what constitutes a vital decision.",
+      "differentiatorBody3": "The data fed into it is also different. Spatial data accumulated by anonymizing existing CCTVs and aligning them via MTMC — movement, dwell, conversion — cannot be built overnight.",
+      "differentiatorBody4": "We do not build LLMs. There is no need to. Our job is to make these tools operate seamlessly on physical spaces through harnesses, ontologies, and domain knowledge.",
       "baselineEyebrow": "Baseline",
       "baselineHeading": "What we start from",
-      "baselineSub": "Principles are not kept by declaring them. Four technical foundations are what make them hold.",
+      "baselineSub": "These four pillars are the exact mechanics behind harness and ontology.",
       "linkedSourcesLabel": "What joins into one store context",
       "ladderEyebrow": "Levels of autonomy",
       "ladderHeading": "Not automatic from day one — L0 to L5",
@@ -1836,6 +1842,20 @@
         {
           "label": "Weather · local context"
         }
+      ],
+      "pillars": [
+        {
+          "desc": "The execution scaffolding that makes a model run safely and repeatably in real offline work.",
+          "footer": "Execution guardrails · approval loop"
+        },
+        {
+          "desc": "A domain ontology that reconciles CCTV flow, dwell, and POS transactions into one store context.",
+          "footer": "Spatial alignment · data context"
+        },
+        {
+          "desc": "Years of on-the-ground knowledge about which judgements actually matter in store operations.",
+          "footer": "Accumulated approve/reject data from the floor"
+        }
       ]
     },
     "ko": {
@@ -1849,9 +1869,15 @@
       "philosophyEyebrow": "철학",
       "philosophyHeading": "딥핑소스가 Agentic AI를 만드는 세 가지 원칙",
       "philosophySub": "기술이 어디까지 갈 수 있는가보다, 어디에서 멈춰야 하는가를 먼저 정했습니다.",
+      "differentiatorEyebrow": "차별점",
+      "differentiatorHeading": "에이전트가 잘하는 이유는, LLM이 아닙니다",
+      "differentiatorBody1": "그 판단, 아무나 낼 수 있는 게 아닙니다.",
+      "differentiatorBody2": "에이전트의 실력은 이제 어떤 LLM을 쓰는지로 갈리지 않습니다. 프론티어 모델의 성능은 이미 거기서 거기입니다. 진짜 차이는 하네스·온톨로지·도메인 지식에서 납니다 — 모델을 실제 업무에서 안전하게, 반복해서 작동하게 만드는 뼈대, 매장이라는 도메인을 정확히 표현하는 데이터 구조, 그리고 무엇이 중요한 판단인지 아는 지식. 저희는 매장 운영이라는 한 도메인에만 몇 년째 파고들며 이 세 가지를 쌓아왔습니다.",
+      "differentiatorBody3": "그 위에 올릴 데이터도 다릅니다. 이미 있는 CCTV를 익명화하고 MTMC로 정합해 쌓아온 공간 데이터 — 동선·체류·전환 — 는 하루아침에 만들 수 없습니다.",
+      "differentiatorBody4": "LLM은 저희가 만들지 않습니다. 그럴 필요가 없습니다. 저희 일은 이 도구를 하네스와 온톨로지, 도메인 지식으로 실제 물리 공간 위에서 작동하게 만드는 것입니다.",
       "baselineEyebrow": "베이스라인",
       "baselineHeading": "무엇 위에서 시작하는가",
-      "baselineSub": "원칙은 선언만으로 지켜지지 않습니다. 네 가지 기술적 기반이 그 원칙을 실제로 가능하게 합니다.",
+      "baselineSub": "방금 말한 하네스와 온톨로지, 그 실체가 이 네 가지입니다.",
       "linkedSourcesLabel": "하나의 매장 맥락으로 이어지는 것들",
       "ladderEyebrow": "자율화 단계",
       "ladderHeading": "처음부터 자동이 아닙니다 — L0에서 L5까지",
@@ -1937,6 +1963,20 @@
         {
           "label": "날씨 · 주변 상권"
         }
+      ],
+      "pillars": [
+        {
+          "desc": "모델을 실제 오프라인 업무에서 안전하고 반복되게 작동시키는 실행 하네스 뼈대.",
+          "footer": "실행 가드레일 · 승인 루프"
+        },
+        {
+          "desc": "CCTV 동선·체류·POS 결제 데이터를 하나의 매장 맥락으로 정합하는 도메인 온톨로지.",
+          "footer": "공간 좌표 정합 · 데이터 맥락"
+        },
+        {
+          "desc": "매장 운영에서 무엇이 중요한 판단인지 수년간 축적된 오프라인 현장 지식.",
+          "footer": "현장 승인/반려 축적 데이터"
+        }
       ]
     },
     "jp": {
@@ -1950,9 +1990,15 @@
       "philosophyEyebrow": "哲学",
       "philosophyHeading": "ディーピングソースがAgentic AIをつくる三つの原則",
       "philosophySub": "技術がどこまで行けるかより先に、どこで止まるべきかを決めました。",
+      "differentiatorEyebrow": "差別化要因",
+      "differentiatorHeading": "エージェントが優れている理由は、LLMではありません",
+      "differentiatorBody1": "その判断は、誰もが出せるものではありません。",
+      "differentiatorBody2": "エージェントの実力はもはやどのLLMを使うかでは決まりません。フロンティアモデルの性能はすでに拮抗しています。真の差はハーネス・オントロジー・ドメイン知識から生まれます。",
+      "differentiatorBody3": "その上に載せるデータも異なります。既存のCCTVを匿名化し、MTMCで整合して蓄積してきた空間データ（動線・滞在・転換）は一朝一夕には作れません。",
+      "differentiatorBody4": "LLMは私たちが作るわけではありません。その必要もありません。私たちの仕事は、このツールをハーネスとオントロジー、ドメイン知識によって実際の物理空間の上で動作させることです。",
       "baselineEyebrow": "ベースライン",
       "baselineHeading": "何の上から始めるのか",
-      "baselineSub": "原則は宣言だけでは守られません。四つの技術的基盤が、その原則を実際に成り立たせます。",
+      "baselineSub": "先ほど述べたハーネスとオントロジー、その実体がこの4つです。",
       "linkedSourcesLabel": "一つの店舗コンテキストにつながるもの",
       "ladderEyebrow": "自律化の段階",
       "ladderHeading": "最初から自動ではありません — L0からL5まで",
@@ -2037,6 +2083,20 @@
         },
         {
           "label": "天候・周辺商圏"
+        }
+      ],
+      "pillars": [
+        {
+          "desc": "モデルを実際のオフライン業務で安全に、繰り返し動作させる実行ハーネスの骨組み。",
+          "footer": "実行ガードレール・承認ループ"
+        },
+        {
+          "desc": "CCTVの動線・滞在・POS決済データを一つの店舗コンテキストへ整合するドメインオントロジー。",
+          "footer": "空間座標の整合・データ文脈"
+        },
+        {
+          "desc": "店舗運営で何が重要な判断かを、数年かけて積み上げた現場の知見。",
+          "footer": "現場の承認・却下の蓄積データ"
         }
       ]
     }
@@ -4394,7 +4454,8 @@
         "role": "Co-founder · CEO",
         "focus": "Vision · strategy · overall business",
         "bio": "Co-founded and served as CTO of the image-recognition startup Olaworks, acquired by Intel, then worked as a senior engineer at Intel before co-founding DeepingSource in 2018. He steers the direction of spatial AI built on anonymization.",
-        "initials": "TK"
+        "initials": "TK",
+        "photo": "/images/team/taehoon-kim.webp"
       },
       {
         "key": "cbo",
@@ -4402,7 +4463,8 @@
         "role": "Chief Business Officer (CBO)",
         "focus": "Business strategy · global partnerships",
         "bio": "Led B2B business strategy, sales, and new ventures at SK Broadband for 26 years, scaling a cloud CCTV service to ₩10B in annual revenue within four years. He drives DeepingSource’s domestic and global expansion.",
-        "initials": "SK"
+        "initials": "SK",
+        "photo": "/images/team/sangho-kum.webp"
       },
       {
         "key": "vpe",
@@ -4410,7 +4472,8 @@
         "role": "VP of Engineering",
         "focus": "Engineering · platform",
         "bio": "Leads DeepingSource’s engineering organization, turning anonymization, spatial intelligence, and agentic AI into reliable products.",
-        "initials": "BK"
+        "initials": "BK",
+        "photo": "/images/team/bongkyung-ko.webp"
       }
     ],
     "ko": [
@@ -4420,7 +4483,8 @@
         "role": "공동창업자 · 대표 (CEO)",
         "focus": "비전 · 전략 · 사업 전반",
         "bio": "이미지 인식 스타트업 올라웍스를 공동창업·CTO로 이끌어 인텔에 매각한 뒤, 인텔 수석 엔지니어를 거쳐 2018년 딥핑소스를 공동창업했습니다. 익명화에서 출발한 공간 AI의 방향을 이끕니다.",
-        "initials": "김"
+        "initials": "김",
+        "photo": "/images/team/taehoon-kim.webp"
       },
       {
         "key": "cbo",
@@ -4428,7 +4492,8 @@
         "role": "최고사업책임자 (CBO)",
         "focus": "사업 전략 · 글로벌 파트너십",
         "bio": "SK브로드밴드에서 26년간 B2B 사업 전략·영업·신사업을 총괄했습니다. 클라우드 CCTV 서비스를 4년 만에 연매출 100억 규모로 키운 경험으로 딥핑소스의 국내외 사업 확장을 이끕니다.",
-        "initials": "금"
+        "initials": "금",
+        "photo": "/images/team/sangho-kum.webp"
       },
       {
         "key": "vpe",
@@ -4436,7 +4501,8 @@
         "role": "VP of Engineering",
         "focus": "엔지니어링 · 플랫폼",
         "bio": "딥핑소스 엔지니어링 조직을 총괄하며, 익명화·공간 지능·에이전트 AI를 안정적인 제품으로 구현합니다.",
-        "initials": "고"
+        "initials": "고",
+        "photo": "/images/team/bongkyung-ko.webp"
       }
     ],
     "jp": [
@@ -4446,7 +4512,8 @@
         "role": "共同創業者 · 代表 (CEO)",
         "focus": "ビジョン · 戦略 · 事業全般",
         "bio": "画像認識スタートアップOlaworksを共同創業・CTOとして率いてインテルに売却後、インテルのシニアエンジニアを経て2018年にディーピングソースを共同創業。匿名化から始まる空間AIの方向を導きます。",
-        "initials": "TK"
+        "initials": "TK",
+        "photo": "/images/team/taehoon-kim.webp"
       },
       {
         "key": "cbo",
@@ -4454,7 +4521,8 @@
         "role": "最高事業責任者 (CBO)",
         "focus": "事業戦略 · グローバルパートナーシップ",
         "bio": "SKブロードバンドで26年間、B2Bの事業戦略・営業・新規事業を統括。クラウドCCTVサービスを4年で年商100億ウォン規模に成長させた経験で、国内外の事業拡大を導きます。",
-        "initials": "SK"
+        "initials": "SK",
+        "photo": "/images/team/sangho-kum.webp"
       },
       {
         "key": "vpe",
@@ -4462,7 +4530,8 @@
         "role": "VP of Engineering",
         "focus": "エンジニアリング · プラットフォーム",
         "bio": "ディーピングソースのエンジニアリング組織を統括し、匿名化・空間知能・エージェントAIを安定した製品として実装します。",
-        "initials": "BK"
+        "initials": "BK",
+        "photo": "/images/team/bongkyung-ko.webp"
       }
     ]
   },

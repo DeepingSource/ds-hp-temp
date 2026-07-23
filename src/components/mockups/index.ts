@@ -38,6 +38,8 @@ export { default as IntegratedLoopDiagram } from './IntegratedLoopDiagram';
 export { default as AutonomyLadderTimeline } from './AutonomyLadderTimeline';
 export { default as PriorityEngineDiagram } from './PriorityEngineDiagram';
 export { default as FunnelDiagram } from './FunnelDiagram';
+export { default as PosJoinDiagram } from './PosJoinDiagram';
+export { default as LearningFlywheelDiagram } from './LearningFlywheelDiagram';
 
 // ── S2 기술 페이지 목업 (다크) ───────────────────────────────────────────────
 export { default as SpatialTrajectoryMockup } from './SpatialTrajectoryMockup';

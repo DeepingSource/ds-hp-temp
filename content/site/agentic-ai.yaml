@@ -70,6 +70,59 @@ philosophy:
       ko: 물어야 답하는 도구가 아니라, 매장이 놓친 것을 먼저 짚어주는 방향으로 갑니다. 사람이 질문을 떠올려야만 쓸모가 생기는 도구는 결국 쓰이지 않기 때문입니다.
       en: Not a tool that waits to be queried, but one that points out what the store has missed. A tool that is only useful once you think of the question ends up unused.
       jp: 尋ねられて初めて答える道具ではなく、店舗が見落としたことを先に示す方向へ進みます。人が問いを思いつかなければ役に立たない道具は、結局使われないからです。
+differentiatorEyebrow:
+  ko: 차별점
+  en: Differentiator
+  jp: 差別化要因
+differentiatorHeading:
+  ko: 에이전트가 잘하는 이유는, LLM이 아닙니다
+  en: Why our agent excels is not the LLM
+  jp: エージェントが優れている理由は、LLMではありません
+differentiatorBody1:
+  ko: 그 판단, 아무나 낼 수 있는 게 아닙니다.
+  en: Those judgements are not something just anyone can produce.
+  jp: その判断は、誰もが出せるものではありません。
+differentiatorBody2:
+  ko: 에이전트의 실력은 이제 어떤 LLM을 쓰는지로 갈리지 않습니다. 프론티어 모델의 성능은 이미 거기서 거기입니다. 진짜 차이는 하네스·온톨로지·도메인 지식에서 납니다 — 모델을 실제 업무에서 안전하게, 반복해서 작동하게 만드는 뼈대, 매장이라는 도메인을 정확히 표현하는 데이터 구조, 그리고 무엇이 중요한 판단인지 아는 지식. 저희는 매장 운영이라는 한 도메인에만 몇 년째 파고들며 이 세 가지를 쌓아왔습니다.
+  en: Agent capabilities are no longer determined by which LLM is used. Frontier model performance is largely comparable. The true difference lies in harness, ontology, and domain knowledge — the scaffolding that makes models operate safely and repeatedly in real workflows, the data structure that precisely represents physical retail stores, and the domain wisdom of what constitutes a vital decision.
+  jp: エージェントの実力はもはやどのLLMを使うかでは決まりません。フロンティアモデルの性能はすでに拮抗しています。真の差はハーネス・オントロジー・ドメイン知識から生まれます。
+differentiatorBody3:
+  ko: 그 위에 올릴 데이터도 다릅니다. 이미 있는 CCTV를 익명화하고 MTMC로 정합해 쌓아온 공간 데이터 — 동선·체류·전환 — 는 하루아침에 만들 수 없습니다.
+  en: The data fed into it is also different. Spatial data accumulated by anonymizing existing CCTVs and aligning them via MTMC — movement, dwell, conversion — cannot be built overnight.
+  jp: その上に載せるデータも異なります。既存のCCTVを匿名化し、MTMCで整合して蓄積してきた空間データ（動線・滞在・転換）は一朝一夕には作れません。
+differentiatorBody4:
+  ko: LLM은 저희가 만들지 않습니다. 그럴 필요가 없습니다. 저희 일은 이 도구를 하네스와 온톨로지, 도메인 지식으로 실제 물리 공간 위에서 작동하게 만드는 것입니다.
+  en: We do not build LLMs. There is no need to. Our job is to make these tools operate seamlessly on physical spaces through harnesses, ontologies, and domain knowledge.
+  jp: LLMは私たちが作るわけではありません。その必要もありません。私たちの仕事は、このツールをハーネスとオントロジー、ドメイン知識によって実際の物理空間の上で動作させることです。
+# 차별점 섹션의 3기둥 카드. title(Harness/Ontology/Domain Knowledge)은 고유명이라 코드 유지.
+pillars:
+  - id: harness
+    desc:
+      ko: 모델을 실제 오프라인 업무에서 안전하고 반복되게 작동시키는 실행 하네스 뼈대.
+      en: The execution scaffolding that makes a model run safely and repeatably in real offline work.
+      jp: モデルを実際のオフライン業務で安全に、繰り返し動作させる実行ハーネスの骨組み。
+    footer:
+      ko: 실행 가드레일 · 승인 루프
+      en: Execution guardrails · approval loop
+      jp: 実行ガードレール・承認ループ
+  - id: ontology
+    desc:
+      ko: CCTV 동선·체류·POS 결제 데이터를 하나의 매장 맥락으로 정합하는 도메인 온톨로지.
+      en: A domain ontology that reconciles CCTV flow, dwell, and POS transactions into one store context.
+      jp: CCTVの動線・滞在・POS決済データを一つの店舗コンテキストへ整合するドメインオントロジー。
+    footer:
+      ko: 공간 좌표 정합 · 데이터 맥락
+      en: Spatial alignment · data context
+      jp: 空間座標の整合・データ文脈
+  - id: domain
+    desc:
+      ko: 매장 운영에서 무엇이 중요한 판단인지 수년간 축적된 오프라인 현장 지식.
+      en: Years of on-the-ground knowledge about which judgements actually matter in store operations.
+      jp: 店舗運営で何が重要な判断かを、数年かけて積み上げた現場の知見。
+    footer:
+      ko: 현장 승인/반려 축적 데이터
+      en: Accumulated approve/reject data from the floor
+      jp: 現場の承認・却下の蓄積データ
 baselineEyebrow:
   ko: 베이스라인
   en: Baseline
@@ -79,9 +132,9 @@ baselineHeading:
   en: What we start from
   jp: 何の上から始めるのか
 baselineSub:
-  ko: 원칙은 선언만으로 지켜지지 않습니다. 네 가지 기술적 기반이 그 원칙을 실제로 가능하게 합니다.
-  en: Principles are not kept by declaring them. Four technical foundations are what make them hold.
-  jp: 原則は宣言だけでは守られません。四つの技術的基盤が、その原則を実際に成り立たせます。
+  ko: 방금 말한 하네스와 온톨로지, 그 실체가 이 네 가지입니다.
+  en: These four pillars are the exact mechanics behind harness and ontology.
+  jp: 先ほど述べたハーネスとオントロジー、その実体がこの4つです。
 baseline:
   - id: anonymization
     title:

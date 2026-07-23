@@ -210,6 +210,8 @@ const AGENTIC_FLAT = [
   'eyebrow', 'heroTitle', 'heroSub', 'heroNote',
   'problemEyebrow', 'problemTitle', 'problemSub',
   'philosophyEyebrow', 'philosophyHeading', 'philosophySub',
+  'differentiatorEyebrow', 'differentiatorHeading',
+  'differentiatorBody1', 'differentiatorBody2', 'differentiatorBody3', 'differentiatorBody4',
   'baselineEyebrow', 'baselineHeading', 'baselineSub', 'linkedSourcesLabel',
   'ladderEyebrow', 'ladderHeading', 'ladderSub', 'ladderNote',
   'bridgeEyebrow', 'bridgeHeading', 'bridgeSub', 'bridgeCta', 'bridgeCtaSecondary',
@@ -220,6 +222,7 @@ const agenticPhilosophy = arrayItemsLocaleMajor(agenticYaml.philosophy, ['title'
 const agenticBaseline = arrayItemsLocaleMajor(agenticYaml.baseline, ['title', 'desc', 'linkLabel']);
 const agenticLadder = arrayItemsLocaleMajor(agenticYaml.ladder, ['label', 'line']);
 const agenticSources = arrayItemsLocaleMajor(agenticYaml.linkedSources, ['label']);
+const agenticPillars = arrayItemsLocaleMajor(agenticYaml.pillars, ['desc', 'footer']);
 const agenticAi = {};
 for (const loc of LOCALES) {
   agenticAi[loc] = {
@@ -228,6 +231,7 @@ for (const loc of LOCALES) {
     baseline: agenticBaseline[loc],
     ladder: agenticLadder[loc],
     linkedSources: agenticSources[loc],
+    pillars: agenticPillars[loc],
   };
 }
 
