@@ -9,6 +9,14 @@ colors, spacing, type, or shared UI.
 > the upstream SAAI repo, not here). This marketing site's tokens
 > are defined in **`src/app/globals.css`** (CSS) and **`src/lib/tokens.ts`** (JS).
 > Don't wire site components to `design-system/`.
+>
+> **예외(목업 내부 — MOCKUP_MASTER_PLAN_v1 D1).** `src/components/mockups/**`의
+> 목업 "화면 내부"는 SAAI 제품 UI의 재현이므로 SAAI DS를 따른다. 단
+> `design-system/`을 직접 import하지 않고 codegen 산출물
+> `src/lib/mockup-tokens.gen.ts`(+ `src/app/saai-tokens.gen.css`의 `--saai-*`
+> 변수)로만 소비한다 — `npm run gen:mockup-tokens`. 목업 바깥 레이어(프레임
+> 그림자·등장 애니메이션·배지)는 사이트 토큰 — 경계는 `MockupViewport`
+> (`.saai-scope` 부여)다.
 
 ---
 

@@ -1,8 +1,61 @@
-# 목업 시스템 가이드 (v1)
+# 목업 시스템 가이드 (v2)
 
-> `docs/MOCKUP_ELEVATION_ROLLOUT_PLAN_v1.md`의 Track A/B("고도화 트랙")를 실제로 착수한 결과물.
-> 이 문서는 "목업을 어떻게 짜야 하는가"의 규약이다 — 어느 목업을 어느 페이지에 놓을지는
-> ROLLOUT_PLAN 문서를, 컬러·간격·섀도우 원 소스는 `DESIGN.md`를 본다.
+> **v2 (2026-07-24)**: `MOCKUP_MASTER_PLAN_v1.md` Phase 0의 "계약 4종"을 규약으로 승격
+> (아래 §v2). v1 규약(§0 이하)은 계속 유효하되, 충돌 시 §v2가 우선한다.
+> 어느 목업을 어느 페이지에 놓을지는 MOCKUP_MASTER_PLAN(§5·§6)을, 사이트 컬러·간격·
+> 섀도우 원 소스는 `DESIGN.md`를 본다.
+
+## §v2. 계약 4종 (Phase 0 — 신규·수정 목업은 반드시 준수)
+
+**1) 색·타이포 계약 — SAAI 토큰 파이프라인 (D1·D2)**
+- 목업 "화면 내부"는 SAAI DS를 따른다. 소비 경로는 두 가지뿐:
+  `src/lib/mockup-tokens.gen.ts`(TS: `SAAI_COLORS`/`SAAI_TYPE`/`SAAI_ROUNDED`/
+  `SAAI_SPACING`/`SAAI_MOTION`) 또는 `--saai-*` CSS 변수(`bg-(--saai-bg-app)` 식 —
+  `MockupViewport`의 `.saai-scope` 안에서만 유효). `design-system/` 직접 import 금지.
+  재생성: `npm run gen:mockup-tokens` (predev/prebuild 자동).
+- 로컬 raw hex 금지 — `lint:tokens`가 `mockups/**`의 hex를 검출한다(현재 WARN,
+  Phase 1 완료 시 FAIL 승격). 실브랜드 재현(카카오/LINE)만 스크립트 allowlist 예외.
+- 제품 구분색(emerald/violet) 폐지(D2) — 제품 구분은 SaaiHeader 워드마크+타이포.
+  `PRODUCT_THEME`은 전환기 blue alias이며 Phase 1 완료 시 삭제된다.
+- 11px 미만 글자 금지 (`MOCKUP_DEVICE` micro=11px 하한).
+
+**2) 크기 계약 — `MockupViewport` (§2-B)**
+- 목업은 고정 설계 캔버스(phone 390×844 · desktop 1280×800 · card 480×가변)에서만
+  설계하고, `MockupViewport`가 컨테이너 폭에 비율 스케일로 맞춘다 — 내부 줄바꿈은
+  어떤 페이지에서도 불변. 호출부는 **폭만** 지정한다(aspect/높이 지정 금지).
+- 검증: `/demo/harness` — 3폭(320/480/768)×3로케일 동시 렌더에서 줄바꿈 변화 0.
+
+**3) 모션 계약 — `src/lib/mockup-motion.ts` (D3)**
+- 목업 내부는 out_quint 단일 곡선 — **bounce·spring·overshoot 금지**.
+  `spring-config.ts`는 사이트 모션 전용, 목업 내부 침투 금지.
+- variants: `enterVariants`(등장)·`swapVariants`(탭/시나리오 전환)·
+  `listStaggerVariants`(60ms 순차)·`motionAffordance`(프레스 150ms)·
+  `panelTransition`(480ms)·`pulseTransition`(800ms). 카운트업은
+  `useCountUp`/`useCountUpGroup`(out_quint tween).
+- 챗 스트리밍 신호는 `.saai-streaming`(흐르는 그라데이션) — 타자기 캐럿·스피너 금지.
+- 경계: 목업의 "등장"(스크롤 리빌)은 사이트 모션 소관.
+
+**4) 데이터 계약 — canonical v2 + 핍진성 체크리스트 (D6·§2-D)**
+- 모든 수치는 `canonical.ts` 파생. 세계관: 본부 217점(203/10/4)·일일 알림 1,353·
+  점주 체인 12점(`ownerChainStores`). 값 변경 시 서술 카피 리터럴 3로케일 동시 갱신.
+- **핍진성 체크리스트 (리뷰 시 8항 전부 확인)**:
+  1. 숫자는 canonical 파생인가?
+  2. 화면 내 합계·비율·전일 대비가 산술적으로 맞는가?
+  3. 단위·자릿수 로케일 규칙(KO 만원 / EN K / JP 万円)을 지켰는가?
+  4. 요일·시간대·계절이 서사와 정합하는가?
+  5. 고유명사는 승인분만 쓰는가?
+  6. 빈 화면·placeholder·lorem 0건인가?
+  7. 화면당 CTA 1개인가?
+  8. 벤포드 위반 반올림 수치(200·240·1,000 류) 0건인가?
+- 시간 표기는 `mockup-time.ts` 상대 규칙 — 빌드 시점 박제 금지.
+
+**레퍼런스 구현**: `ChatMockup.tsx` — Viewport·SAAI 토큰·mockup-motion·D9(하단
+고정)이 전부 적용된 모범. 새 목업·마이그레이션은 이 파일을 따라 한다.
+
+---
+
+> (이하 v1 규약 — `docs/MOCKUP_ELEVATION_ROLLOUT_PLAN_v1.md`의 Track A/B("고도화 트랙")를
+> 실제로 착수한 결과물. 콘텐츠 오버라이드·shadow-card 규약 등은 계속 유효.)
 
 ## 0. 이번에 실제로 바꾼 것
 
