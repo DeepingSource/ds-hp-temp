@@ -6,6 +6,7 @@ import SaaiHeader from './SaaiHeader';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 /**
  * #12 CaseStudyChartMockup (S4) — StoreCare before/after adoption line chart.
@@ -18,9 +19,13 @@ import type { Locale } from '@/lib/i18n';
  * The main line plots "CCTV 확인 시간(분)" across 8 time points; a vertical
  * "도입 시점(Adoption)" marker sits at the midpoint. Pre-adoption hovers near
  * ~45 min, post-adoption settles at ~15 min — a clear improvement drop.
+ *
+ * SERIES/Y_TICKS 등 차트 수치는 "실측 사례 데이터"(측정된 case study 결과)라 페이지
+ * 마다 다른 숫자를 넣는 대상이 아니다 — content override는 문구(라벨·각주 등)만
+ * 다룬다(FunnelDiagram의 시연용 데모 데이터와는 성격이 다름).
  */
 
-type Copy = {
+export interface CaseStudyChartCopy {
   bluf: string;
   badge: string;
   yLabel: string;
@@ -32,9 +37,9 @@ type Copy = {
   chips: [string, string, string];
   chipNote: string;
   footnote: string;
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, CaseStudyChartCopy> = {
   ko: {
     bluf: '도입 후 CCTV 확인 67% 단축',
     badge: '실측 사례 데이터',
@@ -109,24 +114,28 @@ interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+   *  차트 수치(SERIES 등)는 실측 사례 데이터라 오버라이드 대상이 아니다. */
+  content?: DeepPartial<CaseStudyChartCopy>;
 }
 
 export default function CaseStudyChartMockup({
   active = true,
   locale = 'en',
   className,
+  content,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({
     threshold: 0.3,
   });
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const animate = active && isVisible && !reducedMotion;
 
   return (
     <div
       ref={ref}
-      className={`relative w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 ${className ?? ''}`}
+      className={`relative w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-card ${className ?? ''}`}
     >
       <MockupBadge label={t.badge} />
 

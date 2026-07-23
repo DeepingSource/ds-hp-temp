@@ -24,6 +24,21 @@
 
 **이번 배치로 완료**: `ROLLOUT_PLAN_v1.md` §3의 P0/P1 대상 5개 컴포넌트(`ChatMockup`→`FunnelDiagram`→`MultiStoreDashboardMockup`→`HqMapDashboardMockup`→`IntegratedLoopDiagram`) 모두 콘텐츠 오버라이드 + 토큰 정리 적용 완료. 다음 대상은 §6 참고.
 
+**Tier 1(§4, 목업 없는 8개 우선 페이지) 대상 8종 — 두 번째 배치로 완료**:
+
+| 파일 | 변경 | 비고 |
+|---|---|---|
+| `KakaoAlertMockup.tsx` | `content?: DeepPartial<KakaoAlertCopy>` 추가, `shadow-sm` 3곳 → `shadow-card` | 카카오톡/LINE 브랜드색(`chromeFor`)은 의도적 예외로 토큰화 보류(§3-2) |
+| `ActionCardMockup.tsx` | `content?: DeepPartial<ActionCardSet>` 추가(공유 데이터 파일 `storeagent-mock-i18n.ts`의 `ActionCardSet`을 `export`해서 재사용), `shadow-sm` → `shadow-card` | ⚠️ `useSequencedLoop` 애니메이션 스케줄이 정확히 5장(승인×3·보류×1·대기×1) 인덱스에 하드코딩돼 있어 `cards`/`completed` 오버라이드 시에도 5개 원소를 유지해야 함 — 개수 자체는 오버라이드 불가 |
+| `StoreInsightMockup.tsx` | `content?: DeepPartial<StoreInsightMockupCopy>` 추가, `text-violet-600`/`bg-violet-50`/`bg-violet-500` 등 `PRODUCT_THEME.StoreInsight`와 정확히 겹치는 하드코딩 4곳을 `P.text`/`P.bgLight`/`P.bg`로 교체(중복 제거) | 나머지 violet 음영(700/900/100/200 등)은 대응 토큰이 없어 보류 |
+| `RoiCalculatorWidget.tsx` | `content?: DeepPartial<RoiCalculatorCopy>` 추가, `shadow-sm` → `shadow-card`, `text-[9px]` → `text-3xs` | |
+| `CaseStudyChartMockup.tsx` | `content?: DeepPartial<CaseStudyChartCopy>` 추가, 외곽 프레임에 `shadow-card` 신규 추가(기존 무섀도우) | 차트 수치(`SERIES` 등)는 실측 사례 데이터라 오버라이드 대상 아님(문서화) |
+| `FiveQuestionsMockup.tsx` | `content?: DeepPartial<FiveQuestionsCopy>` 추가 | 배경이 `bg-gray-50` 플랫 섹션이라 섀도우 미추가(카드형이 아님, 의도 유지) |
+| `OrderFlowMockup.tsx` | `content?: DeepPartial<OrderFlowCopy>` 추가, `shadow-sm` 3곳 → `shadow-card` | `useCountUp` 고정 2회 호출이지만 스칼라값이라 문구 오버라이드에 제약 없음 |
+| `AutonomyLadderTimeline.tsx` | `content?: DeepPartial<AutonomyLadderCopy>` 추가, 외곽 프레임 + 체크 배지에 `shadow-card` | `steps` 배열은 훅에 길이가 묶여 있지 않아 길이를 바꿔도 안전(단, 그라데이션 분포는 total에 비례해 달라짐) |
+
+이 8종 중 숫자/구조 오버라이드까지 가능한 건 없음(문구만) — `ActionCardMockup`은 위 5-장 제약, `CaseStudyChartMockup`은 실측 데이터 원칙, 나머지는 원래도 문구 위주 컴포넌트라 자연스러운 스코프.
+
 ## 1. 세 가지 목표와 대응 방법
 
 사용자가 요청한 세 가지를 각각 다른 층위에서 해결한다 — 하나의 리팩터로 셋 다 되는 게 아니라, 서로 다른 안전장치다.
@@ -119,14 +134,16 @@ export default function FunnelDiagram({ locale = 'ko', content, ...rest }: Funne
 
 ## 6. 다음 순서
 
-`ROLLOUT_PLAN_v1.md` §6 실행 순서의 "기반 작업" 단계는 이번 배치로 완료됐다: `ChatMockup`(레퍼런스) → `FunnelDiagram` → `MultiStoreDashboardMockup` → `HqMapDashboardMockup` → `IntegratedLoopDiagram`, 총 5개 컴포넌트 + 공용 유틸(`types.ts`, `mockup-tokens.ts`) 모두 콘텐츠 오버라이드 규약 적용 + 토큰 정리 완료.
+`ROLLOUT_PLAN_v1.md` §6 실행 순서의 "기반 작업"(2번) 단계는 완료됐다: `ChatMockup`(레퍼런스) → `FunnelDiagram` → `MultiStoreDashboardMockup` → `HqMapDashboardMockup` → `IntegratedLoopDiagram`, 총 5개 컴포넌트 + 공용 유틸(`types.ts`, `mockup-tokens.ts`).
+
+이어서 "P1 컴포넌트 content prop화 → Tier 1 우선순위 8개 페이지 순차 적용"(§6 4번)의 앞부분도 완료됐다: Tier 1 8개 페이지(§4)가 필요로 하는 8종(`KakaoAlertMockup`/`ActionCardMockup`/`StoreInsightMockup`/`RoiCalculatorWidget`/`CaseStudyChartMockup`/`FiveQuestionsMockup`/`OrderFlowMockup`/`AutonomyLadderTimeline`) 모두 콘텐츠 오버라이드 적용 완료(§0 표 참고).
 
 **다음 후보** (`ROLLOUT_PLAN_v1.md` 참고, 우선순위는 그 문서의 페이지별 표를 따를 것):
-- Tier 0(홈페이지)에 이 컴포넌트들을 실제로 배치 — 예: `ChatMockup`+`StoreInsightMockup` 조합을 AI 비교 카드 섹션에.
-- Tier 1의 8개 우선 페이지(`ProductsView`/`SolutionsView`/`SolutionDetailView`/`RetailView`/`FoodBeverageView`/`LargeSpaceView`/`SaaiAdsInsightView`/`SaaiForOwnersView`)에서 쓰이는 나머지 목업들에 같은 패턴 확장.
-- `StoreCareStatusMockup`을 `StoreCareDeviceTabs`의 두 번째 탭으로 추가할지 검토(§4에서 저활용으로 판정).
+- **Tier 0(홈페이지) 배치** — 이번에 리팩터한 13종 컴포넌트를 실제 홈페이지 6개 섹션에 투입(§4 Tier 0 표). 예: `ChatMockup`+`StoreInsightMockup` 조합을 AI 비교 카드 섹션에, `KakaoAlertMockup`+`ActionCardMockup`을 "다음을 실행하다" 섹션에.
+- **Tier 1 8개 페이지에 실제 배치** — 컴포넌트는 준비됐으니 `ProductsView`/`SolutionsView`/`SolutionDetailView`/`RetailView`/`FoodBeverageView`/`LargeSpaceView`/`SaaiAdsInsightView`/`SaaiForOwnersView`에 §4 표대로 실제로 끼워 넣는 작업이 남음(리팩터 ≠ 배치).
+- `StoreCareStatusMockup`을 `StoreCareDeviceTabs`의 두 번째 탭으로 추가할지 검토(§4에서 저활용으로 판정, 아직 content prop화 전).
 - `docs/STATUS.md`의 미착수 항목(제품 목업 개선·FAQ 컴포넌트 재디자인·기술 시각) — ROLLOUT_PLAN Tier 2.
 
-새 컴포넌트를 옮길 때는 항상: (1) "고정 개수 훅 호출"이 있는지 먼저 확인 → 있으면 문구만 오버라이드하고 숫자 구조 변경은 후속 작업으로 분리, (2) 로컬 hex/임의값을 `MOCKUP_SCHEME`/`PRODUCT_THEME`/`MOCKUP_STATUS_*` 파생으로 정리, (3) §5 체크리스트 순서를 따른다.
+새 컴포넌트를 옮길 때는 항상: (1) "고정 개수 훅 호출"이 있는지 먼저 확인 → 있으면 문구만 오버라이드하고 숫자 구조 변경은 후속 작업으로 분리(단, 스칼라값에 대한 고정 호출은 문구 오버라이드를 막지 않음 — `OrderFlowMockup` 참고), (2) 공유 데이터 파일에서 타입을 가져다 쓰는 경우 그 파일의 타입을 `export`부터 한다(`ActionCardSet` 참고), (3) 로컬 hex/임의값을 `MOCKUP_SCHEME`/`PRODUCT_THEME`/`MOCKUP_STATUS_*` 파생으로 정리하되 정확히 대응하는 토큰이 없으면 무리하게 바꾸지 않는다, (4) §5 체크리스트 순서를 따른다.
 
-**로컬 검증 권장**: 이번 배치에서 총 7개 파일(`types.ts`, `mockup-tokens.ts`, `ChatMockup.tsx`, `FunnelDiagram.tsx`, `MultiStoreDashboardMockup.tsx`, `HqMapDashboardMockup.tsx`, `IntegratedLoopDiagram.tsx`)이 바뀌었다. 다음 작업(홈페이지 배치든 추가 컴포넌트 마이그레이션이든)으로 넘어가기 전에 `npm run build`(또는 최소 `npx tsc --noEmit`)를 한 번 돌려 이 7개 파일이 이 저장소 설정에서 문제없이 컴파일되는지 확인하는 걸 권장한다 — 이 세션은 저장소를 직접 빌드할 수 없어 코드 리뷰만으로 안전성을 판단했다.
+**로컬 검증 권장**: 지금까지 총 16개 파일이 바뀌었다 — 공용 유틸 2개(`types.ts`, `mockup-tokens.ts`), 공유 데이터 1개(`storeagent-mock-i18n.ts`), 목업 컴포넌트 13개(`ChatMockup`/`FunnelDiagram`/`MultiStoreDashboardMockup`/`HqMapDashboardMockup`/`IntegratedLoopDiagram`/`KakaoAlertMockup`/`ActionCardMockup`/`StoreInsightMockup`/`RoiCalculatorWidget`/`CaseStudyChartMockup`/`FiveQuestionsMockup`/`OrderFlowMockup`/`AutonomyLadderTimeline`). 다음 작업(홈페이지·Tier 1 페이지 실배치)으로 넘어가기 전에 `npm run build`(또는 최소 `npx tsc --noEmit`)를 한 번 돌려 이 16개 파일이 이 저장소 설정에서 문제없이 컴파일되는지 확인하는 걸 강하게 권장한다 — 특히 `ActionCardMockup`처럼 공유 데이터 파일 타입을 `export`로 바꾼 경우 다른 소비처에 영향이 없는지도 같이 확인할 것. 이 세션은 저장소를 직접 빌드할 수 없어 코드 리뷰만으로 안전성을 판단했다.

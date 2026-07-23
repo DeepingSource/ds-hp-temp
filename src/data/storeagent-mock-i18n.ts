@@ -22,7 +22,9 @@ interface ActionCardI18n {
 }
 interface CompletedItemI18n { label: string }
 
-interface ActionCardSet {
+/** export: ActionCardMockup의 content override prop 타입(DeepPartial<ActionCardSet>)이
+ *  참조한다 — 컴포넌트가 이 셋을 오버라이드할 수 있게 하려면 타입이 밖에서 보여야 한다. */
+export interface ActionCardSet {
   storeName: string;
   headerTitle: string;
   headerSub: string;

@@ -7,11 +7,17 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import type { Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+   *  `steps`는 인덱스/길이에 훅이 묶여있지 않아(고정 개수 훅 호출 없음) 길이를 바꿔도
+   *  안전하다 — 다만 nodeStyle의 그라데이션(회색→브랜드블루)은 total 길이에 비례해
+   *  보간되므로, 단계 수를 바꾸면 그라데이션 분포도 함께 달라진다. */
+  content?: DeepPartial<AutonomyLadderCopy>;
 }
 
 type Step = {
@@ -22,7 +28,7 @@ type Step = {
   condition: string; // 진화 조건
 };
 
-type Copy = {
+export interface AutonomyLadderCopy {
   eyebrow: string;
   heading: string;
   lead: string;
@@ -31,9 +37,9 @@ type Copy = {
   footnoteLabel: string;
   footnote: string;
   steps: Step[];
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, AutonomyLadderCopy> = {
   ko: {
     eyebrow: '자율 주행 매장 (Autonomous Store)',
     heading: 'L0에서 L5까지 — 한 칸씩 올라갑니다',
@@ -230,9 +236,10 @@ export default function AutonomyLadderTimeline({
   active = true,
   locale = 'en',
   className,
+  content,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   // No default selection: avoids reading as a "current position" marker (B7).
   const [selected, setSelected] = useState<number | null>(null);
@@ -244,7 +251,7 @@ export default function AutonomyLadderTimeline({
   return (
     <div
       ref={ref}
-      className={`relative rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 ${className ?? ''}`}
+      className={`relative rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-card ${className ?? ''}`}
     >
       <MockupBadge locale={locale} />
 
@@ -304,7 +311,7 @@ export default function AutonomyLadderTimeline({
                 {isLast && (
                   <span
                     aria-hidden="true"
-                    className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white shadow-sm"
+                    className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white shadow-card"
                   >
                     <svg
                       width="9"

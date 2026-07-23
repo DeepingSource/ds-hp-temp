@@ -12,6 +12,7 @@ import {
 } from '@/data/mockup-scenarios/canonical';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 /* ────────────────────────────────────────────────────────────
  * 보수적 추정 가정 (footnoted constants) — 모두 canonicalRoi에서 파생
@@ -24,31 +25,30 @@ import SaaiHeader from './SaaiHeader';
 /** CCTV 절감 시간 비례 기준 (시간) — opHours가 이 값에 도달하면 절감 full */
 const OP_HOURS_BASELINE = 16;
 
-const COPY: Record<
-  Locale,
-  {
-    title: string;
-    subtitle: string;
-    storeLabel: string;
-    storeUnit: string;
-    salesLabel: string;
-    hoursLabel: string;
-    hoursUnit: string;
-    outStockout: string;
-    outLabor: string;
-    outPayback: string;
-    perMonth: string;
-    months: string;
-    firstMonthFree: string;
-    conservative: string;
-    footTitle: string;
-    foot1: string;
-    foot2: string;
-    foot3: string;
-    foot4: string;
-    foot5: string;
-  }
-> = {
+export interface RoiCalculatorCopy {
+  title: string;
+  subtitle: string;
+  storeLabel: string;
+  storeUnit: string;
+  salesLabel: string;
+  hoursLabel: string;
+  hoursUnit: string;
+  outStockout: string;
+  outLabor: string;
+  outPayback: string;
+  perMonth: string;
+  months: string;
+  firstMonthFree: string;
+  conservative: string;
+  footTitle: string;
+  foot1: string;
+  foot2: string;
+  foot3: string;
+  foot4: string;
+  foot5: string;
+}
+
+const COPY: Record<Locale, RoiCalculatorCopy> = {
   ko: {
     title: 'ROI 계산기',
     subtitle: '도입 효과를 매장 규모로 추정',
@@ -159,13 +159,16 @@ export default function RoiCalculatorWidget({
   active = true,
   locale = 'en',
   className = '',
+  content,
 }: {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale] */
+  content?: DeepPartial<RoiCalculatorCopy>;
 }) {
   const reducedMotion = usePrefersReducedMotion();
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
 
   const [storeCount, setStoreCount] = useState(10);
@@ -232,7 +235,7 @@ export default function RoiCalculatorWidget({
       initial={reducedMotion ? false : { opacity: 0, y: 16 }}
       animate={enter}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`relative mx-auto w-full max-w-md rounded-2xl border border-gray-200 bg-white p-5 shadow-sm ${className}`}
+      className={`relative mx-auto w-full max-w-md rounded-2xl border border-gray-200 bg-white p-5 shadow-card ${className}`}
     >
       <MockupBadge locale={locale} />
 
@@ -361,7 +364,8 @@ function Output({
       >
         {value}
       </span>
-      <span className="mt-0.5 text-[9px] text-gray-400">{sub}</span>
+      {/* text-[9px]는 DESIGN.md 마이크로 타이포 스케일에 없음 — 가장 가까운 토큰(10px)로 정리 (FunnelDiagram과 동일 처리) */}
+      <span className="mt-0.5 text-3xs text-gray-400">{sub}</span>
     </div>
   );
 }

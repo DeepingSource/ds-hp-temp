@@ -7,6 +7,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import { type Locale, localeHref } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 interface QuestionCopy {
   q: string;
@@ -14,7 +15,7 @@ interface QuestionCopy {
   fail: string;
 }
 
-interface LocaleCopy {
+export interface FiveQuestionsCopy {
   eyebrow: string;
   heading: string;
   lead: string;
@@ -26,7 +27,7 @@ interface LocaleCopy {
   questions: QuestionCopy[];
 }
 
-const COPY: Record<Locale, LocaleCopy> = {
+const COPY: Record<Locale, FiveQuestionsCopy> = {
   ko: {
     eyebrow: '행동 강령',
     heading: '매일 호명되는 다섯 질문',
@@ -144,14 +145,17 @@ interface FiveQuestionsMockupProps {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale] */
+  content?: DeepPartial<FiveQuestionsCopy>;
 }
 
 export default function FiveQuestionsMockup({
   active = true,
   locale = 'en',
   className = '',
+  content,
 }: FiveQuestionsMockupProps) {
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const reducedMotion = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const reveal = active && isVisible && !reducedMotion;

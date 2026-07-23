@@ -12,11 +12,16 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { springGentle, springSnappy } from '@/lib/spring-config';
 import { canonicalStore, formatWon } from '@/data/mockup-scenarios/canonical';
 import type { Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+   *  useCountUp은 고정 2회(effectWon/approvals) 호출되지만 둘 다 배열이 아닌 단일
+   *  스칼라값(EFFECT_WON/APPROVALS_TODAY)이라 문구 오버라이드에 훅 개수 제약이 없다. */
+  content?: DeepPartial<OrderFlowCopy>;
 }
 
 // 효과 환류 — 캐노니컬 예상 일매출의 일부(8%)를 "오늘 승인 효과"로 환산
@@ -32,7 +37,7 @@ const PO = {
   },
 };
 
-type Copy = {
+export interface OrderFlowCopy {
   title: string;
   sub: string;
   // step 1
@@ -64,9 +69,9 @@ type Copy = {
   effectUnit: string;
   effectSuffix: string;
   stepWord: (n: number) => string;
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, OrderFlowCopy> = {
   ko: {
     title: '자동 발주',
     sub: `${canonicalStore.name} · 승인 한 번으로`,
@@ -158,8 +163,8 @@ const COPY: Record<Locale, Copy> = {
 
 const STEP_ICONS = [Check, FileText, PackageCheck];
 
-export default function OrderFlowMockup({ active = true, locale = 'en', className }: Props) {
-  const t = COPY[locale] ?? COPY.en;
+export default function OrderFlowMockup({ active = true, locale = 'en', className, content }: Props) {
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const reducedMotion = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const loopActive = isVisible && active;
@@ -218,7 +223,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
             {/* ── Step 1: 승인 액션 카드 (항상 표시, 첫 단계) ── */}
             <section
               aria-label={t.stepWord(1)}
-              className={`bg-white rounded-xl p-4 shadow-sm border relative overflow-hidden transition-colors ${
+              className={`bg-white rounded-xl p-4 shadow-card border relative overflow-hidden transition-colors ${
                 activeStep === 0 ? 'border-primary/30 shadow-md shadow-primary/10' : 'border-gray-100'
               }`}
             >
@@ -270,7 +275,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 28 }}
                   transition={springGentle}
-                  className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+                  className="bg-white rounded-xl shadow-card border border-gray-100 overflow-hidden"
                 >
                   <div className="flex items-center gap-2 px-4 py-2.5 bg-primary/5 border-b border-gray-100">
                     <FileText className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
@@ -311,7 +316,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 18 }}
                   transition={springGentle}
-                  className="bg-white rounded-xl p-4 shadow-sm border border-emerald-100"
+                  className="bg-white rounded-xl p-4 shadow-card border border-emerald-100"
                 >
                   <div className="flex items-center gap-2.5 mb-3">
                     <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">

@@ -22,10 +22,12 @@ import {
   type PhoneInsightTab as InsightTab,
 } from '@/data/mockup-scenarios/storeinsight';
 import { type Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 /** Display strings — shared vocabulary mirrors StoreInsightDesktopMockup's dict.
- *  Numeric data (bars, targets) stays in the locale-agnostic scenario file. */
-const C: Record<Locale, {
+ *  Numeric data (bars, targets)는 v5 원칙(canonical 데이터 우선)에 따라 데모용 실측
+ *  구조를 유지 — locale-agnostic scenario 파일에 그대로 둔다(오버라이드 대상 아님). */
+export interface StoreInsightMockupCopy {
   storeName: string;
   headerSub: string;
   segSales: string;
@@ -43,7 +45,9 @@ const C: Record<Locale, {
   chartLabel: Record<InsightTab, string>;
   insights: Record<InsightTab, string>;
   navLabels: string[];
-}> = {
+}
+
+const C: Record<Locale, StoreInsightMockupCopy> = {
   ko: {
     storeName: '강남역점',
     headerSub: '오늘의 매장 지표 분석',
@@ -116,11 +120,13 @@ interface Props {
   active?: boolean;
   storeName?: string;
   locale?: Locale;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: C[locale] */
+  content?: DeepPartial<StoreInsightMockupCopy>;
 }
 
-function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) {
+function StoreInsightMockup({ active = true, storeName, locale = 'en', content }: Props) {
   const reducedMotion = usePrefersReducedMotion();
-  const t = C[locale] ?? C.en;
+  const t = mergeMockupContent(C[locale] ?? C.en, content);
   const resolvedStoreName = storeName ?? t.storeName;
   const [activeTab, setActiveTab]           = useState<InsightTab>('sales');
   const [countProgress, setCountProgress]   = useState(0);
@@ -199,7 +205,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
         <div className="flex items-center justify-between">
           <div>
             <h3 className={`${D.headerTitle} flex items-center gap-2 ${S.textPrimary}`}>
-              <LayoutGrid className="w-5 h-5 text-violet-600" aria-hidden="true" />
+              <LayoutGrid className={`w-5 h-5 ${P.text}`} aria-hidden="true" />
               <span className="lowercase tracking-tight">
                 <span className="font-normal opacity-50">saai</span><span className="opacity-30 mx-1">|</span>store insight
               </span>
@@ -286,7 +292,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
             <h4 className="text-sm font-bold text-gray-800">
               {t.chartLabel[activeTab]}
             </h4>
-            <span className="text-xs text-violet-600 bg-violet-50 px-2 py-0.5 rounded font-medium">{t.realtime}</span>
+            <span className={`text-xs ${P.text} ${P.bgLight} px-2 py-0.5 rounded font-medium`}>{t.realtime}</span>
           </div>
 
           <div className="h-28 flex items-end justify-between gap-1.5 px-1 mt-2" aria-hidden="true">
@@ -295,7 +301,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
               const isFuture = i > currentIdx;
               // 강조(인사이트 대상) 우선 → 미래(예측, 점선 저채도) → 실측(violet-200)
               const barClass = isHighlight
-                ? 'bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.3)]'
+                ? `${P.bg} shadow-[0_0_8px_rgba(139,92,246,0.3)]`
                 : isFuture
                   ? 'bg-violet-300/30 border border-dashed border-violet-400/60'
                   : 'bg-violet-200';
@@ -328,7 +334,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
             >
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center shrink-0">
-                  <TrendingUp className="w-4 h-4 text-violet-600" aria-hidden="true" />
+                  <TrendingUp className={`w-4 h-4 ${P.text}`} aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-violet-900 mb-1">{t.aiReportTitle}</p>
@@ -349,7 +355,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en' }: Props) 
             { Icon: Clock,      label: t.navLabels[2], active: false },
             { Icon: Settings,   label: t.navLabels[3], active: false },
           ].map(({ Icon, label, active }) => (
-            <div key={label} className={`flex flex-col items-center gap-1 ${active ? 'text-violet-600' : 'text-gray-500'}`}>
+            <div key={label} className={`flex flex-col items-center gap-1 ${active ? P.text : 'text-gray-500'}`}>
               <Icon className="w-5 h-5" />
               <span className="text-3xs font-medium">{label}</span>
             </div>

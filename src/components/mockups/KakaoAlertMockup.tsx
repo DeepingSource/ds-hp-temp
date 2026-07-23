@@ -7,11 +7,17 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+   *  `alerts`는 배열이라 오버라이드 시 통째 교체된다(항목 일부만 바꿀 수 없음) —
+   *  카카오톡/LINE 스킨 색(chromeFor)은 실제 서비스 브랜드색 재현이 목적이라
+   *  의도적 예외로 토큰화하지 않는다(ROLLOUT_PLAN §3 P1 참고). */
+  content?: DeepPartial<KakaoAlertCopy>;
 }
 
 /** Button nature per alert. approve = genuine order/proposal; acknowledge = temp/cleanliness; review = needs human review. */
@@ -25,7 +31,7 @@ interface AlertItem {
   action: AlertAction | null;
 }
 
-type Copy = {
+export interface KakaoAlertCopy {
   /** App chrome header title */
   appName: string;
   /** Channel / store label under app name */
@@ -45,9 +51,9 @@ type Copy = {
   /** Lock-screen date line (en only) */
   lockDate: string;
   alerts: AlertItem[];
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, KakaoAlertCopy> = {
   ko: {
     appName: '알림톡',
     channel: 'saai | store care',
@@ -101,7 +107,9 @@ const COPY: Record<Locale, Copy> = {
   },
 };
 
-/** Locale-specific chat-app skin. ko = 알림톡, jp = LINE. (en uses the iOS lock-screen layout instead.) */
+/** Locale-specific chat-app skin. ko = 알림톡, jp = LINE. (en uses the iOS lock-screen layout instead.)
+ *  카카오톡/LINE 실제 브랜드색 재현이 목적 — mockup-tokens.ts로 옮기지 않는 의도적 예외
+ *  (ROLLOUT_PLAN_v1.md §3 P1, mockup-tokens.ts의 PRODUCT_THEME 주석과 동일한 원칙). */
 function chromeFor(locale: Locale) {
   switch (locale) {
     case 'jp':
@@ -142,8 +150,9 @@ export default function KakaoAlertMockup({
   active = true,
   locale = 'en',
   className,
+  content,
 }: Props) {
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const reducedMotion = usePrefersReducedMotion();
   const iosStyle = locale !== 'ko' && locale !== 'jp';
   const c = chromeFor(locale);
@@ -198,7 +207,7 @@ export default function KakaoAlertMockup({
                 {t.alerts.slice(0, visibleCount).map((a, i) => (
                   <motion.li
                     key={`${loopKey}-${i}`}
-                    className="backdrop-blur-xl rounded-2xl shadow-sm overflow-hidden text-gray-900"
+                    className="backdrop-blur-xl rounded-2xl shadow-card overflow-hidden text-gray-900"
                     style={{ background: 'rgba(255,255,255,0.78)' }}
                     initial={{ opacity: 0, y: -32, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -267,7 +276,7 @@ export default function KakaoAlertMockup({
                 {t.alerts.slice(0, visibleCount).map((a, i) => (
                   <motion.li
                     key={`${loopKey}-${i}`}
-                    className={`${c.bubbleBg} ${c.bubbleText} rounded-2xl shadow-sm overflow-hidden`}
+                    className={`${c.bubbleBg} ${c.bubbleText} rounded-2xl shadow-card overflow-hidden`}
                     initial={{ opacity: 0, y: 16, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15 } }}
@@ -297,7 +306,7 @@ export default function KakaoAlertMockup({
 
       {/* Pricing card — Care value. Marketing chrome, kept OUTSIDE the phone/messaging UI. */}
       <div className="mt-4">
-        <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-primary/15 shadow-sm p-3.5">
+        <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-primary/15 shadow-card p-3.5">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-gray-900">{t.priceTitle}</span>
             <span className="text-3xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">

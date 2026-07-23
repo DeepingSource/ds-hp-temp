@@ -18,7 +18,8 @@ const P = PRODUCT_THEME.StoreAgent;
 const D = MOCKUP_DEVICE.phone;
 import { actionCards as actionCardsData, completedItems as completedItemsData } from '@/data/mockup-scenarios/storeagent';
 import { type Locale } from '@/lib/i18n';
-import { getActionCardI18n } from '@/data/storeagent-mock-i18n';
+import { getActionCardI18n, type ActionCardSet } from '@/data/storeagent-mock-i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 const iconMap: Record<string, LucideIcon> = {
   CloudRain, ShoppingCart, Palette, Users, Tag,
@@ -30,11 +31,20 @@ interface ActionCardMockupProps {
   active?: boolean;
   storeName?: string;
   locale?: Locale;
+  /**
+   * 문구 오버라이드 — 부분 병합(mergeMockupContent), 기본: getActionCardI18n(locale).
+   * ⚠️ 애니메이션 스케줄(useSequencedLoop)이 정확히 5장(카드 0~2 승인 · 카드 3 보류 ·
+   * 카드 4 대기)이라는 전제로 인덱스 기반 타임라인을 하드코딩하고 있다 — `cards`/
+   * `completed`를 오버라이드할 때도 반드시 5개 원소를 채워야 한다(개수를 바꾸면
+   * 애니메이션이 깨진다). 아이콘/색상 같은 시각 속성은 `actionCardsData`(구조 파일)
+   * 에 남아 있고, 이 prop은 문구(title/reason/priority/meta/statBadges 등)만 바꾼다.
+   */
+  content?: DeepPartial<ActionCardSet>;
 }
 
-function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCardMockupProps) {
+function ActionCardMockup({ active = true, storeName, locale = 'en', content }: ActionCardMockupProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const t = getActionCardI18n(locale);
+  const t = mergeMockupContent(getActionCardI18n(locale), content);
   const resolvedStoreName = storeName ?? t.storeName;
   const todayStats = t.todayStats;
   const actionCards = actionCardsData.map((card, i) => ({
@@ -174,7 +184,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92 }}
               transition={springGentle}
-              className="bg-white rounded-xl p-4 shadow-sm border border-gray-50"
+              className="bg-white rounded-xl p-4 shadow-card border border-gray-50"
               aria-hidden="true"
             >
               <div className="flex items-center gap-2.5 mb-3">
@@ -253,7 +263,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en' }: ActionCar
                 }
                 transition={springGentle}
                 style={{ willChange: 'transform, opacity' }}
-                className={`bg-white rounded-xl p-4 shadow-sm border ${
+                className={`bg-white rounded-xl p-4 shadow-card border ${
                   isApproving
                     ? 'border-primary/30 shadow-md shadow-primary/10'
                     : isHoldFlow
