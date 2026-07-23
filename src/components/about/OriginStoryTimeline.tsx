@@ -151,15 +151,19 @@ const C: Record<Locale, { items: Item[] }> = {
 
 function TimelineItem({ item, index }: { item: Item; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  // AB §1-A A1: '-60px' 마진 + index 비례 지연 누적이 보통 스크롤에서도 항목을
+  // 빈 영역으로 남겼다 — 마진 0(뷰포트 걸침 즉시 발화) + 지연 상한 0.3s.
+  const isInView = useInView(ref, { once: true, margin: '0px' });
   const reducedMotion = usePrefersReducedMotion();
+  const cardDelay = Math.min(0.05 + index * 0.08, 0.3);
+  const nodeDelay = Math.min(0.1 + index * 0.08, 0.3);
 
   return (
     <motion.div
       ref={ref}
       initial={reducedMotion ? {} : { opacity: 0, x: -24 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={reducedMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut' as const, delay: 0.05 + index * 0.08 }}
+      transition={reducedMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut' as const, delay: cardDelay }}
       className="relative flex gap-6 sm:gap-8 group"
     >
       {/* 타임라인 노드 */}
@@ -167,7 +171,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
         <motion.div
           initial={reducedMotion ? {} : { scale: 0.6, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={reducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeOut' as const, delay: 0.1 + index * 0.08 }}
+          transition={reducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeOut' as const, delay: nodeDelay }}
           className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 group-hover:border-gray-400 flex items-center justify-center transition-colors duration-300 shadow-sm"
         >
           <span className="text-xs font-bold text-gray-500">{String(index + 1).padStart(2, '0')}</span>

@@ -1,11 +1,11 @@
 'use client';
 
+import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
-import { CountUp } from '@/components/ui/CountUp';
 import WordRise from '@/components/ui/WordRise';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import SpatialStackDiagram from '@/components/about/SpatialStackDiagram';
@@ -198,8 +198,19 @@ export default function AboutView({ locale }: { locale: Locale }) {
             {t.badge}
           </HeroBadge>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 font-display break-keep whitespace-pre-line leading-[1.18]">
-            <WordRise text={t.missionStatement} />
+          {/* AB §1-A A4: yaml 개행(\n)을 WordRise 밖에서 줄 단위로 분리 — WordRise는 공백만
+              split하므로 \n 포함 토큰이 inline-block으로 묶여 3줄 계단이 생겼다. 줄별 WordRise
+              + <br/>로 정상 개행, start로 stagger 연속. 폰트도 한 단계 축소해 한 줄 수용 폭 확보. */}
+          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-6 font-display break-keep leading-[1.18]">
+            {t.missionStatement.split('\n').map((line, li, lines) => (
+              <Fragment key={li}>
+                <WordRise
+                  text={line}
+                  start={lines.slice(0, li).reduce((n, l) => n + l.split(' ').length, 0) * 60}
+                />
+                {li < lines.length - 1 && <br />}
+              </Fragment>
+            ))}
           </h1>
           <p className="text-xl sm:text-2xl font-bold text-slate-300 leading-snug mb-14 break-keep whitespace-pre-line">
             {renderLead(t.missionStatementSub, LEAD_HL[locale])}
@@ -250,7 +261,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
           </div>
 
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerContainer margin="0px" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {milestoneHighlights(locale).map((m) => (
               <StaggerItem key={m.year}>
                 <div className="p-6 bg-white rounded-2xl border border-gray-100 h-full text-center shadow-sm">
@@ -296,7 +307,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto break-keep">{t.leadershipSub}</p>
           </div>
 
-          <StaggerContainer className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+          <StaggerContainer margin="0px" className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
             {leadership[locale].map((l) => (
               <StaggerItem key={l.key}>
                 <div className="p-7 rounded-3xl border border-gray-200/80 bg-slate-50/60 h-full flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
@@ -355,7 +366,9 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, 'PIPA'].map((stat, i) => (
               <div key={i} className="p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                <p className="text-2xl font-bold text-gray-900 mb-1">{i < 3 ? <CountUp to={Number(stat)} /> : stat}</p>
+                {/* AB §1-A A2: 카운트업 램프가 8·7 같은 작은 수를 '0'으로 노출 — 신뢰 스탯은
+                    항상 최종값을 정적 표시 (모션은 섹션 fade가 담당) */}
+                <p className="text-2xl font-bold text-gray-900 mb-1">{stat}</p>
                 <p className="text-xs text-gray-500 font-medium">
                   {t.partnerStatLabels[i]}
                 </p>
