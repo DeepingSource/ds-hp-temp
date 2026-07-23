@@ -28,7 +28,8 @@ const chatIconMap: Record<string, LucideIcon> = {
   CloudRain, ShoppingCart, TrendingUp, Users,
 };
 
-interface ChatMessage {
+/** 내보내는 이유: 호출부가 `scenarios` 오버라이드 prop을 만들 때 이 타입이 필요하다. */
+export interface ChatMessage {
   role: 'ai' | 'user';
   text: string;
   time: string;
@@ -70,12 +71,28 @@ interface ChatMockupProps {
   active?: boolean;
   storeName?: string;
   locale?: Locale;
+  /**
+   * 페이지별 시나리오 오버라이드 (콘텐츠 재사용 규약 — docs/MOCKUP_SYSTEM_GUIDE.md).
+   * 생략하면 data/mockup-scenarios/storeagent.ts + storeagent-mock-i18n.ts에서 파생한
+   * 기본 시나리오를 그대로 쓴다. 다른 페이지에서 다른 대화 내용을 보여줘야 할 때,
+   * 컴포넌트 파일을 복제하지 말고 이 prop으로 주입한다. 시나리오는 통째로 교체되며
+   * (부분 병합 아님), 최소 1개 이상의 메시지 배열을 담아야 한다.
+   */
+  scenarios?: ChatMessage[][];
 }
 
-export default function ChatMockup({ active = true, storeName, locale = 'en' }: ChatMockupProps) {
+export default function ChatMockup({
+  active = true,
+  storeName,
+  locale = 'en',
+  scenarios: scenariosOverride,
+}: ChatMockupProps) {
   const reducedMotion = usePrefersReducedMotion();
   const t = getChatI18n(locale);
-  const scenarios = useMemo(() => buildScenarios(locale), [locale]);
+  const scenarios = useMemo(
+    () => scenariosOverride ?? buildScenarios(locale),
+    [locale, scenariosOverride],
+  );
   const resolvedStoreName = storeName ?? t.storeName;
   const [visibleCount, setVisibleCount] = useState(0);
   const [loopKey, setLoopKey] = useState(0);
@@ -209,7 +226,7 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
                   <div className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
                     isUser
                       ? 'bg-primary text-white rounded-br-md'
-                      : 'bg-white border border-gray-100 text-gray-800 rounded-bl-md shadow-sm'
+                      : 'bg-white border border-gray-100 text-gray-800 rounded-bl-md shadow-card'
                   }`}>
                     {msg.text}
                     {/* Inline stats (AI messages only) */}
@@ -264,7 +281,7 @@ export default function ChatMockup({ active = true, storeName, locale = 'en' }: 
               transition={springBubble}
               style={{ transformOrigin: 'bottom left' }}
             >
-              <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-md px-4 py-2.5 shadow-sm">
+              <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-md px-4 py-2.5 shadow-card">
                 <div className="flex gap-1 items-center h-4">
                   {[0, 0.16, 0.32].map((delay, i) => (
                     <motion.span

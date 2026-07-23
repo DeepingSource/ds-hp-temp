@@ -8,6 +8,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useCountUp } from '@/hooks/useCountUp';
 import type { Locale } from '@/lib/i18n';
 import { canonicalFunnel, canonicalStore } from '@/data/mockup-scenarios/canonical';
+import { type DeepPartial, mergeMockupContent } from './types';
 
 /**
  * New-product DISPLAY funnel for StoreInsight (#4) — 신상품 매대 단위 퍼널.
@@ -16,28 +17,52 @@ import { canonicalFunnel, canonicalStore } from '@/data/mockup-scenarios/canonic
  * picking up → buying. The bottom (buy) is the 매대 전환율 (display pick-up
  * /buy rate), matching canonicalStore.conversionRate (23%).
  *
- * Counts derive from canonicalFunnel (base × ratio, rounded), so the 23%
- * drives the bottom of the funnel:
+ * Counts derive from canonicalFunnel (base × ratio, rounded) by default, so
+ * the 23% drives the bottom of the funnel:
  *   visit 342 → stay 270 → gaze 181 → pick 109 → buy 79
  * Largest single drop is stay→gaze (270→181, −89, ~33%), so 응시 stage is
- * the highlighted bottleneck.
+ * the highlighted bottleneck. A caller can override this whole shape via the
+ * `data` prop to reuse this component for a different funnel/store context —
+ * see FunnelData below and docs/MOCKUP_SYSTEM_GUIDE.md §2.
  */
 const { ratios, base } = canonicalFunnel;
-const TOP = base; // 342
-const STAGE_COUNTS = [
+const DEFAULT_TOP = base; // 342
+const DEFAULT_STAGE_COUNTS = [
   Math.round(base * ratios.visit), // 342
   Math.round(base * ratios.stay), // 270
   Math.round(base * ratios.gaze), // 181
   Math.round(base * ratios.pick), // 109
   Math.round(base * ratios.buy), // 79
 ] as const;
-const BOTTLENECK_INDEX = 2; // gaze: stage entered after the largest drop-off
+const DEFAULT_BOTTLENECK_INDEX = 2; // gaze: stage entered after the largest drop-off
 
 // buy as a share of visits = 매대 전환율 (display pick-up/buy rate, not purchase conversion)
-const BUY_PCT = Math.round(ratios.buy * 100); // 23
+const DEFAULT_BUY_PCT = Math.round(ratios.buy * 100); // 23
+
+/**
+ * 퍼널 수치 오버라이드 단위 — 통째 교체(부분 병합 아님). 다른 매대/제품/스토어
+ * 컨텍스트에 이 컴포넌트를 재사용할 때 canonical 파생값 대신 이걸 넘긴다.
+ * `counts`는 반드시 5개(방문→체류→응시→집어듦→구매)여야 한다 — `content.stages`도
+ * 같은 개수를 유지해야 라벨과 수치가 어긋나지 않는다.
+ */
+export interface FunnelData {
+  /** 단계별 카운트, 내림차순 5개 — counts[0]이 분모(TOP)가 된다 */
+  counts: readonly [number, number, number, number, number];
+  /** 가장 이탈이 큰 단계의 인덱스(0~4) — 강조 표시 대상 */
+  bottleneckIndex: number;
+  /** 하단에 크게 보여줄 전환율(%) — counts에서 자동 계산하지 않고 명시적으로 받는다
+   *  (매대 전환율처럼 counts 마지막 값과 다른 분모를 쓰는 지표가 있을 수 있어서) */
+  conversionPct: number;
+}
+
+const DEFAULT_FUNNEL_DATA: FunnelData = {
+  counts: DEFAULT_STAGE_COUNTS,
+  bottleneckIndex: DEFAULT_BOTTLENECK_INDEX,
+  conversionPct: DEFAULT_BUY_PCT,
+};
 
 type StageCopy = { label: string };
-type Copy = {
+export interface FunnelDiagramCopy {
   bluf: string;
   subtitle: string;
   badge: string;
@@ -50,9 +75,9 @@ type Copy = {
   hypTitle: string;
   hypBody: string;
   stages: [StageCopy, StageCopy, StageCopy, StageCopy, StageCopy];
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, FunnelDiagramCopy> = {
   ko: {
     bluf: '체류 고객 3명 중 1명이 응시 전에 떠납니다',
     subtitle: '신상품 매대 기준 · 매대 앞 고객 동선',
@@ -122,6 +147,10 @@ interface Props {
   active?: boolean;
   locale?: Locale;
   className?: string;
+  /** 문구 오버라이드 — 부분 병합(mergeMockupContent). 기본: COPY[locale] */
+  content?: DeepPartial<FunnelDiagramCopy>;
+  /** 퍼널 수치 오버라이드 — 통째 교체. 기본: canonicalFunnel 파생 (위 DEFAULT_FUNNEL_DATA) */
+  data?: FunnelData;
 }
 
 function StageRow({
@@ -198,7 +227,9 @@ function StageRow({
             <span className="text-2xs text-transparent select-none">·</span>
           )}
           {isBottleneck && (
-            <span className="mt-0.5 inline-block w-fit rounded-sm border border-primary px-1 text-[9px] font-bold uppercase tracking-wide text-primary">
+            /* 9px는 DESIGN.md 마이크로 타입 스케일(2xs/3xs/4xs)에 없는 임의값이라
+               가장 가까운 토큰인 text-3xs(10px)로 교체 — 시각 차이는 미미하다. */
+            <span className="mt-0.5 inline-block w-fit rounded-sm border border-primary px-1 text-3xs font-bold uppercase tracking-wide text-primary">
               {bottleneckLabel}
             </span>
           )}
@@ -212,19 +243,23 @@ export default function FunnelDiagram({
   active = true,
   locale = 'en',
   className = '',
+  content,
+  data,
 }: Props) {
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
+  const funnelData = data ?? DEFAULT_FUNNEL_DATA;
+  const TOP = funnelData.counts[0];
   const reducedMotion = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const shouldAnimate = isVisible && active && !reducedMotion;
 
-  const conv = useCountUp(BUY_PCT, isVisible && active, 1400);
-  const convDisplay = reducedMotion ? BUY_PCT : conv;
+  const conv = useCountUp(funnelData.conversionPct, isVisible && active, 1400);
+  const convDisplay = reducedMotion ? funnelData.conversionPct : conv;
 
   return (
     <div
       ref={ref}
-      className={`relative rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 ${className}`}
+      className={`relative rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-card ${className}`}
     >
       <MockupBadge label={t.badge} />
 
@@ -244,15 +279,15 @@ export default function FunnelDiagram({
 
       {/* Funnel */}
       <ol className="space-y-2.5">
-        {STAGE_COUNTS.map((count, i) => {
-          const prev = i === 0 ? count : STAGE_COUNTS[i - 1];
+        {funnelData.counts.map((count, i) => {
+          const prev = i === 0 ? count : funnelData.counts[i - 1];
           const dropOff = i === 0 ? 0 : prev - count;
           const widthPct = (count / TOP) * 100;
-          const isBottleneck = i === BOTTLENECK_INDEX;
+          const isBottleneck = i === funnelData.bottleneckIndex;
           return (
             <StageRow
-              key={t.stages[i].label}
-              label={t.stages[i].label}
+              key={t.stages[i]?.label ?? i}
+              label={t.stages[i]?.label ?? ''}
               count={count}
               widthPct={widthPct}
               dropOff={dropOff}

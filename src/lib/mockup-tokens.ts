@@ -8,7 +8,14 @@
 
 export type ProductName = 'StoreCare' | 'StoreInsight' | 'StoreAgent';
 
-/** 제품별 Tailwind 클래스 세트 */
+/**
+ * 제품별 Tailwind 클래스 세트.
+ *
+ * ⚠️ StoreCare(emerald)·StoreInsight(violet)는 사이트 기본 One-Blue 원칙의 의도적
+ * 예외다 — 목업 안에서 "지금 보고 있는 게 어느 제품인지"를 색으로 즉시 구분하기
+ * 위한 정보 설계 장치로 유지 중. 새 제품 축을 추가할 때만 신중히 확장하고, 페이지
+ * 배경/버튼 등 목업 "바깥" UI에는 절대 끌어다 쓰지 않는다(그건 --primary 한 톤).
+ */
 export const PRODUCT_THEME: Record<ProductName, {
   bg: string;
   bgLight: string;
@@ -58,7 +65,13 @@ export const MOCKUP_SCHEME = {
     textSecondary: 'text-gray-500',
     textMuted: 'text-gray-400',
     border: 'border-gray-100',
-    cardClass: 'bg-white rounded-lg border border-gray-100 shadow-sm',
+    // 사이트 공통 블루-블랙 틴트 섀도우(DESIGN.md §Tokens) — 목업도 나머지 페이지와
+    // 같은 depth 언어를 쓰도록 중립 회색 shadow-sm 대신 shadow-card 계열을 기본값으로
+    // 둔다. 새 카드형 UI를 목업 안에 추가할 때는 아래 3단계 중 하나를 그대로 쓸 것 —
+    // 로컬에서 새 그림자 값을 만들지 않는다.
+    cardClass: 'bg-white rounded-lg border border-gray-100 shadow-card',
+    cardClassHover: 'bg-white rounded-lg border border-gray-100 shadow-card-hover',
+    cardClassElevated: 'bg-white rounded-lg border border-gray-100 shadow-elevated',
   },
   dark: {
     headerBg: 'bg-gray-950',
@@ -68,7 +81,12 @@ export const MOCKUP_SCHEME = {
     textSecondary: 'text-gray-400',
     textMuted: 'text-gray-500',
     border: 'border-gray-800/50',
+    // 다크 배경 위에서는 블루-블랙 틴트 섀도우가 거의 보이지 않으므로 기본 cardClass는
+    // 섀도우 없이 유지하고, hover/elevated 단계에서만 살짝 얹는다(깊이 강조가 필요한
+    // 순간에만).
     cardClass: 'bg-gray-900/70 rounded-lg border border-gray-800/50',
+    cardClassHover: 'bg-gray-900/70 rounded-lg border border-gray-800/50 shadow-card-hover',
+    cardClassElevated: 'bg-gray-900/70 rounded-lg border border-gray-800/50 shadow-elevated',
   },
 } as const;
 
