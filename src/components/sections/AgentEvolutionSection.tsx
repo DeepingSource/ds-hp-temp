@@ -44,6 +44,13 @@ const VISUAL_COPY = {
   pushApp: tri('store agent · 지금', 'store agent · now', 'store agent · 今'),
   pushTitle: tri('인기 음료 3종, 1시간 내 품절 예상', '3 top drinks sell out within the hour', '人気ドリンク3種、1時間で品切れ見込み'),
   pushBody: tri('지금 매대부터 채울까요?', 'Restock the shelf now?', '今、棚から補充しますか?'),
+  /** 화면 재현에는 예시 표기를 단다 — 페이지 내 다른 목업(AgentMockupShowcase ·
+   *  AgentHqMiniMockup · AgentDayTimeline)과 같은 컴플라이언스 규칙. */
+  caption: tri(
+    '* 샘플 화면 · 데이터 예시',
+    '* Sample screens · illustrative data',
+    '* サンプル画面 · データは例示',
+  ),
 };
 
 /** 단계별 미니목업 — 설명 대신 그 단계의 화면을 보여준다. */
@@ -160,6 +167,10 @@ export default function AgentEvolutionSection({ locale }: { locale: Locale }) {
             );
           })}
         </ol>
+
+        <p className="mt-8 text-center text-2xs text-gray-400">
+          {VISUAL_COPY.caption[locale]}
+        </p>
       </Container>
     </Section>
   );

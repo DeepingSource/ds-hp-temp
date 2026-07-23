@@ -16,6 +16,14 @@ import siteContent from '@/data/generated/site-content.json';
 type Tri = { ko: string; en: string; jp: string };
 const tri = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
 
+/** 화면 재현에는 예시 표기를 단다 — 페이지 내 다른 목업(AgentMockupShowcase ·
+ *  AgentHqMiniMockup · PosJoinDiagram)과 같은 컴플라이언스 규칙. */
+const CAPTION = tri(
+  '* 샘플 화면 · 데이터 예시',
+  '* Sample screens · illustrative data',
+  '* サンプル画面 · データは例示',
+);
+
 type StepCopy = { title: string; desc: string };
 type Copy = { stepsHeading: string; stepsSub: string; steps: Record<string, StepCopy> };
 const SA = siteContent.storeAgent as Record<Locale, Copy>;
@@ -136,6 +144,8 @@ export default function AgentDayTimeline({ locale }: { locale: Locale }) {
             );
           })}
         </ol>
+
+        <p className="mt-8 text-center text-2xs text-gray-400">{T(CAPTION)}</p>
       </Container>
     </Section>
   );
