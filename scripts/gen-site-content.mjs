@@ -411,6 +411,129 @@ const solutionPages = fs.existsSync(SOLUTION_PAGES_DIR)
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
   : [];
 
+// ── diagnosis — E1 지식 베이스 (diagnosis-v4-engine-plan §2 · MASTER Stage 3).
+//    content/diagnosis/flow.yaml 이 존재할 때만 활성(스테이지드 도입 게이트 —
+//    질문 뱅크가 랜딩하기 전 커밋들도 빌드 그린 유지). 산출물은 site-content.json이
+//    아니라 별도 diagnosis.json — 진단과 무관한 페이지 청크에 444KB 공용 페이로드를
+//    키우지 않기 위함(gated-docs.json 이중 산출 선례). 빌드 타임 검증 5종은
+//    무조건 throw(한국어 메시지, [diagnosis] 태그) — Keystatic 편집 실수의 방어선. ──
+const DIAG_DIR = path.join(ROOT, 'content/diagnosis');
+const DIAG_FLOW_PATH = path.join(DIAG_DIR, 'flow.yaml');
+let diagnosis = null;
+if (fs.existsSync(DIAG_FLOW_PATH)) {
+  const flow = yaml.load(fs.readFileSync(DIAG_FLOW_PATH, 'utf8'));
+  const qDir = path.join(DIAG_DIR, 'questions');
+  const questions = fs.existsSync(qDir)
+    ? fs
+        .readdirSync(qDir)
+        .filter((f) => f.endsWith('.yaml'))
+        .map((f) => yaml.load(fs.readFileSync(path.join(qDir, f), 'utf8')))
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    : [];
+  const fxDir = path.join(DIAG_DIR, 'fixtures');
+  const fixtures = fs.existsSync(fxDir)
+    ? fs
+        .readdirSync(fxDir)
+        .filter((f) => f.endsWith('.yaml'))
+        .map((f) => yaml.load(fs.readFileSync(path.join(fxDir, f), 'utf8')))
+    : [];
+
+  // 시나리오 태그: content/solutions/*.yaml 의 diagnosis 블록에서 수집 (v4 §2-1 —
+  // 시나리오와 태그가 한 파일에 있어야 신규 시나리오의 태깅 누락이 구조적으로 어렵다)
+  const scenarios = {};
+  for (const p of solutionPages) {
+    // 검증 ①: 모든 솔루션 시나리오에 diagnosis 블록 존재
+    if (!p.diagnosis || !p.diagnosis.cluster) {
+      throw new Error(`[diagnosis] content/solutions/${p.slug}.yaml: diagnosis 블록(cluster 필수)이 없습니다 — 진단 결과로 도달할 수 없는 시나리오가 생기므로 빌드 중단`);
+    }
+    scenarios[p.slug] = {
+      industry: p.industry,
+      cluster: p.diagnosis.cluster,
+      attributes: p.diagnosis.attributes ?? {},
+      prior: p.diagnosis.prior ?? 1,
+    };
+  }
+
+  // 증거 어휘: attribute → 허용 값 집합. symptom은 시나리오 태그의 합집합(고아 증거
+  // 금지의 기준), persona/scale/goal은 신호 스키마 고정 어휘(v3 §3).
+  const VOCAB = {
+    persona: new Set(['owner', 'hq_sv', 'exec']),
+    scale: new Set(['single', 'small', 'mid', 'large']),
+    goal: new Set(['urgent', 'planning', 'research']),
+    symptom: new Set(Object.values(scenarios).flatMap((s) => s.attributes.symptom ?? [])),
+  };
+  const LOCALES3 = ['ko', 'en', 'jp'];
+  const requireTri = (obj, where) => {
+    for (const loc of LOCALES3) {
+      if (!obj || typeof obj[loc] !== 'string' || obj[loc].trim() === '') {
+        throw new Error(`[diagnosis] ${where}: ${loc} 라벨이 비어 있습니다 — 3로케일 동시 원칙 위반으로 빌드 중단`);
+      }
+    }
+  };
+
+  const qById = new Map();
+  for (const q of questions) {
+    if (!q.id) throw new Error('[diagnosis] questions: id 없는 질문 파일이 있습니다 — 빌드 중단');
+    if (qById.has(q.id)) throw new Error(`[diagnosis] questions/${q.id}: id 중복 — 빌드 중단`);
+    qById.set(q.id, q);
+    // 검증 ③: 3로케일 라벨 완전성 (text · options.label · ack)
+    requireTri(q.text, `questions/${q.id}.text`);
+    if (q.ack) requireTri(q.ack, `questions/${q.id}.ack`);
+    for (const opt of q.options ?? []) {
+      if (!opt.id) throw new Error(`[diagnosis] questions/${q.id}: id 없는 옵션 — 빌드 중단`);
+      requireTri(opt.label, `questions/${q.id}.options.${opt.id}.label`);
+      // 검증 ②: 고아 증거 금지 — evidence의 attribute·value가 어휘에 존재
+      for (const ev of opt.evidence ?? []) {
+        if (!VOCAB[ev.attribute]) {
+          throw new Error(`[diagnosis] questions/${q.id}.options.${opt.id}: 알 수 없는 evidence attribute "${ev.attribute}" — 빌드 중단`);
+        }
+        if (!VOCAB[ev.attribute].has(ev.value)) {
+          throw new Error(`[diagnosis] questions/${q.id}.options.${opt.id}: evidence ${ev.attribute}="${ev.value}" 가 어느 시나리오 태그/신호 어휘에도 없습니다(고아 증거) — 빌드 중단`);
+        }
+      }
+      // tiebreak 결과 slug 실존
+      if (opt.result && !scenarios[opt.result]) {
+        throw new Error(`[diagnosis] questions/${q.id}.options.${opt.id}: result "${opt.result}" 는 존재하지 않는 시나리오 slug — 빌드 중단`);
+      }
+    }
+  }
+
+  // 검증 ④: fixedOrder의 항목(id 또는 @group)이 질문 뱅크에 존재
+  for (const entry of flow.fixedOrder ?? []) {
+    if (entry.startsWith('@')) {
+      const group = entry.slice(1);
+      if (!questions.some((q) => q.group === group)) {
+        throw new Error(`[diagnosis] flow.yaml fixedOrder "${entry}": group "${group}" 질문이 하나도 없습니다 — 빌드 중단`);
+      }
+    } else if (!qById.has(entry)) {
+      throw new Error(`[diagnosis] flow.yaml fixedOrder "${entry}": 질문 뱅크에 없는 id — 빌드 중단`);
+    }
+  }
+
+  // 검증 ⑤: 모든 slug가 최소 1개 질문 조합으로 도달 가능 —
+  // cluster의 slug가 1개면 클러스터 선택 직행으로 도달, 2개 이상이면 그 cluster를
+  // appliesWhen으로 받는 refine 질문의 options[].result 가 전 slug를 커버해야 한다.
+  const byCluster = new Map();
+  for (const [slug, s] of Object.entries(scenarios)) {
+    const key = `${s.industry}:${s.cluster}`;
+    if (!byCluster.has(key)) byCluster.set(key, []);
+    byCluster.get(key).push(slug);
+  }
+  for (const [key, slugs] of byCluster) {
+    if (slugs.length < 2) continue;
+    const refineQs = questions.filter(
+      (q) => q.phase === 'refine' && (q.appliesWhen?.cluster ?? []).includes(key),
+    );
+    const covered = new Set(refineQs.flatMap((q) => (q.options ?? []).map((o) => o.result).filter(Boolean)));
+    const missing = slugs.filter((s) => !covered.has(s));
+    if (missing.length > 0) {
+      throw new Error(`[diagnosis] 클러스터 ${key}: slug ${missing.join(', ')} 로 도달하는 refine 질문 옵션이 없습니다(도달 불가 시나리오) — 빌드 중단`);
+    }
+  }
+
+  diagnosis = { flow, questions, scenarios, fixtures };
+}
+
 // ── gated docs — logical slugs of access:gated docs (DOCS_WIKI_PLAN Phase 4). The
 //    proxy gate + GH-Pages export exclusion read this. Parsed from content/docs/*.mdx
 //    frontmatter so it's independent of velite build order. Currently gates nothing. ──
@@ -443,6 +566,10 @@ if (fs.existsSync(DOCS_DIR)) {
 const gatedDocs = { gatedSlugs: [...gatedSet].sort() };
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
+if (diagnosis) {
+  fs.writeFileSync(path.join(OUT_DIR, 'diagnosis.json'), JSON.stringify(diagnosis, null, 2) + '\n');
+  console.log(`✓ generated src/data/generated/diagnosis.json (${diagnosis.questions.length} questions, ${Object.keys(diagnosis.scenarios).length} scenarios, ${diagnosis.fixtures.length} fixtures)`);
+}
 fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
