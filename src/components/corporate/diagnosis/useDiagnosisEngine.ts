@@ -1,207 +1,146 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { industryList } from '@/data/industryList';
-import {
-  getClustersForIndustry,
-  industryHasSolutions,
-  type ClusterOption,
-} from '@/data/diagnosisData';
-import {
-  DIAGNOSIS_UI,
-  TIEBREAK_QUESTIONS,
-  type PersonaId,
-} from '@/data/diagnosis-i18n';
+import { Q3_CLUSTER_LABEL, type PersonaId } from '@/data/diagnosis-i18n';
 import { industryLabelI18n } from '@/data/solutions-i18n';
 import type { Locale } from '@/lib/i18n';
+import diagnosisKbJson from '@/data/generated/diagnosis.json';
+import {
+  applyAnswer,
+  createState,
+  deriveClusters,
+  industryHasScenarios,
+  nextStep,
+  progress,
+  resumeFromExit,
+  rewindTo,
+  type ClusterOption,
+  type DiagnosisKB,
+  type EngineState,
+  type Question,
+} from '@/lib/diagnosis/engine';
 
-export type Step =
-  | 'q1'
-  | 'q2'
-  | 'q3'
-  | 'q4'
-  | 'result'
-  | 'exit-owner'
-  | 'exit-privacy'
-  | 'exit-unsure';
+/**
+ * useDiagnosisEngine — E1: 진단 트리가 코드가 아니라 데이터다 (v4 §2 · MASTER 3-4).
+ *
+ * 질문·선택지·흐름은 content/diagnosis YAML → diagnosis.json(지식 베이스)이고,
+ * 이 훅은 순수 엔진(src/lib/diagnosis/engine.ts)의 React 어댑터다: 엔진 state를
+ * useState로 들고, transcript(표시 텍스트)와 로케일 해석·런타임 파생 옵션
+ * (업종 그리드 = industryList, 클러스터 = 시나리오 태그)을 UI에 공급한다.
+ * 6문항 체계(v3 §3): 역할 → 업종 → 규모 → 문제 영역 → 증상/타이브레이크 → 도입 목표.
+ * 프리셋 진입 시 업종 질문은 확인 칩으로 대체되지만 스텝 수는 유지된다(v3 §3).
+ */
 
-export interface TranscriptItem {
-  step: Step;
-  questionText: string;
-  userAnswerText: string;
-}
+const kb = diagnosisKbJson as unknown as DiagnosisKB;
 
 export interface DiagnosisPreset {
   industry?: string;
   persona?: PersonaId;
 }
 
+export interface TranscriptItem {
+  questionId: string;
+  questionText: string;
+  userAnswerText: string;
+}
+
+/** UI가 렌더할 활성 스텝 */
+export type UiStep =
+  | { kind: 'question'; question: Question; isIndustryConfirm: boolean }
+  | { kind: 'exit'; to: string }
+  | { kind: 'result'; slug: string };
+
 export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
-  const ui = DIAGNOSIS_UI[locale];
-  const isKo = locale === 'ko';
-
-  const initialStep: Step = preset?.industry ? 'q3' : preset?.persona ? 'q2' : 'q1';
-  const initialIndustry = preset?.industry ?? null;
-  const initialPersona = preset?.persona ?? null;
-
-  const [step, setStep] = useState<Step>(initialStep);
-  const [persona, setPersona] = useState<PersonaId | null>(initialPersona);
-  const [industry, setIndustry] = useState<string | null>(initialIndustry);
-  const [cluster, setCluster] = useState<ClusterOption | null>(null);
-  const [resultSlug, setResultSlug] = useState<string | null>(null);
-  const [privacySelected, setPrivacySelected] = useState<boolean>(false);
+  const [state, setState] = useState<EngineState>(() => createState(preset));
   const [transcript, setTranscript] = useState<TranscriptItem[]>([]);
+  // 프리셋 확인 칩에서 "아니에요" — 같은 질문을 일반 그리드로 전환
+  const [confirmDeclined, setConfirmDeclined] = useState(false);
+
+  const engineStep = useMemo(() => nextStep(kb, state), [state]);
+
+  const uiStep: UiStep = useMemo(() => {
+    if (engineStep.kind === 'question') {
+      return {
+        kind: 'question',
+        question: engineStep.question,
+        isIndustryConfirm:
+          engineStep.question.id === 'industry' && !!state.presetIndustry && !confirmDeclined,
+      };
+    }
+    return engineStep;
+  }, [engineStep, state.presetIndustry, confirmDeclined]);
 
   const availableIndustries = useMemo(
-    () => industryList.filter((ind) => industryHasSolutions(ind.slug)),
+    () => industryList.filter((ind) => industryHasScenarios(kb, ind.slug)),
     [],
   );
 
-  const clusters = useMemo(
-    () => (industry ? getClustersForIndustry(industry) : []),
-    [industry],
+  const clusters: ClusterOption[] = useMemo(
+    () => (state.signals.industry ? deriveClusters(kb, state.signals.industry) : []),
+    [state.signals.industry],
   );
 
   const indLabel = useCallback(
     (slug: string, fallback: string) =>
-      isKo ? fallback : (industryLabelI18n[slug]?.[locale] ?? fallback),
-    [isKo, locale],
+      locale === 'ko' ? fallback : (industryLabelI18n[slug]?.[locale] ?? fallback),
+    [locale],
   );
 
-  const selectPersona = useCallback(
-    (id: PersonaId, labelText: string) => {
-      setPersona(id);
-      setTranscript((prev) => [
-        ...prev,
-        { step: 'q1', questionText: ui.q1Question, userAnswerText: labelText },
+  const clusterLabel = useCallback(
+    (key: string) => Q3_CLUSTER_LABEL[key]?.[locale] ?? key.split(':')[1] ?? key,
+    [locale],
+  );
+
+  /** 활성 질문에 답한다 — questionText/answerText는 transcript 표시용 */
+  const answer = useCallback(
+    (optionId: string, answerText: string, questionText: string) => {
+      if (engineStep.kind !== 'question') return;
+      setTranscript((t) => [
+        ...t,
+        { questionId: engineStep.question.id, questionText, userAnswerText: answerText },
       ]);
-
-      if (id === 'owner') {
-        setStep('exit-owner');
-      } else {
-        setStep('q2');
-      }
+      setState((s) => applyAnswer(kb, s, engineStep.question.id, optionId));
     },
-    [ui.q1Question],
+    [engineStep],
   );
 
-  const selectIndustry = useCallback(
-    (slug: string, labelText: string) => {
-      setIndustry(slug);
-      setTranscript((prev) => [
-        ...prev,
-        { step: 'q2', questionText: ui.q2Question, userAnswerText: labelText },
-      ]);
-      setStep('q3');
-    },
-    [ui.q2Question],
-  );
+  /** 프리셋 확인 칩 "아니에요" — 답 기록 없이 일반 업종 그리드로 전환 */
+  const declineIndustryConfirm = useCallback(() => setConfirmDeclined(true), []);
 
-  const selectUniversal = useCallback(
-    (id: 'privacy' | 'unsure', labelText: string) => {
-      if (id === 'privacy') {
-        setPrivacySelected(true);
-      }
-      setTranscript((prev) => [
-        ...prev,
-        { step: 'q3', questionText: ui.q3Question, userAnswerText: labelText },
-      ]);
-      setStep(id === 'privacy' ? 'exit-privacy' : 'exit-unsure');
-    },
-    [ui.q3Question],
-  );
-
-  const selectCluster = useCallback(
-    (c: ClusterOption, labelText: string) => {
-      setCluster(c);
-      setTranscript((prev) => [
-        ...prev,
-        { step: 'q3', questionText: ui.q3Question, userAnswerText: labelText },
-      ]);
-
-      if (c.slugs.length === 1) {
-        setResultSlug(c.slugs[0]);
-        setStep('result');
-      } else {
-        setStep('q4');
-      }
-    },
-    [ui.q3Question],
-  );
-
-  const selectTiebreak = useCallback(
-    (slug: string, labelText: string) => {
-      const q4Question = cluster ? TIEBREAK_QUESTIONS[cluster.key]?.question[locale] ?? '' : '';
-      setResultSlug(slug);
-      setTranscript((prev) => [
-        ...prev,
-        { step: 'q4', questionText: q4Question, userAnswerText: labelText },
-      ]);
-      setStep('result');
-    },
-    [cluster, locale],
-  );
-
-  const rewindToStep = useCallback((targetStep: Step) => {
-    setTranscript((prev) => {
-      const idx = prev.findIndex((t) => t.step === targetStep);
-      if (idx === -1) return prev;
-      return prev.slice(0, idx);
+  const rewindToQuestion = useCallback((questionId: string) => {
+    setState((s) => rewindTo(kb, s, questionId));
+    setTranscript((t) => {
+      const idx = t.findIndex((item) => item.questionId === questionId);
+      return idx < 0 ? t : t.slice(0, idx);
     });
-
-    setStep(targetStep);
-    if (targetStep === 'q1') {
-      setPersona(null);
-      setIndustry(preset?.industry ?? null);
-      setCluster(null);
-      setResultSlug(null);
-    } else if (targetStep === 'q2') {
-      setIndustry(preset?.industry ?? null);
-      setCluster(null);
-      setResultSlug(null);
-    } else if (targetStep === 'q3') {
-      setCluster(null);
-      setResultSlug(null);
-    } else if (targetStep === 'q4') {
-      setResultSlug(null);
-    }
-  }, [preset]);
+  }, []);
 
   const restart = useCallback(() => {
-    setPersona(initialPersona);
-    setIndustry(initialIndustry);
-    setCluster(null);
-    setResultSlug(null);
-    setPrivacySelected(false);
+    setState(createState(preset));
     setTranscript([]);
-    setStep(initialStep);
-  }, [initialStep, initialIndustry, initialPersona]);
+    setConfirmDeclined(false);
+  }, [preset]);
 
-  const stepNumber = useMemo(() => {
-    const map: Record<Step, number> = {
-      q1: 1,
-      q2: 2,
-      q3: 3,
-      q4: 4,
-      result: cluster && cluster.slugs.length > 1 ? 4 : 3,
-      'exit-owner': 1,
-      'exit-privacy': 3,
-      'exit-unsure': 3,
-    };
-    return map[step];
-  }, [step, cluster]);
+  /** exit-owner "계속 진단" — 역할 답 유지한 채 흐름 복귀 (다음 질문 = 업종) */
+  const continueFromExit = useCallback(() => {
+    setState((s) => resumeFromExit(s));
+  }, []);
 
-  const totalSteps = useMemo(
-    () => (step === 'q4' || (cluster && cluster.slugs.length > 1) ? 4 : 3),
-    [step, cluster],
+  const { stepNumber, totalSteps } = progress(kb, state);
+
+  // routing/ResultPanel 하위 호환 신호 (privacy는 exit 경로라 signals에 없음)
+  const privacySelected = state.answers.some(
+    (a) => a.questionId === 'problem-cluster' && a.optionId === 'privacy',
   );
 
   return {
-    step,
-    persona,
-    industry,
-    cluster,
-    resultSlug,
+    kb,
+    uiStep,
+    signals: state.signals,
+    persona: state.signals.persona as PersonaId | null,
+    industry: state.signals.industry,
+    resultSlug: state.resultSlug,
     privacySelected,
     transcript,
     availableIndustries,
@@ -209,13 +148,11 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     stepNumber,
     totalSteps,
     indLabel,
-    selectPersona,
-    selectIndustry,
-    selectUniversal,
-    selectCluster,
-    selectTiebreak,
-    rewindToStep,
+    clusterLabel,
+    answer,
+    declineIndustryConfirm,
+    rewindToQuestion,
     restart,
-    setStep,
+    continueFromExit,
   };
 }

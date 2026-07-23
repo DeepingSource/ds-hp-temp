@@ -4,19 +4,18 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
 import { industryColorMap } from '@/data/industryList';
-import {
-  DIAGNOSIS_UI,
-  PERSONA_OPTIONS,
-  Q3_UNIVERSAL_OPTIONS,
-  Q3_CLUSTER_LABEL,
-  TIEBREAK_QUESTIONS,
-  EXIT_OWNER,
-  EXIT_PRIVACY,
-  EXIT_UNSURE,
-} from '@/data/diagnosis-i18n';
+import { DIAGNOSIS_UI, EXIT_OWNER, EXIT_PRIVACY, EXIT_UNSURE } from '@/data/diagnosis-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { useDiagnosisEngine, type DiagnosisPreset } from './useDiagnosisEngine';
 import ResultPanel from './ResultPanel';
+
+/**
+ * DiagnosisConversation — E1: 질문 트리는 diagnosis.json(지식 베이스)에서 온다.
+ * 렌더는 질문 kind 4종(chip-wrap / industry-grid / cluster-list / option-list)의
+ * 데이터 주도 — 새 질문은 YAML 파일 하나로 추가된다 (v4 §2 · MASTER 3-4).
+ * 페이싱(v3 §6): 상단 앵커·타이핑 600ms·옵션 칩 850ms 스태거·결과 상단 정렬·
+ * 되감기 연출 생략 — Stage 1-3 구현 그대로 승계.
+ */
 
 interface DiagnosisConversationProps {
   locale: Locale;
@@ -33,10 +32,9 @@ export default function DiagnosisConversation({
 
   const engine = useDiagnosisEngine(locale, preset);
   const {
-    step,
+    uiStep,
     persona,
     industry,
-    cluster,
     resultSlug,
     privacySelected,
     transcript,
@@ -45,14 +43,12 @@ export default function DiagnosisConversation({
     stepNumber,
     totalSteps,
     indLabel,
-    selectPersona,
-    selectIndustry,
-    selectUniversal,
-    selectCluster,
-    selectTiebreak,
-    rewindToStep,
+    clusterLabel,
+    answer,
+    declineIndustryConfirm,
+    rewindToQuestion,
     restart,
-    setStep,
+    continueFromExit,
   } = engine;
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -64,6 +60,11 @@ export default function DiagnosisConversation({
   const skipTheatricsRef = useRef(false); // §6-4: 되감기 시 연출 생략
   const lastManualScrollRef = useRef(0); // §6-1: 수동 스크롤 중 자동 스크롤 스킵
   const mountedRef = useRef(false); // 첫 로드에는 스크롤하지 않는다 (페이지 점프 방지)
+
+  // 활성 스텝 식별자 — 타이밍/스크롤 effect의 트리거 (질문 id·exit 종류·결과)
+  const stepKey =
+    uiStep.kind === 'question' ? `q:${uiStep.question.id}` : uiStep.kind === 'exit' ? uiStep.to : 'result';
+  const isResult = uiStep.kind === 'result';
 
   const prefersReduced = () =>
     typeof window !== 'undefined' &&
@@ -88,7 +89,7 @@ export default function DiagnosisConversation({
     const skip = skipTheatricsRef.current || prefersReduced();
     skipTheatricsRef.current = false;
 
-    if (step === 'result') {
+    if (isResult) {
       if (skip) {
         setIsAnalyzingResult(false);
         return;
@@ -97,22 +98,21 @@ export default function DiagnosisConversation({
       const timer = setTimeout(() => setIsAnalyzingResult(false), 900);
       return () => clearTimeout(timer);
     }
-    if (['q1', 'q2', 'q3', 'q4', 'exit-owner', 'exit-privacy', 'exit-unsure'].includes(step)) {
-      if (skip) {
-        setIsTyping(false);
-        setShowOptions(true);
-        return;
-      }
-      setIsTyping(true);
-      setShowOptions(false);
-      const typingTimer = setTimeout(() => setIsTyping(false), 600);
-      const optionsTimer = setTimeout(() => setShowOptions(true), 850);
-      return () => {
-        clearTimeout(typingTimer);
-        clearTimeout(optionsTimer);
-      };
+    if (skip) {
+      setIsTyping(false);
+      setShowOptions(true);
+      return;
     }
-  }, [step]);
+    setIsTyping(true);
+    setShowOptions(false);
+    const typingTimer = setTimeout(() => setIsTyping(false), 600);
+    const optionsTimer = setTimeout(() => setShowOptions(true), 850);
+    return () => {
+      clearTimeout(typingTimer);
+      clearTimeout(optionsTimer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepKey]);
 
   // §6-1 스크롤 앵커: 새 어시스턴트 콘텐츠가 나타날 때 1회만 — 타이핑/analyzing
   // 인디케이터·옵션 칩·transcript 추가로는 발동하지 않는다.
@@ -127,14 +127,36 @@ export default function DiagnosisConversation({
       behavior: prefersReduced() ? 'auto' : 'smooth',
       block: 'start',
     });
-  }, [step, isTyping, isAnalyzingResult]);
+  }, [stepKey, isTyping, isAnalyzingResult]);
 
   // §6-2: 옵션 칩 페이드인(스태거 40ms/개) — 자리는 아래로 자라는 채팅 흐름
   const CHIP_ANIM = 'animate-in fade-in fill-mode-both duration-300 motion-reduce:animate-none';
   const chipDelay = (i: number) => ({ animationDelay: `${i * 40}ms` });
 
   const progressPercent = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
-  const showChrome = !['result', 'exit-owner', 'exit-privacy', 'exit-unsure'].includes(step);
+  const showChrome = uiStep.kind === 'question';
+
+  // ── 활성 질문 텍스트·옵션 해석 ────────────────────────────────────────────
+  const q = uiStep.kind === 'question' ? uiStep.question : null;
+  const presetIndustryLabel = preset?.industry
+    ? indLabel(
+        preset.industry,
+        availableIndustries.find((i) => i.slug === preset.industry)?.label ?? preset.industry,
+      )
+    : '';
+  const questionText = q
+    ? uiStep.kind === 'question' && uiStep.isIndustryConfirm && q.confirm
+      ? q.confirm.text[locale].replace('{label}', presetIndustryLabel)
+      : q.text[locale]
+    : '';
+
+  const questionBubble = (
+    <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
+      {questionText}
+    </div>
+  );
+
+  const listButtonClass = `p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`;
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto">
@@ -183,7 +205,7 @@ export default function DiagnosisConversation({
                 onClick={() => {
                   // §6-4: 이미 본 질문에 타이핑 연출을 반복하지 않는다 — 상단 정렬만
                   skipTheatricsRef.current = true;
-                  rewindToStep(item.step);
+                  rewindToQuestion(item.questionId);
                 }}
                 className="opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity absolute -left-16 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-2xs font-bold text-gray-600 cursor-pointer"
                 title={ui.chatConnectors.rewindHover}
@@ -204,21 +226,42 @@ export default function DiagnosisConversation({
           </div>
         )}
 
-        {/* Current Active Step Input / Options */}
-        {!isTyping && (
-          <>
-            {step === 'q1' && (
-              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {ui.q1Question}
-                </div>
-                {showOptions && (
+        {/* Current Active Question — kind 기반 데이터 주도 렌더 */}
+        {!isTyping && q && (
+          <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
+            {questionBubble}
+
+            {showOptions && uiStep.kind === 'question' && uiStep.isIndustryConfirm && q.confirm && (
+              // 프리셋 확인 칩 (v3 §3 — 확인도 한 스텝, 스텝 수 유지)
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => answer(preset!.industry!, q.confirm!.yes[locale], questionText)}
+                  className={`px-4 py-3 rounded-xl border border-primary-light bg-primary-lighter/40 text-left text-xs sm:text-sm font-bold text-primary-dark transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                  style={chipDelay(0)}
+                >
+                  {q.confirm.yes[locale]}
+                </button>
+                <button
+                  type="button"
+                  onClick={declineIndustryConfirm}
+                  className={`px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light text-left text-xs sm:text-sm font-medium text-gray-600 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                  style={chipDelay(1)}
+                >
+                  {q.confirm.no[locale]}
+                </button>
+              </div>
+            )}
+
+            {showOptions && !(uiStep.kind === 'question' && uiStep.isIndustryConfirm) && (
+              <>
+                {q.kind === 'chip-wrap' && (
                   <div className="flex flex-wrap gap-2 pt-1">
-                    {PERSONA_OPTIONS.map((opt, i) => (
+                    {(q.options ?? []).map((opt, i) => (
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => selectPersona(opt.id, opt.label[locale])}
+                        onClick={() => answer(opt.id, opt.label[locale], questionText)}
                         className={`px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
                         style={chipDelay(i)}
                       >
@@ -227,15 +270,8 @@ export default function DiagnosisConversation({
                     ))}
                   </div>
                 )}
-              </div>
-            )}
 
-            {step === 'q2' && (
-              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {ui.q2Question}
-                </div>
-                {showOptions && (
+                {q.kind === 'industry-grid' && (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
                     {availableIndustries.map((ind, i) => {
                       const colors = industryColorMap[ind.color] ?? industryColorMap.slate;
@@ -245,7 +281,7 @@ export default function DiagnosisConversation({
                         <button
                           key={ind.slug}
                           type="button"
-                          onClick={() => selectIndustry(ind.slug, label)}
+                          onClick={() => answer(ind.slug, label, questionText)}
                           className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${colors.border} ${colors.bg} ${CHIP_ANIM}`}
                           style={chipDelay(i)}
                         >
@@ -258,24 +294,17 @@ export default function DiagnosisConversation({
                     })}
                   </div>
                 )}
-              </div>
-            )}
 
-            {step === 'q3' && industry && (
-              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {ui.q3Question}
-                </div>
-                {showOptions && (
+                {q.kind === 'cluster-list' && (
                   <div className="flex flex-col gap-2 pt-1">
                     {clusters.map((c, i) => {
-                      const label = Q3_CLUSTER_LABEL[c.key]?.[locale] ?? c.clusterId;
+                      const label = clusterLabel(c.key);
                       return (
                         <button
                           key={c.key}
                           type="button"
-                          onClick={() => selectCluster(c, label)}
-                          className={`flex items-center justify-between p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                          onClick={() => answer(c.key, label, questionText)}
+                          className={`flex items-center justify-between ${listButtonClass}`}
                           style={chipDelay(i)}
                         >
                           <span>{label}</span>
@@ -284,11 +313,11 @@ export default function DiagnosisConversation({
                       );
                     })}
                     <div className="pt-2 mt-2 border-t border-gray-100 flex flex-col gap-1.5">
-                      {Q3_UNIVERSAL_OPTIONS.map((opt, i) => (
+                      {(q.universalOptions ?? []).map((opt, i) => (
                         <button
                           key={opt.id}
                           type="button"
-                          onClick={() => selectUniversal(opt.id, opt.label[locale])}
+                          onClick={() => answer(opt.id, opt.label[locale], questionText)}
                           className={`text-left text-xs text-gray-400 hover:text-gray-600 transition-colors cursor-pointer py-1 ${CHIP_ANIM}`}
                           style={chipDelay(clusters.length + i)}
                         >
@@ -298,22 +327,15 @@ export default function DiagnosisConversation({
                     </div>
                   </div>
                 )}
-              </div>
-            )}
 
-            {step === 'q4' && cluster && (
-              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {TIEBREAK_QUESTIONS[cluster.key]?.question[locale] ?? ''}
-                </div>
-                {showOptions && (
+                {q.kind === 'option-list' && (
                   <div className="flex flex-col gap-2 pt-1">
-                    {(TIEBREAK_QUESTIONS[cluster.key]?.options ?? []).map((opt, i) => (
+                    {(q.options ?? []).map((opt, i) => (
                       <button
-                        key={opt.slug}
+                        key={opt.id}
                         type="button"
-                        onClick={() => selectTiebreak(opt.slug, opt.label[locale])}
-                        className={`p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                        onClick={() => answer(opt.id, opt.label[locale], questionText)}
+                        className={listButtonClass}
                         style={chipDelay(i)}
                       >
                         {opt.label[locale]}
@@ -321,74 +343,73 @@ export default function DiagnosisConversation({
                     ))}
                   </div>
                 )}
-              </div>
+              </>
             )}
+          </div>
+        )}
 
-            {/* Analyzing Result State */}
-            {isAnalyzingResult && (
-              <div className="self-start p-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-3 text-gray-600 text-xs sm:text-sm font-medium animate-pulse motion-reduce:animate-none">
-                <Sparkles className="w-4 h-4 text-primary animate-spin motion-reduce:animate-none" />
-                {ui.chatConnectors.analyzing}
-              </div>
-            )}
+        {/* Analyzing Result State */}
+        {isAnalyzingResult && (
+          <div className="self-start p-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-3 text-gray-600 text-xs sm:text-sm font-medium animate-pulse motion-reduce:animate-none">
+            <Sparkles className="w-4 h-4 text-primary animate-spin motion-reduce:animate-none" />
+            {ui.chatConnectors.analyzing}
+          </div>
+        )}
 
-            {/* Result Stage — §6-3: 패널 상단을 정렬(1회)하고 이후 자동 스크롤 없음.
-                읽는 스크롤은 사용자 몫. */}
-            {!isAnalyzingResult && step === 'result' && resultSlug && (
-              <div ref={activeRef} className="scroll-mt-3">
-                <ResultPanel
-                  slug={resultSlug}
-                  industry={industry}
-                  persona={persona}
-                  privacySelected={privacySelected}
-                  locale={locale}
-                  onRestart={restart}
-                />
-              </div>
-            )}
+        {/* Result Stage — §6-3: 패널 상단을 정렬(1회)하고 이후 자동 스크롤 없음. */}
+        {!isAnalyzingResult && isResult && resultSlug && (
+          <div ref={activeRef} className="scroll-mt-3">
+            <ResultPanel
+              slug={resultSlug}
+              industry={industry}
+              persona={persona}
+              privacySelected={privacySelected}
+              locale={locale}
+              onRestart={restart}
+            />
+          </div>
+        )}
 
-            {/* Exit States — §7 시나리오 E: 페이싱 규칙 동일 적용, 바닥 앵커 잔재 없음 */}
-            {!isAnalyzingResult && step === 'exit-owner' && (
-              <div ref={activeRef} className="scroll-mt-3">
-                <ExitBlock
-                  title={EXIT_OWNER[locale].title}
-                  body={EXIT_OWNER[locale].body}
-                  linkHref={localeHref(locale, '/products/saai-for-owners')}
-                  linkLabel={EXIT_OWNER[locale].linkLabel}
-                  secondaryLabel={EXIT_OWNER[locale].continueLabel}
-                  onSecondary={() => setStep('q2')}
-                />
-              </div>
-            )}
+        {/* Exit States — §7 시나리오 E: 페이싱 규칙 동일 적용, 바닥 앵커 잔재 없음 */}
+        {!isTyping && uiStep.kind === 'exit' && uiStep.to === 'exit-owner' && (
+          <div ref={activeRef} className="scroll-mt-3">
+            <ExitBlock
+              title={EXIT_OWNER[locale].title}
+              body={EXIT_OWNER[locale].body}
+              linkHref={localeHref(locale, '/products/saai-for-owners')}
+              linkLabel={EXIT_OWNER[locale].linkLabel}
+              secondaryLabel={EXIT_OWNER[locale].continueLabel}
+              onSecondary={continueFromExit}
+            />
+          </div>
+        )}
 
-            {!isAnalyzingResult && step === 'exit-privacy' && (
-              <div ref={activeRef} className="scroll-mt-3">
-                <ExitBlock
-                  title={EXIT_PRIVACY[locale].title}
-                  body={EXIT_PRIVACY[locale].body}
-                  linkHref={localeHref(locale, '/technology/anonymizer')}
-                  linkLabel={EXIT_PRIVACY[locale].linkLabel}
-                  secondaryLabel={ui.restart}
-                  onSecondary={restart}
-                />
-              </div>
-            )}
+        {!isTyping && uiStep.kind === 'exit' && uiStep.to === 'exit-privacy' && (
+          <div ref={activeRef} className="scroll-mt-3">
+            <ExitBlock
+              title={EXIT_PRIVACY[locale].title}
+              body={EXIT_PRIVACY[locale].body}
+              linkHref={localeHref(locale, '/technology/anonymizer')}
+              linkLabel={EXIT_PRIVACY[locale].linkLabel}
+              secondaryLabel={ui.restart}
+              onSecondary={restart}
+            />
+          </div>
+        )}
 
-            {!isAnalyzingResult && step === 'exit-unsure' && industry && (
-              <div ref={activeRef} className="scroll-mt-3">
-                <ExitBlock
-                  title={EXIT_UNSURE[locale].title}
-                  body={EXIT_UNSURE[locale].body(
-                    indLabel(industry, availableIndustries.find((i) => i.slug === industry)?.label ?? industry),
-                  )}
-                  linkHref={localeHref(locale, `/solutions#industry-${industry}`)}
-                  linkLabel={EXIT_UNSURE[locale].linkLabel}
-                  secondaryLabel={ui.restart}
-                  onSecondary={restart}
-                />
-              </div>
-            )}
-          </>
+        {!isTyping && uiStep.kind === 'exit' && uiStep.to === 'exit-unsure' && industry && (
+          <div ref={activeRef} className="scroll-mt-3">
+            <ExitBlock
+              title={EXIT_UNSURE[locale].title}
+              body={EXIT_UNSURE[locale].body(
+                indLabel(industry, availableIndustries.find((i) => i.slug === industry)?.label ?? industry),
+              )}
+              linkHref={localeHref(locale, `/solutions#industry-${industry}`)}
+              linkLabel={EXIT_UNSURE[locale].linkLabel}
+              secondaryLabel={ui.restart}
+              onSecondary={restart}
+            />
+          </div>
         )}
       </div>
     </div>

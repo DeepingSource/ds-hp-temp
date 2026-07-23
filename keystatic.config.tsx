@@ -195,6 +195,7 @@ export default config({
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology', 'agenticAi'],
       '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'team', 'milestones', 'career'],
       '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace', 'solutionPages'],
+      '문제 진단': ['diagnosisQuestions', 'diagnosisFlow'],
       '법무 (검토 후 편집)': ['privacyDoc', 'termsDoc'],
     },
   },
@@ -749,8 +750,115 @@ export default config({
         }, { label: '진단 태그 (diagnosis — 문제 진단이 이 시나리오를 결과로 고르는 근거)' }),
       },
     }),
+    // 문제 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · MASTER 3-4).
+    // 편집 후 빌드 시 gen-site-content 검증 5종이 오류를 한국어로 알려준다
+    // (3로케일 누락·고아 증거·존재하지 않는 결과 slug 등은 빌드가 중단됨).
+    diagnosisQuestions: collection({
+      label: '진단 질문 (diagnosis)',
+      path: 'content/diagnosis/questions/*',
+      slugField: 'id',
+      format: { data: 'yaml' },
+      columns: ['id', 'phase', 'order'],
+      schema: {
+        id: fields.slug({ name: { label: '질문 ID (id · 코드/flow와 연결 — 변경 금지)' } }),
+        group: fields.text({ label: '그룹 (group · flow의 @group 참조)' }),
+        phase: fields.select({
+          label: '단계 (phase)',
+          options: [
+            { label: 'context (역할·업종·규모)', value: 'context' },
+            { label: 'problem (문제 영역)', value: 'problem' },
+            { label: 'refine (증상·타이브레이크)', value: 'refine' },
+            { label: 'confirm (확인 — E3)', value: 'confirm' },
+          ],
+          defaultValue: 'refine',
+        }),
+        kind: fields.select({
+          label: '렌더 종류 (kind)',
+          options: [
+            { label: '칩 랩 (chip-wrap)', value: 'chip-wrap' },
+            { label: '업종 그리드 (industry-grid)', value: 'industry-grid' },
+            { label: '클러스터 리스트 (cluster-list)', value: 'cluster-list' },
+            { label: '옵션 리스트 (option-list)', value: 'option-list' },
+          ],
+          defaultValue: 'option-list',
+        }),
+        order: fields.integer({ label: '순서 (order · 그룹 내 우선순위)', defaultValue: 50 }),
+        signal: fields.text({ label: '신호 (signal · persona/industry/scale/cluster/symptom/goal — 없으면 빈칸)' }),
+        appliesWhen: fields.object({
+          industry: fields.array(fields.text({ label: '업종 slug' }), { label: '업종 조건', itemLabel: (p) => p.value }),
+          persona: fields.array(fields.text({ label: 'persona' }), { label: '역할 조건', itemLabel: (p) => p.value }),
+          cluster: fields.array(fields.text({ label: '클러스터 복합키' }), { label: '클러스터 조건 (industry:cluster)', itemLabel: (p) => p.value }),
+        }, { label: '출제 조건 (appliesWhen — 전부 비우면 항상 출제)' }),
+        text: localized('질문 문장 (text)'),
+        ack: localized('반응 멘트 (ack · {label} 보간 가능 — 선택)'),
+        confirm: fields.object({
+          text: localized('확인 질문 ({label} 보간)'),
+          yes: localized('긍정 칩'),
+          no: localized('부정 칩'),
+        }, { label: '프리셋 확인 칩 (industry 질문 전용)' }),
+        options: fields.array(
+          fields.object({
+            id: fields.text({ label: '옵션 ID (id)' }),
+            label: localized('라벨 (label)'),
+            result: fields.text({ label: '결과 slug (result · 타이브레이크 전용)' }),
+            ack: localized('옵션 반응 멘트 (선택)'),
+            evidence: fields.array(
+              fields.object({
+                attribute: fields.text({ label: '속성 (symptom/persona/scale/goal)' }),
+                value: fields.text({ label: '값' }),
+                weight: fields.number({ label: '가중치 (E1은 1)', defaultValue: 1 }),
+              }),
+              { label: '증거 (evidence)', itemLabel: (p) => `${p.fields.attribute.value}=${p.fields.value.value}` },
+            ),
+          }),
+          { label: '선택지 (options — industry/cluster 질문은 비움: 런타임 파생)', itemLabel: (p) => p.fields.id.value || '옵션' },
+        ),
+        universalOptions: fields.array(
+          fields.object({
+            id: fields.text({ label: '옵션 ID' }),
+            label: localized('라벨'),
+          }),
+          { label: '공통 탈출 옵션 (problem-cluster 전용)', itemLabel: (p) => p.fields.id.value || '옵션' },
+        ),
+      },
+    }),
   },
   singletons: {
+    // 문제 진단 흐름 (diagnosis-v4-engine-plan §2-3) — selector 한 줄이 E1(fixed)
+    // ↔ E3(adaptive) 전환 스위치. exits·순서도 여기서만 정의한다(단일 지점).
+    diagnosisFlow: singleton({
+      label: '진단 흐름 (diagnosis flow)',
+      path: 'content/diagnosis/flow',
+      format: { data: 'yaml' },
+      schema: {
+        selector: fields.select({
+          label: '질문 선택기 (selector)',
+          options: [
+            { label: '고정 순서 (fixed — E1)', value: 'fixed' },
+            { label: '적응형 (adaptive — E3)', value: 'adaptive' },
+          ],
+          defaultValue: 'fixed',
+        }),
+        fixedOrder: fields.array(fields.text({ label: '질문 id 또는 @group' }), {
+          label: '고정 순서 (fixedOrder)',
+          itemLabel: (p) => p.value,
+        }),
+        adaptive: fields.object({
+          minQuestions: fields.integer({ label: '최소 질문 수', defaultValue: 4 }),
+          maxQuestions: fields.integer({ label: '최대 질문 수', defaultValue: 7 }),
+          confirmThreshold: fields.number({ label: '확인 스텝 임계 (top1/top2 점수비)', defaultValue: 2 }),
+          maxRejects: fields.integer({ label: '확인 부정 허용 횟수', defaultValue: 1 }),
+        }, { label: '적응형 설정 (adaptive — E3 예약)' }),
+        exits: fields.array(
+          fields.object({
+            question: fields.text({ label: '질문 id' }),
+            option: fields.text({ label: '옵션 id' }),
+            to: fields.text({ label: '이탈 종류 (exit-owner/exit-privacy/exit-unsure)' }),
+          }),
+          { label: '이탈 규칙 (exits)', itemLabel: (p) => `${p.fields.question.value}:${p.fields.option.value} → ${p.fields.to.value}` },
+        ),
+      },
+    }),
     // G-1: CMS 안의 편집 가이드. 편집자는 /keystatic 에서 읽고, 이 문서 자체도 CMS 로
     // 유지보수됨. 같은 파일을 사이트 /help(noindex) 에서도 렌더한다.
     editorGuide: singleton({
