@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Users, Sparkles, ShieldCheck, HeartHandshake, Zap } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, Users, ShieldCheck, HeartHandshake, Zap, Quote } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -10,20 +11,17 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
 import SaaiSymbol from '@/components/ui/SaaiSymbol';
-import { TEAM_MEMBERS, type TeamGroup } from '@/data/teamMembers';
+import { TEAM_MEMBERS, type TeamGroup, type TeamMember } from '@/data/teamMembers';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
 
 const GROUPS: { key: TeamGroup | 'All'; labelKo: string; labelEn: string; labelJp: string }[] = [
   { key: 'All', labelKo: '전체 보기', labelEn: 'All People', labelJp: 'すべて' },
-  { key: 'Executive', labelKo: '리더십', labelEn: 'Executive', labelJp: 'リーダーシップ' },
-  { key: 'Store Agent', labelKo: 'Store Agent', labelEn: 'Store Agent', labelJp: 'Store Agent' },
-  { key: 'Core', labelKo: 'Core', labelEn: 'Core', labelJp: 'Core' },
-  { key: 'Future', labelKo: 'Future', labelEn: 'Future', labelJp: 'Future' },
-  { key: 'Solution Delivery', labelKo: 'Solution Delivery', labelEn: 'Solution Delivery', labelJp: 'Solution Delivery' },
-  { key: 'SCI', labelKo: 'SCI', labelEn: 'SCI', labelJp: 'SCI' },
-  { key: 'PM & Business', labelKo: 'PM & 비즈니스', labelEn: 'PM & Business', labelJp: 'PM & ビジネス' },
-  { key: 'Operations', labelKo: '경영지원 & 피플', labelEn: 'Operations & People', labelJp: 'ピープル & オペレーション' },
+  { key: 'Leadership', labelKo: '리더십', labelEn: 'Leadership', labelJp: 'リーダーシップ' },
+  { key: 'Research & AI', labelKo: 'AI & 연구', labelEn: 'Research & AI', labelJp: 'AI & 研究' },
+  { key: 'Engineering', labelKo: '엔지니어링', labelEn: 'Engineering', labelJp: 'エンジニアリング' },
+  { key: 'Product & Design', labelKo: '제품 & 디자인', labelEn: 'Product & Design', labelJp: 'プロダクト & デザイン' },
+  { key: 'Business & Operations', labelKo: '비즈니스 & 운영', labelEn: 'Business & Operations', labelJp: 'ビジネス & オペレーション' },
 ];
 
 const CULTURE_ITEMS = [
@@ -43,7 +41,7 @@ const CULTURE_ITEMS = [
     titleJp: 'AIが提案し、人が決定する',
     descKo: 'AI 기술로 현장 종사자의 번거로움을 줄이고, 인간의 결정과 서비스 가치를 극대화합니다.',
     descEn: 'We use AI to eliminate frontline friction and maximize human decision-making and service value.',
-    descJp: 'AI技術で現場の煩わしさを 줄이고、人間の決定とサービス価値を最大化します。',
+    descJp: 'AI技術で現場の煩わしさを減らし、人間の決定とサービス価値を最大化します。',
   },
   {
     icon: HeartHandshake,
@@ -76,7 +74,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
               {locale === 'ko' ? '딥핑소스 사람들 · People' : locale === 'jp' ? 'DEEPINGSOURCE の人々 · People' : 'DeepingSource People'}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight font-display break-keep mb-6">
-              <WordRise text={locale === 'ko' ? '오프라인의 미래를 만드는 사람들.' : locale === 'jp' ? 'オフラインの未来を創る人々。' : 'Built by exceptional people.'} />
+              <WordRise text={locale === 'ko' ? '물리적 공간을 다시 만드는 사람들.' : locale === 'jp' ? '物理的空間を再構築する人々。' : 'Reinventing physical space.'} />
             </h1>
             <p className="text-lg sm:text-xl text-slate-300 leading-relaxed break-keep max-w-2xl">
               {locale === 'ko'
@@ -101,31 +99,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {leaderships.map((m) => (
-              <div key={m.id} className="p-7 rounded-3xl border border-gray-200 bg-white hover:border-primary-light hover:shadow-card transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className={`w-14 h-14 rounded-2xl ${m.avatarColor ?? 'bg-primary text-white'} flex items-center justify-center font-bold text-lg shrink-0 shadow-sm`}>
-                      {m.nameKo.slice(0, 1)}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                        {locale === 'en' ? m.nameEn : m.nameKo}
-                        <span className="text-xs font-semibold text-gray-400 font-sans">({m.nameEn})</span>
-                      </h3>
-                      <p className="text-xs font-bold text-primary uppercase tracking-wide">{m.role}</p>
-                    </div>
-                  </div>
-                  {m.bioKo && (
-                    <p className="text-xs text-gray-600 leading-relaxed break-keep border-t border-gray-100 pt-4">
-                      {locale === 'en' ? m.bioEn : m.bioKo}
-                    </p>
-                  )}
-                </div>
-                <div className="mt-4 pt-3 flex items-center justify-between text-2xs text-gray-400 font-semibold border-t border-gray-100">
-                  <span>{m.team}</span>
-                  <span className="text-primary font-bold">Leadership</span>
-                </div>
-              </div>
+              <MemberCard key={m.id} member={m} locale={locale} isHeroCard={true} />
             ))}
           </div>
         </Container>
@@ -140,11 +114,11 @@ export default function TeamView({ locale }: { locale: Locale }) {
               {locale === 'ko' ? '딥핑소스의 멋진 팀원들을 만나보세요' : locale === 'jp' ? 'DEEPINGSOURCE の素晴らしいチームメンバー' : 'Meet the team behind SAAI'}
             </h2>
             <p className="text-base text-gray-600 break-keep">
-              {locale === 'ko' ? '각자의 영역에서 최고의 전문성으로 시너지를 만들어냅니다.' : locale === 'jp' ? 'それぞれの領域で最高の専門性を持ってシナジーを生み出します。' : 'Creating synergy with peak expertise across engineering, product, and delivery.'}
+              {locale === 'ko' ? '각자의 영역에서 최고 수준의 몰입으로 오프라인 공간의 가치를 혁신합니다.' : locale === 'jp' ? 'それぞれの領域で最高レベルの熱量を持って空間の価値を革新します。' : 'Innovating physical space with deep expertise across engineering, research, and product.'}
             </p>
           </div>
 
-          {/* Group Filter Tabs */}
+          {/* Abstract Group Filter Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
             {GROUPS.map((g) => {
               const active = selectedGroup === g.key;
@@ -168,34 +142,10 @@ export default function TeamView({ locale }: { locale: Locale }) {
             })}
           </div>
 
-          {/* Grid of Team Members */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/* Grid of Team Members with Quotes */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredMembers.map((m) => (
-              <div
-                key={m.id}
-                className="p-5 rounded-2xl bg-white border border-gray-200 hover:border-primary-light hover:shadow-card transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-xl ${m.avatarColor ?? 'bg-slate-100 text-gray-800'} flex items-center justify-center font-bold text-sm shrink-0 border border-gray-200/50`}>
-                      {m.nameKo.slice(0, 1)}
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="text-sm font-bold text-gray-900 truncate">
-                        {locale === 'en' ? m.nameEn : m.nameKo}
-                      </h3>
-                      <p className="text-2xs text-gray-400 truncate">{m.nameEn}</p>
-                    </div>
-                  </div>
-                  <p className="text-xs font-semibold text-gray-700 leading-snug line-clamp-2 mb-2">
-                    {m.role}
-                  </p>
-                </div>
-                <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-400">
-                  <span className="truncate">{m.team}</span>
-                  {m.isLeadership && <span className="font-bold text-primary shrink-0">Lead</span>}
-                </div>
-              </div>
+              <MemberCard key={m.id} member={m} locale={locale} />
             ))}
           </div>
         </Container>
@@ -240,7 +190,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
             CAREERS & OPPORTUNITIES
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
-            {locale === 'ko' ? '다음 공간의 혁신을 함께 만듭니다' : locale === 'jp' ? '次の空間イノベーションを共に創りましょう' : 'Shape the future of physical space'}
+            {locale === 'ko' ? '물리적 공간의 다음 혁신을 함께 만듭니다' : locale === 'jp' ? '次の空間イノベーションを共に創りましょう' : 'Shape the future of physical space'}
           </h2>
           <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl mx-auto break-keep">
             {locale === 'ko'
@@ -260,6 +210,63 @@ export default function TeamView({ locale }: { locale: Locale }) {
           </div>
         </Container>
       </AnimatedSection>
+    </div>
+  );
+}
+
+/** Individual Team Member Card with Avatar Placeholder & Quote */
+function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; locale: Locale; isHeroCard?: boolean }) {
+  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
+
+  return (
+    <div
+      className={`p-6 rounded-3xl border bg-white flex flex-col justify-between transition-all duration-300 hover:shadow-card hover:border-primary-light/50 ${
+        isHeroCard ? 'border-primary/20 bg-gradient-to-b from-white to-primary/5' : 'border-gray-200'
+      }`}
+    >
+      <div>
+        {/* Avatar & Header Info */}
+        <div className="flex items-center gap-3.5 mb-4">
+          <div className="relative shrink-0">
+            {m.avatarUrl ? (
+              <div className="w-13 h-13 rounded-2xl overflow-hidden border border-gray-200 shadow-sm relative">
+                <Image src={m.avatarUrl} alt={name} fill className="object-cover" />
+              </div>
+            ) : (
+              <div
+                className={`w-13 h-13 rounded-2xl ${
+                  m.avatarColor ?? 'bg-gradient-to-br from-slate-800 to-gray-900 text-white'
+                } flex items-center justify-center font-bold text-base shadow-sm border border-white/20`}
+              >
+                {m.nameKo.slice(0, 1)}
+              </div>
+            )}
+          </div>
+          <div className="min-w-0">
+            <h3 className="text-base font-bold text-gray-900 flex items-center gap-2 truncate">
+              <span>{name}</span>
+              {m.isLeadership && (
+                <span className="px-2 py-0.5 rounded text-2xs font-bold uppercase bg-primary/10 text-primary shrink-0">
+                  Lead
+                </span>
+              )}
+            </h3>
+            <p className="text-2xs font-semibold text-gray-500 uppercase tracking-wide truncate">{m.role}</p>
+          </div>
+        </div>
+
+        {/* Member Quote */}
+        <div className="relative p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs text-gray-700 leading-relaxed break-keep mb-3">
+          <Quote className="w-3.5 h-3.5 text-primary/30 absolute top-3 right-3" />
+          <p className="pr-3 font-medium text-slate-700">"{quote}"</p>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-400 font-semibold">
+        <span>{m.group}</span>
+        <span>{m.nameEn}</span>
+      </div>
     </div>
   );
 }
