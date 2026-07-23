@@ -623,26 +623,15 @@ export default config({
           label: '관련 업종 (industry 슬러그)',
           itemLabel: (p) => p.value,
         }),
-        saaiUsage: fields.text({
-          label: 'SAAI에서의 활용 (KO)',
-          description: '상세 하단 다크 박스 본문.',
-          multiline: true,
-          validation: { isRequired: true },
-        }),
-        metaDescription: fields.text({
-          label: '메타 설명 (KO · 검색결과 스니펫)',
-          multiline: true,
-          validation: { isRequired: true },
-        }),
+        // 상세 본문도 ko/en/jp. en/jp를 비워두면 화면은 ko로 폴백한다(기존 동작 유지).
+        saaiUsage: localized('SAAI에서의 활용 (saaiUsage) — 상세 하단 다크 박스'),
+        metaDescription: localized('메타 설명 (metaDescription · 검색결과 스니펫)'),
         body: fields.array(
           fields.object({
-            heading: fields.text({ label: '소제목 (heading)' }),
-            paragraphs: fields.array(fields.text({ label: '문단', multiline: true }), {
-              label: '문단들',
-              itemLabel: (p) => p.value.slice(0, 40),
-            }),
+            heading: localized('소제목 (heading)'),
+            paragraphs: localizedList('문단들 (paragraphs)'),
           }),
-          { label: '본문 섹션 (KO)', itemLabel: (p) => p.fields.heading.value || '섹션' },
+          { label: '본문 섹션', itemLabel: (p) => p.fields.heading.fields.ko.value || '섹션' },
         ),
       },
     }),

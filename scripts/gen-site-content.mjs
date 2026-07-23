@@ -384,8 +384,9 @@ for (const loc of LOCALES) {
 }
 
 // ── glossary — CMS collection (content/glossary/*.yaml, one file per term). Structured
-//    per-term data passed through as-is: title/tagline/definition are {ko,en,jp}; body
-//    (sections) + saaiUsage + metaDescription are ko-only. Ordered by `order`. Edited via
+//    per-term data passed through as-is. ALL copy is {ko,en,jp} now — title/tagline/
+//    definition plus saaiUsage/metaDescription/body(heading + paragraphs[]). en/jp may be
+//    empty strings/arrays until translated; the view falls back to ko. Ordered by `order`. Edited via
 //    the `glossary` collection; consumed by the glossaryTerms.ts/glossary-i18n.ts re-exports. ──
 const GLOSSARY_DIR = path.join(ROOT, 'content/glossary');
 const glossary = fs.existsSync(GLOSSARY_DIR)

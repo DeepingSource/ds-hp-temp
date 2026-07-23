@@ -309,7 +309,7 @@ export default function TeamView({ locale }: { locale: Locale }) {
                   {item.voiceOf?.map((id) => {
                     const m = TEAM_MEMBERS.find((x) => x.id === id);
                     if (!m) return null;
-                    const vName = locale === 'en' ? m.nameEn : m.nameKo;
+                    const vName = locale === 'ko' ? m.nameKo : m.nameEn;
                     return (
                       <button
                         key={id}
@@ -406,7 +406,7 @@ function PortraitTile({
   eager?: boolean;
   onOpen: () => void;
 }) {
-  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const name = locale === 'ko' ? m.nameKo : m.nameEn;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
   const short = memberShort(m, locale);
   const theme = m.voice?.theme;
@@ -491,7 +491,7 @@ function HeroVoiceTicker({ locale, onOpen }: { locale: Locale; onOpen: (id: stri
   }, [reduced, paused, list.length]);
 
   const m = list[idx % list.length];
-  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const name = locale === 'ko' ? m.nameKo : m.nameEn;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
 
   return (
@@ -571,7 +571,7 @@ function SpotlightDialog({
     return () => window.removeEventListener('keydown', onKey);
   }, [go, onClose]);
 
-  const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const name = locale === 'ko' ? m.nameKo : m.nameEn;
   const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
   const short = memberShort(m, locale);
   const story = memberStory(m, locale);
@@ -630,7 +630,7 @@ function SpotlightDialog({
               {name}
             </h3>
             <p className="mt-1 text-sm font-bold text-primary break-keep">{role}</p>
-            {locale !== 'en' && <p className="mt-0.5 text-xs font-semibold text-gray-500">{m.nameEn}</p>}
+            {locale === 'ko' && <p className="mt-0.5 text-xs font-semibold text-gray-500">{m.nameEn}</p>}
 
             <blockquote className="mt-6 flex-1 min-h-0 overflow-y-auto pr-1">
               <Quote className="w-5 h-5 text-primary/30 mb-2" aria-hidden="true" />
@@ -664,7 +664,7 @@ function SpotlightDialog({
                   {locale === 'ko'
                     ? `${endorsed.nameKo}님 이야기 보기`
                     : locale === 'jp'
-                    ? `${endorsed.nameKo}さんのストーリーを見る`
+                    ? `${endorsed.nameEn}さんのストーリーを見る`
                     : `See ${endorsed.nameEn}'s story`}
                   <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>

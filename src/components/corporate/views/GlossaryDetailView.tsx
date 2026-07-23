@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, BookOpen, FileText } from 'lucide-react';
-import { glossaryBySlug, type GlossaryTerm } from '@/data/glossaryTerms';
+import { glossaryBySlug, glossaryDetail, type GlossaryTerm } from '@/data/glossaryTerms';
 import { industryList, type IndustryMeta } from '@/data/industryList';
 import { glossaryCardI18n, glossaryCategoryI18n } from '@/data/glossary-i18n';
 import { getDocsUsingTerm } from '@/lib/docs';
@@ -99,6 +99,8 @@ const C: Record<
 
 export default function GlossaryDetailView({ term, locale }: { term: GlossaryTerm; locale: Locale }) {
   const c = C[locale];
+  // 본문·SAAI 활용은 로케일별 카피 (en/jp 미번역 시 ko 폴백)
+  const detail = glossaryDetail(term.slug, locale) ?? { saaiUsage: '', body: [] };
   const overlay = glossaryCardI18n[term.slug]?.[locale];
 
   const title = locale === 'ko' ? term.title : (overlay?.title ?? term.title);
@@ -165,7 +167,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
 
           {/* 섹션별 본문 */}
           <div className="space-y-10">
-            {term.body.map((section) => (
+            {detail.body.map((section) => (
               <div key={section.heading}>
                 <h2 className="text-xl font-bold text-gray-900 mb-4 break-keep">{section.heading}</h2>
                 <div className="space-y-4">
@@ -185,7 +187,7 @@ export default function GlossaryDetailView({ term, locale }: { term: GlossaryTer
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <p className="text-sm font-medium text-primary uppercase tracking-wide">{c.saaiUsage}</p>
             </div>
-            <p className="text-gray-300 leading-relaxed break-keep text-sm sm:text-base">{term.saaiUsage}</p>
+            <p className="text-gray-300 leading-relaxed break-keep text-sm sm:text-base">{detail.saaiUsage}</p>
             <Link
               href={localeHref(locale, '/contact')}
               className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-medium rounded-xl text-sm hover:bg-primary-dark transition-colors"

@@ -18,7 +18,7 @@ members:
     quote:
       ko: 단 한 사람의 개인정보도 침해하지 않으면서, 오프라인 공간의 모든 흐름을 데이터로 전환합니다.
       en: Transforming physical space into intelligence while leaving zero personal identity.
-      jp: ''
+      jp: 誰ひとりの個人情報も侵害することなく、オフライン空間のすべての流れをデータへと変えます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -46,7 +46,7 @@ members:
     quote:
       ko: 글로벌 리테일 현장의 진정한 혁신은 오프라인 공간을 완벽하게 재정의하는 데서 시작됩니다.
       en: True innovation in global retail begins by completely redefining physical spaces.
-      jp: ''
+      jp: グローバル小売の現場における真のイノベーションは、オフライン空間を完全に定義し直すことから始まります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -74,7 +74,7 @@ members:
     quote:
       ko: 매장과 대형 공간의 오퍼레이션을 자율화하여 현장의 수익성과 고객 경험을 동시에 끌어올립니다.
       en: Autonomous space operations simultaneously elevating profitability and guest experience.
-      jp: ''
+      jp: 店舗と大型空間のオペレーションを自律化し、現場の収益性と顧客体験を同時に引き上げます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -102,7 +102,7 @@ members:
     quote:
       ko: CCTV 카메라 한 대로 3D 공간 동선과 체류를 실시간 인지하는 세계 최고 수준의 엔진을 구축합니다.
       en: Building world-class spatial engines that sense 3D trajectories live from single cameras.
-      jp: ''
+      jp: CCTVカメラ一台で3D空間の動線と滞在をリアルタイムに捉える、世界最高水準のエンジンを構築します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -130,7 +130,7 @@ members:
     quote:
       ko: 전국의 수천 개 매장 현장에 기술이 막힘없이 연결되고 동작하도록 운영 체계의 완성도를 높입니다.
       en: Perfecting operational delivery so technology runs seamlessly across thousands of stores.
-      jp: ''
+      jp: 全国数千の店舗現場で技術が滞りなくつながり動くよう、運用体制の完成度を高めます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -158,7 +158,7 @@ members:
     quote:
       ko: 공간 온톨로지와 초거대 비전 AI 모델을 결합하여 매장의 이상 행동을 자율 감지합니다.
       en: Combining spatial ontology and vision AI to autonomously detect physical store anomalies.
-      jp: ''
+      jp: 空間オントロジーと超大規模ビジョンAIモデルを組み合わせ、店舗の異常行動を自律的に検知します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -186,7 +186,7 @@ members:
     quote:
       ko: 원천 비디오 레벨 익명화 파이프라인으로 개인정보 걱정 없는 공간 AI 분석의 토대를 만듭니다.
       en: Foundational video-level anonymization pipelines enabling worry-free spatial analytics.
-      jp: ''
+      jp: 映像そのものの段階で匿名化するパイプラインにより、個人情報の心配がない空間AI分析の土台をつくります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -214,7 +214,7 @@ members:
     quote:
       ko: 복잡한 공간 데이터에서 점주와 본사가 즉시 실행할 수 있는 명확한 제품 가치를 만듭니다.
       en: Translating complex spatial data into actionable product value for store managers.
-      jp: ''
+      jp: 複雑な空間データから、店主と本部がすぐに実行できる明確な製品価値を生み出します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -242,7 +242,7 @@ members:
     quote:
       ko: 어떤 현장 조건에서도 24시간 안정적으로 작동하는 딜리버리 인프라를 만듭니다.
       en: Creating delivery infrastructure that operates reliably 24/7 in any physical environment.
-      jp: ''
+      jp: どんな現場条件でも24時間安定して動作するデリバリーインフラをつくります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -270,7 +270,7 @@ members:
     quote:
       ko: 복잡한 매장 동선과 혼잡도를 프라이버시 침해 없이 고정밀 3D 궤적으로 복원합니다.
       en: Restoring complex floor traffic into high-precision 3D trajectories without identity loss.
-      jp: ''
+      jp: 複雑な店内動線と混雑度を、プライバシーを侵すことなく高精度な3D軌跡として復元します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -298,7 +298,7 @@ members:
     quote:
       ko: 매대 앞 고객의 주시율과 관심도를 수치화하여 최적의 진열 효과를 입증합니다.
       en: Quantifying gaze rate and shelf engagement to prove optimal product placement.
-      jp: ''
+      jp: 棚の前に立つ顧客の注視率と関心度を数値化し、最適な陳列効果を実証します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -326,7 +326,7 @@ members:
     quote:
       ko: 실시간 가판대 결품과 도난 이상 행동을 0.1초 만에 감지하는 비전 AI 알고리즘을 훈련합니다.
       en: Training vision AI algorithms that detect shelf stock-outs and anomalies in 0.1 seconds.
-      jp: ''
+      jp: 棚の欠品や盗難といった異常行動を0.1秒で検知するビジョンAIアルゴリズムを鍛えます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -354,7 +354,7 @@ members:
     quote:
       ko: 엣지 서버부터 클라우드까지 끊김 없는 초고속 실시간 감지 스트리밍 파이프라인을 설계합니다.
       en: Designing seamless real-time sensing pipelines streaming from edge to cloud.
-      jp: ''
+      jp: エッジサーバーからクラウドまで、途切れない超高速リアルタイム検知のストリーミングパイプラインを設計します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -382,7 +382,7 @@ members:
     quote:
       ko: 현장 근무자가 앱 하나로 매장의 모든 알림과 행동 가이드를 받을 수 있도록 앱을 개발합니다.
       en: Developing mobile applications empowering floor staff with automated action guides.
-      jp: ''
+      jp: 現場のスタッフがアプリひとつで店舗のすべての通知と行動ガイドを受け取れるよう開発します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -410,7 +410,7 @@ members:
     quote:
       ko: 수백 대의 CCTV 신호를 실시간 처리하는 고성능 자율 분석 엔진을 개발합니다.
       en: Developing high-performance analysis engines processing hundreds of CCTV camera streams.
-      jp: ''
+      jp: 数百台のCCTV信号をリアルタイムに処理する、高性能な自律分析エンジンを開発します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -438,7 +438,7 @@ members:
     quote:
       ko: 어떤 하드웨어 환경에서도 가볍게 작동하는 고효율 비전 AI 인프라를 만듭니다.
       en: Creating lightweight, high-efficiency vision AI infrastructure adaptable to any hardware.
-      jp: ''
+      jp: どんなハードウェア環境でも軽快に動く、高効率なビジョンAIインフラをつくります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -466,7 +466,7 @@ members:
     quote:
       ko: 매장 안의 온도, 결품, 안전 요소를 24시간 실시간 모니터링하는 코어 엔진을 작성합니다.
       en: Authoring core engines that monitor store temperature, stock, and safety live 24/7.
-      jp: ''
+      jp: 店内の温度、欠品、安全要素を24時間リアルタイムで監視するコアエンジンを書きます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -494,7 +494,7 @@ members:
     quote:
       ko: 공간 데이터를 빠르고 안정적으로 전달하는 대규모 분산 서버 아키텍처를 구축합니다.
       en: Building scalable distributed server architectures delivering spatial data reliably.
-      jp: ''
+      jp: 空間データを速く安定して届ける、大規模分散サーバーアーキテクチャを構築します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -522,7 +522,7 @@ members:
     quote:
       ko: 엣지 단에서 익명화 처리를 완벽하게 수행하는 원천 익명화 모듈을 구현합니다.
       en: Implementing edge anonymization modules executing privacy transformations natively.
-      jp: ''
+      jp: エッジ側で匿名化処理を完全にやりきる、元データ匿名化モジュールを実装します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -550,7 +550,7 @@ members:
     quote:
       ko: 다점포 프랜차이즈 본사에서도 한눈에 수십 개 매장을 제어할 수 있는 플랫폼을 개발합니다.
       en: Developing platforms enabling franchise headquarters to manage multi-store locations.
-      jp: ''
+      jp: 多店舗フランチャイズの本部でも数十店舗を一目で制御できるプラットフォームを開発します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -578,7 +578,7 @@ members:
     quote:
       ko: 복잡한 비디오 데이터 처리 속도를 획기적으로 개선하는 엔지니어링을 수행합니다.
       en: Executing engineering optimizations that dramatically accelerate video stream processing.
-      jp: ''
+      jp: 複雑な映像データの処理速度を飛躍的に改善するエンジニアリングに取り組みます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -606,7 +606,7 @@ members:
     quote:
       ko: 현장에 바로 적용 가능한 모듈형 알고리즘 라이브러리를 지속적으로 확장합니다.
       en: Continuously expanding modular algorithm libraries ready for immediate store deployment.
-      jp: ''
+      jp: 現場にそのまま適用できるモジュール型アルゴリズムライブラリを広げ続けます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -634,7 +634,7 @@ members:
     quote:
       ko: 매장 운영자가 어제 분석부터 오늘 실행까지 3초 안에 판단할 수 있는 제품 경험을 설계합니다.
       en: Designing product experiences allowing store managers to act within 3 seconds.
-      jp: ''
+      jp: 店舗運営者が昨日の分析から今日の実行まで3秒で判断できる、製品体験を設計します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -662,7 +662,7 @@ members:
     quote:
       ko: 복잡한 데이터 분석 결과를 현장에서 즉시 활용 가능한 행동 가이드로 정의합니다.
       en: Defining complex analytics into daily automated action guides for floor staff.
-      jp: ''
+      jp: 複雑なデータ分析の結果を、現場ですぐ使える行動ガイドへと定義します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -690,7 +690,7 @@ members:
     quote:
       ko: 매장의 히트맵과 동선을 가장 쉽고 직관적으로 이해할 수 있는 비주얼 인터페이스를 디자인합니다.
       en: Designing visual interfaces that make floor heatmaps and flow intuitively understandable.
-      jp: ''
+      jp: 店舗のヒートマップと動線を、最もやさしく直感的に理解できるビジュアルインターフェースをデザインします。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -718,7 +718,7 @@ members:
     quote:
       ko: 현장의 번거로움을 없애고 데이터의 눈부신 가치를 전달하는 UI/UX를 창조합니다.
       en: Creating UI/UX that eliminates store friction and highlights the value of data.
-      jp: ''
+      jp: 現場の煩わしさをなくし、データの確かな価値を届けるUI/UXを生み出します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -746,7 +746,7 @@ members:
     quote:
       ko: 사장님부터 대형 유통 담당자까지 모두가 만족하는 일관된 디자인 시스템을 구축합니다.
       en: Building consistent design systems loved by both store owners and enterprise teams.
-      jp: ''
+      jp: 個人店のオーナーから大手流通の担当者まで、誰もが納得する一貫したデザインシステムを築きます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -774,7 +774,7 @@ members:
     quote:
       ko: 고객의 페인 포인트를 정밀하게 파악하여 제품 기능 우선순위와 완성도를 관리합니다.
       en: Precision management of product feature roadmaps addressing customer pain points.
-      jp: ''
+      jp: 顧客のペインポイントを精緻に捉え、製品機能の優先順位と完成度を管理します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -802,7 +802,7 @@ members:
     quote:
       ko: 체류 시간과 입문 전환율의 인과관계를 입증하여 매장 매출을 실제로 끌어올립니다.
       en: Proving causalities between dwell time and capture rate to drive actual store revenue.
-      jp: ''
+      jp: 滞在時間と入店転換率の因果関係を実証し、店舗の売上を実際に押し上げます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -830,7 +830,7 @@ members:
     quote:
       ko: 매대별 주시 비율과 세일즈 데이터의 교차 분석으로 매장 내 황금 진열 구역을 발견합니다.
       en: Discovering golden display zones by cross-analyzing gaze duration and sales data.
-      jp: ''
+      jp: 棚ごとの注視率と販売データを掛け合わせ、店内のゴールデンゾーンを見つけ出します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -858,7 +858,7 @@ members:
     quote:
       ko: 매장의 2D 평면도와 3D 공간을 정밀 좌표 매핑하여 오차 없는 데이터 분석 기반을 만듭니다.
       en: Mapping 2D floor plans into 3D spatial coordinates for zero-error analytics.
-      jp: ''
+      jp: 店舗の2D図面と3D空間を精密に座標マッピングし、誤差のないデータ分析基盤をつくります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -886,7 +886,7 @@ members:
     quote:
       ko: 현장 센서 및 카메라 설치 환경을 정밀 최적화하여 100% 감지 신뢰도를 보장합니다.
       en: Optimizing field sensor and camera setups to guarantee 100% sensing reliability.
-      jp: ''
+      jp: 現場のセンサーとカメラの設置環境を精密に最適化し、検知の信頼性を確かなものにします。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -914,7 +914,7 @@ members:
     quote:
       ko: 대형 유통 매장 및 무인 상권 도입 프로젝트의 모든 일정과 품질을 완벽히 구축합니다.
       en: Managing schedules and quality for large space and automated store deployments.
-      jp: ''
+      jp: 大型流通店舗や無人商圏への導入プロジェクトについて、すべての日程と品質を組み立てます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -942,7 +942,7 @@ members:
     quote:
       ko: 고객사와 본사 간의 오퍼레이션 프로세스를 능동적으로 조율하여 최고의 도입 효과를 제공합니다.
       en: Coordinating operational processes between enterprise clients and internal teams.
-      jp: ''
+      jp: 顧客企業と本部のオペレーションプロセスを能動的に調整し、最大の導入効果をお届けします。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -970,7 +970,7 @@ members:
     quote:
       ko: 글로벌 엔터프라이즈 프로젝트의 성공적인 안착을 돕는 프로그램 운영을 총괄합니다.
       en: Directing program management for successful global enterprise deployments.
-      jp: ''
+      jp: グローバルエンタープライズ案件の着実な定着を支えるプログラム運営を統括します。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -998,7 +998,7 @@ members:
     quote:
       ko: 일본 시장의 다양한 무인 매장 및 리테일 현장에 SAAI 솔루션 도입을 확산시킵니다.
       en: Expanding SAAI solutions across unmanned stores and retail in the Japanese market.
-      jp: ''
+      jp: 日本市場のさまざまな無人店舗・小売の現場へ、SAAIソリューションの導入を広げます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -1026,7 +1026,7 @@ members:
     quote:
       ko: 글로벌 공간 시장의 새로운 비즈니스 기회를 발굴하고 유통 파트너십을 확장합니다.
       en: Uncovering new spatial AI business opportunities and expanding global partnerships.
-      jp: ''
+      jp: グローバルな空間市場で新たなビジネス機会を発掘し、流通パートナーシップを広げます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -1054,7 +1054,7 @@ members:
     quote:
       ko: 수백만 건의 오프라인 체류 및 결품 빅데이터를 신속하게 처리하는 데이터 인프라를 지탱합니다.
       en: Sustaining big data infrastructure processing millions of offline dwell logs daily.
-      jp: ''
+      jp: 数百万件に及ぶオフラインの滞在・欠品ビッグデータを速やかに処理するデータインフラを支えます。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -1082,7 +1082,7 @@ members:
     quote:
       ko: 뛰어난 인재들이 오직 공간 혁신 몰입에만 집중할 수 있는 최고의 조직 문화를 만듭니다.
       en: Building organizational culture so top talent can focus purely on spatial innovation.
-      jp: ''
+      jp: 優れた人材が空間イノベーションへの没入だけに集中できる、最良の組織文化をつくります。
     voiceTheme: none
     voiceShort:
       ko: ''
@@ -1110,7 +1110,7 @@ members:
     quote:
       ko: 딥핑소스의 지속 가능한 성장과 탄탄한 재무 투명성을 뒷받침합니다.
       en: Supporting sustainable growth and robust financial transparency for DeepingSource.
-      jp: ''
+      jp: ディーピングソースの持続的な成長と、確かな財務の透明性を支えます。
     voiceTheme: none
     voiceShort:
       ko: ''

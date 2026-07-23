@@ -2,6 +2,15 @@ import siteContent from '@/data/generated/site-content.json';
 
 export type GlossaryCategory = 'ai' | 'analytics' | 'retail' | 'operations';
 
+/** ko/en/jp copy. en/jp may be empty until translated — always read through
+ *  `glossaryDetail()` (or `pick`) so an untranslated field falls back to ko
+ *  instead of rendering blank. */
+type Tri = { ko: string; en: string; jp: string };
+export type GlossaryLocale = 'ko' | 'en' | 'jp';
+
+const pick = (t: Tri | undefined, locale: GlossaryLocale): string =>
+  (t?.[locale] || t?.ko) ?? '';
+
 export interface GlossaryTerm {
   slug: string;
   title: string;
@@ -43,9 +52,9 @@ interface RawGlossaryEntry {
   definition: { ko: string; en: string; jp: string };
   relatedTerms: string[];
   relatedIndustries: string[];
-  saaiUsage: string;
-  metaDescription: string;
-  body: { heading: string; paragraphs: string[] }[];
+  saaiUsage: Tri;
+  metaDescription: Tri;
+  body: { heading: Tri; paragraphs: { ko: string[]; en: string[]; jp: string[] } }[];
 }
 
 const raw = (siteContent as unknown as { glossary: RawGlossaryEntry[] }).glossary;
@@ -58,13 +67,32 @@ export const glossaryTerms: GlossaryTerm[] = raw.map((t) => ({
   categoryLabel: glossaryCategoryLabel[t.category],
   tagline: t.tagline.ko,
   definition: t.definition.ko,
-  body: t.body,
-  saaiUsage: t.saaiUsage,
+  body: t.body.map((s) => ({ heading: pick(s.heading, 'ko'), paragraphs: s.paragraphs.ko })),
+  saaiUsage: pick(t.saaiUsage, 'ko'),
   relatedTerms: t.relatedTerms,
   relatedIndustries: t.relatedIndustries,
-  metaDescription: t.metaDescription,
+  metaDescription: pick(t.metaDescription, 'ko'),
 }));
 
 export const glossaryBySlug: Record<string, GlossaryTerm> = Object.fromEntries(
   glossaryTerms.map((term) => [term.slug, term]),
 );
+
+/**
+ * Locale-aware detail copy (body · saaiUsage · metaDescription). These fields used
+ * to be ko-only strings rendered on every locale, so /glossary and /jp/glossary
+ * both showed Korean bodies. They are {ko,en,jp} now; until en/jp are translated
+ * this falls back to ko — same output as before, but translatable without code changes.
+ */
+export function glossaryDetail(slug: string, locale: GlossaryLocale) {
+  const t = raw.find((e) => e.slug === slug);
+  if (!t) return null;
+  return {
+    saaiUsage: pick(t.saaiUsage, locale),
+    metaDescription: pick(t.metaDescription, locale),
+    body: t.body.map((s) => ({
+      heading: pick(s.heading, locale),
+      paragraphs: s.paragraphs[locale]?.length ? s.paragraphs[locale] : s.paragraphs.ko,
+    })),
+  };
+}
