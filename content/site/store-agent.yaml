@@ -14,6 +14,70 @@ ctaSecondary:
   ko: 제안 예시 보기
   en: See sample recommendations
   jp: ご提案の例を見る
+evolutionEyebrow:
+  ko: 대시보드의 진화
+  en: How the dashboard evolves
+  jp: ダッシュボードの進化
+evolutionHeading:
+  ko: 보여주는 화면에서, 먼저 말을 거는 화면으로
+  en: From a screen that shows to a screen that speaks first
+  jp: 見せる画面から、先に話しかける画面へ
+evolutionSub:
+  ko: 같은 데이터라도, 화면이 무엇을 해주느냐에 따라 하루가 달라집니다. saai agent는 지금 두 번째 칸에 있고, 세 번째 칸으로 가고 있습니다.
+  en: The same data changes your day depending on what the screen does with it. saai agent is on the second rung today, and moving to the third.
+  jp: 同じデータでも、画面が何をしてくれるかで一日が変わります。saai agent は今、二段目にいて、三段目へ向かっています。
+evolutionProactiveCta:
+  ko: 지금 어떻게 동작하는지 보기
+  en: See how it already works
+  jp: 実際の動きを見る
+evolution:
+  - id: viewer
+    tag:
+      ko: saai insight
+      en: saai insight
+      jp: saai insight
+    title:
+      ko: 보여줍니다
+      en: It shows you
+      jp: 見せてくれます
+    desc:
+      ko: 어제 몇 명이 왔고, 어디에 오래 머물렀는지 화면에 정확히 나옵니다. 무엇을 할지는 보는 사람이 정합니다.
+      en: How many came yesterday, where they lingered — all of it, precisely, on screen. What to do about it is up to you.
+      jp: 昨日何人が来て、どこに長く留まったかが画面に正確に出ます。何をするかは、見る人が決めます。
+  - id: interactive
+    tag:
+      ko: saai agent · 지금
+      en: saai agent · today
+      jp: saai agent · 現在
+    title:
+      ko: 물으면 답합니다
+      en: It answers when asked
+      jp: 尋ねれば答えます
+    desc:
+      ko: "\"어제 왜 매출이 떨어졌지?\"라고 물으면 근거와 함께 답합니다. 다만, 물어볼 생각이 나야 쓸 수 있습니다."
+      en: "Ask \"why did sales drop yesterday?\" and it answers, with the evidence. But you still have to think of the question."
+      jp: "「昨日はなぜ売上が落ちたのか」と尋ねれば、根拠とともに答えます。ただし、尋ねようと思いつく必要があります。"
+  - id: proactive
+    tag:
+      ko: 가는 방향
+      en: Where it is going
+      jp: 向かう先
+    title:
+      ko: 먼저 말을 겁니다
+      en: It speaks first
+      jp: 先に話しかけます
+    desc:
+      ko: 묻지 않아도 오늘 놓치고 있는 것을 먼저 짚어줍니다. 액션 카드와 푸시 알림이 이미 이 방향으로 동작하고 있습니다.
+      en: Without being asked, it points out what today is missing. Action cards and push alerts already work this way.
+      jp: 尋ねなくても、今日見落としていることを先に示します。アクションカードとプッシュ通知は、すでにこの方向で動いています。
+techBridgeText:
+  ko: saai agent가 이렇게 판단하는 이유 — 딥핑소스의 Agentic AI 접근 철학
+  en: Why saai agent judges the way it does — our approach to agentic AI
+  jp: saai agent がこう判断する理由 — ディーピングソースのAgentic AIへの考え方
+techBridgeCta:
+  ko: 접근 철학 보기
+  en: See the principles
+  jp: 哲学を見る
 stepsHeading:
   ko: 숫자에서, 무엇을 바꿀지까지
   en: From the number to what to change

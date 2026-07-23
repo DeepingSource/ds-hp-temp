@@ -3,10 +3,10 @@ import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
 import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
-  title: 'Agentic AI — Spatial & Operational Store Ontology | DEEPINGSOURCE',
+  title: 'Agentic AI — Principles and baseline | DEEPINGSOURCE',
   description:
-    'Beyond visual recognition, we construct store ontologies linking MTMC CCTV trajectories, POS, inventory, and weather for autonomous spatial decision-making.',
-  keywords: ['Agentic AI', 'Spatial AI', 'Store Ontology', 'Cross-Store Learning', 'MTMC Simulation', 'DeepingSource', 'SAAI'],
+    'Why we build agentic AI for physical space, and where we stop. The AI recommends and people decide, no claim without evidence, and a ladder of autonomy climbed one rung at a time.',
+  keywords: ['Agentic AI', 'AI principles', 'human in the loop', 'levels of autonomy', 'anonymization', 'DeepingSource', 'SAAI'],
   alternates: {
     canonical: '/technology/agentic-ai',
     languages: {
@@ -17,9 +17,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     ...OG_BASE,
-    title: 'Agentic AI — Spatial & Operational Store Ontology | DEEPINGSOURCE',
-    description: 'Autonomous store intelligence connecting MTMC footfall trajectories, POS, inventory, and cross-store learning propagation.',
-    type: 'website',
+    title: 'Agentic AI — Principles and baseline | DEEPINGSOURCE',
+    description: 'After AI that sees comes AI that decides with you. The principles and the technical baseline behind agentic AI at DeepingSource.',
     locale: 'en_US',
   },
 };

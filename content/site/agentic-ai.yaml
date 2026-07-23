@@ -1,0 +1,253 @@
+# Agentic AI 기술 페이지 카피 — Keystatic에서 편집 (/keystatic → "Agentic AI — 기술 카피").
+# 역할 계약(PLAN_SA_AGENTIC_ROLES_v2 §2): 이 페이지는 Why & How(배경·철학·베이스라인)만 다룬다.
+# 제품 화면·기능 시나리오는 /products/saai-agent 몫이므로 여기에 넣지 않는다.
+# 아이콘·링크·다이어그램 구조는 코드 유지. 객체배열의 id 순서 = 코드 아이콘 순서, 재정렬 금지.
+eyebrow:
+  ko: Technology · Agentic AI
+  en: Technology · Agentic AI
+  jp: Technology · Agentic AI
+heroTitle:
+  ko: 보는 AI의 다음은, 함께 결정하는 AI입니다
+  en: After AI that sees comes AI that decides with you
+  jp: 見るAIの次は、ともに決めるAIです
+heroSub:
+  ko: 공간이 만드는 데이터는 사람이 다 볼 수 없을 만큼 많아졌습니다. 딥핑소스는 그 데이터를 자율 실행이 아니라, 더 나은 결정으로 바꾸는 데 씁니다.
+  en: Space now produces more data than any person can read. We spend that data not on autonomous execution, but on better decisions.
+  jp: 空間が生むデータは、人がすべてを見きれないほど増えました。ディーピングソースはそのデータを、自律実行ではなく、より良い決定に変えるために使います。
+heroNote:
+  ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI — 세 축의 가장 위에 있는 이야기입니다.
+  en: Spatial intelligence on top of anonymization, and agentic AI on top of that — this is the story of the topmost axis.
+  jp: 匿名化の上に空間知能、その上にエージェントAI — 三つの軸の最上段の話です。
+problemEyebrow:
+  ko: 배경
+  en: Background
+  jp: 背景
+problemTitle:
+  ko: 대시보드는 공간을 보여줄 뿐, 운영하지 않습니다
+  en: A dashboard shows you the space. It does not run it.
+  jp: ダッシュボードは空間を見せるだけで、運営はしません
+problemSub:
+  ko: 카메라가 늘고 지표가 늘수록, 화면은 정확해지고 결정은 더 어려워집니다. 볼 것이 많아진 만큼 놓치는 것도 많아졌기 때문입니다. 보는 AI 다음에 필요한 것은 더 많은 지표가 아니라, 무엇을 먼저 볼지 짚어주는 판단입니다.
+  en: The more cameras and metrics you add, the more precise the screen becomes — and the harder the decision. More to look at means more to miss. What comes after AI that sees is not more metrics, but judgement about what to look at first.
+  jp: カメラが増え指標が増えるほど、画面は正確になり、決定は難しくなります。見るものが増えた分、見落とすものも増えたからです。見るAIの次に必要なのは、より多くの指標ではなく、何を先に見るべきかを示す判断です。
+philosophyEyebrow:
+  ko: 철학
+  en: Principles
+  jp: 哲学
+philosophyHeading:
+  ko: 딥핑소스가 Agentic AI를 만드는 세 가지 원칙
+  en: Three principles behind the way we build agentic AI
+  jp: ディーピングソースがAgentic AIをつくる三つの原則
+philosophySub:
+  ko: 기술이 어디까지 갈 수 있는가보다, 어디에서 멈춰야 하는가를 먼저 정했습니다.
+  en: Before asking how far the technology could go, we decided where it should stop.
+  jp: 技術がどこまで行けるかより先に、どこで止まるべきかを決めました。
+philosophy:
+  - id: human-decides
+    title:
+      ko: 권고는 AI, 결정은 사람
+      en: The AI recommends. People decide.
+      jp: 推奨はAI、決定は人
+    desc:
+      ko: 목표는 사람을 대체하는 자동화가 아니라, 사람의 결정을 더 좋게 만드는 것입니다. 승인 없는 실행은 없습니다.
+      en: The goal is not automation that replaces people, but decisions that come out better because of it. Nothing executes without approval.
+      jp: 目標は人を置き換える自動化ではなく、人の決定をより良くすることです。承認のない実行はありません。
+  - id: evidence-first
+    title:
+      ko: 근거 없이 말하지 않는다
+      en: No claim without evidence
+      jp: 根拠なしには語らない
+    desc:
+      ko: 모든 권고는 데이터 근거를 함께 제시합니다. 근거를 댈 수 없으면, 답하지 않습니다.
+      en: Every recommendation arrives with the data behind it. When we cannot cite the evidence, we do not answer.
+      jp: すべての推奨はデータの根拠とともに示します。根拠を示せないときは、答えません。
+  - id: proactive
+    title:
+      ko: 묻기 전에 먼저 제안한다
+      en: Speak first, before being asked
+      jp: 尋ねられる前に提案する
+    desc:
+      ko: 물어야 답하는 도구가 아니라, 매장이 놓친 것을 먼저 짚어주는 방향으로 갑니다. 사람이 질문을 떠올려야만 쓸모가 생기는 도구는 결국 쓰이지 않기 때문입니다.
+      en: Not a tool that waits to be queried, but one that points out what the store has missed. A tool that is only useful once you think of the question ends up unused.
+      jp: 尋ねられて初めて答える道具ではなく、店舗が見落としたことを先に示す方向へ進みます。人が問いを思いつかなければ役に立たない道具は、結局使われないからです。
+baselineEyebrow:
+  ko: 베이스라인
+  en: Baseline
+  jp: ベースライン
+baselineHeading:
+  ko: 무엇 위에서 시작하는가
+  en: What we start from
+  jp: 何の上から始めるのか
+baselineSub:
+  ko: 원칙은 선언만으로 지켜지지 않습니다. 네 가지 기술적 기반이 그 원칙을 실제로 가능하게 합니다.
+  en: Principles are not kept by declaring them. Four technical foundations are what make them hold.
+  jp: 原則は宣言だけでは守られません。四つの技術的基盤が、その原則を実際に成り立たせます。
+baseline:
+  - id: anonymization
+    title:
+      ko: 익명화 파운데이션
+      en: An anonymization foundation
+      jp: 匿名化ファウンデーション
+    desc:
+      ko: 모든 판단은 신원이 제거된 데이터 위에서만 이루어집니다. 원본 영상은 남기지 않고, 지워진 다음의 데이터로만 분석합니다.
+      en: Every judgement is made on data with identity already removed. No source footage is kept; analysis runs only on what remains after erasure.
+      jp: すべての判断は、身元が除去されたデータの上でのみ行われます。元映像は残さず、消去後のデータだけで分析します。
+    linkLabel:
+      ko: Anonymizer 자세히
+      en: More on Anonymizer
+      jp: Anonymizer の詳細
+  - id: spatial-context
+    title:
+      ko: 공간 컨텍스트
+      en: Spatial context
+      jp: 空間コンテキスト
+    desc:
+      ko: 여러 대의 카메라를 하나의 공간으로 정합해 동선·체류·전환을 읽습니다. "누가"가 아니라 "무엇이 어떻게 움직였는가"를 봅니다.
+      en: Multiple cameras are reconciled into one space to read flow, dwell, and conversion. Not who — what moved, and how.
+      jp: 複数のカメラを一つの空間として整合し、動線・滞在・転換を読みます。「誰が」ではなく「何がどう動いたか」を見ます。
+    linkLabel:
+      ko: Spatial AI 자세히
+      en: More on Spatial AI
+      jp: Spatial AI の詳細
+  - id: data-linking
+    title:
+      ko: 데이터 연결
+      en: Connected data
+      jp: データ連携
+    desc:
+      ko: 동선에 POS·재고·외부 환경이 이어질수록 하나의 매장 맥락이 만들어집니다. 연결이 늘수록 권고는 정교해지고, 무엇보다 근거를 댈 수 있게 됩니다.
+      en: As POS, inventory, and outside conditions join the flow data, a single store context forms. More connections make recommendations sharper — and, above all, citable.
+      jp: 動線にPOS・在庫・外部環境がつながるほど、一つの店舗コンテキストができます。連携が増えるほど推奨は精緻になり、何より根拠を示せるようになります。
+    linkLabel:
+      ko: 연결되는 데이터 보기
+      en: See what connects
+      jp: つながるデータを見る
+  - id: learning-loop
+    title:
+      ko: 학습 루프
+      en: The learning loop
+      jp: 学習ループ
+    desc:
+      ko: 권고 → 승인 또는 반려 → 실행 → 결과 검증 → 다음 권고. 사람이 무엇을 물리쳤는지가 시스템의 학습 데이터가 됩니다. 반려도 데이터입니다.
+      en: Recommend → approve or reject → act → verify the outcome → recommend again. What a person turned down becomes training data. A rejection is data too.
+      jp: 推奨 → 承認または却下 → 実行 → 結果検証 → 次の推奨。人が何を退けたかが、システムの学習データになります。却下もデータです。
+    linkLabel:
+      ko: 운영 루프 보기
+      en: See the operating loop
+      jp: オペレーティングループを見る
+linkedSourcesLabel:
+  ko: 하나의 매장 맥락으로 이어지는 것들
+  en: What joins into one store context
+  jp: 一つの店舗コンテキストにつながるもの
+linkedSources:
+  - id: flow
+    label:
+      ko: 동선 · 체류
+      en: Flow · dwell
+      jp: 動線・滞在
+  - id: pos
+    label:
+      ko: POS · 결제
+      en: POS · transactions
+      jp: POS・決済
+  - id: inventory
+    label:
+      ko: 재고 · 진열
+      en: Inventory · display
+      jp: 在庫・陳列
+  - id: external
+    label:
+      ko: 날씨 · 주변 상권
+      en: Weather · local context
+      jp: 天候・周辺商圏
+ladderEyebrow:
+  ko: 자율화 단계
+  en: Levels of autonomy
+  jp: 自律化の段階
+ladderHeading:
+  ko: 처음부터 자동이 아닙니다 — L0에서 L5까지
+  en: Not automatic from day one — L0 to L5
+  jp: 最初から自動ではありません — L0からL5まで
+ladderSub:
+  ko: 카테고리별로 권고 → 승인 → 자동 → 검증 → 학습의 사다리를 한 칸씩 올라갑니다. 한 번에 전부 자동이 되는 매장은 없습니다.
+  en: "Category by category, the ladder climbs one rung at a time: recommend → approve → automate → verify → learn. No store goes fully automatic at once."
+  jp: カテゴリーごとに、推奨 → 承認 → 自動 → 検証 → 学習のはしごを一段ずつ上がります。一度にすべてが自動になる店舗はありません。
+ladderNote:
+  ko: 한 칸을 올라가려면 누적 승인률과 결과 검증 데이터가 쌓여야 하고, 본사와 점주의 명시적 합의가 있어야 합니다. 충돌이 생기면 즉시 한 칸 내려옵니다. 결정과 책임은 어느 단계에서도 사람의 자리입니다.
+  en: Climbing a rung requires accumulated approvals, verified outcomes, and explicit agreement between HQ and the store. On conflict, it drops back a rung immediately. At every level, the decision and the accountability stay with people.
+  jp: 一段上がるには、累積の承認率と結果検証データが積み上がり、本部と店舗の明示的な合意が必要です。衝突が起きれば、ただちに一段下がります。どの段階でも、決定と責任は人の場所です。
+ladder:
+  - id: l0
+    label:
+      ko: 관찰만
+      en: Observe only
+      jp: 観察のみ
+    line:
+      ko: 사람이 모든 결정을 합니다
+      en: People make every decision
+      jp: 人がすべての決定をします
+  - id: l1
+    label:
+      ko: 정보 안내
+      en: Inform
+      jp: 情報案内
+    line:
+      ko: 맥락을 알립니다 — 날씨·시즌·주변 이벤트
+      en: Surfaces context — weather, season, nearby events
+      jp: 文脈を知らせます — 天候・季節・周辺イベント
+  - id: l2
+    label:
+      ko: 우선순위 권고
+      en: Recommend priority
+      jp: 優先順位の推奨
+    line:
+      ko: 먼저 볼 것을 순서와 이유로 제시합니다
+      en: Puts what to look at first in order, with reasons
+      jp: 先に見るべきことを、順序と理由で示します
+  - id: l3
+    label:
+      ko: 승인 후 실행
+      en: Act on approval
+      jp: 承認後に実行
+    line:
+      ko: 구체적인 액션을 만들되, 사람의 승인을 받고 실행합니다
+      en: Drafts a concrete action, then acts once a person approves
+      jp: 具体的なアクションを作り、人の承認を得てから実行します
+  - id: l4
+    label:
+      ko: 저위험 자동 + 사후 보고
+      en: Low-risk auto + report back
+      jp: 低リスク自動＋事後報告
+    line:
+      ko: 합의된 반복 작업만 자동으로, 결과는 사람에게 보고합니다
+      en: Automates only the agreed, repetitive work — and reports the outcome
+      jp: 合意された反復作業だけを自動化し、結果は人に報告します
+  - id: l5
+    label:
+      ko: 자율 주행 매장
+      en: Self-driving store
+      jp: 自律走行店舗
+    line:
+      ko: 사람은 전략과 책임, 그리고 환대에 집중합니다
+      en: People focus on strategy, accountability, and hospitality
+      jp: 人は戦略と責任、そしてホスピタリティに集中します
+bridgeEyebrow:
+  ko: 제품으로
+  en: Into the product
+  jp: 製品へ
+bridgeHeading:
+  ko: 이 철학으로 만든 제품
+  en: The product built on these principles
+  jp: この哲学でつくった製品
+bridgeSub:
+  ko: 무엇을 얻게 되는지는, 제품에서 확인하세요.
+  en: What you actually get — see it on the product page.
+  jp: 何を得られるかは、製品ページでご確認ください。
+bridgeCta:
+  ko: saai agent 보기
+  en: See saai agent
+  jp: saai agent を見る
+bridgeCtaSecondary:
+  ko: 도입 문의하기
+  en: Talk to us
+  jp: 導入のご相談

@@ -49,7 +49,7 @@ const NAV: NavItem[] = [
       { header: L('3대 핵심 기술 파이프라인', '3 Core Tech Pipeline', '3大コア技術パイプライン') },
       { href: '/technology/anonymizer', label: L('Anonymizer', 'Anonymizer', 'Anonymizer'), desc: L('원천 익명화 모듈', 'Source Anonymization', '元本匿名化モジュール') },
       { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI'), desc: L('MTMC 3D 공간 인지', 'MTMC 3D Trajectory Sensing', 'MTMC 3D空間動線認識') },
-      { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('공간 온톨로지·자율 지능', 'Spatial Ontology & Agentic AI', '空間オントロジー・自律知能') },
+      { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('접근 철학·자율화 단계', 'Principles & levels of autonomy', 'アプローチの哲学・自律化の段階') },
       { header: L('부차적 지원 모듈', 'Supporting Tech Modules', '補助技術モジュール') },
       { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('Edge SDK', 'Edge SDK', 'Edge SDK') },
       { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('모델 카탈로그', 'Model catalog', 'モデルカタログ') },

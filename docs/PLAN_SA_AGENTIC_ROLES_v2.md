@@ -169,3 +169,43 @@ productBridgeSub: 무엇을 얻게 되는지는, 제품에서 확인하세요.
 - **AutonomyLadderTimeline**은 현재 어느 뷰에서도 사용되지 않는 컴포넌트 — 폐기된 기획일 가능성. 내용이 현재 방향과 맞는지 확인 후 사용 (맞지 않으면 동일 구조로 문구만 교체).
 - **SEO**: URL 유지로 리스크 낮음. 다만 페이지 주제가 바뀌므로 title/description 갱신에 따른 순위 변동은 자연스러운 수준.
 - 크로스스토어 전파·멀티 매장 분석 스토리는 이번 범위에서 제외 — 추후 SA 페이지 "본부 뷰" 섹션 후보로 백로그.
+
+---
+
+## 10. 구현 기록 (2026-07-23 · Phase 1~4 완료)
+
+### 계획서 정정 (착수 전 코드 확인 결과)
+
+| 계획서 | 실제 |
+|---|---|
+| §7 #4 `velite.config.ts`에 agentic-ai.yaml 수집 대상 추가 | **틀림.** `content/site/*.yaml`은 velite를 타지 않는다. `scripts/gen-site-content.mjs` → `src/data/generated/site-content.json` 파이프라인이고, `keystatic.config.tsx`는 편집 UI 스키마다. velite는 손대지 않았다. |
+| §9 `AutonomyLadderTimeline`은 미사용 컴포넌트 | **틀림.** `MockupGallery.tsx:157`에 등록된 `/demo` 갤러리 목업으로 살아있다. 게다가 `MockupBadge`("예시 화면")·`SaaiHeader`("store agent") 제품 크롬과 승급 조건 **수치**를 달고 있다. |
+
+### 계획서와 다르게 간 지점
+
+1. **자율화 사다리는 목업 재활용 대신 뷰 안에 직접 구현.** 위 크롬 문제 + "수치 비공개" 결정 때문에 재활용이 오히려 비쌌다. 목업(`AutonomyLadderTimeline`)은 `/demo`용으로 **그대로 유지**했고, 기술 페이지는 CMS 카피를 쓰는 L0~L5 카드 그리드로 새로 그렸다. 단일 사용처라 별도 컴포넌트로 빼지 않았다.
+2. **승급 조건 수치(승인률 80%↑, 검증 30회↑)는 공개하지 않는다.** §9의 안전한 선택지를 택해 `ladderNote`에 개념만 서술("누적 승인률과 결과 검증 데이터가 쌓이고, 본사·점주의 명시적 합의가 있을 때"). 수치는 제품 실동작과의 정합 확인 전까지 대외 사실 주장으로 내보내지 않는다.
+3. **온톨로지 셀렉터 UI는 이식하지 않았다.** 인터랙션 자체는 좋았으나 내용물이 전부 가공 수치(`ONTOLOGY ENTITIES: 12,480+`, `STORE ONTOLOGY ENGINE v2.4`, 체류 42초, 78%)였다. 베이스라인 ③ "데이터 연결" 카드 안에 연결 소스 4종(동선·POS·재고·외부환경) 칩 목록으로 축약했다.
+
+### 추가로 잡은 것 (계획서에 없던 실제 버그)
+
+- 구 `AgenticAiTechView`의 온톨로지·전파·시뮬레이션 섹션 카피가 **로케일과 무관하게 한국어로 하드코딩**되어 있었다. EN/JP 방문자에게 한국어가 그대로 노출되던 상태 — 전면 리라이트로 해소, 3로케일 전부 CMS 참조.
+- 구 jp 카피에 한글 혼입 오타(`事前シ뮬レーション`)가 있었다. 해당 섹션 폐기로 함께 제거.
+- 뷰가 `'use client'`였으나 상태가 사라져 **서버 컴포넌트로 전환**했다.
+
+### 변경 파일
+
+신설 4 — `content/site/agentic-ai.yaml` · `src/components/sections/AgentEvolutionSection.tsx`
+수정 8 — `AgenticAiTechView.tsx`(전면) · `StoreAgentView.tsx` · `content/site/store-agent.yaml` · `scripts/gen-site-content.mjs` · `keystatic.config.tsx` · `Header.tsx` · `{,ko/,jp/}technology/agentic-ai/page.tsx`
+
+`content/site/technology.yaml`의 agentic 카드 desc는 새 서사와 충돌하지 않아 §5대로 유지. 라우트·사이트맵·리다이렉트 변경 없음.
+
+### 검증
+
+3로케일 × 11항목 = 33건 렌더 검증 통과(철학 3원칙·L0~L5·연결 소스·구 카피 제거·`#proactive` 앵커와 링크·양방향 상호 링크). `tsc` 통과 · `next build` 878/878 · `build-ghpages.sh` 정적 export 3로케일 생성 · eslint 신규 지적 0건.
+
+### 남은 것
+
+- **§9 코어팀 컨펌**: 철학 3원칙 문구는 대외 포지셔닝 선언이므로 사인오프 필요. 현재 카피는 초안이며 CMS(`/keystatic` → "Agentic AI — 기술 카피")에서 코드 수정 없이 교체 가능하다.
+- EN/JP 카피는 KO 기준 번역이라 원어민 톤 리뷰 1회 권장.
+- §4.2 "각 step이 '얻는 것'으로 읽히는지" 카피 리뷰는 미실시 — 기존 step 카피는 손대지 않았다.

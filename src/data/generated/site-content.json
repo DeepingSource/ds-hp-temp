@@ -155,6 +155,12 @@
       "finalHeading": "From watching to operating.",
       "finalSub": "We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides what’s next for your store with you.",
       "finalCta": "Request a consultation",
+      "evolutionEyebrow": "How the dashboard evolves",
+      "evolutionHeading": "From a screen that shows to a screen that speaks first",
+      "evolutionSub": "The same data changes your day depending on what the screen does with it. saai agent is on the second rung today, and moving to the third.",
+      "evolutionProactiveCta": "See how it already works",
+      "techBridgeText": "Why saai agent judges the way it does — our approach to agentic AI",
+      "techBridgeCta": "See the principles",
       "steps": {
         "restock": {
           "title": "Restock the shelf now?",
@@ -172,7 +178,24 @@
           "title": "The more you use it, the better it gets",
           "desc": "Your feedback becomes the next improvement. Fix the weekly report right in the chat — and the conversation keeps its thread."
         }
-      }
+      },
+      "evolution": [
+        {
+          "tag": "saai insight",
+          "title": "It shows you",
+          "desc": "How many came yesterday, where they lingered — all of it, precisely, on screen. What to do about it is up to you."
+        },
+        {
+          "tag": "saai agent · today",
+          "title": "It answers when asked",
+          "desc": "Ask \"why did sales drop yesterday?\" and it answers, with the evidence. But you still have to think of the question."
+        },
+        {
+          "tag": "Where it is going",
+          "title": "It speaks first",
+          "desc": "Without being asked, it points out what today is missing. Action cards and push alerts already work this way."
+        }
+      ]
     },
     "ko": {
       "heroTitle": "보는 AI를 넘어, 운영하는 AI.",
@@ -187,6 +210,12 @@
       "finalHeading": "지켜보는 데서, 운영하는 데로.",
       "finalSub": "영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. saai agent가 매장의 다음을 함께 결정합니다.",
       "finalCta": "도입 상담 신청",
+      "evolutionEyebrow": "대시보드의 진화",
+      "evolutionHeading": "보여주는 화면에서, 먼저 말을 거는 화면으로",
+      "evolutionSub": "같은 데이터라도, 화면이 무엇을 해주느냐에 따라 하루가 달라집니다. saai agent는 지금 두 번째 칸에 있고, 세 번째 칸으로 가고 있습니다.",
+      "evolutionProactiveCta": "지금 어떻게 동작하는지 보기",
+      "techBridgeText": "saai agent가 이렇게 판단하는 이유 — 딥핑소스의 Agentic AI 접근 철학",
+      "techBridgeCta": "접근 철학 보기",
       "steps": {
         "restock": {
           "title": "지금, 매대부터 채울까요?",
@@ -204,7 +233,24 @@
           "title": "쓸수록, 스스로 나아집니다",
           "desc": "남긴 지적이 다음 개선으로 이어집니다. 주간 리포트는 챗에서 바로 고치고, 대화는 흐름을 기억합니다."
         }
-      }
+      },
+      "evolution": [
+        {
+          "tag": "saai insight",
+          "title": "보여줍니다",
+          "desc": "어제 몇 명이 왔고, 어디에 오래 머물렀는지 화면에 정확히 나옵니다. 무엇을 할지는 보는 사람이 정합니다."
+        },
+        {
+          "tag": "saai agent · 지금",
+          "title": "물으면 답합니다",
+          "desc": "\"어제 왜 매출이 떨어졌지?\"라고 물으면 근거와 함께 답합니다. 다만, 물어볼 생각이 나야 쓸 수 있습니다."
+        },
+        {
+          "tag": "가는 방향",
+          "title": "먼저 말을 겁니다",
+          "desc": "묻지 않아도 오늘 놓치고 있는 것을 먼저 짚어줍니다. 액션 카드와 푸시 알림이 이미 이 방향으로 동작하고 있습니다."
+        }
+      ]
     },
     "jp": {
       "heroTitle": "見るAIを超え、運営するAIへ。",
@@ -219,6 +265,12 @@
       "finalHeading": "見守るだけから、運営する側へ。",
       "finalSub": "映像は残しません。身元はその場で消し、動線と転換だけを記録します。saai agent が店舗の次を、ともに決めます。",
       "finalCta": "導入のご相談",
+      "evolutionEyebrow": "ダッシュボードの進化",
+      "evolutionHeading": "見せる画面から、先に話しかける画面へ",
+      "evolutionSub": "同じデータでも、画面が何をしてくれるかで一日が変わります。saai agent は今、二段目にいて、三段目へ向かっています。",
+      "evolutionProactiveCta": "実際の動きを見る",
+      "techBridgeText": "saai agent がこう判断する理由 — ディーピングソースのAgentic AIへの考え方",
+      "techBridgeCta": "哲学を見る",
       "steps": {
         "restock": {
           "title": "今、棚から補充しますか？",
@@ -236,7 +288,24 @@
           "title": "使うほど、自ら良くなります",
           "desc": "残した指摘が、次の改善につながります。週次レポートはチャットでそのまま直せて、会話は流れを覚えています。"
         }
-      }
+      },
+      "evolution": [
+        {
+          "tag": "saai insight",
+          "title": "見せてくれます",
+          "desc": "昨日何人が来て、どこに長く留まったかが画面に正確に出ます。何をするかは、見る人が決めます。"
+        },
+        {
+          "tag": "saai agent · 現在",
+          "title": "尋ねれば答えます",
+          "desc": "「昨日はなぜ売上が落ちたのか」と尋ねれば、根拠とともに答えます。ただし、尋ねようと思いつく必要があります。"
+        },
+        {
+          "tag": "向かう先",
+          "title": "先に話しかけます",
+          "desc": "尋ねなくても、今日見落としていることを先に示します。アクションカードとプッシュ通知は、すでにこの方向で動いています。"
+        }
+      ]
     }
   },
   "saai": {
@@ -1663,6 +1732,311 @@
         {
           "name": "saai care",
           "desc": "今を知らせる — 必要な瞬間だけリアルタイム"
+        }
+      ]
+    }
+  },
+  "agenticAi": {
+    "en": {
+      "eyebrow": "Technology · Agentic AI",
+      "heroTitle": "After AI that sees comes AI that decides with you",
+      "heroSub": "Space now produces more data than any person can read. We spend that data not on autonomous execution, but on better decisions.",
+      "heroNote": "Spatial intelligence on top of anonymization, and agentic AI on top of that — this is the story of the topmost axis.",
+      "problemEyebrow": "Background",
+      "problemTitle": "A dashboard shows you the space. It does not run it.",
+      "problemSub": "The more cameras and metrics you add, the more precise the screen becomes — and the harder the decision. More to look at means more to miss. What comes after AI that sees is not more metrics, but judgement about what to look at first.",
+      "philosophyEyebrow": "Principles",
+      "philosophyHeading": "Three principles behind the way we build agentic AI",
+      "philosophySub": "Before asking how far the technology could go, we decided where it should stop.",
+      "baselineEyebrow": "Baseline",
+      "baselineHeading": "What we start from",
+      "baselineSub": "Principles are not kept by declaring them. Four technical foundations are what make them hold.",
+      "linkedSourcesLabel": "What joins into one store context",
+      "ladderEyebrow": "Levels of autonomy",
+      "ladderHeading": "Not automatic from day one — L0 to L5",
+      "ladderSub": "Category by category, the ladder climbs one rung at a time: recommend → approve → automate → verify → learn. No store goes fully automatic at once.",
+      "ladderNote": "Climbing a rung requires accumulated approvals, verified outcomes, and explicit agreement between HQ and the store. On conflict, it drops back a rung immediately. At every level, the decision and the accountability stay with people.",
+      "bridgeEyebrow": "Into the product",
+      "bridgeHeading": "The product built on these principles",
+      "bridgeSub": "What you actually get — see it on the product page.",
+      "bridgeCta": "See saai agent",
+      "bridgeCtaSecondary": "Talk to us",
+      "philosophy": [
+        {
+          "title": "The AI recommends. People decide.",
+          "desc": "The goal is not automation that replaces people, but decisions that come out better because of it. Nothing executes without approval."
+        },
+        {
+          "title": "No claim without evidence",
+          "desc": "Every recommendation arrives with the data behind it. When we cannot cite the evidence, we do not answer."
+        },
+        {
+          "title": "Speak first, before being asked",
+          "desc": "Not a tool that waits to be queried, but one that points out what the store has missed. A tool that is only useful once you think of the question ends up unused."
+        }
+      ],
+      "baseline": [
+        {
+          "title": "An anonymization foundation",
+          "desc": "Every judgement is made on data with identity already removed. No source footage is kept; analysis runs only on what remains after erasure.",
+          "linkLabel": "More on Anonymizer"
+        },
+        {
+          "title": "Spatial context",
+          "desc": "Multiple cameras are reconciled into one space to read flow, dwell, and conversion. Not who — what moved, and how.",
+          "linkLabel": "More on Spatial AI"
+        },
+        {
+          "title": "Connected data",
+          "desc": "As POS, inventory, and outside conditions join the flow data, a single store context forms. More connections make recommendations sharper — and, above all, citable.",
+          "linkLabel": "See what connects"
+        },
+        {
+          "title": "The learning loop",
+          "desc": "Recommend → approve or reject → act → verify the outcome → recommend again. What a person turned down becomes training data. A rejection is data too.",
+          "linkLabel": "See the operating loop"
+        }
+      ],
+      "ladder": [
+        {
+          "label": "Observe only",
+          "line": "People make every decision"
+        },
+        {
+          "label": "Inform",
+          "line": "Surfaces context — weather, season, nearby events"
+        },
+        {
+          "label": "Recommend priority",
+          "line": "Puts what to look at first in order, with reasons"
+        },
+        {
+          "label": "Act on approval",
+          "line": "Drafts a concrete action, then acts once a person approves"
+        },
+        {
+          "label": "Low-risk auto + report back",
+          "line": "Automates only the agreed, repetitive work — and reports the outcome"
+        },
+        {
+          "label": "Self-driving store",
+          "line": "People focus on strategy, accountability, and hospitality"
+        }
+      ],
+      "linkedSources": [
+        {
+          "label": "Flow · dwell"
+        },
+        {
+          "label": "POS · transactions"
+        },
+        {
+          "label": "Inventory · display"
+        },
+        {
+          "label": "Weather · local context"
+        }
+      ]
+    },
+    "ko": {
+      "eyebrow": "Technology · Agentic AI",
+      "heroTitle": "보는 AI의 다음은, 함께 결정하는 AI입니다",
+      "heroSub": "공간이 만드는 데이터는 사람이 다 볼 수 없을 만큼 많아졌습니다. 딥핑소스는 그 데이터를 자율 실행이 아니라, 더 나은 결정으로 바꾸는 데 씁니다.",
+      "heroNote": "익명화 위에 공간 지능, 그 위에 에이전트 AI — 세 축의 가장 위에 있는 이야기입니다.",
+      "problemEyebrow": "배경",
+      "problemTitle": "대시보드는 공간을 보여줄 뿐, 운영하지 않습니다",
+      "problemSub": "카메라가 늘고 지표가 늘수록, 화면은 정확해지고 결정은 더 어려워집니다. 볼 것이 많아진 만큼 놓치는 것도 많아졌기 때문입니다. 보는 AI 다음에 필요한 것은 더 많은 지표가 아니라, 무엇을 먼저 볼지 짚어주는 판단입니다.",
+      "philosophyEyebrow": "철학",
+      "philosophyHeading": "딥핑소스가 Agentic AI를 만드는 세 가지 원칙",
+      "philosophySub": "기술이 어디까지 갈 수 있는가보다, 어디에서 멈춰야 하는가를 먼저 정했습니다.",
+      "baselineEyebrow": "베이스라인",
+      "baselineHeading": "무엇 위에서 시작하는가",
+      "baselineSub": "원칙은 선언만으로 지켜지지 않습니다. 네 가지 기술적 기반이 그 원칙을 실제로 가능하게 합니다.",
+      "linkedSourcesLabel": "하나의 매장 맥락으로 이어지는 것들",
+      "ladderEyebrow": "자율화 단계",
+      "ladderHeading": "처음부터 자동이 아닙니다 — L0에서 L5까지",
+      "ladderSub": "카테고리별로 권고 → 승인 → 자동 → 검증 → 학습의 사다리를 한 칸씩 올라갑니다. 한 번에 전부 자동이 되는 매장은 없습니다.",
+      "ladderNote": "한 칸을 올라가려면 누적 승인률과 결과 검증 데이터가 쌓여야 하고, 본사와 점주의 명시적 합의가 있어야 합니다. 충돌이 생기면 즉시 한 칸 내려옵니다. 결정과 책임은 어느 단계에서도 사람의 자리입니다.",
+      "bridgeEyebrow": "제품으로",
+      "bridgeHeading": "이 철학으로 만든 제품",
+      "bridgeSub": "무엇을 얻게 되는지는, 제품에서 확인하세요.",
+      "bridgeCta": "saai agent 보기",
+      "bridgeCtaSecondary": "도입 문의하기",
+      "philosophy": [
+        {
+          "title": "권고는 AI, 결정은 사람",
+          "desc": "목표는 사람을 대체하는 자동화가 아니라, 사람의 결정을 더 좋게 만드는 것입니다. 승인 없는 실행은 없습니다."
+        },
+        {
+          "title": "근거 없이 말하지 않는다",
+          "desc": "모든 권고는 데이터 근거를 함께 제시합니다. 근거를 댈 수 없으면, 답하지 않습니다."
+        },
+        {
+          "title": "묻기 전에 먼저 제안한다",
+          "desc": "물어야 답하는 도구가 아니라, 매장이 놓친 것을 먼저 짚어주는 방향으로 갑니다. 사람이 질문을 떠올려야만 쓸모가 생기는 도구는 결국 쓰이지 않기 때문입니다."
+        }
+      ],
+      "baseline": [
+        {
+          "title": "익명화 파운데이션",
+          "desc": "모든 판단은 신원이 제거된 데이터 위에서만 이루어집니다. 원본 영상은 남기지 않고, 지워진 다음의 데이터로만 분석합니다.",
+          "linkLabel": "Anonymizer 자세히"
+        },
+        {
+          "title": "공간 컨텍스트",
+          "desc": "여러 대의 카메라를 하나의 공간으로 정합해 동선·체류·전환을 읽습니다. \"누가\"가 아니라 \"무엇이 어떻게 움직였는가\"를 봅니다.",
+          "linkLabel": "Spatial AI 자세히"
+        },
+        {
+          "title": "데이터 연결",
+          "desc": "동선에 POS·재고·외부 환경이 이어질수록 하나의 매장 맥락이 만들어집니다. 연결이 늘수록 권고는 정교해지고, 무엇보다 근거를 댈 수 있게 됩니다.",
+          "linkLabel": "연결되는 데이터 보기"
+        },
+        {
+          "title": "학습 루프",
+          "desc": "권고 → 승인 또는 반려 → 실행 → 결과 검증 → 다음 권고. 사람이 무엇을 물리쳤는지가 시스템의 학습 데이터가 됩니다. 반려도 데이터입니다.",
+          "linkLabel": "운영 루프 보기"
+        }
+      ],
+      "ladder": [
+        {
+          "label": "관찰만",
+          "line": "사람이 모든 결정을 합니다"
+        },
+        {
+          "label": "정보 안내",
+          "line": "맥락을 알립니다 — 날씨·시즌·주변 이벤트"
+        },
+        {
+          "label": "우선순위 권고",
+          "line": "먼저 볼 것을 순서와 이유로 제시합니다"
+        },
+        {
+          "label": "승인 후 실행",
+          "line": "구체적인 액션을 만들되, 사람의 승인을 받고 실행합니다"
+        },
+        {
+          "label": "저위험 자동 + 사후 보고",
+          "line": "합의된 반복 작업만 자동으로, 결과는 사람에게 보고합니다"
+        },
+        {
+          "label": "자율 주행 매장",
+          "line": "사람은 전략과 책임, 그리고 환대에 집중합니다"
+        }
+      ],
+      "linkedSources": [
+        {
+          "label": "동선 · 체류"
+        },
+        {
+          "label": "POS · 결제"
+        },
+        {
+          "label": "재고 · 진열"
+        },
+        {
+          "label": "날씨 · 주변 상권"
+        }
+      ]
+    },
+    "jp": {
+      "eyebrow": "Technology · Agentic AI",
+      "heroTitle": "見るAIの次は、ともに決めるAIです",
+      "heroSub": "空間が生むデータは、人がすべてを見きれないほど増えました。ディーピングソースはそのデータを、自律実行ではなく、より良い決定に変えるために使います。",
+      "heroNote": "匿名化の上に空間知能、その上にエージェントAI — 三つの軸の最上段の話です。",
+      "problemEyebrow": "背景",
+      "problemTitle": "ダッシュボードは空間を見せるだけで、運営はしません",
+      "problemSub": "カメラが増え指標が増えるほど、画面は正確になり、決定は難しくなります。見るものが増えた分、見落とすものも増えたからです。見るAIの次に必要なのは、より多くの指標ではなく、何を先に見るべきかを示す判断です。",
+      "philosophyEyebrow": "哲学",
+      "philosophyHeading": "ディーピングソースがAgentic AIをつくる三つの原則",
+      "philosophySub": "技術がどこまで行けるかより先に、どこで止まるべきかを決めました。",
+      "baselineEyebrow": "ベースライン",
+      "baselineHeading": "何の上から始めるのか",
+      "baselineSub": "原則は宣言だけでは守られません。四つの技術的基盤が、その原則を実際に成り立たせます。",
+      "linkedSourcesLabel": "一つの店舗コンテキストにつながるもの",
+      "ladderEyebrow": "自律化の段階",
+      "ladderHeading": "最初から自動ではありません — L0からL5まで",
+      "ladderSub": "カテゴリーごとに、推奨 → 承認 → 自動 → 検証 → 学習のはしごを一段ずつ上がります。一度にすべてが自動になる店舗はありません。",
+      "ladderNote": "一段上がるには、累積の承認率と結果検証データが積み上がり、本部と店舗の明示的な合意が必要です。衝突が起きれば、ただちに一段下がります。どの段階でも、決定と責任は人の場所です。",
+      "bridgeEyebrow": "製品へ",
+      "bridgeHeading": "この哲学でつくった製品",
+      "bridgeSub": "何を得られるかは、製品ページでご確認ください。",
+      "bridgeCta": "saai agent を見る",
+      "bridgeCtaSecondary": "導入のご相談",
+      "philosophy": [
+        {
+          "title": "推奨はAI、決定は人",
+          "desc": "目標は人を置き換える自動化ではなく、人の決定をより良くすることです。承認のない実行はありません。"
+        },
+        {
+          "title": "根拠なしには語らない",
+          "desc": "すべての推奨はデータの根拠とともに示します。根拠を示せないときは、答えません。"
+        },
+        {
+          "title": "尋ねられる前に提案する",
+          "desc": "尋ねられて初めて答える道具ではなく、店舗が見落としたことを先に示す方向へ進みます。人が問いを思いつかなければ役に立たない道具は、結局使われないからです。"
+        }
+      ],
+      "baseline": [
+        {
+          "title": "匿名化ファウンデーション",
+          "desc": "すべての判断は、身元が除去されたデータの上でのみ行われます。元映像は残さず、消去後のデータだけで分析します。",
+          "linkLabel": "Anonymizer の詳細"
+        },
+        {
+          "title": "空間コンテキスト",
+          "desc": "複数のカメラを一つの空間として整合し、動線・滞在・転換を読みます。「誰が」ではなく「何がどう動いたか」を見ます。",
+          "linkLabel": "Spatial AI の詳細"
+        },
+        {
+          "title": "データ連携",
+          "desc": "動線にPOS・在庫・外部環境がつながるほど、一つの店舗コンテキストができます。連携が増えるほど推奨は精緻になり、何より根拠を示せるようになります。",
+          "linkLabel": "つながるデータを見る"
+        },
+        {
+          "title": "学習ループ",
+          "desc": "推奨 → 承認または却下 → 実行 → 結果検証 → 次の推奨。人が何を退けたかが、システムの学習データになります。却下もデータです。",
+          "linkLabel": "オペレーティングループを見る"
+        }
+      ],
+      "ladder": [
+        {
+          "label": "観察のみ",
+          "line": "人がすべての決定をします"
+        },
+        {
+          "label": "情報案内",
+          "line": "文脈を知らせます — 天候・季節・周辺イベント"
+        },
+        {
+          "label": "優先順位の推奨",
+          "line": "先に見るべきことを、順序と理由で示します"
+        },
+        {
+          "label": "承認後に実行",
+          "line": "具体的なアクションを作り、人の承認を得てから実行します"
+        },
+        {
+          "label": "低リスク自動＋事後報告",
+          "line": "合意された反復作業だけを自動化し、結果は人に報告します"
+        },
+        {
+          "label": "自律走行店舗",
+          "line": "人は戦略と責任、そしてホスピタリティに集中します"
+        }
+      ],
+      "linkedSources": [
+        {
+          "label": "動線・滞在"
+        },
+        {
+          "label": "POS・決済"
+        },
+        {
+          "label": "在庫・陳列"
+        },
+        {
+          "label": "天候・周辺商圏"
         }
       ]
     }

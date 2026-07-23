@@ -2,6 +2,7 @@ import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AgentMockupShowcase from '@/components/sections/AgentMockupShowcase';
+import AgentEvolutionSection from '@/components/sections/AgentEvolutionSection';
 import EnterpriseAppShowcase from '@/components/mockups/EnterpriseAppShowcase';
 import ProcessStepper from '@/components/ui/ProcessStepper';
 import {
@@ -36,6 +37,8 @@ type StoreAgentCopy = {
   finalHeading: string;
   finalSub: string;
   finalCta: string;
+  techBridgeText: string;
+  techBridgeCta: string;
   steps: Record<string, { title: string; desc: string }>;
 };
 
@@ -89,6 +92,9 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* ── 진화 스토리: Viewer → Interactive → Proactive (#proactive 로 연결) ── */}
+      <AgentEvolutionSection locale={locale} />
+
       {/* ── How it works ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -110,8 +116,11 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
       {/* ── 메인 데모: Enterprise 웹앱 (본사·점장 뷰, 6탭 라이브 재현) · #demo 앵커 ── */}
       <EnterpriseAppShowcase locale={locale} />
 
-      {/* ── 보조: 사장님(폰) 뷰 목업 (액션 카드·AI 채팅·푸시 알림) ── */}
-      <AgentMockupShowcase locale={locale} />
+      {/* ── 보조: 사장님(폰) 뷰 목업 (액션 카드·AI 채팅·푸시 알림).
+             #proactive — 진화 섹션 3번째 칸("먼저 말을 겁니다")이 여기로 딥링크한다. ── */}
+      <div id="proactive" className="scroll-mt-24">
+        <AgentMockupShowcase locale={locale} />
+      </div>
 
       {/* ── Pricing teaser ── */}
       <AnimatedSection className="py-16 lg:py-20 bg-white">
@@ -134,6 +143,20 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
 
       {/* ── 기능 × agent 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
       <ModeFunctionSection mode="agent" locale={locale} />
+
+      {/* ── 기술 배경 링크 밴드 — 원리 설명은 기술 페이지에 위임(역할 계약 §2) ── */}
+      <AnimatedSection className="border-y border-gray-200 bg-white py-10">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+          <p className="text-sm leading-relaxed break-keep text-gray-600">{t.techBridgeText}</p>
+          <Link
+            href={localeHref(locale, '/technology/agentic-ai')}
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+          >
+            {t.techBridgeCta}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </AnimatedSection>
 
       {/* ── CTA ── */}
       <AnimatedSection className="section-dark relative py-20 lg:py-28 overflow-hidden">

@@ -3,10 +3,10 @@ import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
 import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
-  title: 'Agentic AI — 店舗オントロジーと自律型空間AI | DEEPINGSOURCE',
+  title: 'Agentic AI — アプローチの哲学とベースライン | DEEPINGSOURCE',
   description:
-    'CCTV動線(MTMC)・POS・在庫・気象データを店舗オントロジーで接続し、1店舗の学習を全店へ自動伝播する自律型 Agentic AI。',
-  keywords: ['Agentic AI', '店舗オントロジー', 'MTMC動線シミュレーション', '全店知能伝播', '自律型店舗AI', 'DeepingSource', 'SAAI'],
+    'ディーピングソースが空間にAgentic AIをつくる三つの原則と、その原則を成り立たせる四つの技術的基盤。推奨はAI、決定は人 — 自律化は一段ずつ上がります。',
+  keywords: ['Agentic AI', 'AIの原則', '推奨はAI決定は人', '自律化の段階', '匿名化', 'DeepingSource', 'SAAI'],
   alternates: {
     canonical: '/jp/technology/agentic-ai',
     languages: {
@@ -17,9 +17,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     ...OG_BASE,
-    title: 'Agentic AI — 店舗オントロジーと自律型空間AI | DEEPINGSOURCE',
-    description: '1店舗の学習が全店舗へ自動伝播するオントロジーベースの自律型 Agentic AI。',
-    type: 'website',
+    title: 'Agentic AI — アプローチの哲学とベースライン | DEEPINGSOURCE',
+    description: '見るAIの次は、ともに決めるAIです。ディーピングソースがAgentic AIをつくる原則と技術的基盤。',
     locale: 'ja_JP',
   },
 };

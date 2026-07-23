@@ -3,10 +3,10 @@ import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
 import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
-  title: 'Agentic AI — 공간·매장 온톨로지와 자율형 지능 | DEEPINGSOURCE',
+  title: 'Agentic AI — 접근 철학과 베이스라인 | DEEPINGSOURCE',
   description:
-    'CCTV 동선(MTMC), POS, 재고, 날씨 데이터를 매장 온톨로지로 연결하여 단 1개 매장의 성공 학습을 전국 프랜차이즈로 전파하는 자율형 Agentic AI.',
-  keywords: ['Agentic AI', '공간 온톨로지', 'MTMC 동선 시뮬레이션', '프랜차이즈 지식 전파', '자율 매장 AI', '딥핑소스', 'SAAI'],
+    '딥핑소스가 공간에 Agentic AI를 만드는 세 가지 원칙과, 그 원칙을 가능하게 하는 네 가지 기술적 기반. 권고는 AI, 결정은 사람 — 자율화는 한 칸씩 올라갑니다.',
+  keywords: ['Agentic AI', 'AI 원칙', '권고는 AI 결정은 사람', '자율화 단계', '익명화', '딥핑소스', 'SAAI'],
   alternates: {
     canonical: '/ko/technology/agentic-ai',
     languages: {
@@ -17,9 +17,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     ...OG_BASE,
-    title: 'Agentic AI — 공간·매장 온톨로지와 자율형 지능 | DEEPINGSOURCE',
-    description: '1개 매장의 학습이 50개 지점으로 자동 전파되는 공간 온톨로지 기반 자율형 Agentic AI.',
-    type: 'website',
+    title: 'Agentic AI — 접근 철학과 베이스라인 | DEEPINGSOURCE',
+    description: '보는 AI의 다음은, 함께 결정하는 AI입니다. 딥핑소스가 Agentic AI를 만드는 원칙과 기술적 기반.',
     locale: 'ko_KR',
   },
 };

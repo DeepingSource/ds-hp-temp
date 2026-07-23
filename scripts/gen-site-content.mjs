@@ -74,13 +74,20 @@ const STORE_AGENT_FLAT = [
   'heroTitle', 'heroSub', 'ctaPrimary', 'ctaSecondary',
   'stepsHeading', 'stepsSub', 'pricingHeading', 'pricingSub', 'pricingCta',
   'finalHeading', 'finalSub', 'finalCta',
+  'evolutionEyebrow', 'evolutionHeading', 'evolutionSub', 'evolutionProactiveCta',
+  'techBridgeText', 'techBridgeCta',
 ];
 const storeAgentYaml = load('content/site/store-agent.yaml');
 const storeAgentFlat = toLocaleMajor(storeAgentYaml, STORE_AGENT_FLAT);
 const storeAgentSteps = arrayByIdLocaleMajor(storeAgentYaml.steps, ['title', 'desc']);
+const storeAgentEvolution = arrayItemsLocaleMajor(storeAgentYaml.evolution, ['tag', 'title', 'desc']);
 const storeAgent = {};
 for (const loc of LOCALES) {
-  storeAgent[loc] = { ...storeAgentFlat[loc], steps: storeAgentSteps[loc] };
+  storeAgent[loc] = {
+    ...storeAgentFlat[loc],
+    steps: storeAgentSteps[loc],
+    evolution: storeAgentEvolution[loc],
+  };
 }
 
 // ── saai — flat copy + id-keyed loop/tools/plans (stage/icon/highlight in code) ─
@@ -195,6 +202,32 @@ for (const loc of LOCALES) {
     stack: techStack[loc],
     complianceItems: techCompliance[loc],
     poweredProducts: techPowered[loc],
+  };
+}
+
+// ── agentic-ai — flat copy + 3 ordered object-arrays (아이콘·링크·L0~L5 라벨은 코드 유지). ──
+const AGENTIC_FLAT = [
+  'eyebrow', 'heroTitle', 'heroSub', 'heroNote',
+  'problemEyebrow', 'problemTitle', 'problemSub',
+  'philosophyEyebrow', 'philosophyHeading', 'philosophySub',
+  'baselineEyebrow', 'baselineHeading', 'baselineSub', 'linkedSourcesLabel',
+  'ladderEyebrow', 'ladderHeading', 'ladderSub', 'ladderNote',
+  'bridgeEyebrow', 'bridgeHeading', 'bridgeSub', 'bridgeCta', 'bridgeCtaSecondary',
+];
+const agenticYaml = load('content/site/agentic-ai.yaml');
+const agenticFlat = toLocaleMajor(agenticYaml, AGENTIC_FLAT);
+const agenticPhilosophy = arrayItemsLocaleMajor(agenticYaml.philosophy, ['title', 'desc']);
+const agenticBaseline = arrayItemsLocaleMajor(agenticYaml.baseline, ['title', 'desc', 'linkLabel']);
+const agenticLadder = arrayItemsLocaleMajor(agenticYaml.ladder, ['label', 'line']);
+const agenticSources = arrayItemsLocaleMajor(agenticYaml.linkedSources, ['label']);
+const agenticAi = {};
+for (const loc of LOCALES) {
+  agenticAi[loc] = {
+    ...agenticFlat[loc],
+    philosophy: agenticPhilosophy[loc],
+    baseline: agenticBaseline[loc],
+    ladder: agenticLadder[loc],
+    linkedSources: agenticSources[loc],
   };
 }
 
@@ -370,7 +403,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career, solutionPages }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, agenticAi, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career, solutionPages }, null, 2) + '\n',
 );
 console.log('✓ generated src/data/generated/site-content.json (…, leadership, milestones, career, solutionPages)');
 console.log(`✓ generated src/data/generated/gated-docs.json (${gatedDocs.gatedSlugs.length} gated)`);
