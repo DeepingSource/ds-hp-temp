@@ -24,6 +24,14 @@ const GROUPS: { key: TeamGroup | 'All'; labelKo: string; labelEn: string; labelJ
   { key: 'Business & Operations', labelKo: '비즈니스 & 운영', labelEn: 'Business & Operations', labelJp: 'ビジネス & オペレーション' },
 ];
 
+const GROUP_KO_MAP: Record<TeamGroup, string> = {
+  Leadership: '리더십',
+  'Research & AI': 'AI & 연구',
+  Engineering: '엔지니어링',
+  'Product & Design': '제품 & 디자인',
+  'Business & Operations': '비즈니스 & 운영',
+};
+
 const CULTURE_ITEMS = [
   {
     icon: ShieldCheck,
@@ -214,10 +222,12 @@ export default function TeamView({ locale }: { locale: Locale }) {
   );
 }
 
-/** Individual Team Member Card with Avatar Placeholder & Quote */
+/** Individual Team Member Card with Localized Role & Quote */
 function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; locale: Locale; isHeroCard?: boolean }) {
   const name = locale === 'en' ? m.nameEn : m.nameKo;
+  const role = locale === 'ko' ? m.roleKo : locale === 'jp' ? m.roleJp : m.roleEn;
   const quote = locale === 'en' ? m.quoteEn : m.quoteKo;
+  const groupLabel = locale === 'ko' ? GROUP_KO_MAP[m.group] : m.group;
 
   return (
     <div
@@ -248,11 +258,11 @@ function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; loc
               <span>{name}</span>
               {m.isLeadership && (
                 <span className="px-2 py-0.5 rounded text-2xs font-bold uppercase bg-primary/10 text-primary shrink-0">
-                  Lead
+                  {locale === 'ko' ? '리더십' : locale === 'jp' ? 'リード' : 'Lead'}
                 </span>
               )}
             </h3>
-            <p className="text-2xs font-semibold text-gray-500 uppercase tracking-wide truncate">{m.role}</p>
+            <p className="text-xs font-semibold text-primary truncate">{role}</p>
           </div>
         </div>
 
@@ -264,7 +274,7 @@ function MemberCard({ member: m, locale, isHeroCard }: { member: TeamMember; loc
       </div>
 
       <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-400 font-semibold">
-        <span>{m.group}</span>
+        <span>{groupLabel}</span>
         <span>{m.nameEn}</span>
       </div>
     </div>
