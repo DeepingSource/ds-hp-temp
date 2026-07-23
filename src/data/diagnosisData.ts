@@ -1,17 +1,17 @@
 import { solutionsData } from '@/data/solutionsData';
+import siteContent from '@/data/generated/site-content.json';
 
 /**
  * diagnosisData — matching logic for the /solutions/diagnosis guided Q&A ("Akinator-style"
- * problem finder). See project handoff docs (diagnosis-mapping-table.md) for the full
- * read-through this was derived from.
+ * problem finder).
  *
- * content/solutions/*.yaml has no "problem cluster" field, so CLUSTER_MAP hand-assigns each
- * scenario slug to a cluster based on a full read of all 21 files' `problem` + `relatedSolutions`
- * fields. Everything else — which industries have any solutions, which clusters exist per
+ * v4 E1(MASTER Stage 3-2): CLUSTER_MAP은 더 이상 수동 하드코딩이 아니다 —
+ * content/solutions/*.yaml 각 파일의 `diagnosis.cluster` 태그(SOT)에서 파생된다.
+ * "새 시나리오 = YAML 한 파일" 원칙: 시나리오와 태그가 한 파일에 있어 태깅 누락이
+ * 구조적으로 어렵고, gen-site-content의 빌드 검증 ①이 블록 누락 시 빌드를 중단한다.
+ * Everything else — which industries have any solutions, which clusters exist per
  * industry, whether a cluster needs a follow-up tiebreak question — is DERIVED from
- * solutionsData at runtime, so the flow stays correct as scenarios are added/removed; only
- * CLUSTER_MAP needs a new entry for a brand-new slug (and getClustersForIndustry throws in
- * dev if one is missing, instead of silently dropping a scenario from the diagnosis).
+ * solutionsData at runtime, so the flow stays correct as scenarios are added/removed.
  */
 
 export type ClusterId =
@@ -22,30 +22,12 @@ export type ClusterId =
   | 'ops_safety'
   | 'security_ops';
 
-/** slug → cluster id. Update this when a new content/solutions/*.yaml file ships. */
-export const CLUSTER_MAP: Record<string, ClusterId> = {
-  'convenience-night-theft': 'theft_loss',
-  'convenience-inventory-loss': 'inventory',
-  'convenience-planogram': 'merchandising',
-  'cafe-peak-hour-management': 'congestion',
-  'cafe-customer-wait-time': 'congestion',
-  'cafe-low-seat-turnover': 'merchandising',
-  'drugstore-vmd-optimization': 'merchandising',
-  'drugstore-zone-performance': 'merchandising',
-  'drugstore-tester-interaction': 'merchandising',
-  'mart-checkout-congestion': 'congestion',
-  'mart-cart-path-optimization': 'merchandising',
-  'mart-zone-conversion': 'merchandising',
-  'exhibition-crowd-flow': 'congestion',
-  'exhibition-visitor-dwell-time': 'merchandising',
-  'exhibition-booth-performance': 'merchandising',
-  'logistics-worker-safety': 'ops_safety',
-  'logistics-ppe-compliance': 'ops_safety',
-  'logistics-efficiency-zones': 'ops_safety',
-  'unmanned-theft-prevention': 'security_ops',
-  'unmanned-anomaly-detection': 'security_ops',
-  'unmanned-remote-monitoring': 'security_ops',
-};
+/** slug → cluster id — content/solutions/*.yaml 의 diagnosis.cluster 태그에서 파생. */
+export const CLUSTER_MAP: Record<string, ClusterId> = Object.fromEntries(
+  (siteContent.solutionPages as { slug: string; diagnosis?: { cluster?: string } }[])
+    .filter((p) => p.diagnosis?.cluster)
+    .map((p) => [p.slug, p.diagnosis!.cluster as ClusterId]),
+);
 
 export interface ClusterOption {
   clusterId: ClusterId;
@@ -71,7 +53,7 @@ export function getClustersForIndustry(industrySlug: string): ClusterOption[] {
     const clusterId = CLUSTER_MAP[s.slug];
     if (!clusterId) {
       if (process.env.NODE_ENV !== 'production') {
-        throw new Error(`[diagnosisData] "${s.slug}" has no CLUSTER_MAP entry — add one before shipping.`);
+        throw new Error(`[diagnosisData] "${s.slug}": content/solutions/${s.slug}.yaml 에 diagnosis.cluster 태그가 없습니다 — 태그를 추가하세요.`);
       }
       continue;
     }

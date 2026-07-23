@@ -85,3 +85,12 @@ relatedSolutions:
   - convenience-inventory-loss
   - unmanned-theft-prevention
   - unmanned-remote-monitoring
+# 진단 태그 (diagnosis-v4-engine-plan §2-1) — gen이 diagnosis.json으로 컴파일.
+# cluster는 CLUSTER_MAP(diagnosisData) 대체 SOT. attributes는 엔진 증거 대조용.
+diagnosis:
+  cluster: theft_loss
+  attributes:
+    symptom: [night, unknown]
+    persona: [hq_sv, exec]
+    scale: [single, small, mid, large]
+  prior: 1

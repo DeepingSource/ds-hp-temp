@@ -718,6 +718,35 @@ export default config({
           label: '관련 솔루션 (solution 슬러그)',
           itemLabel: (p) => p.value,
         }),
+        diagnosis: fields.object({
+          cluster: fields.select({
+            label: '문제 클러스터 (cluster)',
+            options: [
+              { label: '도난·손실 (theft_loss)', value: 'theft_loss' },
+              { label: '재고 (inventory)', value: 'inventory' },
+              { label: '진열·머천다이징 (merchandising)', value: 'merchandising' },
+              { label: '혼잡·대기 (congestion)', value: 'congestion' },
+              { label: '작업 효율·안전 (ops_safety)', value: 'ops_safety' },
+              { label: '보안·이상 감지 (security_ops)', value: 'security_ops' },
+            ],
+            defaultValue: 'merchandising',
+          }),
+          attributes: fields.object({
+            symptom: fields.array(fields.text({ label: '증상 값' }), {
+              label: '증상 태그 (symptom — 증상 질문 옵션과 대응, 빌드 검증 ②의 어휘)',
+              itemLabel: (p) => p.value,
+            }),
+            persona: fields.array(fields.text({ label: 'persona' }), {
+              label: '적합 페르소나 (owner/hq_sv/exec)',
+              itemLabel: (p) => p.value,
+            }),
+            scale: fields.array(fields.text({ label: 'scale' }), {
+              label: '적합 규모 (single/small/mid/large)',
+              itemLabel: (p) => p.value,
+            }),
+          }, { label: '속성 태그 (attributes)' }),
+          prior: fields.number({ label: '사전 가중치 (prior · 기본 1)', defaultValue: 1 }),
+        }, { label: '진단 태그 (diagnosis — 문제 진단이 이 시나리오를 결과로 고르는 근거)' }),
       },
     }),
   },

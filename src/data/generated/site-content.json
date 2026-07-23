@@ -6231,7 +6231,27 @@
         "convenience-inventory-loss",
         "unmanned-theft-prevention",
         "unmanned-remote-monitoring"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "theft_loss",
+        "attributes": {
+          "symptom": [
+            "night",
+            "unknown"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "convenience-inventory-loss",
@@ -6357,7 +6377,27 @@
         "convenience-night-theft",
         "convenience-planogram",
         "mart-checkout-congestion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "inventory",
+        "attributes": {
+          "symptom": [
+            "reactive",
+            "batch"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "convenience-planogram",
@@ -6484,7 +6524,27 @@
         "convenience-inventory-loss",
         "drugstore-vmd-optimization",
         "mart-zone-conversion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "symptom": [
+            "drift",
+            "no-baseline"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "cafe-low-seat-turnover",
@@ -6611,7 +6671,27 @@
         "cafe-peak-hour-management",
         "cafe-customer-wait-time",
         "exhibition-visitor-dwell-time"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "symptom": [
+            "hotspot",
+            "overall"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "cafe-peak-hour-management",
@@ -6738,7 +6818,23 @@
         "cafe-low-seat-turnover",
         "cafe-customer-wait-time",
         "mart-checkout-congestion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "congestion",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "cafe-customer-wait-time",
@@ -6864,7 +6960,23 @@
         "cafe-peak-hour-management",
         "cafe-low-seat-turnover",
         "mart-checkout-congestion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "congestion",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "unmanned-theft-prevention",
@@ -6991,7 +7103,23 @@
         "convenience-night-theft",
         "unmanned-remote-monitoring",
         "unmanned-anomaly-detection"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "security_ops",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "unmanned-anomaly-detection",
@@ -7109,7 +7237,23 @@
         "unmanned-theft-prevention",
         "unmanned-remote-monitoring",
         "convenience-night-theft"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "security_ops",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "unmanned-remote-monitoring",
@@ -7227,7 +7371,23 @@
         "unmanned-theft-prevention",
         "unmanned-anomaly-detection",
         "convenience-night-theft"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "security_ops",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "drugstore-vmd-optimization",
@@ -7354,7 +7514,23 @@
         "drugstore-zone-performance",
         "convenience-planogram",
         "mart-zone-conversion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "drugstore-zone-performance",
@@ -7473,7 +7649,23 @@
         "drugstore-vmd-optimization",
         "mart-zone-conversion",
         "exhibition-booth-performance"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "drugstore-tester-interaction",
@@ -7592,7 +7784,23 @@
         "drugstore-vmd-optimization",
         "drugstore-zone-performance",
         "convenience-planogram"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "mart-checkout-congestion",
@@ -7718,7 +7926,27 @@
         "mart-cart-path-optimization",
         "cafe-peak-hour-management",
         "cafe-customer-wait-time"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "congestion",
+        "attributes": {
+          "symptom": [
+            "peak",
+            "random"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "mart-cart-path-optimization",
@@ -7837,7 +8065,23 @@
         "mart-checkout-congestion",
         "mart-zone-conversion",
         "drugstore-zone-performance"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "mart-zone-conversion",
@@ -7955,7 +8199,23 @@
         "mart-checkout-congestion",
         "mart-cart-path-optimization",
         "drugstore-vmd-optimization"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "exhibition-visitor-dwell-time",
@@ -8074,7 +8334,23 @@
         "exhibition-booth-performance",
         "exhibition-crowd-flow",
         "cafe-low-seat-turnover"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "exhibition-booth-performance",
@@ -8191,7 +8467,23 @@
       "relatedSolutions": [
         "exhibition-visitor-dwell-time",
         "exhibition-crowd-flow"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "merchandising",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "exhibition-crowd-flow",
@@ -8309,7 +8601,27 @@
         "exhibition-visitor-dwell-time",
         "exhibition-booth-performance",
         "mart-checkout-congestion"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "congestion",
+        "attributes": {
+          "symptom": [
+            "spot",
+            "flow"
+          ],
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "logistics-worker-safety",
@@ -8435,7 +8747,23 @@
         "logistics-efficiency-zones",
         "logistics-ppe-compliance",
         "unmanned-anomaly-detection"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "ops_safety",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "logistics-efficiency-zones",
@@ -8552,7 +8880,23 @@
       "relatedSolutions": [
         "logistics-worker-safety",
         "logistics-ppe-compliance"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "ops_safety",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     },
     {
       "slug": "logistics-ppe-compliance",
@@ -8669,7 +9013,23 @@
       "relatedSolutions": [
         "logistics-worker-safety",
         "logistics-efficiency-zones"
-      ]
+      ],
+      "diagnosis": {
+        "cluster": "ops_safety",
+        "attributes": {
+          "persona": [
+            "hq_sv",
+            "exec"
+          ],
+          "scale": [
+            "single",
+            "small",
+            "mid",
+            "large"
+          ]
+        },
+        "prior": 1
+      }
     }
   ]
 }
