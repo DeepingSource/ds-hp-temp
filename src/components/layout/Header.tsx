@@ -9,6 +9,7 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 import SlidingIndicator from '@/components/ui/SlidingIndicator';
 import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import LocaleSwitcher from '@/components/layout/LocaleSwitcher';
+import { springGentle } from '@/lib/spring-config';
 import { productPrimary, type ProductKey } from '@/lib/brand-canon';
 import { localeHref, stripLocale, type Locale, homeCopy } from '@/lib/i18n';
 
@@ -26,6 +27,10 @@ type NavLeaf =
 type NavItem =
   | { type: 'link'; href: string; label: Tri }
   | { type: 'menu'; key: string; label: Tri; base: string; items: NavLeaf[] };
+
+/** Reading-progress bar appears only past this much scrollable distance (px) —
+ *  roughly "more than a couple of screens of content". */
+const PROGRESS_MIN_SCROLL = 1200;
 
 const NAV: NavItem[] = [
   {
@@ -99,6 +104,8 @@ export default function Header() {
   const openTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll();
+  // Starts false so the bar never flashes on a short page before the first measure.
+  const [showProgress, setShowProgress] = useState(false);
 
   // Clears any pending open/close timers — called before every state change
   // below so a stale timer can never fire after a newer, more-explicit action
@@ -168,6 +175,27 @@ export default function Header() {
 
   useEffect(() => () => clearOpenCloseTimers(), [clearOpenCloseTimers]);
 
+  // Reading-progress bar scope (P2-9). The bar is meaningful on long, content-heavy
+  // pages (blog/docs); on short ones (pricing, contact…) it sits under the header as
+  // a line that never moves much. Rather than plumbing a per-template flag through
+  // the global header, measure the actual scrollable distance and hide below the
+  // threshold. Re-measured on route change and resize; images/fonts settling after
+  // paint are covered by the ResizeObserver on <body>.
+  useEffect(() => {
+    const measure = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setShowProgress(scrollable >= PROGRESS_MIN_SCROLL);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.body);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [pathname]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-[var(--z-header)]">
       <div
@@ -233,12 +261,20 @@ export default function Header() {
                     )}
                   </button>
 
-                  {/* Dropdown / Mega Menu Panel */}
-                  <div
+                  {/* Dropdown / Mega Menu Panel.
+                      Motion runs on framer's springGentle (site motion language, P2-8)
+                      instead of a CSS transition. Deliberately NOT AnimatePresence:
+                      unmounting when closed would strip ~30 nav links from the server
+                      HTML on every page. The panel stays mounted (crawlable) and is
+                      taken out of the a11y/pointer tree with aria-hidden + inert. */}
+                  <motion.div
                     aria-hidden={!open}
                     inert={!open || undefined}
-                    className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-200 ease-[var(--ease-out-cubic)] ${
-                      open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
+                    initial={false}
+                    animate={{ opacity: open ? 1 : 0, y: open ? 0 : -4 }}
+                    transition={springGentle}
+                    className={`absolute top-full left-0 pt-2 ${
+                      open ? 'pointer-events-auto' : 'pointer-events-none'
                     }`}
                   >
                     {item.key === 'products' ? (
@@ -368,7 +404,7 @@ export default function Header() {
                         })}
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 </div>
               );
             })}
@@ -398,12 +434,14 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Reading-progress bar */}
-        <motion.div
-          aria-hidden="true"
-          className="absolute top-16 left-0 right-0 h-0.5 origin-left bg-primary"
-          style={{ scaleX: scrollYProgress }}
-        />
+        {/* Reading-progress bar — long content pages only (see showProgress above) */}
+        {showProgress && (
+          <motion.div
+            aria-hidden="true"
+            className="absolute top-16 left-0 right-0 h-0.5 origin-left bg-primary"
+            style={{ scaleX: scrollYProgress }}
+          />
+        )}
 
         {/* Mobile menu */}
         <div

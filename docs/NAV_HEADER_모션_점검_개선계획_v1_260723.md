@@ -163,13 +163,19 @@ className={`relative transition-[background-color,border-color,backdrop-filter] 
 
 **검증**: 동일하게 사용자 로컬에서 `npx eslint`, `npx tsc --noEmit` 실행 — 신규 에러 없음(기존 L166 `react-hooks/set-state-in-effect` 1건만 유지, 이번 변경과 무관). `md5sum`으로 전송본과 기기 반영본이 바이트 단위로 일치하는 것도 확인했습니다.
 
-### P2 — 모션 언어 통합 (`motion-animation-plan.md` D1/D6과 병행)
+### P2 — 모션 언어 통합 (`motion-animation-plan.md` D1/D6과 병행) — 8·9 반영, 10 실측 대기 (2026-07-23)
 
-| 항목 | 조치 |
-|---|---|
-| 8. 메가메뉴 CSS → framer-motion 전환 | `AnimatePresence` + `springGentle`로 교체, D1 항목과 합류 |
-| 9. 스크롤 진행바 노출 범위 재검토 | 아티클류 템플릿 한정 또는 짧은 페이지 자동 숨김 |
-| 10. `layoutId` 교차 이동 점검 | 메뉴형 active ↔ 링크형 active 전환 시 슬라이드가 과도하게 튀지 않는지 실측 |
+| 항목 | 조치 | 상태 |
+|---|---|---|
+| 8. 메가메뉴 CSS → framer-motion 전환 | `motion.div` + `animate` + `springGentle`. **`AnimatePresence`는 쓰지 않았다** — 아래 사유 참조 | ✅ 완료 (방식 변경) |
+| 9. 스크롤 진행바 노출 범위 재검토 | 전역 헤더에 템플릿 플래그를 배선하는 대신, 실제 스크롤 가능 거리를 측정해 `PROGRESS_MIN_SCROLL`(1200px) 미만이면 렌더하지 않음. 라우트 변경·리사이즈·`ResizeObserver(body)`로 재측정 | ✅ 완료 |
+| 10. `layoutId` 교차 이동 점검 | 코드 점검까지만 — `springTabPill`(damping 28 / stiffness 420)이 이미 "fast settle, no visible overshoot"로 튜닝돼 있어 정적 리스크는 낮다고 판단. 실제 튐 여부는 브라우저 실측 필요 | ⏸ 실측 대기 |
+
+**⚠️ 8번을 `AnimatePresence`로 하지 않은 이유.** 계획서 원안대로 닫힘 시 언마운트하면 **헤더 드롭다운 링크가 서버 HTML에서 사라진다.** 착수 전 정적 export를 확인한 결과 현재 헤더는 3로케일 모두 하위 링크를 포함해 고유 링크 37개를 SSR에 담고 있고, 이는 전 페이지에 깔리는 내부 링크 표면이다. 언마운트되면 페이지당 30여 개가 크롤 대상에서 빠진다(같은 함정을 `SolutionsExplorer`에서 이미 한 번 겪었다 — `pending-followups` 참조).
+
+그래서 패널은 **항상 마운트한 채로 두고**(`aria-hidden` + `inert`로 a11y·포인터 트리에서만 제외) 모션만 CSS 트랜지션 → framer `animate` + `springGentle`로 옮겼다. 계획의 실제 목적("사이트 표준 스프링으로 모션 언어 통합")은 달성하면서 SSR 링크는 유지된다.
+
+**검증**: 3로케일 헤더 SSR 고유 링크 37개 유지(드롭다운 하위 링크 5/5 샘플 확인) · 짧은 페이지(pricing) 진행바 SSR 미노출 · `tsc` · `next build` 878/878 · 정적 export · eslint 신규 0건.
 
 P0는 시각적 영향은 크지만 변경 범위가 좁아 리뷰 부담이 적고, P1은 상호작용 로직을 손대는 만큼 QA가 필요합니다. P2는 기존 로드맵(D1/D6)과 합쳐서 진행하는 편이 중복 작업을 줄입니다.
 
