@@ -1,0 +1,10 @@
+# 골든 패스 픽스처 (diagnosis-v4-engine-plan §2-4 · v3 §7 승계) — 카피 검토 대본이자
+# 회귀 테스트(vitest)이자 E3 전환 시 셀렉터 동등성 기준선. answers는 옵션 id 순서.
+name: 시나리오 E-2 — 개인정보 문의 이탈
+answers:
+- hq_sv
+- convenience
+- mid
+- privacy
+expect:
+  exit: exit-privacy

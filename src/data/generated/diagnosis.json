@@ -1398,5 +1398,117 @@
       "prior": 1
     }
   },
-  "fixtures": []
+  "fixtures": [
+    {
+      "name": "시나리오 B — 임원 · 마트 · 계산대 혼잡 · 계획 검토",
+      "answers": [
+        "exec",
+        "mart",
+        "large",
+        "mart:congestion",
+        "peak",
+        "planning"
+      ],
+      "expect": {
+        "result": "mart-checkout-congestion",
+        "maxQuestions": 6
+      }
+    },
+    {
+      "name": "시나리오 E-1b — 점주 이탈 후 계속 진단 (owner 문구 규모 질문 경유)",
+      "answers": [
+        "owner",
+        "convenience",
+        "single",
+        "convenience:theft_loss",
+        "night",
+        "urgent"
+      ],
+      "expect": {
+        "result": "convenience-night-theft",
+        "maxQuestions": 6
+      }
+    },
+    {
+      "name": "시나리오 E-1 — 점주 이탈",
+      "answers": [
+        "owner"
+      ],
+      "expect": {
+        "exit": "exit-owner"
+      }
+    },
+    {
+      "name": "시나리오 E-2 — 개인정보 문의 이탈",
+      "answers": [
+        "hq_sv",
+        "convenience",
+        "mid",
+        "privacy"
+      ],
+      "expect": {
+        "exit": "exit-privacy"
+      }
+    },
+    {
+      "name": "시나리오 E-3 — 미확정 이탈",
+      "answers": [
+        "hq_sv",
+        "convenience",
+        "mid",
+        "unsure"
+      ],
+      "expect": {
+        "exit": "exit-unsure"
+      }
+    },
+    {
+      "name": "시나리오 D — 카페 프리셋 진입 · 확인 칩 · 고객 이탈 · 긴급",
+      "preset": {
+        "industry": "cafe"
+      },
+      "answers": [
+        "hq_sv",
+        "cafe",
+        "small",
+        "cafe:congestion",
+        "cafe-customer-wait-time",
+        "urgent"
+      ],
+      "expect": {
+        "result": "cafe-customer-wait-time",
+        "maxQuestions": 6
+      }
+    },
+    {
+      "name": "시나리오 A — 본사 SV · 편의점 · 야간 도난 · 긴급",
+      "answers": [
+        "hq_sv",
+        "convenience",
+        "mid",
+        "convenience:theft_loss",
+        "night",
+        "urgent"
+      ],
+      "expect": {
+        "result": "convenience-night-theft",
+        "maxQuestions": 6
+      }
+    },
+    {
+      "name": "시나리오 C — SV · 물류 · PPE 확인 · 기술 이해 (2+ slug 타이브레이크 경로)",
+      "answers": [
+        "hq_sv",
+        "logistics",
+        "mid",
+        "logistics:ops_safety",
+        "logistics-ppe-compliance",
+        "research"
+      ],
+      "expect": {
+        "result": "logistics-ppe-compliance",
+        "maxQuestions": 6
+      }
+    }
+  ]
 }

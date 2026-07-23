@@ -21,6 +21,7 @@
     "lint": "eslint",
     "lint:tokens": "node scripts/check-design-tokens.mjs",
     "lint:frontmatter": "node scripts/check-article-frontmatter.mjs",
+    "sim:diagnosis": "node scripts/diagnosis-sim.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "copy:review": "node scripts/export-copy.mjs"

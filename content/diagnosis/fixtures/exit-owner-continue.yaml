@@ -1,0 +1,12 @@
+# 골든 패스 픽스처 (diagnosis-v4-engine-plan §2-4 · v3 §7 승계)
+name: 시나리오 E-1b — 점주 이탈 후 계속 진단 (owner 문구 규모 질문 경유)
+answers:
+- owner
+- convenience
+- single
+- convenience:theft_loss
+- night
+- urgent
+expect:
+  result: convenience-night-theft
+  maxQuestions: 6

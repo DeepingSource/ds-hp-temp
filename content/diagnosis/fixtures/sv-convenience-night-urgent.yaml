@@ -1,0 +1,13 @@
+# 골든 패스 픽스처 (diagnosis-v4-engine-plan §2-4 · v3 §7 승계) — 카피 검토 대본이자
+# 회귀 테스트(vitest)이자 E3 전환 시 셀렉터 동등성 기준선. answers는 옵션 id 순서.
+name: 시나리오 A — 본사 SV · 편의점 · 야간 도난 · 긴급
+answers:
+- hq_sv
+- convenience
+- mid
+- convenience:theft_loss
+- night
+- urgent
+expect:
+  result: convenience-night-theft
+  maxQuestions: 6
