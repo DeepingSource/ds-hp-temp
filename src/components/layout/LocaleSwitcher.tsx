@@ -37,6 +37,9 @@ export default function LocaleSwitcher({
               href={localeHref(loc, path)}
               hrefLang={loc === 'jp' ? 'ja' : loc}
               aria-current={active ? 'true' : undefined}
+              onClick={() => {
+                document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=31536000`;
+              }}
               className={`inline-flex items-center min-h-[44px] px-2 text-xs font-medium rounded transition-colors ${
                 active ? 'text-primary' : 'text-gray-500 hover:text-gray-700'
               }`}
@@ -114,7 +117,10 @@ function LocaleDropdown({
               href={localeHref(loc, path)}
               hrefLang={loc === 'jp' ? 'ja' : loc}
               aria-current={active ? 'true' : undefined}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=31536000`;
+                setOpen(false);
+              }}
               className={`block px-4 py-2 text-sm transition-colors ${
                 active
                   ? 'text-primary bg-primary-lighter font-medium'

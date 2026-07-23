@@ -53,6 +53,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/solutions/drug-store',
   '/solutions/large-space',
   '/company/about',
+  '/company/team',
   '/company/news',
   '/company/career',
   '/company/partnership',
