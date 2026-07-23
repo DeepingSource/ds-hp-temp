@@ -56,37 +56,82 @@ export default function DiagnosisConversation({
   } = engine;
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [showOptions, setShowOptions] = useState<boolean>(false);
   const [isAnalyzingResult, setIsAnalyzingResult] = useState<boolean>(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  // §6-1(v3): 바닥 앵커 전면 폐지 — 새 어시스턴트 발화(활성 질문/결과/이탈 블록)의
+  // "상단"을 정렬한다. 한 시점에 하나만 렌더되므로 블록들이 ref를 공유한다.
+  const activeRef = useRef<HTMLDivElement>(null);
+  const skipTheatricsRef = useRef(false); // §6-4: 되감기 시 연출 생략
+  const lastManualScrollRef = useRef(0); // §6-1: 수동 스크롤 중 자동 스크롤 스킵
+  const mountedRef = useRef(false); // 첫 로드에는 스크롤하지 않는다 (페이지 점프 방지)
 
-  // Scroll to bottom when step or transcript updates
+  const prefersReduced = () =>
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // §6-1: 직전 500ms 내 wheel/touch가 있으면 자동 스크롤을 건너뛴다 — 읽기를 끊지 않는다.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [step, transcript.length, isTyping, isAnalyzingResult]);
+    const mark = () => {
+      lastManualScrollRef.current = Date.now();
+    };
+    window.addEventListener('wheel', mark, { passive: true });
+    window.addEventListener('touchmove', mark, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', mark);
+      window.removeEventListener('touchmove', mark);
+    };
+  }, []);
 
-  // Handle typing indicator delay on step change
+  // §6-2·6-3 공개 타이밍: 답 → 600ms 타이핑 → 질문 표시 → 250ms 후 옵션 칩.
+  // 결과는 analyzing 900ms 후 마운트. reduced-motion·되감기 재방문은 전 단계 0ms.
   useEffect(() => {
-    // Check prefers-reduced-motion
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) return;
+    const skip = skipTheatricsRef.current || prefersReduced();
+    skipTheatricsRef.current = false;
 
     if (step === 'result') {
-      setIsAnalyzingResult(true);
-      const timer = setTimeout(() => {
+      if (skip) {
         setIsAnalyzingResult(false);
-      }, 750);
-      return () => clearTimeout(timer);
-    } else if (['q1', 'q2', 'q3', 'q4'].includes(step)) {
-      setIsTyping(true);
-      const timer = setTimeout(() => {
-        setIsTyping(false);
-      }, 450);
+        return;
+      }
+      setIsAnalyzingResult(true);
+      const timer = setTimeout(() => setIsAnalyzingResult(false), 900);
       return () => clearTimeout(timer);
     }
+    if (['q1', 'q2', 'q3', 'q4', 'exit-owner', 'exit-privacy', 'exit-unsure'].includes(step)) {
+      if (skip) {
+        setIsTyping(false);
+        setShowOptions(true);
+        return;
+      }
+      setIsTyping(true);
+      setShowOptions(false);
+      const typingTimer = setTimeout(() => setIsTyping(false), 600);
+      const optionsTimer = setTimeout(() => setShowOptions(true), 850);
+      return () => {
+        clearTimeout(typingTimer);
+        clearTimeout(optionsTimer);
+      };
+    }
   }, [step]);
+
+  // §6-1 스크롤 앵커: 새 어시스턴트 콘텐츠가 나타날 때 1회만 — 타이핑/analyzing
+  // 인디케이터·옵션 칩·transcript 추가로는 발동하지 않는다.
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      return;
+    }
+    if (isTyping || isAnalyzingResult) return; // 인디케이터 표시로는 발동 금지
+    if (Date.now() - lastManualScrollRef.current < 500) return;
+    activeRef.current?.scrollIntoView({
+      behavior: prefersReduced() ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  }, [step, isTyping, isAnalyzingResult]);
+
+  // §6-2: 옵션 칩 페이드인(스태거 40ms/개) — 자리는 아래로 자라는 채팅 흐름
+  const CHIP_ANIM = 'animate-in fade-in fill-mode-both duration-300 motion-reduce:animate-none';
+  const chipDelay = (i: number) => ({ animationDelay: `${i * 40}ms` });
 
   const progressPercent = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
   const showChrome = !['result', 'exit-owner', 'exit-privacy', 'exit-unsure'].includes(step);
@@ -135,7 +180,11 @@ export default function DiagnosisConversation({
               </div>
               <button
                 type="button"
-                onClick={() => rewindToStep(item.step)}
+                onClick={() => {
+                  // §6-4: 이미 본 질문에 타이핑 연출을 반복하지 않는다 — 상단 정렬만
+                  skipTheatricsRef.current = true;
+                  rewindToStep(item.step);
+                }}
                 className="opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity absolute -left-16 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 rounded bg-gray-100 hover:bg-gray-200 text-2xs font-bold text-gray-600 cursor-pointer"
                 title={ui.chatConnectors.rewindHover}
               >
@@ -149,9 +198,9 @@ export default function DiagnosisConversation({
         {/* Typing Indicator */}
         {isTyping && (
           <div className="self-start p-3.5 px-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-1.5 text-gray-400">
-            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '0ms' }} />
-            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '150ms' }} />
-            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '300ms' }} />
+            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce motion-reduce:animate-none" style={{ animationDelay: '0ms' }} />
+            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce motion-reduce:animate-none" style={{ animationDelay: '150ms' }} />
+            <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce motion-reduce:animate-none" style={{ animationDelay: '300ms' }} />
           </div>
         )}
 
@@ -159,168 +208,188 @@ export default function DiagnosisConversation({
         {!isTyping && (
           <>
             {step === 'q1' && (
-              <div className="flex flex-col gap-3 self-start w-full">
+              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
                 <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
                   {ui.q1Question}
                 </div>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {PERSONA_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => selectPersona(opt.id, opt.label[locale])}
-                      className="px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep"
-                    >
-                      {opt.label[locale]}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {step === 'q2' && (
-              <div className="flex flex-col gap-3 self-start w-full">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {ui.q2Question}
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
-                  {availableIndustries.map((ind) => {
-                    const colors = industryColorMap[ind.color] ?? industryColorMap.slate;
-                    const Icon = ind.icon;
-                    const label = indLabel(ind.slug, ind.label);
-                    return (
-                      <button
-                        key={ind.slug}
-                        type="button"
-                        onClick={() => selectIndustry(ind.slug, label)}
-                        className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${colors.border} ${colors.bg}`}
-                      >
-                        <span className={`flex shrink-0 w-7 h-7 rounded-lg items-center justify-center bg-white/80 ${colors.text}`}>
-                          <Icon className="w-3.5 h-3.5" aria-hidden="true" />
-                        </span>
-                        <span className={`font-bold text-xs sm:text-sm ${colors.text} truncate`}>{label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {step === 'q3' && industry && (
-              <div className="flex flex-col gap-3 self-start w-full">
-                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
-                  {ui.q3Question}
-                </div>
-                <div className="flex flex-col gap-2 pt-1">
-                  {clusters.map((c) => {
-                    const label = Q3_CLUSTER_LABEL[c.key]?.[locale] ?? c.clusterId;
-                    return (
-                      <button
-                        key={c.key}
-                        type="button"
-                        onClick={() => selectCluster(c, label)}
-                        className="flex items-center justify-between p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep"
-                      >
-                        <span>{label}</span>
-                        <ArrowRight className="w-4 h-4 text-gray-300" />
-                      </button>
-                    );
-                  })}
-                  <div className="pt-2 mt-2 border-t border-gray-100 flex flex-col gap-1.5">
-                    {Q3_UNIVERSAL_OPTIONS.map((opt) => (
+                {showOptions && (
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {PERSONA_OPTIONS.map((opt, i) => (
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => selectUniversal(opt.id, opt.label[locale])}
-                        className="text-left text-xs text-gray-400 hover:text-gray-600 transition-colors cursor-pointer py-1"
+                        onClick={() => selectPersona(opt.id, opt.label[locale])}
+                        className={`px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                        style={chipDelay(i)}
                       >
                         {opt.label[locale]}
                       </button>
                     ))}
                   </div>
+                )}
+              </div>
+            )}
+
+            {step === 'q2' && (
+              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
+                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
+                  {ui.q2Question}
                 </div>
+                {showOptions && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
+                    {availableIndustries.map((ind, i) => {
+                      const colors = industryColorMap[ind.color] ?? industryColorMap.slate;
+                      const Icon = ind.icon;
+                      const label = indLabel(ind.slug, ind.label);
+                      return (
+                        <button
+                          key={ind.slug}
+                          type="button"
+                          onClick={() => selectIndustry(ind.slug, label)}
+                          className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${colors.border} ${colors.bg} ${CHIP_ANIM}`}
+                          style={chipDelay(i)}
+                        >
+                          <span className={`flex shrink-0 w-7 h-7 rounded-lg items-center justify-center bg-white/80 ${colors.text}`}>
+                            <Icon className="w-3.5 h-3.5" aria-hidden="true" />
+                          </span>
+                          <span className={`font-bold text-xs sm:text-sm ${colors.text} truncate`}>{label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {step === 'q3' && industry && (
+              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
+                <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
+                  {ui.q3Question}
+                </div>
+                {showOptions && (
+                  <div className="flex flex-col gap-2 pt-1">
+                    {clusters.map((c, i) => {
+                      const label = Q3_CLUSTER_LABEL[c.key]?.[locale] ?? c.clusterId;
+                      return (
+                        <button
+                          key={c.key}
+                          type="button"
+                          onClick={() => selectCluster(c, label)}
+                          className={`flex items-center justify-between p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                          style={chipDelay(i)}
+                        >
+                          <span>{label}</span>
+                          <ArrowRight className="w-4 h-4 text-gray-300" />
+                        </button>
+                      );
+                    })}
+                    <div className="pt-2 mt-2 border-t border-gray-100 flex flex-col gap-1.5">
+                      {Q3_UNIVERSAL_OPTIONS.map((opt, i) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => selectUniversal(opt.id, opt.label[locale])}
+                          className={`text-left text-xs text-gray-400 hover:text-gray-600 transition-colors cursor-pointer py-1 ${CHIP_ANIM}`}
+                          style={chipDelay(clusters.length + i)}
+                        >
+                          {opt.label[locale]}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
             {step === 'q4' && cluster && (
-              <div className="flex flex-col gap-3 self-start w-full">
+              <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
                 <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
                   {TIEBREAK_QUESTIONS[cluster.key]?.question[locale] ?? ''}
                 </div>
-                <div className="flex flex-col gap-2 pt-1">
-                  {(TIEBREAK_QUESTIONS[cluster.key]?.options ?? []).map((opt) => (
-                    <button
-                      key={opt.slug}
-                      type="button"
-                      onClick={() => selectTiebreak(opt.slug, opt.label[locale])}
-                      className="p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep"
-                    >
-                      {opt.label[locale]}
-                    </button>
-                  ))}
-                </div>
+                {showOptions && (
+                  <div className="flex flex-col gap-2 pt-1">
+                    {(TIEBREAK_QUESTIONS[cluster.key]?.options ?? []).map((opt, i) => (
+                      <button
+                        key={opt.slug}
+                        type="button"
+                        onClick={() => selectTiebreak(opt.slug, opt.label[locale])}
+                        className={`p-3.5 px-4 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                        style={chipDelay(i)}
+                      >
+                        {opt.label[locale]}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
             {/* Analyzing Result State */}
             {isAnalyzingResult && (
-              <div className="self-start p-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-3 text-gray-600 text-xs sm:text-sm font-medium animate-pulse">
-                <Sparkles className="w-4 h-4 text-primary animate-spin" />
+              <div className="self-start p-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-3 text-gray-600 text-xs sm:text-sm font-medium animate-pulse motion-reduce:animate-none">
+                <Sparkles className="w-4 h-4 text-primary animate-spin motion-reduce:animate-none" />
                 {ui.chatConnectors.analyzing}
               </div>
             )}
 
-            {/* Result Stage */}
+            {/* Result Stage — §6-3: 패널 상단을 정렬(1회)하고 이후 자동 스크롤 없음.
+                읽는 스크롤은 사용자 몫. */}
             {!isAnalyzingResult && step === 'result' && resultSlug && (
-              <ResultPanel
-                slug={resultSlug}
-                industry={industry}
-                persona={persona}
-                privacySelected={privacySelected}
-                locale={locale}
-                onRestart={restart}
-              />
+              <div ref={activeRef} className="scroll-mt-3">
+                <ResultPanel
+                  slug={resultSlug}
+                  industry={industry}
+                  persona={persona}
+                  privacySelected={privacySelected}
+                  locale={locale}
+                  onRestart={restart}
+                />
+              </div>
             )}
 
-            {/* Exit States */}
+            {/* Exit States — §7 시나리오 E: 페이싱 규칙 동일 적용, 바닥 앵커 잔재 없음 */}
             {!isAnalyzingResult && step === 'exit-owner' && (
-              <ExitBlock
-                title={EXIT_OWNER[locale].title}
-                body={EXIT_OWNER[locale].body}
-                linkHref={localeHref(locale, '/products/saai-for-owners')}
-                linkLabel={EXIT_OWNER[locale].linkLabel}
-                secondaryLabel={EXIT_OWNER[locale].continueLabel}
-                onSecondary={() => setStep('q2')}
-              />
+              <div ref={activeRef} className="scroll-mt-3">
+                <ExitBlock
+                  title={EXIT_OWNER[locale].title}
+                  body={EXIT_OWNER[locale].body}
+                  linkHref={localeHref(locale, '/products/saai-for-owners')}
+                  linkLabel={EXIT_OWNER[locale].linkLabel}
+                  secondaryLabel={EXIT_OWNER[locale].continueLabel}
+                  onSecondary={() => setStep('q2')}
+                />
+              </div>
             )}
 
             {!isAnalyzingResult && step === 'exit-privacy' && (
-              <ExitBlock
-                title={EXIT_PRIVACY[locale].title}
-                body={EXIT_PRIVACY[locale].body}
-                linkHref={localeHref(locale, '/technology/anonymizer')}
-                linkLabel={EXIT_PRIVACY[locale].linkLabel}
-                secondaryLabel={ui.restart}
-                onSecondary={restart}
-              />
+              <div ref={activeRef} className="scroll-mt-3">
+                <ExitBlock
+                  title={EXIT_PRIVACY[locale].title}
+                  body={EXIT_PRIVACY[locale].body}
+                  linkHref={localeHref(locale, '/technology/anonymizer')}
+                  linkLabel={EXIT_PRIVACY[locale].linkLabel}
+                  secondaryLabel={ui.restart}
+                  onSecondary={restart}
+                />
+              </div>
             )}
 
             {!isAnalyzingResult && step === 'exit-unsure' && industry && (
-              <ExitBlock
-                title={EXIT_UNSURE[locale].title}
-                body={EXIT_UNSURE[locale].body(
-                  indLabel(industry, availableIndustries.find((i) => i.slug === industry)?.label ?? industry),
-                )}
-                linkHref={localeHref(locale, `/solutions#industry-${industry}`)}
-                linkLabel={EXIT_UNSURE[locale].linkLabel}
-                secondaryLabel={ui.restart}
-                onSecondary={restart}
-              />
+              <div ref={activeRef} className="scroll-mt-3">
+                <ExitBlock
+                  title={EXIT_UNSURE[locale].title}
+                  body={EXIT_UNSURE[locale].body(
+                    indLabel(industry, availableIndustries.find((i) => i.slug === industry)?.label ?? industry),
+                  )}
+                  linkHref={localeHref(locale, `/solutions#industry-${industry}`)}
+                  linkLabel={EXIT_UNSURE[locale].linkLabel}
+                  secondaryLabel={ui.restart}
+                  onSecondary={restart}
+                />
+              </div>
             )}
           </>
         )}
-
-        <div ref={bottomRef} />
       </div>
     </div>
   );

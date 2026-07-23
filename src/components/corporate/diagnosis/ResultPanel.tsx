@@ -71,22 +71,31 @@ export default function ResultPanel({
     }
   };
 
+  // §6-3(v3 diagnosis 페이싱): 결과는 위에서부터 읽는 문서 — 패널 통 등장 대신
+  // 섹션 순차 공개(헤더 0 → 접근 350 → 수치 600 → 허브 850 → 관련·CTA 1050ms).
+  // fill-mode-both라 자리는 처음부터 확보(레이아웃 시프트 없음), reduced-motion은 즉시.
+  const REVEAL = 'animate-in fade-in slide-in-from-bottom-1 fill-mode-both duration-300 motion-reduce:animate-none';
+
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-          {ui.resultKicker}
-        </span>
-        <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-primary-lighter text-primary-dark">
-          {sol.impact} {impactLabel}
-        </span>
+    <div>
+      {/* 진단 헤더 + 문제 확인 — 0ms */}
+      <div className={REVEAL}>
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            {ui.resultKicker}
+          </span>
+          <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-primary-lighter text-primary-dark">
+            {sol.impact} {impactLabel}
+          </span>
+        </div>
+
+        <p className="text-xs font-medium text-gray-400 mb-1 break-keep">{ui.problemHeading}</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{title}</h2>
+        <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-keep mb-8">{excerpt}</p>
       </div>
 
-      <p className="text-xs font-medium text-gray-400 mb-1 break-keep">{ui.problemHeading}</p>
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{title}</h2>
-      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-keep mb-8">{excerpt}</p>
-
-      {/* 3-Step Approach */}
+      {/* 3-Step Approach — 350ms */}
+      <div className={REVEAL} style={{ animationDelay: '350ms' }}>
       <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{ui.stepsHeading}</p>
       <div className="space-y-3 mb-8">
         {sol.steps.map((step, i) => {
@@ -104,8 +113,10 @@ export default function ResultPanel({
           );
         })}
       </div>
+      </div>
 
-      {/* Actual Stats */}
+      {/* Actual Stats — 600ms */}
+      <div className={REVEAL} style={{ animationDelay: '600ms' }}>
       <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{ui.resultsHeading}</p>
       <div className="grid grid-cols-3 gap-3 mb-2">
         {sol.results.map((r, i) => {
@@ -119,10 +130,11 @@ export default function ResultPanel({
         })}
       </div>
       <p className="text-2xs text-gray-400 mb-8">{ui.resultsNote}</p>
+      </div>
 
-      {/* Related Content Routing Hub */}
+      {/* Related Content Routing Hub — 850ms */}
       {routeCards.length > 0 && (
-        <div className="mb-8 pt-6 border-t border-gray-100">
+        <div className={`mb-8 pt-6 border-t border-gray-100 ${REVEAL}`} style={{ animationDelay: '850ms' }}>
           <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
             {ui.chatConnectors.relatedContentHeading}
           </p>
@@ -157,7 +169,8 @@ export default function ResultPanel({
         </div>
       )}
 
-      {/* Related Solutions */}
+      {/* Related solutions · glossary · CTA — 1050ms */}
+      <div className={REVEAL} style={{ animationDelay: '1050ms' }}>
       {relatedSolutionObjects.length > 0 && (
         <div className="mb-8">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">
@@ -209,6 +222,7 @@ export default function ResultPanel({
         >
           {ui.restart}
         </button>
+      </div>
       </div>
     </div>
   );
