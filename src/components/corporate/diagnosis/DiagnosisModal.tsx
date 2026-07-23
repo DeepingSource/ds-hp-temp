@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
+import { DIAGNOSIS_UI } from '@/data/diagnosis-i18n';
 import type { DiagnosisPreset } from './useDiagnosisEngine';
 import DiagnosisConversation from './DiagnosisConversation';
 
@@ -19,6 +20,7 @@ export default function DiagnosisModal({
   onClose,
   locale = 'ko',
 }: DiagnosisModalProps) {
+  const ui = DIAGNOSIS_UI[locale];
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close on ESC key press & lock body scroll
@@ -64,14 +66,14 @@ export default function DiagnosisModal({
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-primary" />
             <h2 id="diagnosis-modal-title" className="text-sm font-bold text-gray-900">
-              30초 문제 진단
+              {ui.eyebrow}
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
             className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
-            aria-label="Close modal"
+            aria-label={ui.modalClose}
           >
             <X className="w-5 h-5" />
           </button>

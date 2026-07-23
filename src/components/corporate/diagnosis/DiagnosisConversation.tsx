@@ -95,12 +95,18 @@ export default function DiagnosisConversation({
     <div className="flex flex-col h-full max-w-2xl mx-auto">
       {/* Top Header & Progress */}
       {showChrome && (
-        <div className="mb-6">
+        <div className={compact ? 'mb-4' : 'mb-6'}>
           <div className="flex items-center justify-between text-xs text-gray-400 font-medium mb-2">
-            <span className="flex items-center gap-1.5 text-primary font-bold">
-              <Sparkles className="w-3.5 h-3.5" />
-              {ui.eyebrow}
-            </span>
+            {/* compact(모달)에서는 eyebrow를 숨긴다 — 모달 헤더가 이미 같은 문구를
+                제목으로 띄우고 있어 중복이다. 단계 표시와 진행바는 유지. */}
+            {compact ? (
+              <span aria-hidden="true" />
+            ) : (
+              <span className="flex items-center gap-1.5 text-primary font-bold">
+                <Sparkles className="w-3.5 h-3.5" />
+                {ui.eyebrow}
+              </span>
+            )}
             <span className="tabular-nums font-bold">{ui.stepLabel(stepNumber, totalSteps)}</span>
           </div>
           <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -113,7 +119,7 @@ export default function DiagnosisConversation({
       )}
 
       {/* Main Conversation Flow */}
-      <div className="flex-1 flex flex-col gap-5 overflow-y-auto pr-1">
+      <div className={`flex-1 flex flex-col overflow-y-auto pr-1 ${compact ? 'gap-4' : 'gap-5'}`}>
         {/* Render History (Transcript) */}
         {transcript.map((item, idx) => (
           <div key={idx} className="flex flex-col gap-2.5">

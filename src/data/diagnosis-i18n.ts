@@ -33,6 +33,8 @@ export const DIAGNOSIS_UI: Record<
     resultsNote: string;
     /** Entry-point link shown on /solutions pointing into this flow. */
     entryLinkLabel: string;
+    /** 모달 닫기 버튼 aria-label. */
+    modalClose: string;
     chatConnectors: {
       understanding: string;
       finalQuestion: string;
@@ -67,6 +69,7 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: '자세히 보기',
     resultsNote: '* 수치는 실제 운영 사례를 설명하기 위한 예시이며, 현장 조건에 따라 달라질 수 있습니다.',
     entryLinkLabel: '질문 3개로 빠르게 찾기',
+    modalClose: '진단 닫기',
     chatConnectors: {
       understanding: '네, 알겠습니다.',
       finalQuestion: '마지막 질문이에요.',
@@ -100,6 +103,7 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: 'View detail',
     resultsNote: '* Figures are illustrative examples of real deployments; actual results vary by site.',
     entryLinkLabel: 'Find it in 3 questions',
+    modalClose: 'Close diagnosis',
     chatConnectors: {
       understanding: 'Understood.',
       finalQuestion: 'One last question.',
@@ -133,6 +137,7 @@ export const DIAGNOSIS_UI: Record<
     ctaSecondary: '詳しく見る',
     resultsNote: '* 数値は実際の運用事例を説明するための例であり、現場条件により異なります。',
     entryLinkLabel: '3つの質問で素早く見つける',
+    modalClose: '診断を閉じる',
     chatConnectors: {
       understanding: '承知いたしました。',
       finalQuestion: '最後の質問です。',
