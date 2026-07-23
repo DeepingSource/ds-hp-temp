@@ -67,9 +67,10 @@ const NAV: NavItem[] = [
   {
     type: 'menu', key: 'company', label: L('회사', 'Company', '会社'), base: '/company', items: [
       { href: '/company/about', label: L('회사 소개', 'About', '会社紹介'), desc: L('DEEPINGSOURCE Inc.', 'DEEPINGSOURCE Inc.', 'DEEPINGSOURCE Inc.') },
+      { href: '/company/team', label: L('팀원 & 사람', 'People & Team', 'チーム & 人々'), desc: L('SAAI를 만드는 사람들', 'Meet the SAAI team', 'SAAIを創る人々') },
       { href: '/company/news', label: L('보도자료', 'News', 'プレスリリース') },
       { href: '/events', label: L('이벤트', 'Events', 'イベント'), desc: L('박람회·컨벤션', 'Expos & conventions', '展示会・コンベンション') },
-      { href: '/company/career', label: L('채용', 'Careers', '採用') },
+      { href: '/company/career', label: L('채용 & 문화', 'Careers', '採用・文化') },
       { href: '/company/partnership', label: L('파트너십', 'Partnership', 'パートナーシップ') },
       { href: '/company/investors', label: L('IR', 'Investors', 'IR') },
     ],

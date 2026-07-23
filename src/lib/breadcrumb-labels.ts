@@ -25,6 +25,7 @@ export const crumbLabels: Record<string, Tri> = {
   about: { ko: '회사 소개', en: 'About', jp: '会社紹介' },
   news: { ko: '뉴스', en: 'News', jp: 'ニュース' },
   career: { ko: '채용', en: 'Careers', jp: '採用' },
+  team: { ko: '팀원 & 사람', en: 'People & Team', jp: 'チーム & 人々' },
   partnership: { ko: '파트너십', en: 'Partnership', jp: 'パートナーシップ' },
   investors: { ko: 'IR', en: 'Investors', jp: 'IR' },
 

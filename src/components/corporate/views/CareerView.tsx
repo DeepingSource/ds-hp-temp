@@ -79,6 +79,31 @@ export default function CareerView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* ── People & Team Banner ── */}
+      <section className="py-8 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary-light shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">
+                {locale === 'ko' ? '딥핑소스 40여 명의 뛰어난 팀원들을 만나보세요' : locale === 'jp' ? 'DEEPINGSOURCE のチームメンバーを見る' : 'Meet 40+ DeepingSource team members'}
+              </p>
+              <p className="text-xs text-slate-400">
+                {locale === 'ko' ? '연구원, 개발자, PM, 디자이너의 소속과 역할을 한눈에 확인하세요.' : locale === 'jp' ? '研究員、エンジニア、PM、デザイナーの役割を確認できます。' : 'Explore roles, teams, and leadership behind SAAI.'}
+              </p>
+            </div>
+          </div>
+          <Link
+            href={localeHref(locale, '/company/team')}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors shrink-0"
+          >
+            <span>{locale === 'ko' ? '팀원 & 리더십 갤러리 →' : locale === 'jp' ? 'チーム & リーダーシップ →' : 'View Team & Leadership →'}</span>
+          </Link>
+        </div>
+      </section>
+
       {/* ── 우리가 일하는 법 ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
