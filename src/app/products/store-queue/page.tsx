@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionToolView from '@/components/corporate/views/FunctionToolView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store queue — queues & crowding | DEEPINGSOURCE',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/store-queue', ko: '/ko/products/store-queue', ja: '/jp/products/store-queue' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store queue — queues & crowding | DEEPINGSOURCE',
     description: 'Waiting and crowding, measured live — move staff before it gets busy.',
     type: 'website',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CareerView from '@/components/corporate/views/CareerView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Careers — DEEPINGSOURCE Inc. | Weaving one company',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Careers — DEEPINGSOURCE Inc.',
     description: `Join ${COMPANY.name} and build offline spatial AI with us.`,

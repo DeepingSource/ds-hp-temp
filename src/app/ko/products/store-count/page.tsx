@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StoreCountView from '@/components/corporate/views/StoreCountView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store count — 상권·유입 카운팅 | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store count — 상권·유입 카운팅 | DEEPINGSOURCE',
     description: '해야 하는데 못 하던 상권분석 — 카메라 한 대로, 매일, 사람 없이.',
     type: 'website',

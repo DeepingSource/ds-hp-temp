@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ResourcesView from '@/components/corporate/views/ResourcesView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'リソース | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'リソース | DEEPINGSOURCE',
     description: 'ブログ、ケーススタディ、製品ドキュメント、用語集、FAQ をひとつの場所に。',

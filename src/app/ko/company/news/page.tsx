@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import NewsView from '@/components/corporate/views/NewsView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '보도자료 · 미디어 — DEEPINGSOURCE Inc.',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '보도자료 · 미디어 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}의 보도자료와 미디어 커버리지.`,

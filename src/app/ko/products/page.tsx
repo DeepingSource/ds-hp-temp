@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ProductsView from '@/components/corporate/views/ProductsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '제품 | DEEPINGSOURCE — 모든 공간을, 완벽하게',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: '제품 | DEEPINGSOURCE',
     description: '모든 공간을, 완벽하게. 엔터프라이즈 분석부터 사장님용 안심, B2C 콘텐츠까지.',
     type: 'website',

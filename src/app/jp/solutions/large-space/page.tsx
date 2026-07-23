@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import LargeSpaceView from '@/components/corporate/views/LargeSpaceView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '大型空間ソリューション | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: '大型空間ソリューション | DEEPINGSOURCE',
     description: '広い空間もひと目で。混雑·動線·異常を統合管理する大型空間ソリューション。',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SpatialAiView from '@/components/corporate/views/SpatialAiView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Spatial AI — MTMC 다중 카메라 분석 | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: 'Spatial AI — MTMC 다중 카메라 분석 | DEEPINGSOURCE',
     description: '여러 카메라를 하나의 공간 좌표계로 통합하는 MTMC 기술 개요.',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DocsView from '@/components/corporate/views/DocsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '제품 문서 | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '제품 문서 | DEEPINGSOURCE',
     description: '제품 설치, 연동, 운영에 필요한 기술 문서와 매뉴얼.',

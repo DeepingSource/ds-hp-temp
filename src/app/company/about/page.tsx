@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'About — DEEPINGSOURCE Inc. | Perfect every space.',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'About — DEEPINGSOURCE Inc.',
     description: `DeepingSource is an AI company that safely understands and optimizes every offline space through anonymization AI. ${COMPANY.patents} patents.`,

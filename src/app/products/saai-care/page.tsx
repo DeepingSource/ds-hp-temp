@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StoreCareView from '@/components/corporate/views/StoreCareView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai care — store care | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai care — store care | DEEPINGSOURCE',
     description: 'Peace of mind, by the hour. An owner’s solution that protects small stores.',
     type: 'website',

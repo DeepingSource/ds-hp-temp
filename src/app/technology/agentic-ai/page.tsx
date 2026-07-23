@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Agentic AI — Spatial & Operational Store Ontology | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'Agentic AI — Spatial & Operational Store Ontology | DEEPINGSOURCE',
     description: 'Autonomous store intelligence connecting MTMC footfall trajectories, POS, inventory, and cross-store learning propagation.',
     type: 'website',

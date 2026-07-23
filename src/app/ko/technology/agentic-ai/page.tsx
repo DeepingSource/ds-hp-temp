@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Agentic AI — 공간·매장 온톨로지와 자율형 지능 | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'Agentic AI — 공간·매장 온톨로지와 자율형 지능 | DEEPINGSOURCE',
     description: '1개 매장의 학습이 50개 지점으로 자동 전파되는 공간 온톨로지 기반 자율형 Agentic AI.',
     type: 'website',

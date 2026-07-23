@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import InvestorsView from '@/components/corporate/views/InvestorsView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'IR · 투자 정보 — DEEPINGSOURCE Inc.',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: 'IR · 투자 정보 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.nameKo}의 비전과 시장 기회, 투자 정보.`,

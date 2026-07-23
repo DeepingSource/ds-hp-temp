@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AgenticAiTechView from '@/components/corporate/views/AgenticAiTechView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Agentic AI — 店舗オントロジーと自律型空間AI | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'Agentic AI — 店舗オントロジーと自律型空間AI | DEEPINGSOURCE',
     description: '1店舗の学習が全店舗へ自動伝播するオントロジーベースの自律型 Agentic AI。',
     type: 'website',

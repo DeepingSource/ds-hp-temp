@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SaaiView from '@/components/corporate/views/SaaiView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai.store | DEEPINGSOURCE — カメラレス店長スイート',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai.store | DEEPINGSOURCE',
     description: '店長向けのカメラレススイート — 発注からPOPまで、ひとつの流れで。',
     type: 'website',

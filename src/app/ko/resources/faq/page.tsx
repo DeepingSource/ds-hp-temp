@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FaqView from '@/components/corporate/views/FaqView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '자주 묻는 질문 | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '자주 묻는 질문 | DEEPINGSOURCE',
     description: '도입 절차, 요금, 데이터 보안 등 자주 묻는 질문과 답변.',

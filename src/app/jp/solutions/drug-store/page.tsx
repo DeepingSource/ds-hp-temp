@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DrugView from '@/components/corporate/views/DrugView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'ドラッグストアソリューション | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'ドラッグストアソリューション | DEEPINGSOURCE',
     description: '陳列·欠品·動線を同じ基準で。カテゴリーが多くても乱れないドラッグストア。',

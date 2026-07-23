@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '1주일 브리핑 미리보기 | STOREAGENT',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: '/storeagent/sample',
   },
   openGraph: {
+    ...OG_BASE,
     title: '1주일 브리핑 미리보기 | STOREAGENT',
     description:
       '매일 아침 상권에 맞춘 실제 브리핑 사례를 확인해 보세요.',

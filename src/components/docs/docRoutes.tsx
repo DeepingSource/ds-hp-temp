@@ -4,6 +4,7 @@ import { getDocForRoute, getDocStaticSlugs } from '@/lib/docs';
 import { isGatedSlug } from '@/lib/docs-access';
 import { localePrefix, type Locale } from '@/lib/i18n';
 import DocDetailView from './DocDetailView';
+import { OG_BASE } from '@/lib/og';
 
 /**
  * Shared route helpers for the wiki-style docs detail pages. Each locale's
@@ -44,7 +45,7 @@ export async function docDetailMetadata(locale: Locale, params: Params): Promise
     title: `${doc.title} | ${TITLE_SUFFIX[locale]}`,
     description: doc.excerpt || undefined,
     alternates: { canonical: path },
-    openGraph: { title: doc.title, description: doc.excerpt || undefined, url: path },
+    openGraph: { ...OG_BASE, title: doc.title, description: doc.excerpt || undefined, url: path },
   };
 }
 

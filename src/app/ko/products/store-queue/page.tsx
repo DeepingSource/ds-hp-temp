@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionToolView from '@/components/corporate/views/FunctionToolView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store queue — 대기·혼잡 | DEEPINGSOURCE',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/store-queue', ko: '/ko/products/store-queue', ja: '/jp/products/store-queue' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store queue — 대기·혼잡 | DEEPINGSOURCE',
     description: '대기와 혼잡을 실시간으로 재, 붐비기 전에 인력을 옮깁니다.',
     type: 'website',

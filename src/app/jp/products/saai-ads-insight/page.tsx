@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SaaiAdsInsightView from '@/components/corporate/views/SaaiAdsInsightView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai ads insight — サイネージ・展示物の反応 | DEEPINGSOURCE',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/saai-ads-insight', ko: '/ko/products/saai-ads-insight', ja: '/jp/products/saai-ads-insight' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai ads insight — サイネージ・展示物の反応 | DEEPINGSOURCE',
     description: 'サイネージ・展示物前の通行・接近・注目・行動を匿名で計測、何をどこに掲げるかをデータで。',
     type: 'website',

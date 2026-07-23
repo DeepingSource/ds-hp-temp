@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FoodBeverageView from '@/components/corporate/views/FoodBeverageView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Café & F&B Solutions | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Café & F&B Solutions | DEEPINGSOURCE',
     description: 'Hygiene, waits, and reordering, by the same standard. Food-service operations by one standard across stores.',

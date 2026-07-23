@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import TeamView from '@/components/corporate/views/TeamView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '팀원 & 리더십 | 딥핑소스 DEEPINGSOURCE',
@@ -13,17 +14,13 @@ export const metadata: Metadata = {
       ja: 'https://www.deepingsource.io/jp/company/team',
     },
   },
-  // 페이지 openGraph는 루트 레이아웃 블록을 병합이 아니라 '대체'하므로
-  // siteName/type/images/alternateLocale을 함께 재선언해 카드 손실을 막는다.
   openGraph: {
+    ...OG_BASE,
     title: '팀원 & 리더십 — DEEPINGSOURCE Inc.',
     description: '오프라인 공간의 미래를 만드는 딥핑소스의 팀원들과 리더십을 소개합니다.',
     url: 'https://www.deepingsource.io/ko/company/team',
-    siteName: 'DEEPINGSOURCE',
     locale: 'ko_KR',
     alternateLocale: ['en_US', 'ja_JP'],
-    type: 'website',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'DeepingSource — Anonymized Spatial AI' }],
   },
 };
 

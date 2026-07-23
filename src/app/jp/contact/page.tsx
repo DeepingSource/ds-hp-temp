@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ContactFormPage from '../../contact/ContactFormPage';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '導入のご相談 | DEEPINGSOURCE',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: '導入のご相談 | DEEPINGSOURCE',
     description: 'DeepingSource 導入のご相談をお申し込みください。営業日1-2日以内に担当者よりご連絡いたします。',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StoreInsightView from '@/components/corporate/views/StoreInsightView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai insight — store insight | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai insight — store insight | DEEPINGSOURCE',
     description: 'アナリストの冷静さで店舗を読み解きます。売上変化の要因を、データで。',
     type: 'website',

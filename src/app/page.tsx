@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import HomeView from '@/components/corporate/HomeView';
+import { OG_BASE } from '@/lib/og';
 
 const languages = {
   'x-default': 'https://deepingsource.io',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   description: 'Anonymized Spatial AI that reads every store safely — and leaves you one thing to do today. store insight · store care · store agent · SAAI.',
   alternates: { canonical: '/', languages },
   openGraph: {
+    ...OG_BASE,
     title: 'DEEPINGSOURCE | Anonymized Spatial AI',
     description: 'Anonymized Spatial AI that reads every store safely — and leaves you one thing to do today.',
     url: 'https://deepingsource.io',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import RetailView from '@/components/corporate/views/RetailView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'リテール·コンビニソリューション | DEEPINGSOURCE',
     description:

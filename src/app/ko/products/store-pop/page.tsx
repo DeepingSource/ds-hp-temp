@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionToolView from '@/components/corporate/views/FunctionToolView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store pop — 판촉물(POP) | DEEPINGSOURCE',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/store-pop', ko: '/ko/products/store-pop', ja: '/jp/products/store-pop' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store pop — 판촉물(POP) | DEEPINGSOURCE',
     description: '붙여둔 POP이 정말 보이고 있나요? 노출·주목·전환을 숫자로.',
     type: 'website',

@@ -4,6 +4,7 @@ import { getCaseStudiesByLocale, getCaseStudyBySlug } from '@/lib/case-studies';
 import { localePrefix, type Locale } from '@/lib/i18n';
 import CaseStudiesIndexView from './CaseStudiesIndexView';
 import CaseStudyDetailView from './CaseStudyDetailView';
+import { OG_BASE } from '@/lib/og';
 
 /**
  * Shared route helpers for the locale-scoped case-studies collection. Each locale's
@@ -64,7 +65,7 @@ export function caseStudyIndexMetadata(locale: Locale): Metadata {
         ja: '/jp/resources/case-studies',
       },
     },
-    openGraph: { title: m.title, description: m.ogDescription, url },
+    openGraph: { ...OG_BASE, title: m.title, description: m.ogDescription, url },
   };
 }
 
@@ -89,6 +90,7 @@ export async function caseStudyDetailMetadata(locale: Locale, params: Params): P
     description: cs.sub,
     alternates: { canonical: path },
     openGraph: {
+      ...OG_BASE,
       title: cs.title,
       description: cs.sub,
       url: path,

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SaaiAdsInsightView from '@/components/corporate/views/SaaiAdsInsightView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai ads insight — 사이니지·전시물 반응 | DEEPINGSOURCE',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/saai-ads-insight', ko: '/ko/products/saai-ads-insight', ja: '/jp/products/saai-ads-insight' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai ads insight — 사이니지·전시물 반응 | DEEPINGSOURCE',
     description: '사이니지·전시물 앞의 통행·접근·주목·행동을 익명으로 재, 무엇을 어디에 걸지 데이터로.',
     type: 'website',

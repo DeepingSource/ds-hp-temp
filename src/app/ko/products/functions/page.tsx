@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionsView from '@/components/corporate/views/FunctionsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '기능 라이브러리 — 기능은 3모드를 가로지릅니다 | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: '기능 라이브러리 — 기능은 3모드를 가로지릅니다 | DEEPINGSOURCE',
     description: 'count 하나가 care로는 실시간 감지, insight로는 추세 분석, agent로는 운영 제안이 됩니다.',
     type: 'website',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import LargeSpaceView from '@/components/corporate/views/LargeSpaceView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '대형 공간 솔루션 | 딥핑소스',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '대형 공간 솔루션 | 딥핑소스',
     description: '넓은 공간도 한눈에. 혼잡·동선·이상을 같은 기준으로 통합 관리하는 대형 공간 솔루션.',

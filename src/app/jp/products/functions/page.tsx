@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionsView from '@/components/corporate/views/FunctionsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '機能ライブラリ — 機能は3つのモードを横断します | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: '機能ライブラリ — 機能は3つのモードを横断します | DEEPINGSOURCE',
     description: '一つの count が、care ではリアルタイム検知に、insight では推移分析に、agent では運営提案になります。',
     type: 'website',

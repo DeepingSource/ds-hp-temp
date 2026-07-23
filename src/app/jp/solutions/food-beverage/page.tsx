@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FoodBeverageView from '@/components/corporate/views/FoodBeverageView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'カフェ·飲食店ソリューション | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'カフェ·飲食店ソリューション | DEEPINGSOURCE',
     description: '衛生·待ち時間·発注を同じ基準で。店舗ごとに同じ基準で運営される飲食店。',

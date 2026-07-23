@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DrugView from '@/components/corporate/views/DrugView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '드럭스토어 솔루션 | 딥핑소스',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '드럭스토어 솔루션 | 딥핑소스',
     description: '진열·결품·동선을 같은 기준으로. 카테고리가 많아도 흐트러지지 않는 드럭스토어.',

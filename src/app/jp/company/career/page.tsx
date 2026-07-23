@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CareerView from '@/components/corporate/views/CareerView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '採用 — DEEPINGSOURCE Inc. | ともに織りなすひとつの会社',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: '採用 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}とともに働く仲間を探しています。`,

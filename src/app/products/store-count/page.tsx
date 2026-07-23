@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StoreCountView from '@/components/corporate/views/StoreCountView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store count — footfall & capture rate | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store count — footfall & capture rate | DEEPINGSOURCE',
     description: 'Trade-area analysis you knew you needed, from one camera — every day, no staff.',
     type: 'website',

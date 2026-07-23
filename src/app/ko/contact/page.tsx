@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ContactFormPage from '../../contact/ContactFormPage';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '도입 상담 | DEEPINGSOURCE',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '도입 상담 | DEEPINGSOURCE',
     description: '딥핑소스 도입 상담을 신청하세요. 영업일 1-2일 내 담당자가 연락드립니다.',

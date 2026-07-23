@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '会社情報 — DEEPINGSOURCE Inc. | すべての空間を、完璧に。',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: '会社情報 — DEEPINGSOURCE Inc.',
     description: `ディーピングソースは、匿名化AI技術で世界中のすべてのオフライン空間を安全に理解し、最適化するAI企業です。特許${COMPANY.patents}件。`,

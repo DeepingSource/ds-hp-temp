@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DocsView from '@/components/corporate/views/DocsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Product Docs | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Product Docs | DEEPINGSOURCE',
     description: 'Technical documentation and manuals for installing, integrating, and operating products.',

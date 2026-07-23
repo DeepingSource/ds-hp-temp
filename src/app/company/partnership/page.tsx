@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PartnershipView from '@/components/corporate/views/PartnershipView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Partnership — DEEPINGSOURCE Inc. | Your store, like one too',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Partnership — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}'s partner program.`,

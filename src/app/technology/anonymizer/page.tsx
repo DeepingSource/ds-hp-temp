@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AnonymizerView from '@/components/corporate/views/AnonymizerView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Anonymizer — Video De-identification Module | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Anonymizer — Video De-identification Module | DEEPINGSOURCE',
     description:

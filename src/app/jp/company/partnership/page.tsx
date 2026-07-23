@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PartnershipView from '@/components/corporate/views/PartnershipView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'パートナーシップ — DEEPINGSOURCE Inc. | パートナーの店舗もひとつの店舗のように',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'パートナーシップ — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}のパートナープログラム。`,

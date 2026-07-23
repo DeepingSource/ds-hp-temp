@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import GlossaryView from '@/components/corporate/views/GlossaryView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '用語集 | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: '用語集 | DEEPINGSOURCE',
     description: 'プライバシーAIと空間分析の主要な用語をやさしく説明します。',

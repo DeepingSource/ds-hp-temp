@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AnonymizerView from '@/components/corporate/views/AnonymizerView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Anonymizer — 영상 익명화 모듈 | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: 'Anonymizer — 영상 익명화 모듈 | DEEPINGSOURCE',
     description: '개인 식별 정보는 제거하고 분석 신호는 보존하는 영상 익명화 모듈의 기술 개요.',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import AboutView from '@/components/corporate/views/AboutView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '회사 소개 — DEEPINGSOURCE Inc. | 모든 공간을, 완벽하게',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '회사 소개 — DEEPINGSOURCE Inc.',
     description: `${COMPANY.companyIntro} 특허 ${COMPANY.patentsLabel}.`,

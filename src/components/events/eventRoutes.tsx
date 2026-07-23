@@ -6,6 +6,7 @@ import { localePrefix, type Locale } from '@/lib/i18n';
 import EventDetailView from './EventDetailView';
 import EventsIndexView from './EventsIndexView';
 import ExpoLanding from './coex-franchise-expo/ExpoLanding';
+import { OG_BASE } from '@/lib/og';
 
 /**
  * Shared route helpers for the events pages. Each locale's page.tsx (en at /events,
@@ -46,7 +47,7 @@ export async function eventDetailMetadata(locale: Locale, params: Params): Promi
     title: `${event.title} | ${TITLE_SUFFIX[locale]}`,
     description: event.subtitle || undefined,
     alternates: { canonical: path },
-    openGraph: { title: event.title, description: event.subtitle || undefined, url: path },
+    openGraph: { ...OG_BASE, title: event.title, description: event.subtitle || undefined, url: path },
     // Invite-only events opt out of indexing.
     ...(event.noindex ? { robots: { index: false, follow: false } } : {}),
   };
@@ -71,7 +72,7 @@ export function eventsIndexMetadata(locale: Locale): Metadata {
     title: m.title,
     description: m.desc,
     alternates: { canonical: path },
-    openGraph: { title: m.title, description: m.desc, url: path },
+    openGraph: { ...OG_BASE, title: m.title, description: m.desc, url: path },
   };
 }
 

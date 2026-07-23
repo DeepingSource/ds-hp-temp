@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import EnterpriseView from '@/components/corporate/views/EnterpriseView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: '기업·프랜차이즈 도입 | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ko_KR',
     title: '기업·프랜차이즈 도입 | DEEPINGSOURCE',
     description: '본사·슈퍼바이저를 위한 다점포 운영 표준화 — Golden Case 5단계.',

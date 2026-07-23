@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ModelsView from '@/components/corporate/views/ModelsView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Vision Models — ビジョンモデルカタログ | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'ja_JP',
     title: 'Vision Models — ビジョンモデルカタログ | DEEPINGSOURCE',
     description: '匿名化・認識・空間・フロー・変化・生成カテゴリのビジョンモデルカタログ。',

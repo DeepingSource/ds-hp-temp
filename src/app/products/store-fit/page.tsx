@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FunctionToolView from '@/components/corporate/views/FunctionToolView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'store fit — trend fit | DEEPINGSOURCE',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/store-fit', ko: '/ko/products/store-fit', ja: '/jp/products/store-fit' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'store fit — trend fit | DEEPINGSOURCE',
     description: 'Whether a product will sell — you know in its first week on the shelf.',
     type: 'website',

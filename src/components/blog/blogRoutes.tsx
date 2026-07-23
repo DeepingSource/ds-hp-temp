@@ -4,6 +4,7 @@ import { getArticleBySlug, getBlogArticles } from '@/lib/articles';
 import BlogIndexView from './BlogIndexView';
 import BlogArticleView from './BlogArticleView';
 import { localePrefix, type Locale } from '@/lib/i18n';
+import { OG_BASE } from '@/lib/og';
 
 /**
  * Shared route helpers for the locale-scoped corporate blog. Each locale's
@@ -64,7 +65,7 @@ export function blogIndexMetadata(locale: Locale): Metadata {
         ja: '/jp/resources/blog',
       },
     },
-    openGraph: { title: m.title, description: m.ogDescription, url },
+    openGraph: { ...OG_BASE, title: m.title, description: m.ogDescription, url },
   };
 }
 
@@ -104,6 +105,7 @@ export async function blogArticleMetadata(locale: Locale, params: Params): Promi
     keywords: article.tags,
     alternates: { canonical: path },
     openGraph: {
+      ...OG_BASE,
       title: article.title,
       description: article.excerpt,
       url: path,

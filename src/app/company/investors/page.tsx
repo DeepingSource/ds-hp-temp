@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import InvestorsView from '@/components/corporate/views/InvestorsView';
 import { COMPANY } from '@/lib/company-data';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Investor Relations — DEEPINGSOURCE Inc.',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Investor Relations — DEEPINGSOURCE Inc.',
     description: `${COMPANY.name}'s vision, market opportunity, and investor information.`,

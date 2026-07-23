@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SaaiAdsInsightView from '@/components/corporate/views/SaaiAdsInsightView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai ads insight — signage & display response | DEEPINGSOURCE',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     languages: { en: '/products/saai-ads-insight', ko: '/ko/products/saai-ads-insight', ja: '/jp/products/saai-ads-insight' },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai ads insight — signage & display response | DEEPINGSOURCE',
     description: 'Traffic, approach, attention and action in front of signage and displays — measured anonymously.',
     type: 'website',

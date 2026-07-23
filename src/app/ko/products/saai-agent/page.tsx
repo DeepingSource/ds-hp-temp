@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StoreAgentView from '@/components/corporate/views/StoreAgentView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'saai agent — store agent | DEEPINGSOURCE',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     title: 'saai agent — store agent | DEEPINGSOURCE',
     description: '데이터를 넘어 결정으로. 매장 운영의 다음 한 수를 제안합니다.',
     type: 'website',

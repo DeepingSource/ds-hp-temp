@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import EnterpriseView from '@/components/corporate/views/EnterpriseView';
+import { OG_BASE } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: 'Enterprise & Franchise | DEEPINGSOURCE',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    ...OG_BASE,
     locale: 'en_US',
     title: 'Enterprise & Franchise | DEEPINGSOURCE',
     description: 'Multi-store operations standardization for HQ and supervisors — the 5-stage Golden Case.',
