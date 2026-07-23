@@ -31,16 +31,28 @@ const COPY: Record<Locale, {
   ladderTitle: string;
   ladderSub: string;
   ladderItems: { b2c: string; b2b: string; desc: string }[];
+  /** 사다리 카드 좌/우 열 라벨 — 이전엔 한국어 하드코딩이라 en/jp에도 노출됐다. */
+  ladderB2cLabel: string;
+  ladderB2bLabel: string;
+  dashEyebrow: string;
   dashTitle: string;
   dashSub: string;
   dashPillars: { title: string; desc: string }[];
+  deviceLabels: { store: string; phone: string };
+  privacyEyebrow: string;
   privacyTitle: string;
   privacySub: string;
+  /** SEAL 3서약 카드 — 이전엔 한국어 하드코딩. */
+  privacyPledges: { title: string; desc: string }[];
+  faqEyebrow: string;
   faqTitle: string;
   faqs: { q: string; a: string }[];
+  ctaEyebrow: string;
   ctaTitle: string;
   ctaSub: string;
   ctaButton: string;
+  /** 하단 storecare.ai 셀프 서비스 버튼 — 이전엔 한국어 하드코딩. */
+  ownerSelfCta: string;
 }> = {
   ko: {
     badge: 'DETECT · 24시간 실시간 이상 감지',
@@ -61,6 +73,9 @@ const COPY: Record<Locale, {
       { b2c: '필요한 알림만 골라 받기', b2b: '알림 수만 건 → 손쓸 곳 3곳 매장 랭킹', desc: 'SV 한 명이 담당하는 수십 개 매장의 알림 데이터 중 실제 개입이 필요한 순서로 매장을 정돈합니다.' },
       { b2c: '매장 사진 본사 미공유 약속', b2b: 'SEAL 원본 미보존 — 프라이버시 컴플라이언스', desc: '본사는 사건과 추세 데이터만 봅니다. 가맹점 감시가 아닌, 원본 미보존으로 가맹점 반발을 해결합니다.' },
     ],
+    ladderB2cLabel: 'storecare.ai · 사장님 1개 매장',
+    ladderB2bLabel: 'saai care for 프랜차이즈 · 본사 전 매장',
+    dashEyebrow: '본사 롤업',
     dashTitle: '전 매장을 한 화면에서 — 관측의 회복',
     dashSub: '전국 매장의 이상 감지·위생/온도 컴플라이언스·매장 랭킹·실시간 알림을 종합 롤업합니다.',
     dashPillars: [
@@ -68,8 +83,16 @@ const COPY: Record<Locale, {
       { title: '위생·설비, 감사 증빙 기록', desc: '냉장 온도, 바닥 누수, 비상구 상태를 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
       { title: '수만 건 알림 대신, 손쓸 매장 3곳', desc: '사고 건수와 긴급도로 전 매장을 자동으로 정돈하고, 현장 SV가 즉시 방문해야 할 우선순위를 추천합니다.' },
     ],
+    deviceLabels: { store: '매장이 보는 것', phone: '본사 손에 오르는 것' },
+    privacyEyebrow: '프라이버시 컴플라이언스',
     privacyTitle: '본사는 감시가 아니라, 브랜드 품질 표준을 지킵니다.',
     privacySub: 'SEAL이 촬영하는 순간 익명화합니다. 원본 비디오는 남지 않으며 신원은 즉시 지워집니다. 가맹점주는 자기 매장을 자기 콘솔(storecare.ai)에서 보고, 본사는 사건과 컴플라이언스 지표만 관측하여 가맹점과의 프라이버시 갈등을 완벽히 소쇄합니다.',
+    privacyPledges: [
+      { title: '원본 비디오 미보존', desc: '촬영 즉시 익명화 후 원본 영상을 삭제하여 서버에 남지 않습니다.' },
+      { title: '가맹점 전용 콘솔 분리', desc: '가맹점주는 storecare.ai에서 자기 매장 알림만 봅니다.' },
+      { title: '본사 사건·지표 롤업', desc: '본사는 감시가 아닌, 위생·설비 이상과 브랜드 지표만 봅니다.' },
+    ],
+    faqEyebrow: 'B2B FAQ',
     faqTitle: '본사 도입에 관한 자주 묻는 질문 (B2B FAQ)',
     faqs: [
       { q: '기존 매장에 설치된 CCTV를 그대로 사용할 수 있나요?', a: '네, 기존에 설치된 RTSP/IP CCTV 카메라를 교체 없이 100% 그대로 활용할 수 있어 추가 장비 구축 비용을 최소화합니다.' },
@@ -82,6 +105,8 @@ const COPY: Record<Locale, {
     ctaTitle: '전 매장의 손실을 막고, 품질 표준을 세우세요.',
     ctaSub: '직영점 5개 매장 파일럿부터 전 매장 인프라 확장까지, 딥핑소스 엔터프라이즈 팀이 함께합니다.',
     ctaButton: '본사 맞춤 파일럿 & 도입 상담',
+    ctaEyebrow: '엔터프라이즈 케어',
+    ownerSelfCta: 'storecare.ai 사장님 셀프 ↗',
   },
   en: {
     badge: 'DETECT · 24/7 Real-Time Anomaly Sensing',
@@ -102,6 +127,9 @@ const COPY: Record<Locale, {
       { b2c: 'Filter out noise', b2b: '10,000 alerts → Top 3 priority store ranking', desc: 'Ranking stores by urgency so field supervisors visit the exact locations needing immediate intervention.' },
       { b2c: 'Private store data', b2b: 'SEAL zero-video — Privacy Compliance', desc: 'HQ only sees events and trend metrics. Zero raw video is stored, eliminating franchise privacy friction.' },
     ],
+    ladderB2cLabel: 'storecare.ai · a single owner-operated store',
+    ladderB2bLabel: 'saai care for franchises · every store, from HQ',
+    dashEyebrow: 'Headquarters rollup',
     dashTitle: 'All stores on one screen — Restoring visibility',
     dashSub: 'Consolidating live anomaly detection, hygiene compliance, store rankings, and alerts in one HQ view.',
     dashPillars: [
@@ -109,8 +137,16 @@ const COPY: Record<Locale, {
       { title: 'Audit-ready Records', desc: '24/7 inspection of fridge temperatures, leaks, and exit doors transformed into verifiable audit proofs.' },
       { title: 'Top 3 Actionable Stores', desc: 'Automatically sort store urgency so field supervisors spend time where it matters most.' },
     ],
+    deviceLabels: { store: 'What the store sees', phone: 'What reaches HQ' },
+    privacyEyebrow: 'Privacy compliance',
     privacyTitle: 'HQ enforces brand standards, not employee surveillance.',
     privacySub: 'SEAL anonymizes footage at the instant of capture. Raw video is destroyed immediately, and franchisees view their own store on storecare.ai while HQ monitors compliance metrics.',
+    privacyPledges: [
+      { title: 'No source video retained', desc: 'Footage is anonymized on capture and the original is deleted — nothing lands on the server.' },
+      { title: 'A separate console for franchisees', desc: 'Owners see only their own store’s alerts, in their own console at storecare.ai.' },
+      { title: 'HQ sees events and metrics', desc: 'Not surveillance — HQ sees sanitation and equipment anomalies and brand metrics, nothing more.' },
+    ],
+    faqEyebrow: 'B2B FAQ',
     faqTitle: 'Frequently Asked Questions for Franchise HQ (B2B FAQ)',
     faqs: [
       { q: 'Can we use our existing CCTV cameras?', a: 'Yes. Existing RTSP/IP CCTV cameras work 100% as-is without equipment replacement.' },
@@ -123,6 +159,8 @@ const COPY: Record<Locale, {
     ctaTitle: 'Prevent store loss and establish brand-wide standards.',
     ctaSub: 'From 5-store pilots to enterprise rollout, DeepingSource Enterprise Team is here to help.',
     ctaButton: 'Request Enterprise Pilot',
+    ctaEyebrow: 'Enterprise care',
+    ownerSelfCta: 'storecare.ai self-service ↗',
   },
   jp: {
     badge: 'DETECT · 24時間リアルタイム異常検知',
@@ -143,6 +181,9 @@ const COPY: Record<Locale, {
       { b2c: '必要な通知だけ', b2b: '数万件の通知 → 介入すべき店舗3箇所のランキング', desc: 'SVが担当する数十店舗のデータから、今すぐ訪問すべき店舗を自動整理。' },
       { b2c: '店舗写真の非共有約束', b2b: 'SEAL動画未保存 — プライバシーコンプライアンス', desc: '本部は事件と指標のみ観測。加盟店の反発を動画非保存で解消します。' },
     ],
+    ladderB2cLabel: 'storecare.ai · オーナーの1店舗',
+    ladderB2bLabel: 'saai care for フランチャイズ · 本部の全店舗',
+    dashEyebrow: '本部ロールアップ',
     dashTitle: '全店舗を一画面で — 観測の回復',
     dashSub: '全国店舗の異常検知・コンプライアンス・店舗ランキングを一画面に統合。',
     dashPillars: [
@@ -150,8 +191,16 @@ const COPY: Record<Locale, {
       { title: '監査証跡としての記録', desc: '冷蔵温度や非常口の状態を24時間点検し、確かな記録として残します。' },
       { title: '介入すべき3店舗の推奨', desc: '緊急度で全店舗を自動整列し、SVが訪問すべき優先順位を提示。' },
     ],
+    deviceLabels: { store: '店舗が見るもの', phone: '本部に届くもの' },
+    privacyEyebrow: 'プライバシーコンプライアンス',
     privacyTitle: '本部は監視ではなく、品質標準を守ります。',
     privacySub: 'SEALが撮影した瞬間匿名化。動画は残らず、加盟店は自店を自分のコンソール(storecare.ai)で確認し、本部はコンプライアンス指標のみ観測します。',
+    privacyPledges: [
+      { title: '元映像は保存しない', desc: '撮影と同時に匿名化し、元映像は削除するためサーバーに残りません。' },
+      { title: '加盟店専用コンソールを分離', desc: '加盟店オーナーは storecare.ai で自店舗の通知だけを見ます。' },
+      { title: '本部は事象と指標のみ', desc: '監視ではなく、衛生・設備の異常とブランド指標だけを見ます。' },
+    ],
+    faqEyebrow: 'B2B FAQ',
     faqTitle: '本部導入に関するよくある質問 (B2B FAQ)',
     faqs: [
       { q: '既存のCCTVカメラをそのまま使えますか？', a: 'はい、既存のRTSP/IPカメラを100%そのまま活用可能です。' },
@@ -164,6 +213,8 @@ const COPY: Record<Locale, {
     ctaTitle: '全店舗の損失を防ぎ、品質標準を確立しましょう。',
     ctaSub: '5店舗のパイロットから全店舗展開まで、エンタープライズチームがサポートします。',
     ctaButton: '本部パイロット & 導入相談',
+    ctaEyebrow: 'エンタープライズケア',
+    ownerSelfCta: 'storecare.ai セルフサービス ↗',
   },
 };
 
@@ -220,19 +271,19 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
             {/* HQ Rollup Dashboard Preview in Hero */}
             <div className="lg:col-span-5">
               <div className="rounded-3xl border border-white/10 bg-slate-800/80 p-2 shadow-2xl backdrop-blur-md">
-                <HqRollupDashboardMockup locale={locale} ariaLabel={c.dashTitle} />
+                {/* Hero = 항상 최초 뷰포트 → 스크롤-리빌 게이팅 제외 (immediate) */}
+                <HqRollupDashboardMockup locale={locale} ariaLabel={c.dashTitle} immediate />
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* ── Beat 2 — Scale Risk (Agitation) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-slate-950 text-white noise-overlay border-t border-slate-800">
+      {/* ── Beat 2 — Scale Risk (Agitation).
+             Hero와 같은 slate-900 + 구분선 없음 = 하나의 연속 다크 블록. ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-slate-900 text-white noise-overlay">
         <Container className="max-w-4xl text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-rose-400 mb-3 block">
-            {c.threatEyebrow}
-          </span>
+          <Eyebrow tone="light" className="mb-3 justify-center">{c.threatEyebrow}</Eyebrow>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-display break-keep">
             "{c.threatTitle}"
           </h2>
@@ -262,14 +313,14 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
                 className="p-6 rounded-2xl border border-gray-200 bg-white hover:border-primary-light hover:shadow-card transition-all grid sm:grid-cols-12 gap-4 items-center"
               >
                 <div className="sm:col-span-4 p-3 rounded-xl bg-slate-50 border border-gray-100">
-                  <span className="text-2xs font-bold uppercase text-gray-400 block mb-1">storecare.ai (사장님 1개 매장)</span>
+                  <span className="text-2xs font-bold uppercase text-gray-400 block mb-1">{c.ladderB2cLabel}</span>
                   <p className="text-sm font-bold text-gray-700 break-keep">{item.b2c}</p>
                 </div>
                 <div className="hidden sm:flex sm:col-span-1 justify-center text-primary">
                   <ArrowRight className="w-5 h-5" />
                 </div>
                 <div className="sm:col-span-7 p-4 rounded-xl bg-primary/5 border border-primary/15">
-                  <span className="text-2xs font-bold uppercase text-primary block mb-1">saai care for 프랜차이즈 (본사 전 매장)</span>
+                  <span className="text-2xs font-bold uppercase text-primary block mb-1">{c.ladderB2bLabel}</span>
                   <h3 className="text-base font-bold text-gray-900 mb-1 break-keep">{item.b2b}</h3>
                   <p className="text-xs text-gray-600 leading-relaxed break-keep">{item.desc}</p>
                 </div>
@@ -283,7 +334,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-20 lg:py-28 bg-gray-50 border-y border-gray-100">
         <Container>
           <div className="mb-12 max-w-3xl">
-            <Eyebrow className="mb-2">HEADQUARTERS ROLLUP</Eyebrow>
+            <Eyebrow className="mb-2">{c.dashEyebrow}</Eyebrow>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-3">
               {c.dashTitle}
             </h2>
@@ -294,7 +345,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
 
           <div className="grid lg:grid-cols-3 gap-8">
             {c.dashPillars.map((p, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
+              <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 shadow-card">
                 <div className="w-10 h-10 rounded-xl bg-primary-lighter text-primary font-bold text-sm flex items-center justify-center mb-6">
                   0{i + 1}
                 </div>
@@ -309,26 +360,17 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
       {/* Interactive Device & Scene Mockups */}
       <AnimatedSection className="py-16 lg:py-24 bg-white">
         <Container>
-          <StoreCareDeviceTabs
-            locale={locale}
-            labels={
-              locale === 'ko'
-                ? { store: '매장이 보는 것 (1,247건)', phone: '본사/손안에 오르는 것 (3건)' }
-                : locale === 'jp'
-                ? { store: '店舗が見るもの', phone: '本部に届くもの' }
-                : { store: 'What the store sees', phone: 'What reaches HQ' }
-            }
-          />
+          <StoreCareDeviceTabs locale={locale} labels={c.deviceLabels} />
         </Container>
       </AnimatedSection>
 
       {/* ── Beat 6 — Privacy & Franchise Harmony (SEAL 3 Pledges) ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
         <Container className="max-w-4xl text-center">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-4">
+          <Eyebrow tone="light" className="mb-4 inline-flex items-center justify-center gap-1.5">
             <Lock className="w-3.5 h-3.5" />
-            PRIVACY COMPLIANCE & RECONCILIATION
-          </span>
+            {c.privacyEyebrow}
+          </Eyebrow>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
             {c.privacyTitle}
           </h2>
@@ -336,37 +378,28 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
             {c.privacySub}
           </p>
           <div className="grid sm:grid-cols-3 gap-4 text-left">
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
-              <p className="text-sm font-bold text-white mb-1">원본 비디오 미보존</p>
-              <p className="text-xs text-slate-400">촬영 즉시 익명화 후 원본 영상을 삭제하여 서버에 남지 않습니다.</p>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
-              <p className="text-sm font-bold text-white mb-1">가맹점 전용 콘솔 분리</p>
-              <p className="text-xs text-slate-400">가맹점주는 storecare.ai에서 자기 매장 알림만 자주독립 수신합니다.</p>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 mb-2" />
-              <p className="text-sm font-bold text-white mb-1">본사 사건/지표 롤업</p>
-              <p className="text-xs text-slate-400">본사는 감시가 아닌, 위생·설비 이상 및 브랜드 컴플라이언스만 관측합니다.</p>
-            </div>
+            {c.privacyPledges.map((p) => (
+              <div key={p.title} className="p-5 rounded-2xl bg-white/5 border border-white/10">
+                <CheckCircle2 className="w-5 h-5 text-primary-light mb-2" />
+                <p className="text-sm font-bold text-white mb-1 break-keep">{p.title}</p>
+                <p className="text-xs text-slate-400 leading-relaxed break-keep">{p.desc}</p>
+              </div>
+            ))}
           </div>
         </Container>
       </AnimatedSection>
-
       {/* ── Beat 7 — B2B FAQ ── */}
       <Section variant="alt" pad="default">
         <Container className="max-w-4xl">
           <div className="mb-12 text-center">
-            <Eyebrow className="mb-2 justify-center">B2B FAQ</Eyebrow>
+            <Eyebrow className="mb-2 justify-center">{c.faqEyebrow}</Eyebrow>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep">
               {c.faqTitle}
             </h2>
           </div>
           <div className="grid gap-4">
             {c.faqs.map((faq, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white border border-gray-200 shadow-sm">
+              <div key={i} className="p-6 rounded-2xl bg-white border border-gray-200 shadow-card">
                 <h3 className="text-base font-bold text-gray-900 mb-2 flex items-start gap-2.5">
                   <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <span>{faq.q}</span>
@@ -385,12 +418,12 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
       />
 
       {/* ── Final HQ CTA ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-950 text-white noise-overlay">
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
         <Container className="text-center max-w-3xl">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+          <Eyebrow tone="light" className="mb-4 inline-flex items-center justify-center gap-1.5">
             <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
-            ENTERPRISE CARE
-          </span>
+            {c.ctaEyebrow}
+          </Eyebrow>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
             {c.ctaTitle}
           </h2>
@@ -411,7 +444,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors"
             >
-              <span>storecare.ai 사장님 셀프 ↗</span>
+              <span>{c.ownerSelfCta}</span>
             </a>
           </div>
         </Container>

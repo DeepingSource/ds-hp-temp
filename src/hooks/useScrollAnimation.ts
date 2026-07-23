@@ -6,17 +6,30 @@ import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 interface UseScrollAnimationOptions {
   threshold?: number;
   once?: boolean;
+  /**
+   * 항상 최초 뷰포트 안에 있는 콘텐츠(Hero 등)는 `true`.
+   *
+   * 기본값 `false`는 **서버 HTML을 opacity:0으로 렌더**한다 — 스크롤해서 만나는
+   * 요소에는 맞지만, 이미 화면에 있는 Hero에 쓰면 하이드레이션이 끝날 때까지
+   * 콘텐츠가 비어 보인다. 아래 fast-path는 effect(=하이드레이션 이후)에서만
+   * 돌기 때문에 이 공백을 막지 못한다. `immediate`는 처음부터 visible로 시작해
+   * JS 없이도 보이게 한다.
+   */
+  immediate?: boolean;
 }
 
 export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
   options: UseScrollAnimationOptions = {}
 ) {
-  const { threshold = 0.15, once = true } = options;
+  const { threshold = 0.15, once = true, immediate = false } = options;
   const ref = useRef<T>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(immediate);
   const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    // 최초 뷰포트 콘텐츠 — 게이팅 자체를 하지 않는다(SSR부터 이미 visible)
+    if (immediate) return;
+
     // prefers-reduced-motion이면 즉시 visible — observer 불필요
     if (reducedMotion) {
       setIsVisible(true);
@@ -62,7 +75,7 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
       observer.disconnect();
       clearTimeout(timeout);
     };
-  }, [threshold, once, reducedMotion]);
+  }, [threshold, once, reducedMotion, immediate]);
 
   return { ref, isVisible };
 }

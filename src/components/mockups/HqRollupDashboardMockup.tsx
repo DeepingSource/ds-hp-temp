@@ -7,6 +7,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { springGentle } from '@/lib/spring-config';
+import { MOCKUP_STATUS_CLASS, type MockupStatus } from '@/lib/mockup-tokens';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -17,11 +18,14 @@ import { type Locale } from '@/lib/i18n';
  * used ONLY for severity, always paired with a text label (no color-only signal).
  */
 
+/** 심각도는 공용 MOCKUP_STATUS_CLASS 를 그대로 쓴다 — 목업마다 로컬 색 맵을
+ *  새로 선언하지 않는다(mockup-tokens.ts 주석 참고). ok/warn/risk 는 이 목업의
+ *  도메인 어휘라 유지하고, 색만 normal/warning/critical 로 매핑한다. */
 type Sev = 'ok' | 'warn' | 'risk';
-const sevCls: Record<Sev, string> = {
-  ok: 'text-emerald-700 bg-emerald-50 ring-emerald-600/20',
-  warn: 'text-amber-700 bg-amber-50 ring-amber-600/20',
-  risk: 'text-red-700 bg-red-50 ring-red-600/20',
+const SEV_STATUS: Record<Sev, MockupStatus> = { ok: 'normal', warn: 'warning', risk: 'critical' };
+const sevCls = (sev: Sev): string => {
+  const s = MOCKUP_STATUS_CLASS[SEV_STATUS[sev]];
+  return `${s.text} ${s.bg} ring-current/20`;
 };
 
 const dict: Record<Locale, {
@@ -133,17 +137,27 @@ const dict: Record<Locale, {
 
 function Pill({ sev, label }: { sev: Sev; label: string }) {
   return (
-    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-2xs font-bold ring-1 ring-inset ${sevCls[sev]}`}>
+    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-2xs font-bold ring-1 ring-inset ${sevCls(sev)}`}>
       {label}
     </span>
   );
 }
 
-export default function HqRollupDashboardMockup({ locale, ariaLabel }: { locale: Locale; ariaLabel?: string }) {
+export default function HqRollupDashboardMockup({
+  locale,
+  ariaLabel,
+  immediate = false,
+}: {
+  locale: Locale;
+  ariaLabel?: string;
+  /** Hero처럼 최초 뷰포트에 놓일 때 `true` — 표/그래프를 스크롤-리빌 게이팅에서 빼
+   *  서버 HTML부터 보이게 한다(하이드레이션 대기 중 빈 대시보드 방지). */
+  immediate?: boolean;
+}) {
   const t = dict[locale];
   const kpiIcons = [AlertTriangle, Thermometer, Bell, MapPin];
   const reduced = usePrefersReducedMotion();
-  const { ref, isVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.3 });
+  const { ref, isVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.3, immediate });
   // live alert feed — rotate the newest to the top while in view (pause on hover)
   const { step: feedStep, hoverProps } = useMockupLoop({
     steps: t.feed.length,

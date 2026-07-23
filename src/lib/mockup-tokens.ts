@@ -131,3 +131,23 @@ export const MOCKUP_DEVICE = {
     headerPadding: 'p-4',
   },
 } as const;
+
+// ── 상태 컬러 (Material 세트 — DESIGN.md의 --success/--warning/--error와 동일 hex) ──
+//
+// SVG fill/stroke처럼 Tailwind 클래스를 쓸 수 없는 자리는 MOCKUP_STATUS_HEX를,
+// 배지·점·텍스트처럼 클래스가 되는 자리는 MOCKUP_STATUS_CLASS를 쓴다. 여러 목업이
+// 각자 로컬 STATUS_COLOR 맵을 새로 선언하던 걸 여기 하나로 모은다(중복 회피).
+// "정상"은 사이트 시맨틱 팔레트에 해당 토큰이 없어 중립 회색(slate)을 유지한다.
+export type MockupStatus = 'normal' | 'warning' | 'critical';
+
+export const MOCKUP_STATUS_HEX: Record<MockupStatus, string> = {
+  normal: '#94A3B8',
+  warning: '#FF9800', // DESIGN.md --warning
+  critical: '#F44336', // DESIGN.md --error
+};
+
+export const MOCKUP_STATUS_CLASS: Record<MockupStatus, { dot: string; text: string; bg: string }> = {
+  normal: { dot: 'bg-slate-400', text: 'text-slate-600', bg: 'bg-slate-100' },
+  warning: { dot: 'bg-warning', text: 'text-warning', bg: 'bg-warning/10' },
+  critical: { dot: 'bg-error', text: 'text-error', bg: 'bg-error/10' },
+};
