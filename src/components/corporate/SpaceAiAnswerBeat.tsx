@@ -1,10 +1,18 @@
 'use client';
 
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { ArrowRight, Bot, CheckCircle2, XCircle } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import { type Locale } from '@/lib/i18n';
+
+const ChatMockup = dynamic(() => import('@/components/mockups/ChatMockup'), {
+  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
+});
+
+const StoreInsightMockup = dynamic(() => import('@/components/mockups/StoreInsightMockup'), {
+  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
+});
 
 type Pillar = { letter: string; name: string; title: string; desc: string };
 
@@ -144,14 +152,14 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
           <div className="grid lg:grid-cols-2 gap-8 items-stretch">
             {/* Left: General AI */}
             <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 lg:p-10 backdrop-blur-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400">
                     <Bot className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl font-bold text-slate-300">{t.generalAiTitle}</h3>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mb-6 break-keep">
+                <p className="text-sm text-slate-400 leading-relaxed break-keep">
                   {t.generalAiDesc}
                 </p>
                 <ul className="space-y-3">
@@ -162,7 +170,13 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                     </li>
                   ))}
                 </ul>
+
+                {/* Left Card Live Mockup Preview: General AI Chat Mockup */}
+                <div className="pt-4 max-w-[280px] sm:max-w-[320px] mx-auto opacity-80 transition-opacity hover:opacity-100 scale-95 origin-top">
+                  <ChatMockup locale={locale} />
+                </div>
               </div>
+
               <div className="mt-8 pt-4 border-t border-slate-800 text-2xs text-slate-500 uppercase tracking-wider">
                 Generic Text Model
               </div>
@@ -175,14 +189,14 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                 SAAI Native
               </div>
 
-              <div>
-                <div className="flex items-center gap-3 mb-6">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30">
                     <SaaiSymbol className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white">{t.spatialAiTitle}</h3>
                 </div>
-                <p className="text-sm text-slate-200 leading-relaxed mb-6 break-keep">
+                <p className="text-sm text-slate-200 leading-relaxed break-keep">
                   {t.spatialAiDesc}
                 </p>
                 <ul className="space-y-3">
@@ -193,6 +207,11 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                     </li>
                   ))}
                 </ul>
+
+                {/* Right Card Live Mockup Preview: Store Insight Mockup */}
+                <div className="pt-4 max-w-[280px] sm:max-w-[320px] mx-auto scale-95 origin-top">
+                  <StoreInsightMockup locale={locale} />
+                </div>
               </div>
 
               <div className="mt-8 pt-4 border-t border-primary/20 flex items-center justify-between">

@@ -37,6 +37,12 @@
 | `OrderFlowMockup.tsx` | `content?: DeepPartial<OrderFlowCopy>` 추가, `shadow-sm` 3곳 → `shadow-card` | `useCountUp` 고정 2회 호출이지만 스칼라값이라 문구 오버라이드에 제약 없음 |
 | `AutonomyLadderTimeline.tsx` | `content?: DeepPartial<AutonomyLadderCopy>` 추가, 외곽 프레임 + 체크 배지에 `shadow-card` | `steps` 배열은 훅에 길이가 묶여 있지 않아 길이를 바꿔도 안전(단, 그라데이션 분포는 total에 비례해 달라짐) |
 
+**Tier 0 (홈페이지 `HomeView.tsx` & 6개 섹션) 배치 완료**:
+- `CorporateHero.tsx`: Transition Bridge i18n 번역 추가 + 배경 무드 이미지 오버레이 적용.
+- `SpaceAiAnswerBeat.tsx`: `ChatMockup` & `StoreInsightMockup` 동적 import & comparison 카드에 라이브 목업 통합.
+- `HomeEnterpriseBeat.tsx`: `MultiStoreDashboardMockup` 동적 import & 본사 대시보드 실시간 뷰 통합.
+- `FeatureCarousel.tsx`: `IntegratedLoopDiagram` & `ActionCardMockup` 동적 import 및 SAAI 약속 루프/agent 라이브 실행 연동.
+
 이 8종 중 숫자/구조 오버라이드까지 가능한 건 없음(문구만) — `ActionCardMockup`은 위 5-장 제약, `CaseStudyChartMockup`은 실측 데이터 원칙, 나머지는 원래도 문구 위주 컴포넌트라 자연스러운 스코프.
 
 ## 1. 세 가지 목표와 대응 방법

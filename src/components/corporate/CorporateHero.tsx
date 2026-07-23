@@ -57,10 +57,32 @@ const heroImg: Record<Locale, { alt: string; caption: string }> = {
  * anonymized-tracking language (HERO_SPACES_PLAN_v1) — proving "모든 공간을, 완벽하게".
  * HeroRotationProvider is the shared clock; the hero itself stays a server component.
  */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+/** Transition bridge dictionary (i18n fix & background mood overlay). */
+const transitionBridgeDict: Record<Locale, { kicker: string; title: string; sub: string }> = {
+  ko: {
+    kicker: 'Transition · SAAI’s Answer',
+    title: 'SAAI는 알고 있습니다.',
+    sub: '이미 달린 CCTV만으로 매장의 모든 동선과 행동을 데이터와 실시간 실행으로 바꾸는 방법.',
+  },
+  en: {
+    kicker: 'Transition · SAAI’s Answer',
+    title: 'SAAI knows the way.',
+    sub: 'Turning floor traffic and physical behavior into data and instant action — using existing CCTVs alone.',
+  },
+  jp: {
+    kicker: 'Transition · SAAI’s Answer',
+    title: 'SAAIは知っています。',
+    sub: 'すでにあるCCTVだけで、店舗のすべての動線と行動をデータとリアルタイム実行に変える方法。',
+  },
+};
+
 export default function CorporateHero({ locale }: { locale: Locale }) {
   const t = homeCopy[locale];
   const q = heroQuestion[locale];
   const img = heroImg[locale];
+  const bridge = transitionBridgeDict[locale];
   const pillars = saaiSpellout.linear.split(' ');
   return (
     <section className="relative overflow-hidden bg-[var(--layer-bg-hero,#FCFCFE)] border-b border-gray-100">
@@ -138,19 +160,26 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
           </div>
         </HeroRotationProvider>
 
-        {/* Transition Bridge — "SAAI는 알고 있습니다" */}
-        <div className="mt-16 pt-10 border-t border-gray-200/80 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
-            Transition · SAAI’s Answer
-          </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep font-display">
-            SAAI는 알고 있습니다.
-          </h3>
-          <p className="mt-2.5 text-sm sm:text-base text-gray-600 break-keep">
-            이미 달린 CCTV만으로 매장의 모든 동선과 행동을 데이터와 실시간 실행으로 바꾸는 방법.
-          </p>
-          <div className="mt-4 flex justify-center">
-            <span className="inline-block animate-bounce text-primary text-lg">↓</span>
+        {/* Transition Bridge — "SAAI는 알고 있습니다" with localized copy and mood image */}
+        <div className="relative mt-16 pt-10 pb-8 border-t border-gray-200/80 text-center max-w-3xl mx-auto rounded-2xl overflow-hidden bg-gradient-to-b from-gray-50/80 via-white to-gray-50/60 p-8 shadow-sm">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-10 mix-blend-multiply"
+            style={{ backgroundImage: `url(${BASE}/images/diagrams/spatial-ai-concept.webp)` }}
+          />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-3">
+              {bridge.kicker}
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep font-display mb-2.5">
+              {bridge.title}
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 break-keep max-w-2xl mx-auto">
+              {bridge.sub}
+            </p>
+            <div className="mt-4 flex justify-center">
+              <span className="inline-block animate-bounce text-primary text-lg">↓</span>
+            </div>
           </div>
         </div>
       </Container>

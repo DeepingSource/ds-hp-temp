@@ -1,15 +1,25 @@
+'use client';
+
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import { localeHref, type Locale } from '@/lib/i18n';
 
+const MultiStoreDashboardMockup = dynamic(
+  () => import('@/components/mockups/MultiStoreDashboardMockup'),
+  {
+    loading: () => <div className="h-64 animate-pulse rounded-2xl bg-gray-100" />,
+  }
+);
+
 /**
  * HomeEnterpriseBeat — the HQ answer (랜딩_전환재정렬_v2 §6), home #2.5.
  * Resolves the HQ-scale tension ProblemBeat's third card raises (편차 100개): find why the
  * best store works and replicate it, all stores to one standard on one HQ screen. The single
- * conversion bridge to /enterprise. Server-rendered.
+ * conversion bridge to /enterprise.
  */
 
 const dict: Record<
@@ -49,39 +59,47 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary-lighter/60 via-white to-white px-6 py-10 sm:px-10 sm:py-12">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-center">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-6">
               <Eyebrow tone="primary" className="mb-3">{t.eyebrow}</Eyebrow>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
                 {t.heading}
               </h2>
               <p className="mt-4 text-lg text-gray-600 leading-relaxed break-keep max-w-xl">{t.body}</p>
+              
+              {/* Variance bar indicator */}
+              <div className="mt-8 mb-6 p-4 rounded-2xl bg-white/80 border border-gray-100 shadow-sm max-w-md">
+                <div className="flex items-end justify-center gap-6 sm:gap-8">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex h-16 items-end gap-1.5" aria-hidden="true">
+                      {[42, 68, 30, 54, 38, 76, 48].map((h, i) => (
+                        <span key={i} className="w-2 rounded-t-sm bg-gray-300" style={{ height: `${h}px` }} />
+                      ))}
+                    </div>
+                    <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-gray-500">{t.before}</span>
+                  </div>
+                  <ArrowRight className="mb-6 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex h-16 items-end" aria-hidden="true">
+                      <span className="w-8 rounded-t-md bg-primary shadow-card" style={{ height: '76px' }} />
+                    </div>
+                    <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-primary">{t.after}</span>
+                  </div>
+                </div>
+              </div>
+
               <Link
                 href={localeHref(locale, '/enterprise')}
-                className="btn-primary btn-lg mt-8 inline-flex"
+                className="btn-primary btn-lg inline-flex"
               >
                 {t.cta}
                 <ArrowRight className="ml-1.5 w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
 
-            {/* variance → standard: uneven per-store metrics collapse to one benchmark bar */}
-            <div className="lg:col-span-5">
-              <div className="flex items-end justify-center gap-6 sm:gap-8">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="flex h-24 items-end gap-1.5" aria-hidden="true">
-                    {[52, 80, 36, 64, 44, 88, 56].map((h, i) => (
-                      <span key={i} className="w-2.5 rounded-t-sm bg-gray-200" style={{ height: `${h}px` }} />
-                    ))}
-                  </div>
-                  <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-gray-500">{t.before}</span>
-                </div>
-                <ArrowRight className="mb-9 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div className="flex flex-col items-center gap-3">
-                  <div className="flex h-24 items-end" aria-hidden="true">
-                    <span className="w-9 rounded-t-md bg-primary shadow-card" style={{ height: '96px' }} />
-                  </div>
-                  <span className="text-2xs font-semibold uppercase tracking-[0.15em] text-primary">{t.after}</span>
-                </div>
+            {/* HQ Multi-Store Control Dashboard Mockup */}
+            <div className="lg:col-span-6">
+              <div className="max-w-xl mx-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-gray-900/10 scale-95 origin-top">
+                <MultiStoreDashboardMockup locale={locale} />
               </div>
             </div>
           </div>
