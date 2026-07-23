@@ -14,39 +14,41 @@ import {
   Users,
   Route,
   Repeat,
+  CheckCircle2,
+  HelpCircle,
+  ShoppingBag,
+  TrendingUp,
 } from 'lucide-react';
-import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
-import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Eyebrow from '@/components/ui/Eyebrow';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
 import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import { localeHref, type Locale } from '@/lib/i18n';
+import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
+import { JsonLd, softwareApplication } from '@/lib/structured-data';
 
-// Below-the-fold framer-motion mockup → deferred so its chunk stays out of the
-// initial JS of /products/saai-insight. Default SSR keeps the content prerendered.
 const FunnelDiagram = dynamic(() => import('@/components/mockups/FunnelDiagram'), {
   loading: () => <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />,
 });
-
-/**
- * StoreInsightView — shared saai insight product-detail composition.
- * Rendered by `/products/saai-insight` (en), `/ko/products/saai-insight`,
- * `/jp/products/saai-insight` with the locale prop. Product name stays identical.
- */
 
 const C: Record<Locale, {
   heroTitle: [string, string];
   heroSub: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  posComplementTitle: string;
+  posComplementSub: string;
   dashEyebrow: string;
   dashTitle: string;
   dashSub: string;
   mockupNote: string;
-  hypHeading: string;
-  hypSub: string;
-  hypotheses: { claim: string; answer: string; desc: string }[];
+  jobHeading: string;
+  jobSub: string;
+  jobs: { title: string; subtitle: string; desc: string }[];
   funnelHeading: string;
   funnelSub: string;
   kpis: { label: string; desc: string }[];
@@ -77,23 +79,26 @@ const C: Record<Locale, {
   manual: string;
 }> = {
   ko: {
-    heroTitle: ['POS가 못 센 것을', '봅니다.'],
-    heroSub: '둘러보다 그냥 나간 손님은 POS에 없습니다. saai insight는 매출 너머 — 어제의 매장에서 무슨 일이 있었고, 왜 그랬는지를 읽습니다.',
+    heroTitle: ['어제의 매장을,', '왜까지 읽습니다.'],
+    heroSub: '동선·체류·전환을 읽어 — 무엇이 팔리고 왜 안 팔렸는지, 매장마다 왜 다른지에 매일 아침 답합니다. 쓰던 CCTV 그대로, 원본 비디오 없이.',
     ctaPrimary: '도입 상담 신청',
-    ctaSecondary: '무엇을 보나요',
-    dashEyebrow: 'DASHBOARD',
+    ctaSecondary: '분석 화면 보기',
+    posComplementTitle: 'POS 매출 데이터에 매장 안의 "왜"를 더합니다',
+    posComplementSub: 'POS는 무엇이 얼마나 팔렸는지를 압니다. saai insight는 왜 팔렸고, 왜 안 팔렸는지를 봅니다 — 매출 숫자에 고객의 행동 데이터를 결합하여 완성합니다.',
+    dashEyebrow: 'DASHBOARD · 종합 관측',
     dashTitle: '어제의 매장을 한 화면에서 읽습니다',
-    dashSub: '방문·동선·체류·전환을 한 화면으로. 방문하는 순간부터 구매하는 순간까지 — 결제 데이터가 놓친 구매 전 행동이 보입니다.',
+    dashSub: '방문·동선·체류·전환을 한 화면으로. 입문 순간부터 결제 순간까지 — 매출 데이터가 놓친 구매 전 미세 행동이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',
-    hypHeading: '매출이 미처 보지 못한 것을 읽습니다',
-    hypSub: '매출만으로는 알 수 없던 질문에, saai insight가 답합니다.',
-    hypotheses: [
-      { claim: 'POS는 결제한 65명만 압니다.', answer: 'saai insight는 나머지를 봅니다.', desc: '어제 매장 앞을 지나간 1,160명, 들어온 382명 — 둘러보다 그냥 나간 317명까지 봅니다.' },
-      { claim: '안 팔리던 매대, 이유는 감입니다.', answer: 'saai insight는 히트맵으로 보여줍니다.', desc: '어디서 머물고 어디서 그냥 지나치는지 — 안 팔리던 매대의 진짜 이유가 드러납니다.' },
-      { claim: '"오늘 손님이 적었다"는 인상입니다.', answer: 'saai insight는 왜 그랬는지 설명합니다.', desc: '입장부터 퇴장까지 여정을 따라가, 어디서 발길을 돌리는지 이탈 지점을 짚습니다.' },
+    jobHeading: '본사 MD와 SV의 4대 핵심 결정을 지원합니다',
+    jobSub: '감으로 하던 매장 판단을 데이터 기반의 명확한 행동 가이드로 전환합니다.',
+    jobs: [
+      { title: '진열 · 레이아웃 결정', subtitle: '무엇을 어디에 놓을 것인가', desc: '히트맵과 체류 시간으로 안 팔리는 매대의 진짜 이유(단순 통과 vs 무관심 이탈)를 짚어냅니다.' },
+      { title: '매장 편차 해소', subtitle: '왜 이 매장만 매출이 다른가', desc: '동일 또래 매장과의 동선·체류 패턴 비교를 통해 잘되는 매장의 성공 요인을 전 매장으로 복제합니다.' },
+      { title: '전환 · 이탈 지점 발굴', subtitle: '손님이 어디서 머뭇거리고 떠나는가', desc: '지나감부터 입장, 체류, 결제까지 4단계 퍼널을 따라가며 고객 발길이 돌아서는 이탈 구간을 차단합니다.' },
+      { title: '개선 성과 검증', subtitle: '바꾼 레이아웃이 실제 먹혔는가', desc: '지난주 바꾼 진열과 동선이 체류 시간과 결제 전환율에 미친 실제 영향을 데이터로 입증합니다.' },
     ],
     funnelHeading: '지나감에서 결제까지, 보이지 않던 손님이 보입니다',
-    funnelSub: 'POS엔 결제한 65명만 남습니다. 그 앞의 단계를 모두 펼쳐, 어디서 새는지 찾습니다.',
+    funnelSub: 'POS엔 결제한 65명만 남지만, saai insight는 입문 앞의 1,160명 전체 행동 퍼널을 펼쳐 어디서 새는지 찾습니다.',
     kpis: [
       { label: '지나감', desc: '매장 앞을 지난 1,160명' },
       { label: '입장', desc: '안으로 들어온 382명' },
@@ -106,16 +111,16 @@ const C: Record<Locale, {
       '매출이 떨어진 날, 원인을 모릅니다.',
     ],
     after: [
-      '방문·체류·응시·구매·이탈까지 18가지 분석으로 남습니다.',
+      '방문·체류·응시·구매·이탈까지 19가지 분석으로 남습니다.',
       '동선 하나 바꿔 수익 +10%, 체류 +25% — 어제와 "왜"에 매일 답합니다.',
     ],
     baNote: '* 수치는 학원가 편의점·시립 전시관 등 실제 운영 사례를 설명하기 위한 예시입니다.',
-    featHeading: '전체 기능 17가지',
-    featSub: '실시간 대시보드부터 CSV 내보내기까지 — saai insight가 기본으로 제공하는 분석입니다.',
+    featHeading: '전체 기능 모듈 19가지 (참조 카탈로그)',
+    featSub: '실시간 대시보드부터 CSV 내보내기까지 — saai insight가 제공하는 모듈형 분석입니다.',
     features: [
       { name: '실시간 대시보드', desc: '전체·구역별 방문객 수와 특성을 실시간으로' },
       { name: '방문자 분석', desc: '기간·시간대별 방문객 수·특성·체류 시간' },
-      { name: '유입률 분석', desc: '유동인구 대비 방문객을 유입률(%)로' },
+      { name: '유입률 분석 (store count)', desc: '유동인구 대비 방문객을 유입률(%)로' },
       { name: '좌석 점유율', desc: '좌석 이용 현황을 기간·시간대별로' },
       { name: '라인 분석', desc: '출입구마다 가상의 선을 두고 방문객 수·특성 측정' },
       { name: '구역별 분석', desc: '진열대·전시물 단위의 방문·특성·체류' },
@@ -126,15 +131,15 @@ const C: Record<Locale, {
       { name: '히트맵', desc: '트래픽 히트맵 + 오래 머문 고객 히트맵' },
       { name: '구역 관심도', desc: '방문 대비 머묾 기준 4개 유형 분류' },
       { name: '퍼널 분석', desc: '진열대별 방문→픽업 단계 전환율' },
-      { name: '광고 성과', desc: '매장 내 광고의 노출률과 관심도 데이터화' },
+      { name: '광고 성과 (saai ads insight)', desc: '매장 내 광고의 노출률과 관심도 데이터화' },
       { name: '커스텀 리포트', desc: '기간·방문객 특성 조건별 일괄 리포트' },
       { name: '구매 전환 분석', desc: '성별·연령별 구매 전환 비율' },
       { name: 'CSV 내보내기', desc: '분석 항목별 데이터 파일 다운로드' },
       { name: '복수매장 통합 대시보드 *', desc: '다수 매장의 지표를 한 화면에' },
-      { name: '에이전틱 AI *', desc: '행동 데이터에 매출·재고·날씨까지 결합해 예측·최적화' },
+      { name: '에이전틱 AI 연동 *', desc: '행동 데이터에 매출·재고·날씨까지 결합해 예측·최적화' },
     ],
     featNote: '* 복수매장 통합 대시보드·에이전틱 AI는 별도 협의로 제공됩니다.',
-    revenueOptLabel: '선택 · 매출 데이터를 더하면 체류와 매출을 한 시간축에서 봅니다',
+    revenueOptLabel: '매출 데이터 연동 · 체류와 매출을 한 시간축에서 교차 검증합니다',
     installHeading: '도입은 이렇게 진행됩니다',
     installSteps: [
       { step: '1차 방문', desc: '현장 환경을 검토하고, 최적 화각의 기존 CCTV를 선택·연결합니다.' },
@@ -157,23 +162,26 @@ const C: Record<Locale, {
     manual: '사용자 매뉴얼 보기 →',
   },
   en: {
-    heroTitle: ['See what your POS', 'never counted.'],
-    heroSub: 'The shoppers who browsed and left aren’t in your POS. saai insight reads beyond sales — what happened in your store yesterday, and why.',
-    ctaPrimary: 'Request a consultation',
-    ctaSecondary: 'What it shows',
-    dashEyebrow: 'DASHBOARD',
+    heroTitle: ['Reading yesterday’s store,', 'down to the why.'],
+    heroSub: 'Flow, dwell, and conversion — answering what sold, why it didn’t, and why stores differ every morning. On the CCTV you already have, with zero raw video.',
+    ctaPrimary: 'Request Consultation',
+    ctaSecondary: 'View Dashboard',
+    posComplementTitle: 'Adding the "why" inside your store to POS sales figures',
+    posComplementSub: 'POS tells you what was sold. saai insight shows why it sold or didn’t — completing the picture by joining customer behavior data with sales figures.',
+    dashEyebrow: 'DASHBOARD · Total Visibility',
     dashTitle: 'Read yesterday’s store on a single screen',
-    dashSub: 'Visits, flow, dwell, and conversion on one screen. From the moment they walk in to the moment they pay — the pre-purchase behavior payment data misses, made visible.',
+    dashSub: 'Entries, flow, dwell, and conversion consolidated into one view. Pre-purchase behavior that payment logs miss, made fully visible.',
     mockupNote: '* Sample AI analysis screen.',
-    hypHeading: 'See what your sales numbers never could',
-    hypSub: 'saai insight answers the questions sales data alone can’t.',
-    hypotheses: [
-      { claim: 'POS knows only the 65 who paid.', answer: 'saai insight sees the rest.', desc: '1,160 passed your storefront yesterday, 382 came in — and 317 browsed and walked out. We see them too.' },
-      { claim: 'Why a shelf underperforms is a guess.', answer: 'saai insight shows it on a heatmap.', desc: 'Where people linger and where they walk past — the real reason that shelf isn’t selling.' },
-      { claim: '"Quiet today" is an impression.', answer: 'saai insight explains why.', desc: 'Follow the journey from entry to exit and pinpoint exactly where shoppers turn back.' },
+    jobHeading: 'Supporting 4 Key Decisions for HQ MDs & Field SVs',
+    jobSub: 'Transforming intuition-based store calls into data-driven actionable guides.',
+    jobs: [
+      { title: 'Display & Layout Decisions', subtitle: 'What goes where', desc: 'Identify the true cause of underperforming shelves using heatmaps and dwell duration.' },
+      { title: 'Eliminating Store Variance', subtitle: 'Why sales differ across stores', desc: 'Compare flow and dwell against peer store averages to replicate winning floor setups.' },
+      { title: 'Drop-off & Conversion Recovery', subtitle: 'Where shoppers hesitate & leave', desc: 'Track the 4-step funnel from passing by to payment to plug conversion leaks.' },
+      { title: 'Measuring Optimization Impact', subtitle: 'Did the new layout work?', desc: 'Validate the impact of last week’s layout changes on dwell duration and checkout conversion.' },
     ],
     funnelHeading: 'From passing by to paying — the invisible majority, made visible',
-    funnelSub: 'Your POS keeps only the 65 who paid. We unfold every step before it to find where it leaks.',
+    funnelSub: 'POS keeps only the 65 who paid. saai insight unfolds the 1,160 pre-entry funnel to pinpoint where leaks occur.',
     kpis: [
       { label: 'Passed by', desc: '1,160 walked past' },
       { label: 'Entered', desc: '382 came inside' },
@@ -186,16 +194,16 @@ const C: Record<Locale, {
       'On days sales drop, the cause stays unknown.',
     ],
     after: [
-      'Visits, dwell, attention, purchase, drop-off — 18 analyses, recorded.',
+      'Visits, dwell, attention, purchase, drop-off — 19 analyses, recorded.',
       'One flow change lifted revenue +10% and dwell +25% — answering yesterday and "why," every day.',
     ],
     baNote: '* Figures illustrate real cases — a campus convenience store and a city exhibition hall.',
-    featHeading: 'All 17 features',
-    featSub: 'From the live dashboard to CSV export — the analyses saai insight ships with.',
+    featHeading: 'All 19 Feature Modules (Reference Catalog)',
+    featSub: 'From the live dashboard to CSV export — modular analyses shipped with saai insight.',
     features: [
       { name: 'Live dashboard', desc: 'Visitor counts and traits, store-wide and by zone, in real time' },
       { name: 'Visitor analysis', desc: 'Counts, traits, and dwell time by period and hour' },
-      { name: 'Capture rate', desc: 'Entries against footfall outside, as a rate (%)' },
+      { name: 'Capture rate (store count)', desc: 'Entries against footfall outside, as a rate (%)' },
       { name: 'Seat occupancy', desc: 'Seat usage by period and hour' },
       { name: 'Line analysis', desc: 'Virtual lines per entrance — counts and traits across each' },
       { name: 'Zone analysis', desc: 'Visits, traits, and dwell per shelf or display' },
@@ -206,15 +214,15 @@ const C: Record<Locale, {
       { name: 'Heatmap', desc: 'Traffic heatmap, plus a long-dwell heatmap' },
       { name: 'Zone interest', desc: 'Four types by visits versus lingering' },
       { name: 'Funnel analysis', desc: 'Visit-to-pickup conversion per shelf' },
-      { name: 'Ad performance', desc: 'Exposure and interest for in-store ads, as data' },
+      { name: 'Ad performance (saai ads)', desc: 'Exposure and interest for in-store ads, as data' },
       { name: 'Custom reports', desc: 'Batch reports by period and visitor traits' },
       { name: 'Purchase conversion', desc: 'Conversion rates by gender and age band' },
       { name: 'CSV export', desc: 'Download the data behind every analysis' },
       { name: 'Multi-store dashboard *', desc: 'Every store’s metrics on one screen' },
-      { name: 'Agentic AI *', desc: 'Behavior data joined with sales, stock, and weather for prediction and optimization' },
+      { name: 'Agentic AI Integration *', desc: 'Behavior data joined with sales, stock, and weather for prediction and optimization' },
     ],
     featNote: '* Multi-store dashboard and agentic AI are scoped separately.',
-    revenueOptLabel: 'Optional · add revenue data to see dwell and sales on one axis',
+    revenueOptLabel: 'Revenue Integration · Cross-analyzing dwell duration and sales figures on one timeline',
     installHeading: 'How onboarding works',
     installSteps: [
       { step: 'First visit', desc: 'We review the site and select and connect the existing CCTV with the best angles.' },
@@ -237,23 +245,26 @@ const C: Record<Locale, {
     manual: 'View the user manual →',
   },
   jp: {
-    heroTitle: ['POS が数えられなかったものを、', '見ます。'],
-    heroSub: '見て回っただけで出ていったお客様は、POS に残りません。saai insight は売上の先 — 昨日の店舗で何が起き、なぜそうなったのかを読み解きます。',
+    heroTitle: ['昨日の店舗を、', 'なぜまで読み解きます。'],
+    heroSub: '動線・滞在・転換を読み解き — 何が売れ、なぜ売れなかったのか、店舗ごとの違いに毎朝お答えします。既存CCTVそのまま、動画残さず。',
     ctaPrimary: '導入のご相談',
-    ctaSecondary: '何が見えるのか',
-    dashEyebrow: 'DASHBOARD',
+    ctaSecondary: '分析画面を見る',
+    posComplementTitle: 'POS売上データに店舗内の「なぜ」を加えます',
+    posComplementSub: 'POSは何がどれだけ売れたかを把握します。saai insightはなぜ売れ、なぜ売れなかったかを可視化 — 売上数字に行動データを結合します。',
+    dashEyebrow: 'DASHBOARD · 総合観測',
     dashTitle: '昨日の店舗を一画面で読み解きます',
     dashSub: '来店・動線・滞在・転換を一画面で。入店の瞬間から購入の瞬間まで — 決済データが見落とす購入前の行動が見えてきます。',
     mockupNote: '※ AI分析のサンプル画面です。',
-    hypHeading: '売上が見られなかったものを、見ます',
-    hypSub: '売上だけでは分からなかった問いに、saai insight がお答えします。',
-    hypotheses: [
-      { claim: 'POS は決済した 65 人しか分かりません。', answer: 'saai insight は残りを見ます。', desc: '昨日、店頭を通った 1,160 人、入った 382 人 — 見て回っただけで出ていった 317 人まで見ます。' },
-      { claim: '売れない棚の理由は、感覚頼みです。', answer: 'saai insight はヒートマップで見せます。', desc: 'どこで留まり、どこを素通りするのか — 売れなかった棚の本当の理由が見えてきます。' },
-      { claim: '「今日は客が少なかった」は印象です。', answer: 'saai insight はなぜそうなのかを説明します。', desc: '入店から退店までの動線をたどり、どこで引き返すのか離脱地点を突き止めます。' },
+    jobHeading: '本部MDとSVの4大意思決定を支援します',
+    jobSub: '感覚頼みの店舗判断を、データに基づく明確な行動ガイドへ。',
+    jobs: [
+      { title: '陳列・レイアウト決定', subtitle: '何をどこに配置すべきか', desc: 'ヒートマップと滞在時間から、売れない棚の本当の理由を特定します。' },
+      { title: '店舗格差の解消', subtitle: 'なぜこの店舗だけ売上が違うのか', desc: '同等店舗との動線・滞在パターン比較により、優良店の成功要因を全店へ複製。' },
+      { title: '転換・離脱ポイントの発見', subtitle: 'お客様はどこで躊躇し立ち去るか', desc: '通過から入店・滞在・決済まで4段階ファネルで離脱を阻止。' },
+      { title: '改善成果の検証', subtitle: '変更したレイアウトは効果があったか', desc: '先週変更した陳列と動線が滞在時間と決済転換率に与えた影響を証明。' },
     ],
     funnelHeading: '通過から決済まで、見えなかったお客様が見えます',
-    funnelSub: 'POS に残るのは決済した 65 人だけ。その手前の段階をすべて広げ、どこで取りこぼすかを探します。',
+    funnelSub: 'POS に残るのは決済した 65 人だけ。saai insight は 1,160 人の全体行動ファネルを広げ取りこぼしを探します。',
     kpis: [
       { label: '通過', desc: '店頭を通った 1,160 人' },
       { label: '入店', desc: '中に入った 382 人' },
@@ -266,16 +277,16 @@ const C: Record<Locale, {
       '売上が落ちた日、その要因が分かりません。',
     ],
     after: [
-      '来店・滞在・注視・購入・離脱まで、18種類の分析として残ります。',
+      '来店・滞在・注視・購入・離脱まで、19種類の分析として残ります。',
       '動線を一つ変えるだけで売上 +10%、滞在 +25% — 昨日と「なぜ」に毎日お答えします。',
     ],
     baNote: '※ 数値は学習塾街のコンビニ・市立展示館などの実例を説明するための一例です。',
-    featHeading: '全機能 17種',
-    featSub: 'リアルタイムダッシュボードからCSVエクスポートまで — saai insight が標準で提供する分析です。',
+    featHeading: '全機能モジュール 19種 (参照カタログ)',
+    featSub: 'リアルタイムダッシュボードからCSVエクスポートまで — saai insight が提供する分析モジュールです。',
     features: [
       { name: 'リアルタイムダッシュボード', desc: '全体・エリア別の来店数と特性をリアルタイムで' },
       { name: '来店者分析', desc: '期間・時間帯別の来店数・特性・滞在時間' },
-      { name: '流入率分析', desc: '通行量に対する来店を流入率（%）で' },
+      { name: '流入率分析 (store count)', desc: '通行量に対する来店を流入率（%）で' },
       { name: '座席占有率', desc: '座席の利用状況を期間・時間帯別に' },
       { name: 'ライン分析', desc: '出入口ごとの仮想ラインで来店数・特性を測定' },
       { name: 'エリア別分析', desc: '棚・展示物単位の来店・特性・滞在' },
@@ -286,347 +297,324 @@ const C: Record<Locale, {
       { name: 'ヒートマップ', desc: 'トラフィック＋長時間滞在のヒートマップ' },
       { name: 'エリア関心度', desc: '来訪と滞留の比較で4タイプに分類' },
       { name: 'ファネル分析', desc: '棚ごとの来訪→ピックアップ転換率' },
-      { name: '広告効果', desc: '店内広告の露出率と関心度をデータ化' },
+      { name: '広告効果 (saai ads)', desc: '店内広告の露出率と関心度をデータ化' },
       { name: 'カスタムレポート', desc: '期間・来店者特性の条件で一括レポート' },
       { name: '購買転換分析', desc: '性別・年齢帯別の購買転換率' },
       { name: 'CSVエクスポート', desc: '分析項目ごとのデータをダウンロード' },
       { name: '複数店舗統合ダッシュボード *', desc: '複数店舗の指標を一画面に' },
-      { name: 'エージェンティックAI *', desc: '行動データに売上・在庫・天候まで結合し予測・最適化' },
+      { name: 'エージェンティックAI連携 *', desc: '行動データに売上・在庫・天候まで結合し予測・最適化' },
     ],
     featNote: '※ 複数店舗統合ダッシュボード・エージェンティックAIは別途協議のうえ提供します。',
-    revenueOptLabel: 'オプション · 売上データを加えると、滞在と売上をひとつの時間軸で見られます',
+    revenueOptLabel: '売上データ連携 · 滞在と売上をひとつの時間軸で検証します',
     installHeading: '導入の進み方',
     installSteps: [
       { step: '初回訪問', desc: '現場環境を確認し、最適な画角の既存CCTVを選定・接続します。' },
-      { step: '構成 · 配送', desc: '小型AI分析デバイスを構成し、現場へお届けします。' },
-      { step: '2回目訪問', desc: 'デバイスを設置して正常稼働を確認し、カスタムダッシュボードを構成します。' },
+      { step: '構成 · 配送', desc: '小型AI分析装置を構成し現場へ配送します。' },
+      { step: '2回目訪問', desc: '装置を設置し正常稼働を確認後、ダッシュボードを構成します。' },
     ],
-    installNote: '初回訪問から約3週間 — 状況に応じて調整・協議できます。既存のCCTVを最大限活用し、追加コストを最小限に抑えます。',
+    installNote: '初回訪問から約3週間 — 既存CCTVを最大限活用しコストを抑えます。',
     handoffEyebrow: '分析から実行へ',
-    handoffHeading: '理由は insight が、次の一手は saai agent が決めます。',
-    handoffSub: 'saai insight は昨日を読み、その理由を説明します。何を仕入れ、補充し、誰を配置するか — それは saai agent の役割。すべての推奨はひとつのエンジンから。',
-    cardTitle: 'インサイトをアクションカードに',
-    cardBody: '飲料の滞在が2倍? saai insight が原因を示すと、saai agent が発注量・仕入先・タイミングまで含めて承認用カードにします。どのインサイトからもワンクリック。',
-    cardCta: 'saai agent を見る',
-    boundaryLine: 'store count は店の外の通行を、saai insight は店の中で何がなぜ起きたかを、saai agent は次に何をするかを — それぞれ担います。',
-    finalHeading: '昨日と「なぜ」への答えを、毎朝お受け取りください',
-    finalSub: 'すでにある CCTV のままで — 初回訪問から約3週間で始められます。',
+    handoffHeading: '理由はinsightが、何をするかはsaai agentが決定します。',
+    handoffSub: 'saai insightは昨日を読み解きます。何を発注・補充すべきかの決定はsaai agentの役割です。',
+    cardTitle: 'インサイトのアクションカード化',
+    cardBody: '滞在2倍？saai insightが原因を特定すれば、saai agentが発注量やタイミングを提案します。',
+    cardCta: 'saai agentを見る',
+    boundaryLine: 'store countは外の通行を、saai insightは店内の「なぜ」を、saai agentは次の行動を担当します。',
+    finalHeading: '昨日と「なぜ」に、毎朝答えを受け取りましょう',
+    finalSub: '既存のCCTVそのまま — 初回訪問から約3週間で開始。',
     finalCta: '導入のご相談',
-    seeAgent: 'saai agent を見る',
-    alreadyUsing: 'すでにご利用中ですか？',
-    manual: 'ユーザーマニュアルを見る →',
+    seeAgent: 'saai agentを見る',
+    alreadyUsing: 'すでに利用中ですか？',
+    manual: 'マニュアルを見る →',
   },
-};
-
-/**
- * Feature taxonomy — groups the flat 19-item feature list into four scannable
- * categories so the section reads as a map rather than a wall of tiles. FEATURE_CAT
- * is index-aligned to C[locale].features (structure, locale-independent); group
- * labels are localized in FEATURE_GROUPS.
- */
-const FEATURE_CAT = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 2, 3, 3, 3];
-const FEATURE_GROUPS: Record<Locale, string[]> = {
-  ko: ['방문 · 유입', '동선 · 구역', '전환 · 성과', '리포트 · 확장'],
-  en: ['Traffic & entry', 'Flow & zones', 'Conversion & impact', 'Reports & scale'],
-  jp: ['来店 · 流入', '動線 · エリア', '転換 · 成果', 'レポート · 拡張'],
 };
 
 export default function StoreInsightView({ locale }: { locale: Locale }) {
   const t = C[locale];
 
-  const hypIcons = [BarChart3, Route, Users];
-  const kpiIcons = [Users, Route, BarChart3, Repeat];
-
   return (
-    <>
-      <JsonLd data={softwareApplication({ name: productPrimary('insight'), alternateName: productNaming.insight.store, description: t.heroSub, path: '/products/saai-insight', locale })} />
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] bg-primary/5 rounded-full blur-3xl" />
-        </div>
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-24 text-center">
-          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('insight'), path: '/products/saai-insight' }]} locale={locale} tone="light" className="mb-6" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-lighter border border-primary/10 rounded-full text-sm text-primary font-medium mb-6">
-            <BarChart3 className="w-4 h-4" />
-            {productPrimary('insight')}
-            <span className="font-normal text-primary/55">· {productNaming.insight.store}</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight break-keep mb-6">
-            <WordRise text={t.heroTitle[0]} />
-            <br className="hidden sm:block" />
-            <WordRise text={t.heroTitle[1]} className="text-primary" />
+    <div className="bg-white min-h-screen">
+      <JsonLd
+        data={softwareApplication({
+          name: productNaming.insight.saai ?? 'saai insight',
+          description: t.heroSub,
+          path: '/products/saai-insight',
+          locale,
+        })}
+      />
+
+      {/* ── Beat 1 — Hero (Positive Value Spine) ── */}
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-surface-dark overflow-hidden text-white noise-overlay">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+          <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productNaming.insight.saai ?? 'saai insight', path: '/products/saai-insight' }]} locale={locale} tone="dark" className="mb-6" />
+
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+            <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
+            ANALYZE · 어제를 읽다
+          </span>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep font-display">
+            <WordRise text={t.heroTitle[0]} /><br />
+            <WordRise text={t.heroTitle[1]} className="text-primary-light" />
           </h1>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary mb-4">
-            {solutionTaglines.insight[locale]}
-          </p>
-          <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
+
+          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
             {t.heroSub}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="btn-primary btn-lg">
-              {t.ctaPrimary}
-              <ArrowRight className="w-5 h-5 ml-2" />
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href={localeHref(locale, '/contact?product=saai-insight')}
+              className="btn-primary btn-lg inline-flex items-center justify-center gap-2"
+            >
+              <span>{t.ctaPrimary}</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href="#hypotheses" className="btn-secondary btn-lg">
-              {t.ctaSecondary}
-            </Link>
+            <a
+              href="#dashboard-section"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors"
+            >
+              <span>{t.ctaSecondary}</span>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ── Dashboard mockup (실제 데스크톱 분석 화면) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 lg:mb-14 max-w-2xl mx-auto">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.dashEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.dashTitle}
-            </h2>
-            <p className="text-lg text-gray-500 leading-relaxed break-keep">
-              {t.dashSub}
-            </p>
-          </div>
-          <div className="max-w-4xl mx-auto">
-            <StoreInsightDesktopMockup locale={locale} />
-          </div>
-          <p className="mt-6 text-center text-xs text-gray-500 break-keep">
-            {t.mockupNote}
+      {/* ── Beat 2 — POS Complement & Stakes ── */}
+      <AnimatedSection className="py-12 bg-slate-900 text-white noise-overlay border-t border-slate-800">
+        <Container className="max-w-4xl text-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary-light mb-2 block">
+            POS INTEGRATION & COMPLEMENT
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 break-keep">
+            "{t.posComplementTitle}"
+          </h2>
+          <p className="text-base text-slate-300 leading-relaxed break-keep max-w-3xl mx-auto">
+            {t.posComplementSub}
           </p>
-        </div>
+        </Container>
       </AnimatedSection>
 
-      {/* ── Hypothesis cards ── */}
-      <AnimatedSection id="hypotheses" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.hypHeading}
+      {/* ── Beat 3 — Job-Centric 4 Decisions for MD/SV ── */}
+      <Section variant="default" pad="default" id="dashboard-section">
+        <Container>
+          <div className="mb-12 text-center max-w-3xl mx-auto">
+            <Eyebrow className="mb-2 justify-center">FOR MD & SV LEADERS</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-4">
+              {t.jobHeading}
             </h2>
-            <p className="text-lg text-gray-500 break-keep">
-              {t.hypSub}
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {t.hypotheses.map((h, i) => {
-              const Icon = hypIcons[i];
-              return (
-                <div key={h.claim} className="card flex flex-col">
-                  <div className="w-11 h-11 rounded-xl bg-primary-lighter flex items-center justify-center shrink-0 mb-4">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <p className="text-sm text-gray-500 mb-1 break-keep">{h.claim}</p>
-                  <p className="text-lg font-bold text-gray-900 mb-3 break-keep">{h.answer}</p>
-                  <p className="text-sm text-gray-500 leading-relaxed break-keep mt-auto">{h.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── Funnel / KPI concept ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.funnelHeading}
-            </h2>
-            <p className="text-lg text-gray-500 break-keep">
-              {t.funnelSub}
+            <p className="text-base sm:text-lg text-gray-600 break-keep">
+              {t.jobSub}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {t.kpis.map((k, i) => {
-              const Icon = kpiIcons[i];
-              return (
-                <div key={k.label} className="card text-center flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-xl bg-primary-lighter flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
+          {/* 4 Key Decisions Grid */}
+          <div className="grid sm:grid-cols-2 gap-6 mb-16">
+            {t.jobs.map((job, i) => (
+              <div key={i} className="p-7 rounded-3xl border border-gray-200 bg-white hover:border-primary-light hover:shadow-card transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">
+                      0{i + 1}
+                    </span>
+                    <span className="text-2xs font-bold uppercase tracking-wider text-gray-400">DECISION JOB</span>
                   </div>
-                  <span className="text-xs font-medium text-gray-500 mb-1">STEP 0{i + 1}</span>
-                  <p className="text-lg font-bold text-gray-900 mb-1">{k.label}</p>
-                  <p className="text-sm text-gray-500 break-keep">{k.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 mt-12 lg:mt-16">
-            <FunnelDiagram locale={locale} />
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ── Before / After ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.baHeading}
-            </h2>
-          </div>
-          <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
-            <div className="relative aspect-[16/10] w-full">
-              <Image
-                src="/images/storeinsight-pathway-beforeafter.webp"
-                alt={t.baHeading}
-                fill
-                sizes="(min-width: 1024px) 1024px, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="card bg-white">
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Before</p>
-              <ul className="space-y-3">
-                {t.before.map((line) => (
-                  <li key={line} className="flex items-start gap-2 text-sm text-gray-500 break-keep">
-                    <span className="text-gray-300 mt-0.5">—</span>
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="card border-primary/20">
-              <p className="text-xs font-medium text-primary uppercase tracking-wider mb-4">After</p>
-              <ul className="space-y-3">
-                {t.after.map((line) => (
-                  <li key={line} className="flex items-start gap-2 text-sm text-gray-700 break-keep">
-                    <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <p className="mt-6 text-center text-xs text-gray-500 break-keep">
-            {t.baNote}
-          </p>
-        </div>
-      </AnimatedSection>
-
-      {/* ── 전체 기능 17가지 + 도입 프로세스 (솔루션 소개서 260209 부록) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.featHeading}</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto break-keep">{t.featSub}</p>
-          </div>
-          <div className="space-y-8">
-            {FEATURE_GROUPS[locale].map((group, gi) => (
-              <div key={group}>
-                <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-3 break-keep">
-                  <span className="font-mono text-xs text-primary">0{gi + 1}</span>
-                  {group}
-                </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {/* Fallback: a feature whose index isn't in FEATURE_CAT lands in the last
-                      group rather than silently vanishing. */}
-                  {t.features.filter((_, i) => (FEATURE_CAT[i] ?? FEATURE_GROUPS[locale].length - 1) === gi).map((f) => (
-                    <div key={f.name} className="p-4 rounded-xl border border-gray-100 bg-gray-50/60">
-                      <p className="text-sm font-bold text-gray-900 mb-1">{f.name}</p>
-                      <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
-                    </div>
-                  ))}
+                  <h3 className="text-xl font-bold text-gray-900 mb-1 break-keep">{job.title}</h3>
+                  <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">{job.subtitle}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{job.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-xs text-gray-400 break-keep">{t.featNote}</p>
 
-          <div className="mt-16">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center break-keep">{t.installHeading}</h3>
-            <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {t.installSteps.map((s, i) => (
-                <div key={s.step} className="p-5 rounded-2xl border border-gray-100 bg-white shadow-sm">
-                  <p className="text-2xs font-mono font-medium text-primary mb-2">0{i + 1}</p>
-                  <p className="text-sm font-bold text-gray-900 mb-1">{s.step}</p>
-                  <p className="text-xs text-gray-500 leading-relaxed break-keep">{s.desc}</p>
-                </div>
-              ))}
+          {/* Core Analytics Dashboard Mockup */}
+          <div className="relative rounded-3xl border border-gray-200 bg-slate-900 p-3 shadow-2xl overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2 text-xs font-bold text-slate-400 border-b border-slate-800 mb-2">
+              <span className="flex items-center gap-1.5"><SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />{t.dashTitle}</span>
+              <span>{t.mockupNote}</span>
             </div>
-            <p className="mt-5 text-center text-xs text-gray-500 break-keep">{t.installNote}</p>
+            <StoreInsightDesktopMockup locale={locale} />
           </div>
-        </div>
+        </Container>
+      </Section>
+
+      {/* ── Beat 4 — Differentiator: Comparison Principle (Promoted Signature) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
+        <Container>
+          <ComparisonPrinciple locale={locale} />
+        </Container>
       </AnimatedSection>
 
-      {/* ── 숫자를 읽는 법 (period · peer · source) — 홈에서 이관 ── */}
-      <ComparisonPrinciple locale={locale} />
-
-      {/* ── 매출 결합은 선택·보조 (insight는 행동·체류가 주, 매출축은 옵션) — 기본 접힘 ── */}
-      <details className="group border-t border-gray-100 bg-gray-50">
-        <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors break-keep">
-            <ChevronRight className="w-4 h-4 shrink-0 transition-transform group-[[open]]:rotate-90" aria-hidden="true" />
-            {t.revenueOptLabel}
+      {/* ── Beat 5 — Proof: 4-Step Funnel & Before/After ── */}
+      <Section variant="alt" pad="default">
+        <Container>
+          <div className="mb-12 text-center max-w-3xl mx-auto">
+            <Eyebrow className="mb-2 justify-center">PROOF & FUNNEL</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-4">
+              {t.funnelHeading}
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 break-keep">
+              {t.funnelSub}
+            </p>
           </div>
-        </summary>
-        <HubDataBand locale={locale} />
-      </details>
 
-      {/* ── 문 밖 ↔ 문 안 (count ↔ insight 경계, D4) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-white border-t border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <DoorSplitDiagram locale={locale} />
-        </div>
+          {/* Interactive Funnel Mockup */}
+          <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm mb-12">
+            <FunnelDiagram locale={locale} />
+          </div>
+
+          {/* Before & After Box */}
+          <div className="p-8 rounded-3xl bg-gradient-to-br from-slate-900 to-gray-900 text-white shadow-xl">
+            <h3 className="text-xl font-bold mb-6 text-center break-keep">{t.baHeading}</h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+                <span className="text-2xs font-bold uppercase text-rose-400 block mb-3">BEFORE · 감으로 보던 매장</span>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  {t.before.map((b, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-rose-400 font-bold shrink-0">✕</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-5 rounded-2xl bg-primary/10 border border-primary/20">
+                <span className="text-2xs font-bold uppercase text-primary-light block mb-3">AFTER · saai insight 도입 후</span>
+                <ul className="space-y-2 text-sm text-slate-100 font-medium">
+                  {t.after.map((a, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <p className="mt-4 text-center text-2xs text-slate-400">{t.baNote}</p>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ── Beat 6 — Revenue Data Integration (Promoted) ── */}
+      <AnimatedSection className="py-16 bg-white border-y border-gray-100">
+        <Container className="max-w-4xl text-center">
+          <div className="p-8 rounded-3xl bg-slate-50 border border-gray-200">
+            <span className="text-2xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full mb-3 inline-block">
+              REVENUE DATA INTEGRATION
+            </span>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 break-keep">
+              {t.revenueOptLabel}
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed break-keep max-w-2xl mx-auto">
+              매출 POS 데이터와 saai insight의 매장 내 동선·체류 데이터를 한 시간축에 결합하면, 어떤 동선과 체류 시간이 실제 결제 금액으로 연결되는지 교차 정밀 검증할 수 있습니다.
+            </p>
+          </div>
+        </Container>
       </AnimatedSection>
 
-      {/* ── insight → saai agent 핸드오프 (경계: insight=원인, agent=행동) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-10 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.handoffEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.handoffHeading}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.handoffSub}</p>
+      {/* ── Beat 7 — Installation & Onboarding ── */}
+      <Section variant="default" pad="compact">
+        <Container className="max-w-4xl">
+          <div className="mb-10 text-center">
+            <Eyebrow className="mb-2 justify-center">ONBOARDING</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 font-display break-keep">{t.installHeading}</h2>
           </div>
-          <div className="rounded-2xl border border-primary/20 bg-white p-6 sm:p-8 shadow-card">
-            <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-2">Powered by saai agent</p>
-            <h3 className="text-lg font-bold text-gray-900 mb-2 break-keep">{t.cardTitle}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">{t.cardBody}</p>
-            <Link href={localeHref(locale, '/products/saai-agent')} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-dark transition-colors">
-              {t.cardCta}
+          <div className="grid sm:grid-cols-3 gap-6 mb-4">
+            {t.installSteps.map((s, i) => (
+              <div key={i} className="p-6 rounded-2xl border border-gray-200 bg-white">
+                <span className="text-xs font-bold text-primary uppercase mb-2 block">{s.step}</span>
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-gray-400 break-keep">{t.installNote}</p>
+        </Container>
+      </Section>
+
+      {/* ── Beat 8 — Handoff: insight → agent ── */}
+      <AnimatedSection className="py-20 bg-slate-900 text-white noise-overlay">
+        <Container className="max-w-4xl">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary-light mb-2 block">{t.handoffEyebrow}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 break-keep">{t.handoffHeading}</h2>
+            <p className="text-base text-slate-300 max-w-2xl mx-auto break-keep">{t.handoffSub}</p>
+          </div>
+          <div className="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">{t.cardTitle}</h3>
+              <p className="text-sm text-slate-300 leading-relaxed break-keep">{t.cardBody}</p>
+            </div>
+            <Link
+              href={localeHref(locale, '/products/saai-agent')}
+              className="btn-primary btn-md inline-flex items-center gap-1.5 shrink-0"
+            >
+              <span>{t.cardCta}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <p className="mt-8 max-w-3xl text-sm text-gray-500 leading-relaxed break-keep border-l-2 border-primary pl-4">{t.boundaryLine}</p>
-        </div>
+        </Container>
       </AnimatedSection>
 
-      {/* ── 기능 × insight 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
-      <ModeFunctionSection mode="insight" locale={locale} />
+      {/* Boundary & Hub Data Band */}
+      <HubDataBand locale={locale} />
 
-      {/* ── CTA ── */}
-      <AnimatedSection className="section-dark relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-3xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight break-keep">
+      {/* ── Beat 9 — Feature Reference Catalog (19 Modules) ── */}
+      <Section variant="alt" pad="default">
+        <Container>
+          <div className="mb-10 max-w-2xl">
+            <Eyebrow className="mb-2">FEATURE CATALOG</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 break-keep">{t.featHeading}</h2>
+            <p className="text-sm text-gray-600 leading-relaxed break-keep">{t.featSub}</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {t.features.map((f, i) => (
+              <div key={i} className="p-5 rounded-2xl bg-white border border-gray-200">
+                <h3 className="text-sm font-bold text-gray-900 mb-1">{f.name}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-400 break-keep">{t.featNote}</p>
+        </Container>
+      </Section>
+
+      <ModeFunctionSection mode="insight" locale={locale} />
+      <RelatedGlossary
+        slugs={['store-heatmap', 'dwell-time', 'footfall-analysis', 'zone-analysis']}
+        locale={locale}
+      />
+
+      {/* ── Final Primary CTA ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-slate-950 text-white noise-overlay">
+        <Container className="text-center max-w-3xl">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
+            <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
+            ENTERPRISE INSIGHT
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
             {t.finalHeading}
           </h2>
-          <p className="text-lg text-gray-300 mb-10 break-keep">
+          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl mx-auto break-keep">
             {t.finalSub}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href={localeHref(locale, '/contact') + '?product=StoreInsight'} className="btn-primary btn-lg">
-              {t.finalCta}
-              <ArrowRight className="w-5 h-5 ml-2" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href={localeHref(locale, '/contact?product=saai-insight')}
+              className="btn-primary btn-lg inline-flex items-center gap-2"
+            >
+              <span>{t.finalCta}</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href={localeHref(locale, '/products/saai-agent')} className="btn-ghost-dark">
-              {t.seeAgent}
+            <Link
+              href={localeHref(locale, '/products/saai-agent')}
+              className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors"
+            >
+              <span>{t.seeAgent}</span>
             </Link>
           </div>
-          <p className="mt-6 text-sm text-gray-400">
-            {t.alreadyUsing}{' '}
-            <Link href={localeHref(locale, '/resources/docs/store-insight')} className="text-white underline underline-offset-4 hover:text-primary-light transition-colors">
-              {t.manual}
-            </Link>
-          </p>
-        </div>
+        </Container>
       </AnimatedSection>
-    </>
+    </div>
   );
 }
