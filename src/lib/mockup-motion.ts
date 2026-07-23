@@ -51,6 +51,12 @@ export const countMotion = {
   /** 스칼라 이징은 @/lib/easing의 easeOutQuint — useCountUp/useCountUpGroup이 사용 */
 } as const;
 
+/** 버튼 프레스 등 즉각 affordance 피드백 — 150ms (spring 프레스 대체) */
+export const motionAffordance: Transition = {
+  duration: sec(MS.fast),
+  ease: ease.outQuint,
+};
+
 /** 대시보드 패널 리사이즈 — 480ms transform+opacity */
 export const panelTransition: Transition = {
   duration: sec(MS.pane),

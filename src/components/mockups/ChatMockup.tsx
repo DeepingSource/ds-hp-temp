@@ -10,7 +10,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
-import { springBubble } from '@/lib/spring-config';
+import MockupViewport from './MockupViewport';
+import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
 import { MOCKUP_SCHEME, PRODUCT_THEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
 
 const S = MOCKUP_SCHEME.light;
@@ -184,7 +185,10 @@ export default function ChatMockup({
   const currentMessages = scenarios[scenarioIdx];
 
   return (
+    // Phase 0 레퍼런스 마이그레이션(MM 0-5): MockupViewport 크기 계약 + SAAI 토큰
+    // (--saai-* 변수, Viewport의 .saai-scope에서 해석) + mockup-motion(no spring).
     <div ref={containerRef}>
+    <MockupViewport design="phone">
     <PhoneFrame>
     <PhoneScreen statusBarBg="bg-white" homeBg="bg-white">
 
@@ -207,8 +211,10 @@ export default function ChatMockup({
         </div>
       </div>
 
-      {/* Chat Messages */}
-      <div ref={scrollRef} className={`flex-1 min-h-0 overflow-y-auto p-4 space-y-3 ${S.bodyBg}`} aria-hidden="true">
+      {/* Chat Messages — D9: flex-col + mt-auto 스페이서로 대화가 입력바에 하단 고정
+          (실제 메신저 동작). overflow 시에도 상단 스크롤 접근이 유지되는 안전 패턴. */}
+      <div ref={scrollRef} className={`flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-3 ${S.bodyBg}`} aria-hidden="true">
+        <div className="mt-auto" aria-hidden="true" />
         <AnimatePresence initial={false}>
           {currentMessages.slice(0, visibleCount).map((msg, i) => {
             const isUser = msg.role === 'user';
@@ -216,17 +222,16 @@ export default function ChatMockup({
               <motion.div
                 key={`${loopKey}-${i}`}
                 className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
-                initial={{ opacity: 0, scale: 0.88, y: 5 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.92, y: -4, transition: { duration: 0.18 } }}
-                transition={springBubble}
-                style={{ transformOrigin: isUser ? 'bottom right' : 'bottom left' }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4, transition: { duration: 0.15 } }}
+                transition={motionEnter}
               >
                 <div className="max-w-[85%]">
                   <div className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
                     isUser
-                      ? 'bg-primary text-white rounded-br-md'
-                      : 'bg-white border border-gray-100 text-gray-800 rounded-bl-md shadow-card'
+                      ? 'bg-(--saai-primary) text-(--saai-on-primary) rounded-br-md'
+                      : 'bg-(--saai-bg-app) border border-(--saai-border-subtle) text-(--saai-fg-primary) rounded-bl-md shadow-card'
                   }`}>
                     {msg.text}
                     {/* Inline stats (AI messages only) */}
@@ -275,11 +280,10 @@ export default function ChatMockup({
             currentMessages[visibleCount]?.role === 'ai' && inputText === '' && (
             <motion.div
               className="flex justify-start"
-              initial={{ opacity: 0, scale: 0.8, y: 4 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 4 }}
-              transition={springBubble}
-              style={{ transformOrigin: 'bottom left' }}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={motionEnter}
             >
               <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-md px-4 py-2.5 shadow-card">
                 <div className="flex gap-1 items-center h-4">
@@ -320,10 +324,10 @@ export default function ChatMockup({
               type="button"
               tabIndex={-1}
               aria-label={t.sendLabel}
-              className="w-9 h-9 bg-primary rounded-full flex items-center justify-center"
+              className="w-9 h-9 bg-(--saai-primary) rounded-full flex items-center justify-center"
               animate={sendPress ? { scale: 0.88 } : { scale: 1 }}
               whileTap={{ scale: 0.88 }}
-              transition={{ type: 'spring', damping: 14, stiffness: 500 }}
+              transition={motionAffordance}
             >
               <Send className="w-4 h-4 text-white" aria-hidden="true" />
             </motion.button>
@@ -333,6 +337,7 @@ export default function ChatMockup({
 
     </PhoneScreen>
     </PhoneFrame>
+    </MockupViewport>
     </div>
   );
 }
