@@ -17,11 +17,13 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 export default function RotatingNoun({
   fixed,
   words,
+  suffix = '',
   intervalMs = 2200,
   className = '',
 }: {
   fixed: string;
   words: string[];
+  suffix?: string;
   /** dwell time per word in ms */
   intervalMs?: number;
   className?: string;
@@ -44,23 +46,26 @@ export default function RotatingNoun({
 
   return (
     <span
-      className={`inline-grid text-primary ${className}`}
+      className={`inline-inline-flex items-baseline text-primary ${className}`}
       onPointerEnter={() => setPaused(true)}
       onPointerLeave={() => setPaused(false)}
     >
-      {/* Sizer: reserves the cell; invisible, aria-hidden — pins width + baseline. */}
-      <span aria-hidden="true" className="invisible col-start-1 row-start-1 whitespace-nowrap">
-        {sizer}
+      <span className="inline-grid text-primary">
+        {/* Sizer: reserves the cell; invisible, aria-hidden — pins width + baseline. */}
+        <span aria-hidden="true" className="invisible col-start-1 row-start-1 whitespace-nowrap">
+          {sizer}
+        </span>
+        <span className="sr-only">{fixed}</span>
+        {/* Rotating visual layer — overlaps the sizer cell, sighted users only. */}
+        <span
+          key={current}
+          aria-hidden="true"
+          className="rotating-noun col-start-1 row-start-1 whitespace-nowrap"
+        >
+          {current}
+        </span>
       </span>
-      <span className="sr-only">{fixed}</span>
-      {/* Rotating visual layer — overlaps the sizer cell, sighted users only. */}
-      <span
-        key={current}
-        aria-hidden="true"
-        className="rotating-noun col-start-1 row-start-1 whitespace-nowrap"
-      >
-        {current}
-      </span>
+      {suffix && <span className="text-gray-900 font-bold whitespace-nowrap">{suffix}</span>}
     </span>
   );
 }

@@ -65,9 +65,12 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               {categoryKeyword[locale]} · SAAI
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-gray-900 break-keep font-display animate-fade-in-up delay-100">
-              {q.prefix}
-              <RotatingNoun fixed={q.fixed} words={q.words} />
-              {q.suffix}
+              <span className="inline-block sm:inline">{q.lead}</span>
+              <span className="inline-inline-flex items-baseline whitespace-nowrap">
+                <span>{q.your}</span>
+                <RotatingNoun fixed={q.fixed} words={q.words} suffix={locale === 'en' ? q.suffix : undefined} />
+              </span>
+              {locale !== 'en' && <span className="whitespace-nowrap">{q.suffix}</span>}
             </h1>
             <p className="mt-6 text-base sm:text-lg text-gray-600 font-medium leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
               {locale === 'ko' ? '쓰던 CCTV 그대로 — 얼굴은 지우고, 흐름만 읽습니다.' : locale === 'jp' ? '既存のCCTVのまま — 顔は消し、流れだけを読み取ります。' : 'Keep existing CCTVs — erasing faces on the spot, reading physical flow.'}

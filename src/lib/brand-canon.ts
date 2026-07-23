@@ -79,20 +79,26 @@ export const perfectSpace: { your: Record<Locale, string>; every: Record<Locale,
  * each token so grammar stays correct as it rotates (매장을 … 무인매장을); JP keeps を in
  * the suffix, so its tokens are bare nouns.
  */
-export const heroQuestion: Record<Locale, { prefix: string; fixed: string; suffix: string; words: string[] }> = {
+export const heroQuestion: Record<Locale, { lead: string; your: string; prefix: string; fixed: string; suffix: string; words: string[] }> = {
   ko: {
+    lead: '지금 쓰는 AI는, ',
+    your: '당신의 ',
     prefix: '지금 쓰는 AI는, 당신의 ',
     fixed: '공간을',
     suffix: ' 알고 있나요?',
     words: ['매장을', '현장을', '전시장을', '물류센터를', '카페를', '무인매장을'],
   },
   en: {
+    lead: 'Does the AI you use ',
+    your: 'know your ',
     prefix: 'Does the AI you use know your ',
     fixed: 'space',
     suffix: '?',
     words: ['store', 'floor', 'showroom', 'warehouse', 'café', 'unmanned store'],
   },
   jp: {
+    lead: 'いま使っているAIは、',
+    your: 'あなたの',
     prefix: 'いま使っているAIは、あなたの',
     fixed: '空間',
     suffix: 'を知っていますか?',
