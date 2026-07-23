@@ -9,17 +9,18 @@ import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import { canonicalStore, canonicalStoreName, canonicalHq, formatWon } from '@/data/mockup-scenarios/canonical';
 import { localeHref, type Locale } from '@/lib/i18n';
-
-interface Props {
-  active?: boolean;
-  locale?: Locale;
-  className?: string;
-}
+import { type DeepPartial, mergeMockupContent } from './types';
 
 type NodeCopy = { label: string; tip: string };
 type CardCopy = { no: string; title: string; body: string };
 
-type Copy = {
+/**
+ * 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+ * 이 컴포넌트는 (FunnelDiagram/MultiStoreDashboardMockup과 달리) 고정 개수 훅 호출이
+ * 없다 — useMockupLoop 하나로 5단계를 순환할 뿐이라 콘텐츠 오버라이드에 제약이 없다.
+ * 다만 `cards`는 정확히 3개 튜플이라 오버라이드 시에도 3개를 채워야 한다.
+ */
+export interface IntegratedLoopCopy {
   eyebrow: string;
   heading: string;
   lead: string;
@@ -41,9 +42,9 @@ type Copy = {
   svgTitle: string;
   svgDesc: string;
   scrollLabel: string;
-};
+}
 
-const COPY: Record<Locale, Copy> = {
+const COPY: Record<Locale, IntegratedLoopCopy> = {
   ko: {
     eyebrow: '셋이 함께 서면',
     heading: '세 시간 축이 하나의 운영 루프로 닫힙니다',
@@ -198,7 +199,11 @@ function SvgNode({
   active?: boolean;
 }) {
   const y = cy - h / 2;
-  const fill = tone === 'hub' ? 'fill-[#e1eafd]' : tone === 'accent' ? 'fill-[#eef3fe]' : 'fill-white';
+  // hub/accent 둘 다 사이트의 유일한 라이트 블루 토큰(primary-lighter, DESIGN.md)을
+  // 쓴다 — 예전엔 톤 구분을 위해 #e1eafd/#eef3fe라는, 토큰에 없는 임의 블루 두 종을
+  // 각각 하드코딩했다. hub의 시각적 위계는 이미 굵은 테두리(strokeWidth)·굵은 글자·
+  // 더 큰 박스 크기로 표현되고 있어서, 채우기 색을 하나로 합쳐도 구분은 유지된다.
+  const fill = tone === 'plain' ? 'fill-white' : 'fill-primary-lighter';
   const stroke = active ? 'stroke-primary' : tone === 'plain' ? 'stroke-gray-300' : 'stroke-primary';
   const strokeWidth = active ? (tone === 'hub' ? 3 : 2.5) : tone === 'hub' ? 2 : 1.5;
   const textCls = tone === 'plain' && !active ? 'fill-gray-700' : 'fill-primary';
@@ -220,12 +225,21 @@ function SvgNode({
   );
 }
 
+interface Props {
+  active?: boolean;
+  locale?: Locale;
+  className?: string;
+  /** 문구 오버라이드 — 부분 병합. 기본: COPY[locale] */
+  content?: DeepPartial<IntegratedLoopCopy>;
+}
+
 export default function IntegratedLoopDiagram({
   active = true,
   locale = 'en',
   className = '',
+  content,
 }: Props) {
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const reducedMotion = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
 
@@ -262,7 +276,7 @@ export default function IntegratedLoopDiagram({
         tabIndex={0}
         role="group"
         aria-label={t.scrollLabel}
-        className="overflow-x-auto rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-6"
+        className="overflow-x-auto rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-6 shadow-card"
       >
         <svg
           viewBox="0 0 1000 380"

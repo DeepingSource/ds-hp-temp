@@ -13,10 +13,18 @@ import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import { homeCopy } from '@/lib/i18n';
 import type { Locale } from '@/lib/i18n';
+import { type DeepPartial, mergeMockupContent } from './types';
+import { type MockupStatus as Status, MOCKUP_STATUS_HEX, MOCKUP_STATUS_CLASS } from '@/lib/mockup-tokens';
 
-type Status = 'normal' | 'warning' | 'critical';
-
-const COPY: Record<Locale, {
+/** 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
+ *
+ * ⚠️ 아직 오버라이드 안 되는 것: `canonicalHq`(일일 알림 수·응답률·절감 시간·매장 수)와
+ * `INTERIOR_POINTS`(지도 핀 좌표)는 이 컴포넌트가 정확히 4개 지표를 고정 순서로
+ * 가정하고 useCountUp을 4번 개별 호출한다(MultiStoreDashboardMockup과 동일한 한계 —
+ * docs/MOCKUP_SYSTEM_GUIDE.md 참고). 다른 본사/가맹 시나리오로 재사용하려면 먼저
+ * 그 호출부를 배열 기반 훅으로 바꿔야 한다.
+ */
+export interface HqMapDashboardCopy {
   sub: string;
   kpiAlerts: string;
   kpiAlertsSub: string;
@@ -32,7 +40,9 @@ const COPY: Record<Locale, {
   cardRevenue: string;
   liveLabel: string;
   storeNames: string[];
-}> = {
+}
+
+const COPY: Record<Locale, HqMapDashboardCopy> = {
   ko: {
     sub: '200개 가맹점의 상태를 본사 한 화면에서.',
     kpiAlerts: '본부 확인 필요',
@@ -86,17 +96,6 @@ const COPY: Record<Locale, {
   },
 };
 
-const STATUS_COLOR: Record<Status, string> = {
-  normal: '#94A3B8',
-  warning: '#F59E0B',
-  critical: '#EF4444',
-};
-const STATUS_DOT_CLASS: Record<Status, string> = {
-  normal: 'bg-slate-400',
-  warning: 'bg-amber-500',
-  critical: 'bg-red-500',
-};
-
 // Store coordinates in the korea-map.svg coordinate space (viewBox 0 0 800 1200),
 // hand-placed on real regions (수도권 cluster · 강원 · 충청 · 호남 · 영남 · 제주).
 // Deterministic — no Math.random at render (SSR-safe). The first 13 slots are the
@@ -136,17 +135,22 @@ function buildPins() {
   }));
 }
 
+interface Props {
+  active?: boolean;
+  locale?: Locale;
+  className?: string;
+  /** 문구 오버라이드 — 부분 병합. 기본: COPY[locale]. 지도 데이터는 아직 오버라이드 불가(위 주석 참고) */
+  content?: DeepPartial<HqMapDashboardCopy>;
+}
+
 export default function HqMapDashboardMockup({
   active = true,
   locale = 'en',
   className = '',
-}: {
-  active?: boolean;
-  locale?: Locale;
-  className?: string;
-}) {
+  content,
+}: Props) {
   const reducedMotion = usePrefersReducedMotion();
-  const t = COPY[locale] ?? COPY.en;
+  const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
   const pins = useMemo(() => buildPins(), []);
@@ -220,7 +224,7 @@ export default function HqMapDashboardMockup({
     <div
       ref={ref}
       {...hoverProps}
-      className={`w-full rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-sm overflow-hidden ${className}`}
+      className={`w-full rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-card overflow-hidden ${className}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-3.5">
@@ -314,7 +318,7 @@ export default function HqMapDashboardMockup({
                         cy={p.y}
                         r={r}
                         fill="none"
-                        stroke={STATUS_COLOR[p.status]}
+                        stroke={MOCKUP_STATUS_HEX[p.status]}
                         strokeWidth={3}
                         initial={{ r, opacity: 0.7 }}
                         animate={{ r: r + 24, opacity: 0 }}
@@ -325,7 +329,7 @@ export default function HqMapDashboardMockup({
                       cx={p.x}
                       cy={p.y}
                       r={isActive ? r + 4 : r}
-                      fill={STATUS_COLOR[p.status]}
+                      fill={MOCKUP_STATUS_HEX[p.status]}
                       fillOpacity={p.status === 'normal' && !isActive ? 0.6 : 0.95}
                       stroke="#fff"
                       strokeWidth={isActive ? 3 : 1.5}
@@ -341,7 +345,7 @@ export default function HqMapDashboardMockup({
             {legendItems.map((l) => (
               <span key={l.status} className="flex items-center gap-1.5 text-xs">
                 <span
-                  className={`h-2 w-2 rounded-full ${STATUS_DOT_CLASS[l.status]}`}
+                  className={`h-2 w-2 rounded-full ${MOCKUP_STATUS_CLASS[l.status].dot}`}
                   aria-hidden
                 />
                 <span className="font-medium text-slate-600">{t.legend[l.status]}</span>
@@ -357,20 +361,16 @@ export default function HqMapDashboardMockup({
           initial={reducedMotion ? false : { opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+          className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-card"
         >
           <div>
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium tracking-tight">{cardName}</span>
               <span
-                className="flex items-center gap-1 rounded-full px-2 py-0.5 text-2xs font-medium"
-                style={{
-                  color: STATUS_COLOR[activePin.status],
-                  backgroundColor: STATUS_COLOR[activePin.status] + '1A',
-                }}
+                className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-2xs font-medium ${MOCKUP_STATUS_CLASS[activePin.status].text} ${MOCKUP_STATUS_CLASS[activePin.status].bg}`}
               >
                 <span
-                  className={`h-1.5 w-1.5 rounded-full ${STATUS_DOT_CLASS[activePin.status]}`}
+                  className={`h-1.5 w-1.5 rounded-full ${MOCKUP_STATUS_CLASS[activePin.status].dot}`}
                   aria-hidden
                 />
                 {t.statusLabel[activePin.status]}

@@ -14,12 +14,15 @@
 | `src/components/mockups/FunnelDiagram.tsx` | `content?: DeepPartial<FunnelDiagramCopy>`(부분 병합) + `data?: FunnelData`(퍼널 수치 통째 교체) 오버라이드 prop 추가, 컨테이너에 `shadow-card` 추가, 토큰에 없던 임의값 `text-[9px]` → `text-3xs`로 정리 | `StoreInsightView`에서 실사용 중인 컴포넌트 — prop을 안 넘기면 기존과 동일하게 렌더링되도록 짰지만(옵션 prop + 기본값 fallback), 로컬 빌드 확인 권장 |
 
 | `src/components/mockups/MultiStoreDashboardMockup.tsx` | `content?: DeepPartial<MultiStoreDashboardCopy>`(문구 부분 병합) 오버라이드 prop 추가, `text-[11px]`/`text-[9px]` 임의값 전부 `text-2xs`/`text-3xs` 토큰으로 정리 | 이미 `mockup-tokens.ts` 사용 중이던 컴포넌트라 위험 낮음. **단, 숫자 데이터(`stores`/`chartSets`/`kpiConfigs`)는 이번에 오버라이드 대상에서 제외** — 아래 한계 참고 |
+| `src/lib/mockup-tokens.ts` (2차) | 상태 컬러(정상/주의/위험) 공용 토큰 신규 추가 — `MockupStatus` 타입, `MOCKUP_STATUS_HEX`(SVG fill/stroke용), `MOCKUP_STATUS_CLASS`(Tailwind 클래스용, DESIGN.md `--warning`/`--error`와 동일 hex) | 순수 추가 |
+| `src/components/mockups/HqMapDashboardMockup.tsx` | 로컬 `STATUS_COLOR`/`STATUS_DOT_CLASS` 맵 제거 → `MOCKUP_STATUS_HEX`/`MOCKUP_STATUS_CLASS` 사용으로 교체(중복 제거), `content?: DeepPartial<HqMapDashboardCopy>` 오버라이드 prop 추가, `shadow-sm` 2곳 → `shadow-card`, 미니카드의 인라인 `style` 컬러를 Tailwind 클래스로 교체 | 로컬 상태색 맵을 공용 토큰으로 바꾸는 리팩터라 시각적으로는 동일(같은 hex). **숫자 데이터(alerts/response/saved/stores)는 `MultiStoreDashboardMockup`과 같은 이유(고정 4회 `useCountUp`)로 오버라이드 대상에서 제외** |
+| `src/components/mockups/IntegratedLoopDiagram.tsx` | `content?: DeepPartial<IntegratedLoopCopy>` 오버라이드 prop 추가(고정 개수 훅 호출이 없어 제약 없음), 임의 hex `fill-[#e1eafd]`/`fill-[#eef3fe]` 2종 → `fill-primary-lighter` 토큰 하나로 통합, 다이어그램 컨테이너에 `shadow-card` 추가(기존엔 섀도우 없었음) | 시각적 변화는 hub/accent 채우기색이 미세하게 통일되는 정도 — 시각 구분은 테두리 굵기·글자 굵기로 유지됨 |
 
 **바로잡음**: 지난 계획 문서에서 "FunnelDiagram이 홈페이지에 쓰인다"고 적었던 건 부정확했다 — 실제로는 `StoreInsightView.tsx`(제품 서브페이지)에서 동적 import로 쓰이고 있고, 홈페이지의 퍼널 시각(어제 들어온 손님 10명 중 8명…)은 별도의 자체 구현이다. `ROLLOUT_PLAN_v1.md`의 해당 서술은 이 근거로 갱신 필요.
 
-**발견한 한계 — `MultiStoreDashboardMockup`은 숫자까지는 아직 오버라이드 못 한다.** 이 컴포넌트는 `kpiConfigs`가 정확히 4개라고 가정하고 `useCountUp`을 4번 개별 호출한다(`revenue`/`visitors`/`alrtCnt`/`perf`). React 훅 규칙상 호출 횟수를 데이터 길이에 따라 가변으로 둘 수 없어서, `stores`/`chartSets`/`kpiConfigs`를 안전하게 오버라이드하려면 먼저 이 4번 호출을 배열 기반의 단일 훅(예: `useCountUpGroup(values[])`)으로 바꾸는 선행 리팩터가 필요하다 — 이번 패스에서는 문구만 오버라이드하고 숫자 구조 변경은 후속 작업으로 남겼다. **다른 목업을 이 패턴으로 옮길 때도 "고정 개수 훅 호출"이 있는지 먼저 확인할 것** — 있으면 콘텐츠 오버라이드보다 먼저 훅 구조부터 봐야 한다.
+**발견한 한계 — `MultiStoreDashboardMockup`/`HqMapDashboardMockup`은 숫자까지는 아직 오버라이드 못 한다.** 이 두 컴포넌트는 KPI 개수가 정확히 4개라고 가정하고 `useCountUp`을 4번씩 개별 호출한다. React 훅 규칙상 호출 횟수를 데이터 길이에 따라 가변으로 둘 수 없어서, 숫자 데이터를 안전하게 오버라이드하려면 먼저 이 4번 호출을 배열 기반의 단일 훅(예: `useCountUpGroup(values[])`)으로 바꾸는 선행 리팩터가 필요하다 — 이번 패스에서는 문구만 오버라이드하고 숫자 구조 변경은 후속 작업으로 남겼다. **다른 목업을 이 패턴으로 옮길 때도 "고정 개수 훅 호출"이 있는지 먼저 확인할 것** — 있으면 콘텐츠 오버라이드보다 먼저 훅 구조부터 봐야 한다. 반대로 `IntegratedLoopDiagram`처럼 `useMockupLoop` 하나로 단계를 순환하는 컴포넌트는 이 제약이 없다.
 
-**아직 안 건드린 것**: `HqMapDashboardMockup`/`IntegratedLoopDiagram` — 아래 §6 순서대로 이어서 진행.
+**이번 배치로 완료**: `ROLLOUT_PLAN_v1.md` §3의 P0/P1 대상 5개 컴포넌트(`ChatMockup`→`FunnelDiagram`→`MultiStoreDashboardMockup`→`HqMapDashboardMockup`→`IntegratedLoopDiagram`) 모두 콘텐츠 오버라이드 + 토큰 정리 적용 완료. 다음 대상은 §6 참고.
 
 ## 1. 세 가지 목표와 대응 방법
 
@@ -85,9 +88,9 @@ export default function FunnelDiagram({ locale = 'ko', content, ...rest }: Funne
 
 ### 3-2. 토큰 사용 현황 — 남은 작업
 
-대표 7종 중 `mockup-tokens.ts`(`MOCKUP_SCHEME`/`MOCKUP_DEVICE`)를 실제로 쓰는 건 2종(`MultiStoreDashboardMockup`, `ChatMockup`)뿐이었다. 나머지(`FunnelDiagram`, `HqMapDashboardMockup`, `IntegratedLoopDiagram`)는 로컬 hex 상수를 따로 만들거나 Tailwind 임의값을 직접 썼다. `KakaoAlertMockup`의 카카오톡/LINE 브랜드색(`#06c755` 등)은 실제 서비스 스킨 재현이 목적이라 의도적 예외로 유지한다 — 이런 예외는 컴포넌트 상단에 주석으로 이유를 남긴다(`PRODUCT_THEME`의 emerald/violet도 동일하게 문서화해뒀다, `mockup-tokens.ts` 참고).
+대표 7종 중 `mockup-tokens.ts`(`MOCKUP_SCHEME`/`MOCKUP_DEVICE`)를 실제로 쓰는 건 2종(`MultiStoreDashboardMockup`, `ChatMockup`)뿐이었다. `HqMapDashboardMockup`은 이번에 자체 상태색 맵을 새 `MOCKUP_STATUS_HEX`/`MOCKUP_STATUS_CLASS`로 옮기면서 토큰화됐고, `IntegratedLoopDiagram`도 임의 hex 2종을 `fill-primary-lighter`로 정리했다. `KakaoAlertMockup`의 카카오톡/LINE 브랜드색(`#06c755` 등)은 실제 서비스 스킨 재현이 목적이라 의도적 예외로 유지한다 — 이런 예외는 컴포넌트 상단에 주석으로 이유를 남긴다(`PRODUCT_THEME`의 emerald/violet도 동일하게 문서화해뒀다, `mockup-tokens.ts` 참고).
 
-**남은 토큰화 대상(우선순위):** ~~`FunnelDiagram`~~(완료, §0) → `HqMapDashboardMockup` → `IntegratedLoopDiagram`. 각각 로컬 색상 상수를 `MOCKUP_SCHEME`/`PRODUCT_THEME` 파생으로 교체.
+**남은 토큰화 대상:** P0/P1 5종은 모두 완료(§0). 이후 §6의 다음 대상 컴포넌트로 넘어갈 때 같은 방식(로컬 색상 상수 → `MOCKUP_SCHEME`/`PRODUCT_THEME`/`MOCKUP_STATUS_*` 파생)을 적용한다.
 
 ### 3-3. "더 사실적" — 디바이스 크롬은 이미 잘 돼 있다
 
@@ -116,6 +119,14 @@ export default function FunnelDiagram({ locale = 'ko', content, ...rest }: Funne
 
 ## 6. 다음 순서
 
-`ROLLOUT_PLAN_v1.md` §6 실행 순서의 "기반 작업" 단계에 해당한다. `ChatMockup`(레퍼런스) → `FunnelDiagram` → `MultiStoreDashboardMockup`(모두 완료, §0) 순으로 패턴을 적용했다. 다음은 `HqMapDashboardMockup` → `IntegratedLoopDiagram` 순으로 이어간다. `HqMapDashboardMockup`을 열 때는 `MultiStoreDashboardMockup`에서 막힌 것과 같은 "고정 개수 훅 호출"이 있는지(`useCountUp` x4라고 이전 감사에서 확인됨) 먼저 확인하고, 있으면 이번처럼 문구 오버라이드부터 안전하게 진행한다.
+`ROLLOUT_PLAN_v1.md` §6 실행 순서의 "기반 작업" 단계는 이번 배치로 완료됐다: `ChatMockup`(레퍼런스) → `FunnelDiagram` → `MultiStoreDashboardMockup` → `HqMapDashboardMockup` → `IntegratedLoopDiagram`, 총 5개 컴포넌트 + 공용 유틸(`types.ts`, `mockup-tokens.ts`) 모두 콘텐츠 오버라이드 규약 적용 + 토큰 정리 완료.
 
-**로컬 검증 권장 시점**: 지금까지 4개 컴포넌트(`ChatMockup`/`FunnelDiagram`/`MultiStoreDashboardMockup`)와 공용 유틸(`types.ts`/`mockup-tokens.ts`)이 바뀌었다. 나머지 두 컴포넌트로 넘어가기 전에 `npm run build`(또는 최소 `npx tsc --noEmit`)를 한 번 돌려 지금까지의 변경이 이 저장소 설정에서 문제없이 컴파일되는지 확인하는 걸 권장한다 — 이 세션은 저장소를 직접 빌드할 수 없어 코드 리뷰만으로 안전성을 판단했다.
+**다음 후보** (`ROLLOUT_PLAN_v1.md` 참고, 우선순위는 그 문서의 페이지별 표를 따를 것):
+- Tier 0(홈페이지)에 이 컴포넌트들을 실제로 배치 — 예: `ChatMockup`+`StoreInsightMockup` 조합을 AI 비교 카드 섹션에.
+- Tier 1의 8개 우선 페이지(`ProductsView`/`SolutionsView`/`SolutionDetailView`/`RetailView`/`FoodBeverageView`/`LargeSpaceView`/`SaaiAdsInsightView`/`SaaiForOwnersView`)에서 쓰이는 나머지 목업들에 같은 패턴 확장.
+- `StoreCareStatusMockup`을 `StoreCareDeviceTabs`의 두 번째 탭으로 추가할지 검토(§4에서 저활용으로 판정).
+- `docs/STATUS.md`의 미착수 항목(제품 목업 개선·FAQ 컴포넌트 재디자인·기술 시각) — ROLLOUT_PLAN Tier 2.
+
+새 컴포넌트를 옮길 때는 항상: (1) "고정 개수 훅 호출"이 있는지 먼저 확인 → 있으면 문구만 오버라이드하고 숫자 구조 변경은 후속 작업으로 분리, (2) 로컬 hex/임의값을 `MOCKUP_SCHEME`/`PRODUCT_THEME`/`MOCKUP_STATUS_*` 파생으로 정리, (3) §5 체크리스트 순서를 따른다.
+
+**로컬 검증 권장**: 이번 배치에서 총 7개 파일(`types.ts`, `mockup-tokens.ts`, `ChatMockup.tsx`, `FunnelDiagram.tsx`, `MultiStoreDashboardMockup.tsx`, `HqMapDashboardMockup.tsx`, `IntegratedLoopDiagram.tsx`)이 바뀌었다. 다음 작업(홈페이지 배치든 추가 컴포넌트 마이그레이션이든)으로 넘어가기 전에 `npm run build`(또는 최소 `npx tsc --noEmit`)를 한 번 돌려 이 7개 파일이 이 저장소 설정에서 문제없이 컴파일되는지 확인하는 걸 권장한다 — 이 세션은 저장소를 직접 빌드할 수 없어 코드 리뷰만으로 안전성을 판단했다.
