@@ -53,6 +53,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "jsdom": "^27.0.1",
+    "openai": "^6.48.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.4"

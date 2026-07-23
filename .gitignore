@@ -44,6 +44,9 @@ new-images/
 /pop/
 _frames_tmp/
 asset-prompts/
+# team avatar source material — real staff photos, kept local (privacy), not in repo
+/person-raw/
+public/images/team/_to_delete/
 # internal business/pricing strategy doc — kept local, not in repo
 docs/BIZ_SERVICE_PLAN_v1.md
 # session planning / evaluation reference docs (dropped in root, kept local)
