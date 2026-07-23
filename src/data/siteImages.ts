@@ -19,6 +19,22 @@ export const industryThumbs: Record<string, [string, string]> = {
   fashion:     ['/images/industries/fashion-hero.webp',              '/images/industries/fashion-hero.webp'],
 };
 
+// ── 홈 Hero 공간 회전 이미지 ─────────────────────────────────────────────────
+
+/**
+ * RotatingNoun(heroQuestion.words)과 순서 1:1 계약 (HERO_SPACES_PLAN_v1 §1·§3):
+ * 매장을 → 현장을 → 전시장을 → 물류센터를 → 카페를 → 무인매장을
+ * 산출: scripts/generate-hero-spaces.mjs (--apply 가 public/images/hero/ 에 반영)
+ */
+export const heroSpaceImages = [
+  { key: 'store',      src: '/images/hero/hero-store.webp' },
+  { key: 'site',       src: '/images/hero/hero-site.webp' },
+  { key: 'exhibition', src: '/images/hero/hero-exhibition.webp' },
+  { key: 'logistics',  src: '/images/hero/hero-logistics.webp' },
+  { key: 'cafe',       src: '/images/hero/hero-cafe.webp' },
+  { key: 'unmanned',   src: '/images/hero/hero-unmanned.webp' },
+] as const;
+
 // ── 기술 페이지 이미지 ───────────────────────────────────────────────────────
 
 export const technologyImages = {

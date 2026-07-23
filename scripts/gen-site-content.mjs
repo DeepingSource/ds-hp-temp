@@ -309,6 +309,44 @@ for (const loc of LOCALES) {
   });
 }
 
+// ── team — /company/team 인물 데이터 (PLAN_TEAM_VOICES). content/site/team.yaml.
+//    출력은 TeamMember 인터페이스와 동일한 field-major 형태(로케일 분기는 뷰가 담당).
+//    voiceTheme='none' 또는 voiceShort.ko 공백이면 voice 미적용 → 기존 quote 폴백. ──
+const teamYaml = load('content/site/team.yaml');
+const team = (teamYaml.members ?? [])
+  .filter((m) => m?.id && m?.name?.ko)
+  .map((m) => {
+    const o = {
+      id: m.id,
+      nameKo: m.name?.ko ?? '',
+      nameEn: m.name?.en || m.name?.ko || '',
+      group: m.group || 'Engineering',
+      roleKo: m.role?.ko ?? '',
+      roleEn: m.role?.en || m.role?.ko || '',
+      roleJp: m.role?.jp || m.role?.ko || '',
+      quoteKo: m.quote?.ko ?? '',
+      quoteEn: m.quote?.en || m.quote?.ko || '',
+      avatarUrl: m.avatar || '',
+    };
+    if (m.quote?.jp) o.quoteJp = m.quote.jp;
+    if (m.isLeadership) o.isLeadership = true;
+    if (m.avatarColor) o.avatarColor = m.avatarColor;
+    if (m.voiceTheme && m.voiceTheme !== 'none' && m.voiceShort?.ko) {
+      o.voice = {
+        theme: m.voiceTheme,
+        shortKo: m.voiceShort.ko,
+        shortEn: m.voiceShort.en || m.voiceShort.ko,
+      };
+      if (m.voiceShort.jp) o.voice.shortJp = m.voiceShort.jp;
+      if (m.voiceStory?.ko) o.voice.storyKo = m.voiceStory.ko;
+      if (m.voiceStory?.en) o.voice.storyEn = m.voiceStory.en;
+      if (m.voiceStory?.jp) o.voice.storyJp = m.voiceStory.jp;
+      if (Array.isArray(m.askMeAbout) && m.askMeAbout.length) o.voice.askMeAbout = m.askMeAbout;
+    }
+    if (m.endorses) o.endorses = m.endorses;
+    return o;
+  });
+
 const milestonesYaml = load('content/site/milestones.yaml');
 const MILESTONE_FIELDS = ['year', 'title', 'desc'];
 const milestones = {};
@@ -403,7 +441,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, agenticAi, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, milestones, career, solutionPages }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, agenticAi, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, team, milestones, career, solutionPages }, null, 2) + '\n',
 );
-console.log('✓ generated src/data/generated/site-content.json (…, leadership, milestones, career, solutionPages)');
+console.log('✓ generated src/data/generated/site-content.json (…, leadership, team, milestones, career, solutionPages)');
 console.log(`✓ generated src/data/generated/gated-docs.json (${gatedDocs.gatedSlugs.length} gated)`);

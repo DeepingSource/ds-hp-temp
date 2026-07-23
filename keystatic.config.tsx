@@ -193,7 +193,7 @@ export default config({
       '이벤트': ['events'],
       '자주 편집': ['home', 'pricing', 'news', 'company'],
       '페이지 카피 · 제품': ['products', 'storeAgent', 'saai', 'technology', 'agenticAi'],
-      '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'milestones', 'career'],
+      '페이지 카피 · 회사': ['about', 'solutions', 'contact', 'resources', 'leadership', 'team', 'milestones', 'career'],
       '페이지 카피 · 업종': ['retail', 'drug', 'foodBeverage', 'largeSpace', 'solutionPages'],
       '법무 (검토 후 편집)': ['privacyDoc', 'termsDoc'],
     },
@@ -1297,6 +1297,62 @@ export default config({
             photo: fields.text({ label: '사진 경로 (선택, 예: /images/team/ceo.webp)' }),
           }),
           { label: '경영진', itemLabel: (p) => p.fields.key.value || '경영진' },
+        ),
+      },
+    }),
+    // 팀 페이지 인물 — /company/team 벽·스포트라이트·문화 증언 (PLAN_TEAM_VOICES).
+    // content/site/team.yaml → gen-site-content(predev/prebuild) 가 site-content.json 으로
+    // 컴파일. 저장 후 dev 재시작 또는 `npm run gen:content` 로 반영. id 는 문화 증언
+    // (TeamView CULTURE_ITEMS.voiceOf)·endorses 연결 키 — 변경 금지. 배열 순서 = 표시 순서.
+    team: singleton({
+      label: '팀 페이지 인물 (Team)',
+      path: 'content/site/team',
+      format: { data: 'yaml' },
+      schema: {
+        members: fields.array(
+          fields.object({
+            id: fields.text({ label: 'id (문화 증언·동료 자랑 연결 키 — 변경 금지)' }),
+            group: fields.select({
+              label: '그룹 (필터)',
+              options: [
+                { label: 'Leadership', value: 'Leadership' },
+                { label: 'Research & AI', value: 'Research & AI' },
+                { label: 'Engineering', value: 'Engineering' },
+                { label: 'Product & Design', value: 'Product & Design' },
+                { label: 'Business & Operations', value: 'Business & Operations' },
+              ],
+              defaultValue: 'Engineering',
+            }),
+            isLeadership: fields.checkbox({ label: '리더십 섹션에 노출', defaultValue: false }),
+            avatar: fields.image({
+              label: '아바타 이미지',
+              description: '정사각 webp 권장 (벽에서는 56~72px 원형, 스포트라이트에서 대형).',
+              directory: 'public/images/team',
+              publicPath: '/images/team/',
+            }),
+            avatarColor: fields.text({ label: '아바타 배경색 (선택 · 예: #EEF3FE — 비우면 자동 파스텔)' }),
+            name: localized('이름 (name · JP 비우면 KO 사용)'),
+            role: localized('직함 (role)'),
+            quote: localized('기본 인용구 (quote · voice 없을 때 폴백)'),
+            voiceTheme: fields.select({
+              label: 'Voice 주제 — 없음이면 아래 voice 필드 무시(quote 폴백)',
+              options: [
+                { label: '— 없음 (quote 사용)', value: 'none' },
+                { label: '제품·기술 (craft)', value: 'craft' },
+                { label: '팀·문화 (culture)', value: 'culture' },
+                { label: '철학 (philosophy)', value: 'philosophy' },
+              ],
+              defaultValue: 'none',
+            }),
+            voiceShort: localized('한 줄 자랑 (voice.short · KO 비우면 voice 미적용)'),
+            voiceStory: localized('스토리 (voice.story · 2~3문단, 문단은 빈 줄로 구분 · 선택)'),
+            askMeAbout: fields.array(fields.text({ label: '키워드' }), {
+              label: 'Ask me about 칩 (선택 · 스포트라이트 노출)',
+              itemLabel: (p) => p.value,
+            }),
+            endorses: fields.text({ label: '동료 자랑 대상 id (선택 · 스포트라이트 상호 링크)' }),
+          }),
+          { label: '팀원 (배열 순서 = 표시 순서)', itemLabel: (p) => p.fields.id.value || '팀원' },
         ),
       },
     }),
