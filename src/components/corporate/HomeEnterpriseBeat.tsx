@@ -17,7 +17,7 @@ const dict: Record<
   { eyebrow: string; heading: string; body: string; before: string; after: string; cta: string }
 > = {
   ko: {
-    eyebrow: '흩어진 전국 매장을, 하나의 기준으로',
+    eyebrow: '모든 매장을, 한 매장처럼',
     heading: '가장 잘되는 매장을, 전국 표준으로.',
     body: '잘되는 이유를 데이터로 찾아, 전 매장에 옮깁니다. 흩어진 전국 매장을 하나의 기준으로 — 본사 한 화면에서.',
     before: '편차 100개',

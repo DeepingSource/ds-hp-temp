@@ -2,47 +2,25 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CorporateHero from './CorporateHero';
-import HomeOrientation from './HomeOrientation';
+import GuideIntroBeat from './GuideIntroBeat';
 import ProblemBeat from './ProblemBeat';
-import HomeEnterpriseBeat from './HomeEnterpriseBeat';
+import SpaceAiAnswerBeat from './SpaceAiAnswerBeat';
 import FeatureCarousel from './FeatureCarousel';
 import CaseBand from './CaseBand';
-import TrustCharter from './TrustCharter';
-import CtaBand from './CtaBand';
-import ParallaxWatermark from './ParallaxWatermark';
-import SolutionTimeline from './SolutionTimeline';
+import HomeEnterpriseBeat from './HomeEnterpriseBeat';
 import SpacesShowcase from './SpacesShowcase';
-import PartnerGrid from './PartnerGrid';
+import TrustCharter from './TrustCharter';
+import ParallaxWatermark from './ParallaxWatermark';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { seam, purpose, productPrimary, productSecondary, type ProductKey } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
 
-/** basePath prefix for CSS background images (set for the GitHub Pages export). */
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-/**
- * Below-the-fold framer-motion mockup — the only framer importer on this page.
- * Loaded via next/dynamic (default SSR preserved for SEO prose) so framer's
- * hydration JS is deferred off the initial/preloaded homepage bundle.
- */
 const SpatialTrajectoryMockup = dynamic(() => import('@/components/mockups/SpatialTrajectoryMockup'), {
   loading: () => <div className="h-[400px] animate-pulse rounded-2xl bg-gray-100" />,
 });
 
-/**
- * HomeView — shared home composition (PR-01).
- * Rendered by `/` (en), `/ko`, `/jp` with the locale prop (D6 path-prefix i18n).
- *
- * Narrative arc (2026-06 refine): hero → problem → product → trust(anonymization)
- * → capability(face-free MTMC) → solutions → [mid CTA] → breadth → proof →
- * close. Internal-strategy decks (autonomy ladder, Vision 2031, code of conduct,
- * integrated loop) relocated to /technology and /company/about; the company↔owner
- * mirror (MasterPair) now lives on /company/about.
- * Dark sections (SolutionTimeline, final CTA) never sit adjacent.
- */
-
-// revealLead/revealSign: closing signature reveal (landing copy revision §10) — KO-only
-// SAAI=사이 wordplay. EN/JP fall back to purpose.statement + seam (seam EN/JP under copy-round hold).
 const ctaDict: Record<
   Locale,
   { kicker: string; heading: string; sub: string; close: string; reassure: string; revealLead?: string; revealSign?: string }
@@ -54,7 +32,7 @@ const ctaDict: Record<
     close: '도입 상담',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
     revealLead: '본사와 매장, 사장과 손님 — 보이지 않던',
-    revealSign: '사이를 메웁니다. 그게, SAAI.',
+    revealSign: '사이를 메웁니다. 그게, SAAI (Spatial·Anonymized·Agentic·Intelligence).',
   },
   en: {
     kicker: 'REINVENT OFFLINE',
@@ -62,24 +40,26 @@ const ctaDict: Record<
     sub: 'Change one store, and the whole operation changes. Talk to us and we’ll map the fastest path.',
     close: 'Map your fastest path',
     reassure: 'Free consultation · reply within 1–2 business days',
+    revealLead: 'Connecting stores, staff, and customers — filling the gap.',
+    revealSign: 'That is SAAI (Spatial·Anonymized·Agentic·Intelligence).',
   },
   jp: {
     kicker: 'REINVENT OFFLINE · オフラインを、もう一度。',
-    heading: 'あなたの空間を、完璧に — そしてすべての空間を。',
+    heading: 'あなたの空間を、完璧に — 그리고 모든 공간을.',
     sub: '一店舗が変われば、運営全体が変わります。導入のご相談で、最短の道を見つけます。',
     close: '最短の道を見つける',
     reassure: '無料相談・営業日1〜2日以内に返信',
+    revealLead: '本部と店舗、店主とお客様 — 見えなかった',
+    revealSign: '隙間を埋めます。それが、SAAI (Spatial·Anonymized·Agentic·Intelligence)。',
   },
 };
 
-/** Locale-aware product descriptions (mirrors ProductsView copy) for the home ItemList.
- *  Names resolve from brand-canon `productNaming` (saai primary + store alternate). */
 const productDict: Record<Locale, { key: ProductKey; description: string; path: string }[]> = {
   ko: [
     { key: 'insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해, 결제 데이터가 놓치는 구매 전 행동까지 짚어냅니다.', path: '/products/saai-insight' },
     { key: 'care', description: '작은 매장에도 든든한 눈 하나. 진열·온도·청결을 대신 지켜보고, 필요한 순간에만 알립니다.', path: '/products/saai-care' },
-    { key: 'agent', description: '데이터를 넘어 결정으로. POS와 비전을 한 엔진에서 — 오늘 무엇을, 얼마나, 어디에 둘지 물어보면 답과 실행안까지.', path: '/products/saai-agent' },
-    { key: 'count', description: '카메라 한 대로 문 밖 통행과 입장을 견줘 유입률을 읽습니다. 입지 문제인지, 매장 문제인지 가립니다.', path: '/products/store-count' },
+    { key: 'agent', description: '데이터에서 의사결정으로. POS와 비전을 하나로 — 무엇을, 얼마나, 어디에 둘지 물으면 답과 실행안까지.', path: '/products/saai-agent' },
+    { key: 'count', description: '카메라 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 읽습니다. 상권 문제인지 매장 문제인지 구분해 드립니다.', path: '/products/store-count' },
   ],
   en: [
     { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyzing flow, dwell, and conversion, it captures the pre-purchase behavior payment data misses.', path: '/products/saai-insight' },
@@ -114,63 +94,49 @@ export default function HomeView({ locale }: { locale: Locale }) {
         )}
       />
 
-      {/* 1 — Hero (grounding question + evidence) */}
+      {/* Beat 1 — Hero (Question H1 + 1-line sub + single primary CTA) */}
       <CorporateHero locale={locale} />
 
-      {/* 1.5 — Orientation: grounding logic + company identity + AEO facts (전환재정렬 v2 §4) */}
-      <HomeOrientation locale={locale} />
+      {/* Beat 2 — Guide Introduction (Who we are + early proof & credentials) */}
+      <GuideIntroBeat locale={locale} />
 
-      {/* 2 — Problem / tension (single store → HQ scale in the 3rd card) */}
+      {/* Beat 3 — Problem Empathy (The leak & invisible majority) */}
       <ProblemBeat locale={locale} />
 
-      {/* 2.5 — HQ answer: variance → national standard, bridge to /enterprise (§6) */}
-      <HomeEnterpriseBeat locale={locale} />
+      {/* Beat 4 — Spatial AI Answer ("For spaces, spatial AI.") */}
+      <SpaceAiAnswerBeat locale={locale} />
 
-      {/* 3 — Products at a glance: 4-product spotlight carousel (count→insight→care→agent) */}
+      {/* Beat 5 — Plan & Operation Loop (3-step loop + 1-time product showcase) */}
       <FeatureCarousel locale={locale} />
-
-      {/* 3b — Field scenarios: what changes on the floor (illustrative proof) */}
       <CaseBand locale={locale} />
 
-      {/* 4 — Trust: anonymization is the first step (the #1 differentiator, surfaced early) */}
-      <TrustCharter locale={locale} />
+      {/* Beat 6 — Scale & HQ Vision ("Every store, like one store.") */}
+      <HomeEnterpriseBeat locale={locale} />
+      <SpacesShowcase locale={locale} />
 
-      {/* 5 — Capability: face-free MTMC tracking — "safe AND capable" pairs with TrustCharter */}
-      <AnimatedSection className="py-20 lg:py-28">
+      {/* Beat 7 — Trust & Safety (SEAL Anonymization + MTMC Face-free tracking) */}
+      <TrustCharter locale={locale} />
+      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <SpatialTrajectoryMockup locale={locale} />
         </div>
       </AnimatedSection>
 
-      {/* 6 — Solutions across time (the product depth) */}
-      <SolutionTimeline locale={locale} />
-
-      {/* Mid CTA — single forward-looking conversion, after the product depth */}
-      <CtaBand locale={locale} />
-
-      {/* 7 — Breadth: beyond retail, every space (benchmark — closes the breadth gap) */}
-      <SpacesShowcase locale={locale} />
-
-      {/* 8 — Proof: partners + metrics */}
-      <PartnerGrid locale={locale} />
-
-      {/* 9 — Closing CTA (escalated, differentiated from hero) */}
+      {/* Beat 8 — Closing CTA & SAAI Spellout Reveal */}
       <AnimatedSection className="relative py-20 lg:py-28 section-dark noise-overlay overflow-hidden">
-        {/* Cinematic floor light — the launch-film endcard mood */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${BASE}/images/nextrise/funnel-floor-projection.webp)` }}
         />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-surface-dark/80" />
-        {/* SAAI symbol watermark — the endcard signature (nextrise-motion), drifting on scroll */}
         <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-2xs font-bold uppercase tracking-[0.25em] text-gray-400 mb-6">{cta.kicker}</p>
-          <p className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto break-keep">
+          <p className="text-base sm:text-lg text-gray-400 mb-2 max-w-xl mx-auto break-keep">
             {cta.revealLead ?? purpose[locale].statement}
           </p>
-          <p className="text-xs font-medium tracking-[0.25em] text-primary-light mb-4">
+          <p className="text-sm font-bold tracking-[0.15em] text-primary-light mb-8 font-brand">
             {cta.revealSign ?? seam[locale]}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight font-display break-keep">

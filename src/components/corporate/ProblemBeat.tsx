@@ -183,7 +183,6 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
             </Card>
           </StaggerItem>
 
-          {/* RIGHT — consequence: the −317 leak + the 3 reasons POS can't tell you */}
           <StaggerItem className="lg:col-span-5">
             <div className="rounded-2xl border border-primary/15 bg-primary-lighter/50 p-6">
               <p className="text-5xl font-bold text-primary tabular-nums leading-none">−<CountUp to={Number(t.leak.n)} /></p>
@@ -207,77 +206,9 @@ export default function ProblemBeat({ locale }: { locale: Locale }) {
             </ul>
           </StaggerItem>
         </StaggerContainer>
-        <p className="mt-10 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
+        <p className="mt-12 text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
           {t.bridge}
         </p>
-
-        {/* Operating loop — Analyze·Detect·Act·Learn (close the loop, then learn) */}
-        <div className="mt-8">
-          <div ref={loopRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            {methodSteps(locale).map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.label}
-                  className={[
-                    'relative flex flex-col gap-4 rounded-2xl border p-5 sm:p-7',
-                    s.emphasis
-                      ? 'border-primary/30 bg-primary text-white shadow-card'
-                      : 'border-gray-200 bg-white text-gray-900',
-                  ].join(' ')}
-                  style={{
-                    opacity: loopShow ? 1 : 0,
-                    transform: loopShow ? 'translateX(0)' : 'translateX(-12px)',
-                    transition: reduced ? undefined : 'opacity 0.5s var(--ease-out-cubic), transform 0.5s var(--ease-out-cubic)',
-                    transitionDelay: reduced ? undefined : `${i * 0.12}s`,
-                  }}
-                >
-                  <span
-                    className={[
-                      'inline-flex h-12 w-12 items-center justify-center rounded-xl',
-                      s.emphasis ? 'bg-white/15' : 'bg-primary/10',
-                    ].join(' ')}
-                  >
-                    <Icon
-                      className={['h-6 w-6', s.emphasis ? 'text-white' : 'text-primary'].join(' ')}
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <div>
-                    <p
-                      className={[
-                        'text-2xs font-bold uppercase tracking-[0.15em]',
-                        s.emphasis ? 'text-white/70' : 'text-gray-400',
-                      ].join(' ')}
-                    >
-                      {`0${i + 1} · ${s.phase}`}
-                    </p>
-                    <p className="mt-1 text-xl font-bold break-keep">{s.label}</p>
-                  </div>
-                  {i < 3 && (
-                    <ArrowRight
-                      className="absolute -right-3 top-1/2 hidden -translate-y-1/2 lg:block w-6 h-6 text-gray-300"
-                      aria-hidden="true"
-                      style={{
-                        opacity: loopShow ? 1 : 0,
-                        transition: reduced ? undefined : 'opacity 0.4s var(--ease-out-cubic)',
-                        transitionDelay: reduced ? undefined : `${i * 0.12 + 0.32}s`,
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
-            <p className="text-sm font-medium text-gray-700 break-keep">
-              💡 <strong>리테일·F&B·무인매장·대형 공간</strong> 등 업종별 실제 공간 최적화 유스케이스가 준비되어 있습니다.
-            </p>
-            <a href={`/${locale === 'en' ? '' : locale + '/'}solutions`} className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline shrink-0">
-              업종별 유스케이스 보기 →
-            </a>
-          </div>
-        </div>
       </Container>
     </Section>
   );

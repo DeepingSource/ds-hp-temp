@@ -69,8 +69,8 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               <RotatingNoun fixed={q.fixed} words={q.words} />
               {q.suffix}
             </h1>
-            <p className="mt-6 text-base sm:text-lg text-gray-600 leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
-              {t.heroSub}
+            <p className="mt-6 text-base sm:text-lg text-gray-600 font-medium leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
+              {locale === 'ko' ? '쓰던 CCTV 그대로 — 얼굴은 지우고, 흐름만 읽습니다.' : locale === 'jp' ? '既存のCCTVのまま — 顔は消し、流れだけを読み取ります。' : 'Keep existing CCTVs — erasing faces on the spot, reading physical flow.'}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
               <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">

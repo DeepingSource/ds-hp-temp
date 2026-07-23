@@ -204,10 +204,14 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           {promise.bridge}
         </p>
 
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <Eyebrow className="mb-3">{t.eyebrow}</Eyebrow>
-          <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">{t.heading}</h2>
-          <p className="text-lg leading-relaxed text-gray-600 break-keep">{t.sub}</p>
+        <div id="plan-section" className="mx-auto mb-12 max-w-3xl text-center">
+          <Eyebrow className="mb-3">{locale === 'ko' ? '계획 & 작동 방식' : locale === 'jp' ? '計画と仕組み' : 'Plan & Operation'}</Eyebrow>
+          <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">
+            {locale === 'ko' ? '복잡함 없이 3단계로 시작합니다' : locale === 'jp' ? '複雑さなし、3ステップで開始' : 'Simple 3-step operation loop'}
+          </h2>
+          <p className="text-lg leading-relaxed text-gray-600 break-keep">
+            {locale === 'ko' ? '① 쓰던 CCTV 그대로 연결 → ② 어제를 읽고(insight), 지금을 알리고(care), 다음을 실행(agent) → ③ 본사 한 화면에서 표준화' : locale === 'jp' ? '① 既存CCTV接続 → ② 過去を分析・今を検知・次を提案 → ③ 本部画面で標準化' : '① Connect existing CCTVs → ② Analyze past, detect live, advise next → ③ Standardize fleet-wide.'}
+          </p>
         </div>
 
         <motion.div
