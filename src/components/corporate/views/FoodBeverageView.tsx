@@ -171,8 +171,22 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
       </AnimatedSection>
 
       {/* ── 후기 ── */}
+      {/* ── 실증 서사 & 후기 ── */}
       <AnimatedSection className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          {/* Concrete Before -> After Story Card */}
+          <div className="mb-10 p-6 rounded-2xl bg-white border border-primary/20 shadow-sm">
+            <span className="text-2xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-3 inline-block">
+              실제 현장 개선 사례
+            </span>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 break-keep">
+              4인 테이블 실제 평균 이용 1.1~1.8명 → 2인 세트로 배치 변경 후 매출 +10% 증대
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed break-keep">
+              매장 체류 데이터 교차 분석으로 4인석의 불필요한 공석 정체를 짚어내고, 2인 좌석 및 회전율 중심 세트 메뉴를 배치하여 피크타임 매출과 회전율을 동시에 끌어올렸습니다.
+            </p>
+          </div>
+
           <div className="card relative bg-primary/5 border-primary/10">
             <Quote className="w-10 h-10 text-primary/20 mb-4" />
             <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-relaxed break-keep mb-6">
@@ -193,14 +207,14 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── Before/After 토글 (지켜보던 ↔ 먼저 아는 · 솔루션 §3 · V2) ── */}
+      {/* ── Before/After 토글 ── */}
       <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <BeforeAfterToggle category="food-beverage" locale={locale} />
         </div>
       </AnimatedSection>
 
-      {/* ── 도입 여정 (01→05 넘버 타임라인 · V5) ── */}
+      {/* ── 도입 여정 ── */}
       <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <AdoptionJourney locale={locale} />
@@ -221,10 +235,15 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
           <p className="text-slate-300 text-lg mb-10 break-keep">
             {t.ctaSub}
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary-dark gap-2">
-            {t.ctaButton}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href={localeHref(locale, '/contact?solution=food-beverage')} className="btn-primary-dark gap-2">
+              <span>우리 카페/F&B 맞춤 상담받기</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href={localeHref(locale, '/enterprise')} className="btn-ghost-dark gap-2">
+              <span>프랜차이즈 본사 도입 상담 →</span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

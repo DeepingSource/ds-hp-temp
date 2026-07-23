@@ -158,7 +158,7 @@ export default function SolutionsExplorer({
                 </Link>
               </div>
             )}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {solutions.map((sol) => (
                 <Link
                   key={sol.slug}
@@ -184,6 +184,33 @@ export default function SolutionsExplorer({
                   </div>
                 </Link>
               ))}
+            </div>
+
+            {/* Contextual CTA Band for the selected industry */}
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-gray-900 to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-primary-light mb-1">
+                  {label} 맞춤 도입 가이드
+                </p>
+                <p className="text-sm text-slate-200 font-medium break-keep">
+                  내 {label} 매장 환경에 맞춘 정확한 적용 가능성 및 비용 추정을 상담받으세요.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <Link
+                  href={localeHref(locale, `/contact?solution=${slug}`)}
+                  className="btn-primary btn-sm inline-flex items-center gap-1.5"
+                >
+                  <span>우리 {label} 맞춤 상담받기</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  href={localeHref(locale, '/enterprise')}
+                  className="text-xs font-bold text-slate-300 hover:text-white transition-colors underline underline-offset-4"
+                >
+                  매장이 여러 개이신가요? (본사 제안) →
+                </Link>
+              </div>
             </div>
           </div>
         );

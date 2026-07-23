@@ -139,17 +139,42 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }]} locale={locale} tone="dark" className="mb-6" />
           <HeroBadge tone="dark">
             <Lightbulb className="w-3.5 h-3.5" />
-            {t.badge}
+            {locale === 'ko' ? '현장 맞춤형 솔루션 가이드' : locale === 'jp' ? '現場カスタマイズソリューション' : 'Field-Tailored Solutions'}
           </HeroBadge>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep">
-            <WordRise text={t.heroTitle[0]} /><br />
-            <WordRise text={t.heroTitle[1]} className="text-primary-light" />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep font-display">
+            {locale === 'ko' ? (
+              <>당신의 공간은, <span className="text-primary-light">어디인가요?</span></>
+            ) : locale === 'jp' ? (
+              <>あなたの空間は、<span className="text-primary-light">どこですか?</span></>
+            ) : (
+              <>Where is <span className="text-primary-light">your physical space?</span></>
+            )}
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep">
-            {t.heroSub}
+          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
+            {locale === 'ko'
+              ? '편의점부터 대형 유통·물류센터까지 — 당신 같은 공간에서 무엇이 어떻게 달라졌는지 확인하세요.'
+              : locale === 'jp'
+              ? 'コンビニから大型流通・物流センターまで — あなたと同じ空間で何がどう変わったか確認してください。'
+              : 'From convenience stores to logistics centers — see how physical spaces like yours transformed.'}
           </p>
+
+          {/* Early Proof & Trust Band */}
+          <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-slate-400 font-semibold">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span>특허 103건 기술 검증</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary-light" />
+              <span>NVIDIA Inception 파트너</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-400" />
+              <span>전국 8+ 파트너 브랜드 도입</span>
+            </div>
+          </div>
         </div>
       </section>
 
