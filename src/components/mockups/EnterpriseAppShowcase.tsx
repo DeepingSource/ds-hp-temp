@@ -75,9 +75,9 @@ const CHAT: Record<string, { user: Tri; progress: Tri; core: Tri }> = {
     user: tri('오늘 아침 브리핑 해줘', 'Give me the morning brief', '今朝のブリーフィングを'),
     progress: tri('매장 전체 브리핑', 'Whole-store brief', '店舗全体ブリーフィング'),
     core: tri(
-      '최근 7일 매출이 3,513,816원으로 전주 대비 +48.2% 늘었지만, 방문객은 2,095명으로 −54.2% 줄어 흐름이 엇갈렸습니다. 폐기율 10% 초과 제품이 5개, 선반 재배치로 월 440,300원 개선 여지가 있습니다. 오늘은 폐기 상위 품목 발주를 낮추고, 상위 수익 선반부터 재배치하는 것이 우선입니다.',
-      'Last 7 days revenue was ₩3,513,816 (+48.2% WoW), but visitors fell to 2,095 (−54.2%) — a diverging trend. Five items exceed 10% waste, and shelf re-layout could add ₩440,300/month. Today: lower orders on high-waste items and re-lay the top-revenue shelves first.',
-      '直近7日の売上は3,513,816ウォン(前週比+48.2%)ですが、来店客は2,095人(−54.2%)と減少し、傾向が分かれました。廃棄率10%超の商品が5点、棚replaceで月440,300ウォンの改善余地があります。本日は廃棄上位品の発注を下げ、上位収益の棚から再配置するのが優先です。',
+      '최근 7일 매출은 +48.2%, 방문객은 −54.2% — 흐름이 엇갈렸습니다. 오늘은 폐기 상위 품목 발주를 낮추고, 상위 수익 선반부터 재배치하는 것이 우선입니다.',
+      'Last 7 days: revenue +48.2% while visitors fell −54.2% — a diverging trend. Today: lower orders on high-waste items and re-lay the top-revenue shelves first.',
+      '直近7日は売上+48.2%、来店−54.2%と傾向が分かれました。本日は廃棄上位品の発注を下げ、上位収益の棚から再配置するのが優先です。',
     ),
   },
   chart: {

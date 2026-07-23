@@ -122,9 +122,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
                         className="px-4 pb-5"
                       >
                         <div className="border-t border-gray-100 pt-4">
-                          <p className="text-base text-gray-700 leading-relaxed mb-4">
-                            {tab.desc}
-                          </p>
+                          {/* 재정돈: 설명 문단 삭제 — 폰 목업이 보여주는 내용의 중복. 체크리스트만 유지 */}
                           <ul className="space-y-2">
                             {tab.features.map((f) => (
                               <li key={f} className="flex items-start gap-2">

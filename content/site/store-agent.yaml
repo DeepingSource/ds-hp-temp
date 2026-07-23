@@ -3,9 +3,9 @@ heroTitle:
   en: Beyond seeing. AI that operates.
   jp: 見るAIを超え、運営するAIへ。
 heroSub:
-  ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 무엇을 할지까지 말합니다 — 매장에서 무엇을 바꿀지 함께 결정합니다.
-  en: A dashboard shows you the numbers. saai agent tells you what to do with them — and decides what to change with you.
-  jp: ダッシュボードは数字を見せます。saai agent は、その数字で何をすべきかまで伝え、店舗の次の一手をともに決めます。
+  ko: 대시보드는 숫자를 보여줍니다. saai agent는 그 숫자로 오늘 무엇을 바꿀지까지 말합니다.
+  en: A dashboard shows you the numbers. saai agent tells you what to change today.
+  jp: ダッシュボードは数字を見せます。saai agent は、その数字で今日何を変えるかまで伝えます。
 ctaPrimary:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -23,9 +23,9 @@ evolutionHeading:
   en: From a screen that shows to a screen that speaks first
   jp: 見せる画面から、先に話しかける画面へ
 evolutionSub:
-  ko: 같은 데이터라도, 화면이 무엇을 해주느냐에 따라 하루가 달라집니다. saai agent는 지금 두 번째 칸에 있고, 세 번째 칸으로 가고 있습니다.
-  en: The same data changes your day depending on what the screen does with it. saai agent is on the second rung today, and moving to the third.
-  jp: 同じデータでも、画面が何をしてくれるかで一日が変わります。saai agent は今、二段目にいて、三段目へ向かっています。
+  ko: 같은 데이터라도, 화면이 무엇을 해주느냐에 따라 하루가 달라집니다.
+  en: The same data changes your day, depending on what the screen does with it.
+  jp: 同じデータでも、画面が何をしてくれるかで一日が変わります。
 evolutionProactiveCta:
   ko: 지금 어떻게 동작하는지 보기
   en: See how it already works
@@ -41,9 +41,9 @@ evolution:
       en: It shows you
       jp: 見せてくれます
     desc:
-      ko: 어제 몇 명이 왔고, 어디에 오래 머물렀는지 화면에 정확히 나옵니다. 무엇을 할지는 보는 사람이 정합니다.
-      en: How many came yesterday, where they lingered — all of it, precisely, on screen. What to do about it is up to you.
-      jp: 昨日何人が来て、どこに長く留まったかが画面に正確に出ます。何をするかは、見る人が決めます。
+      ko: 어제 몇 명이 왔고, 어디에 머물렀는지 정확히 보여줍니다. 무엇을 할지는, 보는 사람의 몫.
+      en: How many came yesterday, where they lingered — shown precisely. What to do is still on you.
+      jp: 昨日何人が来て、どこに留まったかを正確に見せます。何をするかは、見る人次第。
   - id: interactive
     tag:
       ko: saai agent · 지금
@@ -54,9 +54,9 @@ evolution:
       en: It answers when asked
       jp: 尋ねれば答えます
     desc:
-      ko: "\"어제 왜 매출이 떨어졌지?\"라고 물으면 근거와 함께 답합니다. 다만, 물어볼 생각이 나야 쓸 수 있습니다."
-      en: "Ask \"why did sales drop yesterday?\" and it answers, with the evidence. But you still have to think of the question."
-      jp: "「昨日はなぜ売上が落ちたのか」と尋ねれば、根拠とともに答えます。ただし、尋ねようと思いつく必要があります。"
+      ko: 물으면, 근거와 함께 답합니다.
+      en: Ask, and it answers — with the evidence.
+      jp: 尋ねれば、根拠とともに答えます。
   - id: proactive
     tag:
       ko: 가는 방향
@@ -67,9 +67,9 @@ evolution:
       en: It speaks first
       jp: 先に話しかけます
     desc:
-      ko: 묻지 않아도 오늘 놓치고 있는 것을 먼저 짚어줍니다. 액션 카드와 푸시 알림이 이미 이 방향으로 동작하고 있습니다.
-      en: Without being asked, it points out what today is missing. Action cards and push alerts already work this way.
-      jp: 尋ねなくても、今日見落としていることを先に示します。アクションカードとプッシュ通知は、すでにこの方向で動いています。
+      ko: 묻기 전에, 오늘 놓친 것을 먼저 짚어줍니다.
+      en: Before you ask, it points out what today is missing.
+      jp: 尋ねる前に、今日の見落としを先に示します。
 techBridgeText:
   ko: saai agent가 이렇게 판단하는 이유 — 딥핑소스의 Agentic AI 접근 철학
   en: Why saai agent judges the way it does — our approach to agentic AI
@@ -83,17 +83,17 @@ stepsHeading:
   en: From the number to what to change
   jp: 数字から、次の一手まで
 stepsSub:
-  ko: 매장을 완벽하게 하려면 봐야 할 게 너무 많습니다. POS도 비전도 한 엔진에서 — saai agent가 그 짐을 나눠, 지금 무엇을 할지 짚어줍니다.
-  en: Running a perfect store means watching far too much for one person. POS and vision in one engine — saai agent shoulders the load and tells you what to do right now.
-  jp: 店舗を完璧にするには、見るべきものが多すぎます。POSもビジョンもひとつのエンジンで — saai agent がその負担を分かち合い、今すべきことを示します。
+  ko: POS도 비전도 한 엔진에서 — saai agent의 하루는 이렇게 흘러갑니다.
+  en: POS and vision in one engine — here is how a day with saai agent runs.
+  jp: POSもビジョンもひとつのエンジンで — saai agent の一日はこう流れます。
 pricingHeading:
   ko: 한 매장이 아니라, 브랜드 전체가
   en: Not one store — your whole brand
   jp: 一店舗ではなく、ブランド全体が
 pricingSub:
-  ko: 본부에서는 전국 모든 매장이 한 화면에 — 방문·구매·전환율로, 실시간으로. 단일 매장부터 다점포 본사까지 운영 규모에 맞춰 구성합니다.
-  en: At HQ, every store across the country on one screen — footfall, purchases, and conversion, in real time. From a single store to a multi-location headquarters, configured to your scale.
-  jp: 本部では、全国すべての店舗を一画面に — 来店・購入・転換率を、リアルタイムで。単一店舗から多店舗の本部まで、運営規模に合わせて構成します。
+  ko: 전국 모든 매장이 한 화면에. 단일 매장부터 다점포 본사까지, 규모에 맞춰 구성합니다.
+  en: Every store on one screen. From a single shop to a multi-store HQ, configured to your scale.
+  jp: 全国すべての店舗を一画面に。単一店舗から多店舗本部まで、規模に合わせて構成します。
 pricingCta:
   ko: 요금 안내 보기
   en: See pricing
@@ -103,9 +103,9 @@ finalHeading:
   en: From watching to operating.
   jp: 見守るだけから、運営する側へ。
 finalSub:
-  ko: 영상은 남기지 않습니다. 신원은 즉시 지우고, 동선과 전환만 기록합니다. saai agent가 매장의 다음을 함께 결정합니다.
-  en: We keep no footage. Identities are erased on the spot — only flow and conversion are recorded. saai agent decides what’s next for your store with you.
-  jp: 映像は残しません。身元はその場で消し、動線と転換だけを記録します。saai agent が店舗の次を、ともに決めます。
+  ko: 영상은 남기지 않습니다 — 동선과 전환만 기록합니다. 매장의 다음은, 함께 결정합니다.
+  en: We keep no footage — only flow and conversion. What’s next for your store, we decide together.
+  jp: 映像は残しません — 動線と転換だけを記録します。店舗の次は、ともに決めます。
 finalCta:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -117,33 +117,33 @@ steps:
       en: Restock the shelf now?
       jp: 今、棚から補充しますか？
     desc:
-      ko: 점심 학생 방문이 평소보다 18% 많습니다. 인기 음료 세 종이 한 시간 안에 동날 것 같아요. 지금 백룸 재고로 매대부터 채울지 짚어드립니다.
-      en: "Lunchtime student traffic is up 18%. Three top drinks will sell out within the hour. saai agent asks: pull from the backroom and restock now?"
-      jp: ランチタイムの学生来店が普段より18%多めです。人気ドリンク3種が1時間以内に品切れしそうです。バックルームの在庫で今すぐ補充するか、お知らせします。
+      ko: 품절되기 전에, 먼저 알려줍니다.
+      en: It warns you before the shelf runs out.
+      jp: 品切れの前に、先に知らせます。
   - id: order
     title:
       ko: 말이 아니라, 발주서로
       en: Not a note — a PO
       jp: 言葉ではなく、発注書で
     desc:
-      ko: 반복되는 패턴은 발주로 잇습니다. 내일 점심 수요까지 내다보고 삼각김밥 40개를 오픈 전 입고로 — 발주서를 바로 만들어 드립니다.
-      en: Recurring patterns become orders. Looking ahead to tomorrow’s lunch demand, 40 rice balls in before open — the purchase order is drafted for you.
-      jp: 繰り返すパターンは発注へつなげます。明日のランチ需要まで見越して、おにぎり40個を開店前入荷に — 発注書をその場で作成します。
+      ko: 반복되는 패턴은, 발주서로 바로 잇습니다.
+      en: Recurring patterns become a purchase order, drafted for you.
+      jp: 繰り返すパターンは、そのまま発注書に。
   - id: human
     title:
       ko: 권고는 AI, 결정은 사람
       en: AI recommends, people decide
       jp: 推奨はAI、決定は人
     desc:
-      ko: 권고하고, 승인받고, 실행하고, 결과로 학습합니다. 권고는 AI가, 결정은 언제나 사람이.
-      en: Recommend, approve, act, learn from the outcome. The AI advises; the call is always yours.
-      jp: 推奨し、承認を受け、実行し、結果から学びます。推奨はAIが、決定はいつも人が。
+      ko: 권고는 AI가, 결정은 언제나 사람이.
+      en: The AI advises; the call is always yours.
+      jp: 推奨はAI、決定はいつも人が。
   - id: improve
     title:
       ko: 쓸수록, 스스로 나아집니다
       en: The more you use it, the better it gets
       jp: 使うほど、自ら良くなります
     desc:
-      ko: 남긴 지적이 다음 개선으로 이어집니다. 주간 리포트는 챗에서 바로 고치고, 대화는 흐름을 기억합니다.
-      en: Your feedback becomes the next improvement. Fix the weekly report right in the chat — and the conversation keeps its thread.
-      jp: 残した指摘が、次の改善につながります。週次レポートはチャットでそのまま直せて、会話は流れを覚えています。
+      ko: 남긴 지적이, 다음 제안에 반영됩니다.
+      en: Your feedback shapes the next recommendation.
+      jp: 残した指摘が、次の提案に反映されます。

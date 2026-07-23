@@ -1,13 +1,14 @@
-import SaaiSymbol from '@/components/ui/SaaiSymbol';
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import AgentMockupShowcase from '@/components/sections/AgentMockupShowcase';
 import AgentEvolutionSection from '@/components/sections/AgentEvolutionSection';
+import AgentDayTimeline from '@/components/sections/AgentDayTimeline';
 import EnterpriseAppShowcase from '@/components/mockups/EnterpriseAppShowcase';
-import ProcessStepper from '@/components/ui/ProcessStepper';
+import AgentHqMiniMockup from '@/components/mockups/AgentHqMiniMockup';
 import {
   BrainCircuit,
   ArrowRight,
+  ChevronDown,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
@@ -22,6 +23,11 @@ import siteContent from '@/data/generated/site-content.json';
  * StoreAgentView — shared store agent product-detail composition.
  * Rendered by `/products/saai-agent` (en), `/ko/products/saai-agent`,
  * `/jp/products/saai-agent` with the locale prop. Product name stays identical.
+ *
+ * 랜딩 재정돈(2026-07): "읽는 페이지 → 보는 페이지".
+ *   Hero(+데모 피크) → Enterprise 데모 → 진화 스토리(미니목업) → 하루 타임라인
+ *   → 모바일 → HQ 밴드 → 기능 칩 → 기술 브릿지 → CTA.
+ * 시나리오 숫자(+18%, 삼각김밥 40개…)는 본문에서 목업 안 텍스트로 이동.
  */
 
 type StoreAgentCopy = {
@@ -42,16 +48,8 @@ type StoreAgentCopy = {
   steps: Record<string, { title: string; desc: string }>;
 };
 
-// Copy lives in the CMS (content/site/store-agent.yaml → generated JSON); step
-// structure (icon) stays in code, merged with copy by id.
+// Copy lives in the CMS (content/site/store-agent.yaml → generated JSON).
 const SA = siteContent.storeAgent as Record<Locale, StoreAgentCopy>;
-
-const STEPS_STRUCT = [
-  { id: 'restock', icon: 'ClipboardCheck' },
-  { id: 'order', icon: 'Lightbulb' },
-  { id: 'human', icon: 'TrendingUp' },
-  { id: 'improve', icon: 'Repeat' },
-] as const;
 
 export default function StoreAgentView({ locale }: { locale: Locale }) {
   const t = SA[locale];
@@ -59,12 +57,12 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
   return (
     <>
       <JsonLd data={softwareApplication({ name: productPrimary('agent'), alternateName: productNaming.agent.store, description: t.heroSub, path: '/products/saai-agent', locale })} />
-      {/* ── Hero (Executive 판단체) ── */}
+      {/* ── Hero (Executive 판단체) — 하단에 데모 창 상단이 걸친다(피크) ── */}
       <section className="section-dark relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-3xl" />
         </div>
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-20 lg:pt-40 lg:pb-28 text-center">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-32 pb-0 lg:pt-40 text-center">
           <Breadcrumb items={[{ name: crumb('products', locale), path: '/products' }, { name: productPrimary('agent'), path: '/products/saai-agent' }]} locale={locale} tone="dark" className="mb-6" />
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-primary-light font-medium mb-6">
             <BrainCircuit className="w-4 h-4" />
@@ -89,32 +87,40 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
               {t.ctaSecondary}
             </Link>
           </div>
+
+          {/* 데모 피크 — 브라우저 크롬 상단만 보이고 폴드에서 잘린다. #demo로 유도 */}
+          <Link
+            href="#demo"
+            aria-label={t.ctaSecondary}
+            className="relative mx-auto mt-14 block h-16 max-w-3xl sm:h-20"
+          >
+            <span className="absolute inset-x-0 top-0 block overflow-hidden rounded-t-2xl border border-white/15 bg-white/[0.06] shadow-elevated backdrop-blur-sm transition-colors hover:bg-white/10">
+              <span className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+                <span className="flex items-center gap-1.5" aria-hidden="true">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+                </span>
+                <span className="ml-1 text-xs font-bold lowercase text-white/85">{productNaming.agent.store}</span>
+                <span className="ml-auto inline-flex items-center gap-1 text-2xs font-medium text-primary-light">
+                  {t.ctaSecondary}
+                  <ChevronDown className="h-3 w-3" aria-hidden="true" />
+                </span>
+              </span>
+              <span className="block h-24 bg-white/[0.04]" aria-hidden="true" />
+            </span>
+          </Link>
         </div>
       </section>
 
-      {/* ── 진화 스토리: Viewer → Interactive → Proactive (#proactive 로 연결) ── */}
+      {/* ── 메인 데모: Enterprise 웹앱 — 제품을 첫 스크롤에 (재정돈: 최상단으로 이동) · #demo ── */}
+      <EnterpriseAppShowcase locale={locale} />
+
+      {/* ── 진화 스토리: Viewer → Interactive → Proactive (미니목업 카드, #proactive 로 연결) ── */}
       <AgentEvolutionSection locale={locale} />
 
-      {/* ── How it works ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">
-              {t.stepsHeading}
-            </h2>
-            <p className="text-lg text-gray-500 break-keep">
-              {t.stepsSub}
-            </p>
-          </div>
-          <ProcessStepper
-            ariaLabel={t.stepsHeading}
-            steps={STEPS_STRUCT.map((s, i) => ({ label: `0${i + 1}`, title: t.steps[s.id]?.title ?? '', desc: t.steps[s.id]?.desc ?? '', icon: s.icon }))}
-          />
-        </div>
-      </AnimatedSection>
-
-      {/* ── 메인 데모: Enterprise 웹앱 (본사·점장 뷰, 6탭 라이브 재현) · #demo 앵커 ── */}
-      <EnterpriseAppShowcase locale={locale} />
+      {/* ── saai agent의 하루 — 타임라인 (구 How-it-works 4카드 대체) ── */}
+      <AgentDayTimeline locale={locale} />
 
       {/* ── 보조: 사장님(폰) 뷰 목업 (액션 카드·AI 채팅·푸시 알림).
              #proactive — 진화 섹션 3번째 칸("먼저 말을 겁니다")이 여기로 딥링크한다. ── */}
@@ -122,22 +128,25 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
         <AgentMockupShowcase locale={locale} />
       </div>
 
-      {/* ── Pricing teaser ── */}
-      <AnimatedSection className="py-16 lg:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">
-            {t.pricingHeading}
-          </h2>
-          <p className="text-gray-500 mb-6 break-keep">
-            {t.pricingSub}
-          </p>
-          <Link
-            href={localeHref(locale, '/pricing')}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-          >
-            {t.pricingCta}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+      {/* ── HQ 밴드 — 브랜드 전체 롤업 목업 + 요금 링크 (구 Pricing 티저) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
+          <div className="text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">
+              {t.pricingHeading}
+            </h2>
+            <p className="text-gray-500 mb-6 break-keep">
+              {t.pricingSub}
+            </p>
+            <Link
+              href={localeHref(locale, '/pricing')}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+            >
+              {t.pricingCta}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <AgentHqMiniMockup locale={locale} />
         </div>
       </AnimatedSection>
 

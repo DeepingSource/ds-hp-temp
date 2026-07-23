@@ -50,6 +50,8 @@ public/images/team-v2/
 # hero image staging — the generator itself labels this "스테이징 (검수용)" (15MB PNGs
 # + pilot sheets). Only the reviewed webp output belongs in the repo.
 public/images/hero-v2/
+# scratch holding pen for things on their way out (source tarballs etc.)
+/_to_delete/
 # team avatar source material — real staff photos, kept local (privacy), not in repo
 /person-raw/
 public/images/team/_to_delete/

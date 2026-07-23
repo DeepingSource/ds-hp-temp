@@ -308,7 +308,7 @@ export const showcaseCopy: Record<Locale, {
   sub: string;
   tablistLabel: string;
   disclaimer: string;
-  tabs: { key: 'action' | 'chat' | 'push'; label: string; tagline: string; desc: string; features: string[] }[];
+  tabs: { key: 'action' | 'chat' | 'push'; label: string; tagline: string; features: string[] }[];
 }> = {
   ko: {
     eyebrow: 'Mobile',
@@ -317,9 +317,9 @@ export const showcaseCopy: Record<Locale, {
     tablistLabel: '인터페이스 유형 선택',
     disclaimer: '* 화면은 예시이며, 실제 서비스와 다를 수 있습니다.',
     tabs: [
-      { key: 'action', label: '액션 카드', tagline: 'AI가 오늘 할 일을 정리합니다', desc: '매일 아침, AI가 중요한 일들을 카드로 정리해 제안합니다. 사장님은 확인하고 승인만 하면 됩니다.', features: ['발주 자동 제안 (재고 기반)', '진열 정리·청소 알림 카드', '냉장고 온도 이상 경고'] },
-      { key: 'chat', label: 'AI 채팅', tagline: '말하면 바로 실행합니다', desc: '자연어로 질문하고 지시하면 AI가 바로 분석하고 실행합니다. 복잡한 메뉴 없이 대화만으로 매장을 운영하세요.', features: ['“우산 20개 발주해줘” → 바로 접수', '재고·매출 데이터 바로 조회', '브리핑 요약·날씨 연계 제안'] },
-      { key: 'push', label: '푸시 알림', tagline: '이상 상황 감지 시 실시간 알림을 제공합니다', desc: '매장에 이상이 생기면 실시간으로 알림을 보냅니다. 냉장고 문 열림부터 야간 이상 체류까지, 중요한 것만 정확하게.', features: ['냉동고 온도 이탈 실시간 알림', '야간 이상 체류 감지 경보', '일일 브리핑 자동 발송'] },
+      { key: 'action', label: '액션 카드', tagline: 'AI가 오늘 할 일을 정리합니다', features: ['발주 자동 제안 (재고 기반)', '진열 정리·청소 알림 카드', '냉장고 온도 이상 경고'] },
+      { key: 'chat', label: 'AI 채팅', tagline: '말하면 바로 실행합니다', features: ['“우산 20개 발주해줘” → 바로 접수', '재고·매출 데이터 바로 조회', '브리핑 요약·날씨 연계 제안'] },
+      { key: 'push', label: '푸시 알림', tagline: '이상 상황 감지 시 실시간 알림을 제공합니다', features: ['냉동고 온도 이탈 실시간 알림', '야간 이상 체류 감지 경보', '일일 브리핑 자동 발송'] },
     ],
   },
   en: {
@@ -329,9 +329,9 @@ export const showcaseCopy: Record<Locale, {
     tablistLabel: 'Select interface type',
     disclaimer: '* Screens are illustrative and may differ from the actual service.',
     tabs: [
-      { key: 'action', label: 'Action cards', tagline: 'AI lays out today’s to-dos', desc: 'Each morning, AI organizes what matters into cards. The owner just reviews and approves.', features: ['Auto order suggestions (stock-based)', 'Display & cleaning reminder cards', 'Fridge temperature anomaly alerts'] },
-      { key: 'chat', label: 'AI chat', tagline: 'Say it, and it’s done', desc: 'Ask or instruct in plain language and AI analyzes and acts at once. Run your store by conversation — no complex menus.', features: ['“Order 20 umbrellas” → taken instantly', 'Instant stock & sales lookups', 'Briefing summaries & weather-linked tips'] },
-      { key: 'push', label: 'Push alerts', tagline: 'Real-time alerts when anomalies are detected', desc: 'When something’s off at the store, you get a real-time alert. From a fridge door left open to odd after-hours presence — only what matters, precisely.', features: ['Real-time freezer temperature alerts', 'After-hours anomaly detection', 'Automatic daily briefing delivery'] },
+      { key: 'action', label: 'Action cards', tagline: 'AI lays out today’s to-dos', features: ['Auto order suggestions (stock-based)', 'Display & cleaning reminder cards', 'Fridge temperature anomaly alerts'] },
+      { key: 'chat', label: 'AI chat', tagline: 'Say it, and it’s done', features: ['“Order 20 umbrellas” → taken instantly', 'Instant stock & sales lookups', 'Briefing summaries & weather-linked tips'] },
+      { key: 'push', label: 'Push alerts', tagline: 'Real-time alerts when anomalies are detected', features: ['Real-time freezer temperature alerts', 'After-hours anomaly detection', 'Automatic daily briefing delivery'] },
     ],
   },
   jp: {
@@ -341,9 +341,9 @@ export const showcaseCopy: Record<Locale, {
     tablistLabel: 'インターフェースタイプの選択',
     disclaimer: '※ 画面はイメージであり、実際のサービスと異なる場合があります。',
     tabs: [
-      { key: 'action', label: 'アクションカード', tagline: 'AIが今日のタスクを整理します', desc: '毎朝、AIが重要なタスクをカードに整理してご提案します。店主は確認して承認するだけです。', features: ['発注の自動提案（在庫ベース）', '陳列整理・清掃のお知らせカード', '冷蔵庫の温度異常を警告'] },
-      { key: 'chat', label: 'AIチャット', tagline: '話せばすぐに実行します', desc: '自然言語で質問・指示すると、AIがすぐに分析し実行します。複雑なメニューなしで、会話だけで店舗を運営できます。', features: ['「傘を20本発注して」→ 即受付', '在庫・売上データを即照会', 'ブリーフィング要約・天気連携のご提案'] },
-      { key: 'push', label: 'プッシュ通知', tagline: '異常検知時にリアルタイムで通知します', desc: '店舗に異常が生じるとリアルタイムで通知します。冷蔵庫の扉の開放から夜間の異常滞在まで、重要なものだけを正確に。', features: ['冷凍庫の温度逸脱をリアルタイム通知', '夜間の異常滞在を検知して警報', '日次ブリーフィングを自動送信'] },
+      { key: 'action', label: 'アクションカード', tagline: 'AIが今日のタスクを整理します', features: ['発注の自動提案（在庫ベース）', '陳列整理・清掃のお知らせカード', '冷蔵庫の温度異常を警告'] },
+      { key: 'chat', label: 'AIチャット', tagline: '話せばすぐに実行します', features: ['「傘を20本発注して」→ 即受付', '在庫・売上データを即照会', 'ブリーフィング要約・天気連携のご提案'] },
+      { key: 'push', label: 'プッシュ通知', tagline: '異常検知時にリアルタイムで通知します', features: ['冷凍庫の温度逸脱をリアルタイム通知', '夜間の異常滞在を検知して警報', '日次ブリーフィングを自動送信'] },
     ],
   },
 };

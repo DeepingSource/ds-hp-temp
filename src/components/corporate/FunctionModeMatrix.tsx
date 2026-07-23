@@ -1,3 +1,4 @@
+import { Users, Timer, Megaphone, PackageSearch, type LucideIcon } from 'lucide-react';
 import { MODE_ORDER, FUNCTION_ORDER, type FunctionKey, type ModeKey } from '@/lib/brand-canon';
 import { MODE_COPY, FUNCTION_COPY, MATRIX_COPY } from '@/data/function-matrix-i18n';
 import type { Locale } from '@/lib/i18n';
@@ -42,21 +43,37 @@ export function FunctionModeStrip({ fn, locale }: { fn: FunctionKey; locale: Loc
  * This is what a product page is: "how does this mode put every function to work?"
  * It is the matrix read vertically instead of horizontally.
  */
+/** 기능별 아이콘 — 표를 칩 그리드로 가볍게 읽히게 하는 시각 앵커 (재정돈 2026-07). */
+const FUNCTION_ICONS: Record<FunctionKey, LucideIcon> = {
+  count: Users,
+  queue: Timer,
+  pop: Megaphone,
+  fit: PackageSearch,
+};
+
 export function FunctionModeColumn({ mode, locale }: { mode: ModeKey; locale: Locale }) {
   const fnCopy = FUNCTION_COPY[locale];
   const cells = MATRIX_COPY[locale];
 
   return (
-    <ul className="grid gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 sm:grid-cols-2">
-      {FUNCTION_ORDER.map((fn) => (
-        <li key={fn} className="bg-white p-5">
-          <p className="text-sm font-bold text-gray-900">
-            {fnCopy[fn]}
-            <span className="ml-2 font-mono text-xs font-normal text-gray-400">saai {fn}</span>
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-gray-600 break-keep">{cells[fn][mode]}</p>
-        </li>
-      ))}
+    <ul className="grid gap-3 sm:grid-cols-2">
+      {FUNCTION_ORDER.map((fn) => {
+        const Icon = FUNCTION_ICONS[fn];
+        return (
+          <li key={fn} className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-card">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-lighter text-primary">
+              <Icon className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-gray-900">
+                {fnCopy[fn]}
+                <span className="ml-2 font-mono text-xs font-normal text-gray-400">saai {fn}</span>
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-gray-600 break-keep">{cells[fn][mode]}</p>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }
