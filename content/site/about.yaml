@@ -34,19 +34,11 @@ hero:
     jp: |-
       ほぼ
       そのままだった。
-  companyIntro:
-    ko: 온라인은 지난 20년, 끊임없이 측정하고 개선해 왔습니다. 그동안 현장은 사람의 손과 눈에 기대어, 거의 그대로였습니다.
-    en: For twenty years, online never stopped measuring and improving. The physical world, meanwhile, leaned on human hands and eyes — and barely changed.
-    jp: オンラインはこの20年、絶えず測定し改善し、最適化されてきました。その間、現場は人の手と目に頼り、ほぼそのままでした。
   companyIntro2:
     ko: 딥핑소스는, 그 현장을 다시 만듭니다.
     en: DEEPINGSOURCE is here to reinvent it.
     jp: ディーピングソースは、その現場を作り直します。
 vm:
-  vmEyebrow:
-    ko: Vision
-    en: Vision
-    jp: Vision
   missionStatement:
     ko: |-
       온라인은 20년간 최적화됐습니다.
@@ -67,27 +59,16 @@ vm:
     jp: |-
       ディーピングソースは、
       その現場をつくりなおす。
+  # vision·mission은 아직 미렌더 — Stage 6에서 실제 렌더 연결 예정(1-2 지침, AB A3 완결은 Stage 6-2)
   vision:
     ko: 당신의 공간에서 시작해, 모든 공간으로.
     en: Starting from your space — to every space.
     jp: あなたの空間から始めて、すべての空間へ。
-  visionLabel:
-    ko: Vision
-    en: Vision
-    jp: Vision
-  missionLabel:
-    ko: Mission
-    en: Mission
-    jp: Mission
   mission:
     ko: 측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.
     en: If you can measure it, you can improve it. We bring the force that remade online to the physical world.
     jp: 測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。
 story:
-  storyEyebrow:
-    ko: Our Story
-    en: Our Story
-    jp: Our Story
   storyHeading:
     ko: 익명화에서, 물리 세계로
     en: From anonymization to the physical world
@@ -179,47 +160,61 @@ partners:
         ko: 글로벌 AI 스타트업 프로그램
         en: Global AI startup program
         jp: グローバルAIスタートアップ・プログラム
+# method — About Beat 3(SpatialStackDiagram)의 SOT. Stage 1-2에서 화면 카피(구 stackCopy
+# 하드코딩)를 그대로 이관해 역전(화면 diff 0) — 카피 갱신은 Stage 6-3(AB Beat 3 수정안) 몫.
 method:
   methodEyebrow:
-    ko: How we work
-    en: How we work
-    jp: How we work
+    ko: 3-TIER ARCHITECTURE · 3층 구조
+    en: 3-TIER ARCHITECTURE
+    jp: 3-TIER ARCHITECTURE · 3層構造
   methodHeading:
     ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI
-    en: Spatial AI on anonymization, agents on top
+    en: Agentic AI on Spatial AI, built on Anonymization
     jp: 匿名化の上に空間知能、その上にエージェントAI
   methodIntro:
-    ko: 우리는 익명화에서 시작해, 세 개의 축으로 공간을 읽고 운영합니다.
-    en: We start with anonymization, then read and run the space across three layers.
-    jp: 私たちは匿名化から始め、三つの軸で空間を読み、運営します。
+    ko: 세 개의 층이 바닥부터 탄탄하게 쌓여, 안전하고 강력한 오프라인 인텔리전스를 완성합니다.
+    en: Three layers stacked from the ground up, completing safe and powerful offline intelligence.
+    jp: 3つの層が土台から堅固に積み重なり、安全で強力なオフラインインテリジェンスを完成させます。
   methodSteps:
     - id: anonymizer
-      term:
-        ko: ① 익명화 · Anonymizer
-        en: ① Anonymizer
-        jp: ① 匿名化 · Anonymizer
-      promise:
-        ko: 흐리게 가리는 게 아닙니다. 입력 시점에 신원을 되돌릴 수 없이 지우되, 분석에 필요한 특징은 남겨 — 원본에 가까운 정확도로 공간을 읽습니다.
-        en: Not blurring. Identity is erased irreversibly at the moment of input, yet the features analysis needs remain — reading the space at near-original accuracy.
-        jp: ぼかしではありません。入力の時点で身元を元に戻せない形で消し、分析に必要な特徴は残して — 原本に近い精度で空間を読みます。
+      title:
+        ko: 익명화 파운데이션 (토대)
+        en: Anonymization Foundation (Base)
+        jp: 匿名化ファウンデーション (土台)
+      desc:
+        ko: 얼굴과 신원은 입력 시점에 원천 삭제되어 규제 리스크 없이 공간 전체를 분석합니다.
+        en: Identities are erased permanently at capture — zero compliance risk across the space.
+        jp: 顔と身元は入力時点で消去され、規制リスクなく空間全体を分析します。
+      tag:
+        ko: 신원 원천 삭제 · SEAL
+        en: Instant Erasure · SEAL
+        jp: 身元消去 · SEAL
     - id: spatial
-      term:
-        ko: ② 공간 지능 · Spatial AI
-        en: ② Spatial AI
-        jp: ② 空間知能 · Spatial AI
-      promise:
-        ko: 머문 곳, 흐른 길, 닿은 손길까지 — 비전 모델로 공간을 좌표 위에 읽어냅니다.
-        en: Where people pause, how they flow, what they touch — vision models map the space onto coordinates.
-        jp: 滞留した場所、流れた道、触れた手まで — ビジョンモデルが空間を座標の上に読み解きます。
+      title:
+        ko: 공간 지능 (분석)
+        en: Spatial Intelligence (Analyze)
+        jp: 空間知能 (分析)
+      desc:
+        ko: CCTV를 하나의 공간 좌표로 묶어 사람과 사물의 동선·체류·밀도를 정밀하게 읽습니다.
+        en: Binds CCTVs into spatial coordinates to read traffic, dwell, and density.
+        jp: CCTVをひとつの空間座標に統合し、人やモノの動線・滞在・密度を精密に読み取ります。
+      tag:
+        ko: 좌표 정합 · 흐름 인지
+        en: Coordinate Alignment · Flow Sensing
+        jp: 座標整合 · 流れの認識
     - id: agentic
-      term:
-        ko: ③ 에이전트 AI · Agentic AI
-        en: ③ Agentic AI
-        jp: ③ エージェントAI · Agentic AI
-      promise:
-        ko: 보는 데서 그치지 않고 무엇을 바꿀지 권합니다. 권고는 AI가, 결정은 사람이.
-        en: It does not stop at seeing. It points to what to change — AI advises, people decide.
-        jp: 見るだけで終わらず、何を変えるべきかを示します。推奨はAI、決定は人。
+      title:
+        ko: 에이전트 AI (실행)
+        en: Agentic AI (Act)
+        jp: エージェントAI (実行)
+      desc:
+        ko: 오늘 현장에서 무엇을 바꿀지 짚어주고 실시간 가이드를 안내합니다 (결정은 사람).
+        en: Points to what to change on the floor with live staff guides (People decide).
+        jp: 今日現場で何を改善すべきかを示し、リアルタイムガイドを案内します (決定は人)。
+      tag:
+        ko: 자율 제안 · 행동 가이드
+        en: Proactive Advice · Staff Guide
+        jp: 自律提案 · 行動ガイド
 cta:
   ctaHeading:
     ko: |-

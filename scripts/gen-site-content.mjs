@@ -121,8 +121,8 @@ const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_F
 //    (a brand-canon SOT value) stay in code. ──
 const ABOUT_FLAT = [
   'badge', 'heroEyebrowCompany', 'heroMasterCompany', 'heroEyebrowOwner', 'heroMasterOwner',
-  'companyIntro', 'companyIntro2', 'vmEyebrow', 'missionStatement', 'missionStatementSub', 'vision', 'visionLabel', 'missionLabel', 'mission',
-  'storyEyebrow', 'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
+  'companyIntro2', 'missionStatement', 'missionStatementSub', 'vision', 'mission',
+  'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
   'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
   'methodEyebrow', 'methodHeading', 'methodIntro',
@@ -132,7 +132,7 @@ const aboutYamlNested = load('content/site/about.yaml');
 const aboutYaml = Object.assign({}, ...Object.values(aboutYamlNested));
 const aboutFlat = toLocaleMajor(aboutYaml, ABOUT_FLAT);
 const aboutCerts = arrayByIdLocaleMajor(aboutYaml.certs, ['sub']);
-const aboutMethodSteps = arrayByIdLocaleMajor(aboutYaml.methodSteps, ['term', 'promise']);
+const aboutMethodSteps = arrayByIdLocaleMajor(aboutYaml.methodSteps, ['title', 'desc', 'tag']);
 const about = {};
 for (const loc of LOCALES) {
   about[loc] = { ...aboutFlat[loc], certs: aboutCerts[loc], methodSteps: aboutMethodSteps[loc] };

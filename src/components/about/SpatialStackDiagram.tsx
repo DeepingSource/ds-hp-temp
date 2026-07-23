@@ -1,137 +1,62 @@
 'use client';
 
-import { ShieldCheck, Layers, Bot, ArrowUp } from 'lucide-react';
-import { type Locale } from '@/lib/i18n';
-import { saaiPromiseLayer } from '@/lib/brand-canon';
+import { ShieldCheck, Layers, Bot, ArrowUp, type LucideIcon } from 'lucide-react';
 
-interface SpatialStackDiagramProps {
-  locale?: Locale;
-  className?: string;
-}
+/**
+ * SpatialStackDiagram — About Beat 3의 3층 수직 스택(01 익명화 → 02 공간지능 → 03 에이전트AI).
+ *
+ * 카피는 about.yaml `method.*`가 SOT다 (AB §1-A A3: 유령 CMS 필드 역전 — Keystatic에서
+ * 고치면 화면이 바뀌어야 한다). AboutView가 생성 JSON(t.method*)을 `copy`로 주입하고,
+ * 이 컴포넌트는 레이어 프레젠테이션(level/name/아이콘/스타일)만 소유한다.
+ * steps는 id(anonymizer/spatial/agentic) 기준 매핑이라 yaml 순서(토대→위)와
+ * 렌더 순서(위→토대)가 달라도 안전하다.
+ */
 
-const stackCopy: Record<Locale, {
+export interface SpatialStackCopy {
   eyebrow: string;
   heading: string;
   sub: string;
-  layers: [
-    { level: string; name: string; title: string; desc: string; tag: string },
-    { level: string; name: string; title: string; desc: string; tag: string },
-    { level: string; name: string; title: string; desc: string; tag: string },
-  ];
-}> = {
-  ko: {
-    eyebrow: '3-TIER ARCHITECTURE · 3층 구조',
-    heading: '익명화 위에 공간 지능, 그 위에 에이전트 AI',
-    sub: '세 개의 층이 바닥부터 탄탄하게 쌓여, 안전하고 강력한 오프라인 인텔리전스를 완성합니다.',
-    layers: [
-      {
-        level: 'TOP LAYER · 03',
-        name: 'Agentic AI',
-        title: '에이전트 AI (실행)',
-        desc: '오늘 현장에서 무엇을 바꿀지 짚어주고 실시간 가이드를 안내합니다 (결정은 사람).',
-        tag: '자율 제안 · 행동 가이드',
-      },
-      {
-        level: 'MID LAYER · 02',
-        name: 'Spatial AI',
-        title: '공간 지능 (분석)',
-        desc: 'CCTV를 하나의 공간 좌표로 묶어 사람과 사물의 동선·체류·밀도를 정밀하게 읽습니다.',
-        tag: '좌표 정합 · 흐름 인지',
-      },
-      {
-        level: 'BASE LAYER · 01',
-        name: 'Anonymizer',
-        title: '익명화 파운데이션 (토대)',
-        desc: '얼굴과 신원은 입력 시점에 원천 삭제되어 규제 리스크 없이 공간 전체를 분석합니다.',
-        tag: '신원 원천 삭제 · SEAL',
-      },
-    ],
-  },
-  en: {
-    eyebrow: '3-TIER ARCHITECTURE',
-    heading: 'Agentic AI on Spatial AI, built on Anonymization',
-    sub: 'Three layers stacked from the ground up, completing safe and powerful offline intelligence.',
-    layers: [
-      {
-        level: 'TOP LAYER · 03',
-        name: 'Agentic AI',
-        title: 'Agentic AI (Act)',
-        desc: 'Points to what to change on the floor with live staff guides (People decide).',
-        tag: 'Proactive Advice · Staff Guide',
-      },
-      {
-        level: 'MID LAYER · 02',
-        name: 'Spatial AI',
-        title: 'Spatial Intelligence (Analyze)',
-        desc: 'Binds CCTVs into spatial coordinates to read traffic, dwell, and density.',
-        tag: 'Coordinate Alignment · Flow Sensing',
-      },
-      {
-        level: 'BASE LAYER · 01',
-        name: 'Anonymizer',
-        title: 'Anonymization Foundation (Base)',
-        desc: 'Identities are erased permanently at capture — zero compliance risk across the space.',
-        tag: 'Instant Erasure · SEAL',
-      },
-    ],
-  },
-  jp: {
-    eyebrow: '3-TIER ARCHITECTURE · 3層構造',
-    heading: '匿名化の上に空間知能、その上にエージェントAI',
-    sub: '3つの層が土台から堅固に積み重なり、安全で強力なオフラインインテリジェンスを完成させます。',
-    layers: [
-      {
-        level: 'TOP LAYER · 03',
-        name: 'Agentic AI',
-        title: 'エージェントAI (実行)',
-        desc: '今日現場で何を改善すべきかを示し、リアルタイムガイドを案内します (決定は人)。',
-        tag: '自律提案 · 行動ガイド',
-      },
-      {
-        level: 'MID LAYER · 02',
-        name: 'Spatial AI',
-        title: '空間知能 (分析)',
-        desc: 'CCTVをひとつの空間座標に統合し、人やモノの動線・滞在・密度を精密に読み取ります。',
-        tag: '座標整合 · 流れの認識',
-      },
-      {
-        level: 'BASE LAYER · 01',
-        name: 'Anonymizer',
-        title: '匿名化ファウンデーション (土台)',
-        desc: '顔と身元は入力時点で消去され、規制リスクなく空間全体を分析します。',
-        tag: '身元消去 · SEAL',
-      },
-    ],
-  },
-};
+  /** id(anonymizer/spatial/agentic) 키 — 생성 JSON(methodSteps)의 shape 그대로 */
+  steps: Record<string, { title: string; desc: string; tag: string }>;
+}
 
-const layerIcons = [Bot, Layers, ShieldCheck];
+interface SpatialStackDiagramProps {
+  copy: SpatialStackCopy;
+  className?: string;
+}
 
-export default function SpatialStackDiagram({ locale = 'ko', className }: SpatialStackDiagramProps) {
-  const t = stackCopy[locale];
+/** 렌더 순서 = 위(agentic)→토대(anonymizer). level/name은 프레젠테이션 상수. */
+const LAYER_PRESENTATION: { id: string; level: string; name: string; icon: LucideIcon }[] = [
+  { id: 'agentic', level: 'TOP LAYER · 03', name: 'Agentic AI', icon: Bot },
+  { id: 'spatial', level: 'MID LAYER · 02', name: 'Spatial AI', icon: Layers },
+  { id: 'anonymizer', level: 'BASE LAYER · 01', name: 'Anonymizer', icon: ShieldCheck },
+];
 
+export default function SpatialStackDiagram({ copy, className }: SpatialStackDiagramProps) {
   return (
     <div className={className}>
       <div className="text-center max-w-2xl mx-auto mb-10">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-wider text-primary mb-3">
-          {t.eyebrow}
+          {copy.eyebrow}
         </span>
         <h3 className="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-3 break-keep">
-          {t.heading}
+          {copy.heading}
         </h3>
         <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep">
-          {t.sub}
+          {copy.sub}
         </p>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-3 relative">
-        {t.layers.map((layer, index) => {
-          const Icon = layerIcons[index];
+        {LAYER_PRESENTATION.map((layer, index) => {
+          const step = copy.steps[layer.id];
+          if (!step) return null;
+          const Icon = layer.icon;
           const isBase = index === 2;
           const isTop = index === 0;
 
           return (
-            <div key={layer.name} className="relative">
+            <div key={layer.id} className="relative">
               {/* Stack layer card */}
               <div
                 className={`rounded-2xl p-6 sm:p-7 border transition-shadow ${
@@ -169,7 +94,7 @@ export default function SpatialStackDiagram({ locale = 'ko', className }: Spatia
                               : 'bg-gray-100 text-gray-600'
                           }`}
                         >
-                          {layer.tag}
+                          {step.tag}
                         </span>
                       </div>
                       <h4
@@ -177,14 +102,14 @@ export default function SpatialStackDiagram({ locale = 'ko', className }: Spatia
                           isBase ? 'text-white' : 'text-gray-900'
                         }`}
                       >
-                        {layer.title}
+                        {step.title}
                       </h4>
                       <p
                         className={`mt-1 text-xs sm:text-sm leading-relaxed break-keep ${
                           isBase ? 'text-slate-300' : 'text-gray-600'
                         }`}
                       >
-                        {layer.desc}
+                        {step.desc}
                       </p>
                     </div>
                   </div>

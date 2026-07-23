@@ -31,16 +31,12 @@ type AboutCopy = {
   heroMasterCompany: string;
   heroEyebrowOwner: string;
   heroMasterOwner: string;
-  companyIntro: string;
   companyIntro2: string;
-  vmEyebrow: string;
   missionStatement: string;
   missionStatementSub: string;
+  // vision·mission: yaml에 존재, Stage 6에서 렌더 연결 예정 (AB A3 · 1-2 지침)
   vision: string;
-  visionLabel: string;
-  missionLabel: string;
   mission: string;
-  storyEyebrow: string;
   storyHeading: string;
   storySub: string;
   namingHeading: string;
@@ -61,7 +57,7 @@ type AboutCopy = {
   methodHeading: string;
   methodIntro: string;
   certs: Record<string, { sub: string }>;
-  methodSteps: Record<string, { term: string; promise: string }>;
+  methodSteps: Record<string, { title: string; desc: string; tag: string }>;
 };
 
 const ABOUT = siteContent.about as Record<Locale, AboutCopy>;
@@ -135,7 +131,7 @@ const ROLES: Record<Locale, { strip: string; enterprise: string; partnership: st
 type ModeMini = { ph: string; name: string; tag: string; href: string };
 const BRIDGE2: Record<Locale, { eyebrow: string; head: string; sub: string; cta: string; modes: [ModeMini, ModeMini, ModeMini] }> = {
   ko: {
-    eyebrow: '이제, 당신의 공간부터', head: '네 개의 근거가, 하나의 루프로', sub: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 하나의 운영 루프로.', cta: '제품 전체 보기',
+    eyebrow: '이제, 당신의 공간부터', head: '세 개의 근거가, 하나의 흐름으로', sub: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 하나의 흐름으로.', cta: '제품 전체 보기',
     modes: [
       { ph: '어제 · Analyze', name: 'saai insight', tag: '어제를 읽다', href: '/products/saai-insight' },
       { ph: '지금 · Detect', name: 'saai care', tag: '지금을 알리다', href: '/products/saai-care' },
@@ -143,7 +139,7 @@ const BRIDGE2: Record<Locale, { eyebrow: string; head: string; sub: string; cta:
     ],
   },
   en: {
-    eyebrow: 'Now, start with your space', head: 'The grounds become one loop', sub: 'Read yesterday, flag the now, act on next — as one operating loop.', cta: 'See all products',
+    eyebrow: 'Now, start with your space', head: 'Three grounds, one flow', sub: 'Read yesterday, flag the now, act on next — as one flow.', cta: 'See all products',
     modes: [
       { ph: 'Yesterday · Analyze', name: 'saai insight', tag: 'reads yesterday', href: '/products/saai-insight' },
       { ph: 'Now · Detect', name: 'saai care', tag: 'flags the now', href: '/products/saai-care' },
@@ -151,7 +147,7 @@ const BRIDGE2: Record<Locale, { eyebrow: string; head: string; sub: string; cta:
     ],
   },
   jp: {
-    eyebrow: '今、あなたの空間から', head: '根拠が、一つのループに', sub: '昨日を読み、今を知らせ、次を実行する — 一つの運営ループで。', cta: '製品をすべて見る',
+    eyebrow: '今、あなたの空間から', head: '三つの根拠が、一つの流れに', sub: '昨日を読み、今を知らせ、次を実行する — 一つの流れで。', cta: '製品をすべて見る',
     modes: [
       { ph: '昨日 · Analyze', name: 'saai insight', tag: '昨日を読む', href: '/products/saai-insight' },
       { ph: '今 · Detect', name: 'saai care', tag: '今を知らせる', href: '/products/saai-care' },
@@ -279,7 +275,15 @@ export default function AboutView({ locale }: { locale: Locale }) {
       {/* ── Beat 3 — Method / 3-Tier Stack (방법): SpatialStackDiagram ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <SpatialStackDiagram locale={locale} />
+          {/* 카피 SOT = about.yaml method.* (AB A3 역전 — Keystatic 편집이 화면에 반영됨) */}
+          <SpatialStackDiagram
+            copy={{
+              eyebrow: t.methodEyebrow,
+              heading: t.methodHeading,
+              sub: t.methodIntro,
+              steps: t.methodSteps,
+            }}
+          />
         </div>
       </AnimatedSection>
 
