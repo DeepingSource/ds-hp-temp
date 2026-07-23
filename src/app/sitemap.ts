@@ -33,6 +33,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/technology/spatial-ai', priority: 0.7, freq: 'monthly' },
   { path: '/technology/models', priority: 0.7, freq: 'monthly' },
   { path: '/solutions', priority: 0.8, freq: 'monthly' },
+  { path: '/solutions/diagnosis', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/retail', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/food-beverage', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/drug-store', priority: 0.7, freq: 'monthly' },

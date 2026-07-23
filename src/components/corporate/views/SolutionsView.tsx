@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Lightbulb } from 'lucide-react';
+import { ArrowRight, Lightbulb, Wand2 } from 'lucide-react';
 import { solutionsData } from '@/data/solutionsData';
 import { industryList } from '@/data/industryList';
 import { industryLabelI18n, solutionCardI18n } from '@/data/solutions-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { DIAGNOSIS_UI } from '@/data/diagnosis-i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -22,6 +23,10 @@ import siteContent from '@/data/generated/site-content.json';
  * problem → detail) that shows one industry at a time, instead of scrolling all
  * industries at once. Card content comes from shared data; only page-authored copy
  * is localized (industry labels / solution cards via the i18n overlay).
+ *
+ * A one-line entry point into /solutions/diagnosis sits right under the hero — the
+ * guided Q&A alternative for visitors who'd rather answer 3 questions than pick
+ * through 8 industry panels themselves.
  */
 
 type SolutionsCopy = {
@@ -81,6 +86,7 @@ const INDUSTRY_CATEGORY: Record<string, string> = {
 
 export default function SolutionsView({ locale }: { locale: Locale }) {
   const t = SOLUTIONS[locale];
+  const diagnosisUi = DIAGNOSIS_UI[locale];
 
   // i18n overlay: Korean uses the shared data values as-is; other locales use the
   // overlay and fall back to the Korean data value when an entry is missing.
@@ -152,13 +158,23 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
             )}
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
+          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep mb-8">
             {locale === 'ko'
               ? '편의점부터 대형 유통·물류센터까지 — 당신 같은 공간에서 무엇이 어떻게 달라졌는지 확인하세요.'
               : locale === 'jp'
               ? 'コンビニから大型流通・物流センターまで — あなたと同じ空間で何がどう変わったか確認してください。'
               : 'From convenience stores to logistics centers — see how physical spaces like yours transformed.'}
           </p>
+
+          {/* Entry point into the guided Q&A alternative */}
+          <Link
+            href={localeHref(locale, '/solutions/diagnosis')}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/15 transition-colors backdrop-blur-sm mb-10"
+          >
+            <Wand2 className="w-4 h-4 text-primary-light" aria-hidden="true" />
+            {diagnosisUi.entryLinkLabel}
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </Link>
 
           {/* Early Proof & Trust Band */}
           <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-slate-400 font-semibold">
