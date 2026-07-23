@@ -1,0 +1,34 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: scale-owner
+group: scale
+phase: context
+kind: chip-wrap
+order: 33
+signal: scale
+appliesWhen:
+  persona:
+  - owner
+text:
+  ko: 현장 규모가 어느 정도인가요?
+  en: How big is your store?
+  jp: 店舗の規模はどのくらいですか?
+options:
+- id: single
+  label:
+    ko: 소형 매장
+    en: A small store
+    jp: 小型店舗
+  evidence:
+  - attribute: scale
+    value: single
+    weight: 1
+- id: small
+  label:
+    ko: 중대형 매장
+    en: A mid-to-large store
+    jp: 中大型店舗
+  evidence:
+  - attribute: scale
+    value: small
+    weight: 1

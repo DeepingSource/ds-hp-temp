@@ -1,0 +1,26 @@
+# 진단 흐름 정의 (diagnosis-v4-engine-plan §2-3).
+# selector: fixed(E1) | adaptive(E3) — 이 한 줄이 엔진 스위치(단일 지점, v4 §8).
+# fixedOrder 항목은 질문 id 또는 '@<group>'(그룹에서 appliesWhen 충족하는 order 최소 질문 1개, 없으면 스킵).
+selector: fixed
+fixedOrder:
+- role
+- industry
+- '@scale'
+- problem-cluster
+- '@refine'
+- goal
+adaptive:
+  minQuestions: 4
+  maxQuestions: 7
+  confirmThreshold: 2
+  maxRejects: 1
+exits:
+- question: role
+  option: owner
+  to: exit-owner
+- question: problem-cluster
+  option: privacy
+  to: exit-privacy
+- question: problem-cluster
+  option: unsure
+  to: exit-unsure

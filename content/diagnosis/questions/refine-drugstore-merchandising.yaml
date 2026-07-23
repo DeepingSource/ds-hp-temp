@@ -1,0 +1,33 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-drugstore-merchandising
+group: refine
+phase: refine
+kind: option-list
+order: 51
+appliesWhen:
+  cluster:
+  - drugstore:merchandising
+text:
+  ko: 무엇이 가장 궁금하신가요?
+  en: What are you most curious about?
+  jp: 一番知りたいことは何ですか?
+options:
+- id: drugstore-vmd-optimization
+  label:
+    ko: 어떤 진열 방식이 고마진 구역 유도에 효과적인지
+    en: Which layout best drives customers to high-margin zones
+    jp: どの陳列方法が高マージン区域への誘導に効果的か
+  result: drugstore-vmd-optimization
+- id: drugstore-zone-performance
+  label:
+    ko: 유독 방문이 적은 구역이 왜 그런지
+    en: Why certain zones get so little foot traffic
+    jp: 来客が特に少ないエリアがなぜそうなのか
+  result: drugstore-zone-performance
+- id: drugstore-tester-interaction
+  label:
+    ko: 테스터 배치가 실제 판매에 얼마나 도움이 되는지
+    en: How much tester placement actually drives sales
+    jp: テスター配置が実際の販売にどれだけ役立つか
+  result: drugstore-tester-interaction

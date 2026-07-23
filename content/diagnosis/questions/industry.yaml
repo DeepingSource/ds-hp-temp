@@ -1,0 +1,29 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: industry
+group: industry
+phase: context
+kind: industry-grid
+order: 20
+signal: industry
+text:
+  ko: 어떤 현장이신가요?
+  en: What kind of place do you run?
+  jp: どのような現場ですか?
+ack:
+  ko: '{label} 현장이시군요. 자주 듣는 문제들을 기준으로 여쭤볼게요.'
+  en: A {label} operation — let me ask about the problems we hear most.
+  jp: '{label}の現場ですね。よく伺う課題を基準にお聞きします。'
+confirm:
+  text:
+    ko: '{label} 현장이시죠?'
+    en: You're running a {label} operation, right?
+    jp: '{label}の現場ですよね?'
+  'yes':
+    ko: 네, 맞아요
+    en: Yes, that's right
+    jp: はい、そうです
+  'no':
+    ko: 아니에요, 다른 현장이에요
+    en: No — a different one
+    jp: いいえ、別の現場です

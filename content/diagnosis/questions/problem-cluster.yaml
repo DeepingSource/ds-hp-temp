@@ -1,0 +1,27 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: problem-cluster
+group: problem
+phase: problem
+kind: cluster-list
+order: 40
+signal: cluster
+text:
+  ko: 요즘 가장 걸리는 문제는 무엇인가요?
+  en: What's the biggest problem you're facing?
+  jp: 今、一番引っかかっている課題は何ですか?
+ack:
+  ko: 네, {label} 쪽이군요. 조금만 더 구체적으로 볼게요.
+  en: Got it — {label}. Let's get a bit more specific.
+  jp: なるほど、{label}ですね。もう少し具体的に見ていきます。
+universalOptions:
+- id: privacy
+  label:
+    ko: 개인정보·컴플라이언스가 궁금해요
+    en: I have privacy/compliance questions
+    jp: 個人情報・コンプライアンスが気になります
+- id: unsure
+  label:
+    ko: 아직 잘 모르겠어요, 전반적으로 궁금해요
+    en: Not sure yet — just exploring
+    jp: まだよく分かりません、全体的に知りたいです

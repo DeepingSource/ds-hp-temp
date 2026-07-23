@@ -1,0 +1,34 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-convenience-inventory
+group: refine
+phase: refine
+kind: option-list
+order: 57
+signal: symptom
+appliesWhen:
+  cluster:
+  - convenience:inventory
+text:
+  ko: 결품을 언제 알게 되나요?
+  en: When do you find out about stockouts?
+  jp: 欠品にはいつ気づきますか?
+options:
+- id: reactive
+  label:
+    ko: 고객이 찾을 때에야 알아요
+    en: Only when a customer asks for the item
+    jp: お客様に聞かれて初めて気づきます
+  evidence:
+  - attribute: symptom
+    value: reactive
+    weight: 1
+- id: batch
+  label:
+    ko: 정기 점검 때 몰아서 발견해요
+    en: In batches, during routine checks
+    jp: 定期点検のときにまとめて見つかります
+  evidence:
+  - attribute: symptom
+    value: batch
+    weight: 1

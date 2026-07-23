@@ -1,0 +1,28 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: role
+group: role
+phase: context
+kind: chip-wrap
+order: 10
+signal: persona
+text:
+  ko: 지금 어떤 자리에서 보고 계세요?
+  en: What's your role here?
+  jp: 今、どのお立場でご覧ですか?
+options:
+- id: owner
+  label:
+    ko: 매장을 혼자 운영하는 점주예요
+    en: I run a single store on my own
+    jp: 一店舗を運営するオーナーです
+- id: hq_sv
+  label:
+    ko: 여러 매장을 관리하는 본사·SV예요
+    en: I manage multiple stores at HQ or as an SV
+    jp: 複数店舗を管理する本社・SVです
+- id: exec
+  label:
+    ko: 전사 도입을 검토하는 전략·임원이에요
+    en: I'm evaluating company-wide adoption
+    jp: 全社導入を検討する経営・戦略担当です

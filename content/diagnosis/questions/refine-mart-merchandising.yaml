@@ -1,0 +1,27 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-mart-merchandising
+group: refine
+phase: refine
+kind: option-list
+order: 52
+appliesWhen:
+  cluster:
+  - mart:merchandising
+text:
+  ko: 무엇이 가장 궁금하신가요?
+  en: What are you most curious about?
+  jp: 一番知りたいことは何ですか?
+options:
+- id: mart-cart-path-optimization
+  label:
+    ko: 고객이 어떤 경로로 이동하고 어디서 머무는지
+    en: What path customers take and where they linger
+    jp: 顧客がどの経路を移動し、どこに留まるか
+  result: mart-cart-path-optimization
+- id: mart-zone-conversion
+  label:
+    ko: 방문은 많은데 특정 구역 전환율이 낮은 이유
+    en: Why a specific zone converts poorly despite heavy traffic
+    jp: 来客は多いのに特定エリアの転換率が低い理由
+  result: mart-zone-conversion

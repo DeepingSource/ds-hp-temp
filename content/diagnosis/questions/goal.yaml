@@ -1,0 +1,40 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: goal
+group: goal
+phase: refine
+kind: chip-wrap
+order: 90
+signal: goal
+text:
+  ko: 지금 어느 단계에 계세요?
+  en: Where are you in the process?
+  jp: 今、どの段階にいらっしゃいますか?
+options:
+- id: urgent
+  label:
+    ko: 문제가 실제 손실로 이어지고 있어 빨리 해결해야 해요
+    en: It's already costing us — we need to fix it fast
+    jp: 問題が実際の損失につながっていて、早く解決したいです
+  evidence:
+  - attribute: goal
+    value: urgent
+    weight: 1
+- id: planning
+  label:
+    ko: 다음 분기·연간 계획에 반영하려 검토 중이에요
+    en: We're evaluating it for next quarter's or next year's plan
+    jp: 来四半期・年間計画への反映を検討中です
+  evidence:
+  - attribute: goal
+    value: planning
+    weight: 1
+- id: research
+  label:
+    ko: 어떤 기술인지 먼저 이해하고 싶어요
+    en: I want to understand the technology first
+    jp: まずどんな技術なのか理解したいです
+  evidence:
+  - attribute: goal
+    value: research
+    weight: 1

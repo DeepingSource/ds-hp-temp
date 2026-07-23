@@ -1,0 +1,34 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-exhibition-congestion
+group: refine
+phase: refine
+kind: option-list
+order: 61
+signal: symptom
+appliesWhen:
+  cluster:
+  - exhibition:congestion
+text:
+  ko: 혼잡이 어디서 생기나요?
+  en: Where does the crowding happen?
+  jp: 混雑はどこで発生しますか?
+options:
+- id: spot
+  label:
+    ko: 특정 구간·전시물 앞에 몰려요
+    en: It clusters at specific spots or exhibits
+    jp: 特定の区間・展示物の前に集中します
+  evidence:
+  - attribute: symptom
+    value: spot
+    weight: 1
+- id: flow
+  label:
+    ko: 입퇴장 동선 전체가 밀려요
+    en: The whole entry/exit flow backs up
+    jp: 入退場の動線全体が滞ります
+  evidence:
+  - attribute: symptom
+    value: flow
+    weight: 1

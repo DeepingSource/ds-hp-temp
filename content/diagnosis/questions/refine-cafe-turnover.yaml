@@ -1,0 +1,34 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-cafe-turnover
+group: refine
+phase: refine
+kind: option-list
+order: 59
+signal: symptom
+appliesWhen:
+  cluster:
+  - cafe:merchandising
+text:
+  ko: 좌석 회전이 안 되는 양상이 어떤가요?
+  en: How does the slow seat turnover show up?
+  jp: 席の回転が悪いのはどんな様子ですか?
+options:
+- id: hotspot
+  label:
+    ko: 특정 좌석만 장시간 점유돼요
+    en: Only certain seats stay occupied for hours
+    jp: 特定の席だけ長時間占有されます
+  evidence:
+  - attribute: symptom
+    value: hotspot
+    weight: 1
+- id: overall
+  label:
+    ko: 전체적으로 체류가 길어요
+    en: Dwell time is long across the board
+    jp: 全体的に滞在が長いです
+  evidence:
+  - attribute: symptom
+    value: overall
+    weight: 1

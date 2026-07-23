@@ -1,0 +1,34 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-convenience-theft
+group: refine
+phase: refine
+kind: option-list
+order: 56
+signal: symptom
+appliesWhen:
+  cluster:
+  - convenience:theft_loss
+text:
+  ko: 손실이 주로 언제 발생하나요?
+  en: When do losses mostly occur?
+  jp: ロスは主にいつ発生しますか?
+options:
+- id: night
+  label:
+    ko: 심야·새벽 시간대에 집중돼요
+    en: They're concentrated late at night and early morning
+    jp: 深夜・早朝の時間帯に集中しています
+  evidence:
+  - attribute: symptom
+    value: night
+    weight: 1
+- id: unknown
+  label:
+    ko: 시간대를 특정하기 어려워요
+    en: Hard to pin down a time window
+    jp: 時間帯を特定するのが難しいです
+  evidence:
+  - attribute: symptom
+    value: unknown
+    weight: 1

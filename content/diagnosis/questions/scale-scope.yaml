@@ -1,0 +1,47 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: scale-scope
+group: scale
+phase: context
+kind: chip-wrap
+order: 32
+signal: scale
+appliesWhen:
+  persona:
+  - exec
+text:
+  ko: 검토 범위가 어느 정도인가요?
+  en: What's the scope of your evaluation?
+  jp: 検討範囲はどのくらいですか?
+options:
+- id: small
+  label:
+    ko: 일부 지점 파일럿
+    en: A pilot at select locations
+    jp: 一部拠点でのパイロット
+  evidence:
+  - attribute: scale
+    value: small
+    weight: 1
+- id: mid
+  label:
+    ko: 사업부 단위
+    en: A business-unit rollout
+    jp: 事業部単位
+  evidence:
+  - attribute: scale
+    value: mid
+    weight: 1
+- id: large
+  label:
+    ko: 전사
+    en: Company-wide
+    jp: 全社
+  ack:
+    ko: 규모가 있으시네요. 전사 관점도 함께 고려하겠습니다.
+    en: That's real scale — I'll keep the company-wide view in mind.
+    jp: 規模が大きいですね。全社観点も併せて考慮します。
+  evidence:
+  - attribute: scale
+    value: large
+    weight: 1

@@ -1,0 +1,33 @@
+# 진단 질문 뱅크 (diagnosis-v4-engine-plan §2-2 · v3 §3 승계) — gen이 diagnosis.json으로 컴파일.
+# 편집 후 `npm run gen:content`. 3로케일 필수(빌드 검증 ③).
+id: refine-logistics-safety
+group: refine
+phase: refine
+kind: option-list
+order: 54
+appliesWhen:
+  cluster:
+  - logistics:ops_safety
+text:
+  ko: 어떤 상황에 가장 가까우신가요?
+  en: Which situation is closest to yours?
+  jp: どちらの状況に一番近いですか?
+options:
+- id: logistics-ppe-compliance
+  label:
+    ko: 보호구(헬멧·안전화·조끼) 착용을 일일이 확인하기 어려워요
+    en: Hard to check PPE compliance one by one
+    jp: 保護具（ヘルメット・安全靴・ベスト）の着用確認が難しい
+  result: logistics-ppe-compliance
+- id: logistics-worker-safety
+  label:
+    ko: 위험 구역 진입 등 안전 규정 위반을 실시간으로 못 잡아요
+    en: Can't catch safety violations like restricted-zone entry in real time
+    jp: 危険区域への立ち入りなど、安全規定違反をリアルタイムで把握できない
+  result: logistics-worker-safety
+- id: logistics-efficiency-zones
+  label:
+    ko: 특정 구역에 작업이 몰리는 원인을 모르겠어요
+    en: Not sure why work bottlenecks in certain zones
+    jp: 特定エリアに作業が集中する原因が分かりません
+  result: logistics-efficiency-zones

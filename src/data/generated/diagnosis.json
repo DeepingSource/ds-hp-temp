@@ -1,0 +1,1402 @@
+{
+  "flow": {
+    "selector": "fixed",
+    "fixedOrder": [
+      "role",
+      "industry",
+      "@scale",
+      "problem-cluster",
+      "@refine",
+      "goal"
+    ],
+    "adaptive": {
+      "minQuestions": 4,
+      "maxQuestions": 7,
+      "confirmThreshold": 2,
+      "maxRejects": 1
+    },
+    "exits": [
+      {
+        "question": "role",
+        "option": "owner",
+        "to": "exit-owner"
+      },
+      {
+        "question": "problem-cluster",
+        "option": "privacy",
+        "to": "exit-privacy"
+      },
+      {
+        "question": "problem-cluster",
+        "option": "unsure",
+        "to": "exit-unsure"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "role",
+      "group": "role",
+      "phase": "context",
+      "kind": "chip-wrap",
+      "order": 10,
+      "signal": "persona",
+      "text": {
+        "ko": "지금 어떤 자리에서 보고 계세요?",
+        "en": "What's your role here?",
+        "jp": "今、どのお立場でご覧ですか?"
+      },
+      "options": [
+        {
+          "id": "owner",
+          "label": {
+            "ko": "매장을 혼자 운영하는 점주예요",
+            "en": "I run a single store on my own",
+            "jp": "一店舗を運営するオーナーです"
+          }
+        },
+        {
+          "id": "hq_sv",
+          "label": {
+            "ko": "여러 매장을 관리하는 본사·SV예요",
+            "en": "I manage multiple stores at HQ or as an SV",
+            "jp": "複数店舗を管理する本社・SVです"
+          }
+        },
+        {
+          "id": "exec",
+          "label": {
+            "ko": "전사 도입을 검토하는 전략·임원이에요",
+            "en": "I'm evaluating company-wide adoption",
+            "jp": "全社導入を検討する経営・戦略担当です"
+          }
+        }
+      ]
+    },
+    {
+      "id": "industry",
+      "group": "industry",
+      "phase": "context",
+      "kind": "industry-grid",
+      "order": 20,
+      "signal": "industry",
+      "text": {
+        "ko": "어떤 현장이신가요?",
+        "en": "What kind of place do you run?",
+        "jp": "どのような現場ですか?"
+      },
+      "ack": {
+        "ko": "{label} 현장이시군요. 자주 듣는 문제들을 기준으로 여쭤볼게요.",
+        "en": "A {label} operation — let me ask about the problems we hear most.",
+        "jp": "{label}の現場ですね。よく伺う課題を基準にお聞きします。"
+      },
+      "confirm": {
+        "text": {
+          "ko": "{label} 현장이시죠?",
+          "en": "You're running a {label} operation, right?",
+          "jp": "{label}の現場ですよね?"
+        },
+        "yes": {
+          "ko": "네, 맞아요",
+          "en": "Yes, that's right",
+          "jp": "はい、そうです"
+        },
+        "no": {
+          "ko": "아니에요, 다른 현장이에요",
+          "en": "No — a different one",
+          "jp": "いいえ、別の現場です"
+        }
+      }
+    },
+    {
+      "id": "scale-site",
+      "group": "scale",
+      "phase": "context",
+      "kind": "chip-wrap",
+      "order": 30,
+      "signal": "scale",
+      "appliesWhen": {
+        "industry": [
+          "logistics",
+          "exhibition"
+        ]
+      },
+      "text": {
+        "ko": "현장 규모가 어느 정도인가요?",
+        "en": "What's the scale of your sites?",
+        "jp": "現場の規模はどのくらいですか?"
+      },
+      "options": [
+        {
+          "id": "single",
+          "label": {
+            "ko": "단일 현장",
+            "en": "A single site",
+            "jp": "単一の現場"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "single",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "label": {
+            "ko": "복수 현장",
+            "en": "Multiple sites",
+            "jp": "複数の現場"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "mid",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "large",
+          "label": {
+            "ko": "전국 단위",
+            "en": "Nationwide",
+            "jp": "全国規模"
+          },
+          "ack": {
+            "ko": "규모가 있으시네요. 전사 관점도 함께 고려하겠습니다.",
+            "en": "That's real scale — I'll keep the company-wide view in mind.",
+            "jp": "規模が大きいですね。全社観点も併せて考慮します。"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "large",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scale-stores",
+      "group": "scale",
+      "phase": "context",
+      "kind": "chip-wrap",
+      "order": 31,
+      "signal": "scale",
+      "appliesWhen": {
+        "persona": [
+          "hq_sv"
+        ]
+      },
+      "text": {
+        "ko": "관리하시는 매장이 몇 곳인가요?",
+        "en": "How many stores do you manage?",
+        "jp": "管理されている店舗は何店ですか?"
+      },
+      "options": [
+        {
+          "id": "small",
+          "label": {
+            "ko": "2~9곳",
+            "en": "2–9 stores",
+            "jp": "2〜9店"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "small",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "label": {
+            "ko": "10~49곳",
+            "en": "10–49 stores",
+            "jp": "10〜49店"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "mid",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "large",
+          "label": {
+            "ko": "50곳 이상",
+            "en": "50+ stores",
+            "jp": "50店以上"
+          },
+          "ack": {
+            "ko": "규모가 있으시네요. 전사 관점도 함께 고려하겠습니다.",
+            "en": "That's real scale — I'll keep the company-wide view in mind.",
+            "jp": "規模が大きいですね。全社観点も併せて考慮します。"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "large",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scale-scope",
+      "group": "scale",
+      "phase": "context",
+      "kind": "chip-wrap",
+      "order": 32,
+      "signal": "scale",
+      "appliesWhen": {
+        "persona": [
+          "exec"
+        ]
+      },
+      "text": {
+        "ko": "검토 범위가 어느 정도인가요?",
+        "en": "What's the scope of your evaluation?",
+        "jp": "検討範囲はどのくらいですか?"
+      },
+      "options": [
+        {
+          "id": "small",
+          "label": {
+            "ko": "일부 지점 파일럿",
+            "en": "A pilot at select locations",
+            "jp": "一部拠点でのパイロット"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "small",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "label": {
+            "ko": "사업부 단위",
+            "en": "A business-unit rollout",
+            "jp": "事業部単位"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "mid",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "large",
+          "label": {
+            "ko": "전사",
+            "en": "Company-wide",
+            "jp": "全社"
+          },
+          "ack": {
+            "ko": "규모가 있으시네요. 전사 관점도 함께 고려하겠습니다.",
+            "en": "That's real scale — I'll keep the company-wide view in mind.",
+            "jp": "規模が大きいですね。全社観点も併せて考慮します。"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "large",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scale-owner",
+      "group": "scale",
+      "phase": "context",
+      "kind": "chip-wrap",
+      "order": 33,
+      "signal": "scale",
+      "appliesWhen": {
+        "persona": [
+          "owner"
+        ]
+      },
+      "text": {
+        "ko": "현장 규모가 어느 정도인가요?",
+        "en": "How big is your store?",
+        "jp": "店舗の規模はどのくらいですか?"
+      },
+      "options": [
+        {
+          "id": "single",
+          "label": {
+            "ko": "소형 매장",
+            "en": "A small store",
+            "jp": "小型店舗"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "single",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "small",
+          "label": {
+            "ko": "중대형 매장",
+            "en": "A mid-to-large store",
+            "jp": "中大型店舗"
+          },
+          "evidence": [
+            {
+              "attribute": "scale",
+              "value": "small",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problem-cluster",
+      "group": "problem",
+      "phase": "problem",
+      "kind": "cluster-list",
+      "order": 40,
+      "signal": "cluster",
+      "text": {
+        "ko": "요즘 가장 걸리는 문제는 무엇인가요?",
+        "en": "What's the biggest problem you're facing?",
+        "jp": "今、一番引っかかっている課題は何ですか?"
+      },
+      "ack": {
+        "ko": "네, {label} 쪽이군요. 조금만 더 구체적으로 볼게요.",
+        "en": "Got it — {label}. Let's get a bit more specific.",
+        "jp": "なるほど、{label}ですね。もう少し具体的に見ていきます。"
+      },
+      "universalOptions": [
+        {
+          "id": "privacy",
+          "label": {
+            "ko": "개인정보·컴플라이언스가 궁금해요",
+            "en": "I have privacy/compliance questions",
+            "jp": "個人情報・コンプライアンスが気になります"
+          }
+        },
+        {
+          "id": "unsure",
+          "label": {
+            "ko": "아직 잘 모르겠어요, 전반적으로 궁금해요",
+            "en": "Not sure yet — just exploring",
+            "jp": "まだよく分かりません、全体的に知りたいです"
+          }
+        }
+      ]
+    },
+    {
+      "id": "refine-cafe-congestion",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 50,
+      "appliesWhen": {
+        "cluster": [
+          "cafe:congestion"
+        ]
+      },
+      "text": {
+        "ko": "어떤 상황에 더 가까우신가요?",
+        "en": "Which situation is closer to yours?",
+        "jp": "どちらの状況に近いですか?"
+      },
+      "options": [
+        {
+          "id": "cafe-peak-hour-management",
+          "label": {
+            "ko": "점심·저녁 피크에 주문이 몰려 대기가 길어져요",
+            "en": "Orders pile up at lunch/dinner peak and waits get long",
+            "jp": "昼・夜のピークで注文が集中し待ち時間が長くなります"
+          },
+          "result": "cafe-peak-hour-management"
+        },
+        {
+          "id": "cafe-customer-wait-time",
+          "label": {
+            "ko": "카운터 앞 줄을 보고 고객이 그냥 나가요",
+            "en": "Customers see the counter line and just leave",
+            "jp": "カウンター前の列を見て、お客様がそのまま帰ってしまいます"
+          },
+          "result": "cafe-customer-wait-time"
+        }
+      ]
+    },
+    {
+      "id": "refine-drugstore-merchandising",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 51,
+      "appliesWhen": {
+        "cluster": [
+          "drugstore:merchandising"
+        ]
+      },
+      "text": {
+        "ko": "무엇이 가장 궁금하신가요?",
+        "en": "What are you most curious about?",
+        "jp": "一番知りたいことは何ですか?"
+      },
+      "options": [
+        {
+          "id": "drugstore-vmd-optimization",
+          "label": {
+            "ko": "어떤 진열 방식이 고마진 구역 유도에 효과적인지",
+            "en": "Which layout best drives customers to high-margin zones",
+            "jp": "どの陳列方法が高マージン区域への誘導に効果的か"
+          },
+          "result": "drugstore-vmd-optimization"
+        },
+        {
+          "id": "drugstore-zone-performance",
+          "label": {
+            "ko": "유독 방문이 적은 구역이 왜 그런지",
+            "en": "Why certain zones get so little foot traffic",
+            "jp": "来客が特に少ないエリアがなぜそうなのか"
+          },
+          "result": "drugstore-zone-performance"
+        },
+        {
+          "id": "drugstore-tester-interaction",
+          "label": {
+            "ko": "테스터 배치가 실제 판매에 얼마나 도움이 되는지",
+            "en": "How much tester placement actually drives sales",
+            "jp": "テスター配置が実際の販売にどれだけ役立つか"
+          },
+          "result": "drugstore-tester-interaction"
+        }
+      ]
+    },
+    {
+      "id": "refine-mart-merchandising",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 52,
+      "appliesWhen": {
+        "cluster": [
+          "mart:merchandising"
+        ]
+      },
+      "text": {
+        "ko": "무엇이 가장 궁금하신가요?",
+        "en": "What are you most curious about?",
+        "jp": "一番知りたいことは何ですか?"
+      },
+      "options": [
+        {
+          "id": "mart-cart-path-optimization",
+          "label": {
+            "ko": "고객이 어떤 경로로 이동하고 어디서 머무는지",
+            "en": "What path customers take and where they linger",
+            "jp": "顧客がどの経路を移動し、どこに留まるか"
+          },
+          "result": "mart-cart-path-optimization"
+        },
+        {
+          "id": "mart-zone-conversion",
+          "label": {
+            "ko": "방문은 많은데 특정 구역 전환율이 낮은 이유",
+            "en": "Why a specific zone converts poorly despite heavy traffic",
+            "jp": "来客は多いのに特定エリアの転換率が低い理由"
+          },
+          "result": "mart-zone-conversion"
+        }
+      ]
+    },
+    {
+      "id": "refine-exhibition-merchandising",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 53,
+      "appliesWhen": {
+        "cluster": [
+          "exhibition:merchandising"
+        ]
+      },
+      "text": {
+        "ko": "무엇을 측정하고 싶으신가요?",
+        "en": "What do you want to measure?",
+        "jp": "何を測定したいですか?"
+      },
+      "options": [
+        {
+          "id": "exhibition-visitor-dwell-time",
+          "label": {
+            "ko": "어떤 전시물이 인상적인지, 어디서 오래 머무는지",
+            "en": "Which exhibit impresses visitors and where they linger",
+            "jp": "どの展示品が印象的か、どこで長く滞在するか"
+          },
+          "result": "exhibition-visitor-dwell-time"
+        },
+        {
+          "id": "exhibition-booth-performance",
+          "label": {
+            "ko": "부스별 방문객 유치 성과를 참가사에 보고해야 해요",
+            "en": "I need to report booth traffic performance to exhibitors",
+            "jp": "ブース別の集客成果を出展社へ報告する必要があります"
+          },
+          "result": "exhibition-booth-performance"
+        }
+      ]
+    },
+    {
+      "id": "refine-logistics-safety",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 54,
+      "appliesWhen": {
+        "cluster": [
+          "logistics:ops_safety"
+        ]
+      },
+      "text": {
+        "ko": "어떤 상황에 가장 가까우신가요?",
+        "en": "Which situation is closest to yours?",
+        "jp": "どちらの状況に一番近いですか?"
+      },
+      "options": [
+        {
+          "id": "logistics-ppe-compliance",
+          "label": {
+            "ko": "보호구(헬멧·안전화·조끼) 착용을 일일이 확인하기 어려워요",
+            "en": "Hard to check PPE compliance one by one",
+            "jp": "保護具（ヘルメット・安全靴・ベスト）の着用確認が難しい"
+          },
+          "result": "logistics-ppe-compliance"
+        },
+        {
+          "id": "logistics-worker-safety",
+          "label": {
+            "ko": "위험 구역 진입 등 안전 규정 위반을 실시간으로 못 잡아요",
+            "en": "Can't catch safety violations like restricted-zone entry in real time",
+            "jp": "危険区域への立ち入りなど、安全規定違反をリアルタイムで把握できない"
+          },
+          "result": "logistics-worker-safety"
+        },
+        {
+          "id": "logistics-efficiency-zones",
+          "label": {
+            "ko": "특정 구역에 작업이 몰리는 원인을 모르겠어요",
+            "en": "Not sure why work bottlenecks in certain zones",
+            "jp": "特定エリアに作業が集中する原因が分かりません"
+          },
+          "result": "logistics-efficiency-zones"
+        }
+      ]
+    },
+    {
+      "id": "refine-unmanned-security",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 55,
+      "appliesWhen": {
+        "cluster": [
+          "unmanned:security_ops"
+        ]
+      },
+      "text": {
+        "ko": "어떤 상황에 가장 가까우신가요?",
+        "en": "Which situation is closest to yours?",
+        "jp": "どちらの状況に一番近いですか?"
+      },
+      "options": [
+        {
+          "id": "unmanned-theft-prevention",
+          "label": {
+            "ko": "도난이 발생해도 다음 날에야 알게 돼요",
+            "en": "We only find out about theft the next day",
+            "jp": "盗難が起きても翌日にしか気づきません"
+          },
+          "result": "unmanned-theft-prevention"
+        },
+        {
+          "id": "unmanned-anomaly-detection",
+          "label": {
+            "ko": "냉장고 문 열림 같은 사소한 이상이 방치돼요",
+            "en": "Small issues like a fridge door left open go unnoticed",
+            "jp": "冷蔵庫のドアが開いたままなど、小さな異常が放置されます"
+          },
+          "result": "unmanned-anomaly-detection"
+        },
+        {
+          "id": "unmanned-remote-monitoring",
+          "label": {
+            "ko": "여러 지점을 매번 방문해서 확인해야 해요",
+            "en": "I have to visit every location just to check on it",
+            "jp": "複数拠点を毎回訪問して確認しないといけません"
+          },
+          "result": "unmanned-remote-monitoring"
+        }
+      ]
+    },
+    {
+      "id": "refine-convenience-theft",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 56,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "convenience:theft_loss"
+        ]
+      },
+      "text": {
+        "ko": "손실이 주로 언제 발생하나요?",
+        "en": "When do losses mostly occur?",
+        "jp": "ロスは主にいつ発生しますか?"
+      },
+      "options": [
+        {
+          "id": "night",
+          "label": {
+            "ko": "심야·새벽 시간대에 집중돼요",
+            "en": "They're concentrated late at night and early morning",
+            "jp": "深夜・早朝の時間帯に集中しています"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "night",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "unknown",
+          "label": {
+            "ko": "시간대를 특정하기 어려워요",
+            "en": "Hard to pin down a time window",
+            "jp": "時間帯を特定するのが難しいです"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "unknown",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refine-convenience-inventory",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 57,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "convenience:inventory"
+        ]
+      },
+      "text": {
+        "ko": "결품을 언제 알게 되나요?",
+        "en": "When do you find out about stockouts?",
+        "jp": "欠品にはいつ気づきますか?"
+      },
+      "options": [
+        {
+          "id": "reactive",
+          "label": {
+            "ko": "고객이 찾을 때에야 알아요",
+            "en": "Only when a customer asks for the item",
+            "jp": "お客様に聞かれて初めて気づきます"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "reactive",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "batch",
+          "label": {
+            "ko": "정기 점검 때 몰아서 발견해요",
+            "en": "In batches, during routine checks",
+            "jp": "定期点検のときにまとめて見つかります"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "batch",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refine-convenience-planogram",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 58,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "convenience:merchandising"
+        ]
+      },
+      "text": {
+        "ko": "진열 기준이 매장마다 지켜지고 있나요?",
+        "en": "Is the planogram actually followed in stores?",
+        "jp": "陳列基準は店舗ごとに守られていますか?"
+      },
+      "options": [
+        {
+          "id": "drift",
+          "label": {
+            "ko": "본사 기준과 실제 매장이 자주 달라요",
+            "en": "Stores often drift from the HQ standard",
+            "jp": "本部基準と実際の店舗がよくズレています"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "drift",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "no-baseline",
+          "label": {
+            "ko": "기준 자체를 데이터로 만들고 싶어요",
+            "en": "We want to build the standard itself from data",
+            "jp": "基準そのものをデータで作りたいです"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "no-baseline",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refine-cafe-turnover",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 59,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "cafe:merchandising"
+        ]
+      },
+      "text": {
+        "ko": "좌석 회전이 안 되는 양상이 어떤가요?",
+        "en": "How does the slow seat turnover show up?",
+        "jp": "席の回転が悪いのはどんな様子ですか?"
+      },
+      "options": [
+        {
+          "id": "hotspot",
+          "label": {
+            "ko": "특정 좌석만 장시간 점유돼요",
+            "en": "Only certain seats stay occupied for hours",
+            "jp": "特定の席だけ長時間占有されます"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "hotspot",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "overall",
+          "label": {
+            "ko": "전체적으로 체류가 길어요",
+            "en": "Dwell time is long across the board",
+            "jp": "全体的に滞在が長いです"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "overall",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refine-mart-congestion",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 60,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "mart:congestion"
+        ]
+      },
+      "text": {
+        "ko": "계산대 혼잡이 어떤 패턴인가요?",
+        "en": "What's the checkout congestion pattern?",
+        "jp": "レジ混雑はどんなパターンですか?"
+      },
+      "options": [
+        {
+          "id": "peak",
+          "label": {
+            "ko": "특정 시간대에 몰려요",
+            "en": "It piles up at specific hours",
+            "jp": "特定の時間帯に集中します"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "peak",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "random",
+          "label": {
+            "ko": "예측이 안 되게 불규칙해요",
+            "en": "It's irregular and hard to predict",
+            "jp": "予測できないほど不規則です"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "random",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refine-exhibition-congestion",
+      "group": "refine",
+      "phase": "refine",
+      "kind": "option-list",
+      "order": 61,
+      "signal": "symptom",
+      "appliesWhen": {
+        "cluster": [
+          "exhibition:congestion"
+        ]
+      },
+      "text": {
+        "ko": "혼잡이 어디서 생기나요?",
+        "en": "Where does the crowding happen?",
+        "jp": "混雑はどこで発生しますか?"
+      },
+      "options": [
+        {
+          "id": "spot",
+          "label": {
+            "ko": "특정 구간·전시물 앞에 몰려요",
+            "en": "It clusters at specific spots or exhibits",
+            "jp": "特定の区間・展示物の前に集中します"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "spot",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "flow",
+          "label": {
+            "ko": "입퇴장 동선 전체가 밀려요",
+            "en": "The whole entry/exit flow backs up",
+            "jp": "入退場の動線全体が滞ります"
+          },
+          "evidence": [
+            {
+              "attribute": "symptom",
+              "value": "flow",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goal",
+      "group": "goal",
+      "phase": "refine",
+      "kind": "chip-wrap",
+      "order": 90,
+      "signal": "goal",
+      "text": {
+        "ko": "지금 어느 단계에 계세요?",
+        "en": "Where are you in the process?",
+        "jp": "今、どの段階にいらっしゃいますか?"
+      },
+      "options": [
+        {
+          "id": "urgent",
+          "label": {
+            "ko": "문제가 실제 손실로 이어지고 있어 빨리 해결해야 해요",
+            "en": "It's already costing us — we need to fix it fast",
+            "jp": "問題が実際の損失につながっていて、早く解決したいです"
+          },
+          "evidence": [
+            {
+              "attribute": "goal",
+              "value": "urgent",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "planning",
+          "label": {
+            "ko": "다음 분기·연간 계획에 반영하려 검토 중이에요",
+            "en": "We're evaluating it for next quarter's or next year's plan",
+            "jp": "来四半期・年間計画への反映を検討中です"
+          },
+          "evidence": [
+            {
+              "attribute": "goal",
+              "value": "planning",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "research",
+          "label": {
+            "ko": "어떤 기술인지 먼저 이해하고 싶어요",
+            "en": "I want to understand the technology first",
+            "jp": "まずどんな技術なのか理解したいです"
+          },
+          "evidence": [
+            {
+              "attribute": "goal",
+              "value": "research",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scenarios": {
+    "convenience-night-theft": {
+      "industry": "convenience",
+      "cluster": "theft_loss",
+      "attributes": {
+        "symptom": [
+          "night",
+          "unknown"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "convenience-inventory-loss": {
+      "industry": "convenience",
+      "cluster": "inventory",
+      "attributes": {
+        "symptom": [
+          "reactive",
+          "batch"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "convenience-planogram": {
+      "industry": "convenience",
+      "cluster": "merchandising",
+      "attributes": {
+        "symptom": [
+          "drift",
+          "no-baseline"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "cafe-low-seat-turnover": {
+      "industry": "cafe",
+      "cluster": "merchandising",
+      "attributes": {
+        "symptom": [
+          "hotspot",
+          "overall"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "cafe-peak-hour-management": {
+      "industry": "cafe",
+      "cluster": "congestion",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "cafe-customer-wait-time": {
+      "industry": "cafe",
+      "cluster": "congestion",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "unmanned-theft-prevention": {
+      "industry": "unmanned",
+      "cluster": "security_ops",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "unmanned-anomaly-detection": {
+      "industry": "unmanned",
+      "cluster": "security_ops",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "unmanned-remote-monitoring": {
+      "industry": "unmanned",
+      "cluster": "security_ops",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "drugstore-vmd-optimization": {
+      "industry": "drugstore",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "drugstore-zone-performance": {
+      "industry": "drugstore",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "drugstore-tester-interaction": {
+      "industry": "drugstore",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "mart-checkout-congestion": {
+      "industry": "mart",
+      "cluster": "congestion",
+      "attributes": {
+        "symptom": [
+          "peak",
+          "random"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "mart-cart-path-optimization": {
+      "industry": "mart",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "mart-zone-conversion": {
+      "industry": "mart",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "exhibition-visitor-dwell-time": {
+      "industry": "exhibition",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "exhibition-booth-performance": {
+      "industry": "exhibition",
+      "cluster": "merchandising",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "exhibition-crowd-flow": {
+      "industry": "exhibition",
+      "cluster": "congestion",
+      "attributes": {
+        "symptom": [
+          "spot",
+          "flow"
+        ],
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "logistics-worker-safety": {
+      "industry": "logistics",
+      "cluster": "ops_safety",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "logistics-efficiency-zones": {
+      "industry": "logistics",
+      "cluster": "ops_safety",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    },
+    "logistics-ppe-compliance": {
+      "industry": "logistics",
+      "cluster": "ops_safety",
+      "attributes": {
+        "persona": [
+          "hq_sv",
+          "exec"
+        ],
+        "scale": [
+          "single",
+          "small",
+          "mid",
+          "large"
+        ]
+      },
+      "prior": 1
+    }
+  },
+  "fixtures": []
+}
