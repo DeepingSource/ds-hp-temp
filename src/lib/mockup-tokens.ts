@@ -2,19 +2,28 @@
  * 목업 디자인 토큰
  *
  * 모든 목업 컴포넌트가 참조하는 컬러, 타이포 규격.
+ * SAAI DS 원천 토큰은 codegen 산출물(mockup-tokens.gen.ts)에서 재export한다 —
+ * design-system/ 직접 import 금지 (MOCKUP_MASTER_PLAN_v1 §2-A · D1).
  */
+
+export {
+  SAAI_COLORS,
+  SAAI_TYPE,
+  SAAI_ROUNDED,
+  SAAI_SPACING,
+  SAAI_MOTION,
+  type SaaiColorKey,
+} from './mockup-tokens.gen';
 
 // ── 제품 컬러 매핑 ──────────────────────────────────────────────────────────
 
 export type ProductName = 'StoreCare' | 'StoreInsight' | 'StoreAgent';
 
 /**
- * 제품별 Tailwind 클래스 세트.
- *
- * ⚠️ StoreCare(emerald)·StoreInsight(violet)는 사이트 기본 One-Blue 원칙의 의도적
- * 예외다 — 목업 안에서 "지금 보고 있는 게 어느 제품인지"를 색으로 즉시 구분하기
- * 위한 정보 설계 장치로 유지 중. 새 제품 축을 추가할 때만 신중히 확장하고, 페이지
- * 배경/버튼 등 목업 "바깥" UI에는 절대 끌어다 쓰지 않는다(그건 --primary 한 톤).
+ * @deprecated 제품 구분색(emerald/violet) 폐지 — SAAI 단일 블루 (D2).
+ * 제품 구분은 SaaiHeader 워드마크+타이포가 담당하고, 색은 차트/상태 칩의 SAAI
+ * 데이터 hue만 쓴다. 전환기 동안 세 제품 모두 blue alias로 동작하며,
+ * Phase 1(실사용 마이그레이션) 완료 시 이 상수 자체를 삭제한다.
  */
 export const PRODUCT_THEME: Record<ProductName, {
   bg: string;
@@ -24,26 +33,8 @@ export const PRODUCT_THEME: Record<ProductName, {
   headerBorder: string;
   dot: string;
   accent: string;
-}> = {
-  StoreCare: {
-    bg: 'bg-emerald-500',
-    bgLight: 'bg-emerald-50',
-    text: 'text-emerald-600',
-    border: 'border-emerald-200',
-    headerBorder: 'border-emerald-500',
-    dot: 'bg-emerald-500',
-    accent: 'emerald',
-  },
-  StoreInsight: {
-    bg: 'bg-violet-500',
-    bgLight: 'bg-violet-50',
-    text: 'text-violet-600',
-    border: 'border-violet-200',
-    headerBorder: 'border-violet-500',
-    dot: 'bg-violet-500',
-    accent: 'violet',
-  },
-  StoreAgent: {
+}> = (() => {
+  const blue = {
     bg: 'bg-primary',
     bgLight: 'bg-primary-lighter',
     text: 'text-primary',
@@ -51,8 +42,9 @@ export const PRODUCT_THEME: Record<ProductName, {
     headerBorder: 'border-primary',
     dot: 'bg-primary',
     accent: 'blue',
-  },
-} as const;
+  };
+  return { StoreCare: blue, StoreInsight: blue, StoreAgent: blue } as const;
+})();
 
 // ── 목업 테마 스킴 (light / dark) ─────────────────────────────────────────
 
@@ -73,6 +65,10 @@ export const MOCKUP_SCHEME = {
     cardClassHover: 'bg-white rounded-lg border border-gray-100 shadow-card-hover',
     cardClassElevated: 'bg-white rounded-lg border border-gray-100 shadow-elevated',
   },
+  // 다크 파생 규칙(§2-A 명문화): SAAI DS는 다크 스펙 미출시 — 그때까지 "SAAI grey
+  // 스케일 역전 + blue 유지"를 파생 원칙으로 삼는다(배경=grey-900 계열 역전값,
+  // 텍스트=white→grey-400 순 역전, 브랜드 blue-500은 그대로). SAAI DS 다크가
+  // 출시되면 이 스킴을 gen 산출물 기반으로 교체한다.
   dark: {
     headerBg: 'bg-gray-950',
     bodyBg: 'bg-gray-950',
@@ -100,7 +96,9 @@ export const MOCKUP_DEVICE = {
     body: 'text-base',
     label: 'text-xs',
     metric: 'text-lg font-bold',
-    micro: 'text-[10px]',
+    // §2-A: 11px 미만 글자 금지 — micro 트랙은 11px이 하한 (SAAI chart-source=10px는
+    // 차트 각주 전용 예외, 목업 UI 텍스트에는 쓰지 않는다)
+    micro: 'text-[11px]',
     cardPadding: 'p-4',
     cardPaddingSm: 'p-3',
     cardRadius: 'rounded-xl',
@@ -112,7 +110,7 @@ export const MOCKUP_DEVICE = {
     body: 'text-sm',
     label: 'text-xs',
     metric: 'text-xl font-bold',
-    micro: 'text-[10px]',
+    micro: 'text-[11px]',
     cardPadding: 'p-3.5',
     cardPaddingSm: 'p-3',
     cardRadius: 'rounded-lg',
@@ -122,9 +120,9 @@ export const MOCKUP_DEVICE = {
     headerTitle: 'text-base font-bold',
     headerSub: 'text-sm',
     body: 'text-xs',
-    label: 'text-[10px]',
+    label: 'text-[11px]',
     metric: 'text-xl font-bold',
-    micro: 'text-[9px]',
+    micro: 'text-[11px]',
     cardPadding: 'p-3',
     cardPaddingSm: 'px-3 py-2.5',
     cardRadius: 'rounded-lg',
@@ -132,18 +130,18 @@ export const MOCKUP_DEVICE = {
   },
 } as const;
 
-// ── 상태 컬러 (Material 세트 — DESIGN.md의 --success/--warning/--error와 동일 hex) ──
+// ── 상태 컬러 (SAAI status 세트 — §2-A: Material 세트에서 교체) ──
 //
 // SVG fill/stroke처럼 Tailwind 클래스를 쓸 수 없는 자리는 MOCKUP_STATUS_HEX를,
 // 배지·점·텍스트처럼 클래스가 되는 자리는 MOCKUP_STATUS_CLASS를 쓴다. 여러 목업이
 // 각자 로컬 STATUS_COLOR 맵을 새로 선언하던 걸 여기 하나로 모은다(중복 회피).
-// "정상"은 사이트 시맨틱 팔레트에 해당 토큰이 없어 중립 회색(slate)을 유지한다.
+// "정상"은 SAAI에 해당 시맨틱이 없어 grey-300(중립)을 쓴다.
 export type MockupStatus = 'normal' | 'warning' | 'critical';
 
 export const MOCKUP_STATUS_HEX: Record<MockupStatus, string> = {
-  normal: '#94A3B8',
-  warning: '#FF9800', // DESIGN.md --warning
-  critical: '#F44336', // DESIGN.md --error
+  normal: '#8E949D', // SAAI grey-300
+  warning: '#FAD232', // SAAI status-warning (yellow-500)
+  critical: '#E05959', // SAAI status-error (red-500)
 };
 
 export const MOCKUP_STATUS_CLASS: Record<MockupStatus, { dot: string; text: string; bg: string }> = {

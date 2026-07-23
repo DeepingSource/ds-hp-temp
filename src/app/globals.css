@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+/* SAAI DS 목업 토큰 (자동 생성 — gen:mockup-tokens). MockupViewport가 .saai-scope 부여. */
+@import "./saai-tokens.gen.css";
 
 /* Brand wordmark — Glacial Indifference (SIL OFL, see public/fonts/GlacialIndifference-OFL.txt) */
 @font-face {

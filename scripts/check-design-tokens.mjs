@@ -16,6 +16,8 @@ const SRC = 'src';
 const EXEMPT = [
   /^src\/lib\/tokens\.ts$/,
   /^src\/lib\/mockup-tokens\.ts$/,
+  /^src\/lib\/mockup-tokens\.gen\.ts$/, // codegen output (gen:mockup-tokens) — hex by design
+  /^src\/app\/saai-tokens\.gen\.css$/, // codegen output — --saai-* var block
   /^src\/app\/globals\.css$/,
   /^src\/app\/icon\.svg$/,
   /^src\/components\/mockups\//, // SVG/canvas mockups use mockup-tokens.ts
