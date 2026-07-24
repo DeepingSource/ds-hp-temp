@@ -78,12 +78,17 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
   readingTitle: string; reading: string;
   extensionTitle: string; extension: string; promoted: string;
   countNote: string; cta: string;
-  modeHeading: string; modeSub: string;
+  /** 카탈로그 그리드(③1-4) — 허브의 중심 */
+  catalogTitle: string; comingSoon: string;
+  /** 매트릭스 보조 섹션(하단 이동) + 모드별 보기 링크 리드 */
+  matrixTitle: string; modesLink: string;
+  /** 하단 상담 CTA(§2-1 — dead-end 해소, 1개만) */
+  consultLead: string; consultLabel: string;
 }> = {
   ko: {
     eyebrow: '기능 라이브러리',
-    title: '하나의 기능이 3가지 모드로 확장됩니다',
-    sub: '기능은 개별 제품에 갇히지 않습니다. 유동인구 카운팅(count) 하나만으로도 감지(Care), 분석(Insight), 실행(Agent) 3개 모드 전체에서 활용됩니다.',
+    title: '사람이 매장에서 하던 일을, AI가 대신 봅니다',
+    sub: '세는 일, 줄을 보는 일, 판촉을 확인하는 일, 잘 팔릴지 가늠하는 일 — 매장에서 눈으로 하던 일을 기능으로 엽니다.\n그리고 이 목록은 계속 늘어납니다.',
     readingTitle: '매트릭스 읽는 법',
     reading: '“유동인구 분석 기능 하나가 saai care에서는 실시간 감지, saai insight에서는 추세 분석, saai agent에서는 인력/영업시간 추천으로 작동합니다.”',
     extensionTitle: '쉽고 유연한 확장성',
@@ -91,13 +96,17 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     promoted: '시선·주목도 분석 등 특정 영역은 독립적인 전문 제품(saai ads insight)으로 제공됩니다.',
     countNote: '유동인구·유입 카운팅(saai count)은 독립 제품을 넘어 모든 모드를 지원하는 핵심 기능입니다.',
     cta: '모드별 자세히 보기',
-    modeHeading: '세로축 — SAAI의 3가지 핵심 모드',
-    modeSub: '동일한 기능이라도 시간축과 목적에 따라 어떤 모드를 적용하느냐에 따라 매장 운영 방식이 달라집니다.',
+    catalogTitle: 'AI가 공간에서 하는 일',
+    comingSoon: '준비 중',
+    matrixTitle: '기능이 3모드를 지나는 법',
+    modesLink: '모드별로 보기',
+    consultLead: '우리 매장엔 어떤 기능이 먼저 필요할까요?',
+    consultLabel: '어떤 기능이 필요한지 상담하기',
   },
   en: {
     eyebrow: 'Function library',
-    title: 'Functions cross all three modes',
-    sub: 'A function does not belong to one product. Once foot fall becomes count, count is used by care, insight and agent alike.',
+    title: 'The jobs you did by eye — AI now watches for you',
+    sub: 'Counting, watching the line, checking the promo, gauging what will sell — the jobs done by eye become functions.\nAnd the list keeps growing.',
     readingTitle: 'How to read it',
     reading: '“One count becomes live detection in care, trend analysis in insight, and an operating proposal in agent.” A single cell reads: saai care runs saai count.',
     extensionTitle: 'Extension is one row',
@@ -105,8 +114,12 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     promoted: 'One exception — attention (gaze) covers the distinct domain of signage and displays, so it graduated from a row to a standalone product.',
     countNote: 'count is a function — not a fourth product.',
     cta: 'See details',
-    modeHeading: 'Down the side — the three modes',
-    modeSub: 'The products are three modes. What separates them is the time axis and purpose you push the same function through.',
+    catalogTitle: 'What the AI does in your space',
+    comingSoon: 'Coming soon',
+    matrixTitle: 'How a function crosses the three modes',
+    modesLink: 'Browse by mode',
+    consultLead: 'Which function does your store need first?',
+    consultLabel: 'Talk through which function you need',
   },
   jp: {
     eyebrow: '機能ライブラリ',
@@ -119,7 +132,11 @@ export const FUNCTIONS_PAGE_COPY: Record<Locale, {
     promoted: '例外が一つ — 注目（視線）はサイネージ・展示物という別領域のため、行ではなく独立製品に昇格しました。',
     countNote: 'count は機能です — 4番目の製品ではありません。',
     cta: '詳しく見る',
-    modeHeading: '縦軸 — 3つのモード',
-    modeSub: '製品は3つのモードです。同じ機能をどの時間軸・目的で通すかが製品を分けます。',
+    catalogTitle: 'AIが空間で行う仕事',
+    comingSoon: '準備中',
+    matrixTitle: '機能が3つのモードを横断する仕組み',
+    modesLink: 'モード別に見る',
+    consultLead: 'あなたの店舗には、どの機能が先に必要でしょうか？',
+    consultLabel: 'どの機能が必要かご相談',
   },
 };
