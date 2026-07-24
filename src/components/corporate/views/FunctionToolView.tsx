@@ -6,6 +6,7 @@ import Eyebrow from '@/components/ui/Eyebrow';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
+import TrustStrip from '@/components/corporate/TrustStrip';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { MODE_ORDER } from '@/lib/brand-canon';
@@ -258,6 +259,13 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
             </div>
             <ToolMockup tool={tool} locale={locale} />
           </div>
+        </Container>
+      </Section>
+
+      {/* ── ⑦ 증거 밴드 (③0-A: CTA 직전 신뢰 보강 — 각 페이지 증거 블록 1개 필수) ── */}
+      <Section variant="default" pad="compact">
+        <Container>
+          <TrustStrip locale={locale} tone="light" className="mx-auto max-w-3xl" />
         </Container>
       </Section>
 
