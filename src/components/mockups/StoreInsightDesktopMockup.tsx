@@ -13,12 +13,14 @@ import { getToday } from '@/lib/timeUtils';
 import BrowserChrome from './BrowserChrome';
 import MacBookFrame from './MacBookFrame';
 import MockupBadge from './MockupBadge';
+import MockupViewport from './MockupViewport';
 import type { BaseMockupProps } from './types';
 import { type Locale } from '@/lib/i18n';
 import { MOCKUP_SCHEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
+import { canonicalHq } from '@/data/mockup-scenarios/canonical';
 import {
   desktopMetrics,
-  desktopColorMap as colorMap,
   desktopDefaultRankData as DEFAULT_RANK_DATA,
   desktopNavItems,
   desktopInitialHeights,
@@ -27,6 +29,17 @@ import {
 
 const S = MOCKUP_SCHEME.light;
 const D = MOCKUP_DEVICE.desktop;
+
+// 추이선·히트맵 계열색 — SVG stroke/인라인 style은 CSS 변수 대신 gen 상수 소비 (D2)
+const LINE = SAAI_COLORS['blue-500'];
+
+// KPI 카테고리 hue — 데이터의 color 키(SAAI 시맨틱)를 --saai-* 클래스로 해석 (D2)
+const colorMap: Record<string, string> = {
+  primary: 'bg-(--saai-blue-50) text-(--saai-primary)',
+  cyan:    'bg-(--saai-cyan-50) text-(--saai-cyan-700)',
+  green:   'bg-(--saai-green-50) text-(--saai-green-600)',
+  yellow:  'bg-(--saai-yellow-50) text-(--saai-yellow-700)',
+};
 
 const ICON_MAP = { BarChart3, TrendingUp, Users, Eye, MapPin, Calendar } as const;
 
@@ -64,7 +77,7 @@ const C: Record<Locale, {
   insightBody: string;
   insightAction: string;
   rankTitle: string;
-  rankTotal: string;
+  rankTotal: (n: number) => string;
   vsPrevWeek: string;
 }> = {
   ko: {
@@ -94,7 +107,7 @@ const C: Record<Locale, {
     insightBody: ' 앞 체류 시간이 평소보다 2배입니다. 신제품 프로모션 효과 확인됨.',
     insightAction: '→ 진열 확대 액션 카드 생성됨',
     rankTitle: '매장 순위',
-    rankTotal: '전체 12개 매장',
+    rankTotal: (n) => `전체 ${n}개 매장`,
     vsPrevWeek: '전주 대비',
   },
   en: {
@@ -124,7 +137,7 @@ const C: Record<Locale, {
     insightBody: ' dwell time is 2x the usual. New-product promotion effect confirmed.',
     insightAction: '→ Display-expansion action card created',
     rankTitle: 'Store ranking',
-    rankTotal: 'All 12 stores',
+    rankTotal: (n) => `All ${n} stores`,
     vsPrevWeek: 'vs prev week',
   },
   jp: {
@@ -154,7 +167,7 @@ const C: Record<Locale, {
     insightBody: '前の滞在時間が通常の2倍です。新製品プロモーションの効果が確認されました。',
     insightAction: '→ 陳列拡大アクションカードを作成しました',
     rankTitle: '店舗ランキング',
-    rankTotal: '全12店舗',
+    rankTotal: (n) => `全${n}店舗`,
     vsPrevWeek: '前週比',
   },
 };
@@ -231,9 +244,13 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
   const rankData = DEFAULT_RANK_DATA.map((d, i) => i === 0 ? { ...d, name: storeName } : d);
 
   return (
-    <div ref={containerRef} {...hoverProps} className={className ? `w-full max-w-5xl mx-auto ${className}` : "w-full max-w-5xl mx-auto"}>
-      <MacBookFrame>
-      <div className="bg-white overflow-hidden relative">
+    // v2 크기 계약: desktop 1280×800 고정 캔버스. 스크린 h-[740px] + MacBook 크롬
+    // (lid 8+노치 18+힌지 4+베이스 22+섀도 8 ≈ 60) = 800 근접 (1a MultiStore 산정).
+    <div ref={containerRef} {...hoverProps} className={className}>
+      {/* minScale 0.25: 좁은 호출부에서 기본 0.4 클램프가 우측 잘림 유발 (1a 실증) */}
+      <MockupViewport design="desktop" minScale={0.25}>
+      <MacBookFrame className="max-w-none!">
+      <div className="bg-white overflow-hidden relative h-[740px] flex flex-col">
       <MockupBadge label={t.badge} />
 
       <BrowserChrome variant="light">
@@ -244,11 +261,12 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
       </BrowserChrome>
 
       {/* Dashboard Layout */}
-      <div className="flex min-h-[400px]">
-        {/* Sidebar */}
-        <div className="w-48 bg-violet-950 text-white p-4 flex flex-col shrink-0">
+      <div className="flex flex-1 min-h-0">
+        {/* Sidebar — D2: violet 정체성 폐지, 그레이 다크 + 블루 액센트(MultiStore 사이드바 선례).
+            명도 위계: 배경(gray-900) < 보더(white/10) < 텍스트(gray-400) < 액센트(blue-300) */}
+        <div className="w-48 bg-gray-900 text-white p-4 flex flex-col shrink-0">
           <div className="flex items-center gap-2 mb-6">
-            <LayoutGrid className="w-5 h-5 text-violet-300" aria-hidden="true" />
+            <LayoutGrid className="w-5 h-5 text-(--saai-blue-300)" aria-hidden="true" />
             <span className="font-bold text-base lowercase tracking-tight">
               <span className="font-normal opacity-60">saai</span><span className="opacity-40 mx-1">|</span>store insight
             </span>
@@ -261,23 +279,23 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                 <div
                   key={item.label}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-[background-color,color] duration-300 ${
-                    isActive ? 'bg-violet-700 text-white' : 'text-violet-300'
+                    isActive ? 'bg-(--saai-blue-700) text-white' : 'text-gray-400'
                   }`}
                 >
                   {/* 활성 표시 바 */}
-                  <div className={`w-1 h-3.5 rounded-full mr-0.5 shrink-0 bg-violet-300 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                  <div className={`w-1 h-3.5 rounded-full mr-0.5 shrink-0 bg-(--saai-blue-300) transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
                   <Icon className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   <span>{t.navLabels[item.label] ?? item.label}</span>
                 </div>
               );
             })}
           </nav>
-          <div className="pt-4 border-t border-violet-800 mt-auto">
+          <div className="pt-4 border-t border-white/10 mt-auto">
             <div className="flex items-center gap-2 px-2">
-              <div className="w-7 h-7 bg-violet-700 rounded-full flex items-center justify-center text-xs font-bold">GN</div>
+              <div className="w-7 h-7 bg-(--saai-blue-700) rounded-full flex items-center justify-center text-xs font-bold">GN</div>
               <div>
                 <p className="text-xs font-medium">{t.storeNames[storeName] ?? storeName}</p>
-                <p className="text-3xs text-violet-400">{t.proPlan}</p>
+                <p className="text-3xs text-gray-400">{t.proPlan}</p>
               </div>
             </div>
           </div>
@@ -320,7 +338,7 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                   <div className={`text-xl font-bold ${S.textPrimary} tabular-nums`}>
                     {displayMetric(m.target, m.decimals)}{t.metricUnits[m.iconName] ?? m.unit}
                   </div>
-                  <div className={`flex items-center gap-0.5 text-xs font-medium mt-1 ${m.up ? 'text-emerald-600' : 'text-red-500'}`}>
+                  <div className={`flex items-center gap-0.5 text-xs font-medium mt-1 ${m.up ? 'text-(--saai-chart-positive)' : 'text-(--saai-chart-negative)'}`}>
                     {m.up
                       ? <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
                       : <ArrowDownRight className="w-3 h-3" aria-hidden="true" />}
@@ -339,31 +357,32 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                 <h4 className="text-sm font-bold text-gray-800">{t.trafficTitle}</h4>
                 <div className="flex gap-3">
                   <span className="text-3xs text-gray-500 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-sm bg-violet-500" />{t.legendVisitors}
+                    <span className="w-2 h-2 rounded-sm bg-(--saai-blue-500)" />{t.legendVisitors}
                   </span>
                   <span className="text-3xs text-gray-500 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-sm bg-violet-200" />{t.legendPrevWeek}
+                    <span className="w-2 h-2 rounded-sm bg-(--saai-blue-100)" />{t.legendPrevWeek}
                   </span>
                   <span className="text-3xs text-gray-500 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-sm border border-dashed border-violet-400/70 bg-violet-400/20" />{t.legendForecast}
+                    <span className="w-2 h-2 rounded-sm border border-dashed border-(--saai-blue-400)/70 bg-(--saai-blue-400)/20" />{t.legendForecast}
                   </span>
                 </div>
               </div>
-              <div className="h-28 flex items-end justify-between gap-1 relative" aria-hidden="true">
+              {/* 1280×800 고정 설계: 차트 존 h-60(막대 h-56) — min-h 유동 장치 대신 캔버스 예산 소진 */}
+              <div className="h-60 flex items-end justify-between gap-1 relative" aria-hidden="true">
                 {heights.map((height, i) => {
                   const isCurrent = i === currentIdx;
                   const isFuture = i > currentIdx;
-                  // 오늘 막대: 과거=violet-400, 현재=violet-500 강조, 미래=점선 저채도 예측
+                  // 오늘 막대: 과거=blue-400, 현재=blue-500 강조, 미래=점선 저채도 예측
                   const todayBarClass = isFuture
-                    ? 'bg-violet-400/20 border border-dashed border-violet-400/70'
+                    ? 'bg-(--saai-blue-400)/20 border border-dashed border-(--saai-blue-400)/70'
                     : isCurrent
-                      ? 'bg-violet-500'
-                      : 'bg-violet-400';
+                      ? 'bg-(--saai-blue-500)'
+                      : 'bg-(--saai-blue-400)';
                   return (
                   <div key={i} className="w-full flex flex-col items-center gap-1">
-                    <div className="w-full flex gap-0.5 items-end justify-center h-24">
+                    <div className="w-full flex gap-0.5 items-end justify-center h-56">
                       <div
-                        className="w-[45%] bg-violet-200 rounded-t-sm transition-[height] duration-700"
+                        className="w-[45%] bg-(--saai-blue-100) rounded-t-sm transition-[height] duration-700"
                         style={{ height: `${Math.max(15, height - 15)}%` }}
                       />
                       <div
@@ -371,13 +390,13 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                         style={{ height: `${height}%` }}
                       />
                     </div>
-                    <span className={`text-3xs ${isCurrent ? 'text-violet-600 font-bold' : isFuture ? 'text-gray-300' : 'text-gray-400'}`}>{t.hourSuffix(i + 8)}</span>
+                    <span className={`text-3xs ${isCurrent ? 'text-(--saai-blue-600) font-bold' : isFuture ? 'text-gray-300' : 'text-gray-400'}`}>{t.hourSuffix(i + 8)}</span>
                   </div>
                   );
                 })}
-                {/* Trend line overlay */}
+                {/* Trend line overlay — SVG stroke/fill은 SAAI_COLORS 상수 + *Opacity 속성 (raw rgba 대체) */}
                 <svg
-                  className="absolute inset-x-0 bottom-5 h-24 pointer-events-none z-10"
+                  className="absolute inset-x-0 bottom-5 h-56 pointer-events-none z-10"
                   viewBox="0 0 120 96"
                   preserveAspectRatio="none"
                   aria-hidden="true"
@@ -386,7 +405,8 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                   <polyline
                     points={heights.slice(0, currentIdx + 1).map((h, i) => `${i * 10 + 5},${96 - h * 0.96}`).join(' ')}
                     fill="none"
-                    stroke="rgba(139,92,246,0.65)"
+                    stroke={LINE}
+                    strokeOpacity="0.65"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -396,7 +416,8 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                     <polyline
                       points={heights.slice(currentIdx).map((h, k) => `${(currentIdx + k) * 10 + 5},${96 - h * 0.96}`).join(' ')}
                       fill="none"
-                      stroke="rgba(139,92,246,0.4)"
+                      stroke={LINE}
+                      strokeOpacity="0.4"
                       strokeWidth="1.5"
                       strokeDasharray="2 2"
                       strokeLinecap="round"
@@ -409,20 +430,21 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                       cx={i * 10 + 5}
                       cy={96 - h * 0.96}
                       r={i === currentIdx ? '2.5' : '1.5'}
-                      fill={i === currentIdx ? 'rgb(139,92,246)' : i > currentIdx ? 'rgba(139,92,246,0.3)' : 'rgba(139,92,246,0.6)'}
+                      fill={LINE}
+                      fillOpacity={i === currentIdx ? 1 : i > currentIdx ? 0.3 : 0.6}
                     />
                   ))}
                 </svg>
                 {/* 인라인 끝점 라벨 — 범례 없이도 계열 식별 (NC-06) */}
                 <span
-                  className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-violet-600 whitespace-nowrap pointer-events-none"
+                  className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-(--saai-blue-600) whitespace-nowrap pointer-events-none"
                   style={{ left: `${((currentIdx * 10 + 5) / 120) * 100}%` }}
                 >
                   {t.today}
                 </span>
                 {currentIdx < lastIdx && (
                   <span
-                    className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-violet-400 whitespace-nowrap pointer-events-none"
+                    className="absolute top-0 -translate-x-1/2 -translate-y-0.5 text-3xs font-bold text-(--saai-blue-400) whitespace-nowrap pointer-events-none"
                     style={{ left: `${((lastIdx * 10 + 5) / 120) * 100}%` }}
                   >
                     {t.legendForecast}
@@ -435,21 +457,21 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
             <div className={`${S.cardClass} p-4`}>
               <div className="flex items-center justify-between mb-3">
                 <h4 className="text-sm font-bold text-gray-800">{t.heatmapTitle}</h4>
-                <span className="text-3xs text-emerald-600 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true" />
+                <span className="text-3xs text-(--saai-chart-positive) flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-(--saai-status-success) animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   {t.realtime}
                 </span>
               </div>
-              <div className="grid grid-cols-5 grid-rows-5 gap-0.5 h-28" aria-hidden="true">
+              <div className="grid grid-cols-5 grid-rows-5 gap-0.5 h-56" aria-hidden="true">
                 {desktopHeatmapData.map((v, i) => (
-                  <div key={i} className="rounded-sm" style={{ backgroundColor: `rgba(139, 92, 246, ${v / 10})` }} />
+                  <div key={i} className="rounded-sm" style={{ backgroundColor: `color-mix(in srgb, ${LINE} ${v * 10}%, transparent)` }} />
                 ))}
               </div>
               <div className="flex justify-between mt-2 text-3xs text-gray-400">
                 <span>{t.low}</span>
                 <div className="flex gap-0.5">
                   {[0.1, 0.3, 0.5, 0.7, 0.9].map((o) => (
-                    <div key={o} className="w-4 h-2 rounded-sm" style={{ backgroundColor: `rgba(139, 92, 246, ${o})` }} />
+                    <div key={o} className="w-4 h-2 rounded-sm" style={{ backgroundColor: `color-mix(in srgb, ${LINE} ${o * 100}%, transparent)` }} />
                   ))}
                 </div>
                 <span>{t.high}</span>
@@ -460,16 +482,16 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
           {/* Bottom Row */}
           <div className="grid grid-cols-2 gap-3">
             {/* AI Insight */}
-            <div className="bg-primary/5 p-3.5 rounded-lg border border-primary/10">
+            <div className="bg-(--saai-primary)/5 p-3.5 rounded-lg border border-(--saai-primary)/10">
               <div className="flex items-start gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-violet-100 flex items-center justify-center shrink-0">
-                  <TrendingUp className="w-3.5 h-3.5 text-violet-600" aria-hidden="true" />
+                <div className="w-7 h-7 rounded-full bg-(--saai-blue-50) flex items-center justify-center shrink-0">
+                  <TrendingUp className="w-3.5 h-3.5 text-(--saai-primary)" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-violet-900 mb-0.5">{t.aiReportTitle}</p>
+                  <p className="text-xs font-bold text-(--saai-blue-900) mb-0.5">{t.aiReportTitle}</p>
                   <p className="text-xs text-gray-600 leading-relaxed">
                     <span className="font-medium text-gray-900">{t.insightHead}</span>{t.insightBody}
-                    <span className="text-violet-600 font-medium ml-0.5">{t.insightAction}</span>
+                    <span className="text-(--saai-primary) font-medium ml-0.5">{t.insightAction}</span>
                   </p>
                 </div>
               </div>
@@ -479,7 +501,8 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
             <div className={`${S.cardClass} p-3.5`}>
               <div className="flex items-center justify-between mb-2.5">
                 <h4 className="text-xs font-bold text-gray-800">{t.rankTitle}</h4>
-                <span className="text-3xs text-violet-600 font-medium">{t.rankTotal}</span>
+                {/* D6: '전체 12개 매장'은 canonicalHq.ownerChainStores 파생 */}
+                <span className="text-3xs text-(--saai-primary) font-medium">{t.rankTotal(canonicalHq.ownerChainStores)}</span>
               </div>
               <div className="space-y-1.5" aria-hidden="true">
                 {rankData.map((s) => (
@@ -488,7 +511,7 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
                     <span className="text-xs text-gray-700 w-14 shrink-0">{t.storeNames[s.name] ?? s.name}</span>
                     <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-full bg-violet-500 rounded-full transition-[width] duration-700 ease-out"
+                        className="h-full bg-(--saai-blue-500) rounded-full transition-[width] duration-700 ease-out"
                         style={{ width: `${s.value * rankP}%` }}
                       />
                     </div>
@@ -504,6 +527,7 @@ export default function StoreInsightDesktopMockup({ active = true, storeName = '
       </div>
       </div>
       </MacBookFrame>
+      </MockupViewport>
     </div>
   );
 }

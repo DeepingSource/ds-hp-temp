@@ -16,6 +16,10 @@ import { CountUp } from '@/components/ui/CountUp';
  * SVG/CSS, no raster. Sample values (caption marks it).
  */
 
+// MockupViewport 예외(MM §5 1b): 제품 UI 재현이 아닌 순수 개념 다이어그램이라
+// 고정 캔버스 대신 sm: 그리드 재배치(세로↔가로)가 설계 의도 — 강제 스케일은
+// 극좁 폭에서 오히려 가독성 퇴행. 모션은 tween(outCubic)만 — spring 없음.
+
 const dict: Record<Locale, {
   outsideTag: string; outsideTitle: string; passersby: string; passersbyN: string;
   captureLabel: string; captureRate: number; captureSub: string;

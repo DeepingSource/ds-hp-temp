@@ -16,8 +16,10 @@ import { motion, useAnimate } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
+import MockupViewport from './MockupViewport';
 import ScanlineOverlay from './ScanlineOverlay';
 import { MOCKUP_SCHEME, PRODUCT_THEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
 import { type Locale } from '@/lib/i18n';
 
 interface ScenarioText {
@@ -307,8 +309,18 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
     }
   }, [phase, reducedMotion, animateAlert]);
 
+  // [1-⑦/A6] 콘텐츠 4번째 블록 — 직전 순환 시나리오를 '처리 완료' 상태로 승격해
+  // 하단 여백을 채운다. 신규 카피 0: 기존 로케일 문자열(statusResolved·timeResolved·
+  // alertTitle·resolvedDesc)만 재사용. 시나리오 1개 고정 시 현재 알림과 모순되므로 미표시.
+  const prevScenario = list[(scenarioIndex + list.length - 1) % list.length];
+  const pst = t.scenarios[prevScenario.id];
+  const prevTitle = pst?.alertTitle ?? prevScenario.alertTitle;
+  const prevDesc = pst?.resolvedDesc ?? prevScenario.resolvedDesc;
+
   return (
+    // v2 계약: MockupViewport 고정 캔버스(phone 390×844) + --saai-* 토큰(.saai-scope 해석)
     <div ref={containerRef} {...hoverProps}>
+    <MockupViewport design="phone">
     <PhoneFrame>
     <PhoneScreen statusBarBg="bg-white" homeBg="bg-gray-50">
 
@@ -317,7 +329,7 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
         <div className="flex items-center justify-between">
           <div>
             <h3 className={`${D.headerTitle} flex items-center gap-2 ${S.textPrimary}`}>
-              <Store className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+              <Store className="w-5 h-5 text-(--saai-chart-positive)" aria-hidden="true" />
               <span className="lowercase tracking-tight">
                 <span className="font-normal opacity-50">saai</span><span className="opacity-30 mx-1">|</span>store care
               </span>
@@ -327,8 +339,8 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
           <div className="relative">
             <Camera className="w-6 h-6 text-gray-700" aria-hidden="true" />
             <span className={`absolute -top-1 -right-1 flex h-3 w-3 transition-opacity duration-300 ${isAlerting ? 'opacity-100' : 'opacity-0'}`}>
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" aria-hidden="true" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white" aria-hidden="true" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-(--saai-red-400) opacity-75" aria-hidden="true" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-(--saai-status-error) border-2 border-white" aria-hidden="true" />
             </span>
           </div>
         </div>
@@ -339,25 +351,26 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
         {/* Alert Card — phase-driven */}
         <motion.div
           ref={alertScope}
-          className={`bg-white rounded-xl shadow-sm overflow-hidden transition-[border-color,box-shadow] duration-500 ${
+          /* 컬러 섀도우(shadow-amber-50/red-100) → shadow-card 통일 (D2) */
+          className={`bg-white rounded-xl shadow-card overflow-hidden transition-[border-color] duration-500 ${
             isDetecting
-              ? 'border border-amber-200 shadow-amber-50 shadow-sm'
+              ? 'border border-(--saai-yellow-300)'
               : isAlerting
-              ? 'border border-red-200 shadow-red-100 shadow-sm'
+              ? 'border border-(--saai-red-200)'
               : 'border border-gray-100'
           }`}
         >
           <div
             className={`px-4 py-2 border-b flex items-center justify-between transition-colors duration-500 ${
-              isDetecting ? 'bg-amber-50 border-amber-100'
-              : isAlerting ? 'bg-red-50 border-red-100'
-              : 'bg-emerald-50 border-emerald-100'
+              isDetecting ? 'bg-(--saai-yellow-50) border-(--saai-yellow-100)'
+              : isAlerting ? 'bg-(--saai-red-50) border-(--saai-red-100)'
+              : 'bg-(--saai-green-50) border-(--saai-green-100)'
             }`}
           >
             <span className={`text-sm font-bold flex items-center gap-1.5 transition-colors duration-300 ${
-              isDetecting ? 'text-amber-600'
-              : isAlerting ? 'text-red-600'
-              : 'text-emerald-600'
+              isDetecting ? 'text-(--saai-yellow-700)'
+              : isAlerting ? 'text-(--saai-red-600)'
+              : 'text-(--saai-chart-positive)'
             }`}>
               {isAlerting
                 ? <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
@@ -366,9 +379,9 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
               {isCalm ? t.statusCalm : isDetecting ? t.statusDetecting : isAlerting ? t.statusAlerting : t.statusResolved}
             </span>
             <span className={`text-xs font-medium ${
-              isDetecting ? 'text-amber-500'
-              : isAlerting ? 'text-red-500'
-              : 'text-emerald-500'
+              isDetecting ? 'text-(--saai-yellow-600)'
+              : isAlerting ? 'text-(--saai-red-500)'
+              : 'text-(--saai-green-500)'
             }`}>
               {isCalm ? t.timeJustChecked : isResolved ? t.timeResolved : t.timeJustNow}
             </span>
@@ -376,16 +389,16 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
 
           <div className="p-4 flex gap-3">
             <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors duration-500 ${
-              isDetecting ? 'bg-amber-100'
-              : isAlerting ? 'bg-red-100'
-              : 'bg-emerald-100'
+              isDetecting ? 'bg-(--saai-yellow-100)'
+              : isAlerting ? 'bg-(--saai-red-100)'
+              : 'bg-(--saai-green-100)'
             }`}>
               {isAlerting || isDetecting
                 ? <AlertIcon
                     type={scenario.alertIcon}
-                    className={`w-5 h-5 ${isDetecting ? 'text-amber-600' : 'text-red-600'}`}
+                    className={`w-5 h-5 ${isDetecting ? 'text-(--saai-yellow-700)' : 'text-(--saai-red-600)'}`}
                   />
-                : <CheckCircle2 className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+                : <CheckCircle2 className="w-5 h-5 text-(--saai-chart-positive)" aria-hidden="true" />
               }
             </div>
             <div>
@@ -405,7 +418,7 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
                 <div className="relative inline-block mt-2">
                   <TapIndicator visible={isAlerting} x={50} y={50} size={28} label="" />
                   <button type="button" tabIndex={-1} className={`text-sm font-medium px-3 py-1.5 rounded-lg transition-colors ${
-                    isDetecting ? 'text-amber-600 bg-amber-50' : 'text-emerald-600 bg-emerald-50'
+                    isDetecting ? 'text-(--saai-yellow-700) bg-(--saai-yellow-50)' : 'text-(--saai-chart-positive) bg-(--saai-green-50)'
                   }`}>
                     {isDetecting ? t.btnCheckCamera : t.btnCheckStatus}
                   </button>
@@ -422,8 +435,8 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
           </div>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
-                <UserX className="w-4 h-4 text-amber-500" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-full bg-(--saai-yellow-50) flex items-center justify-center shrink-0 mt-0.5">
+                <UserX className="w-4 h-4 text-(--saai-yellow-600)" aria-hidden="true" />
               </div>
               <div>
                 <p className={`text-base font-medium ${S.textPrimary}`}>{t.counterStay}</p>
@@ -432,7 +445,7 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
             </div>
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 mt-0.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-hidden="true" />
+                <CheckCircle2 className="w-4 h-4 text-(--saai-status-success)" aria-hidden="true" />
               </div>
               <div>
                 <p className={`text-base font-medium ${S.textPrimary}`}>{t.kioskClean}</p>
@@ -456,14 +469,14 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
             />
             <ScanlineOverlay />
             <div className="absolute top-1.5 left-1.5 text-3xs text-white bg-black/50 px-2 py-0.5 rounded flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+              <span className="w-1.5 h-1.5 rounded-full bg-(--saai-status-success)" aria-hidden="true" />
               {t.frontEntrance}
             </div>
           </div>
 
           {/* Camera 2: 현재 시나리오 CCTV */}
           <div className={`aspect-video bg-gray-900 rounded-lg relative overflow-hidden transition-[box-shadow] duration-500 ${
-            isDetecting ? 'ring-1 ring-amber-400/70' : isAlerting ? 'ring-1 ring-red-500/70' : ''
+            isDetecting ? 'ring-1 ring-(--saai-status-warning)/70' : isAlerting ? 'ring-1 ring-(--saai-status-error)/70' : ''
           }`}>
             <Image
               src={scenario.cctv.src}
@@ -477,8 +490,8 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
             {/* Phase tint overlay */}
             <div
               className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
-                isDetecting ? 'opacity-100 bg-amber-500/15'
-                : isAlerting ? 'opacity-100 bg-red-500/15'
+                isDetecting ? 'opacity-100 bg-(--saai-status-warning)/15'
+                : isAlerting ? 'opacity-100 bg-(--saai-status-error)/15'
                 : 'opacity-0 bg-transparent'
               }`}
               aria-hidden="true"
@@ -494,31 +507,32 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
                 transition={{ duration: 0.35 }}
                 aria-hidden="true"
               >
-                <div className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${isAlerting ? 'border-red-400' : 'border-amber-400'}`} />
-                <div className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${isAlerting ? 'border-red-400' : 'border-amber-400'}`} />
-                <div className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${isAlerting ? 'border-red-400' : 'border-amber-400'}`} />
-                <div className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${isAlerting ? 'border-red-400' : 'border-amber-400'}`} />
+                <div className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${isAlerting ? 'border-(--saai-red-400)' : 'border-(--saai-status-warning)'}`} />
+                <div className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${isAlerting ? 'border-(--saai-red-400)' : 'border-(--saai-status-warning)'}`} />
+                <div className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${isAlerting ? 'border-(--saai-red-400)' : 'border-(--saai-status-warning)'}`} />
+                <div className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${isAlerting ? 'border-(--saai-red-400)' : 'border-(--saai-status-warning)'}`} />
               </motion.div>
             )}
             <div className="absolute top-1.5 left-1.5 text-3xs text-white bg-black/50 px-2 py-0.5 rounded flex items-center gap-1">
               <span className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
-                isDetecting ? 'bg-amber-400 animate-pulse motion-reduce:animate-none'
-                : isAlerting ? 'bg-red-500 animate-pulse motion-reduce:animate-none'
-                : 'bg-emerald-500'
+                isDetecting ? 'bg-(--saai-status-warning) animate-pulse motion-reduce:animate-none'
+                : isAlerting ? 'bg-(--saai-status-error) animate-pulse motion-reduce:animate-none'
+                : 'bg-(--saai-status-success)'
               }`} aria-hidden="true" />
               {st.cameraLabel}
             </div>
             <div className={`absolute bottom-1.5 right-1.5 text-3xs px-2 py-0.5 rounded font-bold transition-opacity duration-300 ${
-              isDetecting ? 'opacity-100 text-amber-200 bg-amber-950/70'
-              : isAlerting ? 'opacity-100 text-red-300 bg-red-950/70'
-              : 'opacity-0 text-red-300 bg-red-950/70'
+              isDetecting ? 'opacity-100 text-(--saai-yellow-300) bg-(--saai-yellow-900)/70'
+              : isAlerting ? 'opacity-100 text-(--saai-red-300) bg-(--saai-red-900)/70'
+              : 'opacity-0 text-(--saai-red-300) bg-(--saai-red-900)/70'
             }`}>
               {isDetecting ? t.badgeDetecting : t.badgeAlerting}
             </div>
             {/* Pulsing alert ring */}
             <motion.div
               className="absolute inset-0 rounded-lg pointer-events-none"
-              style={{ boxShadow: 'inset 0 0 0 2px rgba(239,68,68,0.9)' }}
+              /* raw rgba → SAAI_COLORS color-mix (D2 인라인 규칙) */
+              style={{ boxShadow: `inset 0 0 0 2px color-mix(in srgb, ${SAAI_COLORS['status-error']} 90%, transparent)` }}
               animate={isAlerting ? { opacity: reducedMotion ? 0.7 : [0.9, 0.25, 0.9] } : { opacity: 0 }}
               transition={isAlerting && !reducedMotion
                 ? { duration: 1.3, repeat: Infinity, ease: 'easeInOut' }
@@ -528,10 +542,30 @@ function StoreCareMockup({ active = true, storeName = '강남역점', locale = '
             />
           </div>
         </div>
+
+        {/* Recently Resolved — [1-⑦/A6] 4번째 블록: 직전 시나리오를 완료 상태로 표시 */}
+        {list.length > 1 && (
+          <div className={`${S.cardClass} ${D.cardRadius} ${D.cardPadding}`}>
+            <div className="flex items-center justify-between mb-3">
+              <span className={`text-sm font-bold ${S.textSecondary}`}>{t.statusResolved}</span>
+              <span className="text-xs font-medium text-(--saai-green-500)">{t.timeResolved}</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-(--saai-green-50) flex items-center justify-center shrink-0 mt-0.5">
+                <CheckCircle2 className="w-4 h-4 text-(--saai-status-success)" aria-hidden="true" />
+              </div>
+              <div>
+                <p className={`text-base font-medium ${S.textPrimary}`}>{prevTitle}</p>
+                <p className={`text-sm ${S.textSecondary}`}>{prevDesc}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
     </PhoneScreen>
     </PhoneFrame>
+    </MockupViewport>
     </div>
   );
 }

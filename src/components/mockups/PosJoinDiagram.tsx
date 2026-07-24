@@ -1,5 +1,6 @@
 import { Receipt, Route, Plus, ArrowRight, Lightbulb } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
 
 /**
  * PosJoinDiagram — "POS는 무엇이, insight는 왜" 결합 다이어그램 (재정돈 2026-07).
@@ -7,6 +8,10 @@ import type { Locale } from '@/lib/i18n';
  * [POS 영수증 카드] + [insight 행동 카드] → [원인까지 완성된 답].
  * 다크 밴드(bg-slate-900) 위에 놓이는 것을 전제로 한 정적 재현 — 숫자는 예시.
  */
+
+// MockupViewport 예외(MM §5 1b): 제품 UI 재현이 아닌 순수 정적 개념 다이어그램이라
+// 고정 캔버스 없이 flex-col↔row 반응형 재배치가 설계 의도 — 강제 스케일은
+// 극좁 폭에서 오히려 가독성 퇴행.
 
 type Tri = { ko: string; en: string; jp: string };
 const tri = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
@@ -55,7 +60,8 @@ export default function PosJoinDiagram({ locale, className }: { locale: Locale; 
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-xs font-medium text-rose-300/90 break-keep">{T(COPY.posFoot)}</p>
+          {/* Viewport 예외 파일 = .saai-scope 밖 → --saai-* CSS 변수 미해석. SAAI_COLORS 인라인 사용(D2). */}
+          <p className="mt-3 text-xs font-medium break-keep" style={{ color: SAAI_COLORS['red-300'] }}>{T(COPY.posFoot)}</p>
         </div>
 
         <Plus className="mx-auto h-5 w-5 shrink-0 text-slate-500 lg:mx-0" aria-hidden="true" />

@@ -9,7 +9,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { BaseMockupProps } from './types';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
-import { springNotif } from '@/lib/spring-config';
+import MockupViewport from './MockupViewport';
+import { motionEnter } from '@/lib/mockup-motion';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useCurrentTime } from '@/lib/mockup-time';
 import {
@@ -23,6 +24,12 @@ import { getPushI18n } from '@/data/storeagent-mock-i18n';
 const pushIconMap: Record<string, LucideIcon> = {
   AlertTriangle, BarChart2, CloudRain, TrendingUp,
 };
+
+/** iOS 락스크린 배경 — 장식 배경, 브랜드/DS 무관 중립 블루그레이라 정확히 대응하는
+ *  SAAI 토큰이 없어 raw hex 유지(의도적 예외, lint:tokens WARN 허용).
+ *  KakaoAlertMockup(en 락스크린 레이아웃)과 공유. */
+export const LOCK_SCREEN_GRADIENT =
+  'linear-gradient(170deg, #c5cfe0 0%, #b0bcce 40%, #98a8be 100%)';
 
 interface Notification {
   appBg: string;
@@ -90,7 +97,9 @@ export default function PushNotificationMockup({
   const lockDate = tPush.lockDate(tPush.weekdays[now.getDay()], now.getMonth() + 1, now.getDate());
 
   return (
+    // v2 크기 계약: Viewport 390×844 고정 캔버스 자체 래핑 (ChatMockup 패턴).
     <div ref={containerRef} className={className}>
+    <MockupViewport design="phone">
     <PhoneFrame>
     <PhoneScreen
       statusBarBg=""
@@ -100,7 +109,7 @@ export default function PushNotificationMockup({
       {/* Full-bleed lock screen gradient (covers PhoneScreen bg-white) */}
       <div
         className="absolute inset-0 -z-0"
-        style={{ background: 'linear-gradient(170deg, #c5cfe0 0%, #b0bcce 40%, #98a8be 100%)' }}
+        style={{ background: LOCK_SCREEN_GRADIENT }}
       />
 
       {/* Lock Screen Time */}
@@ -109,7 +118,7 @@ export default function PushNotificationMockup({
         <p className="text-[3.5rem] font-extralight text-white tracking-tight leading-none" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.18)' }}>9:41</p>
       </div>
 
-      {/* Notifications — spring slide from top */}
+      {/* Notifications — out_quint slide from top */}
       <div className="relative z-10 flex-1 min-h-0 overflow-y-auto px-3 pb-4 space-y-2" aria-hidden="true">
         <AnimatePresence initial={false}>
           {notifications.slice(0, visibleCount).map((notif, i) => (
@@ -120,7 +129,7 @@ export default function PushNotificationMockup({
               initial={{ opacity: 0, y: -32, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96, transition: { duration: 0.16 } }}
-              transition={springNotif}
+              transition={motionEnter}
             >
               {/* Priority indicator bar */}
               <div className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl ${notif.priorityBar}`} aria-hidden="true" />
@@ -145,6 +154,7 @@ export default function PushNotificationMockup({
       </div>
     </PhoneScreen>
     </PhoneFrame>
+    </MockupViewport>
     </div>
   );
 }

@@ -63,19 +63,13 @@ export interface DesktopMetric {
 
 /** KPI metric card definitions for the desktop dashboard (캐노니컬 파생) */
 export const desktopMetrics: DesktopMetric[] = [
-  { iconName: 'BarChart3', label: '예상 일매출',  target: canonicalStore.forecastRevenueManwon, unit: '만', decimals: 1, trend: `+${canonicalStore.revenueDeltaPct}%`,  up: true,  color: 'violet'  },
-  { iconName: 'Users',     label: '누적 방문자',  target: canonicalStore.visitorsToday,         unit: '명', decimals: 0, trend: `${canonicalStore.visitorsDeltaPct}%`,   up: false, color: 'blue'    },
-  { iconName: 'Eye',       label: '평균 체류시간', target: canonicalStore.avgStayMin,            unit: '분', decimals: 1, trend: '+18%',  up: true,  color: 'emerald' },
-  { iconName: 'MapPin',    label: '매대 전환율',  target: canonicalStore.conversionRate,        unit: '%',  decimals: 0, trend: '+4.2%', up: true,  color: 'amber'   },
+  { iconName: 'BarChart3', label: '예상 일매출',  target: canonicalStore.forecastRevenueManwon, unit: '만', decimals: 1, trend: `+${canonicalStore.revenueDeltaPct}%`,  up: true,  color: 'primary'  },
+  { iconName: 'Users',     label: '누적 방문자',  target: canonicalStore.visitorsToday,         unit: '명', decimals: 0, trend: `${canonicalStore.visitorsDeltaPct}%`,   up: false, color: 'cyan'    },
+  { iconName: 'Eye',       label: '평균 체류시간', target: canonicalStore.avgStayMin,            unit: '분', decimals: 1, trend: '+18%',  up: true,  color: 'green' },
+  { iconName: 'MapPin',    label: '매대 전환율',  target: canonicalStore.conversionRate,        unit: '%',  decimals: 0, trend: '+4.2%', up: true,  color: 'yellow'   },
 ];
 
 /** Color utility classes for desktop metric icon containers */
-export const desktopColorMap: Record<string, string> = {
-  violet:  'bg-violet-50  text-violet-600',
-  blue:    'bg-primary-lighter    text-primary',
-  emerald: 'bg-emerald-50 text-emerald-600',
-  amber:   'bg-amber-50   text-amber-600',
-};
 
 export interface RankEntry {
   name: string;

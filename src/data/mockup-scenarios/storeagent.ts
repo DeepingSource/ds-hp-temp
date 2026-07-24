@@ -277,23 +277,23 @@ export interface PushNotificationData {
 /** Push notifications displayed on the lock screen mockup. */
 export const pushNotifications: PushNotificationData[] = [
   {
-    appBg: 'bg-red-500',
+    appBg: 'bg-(--saai-status-error)',
     iconKey: 'AlertTriangle',
     time: '방금 전',
     title: '긴급: 음료 냉장고 온도 이상 감지',
     body: '2번 냉장고 내부 온도 12°C → 허용 기준(5°C) 초과. 즉시 확인 필요.',
-    priorityBar: 'bg-red-500',
+    priorityBar: 'bg-(--saai-status-error)',
   },
   {
-    appBg: 'bg-amber-500',
+    appBg: 'bg-(--saai-status-warning)',
     iconKey: 'BarChart2',
     time: '4분 전',
     title: '삼각김밥 재고 12개 — 오후 품절 예상',
     body: '일평균 판매 35개 기준 오후 3시 품절. 추가 발주를 권장합니다.',
-    priorityBar: 'bg-amber-400',
+    priorityBar: 'bg-(--saai-status-warning)',
   },
   {
-    appBg: 'bg-sky-500',
+    appBg: 'bg-(--saai-blue-500)',
     iconKey: 'CloudRain',
     time: '18분 전',
     title: '내일 강수 70% — 우산·우비 발주 제안',
@@ -301,7 +301,7 @@ export const pushNotifications: PushNotificationData[] = [
     priorityBar: 'bg-gray-300',
   },
   {
-    appBg: 'bg-violet-500',
+    appBg: 'bg-(--saai-purple-600)',
     iconKey: 'TrendingUp',
     time: '1시간 전',
     title: '오늘 매출 ₩1,243,000 · 이번 주 최고',

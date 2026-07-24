@@ -3,6 +3,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
+import MockupViewport from './MockupViewport';
+import { LOCK_SCREEN_GRADIENT } from './PushNotificationMockup';
+import { motionEnter } from '@/lib/mockup-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
@@ -174,14 +177,17 @@ export default function KakaoAlertMockup({
     : Math.min(step, t.alerts.length);
 
   return (
+    // v2 크기 계약: Viewport 390×844 고정 캔버스 자체 래핑 (ChatMockup 패턴).
+    // 하단 가격 카드는 폰 밖 마케팅 크롬이라 Viewport 캔버스(고정 844h) 밖에 둔다.
     <div ref={containerRef} className={className} {...hoverProps}>
+      <MockupViewport design="phone">
       <PhoneFrame>
         {iosStyle ? (
           <PhoneScreen statusBarBg="" homeBg="bg-transparent" darkHomeIndicator={false}>
             {/* Full-bleed lock-screen gradient (covers PhoneScreen bg-white) */}
             <div
               className="absolute inset-0 -z-0"
-              style={{ background: 'linear-gradient(170deg, #c5cfe0 0%, #b0bcce 40%, #98a8be 100%)' }}
+              style={{ background: LOCK_SCREEN_GRADIENT }}
               aria-hidden="true"
             />
 
@@ -212,7 +218,7 @@ export default function KakaoAlertMockup({
                     initial={{ opacity: 0, y: -32, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96, transition: { duration: 0.16 } }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    transition={motionEnter}
                   >
                     <div className="p-3.5">
                       <div className="flex items-start gap-2.5">
@@ -259,7 +265,7 @@ export default function KakaoAlertMockup({
                   <p className="text-2xs opacity-80 leading-tight truncate">{t.channel}</p>
                 </div>
                 <span className="ml-auto flex items-center gap-1 text-3xs font-medium opacity-90">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse motion-reduce:animate-none" aria-hidden="true" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-(--saai-status-success) animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   {t.liveLabel}
                 </span>
               </div>
@@ -280,7 +286,7 @@ export default function KakaoAlertMockup({
                     initial={{ opacity: 0, y: 16, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15 } }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    transition={motionEnter}
                   >
                     <div className="p-3">
                       <div className="flex items-start gap-2">
@@ -303,6 +309,7 @@ export default function KakaoAlertMockup({
           </PhoneScreen>
         )}
       </PhoneFrame>
+      </MockupViewport>
 
       {/* Pricing card — Care value. Marketing chrome, kept OUTSIDE the phone/messaging UI. */}
       <div className="mt-4">
