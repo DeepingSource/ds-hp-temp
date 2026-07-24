@@ -17,7 +17,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
  */
 const COPY: Record<Locale, {
   eyebrow: string;
-  headline: string;
+  headline: [string, string];
   sub: string;
   patentsLabel: string;
   nvidiaLabel: string;
@@ -28,8 +28,8 @@ const COPY: Record<Locale, {
 }> = {
   ko: {
     eyebrow: '딥핑소스 · 왜 우리인가',
-    headline: '오래 해서 잘하는 게 아닙니다. 이 문제가 그런 AI를 요구합니다.',
-    sub: '매장의 문제는 텍스트가 아니라 공간에서 일어납니다. 동선과 체류를 좌표로 읽는 Physical AI — 얼굴을 지운 채로. 우리는 2018년부터 이것 하나를 만들어 왔습니다.',
+    headline: ['오래돼서 잘하는 게 아닙니다.', '이 하나만 파고들었기 때문입니다.'],
+    sub: '매장의 문제는 텍스트가 아니라 공간에서 일어납니다. 동선과 체류를 좌표로 읽는 Physical AI를, 얼굴은 지운 채로 2018년부터 만들어 왔습니다. 지금 당신의 매장이 겪는 문제, 우리가 가장 먼저 답할 수 있습니다.',
     patentsLabel: '기술 특허 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier 파트너',
     partnersMetric: '주요 브랜드 8+',
@@ -39,8 +39,8 @@ const COPY: Record<Locale, {
   },
   en: {
     eyebrow: 'DEEPINGSOURCE · WHY US',
-    headline: "Years alone don't qualify us. This problem demands a different kind of AI.",
-    sub: "Store problems happen in space, not in text. Physical AI that reads movement and dwell as coordinates — with faces erased. We have built exactly this, and only this, since 2018.",
+    headline: ["Years alone don't make us good at this.", "We're good because we've dug into only this."],
+    sub: "Store problems happen in space, not in text. We've built Physical AI that reads movement and dwell as coordinates, faces erased, since 2018. Whatever your store is facing right now, we're the first ones who can answer it.",
     patentsLabel: 'Tech Patents (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier Partner',
     partnersMetric: '8+ Major Brands',
@@ -50,8 +50,8 @@ const COPY: Record<Locale, {
   },
   jp: {
     eyebrow: 'DEEPINGSOURCE · なぜ私たちか',
-    headline: '長くやってきたから、ではありません。この問題が、そういうAIを求めているのです。',
-    sub: '店舗の問題はテキストではなく、空間で起きています。動線と滞在を座標で読むPhysical AI — 顔を消したまま。私たちは2018年から、これひとつを作り続けてきました。',
+    headline: ['長くやってきたから、ではありません。', 'この一つだけを、深く掘ってきたからです。'],
+    sub: '店舗の問題はテキストではなく、空間で起きています。動線と滞在を座標で読むPhysical AIを、顔を消したまま2018年から作り続けてきました。今、あなたの店舗が抱える問題に、私たちが最初に答えます。',
     patentsLabel: '技術特許 (KR 48 / US 41)',
     nvidiaLabel: 'NVIDIA Inception Premier パートナー',
     partnersMetric: '主要ブランド 8+',
@@ -61,15 +61,15 @@ const COPY: Record<Locale, {
   },
 };
 
-const PARTNERS = [
-  'CU / BGF리테일',
-  '올리브영',
-  'GS25',
-  '이마트24',
-  '롯데쇼핑',
-  '현대백화점',
-  '신세계',
-  '교보문고',
+const PARTNERS: { name: string; logoUrl?: string }[] = [
+  { name: 'CU / BGF리테일' },
+  { name: '올리브영' },
+  { name: 'GS25' },
+  { name: '이마트24' },
+  { name: '롯데쇼핑' },
+  { name: '현대백화점' },
+  { name: '신세계' },
+  { name: '교보문고' },
 ];
 
 export default function GuideIntroBeat({ locale }: { locale: Locale }) {
@@ -85,7 +85,9 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
             {t.eyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-4 break-keep font-display">
-            {t.headline}
+            {t.headline[0]}
+            <br />
+            {t.headline[1]}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep mb-4">
             {t.sub}
@@ -139,9 +141,18 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
             {PARTNERS.map((brand, i) => (
-              <span key={i} className="text-xs font-bold text-gray-400 tracking-wide hover:text-gray-700 transition-colors">
-                {brand}
-              </span>
+              brand.logoUrl ? (
+                <img
+                  key={i}
+                  src={brand.logoUrl}
+                  alt={brand.name}
+                  className="h-6 object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                />
+              ) : (
+                <span key={i} className="text-xs font-bold text-gray-400 tracking-wide hover:text-gray-700 transition-colors">
+                  {brand.name}
+                </span>
+              )
             ))}
           </div>
         </div>

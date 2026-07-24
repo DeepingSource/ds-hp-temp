@@ -24,42 +24,47 @@ const MultiStoreDashboardMockup = dynamic(
  * Resolves the HQ-scale tension ProblemBeat's third card raises (편차 100개): find why the
  * best store works and replicate it, all stores to one standard on one HQ screen. The single
  * conversion bridge to /enterprise.
- *
- * 피드백 재설계(2026-07): 목업이 커지며 컨테이너가 깨지던 5:7 배치를 6:6으로 되돌리고
- * 목업은 max-w-md 상한의 보조 증거로 축소 — 대신 "편차 → 하나의 표준" 등화 애니메이션
- * 비주얼을 메시지 중심에 놓는다(들쭉날쭉한 매장 막대가 하나의 기준선으로 정렬).
  */
 
 const dict: Record<
   Locale,
-  { eyebrow: string; heading: string; body: string; before: string; after: string; cta: string; mockupCaption: string }
+  { eyebrow: string; heading: string; body: [string, string]; before: string; after: string; cta: string; mockupCaption: string }
 > = {
   ko: {
     eyebrow: '모든 매장을, 한 매장처럼',
     heading: '가장 잘되는 매장을, 전국 표준으로.',
-    body: '잘되는 이유를 데이터로 찾아, 전 매장에 옮깁니다. 흩어진 전국 매장을 하나의 기준으로 — 본사 한 화면에서.',
+    body: [
+      '잘되는 이유를 데이터로 찾아, 전 매장에 옮깁니다.',
+      '흩어진 전국 매장을, 본사 한 화면에서 하나의 기준으로 모읍니다.',
+    ],
     before: '편차 100개',
     after: '하나의 표준',
     cta: '본사 맞춤 제안 받기',
-    mockupCaption: '본사 한 화면 — 전 매장을 같은 기준으로 봅니다',
+    mockupCaption: '본사 한 화면, 전 매장을 같은 기준으로 봅니다.',
   },
   en: {
     eyebrow: 'Scattered stores, one standard',
     heading: 'Make your best store the national standard.',
-    body: 'Find in data why the best store works, and carry it to every store. Scattered stores nationwide onto one standard — on one HQ screen.',
+    body: [
+      'Find in data why the best store works, and carry it to every store.',
+      'Bring every store nationwide onto one standard, from a single HQ screen.',
+    ],
     before: '100 variances',
     after: 'One standard',
     cta: 'Get an HQ proposal',
-    mockupCaption: 'One HQ screen — every store against the same standard',
+    mockupCaption: 'One HQ screen. Every store measured against the same standard.',
   },
   jp: {
     eyebrow: 'バラバラの全店舗を、ひとつの基準へ',
     heading: '一番良い店舗を、全国の標準に。',
-    body: '良い理由をデータで見つけ、全店舗へ展開します。バラバラの全店舗をひとつの基準へ — 本部のひとつの画面で。',
+    body: [
+      '良い理由をデータで見つけ、全店舗へ展開します。',
+      'バラバラの全店舗を、本部のひとつの画面でひとつの基準にまとめます。',
+    ],
     before: 'ばらつき100',
     after: 'ひとつの標準',
     cta: '本部向けのご提案を受け取る',
-    mockupCaption: '本部のひとつの画面 — 全店舗を同じ基準で見ます',
+    mockupCaption: '本部のひとつの画面。全店舗を同じ基準で見ます。',
   },
 };
 
@@ -136,17 +141,13 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
                 {t.heading}
               </h2>
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-gray-600 break-keep">{t.body}</p>
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-gray-600 break-keep">
+                {t.body[0]}
+                <br />
+                {t.body[1]}
+              </p>
 
               <StandardizeBars before={t.before} after={t.after} />
-
-              <Link
-                href={localeHref(locale, '/enterprise')}
-                className="btn-primary btn-lg mt-8 inline-flex"
-              >
-                {t.cta}
-                <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
-              </Link>
             </div>
 
             {/* 보조 증거 — HQ 대시보드 목업(max-w-md 상한, 레이아웃을 밀지 않는다) */}
@@ -154,6 +155,17 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
               {/* 크기·프레임은 목업(MockupViewport+디바이스 프레임) 소관 — 호출부는 폭만(v2 계약) */}
               <MultiStoreDashboardMockup locale={locale} />
               <p className="mt-3 text-center text-xs text-gray-500 break-keep">{t.mockupCaption}</p>
+            </div>
+
+            {/* CTA 버튼 — 데모/목업 아래 전체 폭/중앙 배치 */}
+            <div className="mt-4 flex justify-center pt-2 lg:col-span-2">
+              <Link
+                href={localeHref(locale, '/enterprise')}
+                className="btn-primary btn-lg inline-flex items-center justify-center text-center"
+              >
+                {t.cta}
+                <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </div>

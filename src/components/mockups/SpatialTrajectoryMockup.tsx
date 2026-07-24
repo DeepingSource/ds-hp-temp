@@ -34,7 +34,7 @@ type PromiseCard = { n: string; title: string; body: string };
 type Copy = {
   eyebrow: string;
   heading: string;
-  lead: string;
+  lead: [string, string];
   steps: [string, string, string];
   videoAlt: string;
   cards: [PromiseCard, PromiseCard, PromiseCard];
@@ -45,8 +45,11 @@ type Copy = {
 const COPY: Record<Locale, Copy> = {
   ko: {
     eyebrow: '공간 지능 · MTMC 추적',
-    heading: '카메라가 몇 대든, 같은 사람을 이어서 추적합니다 — 얼굴 없이',
-    lead: '대형마트·쇼핑몰·물류 센터에서 한 사람의 동선을 여러 카메라에 걸쳐 추적해야 합니다. 그러나 얼굴 인식 없이. MTMC가 이 두 요구를 동시에 풉니다.',
+    heading: '카메라가 몇 대든, 같은 사람을 이어서 추적합니다.',
+    lead: [
+      '대형마트·쇼핑몰·물류 센터에서는 한 사람의 동선을 여러 카메라에 걸쳐 추적해야 합니다.',
+      '그러나 얼굴 인식 없이. MTMC가 이 두 요구를 동시에 풉니다.',
+    ],
     steps: ['픽셀', '카메라', '공간 좌표'],
     videoAlt: '여러 대의 카메라에 걸쳐 같은 사람을 얼굴 없이 하나의 ID로 연속 추적하는 MTMC 실제 영상',
     cards: [
@@ -59,8 +62,11 @@ const COPY: Record<Locale, Copy> = {
   },
   en: {
     eyebrow: 'Spatial AI · MTMC Tracking',
-    heading: 'Track the same person across many cameras — without faces',
-    lead: 'In hypermarkets, malls, and logistics centers, one person must be tracked across many cameras — yet without face recognition. MTMC solves both at once.',
+    heading: 'Track the same person across as many cameras as it takes.',
+    lead: [
+      'In hypermarkets, malls, and logistics centers, one person must be tracked across many cameras.',
+      'But never by recognizing their face. MTMC solves both at once.',
+    ],
     steps: ['Pixel', 'Camera', 'Spatial coords'],
     videoAlt: 'Real MTMC footage tracking the same person across multiple cameras with a single ID, without faces',
     cards: [
@@ -73,8 +79,11 @@ const COPY: Record<Locale, Copy> = {
   },
   jp: {
     eyebrow: 'Spatial AI · MTMC Tracking',
-    heading: 'カメラが複数あっても、同一人物を連続追跡します — 顔なしで',
-    lead: '大型スーパー・ショッピングモール・物流センターでは、一人の動線を複数のカメラにまたがって追跡する必要があります。しかし顔認識なしで。MTMCがこの二つを同時に解決します。',
+    heading: 'カメラが何台あっても、同一人物を連続して追跡します。',
+    lead: [
+      '大型スーパー・ショッピングモール・物流センターでは、一人の動線を複数のカメラにまたがって追跡する必要があります。',
+      'しかし、顔認識なしで。MTMCが、この二つの要求を同時に解決します。',
+    ],
     steps: ['ピクセル', 'カメラ', '空間座標'],
     videoAlt: '複数のカメラにまたがって同一人物を顔なしで一つのIDで連続追跡するMTMCの実映像',
     cards: [
@@ -124,7 +133,9 @@ export default function SpatialTrajectoryMockup({
         {t.heading}
       </h2>
       <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-5 max-w-2xl">
-        {t.lead}
+        {t.lead[0]}
+        <br />
+        {t.lead[1]}
       </p>
 
       {/* Step pipeline: Pixel → Camera → Spatial coords */}
@@ -207,8 +218,7 @@ export default function SpatialTrajectoryMockup({
       </div>
 
       {showTechLink && (
-        /* pr-14: once 모드 리플레이 버튼(absolute bottom-3 right-3, 36px)과 겹치지 않게 */
-        <div className="mt-5 flex justify-end pr-14">
+        <div className="mt-5 flex justify-end">
           <Link
             href={localeHref(locale, '/technology/spatial-ai')}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-light hover:text-white transition-colors"
@@ -217,10 +227,6 @@ export default function SpatialTrajectoryMockup({
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
-      )}
-
-      {playMode === 'once' && done && !reducedMotion && (
-        <MockupReplayButton locale={locale} onReplay={replay} tone="dark" />
       )}
     </div>
   );

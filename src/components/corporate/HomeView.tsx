@@ -33,7 +33,7 @@ const ctaDict: Record<
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다.\n도입 상담으로 가장 빠른 길을 함께 찾습니다.',
     close: '가장 빠른 길 찾기',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
-    revealLead: '본사와 매장, 사장과 손님 — 보이지 않던 사이를 메웁니다.',
+    revealLead: '본사와 매장, 사장과 손님.\n보이지 않던 사이를 메웁니다.',
     revealSign: '그것이 SAAI입니다 (Spatial·Anonymized·Agentic·Intelligence).',
   },
   en: {
@@ -42,7 +42,7 @@ const ctaDict: Record<
     sub: 'Change one store, and the whole operation changes. Talk to us and we’ll map the fastest path.',
     close: 'Map your fastest path',
     reassure: 'Free consultation · reply within 1–2 business days',
-    revealLead: "HQ and store, owner and customer — we fill the gap you couldn't see.",
+    revealLead: "HQ and store, owner and customer.\nWe fill the gap you couldn't see.",
     revealSign: 'That is SAAI (Spatial·Anonymized·Agentic·Intelligence).',
   },
   jp: {
@@ -51,7 +51,7 @@ const ctaDict: Record<
     sub: '一店舗が変われば、運営全体が変わります。導入のご相談で、最短の道を見つけます。',
     close: '最短の道を見つける',
     reassure: '無料相談・営業日1〜2日以内に返信',
-    revealLead: '本部と店舗、店主とお客様 — 見えなかった隙間を埋めます。',
+    revealLead: '本部と店舗、店主とお客様。\n見えなかった隙間を埋めます。',
     revealSign: 'それが SAAI です (Spatial·Anonymized·Agentic·Intelligence)。',
   },
 };
@@ -146,7 +146,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
         <ParallaxWatermark src={`${BASE}/images/saai-symbol.svg`} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-2xs font-bold uppercase tracking-[0.25em] text-gray-400 mb-6">{cta.kicker}</p>
-          <p className="text-base sm:text-lg text-gray-400 mb-2 max-w-xl mx-auto break-keep">
+          <p className="text-base sm:text-lg text-gray-400 mb-2 max-w-xl mx-auto break-keep whitespace-pre-line">
             {cta.revealLead ?? purpose[locale].statement}
           </p>
           <p className="text-sm font-bold tracking-[0.15em] text-primary-light mb-8 font-brand">

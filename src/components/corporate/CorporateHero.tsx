@@ -22,31 +22,37 @@ const trackChip: Record<Locale, string> = {
 };
 
 /** Fixed (non-rotating) alt/caption — the rotating frames are decorative, like the noun layer. */
-const heroImg: Record<Locale, { alt: string; caption: string }> = {
+const heroImg: Record<Locale, { alt: string; caption: [string, string] }> = {
   ko: {
     alt: '여섯 공간 — 매장·현장·전시장·물류센터·카페·무인매장 — 같은 CCTV 위에서 얼굴 없이 동선을 추적',
-    caption: '여섯 공간, 같은 약속 — 누구인지는 묻지 않습니다.',
+    caption: ['여섯 공간, 같은 약속.', '누구인지는 묻지 않습니다.'],
   },
   en: {
     alt: 'Six spaces — store, industrial floor, showroom, warehouse, café, unmanned store — tracked on the same CCTV, without faces',
-    caption: 'Six spaces, one promise — we never ask who you are.',
+    caption: ['Six spaces, one promise.', 'We never ask who you are.'],
   },
   jp: {
     alt: '6つの空間 — 店舗・現場・展示場・物流センター・カフェ・無人店舗 — 同じCCTVの上で顔なしで動線を追跡',
-    caption: '6つの空間、同じ約束 — 誰なのかは問いません。',
+    caption: ['6つの空間、同じ約束。', '誰なのかは問いません。'],
   },
 };
 
 /**
- * Hero sub — the hero carries the claim (홈 정제계획 §8-1): generic AI cannot see
- * physical space → that is the job of Spatial AI → existing CCTVs, faces erased.
- * 경쟁사 실명은 히어로급에서 쓰지 않는다 — 실명 언급은 비교 섹션 카드 타이틀의
- * 작은 표기("범용 AI (ChatGPT · Claude 등)")로만 한정.
+ * Hero sub — generic AI can't see space → AI that misses spatial signals can't change space.
  */
-const heroSub: Record<Locale, string> = {
-  ko: '일반적인 AI는 화면 밖 공간을 보지 못합니다. 공간을 읽는 건 Spatial AI의 일 — 쓰던 CCTV 그대로, 얼굴은 지우고 흐름만.',
-  en: "Generic AI can't see beyond the screen. Reading space is the work of Spatial AI — your existing CCTVs, faces erased, flow only.",
-  jp: '一般的なAIは、画面の外の空間が見えません。空間を読むのはSpatial AIの仕事 — 既存のCCTVのまま、顔は消して流れだけ。',
+const heroSub: Record<Locale, [string, string]> = {
+  ko: [
+    '일반적인 AI는 화면 밖 공간을 보지 못합니다.',
+    '공간의 신호를 놓치는 AI는, 공간을 바꾸지 못합니다.',
+  ],
+  en: [
+    "Generic AI can't see beyond the screen.",
+    "AI that misses spatial signals can't change your space.",
+  ],
+  jp: [
+    '一般的なAIは、画面の外の空間が見えません。',
+    '空間の信号を読み取れないAIは、空間を変えられません。',
+  ],
 };
 
 /**
@@ -92,7 +98,9 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
                 </span>
               </h1>
               <p className="mt-6 text-base sm:text-lg text-gray-600 font-medium leading-relaxed break-keep max-w-2xl animate-fade-in-up delay-200">
-                {heroSub[locale]}
+                {heroSub[locale][0]}
+                <br />
+                {heroSub[locale][1]}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-300">
                 <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg">
@@ -110,7 +118,9 @@ export default function CorporateHero({ locale }: { locale: Locale }) {
               <CorporateHeroFigure images={heroSpaceImages} alt={img.alt} trackLabel={trackChip[locale]} />
               <figcaption className="mt-3 flex items-center gap-2 text-xs text-gray-500">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
-                <span className="break-keep">{img.caption}</span>
+                <span className="break-keep">
+                  {img.caption[0]} {img.caption[1]}
+                </span>
               </figcaption>
             </figure>
           </div>
