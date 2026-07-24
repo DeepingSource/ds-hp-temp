@@ -12,6 +12,8 @@ import { crumb } from '@/lib/breadcrumb-labels';
 import { SealSdkMockup } from '@/components/mockups';
 import LoopVideo from '@/components/ui/LoopVideo';
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import MidCta from '@/components/corporate/MidCta';
+import { contactEnterpriseHref } from '@/lib/cta-canon';
 
 type Promise = { letter: string; word: string; desc: string };
 type Step = { title: string; desc: string };
@@ -62,7 +64,6 @@ type Copy = {
   howStepLabel: (n: number) => string;
   howSteps: Step[];
 
-  matrixEyebrow: string;
   matrixTitle: string;
   matrixSub: string;
   matrixHeadFeature: string;
@@ -104,6 +105,7 @@ type Copy = {
   ctaTitle: string;
   ctaSub: string;
   ctaPrimary: string;
+  ctaSecondary: string;
 };
 
 const VISION_TASKS = (names: string[]): VisionTask[] => [
@@ -189,7 +191,6 @@ const ko: Copy = {
     { title: '규정 준수', desc: '익명화된 데이터를 내보내, AI 모델이 개인정보 보호 규정을 준수하도록 합니다.' },
   ],
 
-  matrixEyebrow: 'Comparison',
   matrixTitle: '블러·마스크와 무엇이 다른가',
   matrixSub: '같은 비식별화라도, 데이터의 쓸모가 남느냐가 다릅니다.',
   matrixHeadFeature: '구분',
@@ -282,6 +283,7 @@ const ko: Copy = {
   ctaTitle: '익명화를 처음부터, 설계에 넣습니다',
   ctaSub: '운영 환경과 연동 요건을 공유해 주시면, 신원 보호를 내장한 적합한 구성을 함께 설계합니다.',
   ctaPrimary: '도입 문의',
+  ctaSecondary: '평가판·샘플 요청',
 };
 
 const en: Copy = {
@@ -356,7 +358,6 @@ const en: Copy = {
     { title: 'Stay compliant', desc: 'Export the de-identified data so your AI model meets privacy regulations.' },
   ],
 
-  matrixEyebrow: 'Comparison',
   matrixTitle: 'What sets it apart from blur and masking',
   matrixSub: 'Same de-identification — but the difference is whether the data stays useful.',
   matrixHeadFeature: 'Feature',
@@ -449,6 +450,7 @@ const en: Copy = {
   ctaTitle: 'We design anonymization in from the start',
   ctaSub: 'Share your operating environment and integration requirements, and we’ll design a fit with identity protection built in.',
   ctaPrimary: 'Get in touch',
+  ctaSecondary: 'Request a trial & sample',
 };
 
 const jp: Copy = {
@@ -523,7 +525,6 @@ const jp: Copy = {
     { title: '規制順守', desc: '匿名化されたデータを書き出し、AIモデルが個人情報保護規制を順守するようにします。' },
   ],
 
-  matrixEyebrow: 'Comparison',
   matrixTitle: 'ブラー・マスクと何が違うのか',
   matrixSub: '同じ匿名化でも、データの有用性が残るかどうかが違います。',
   matrixHeadFeature: '項目',
@@ -616,6 +617,7 @@ const jp: Copy = {
   ctaTitle: '匿名化を、最初から設計に組み込みます',
   ctaSub: '運用環境と連携要件を共有いただければ、身元保護を内蔵した適切な構成を一緒に設計します。',
   ctaPrimary: 'お問い合わせ',
+  ctaSecondary: '評価版・サンプルを申請',
 };
 
 const C: Record<Locale, Copy> = { ko, en, jp };
@@ -670,35 +672,33 @@ export default function SealView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
-        </div>
-      </AnimatedSection>
 
-      {/* 3. Before / After */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.baEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.baTitle}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.baSub}</p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {t.baPairs.map((pair, i) => (
-              <BeforeAfterSlider
-                key={pair.label}
-                beforeSrc={pair.original}
-                afterSrc={pair.seal}
-                beforeLabel={t.baBeforeLabel}
-                afterLabel={t.baAfterLabel}
-                caption={pair.label}
-                alt={pair.alt}
-                nudge={i === 0}
-              />
-            ))}
+          {/* Before/After 증명 — 문제 제기와 한 섹션으로 병합(②5-1: 가장 강한 시각 증거를 바로 잇는다) */}
+          <div className="mt-16 pt-14 border-t border-gray-100">
+            <div className="mb-12 max-w-2xl">
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.baEyebrow}</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.baTitle}</h3>
+              <p className="text-gray-600 leading-relaxed break-keep">{t.baSub}</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {t.baPairs.map((pair, i) => (
+                <BeforeAfterSlider
+                  key={pair.label}
+                  beforeSrc={pair.original}
+                  afterSrc={pair.seal}
+                  beforeLabel={t.baBeforeLabel}
+                  afterLabel={t.baAfterLabel}
+                  caption={pair.label}
+                  alt={pair.alt}
+                  nudge={i === 0}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* 4. Full vs partial anonymization + data-utility */}
+      {/* 2. 왜 블러·마스크가 아닌가 — compare + utility + matrix 통합(②5-1 중복 제거) */}
       <AnimatedSection className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-12 max-w-2xl">
@@ -730,6 +730,36 @@ export default function SealView({ locale }: { locale: Locale }) {
               <Image src="/images/technology/seal/utility-preserved.webp" alt={t.utilityAlt} fill sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
             </div>
           </div>
+
+          {/* 비교 매트릭스 — compare·utility와 같은 주장이라 한 섹션으로 통합(②5-1) */}
+          <div className="mt-16 pt-14 border-t border-gray-100">
+            <div className="mb-10 max-w-2xl">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 break-keep">{t.matrixTitle}</h3>
+              <p className="text-gray-600 leading-relaxed break-keep">{t.matrixSub}</p>
+            </div>
+            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+              <table className="w-full min-w-[560px] border-collapse text-sm">
+                <thead>
+                  <tr>
+                    <th className="text-left font-medium text-gray-500 py-3 px-4 border-b border-gray-200">{t.matrixHeadFeature}</th>
+                    <th className="text-left font-bold text-primary py-3 px-4 border-b-2 border-primary bg-primary-lighter rounded-t-lg">{t.matrixHeadSeal}</th>
+                    <th className="text-left font-medium text-gray-700 py-3 px-4 border-b border-gray-200">{t.matrixHeadBlur}</th>
+                    <th className="text-left font-medium text-gray-700 py-3 px-4 border-b border-gray-200">{t.matrixHeadMask}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {t.matrixRows.map((row) => (
+                    <tr key={row.feature}>
+                      <td className="py-3 px-4 border-b border-gray-100 font-medium text-gray-900 break-keep">{row.feature}</td>
+                      <td className="py-3 px-4 border-b border-gray-100 bg-primary-lighter/50 text-gray-900 font-medium break-keep">{row.seal}</td>
+                      <td className="py-3 px-4 border-b border-gray-100 text-gray-500 break-keep">{row.blur}</td>
+                      <td className="py-3 px-4 border-b border-gray-100 text-gray-500 break-keep">{row.mask}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </AnimatedSection>
 
@@ -751,64 +781,44 @@ export default function SealView({ locale }: { locale: Locale }) {
               </figure>
             ))}
           </div>
-        </div>
-      </AnimatedSection>
 
-      {/* 6. How it works */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.howEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.howTitle}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.howSub}</p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {t.howSteps.map((step, i) => (
-              <div key={step.title} className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden">
-                <div className="relative aspect-[3/2] w-full bg-gray-100 border-b border-gray-100">
-                  <Image src={`/images/technology/seal/flow-0${i + 1}.webp`} alt={`${t.howStepLabel(i + 1)} — ${step.title}`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
+          {/* 작동 3단계 — 검증(vision tasks)과 메커니즘을 한 섹션으로(②5-1 재편) */}
+          <div className="mt-16 pt-14 border-t border-gray-200">
+            <div className="mb-10 max-w-2xl">
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.howEyebrow}</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 break-keep">{t.howTitle}</h3>
+              <p className="text-gray-600 leading-relaxed break-keep">{t.howSub}</p>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {t.howSteps.map((step, i) => (
+                <div key={step.title} className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden">
+                  <div className="relative aspect-[3/2] w-full bg-gray-100 border-b border-gray-100">
+                    <Image src={`/images/technology/seal/flow-0${i + 1}.webp`} alt={`${t.howStepLabel(i + 1)} — ${step.title}`} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-xs font-mono font-bold text-primary">{t.howStepLabel(i + 1)}</span>
+                    <h4 className="text-base font-bold text-gray-900 mt-1 mb-2 break-keep">{step.title}</h4>
+                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{step.desc}</p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <span className="text-xs font-mono font-bold text-primary">{t.howStepLabel(i + 1)}</span>
-                  <h3 className="text-base font-bold text-gray-900 mt-1 mb-2 break-keep">{step.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{step.desc}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </AnimatedSection>
 
-      {/* 7. Comparison matrix */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.matrixEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.matrixTitle}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.matrixSub}</p>
-          </div>
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table className="w-full min-w-[560px] border-collapse text-sm">
-              <thead>
-                <tr>
-                  <th className="text-left font-medium text-gray-500 py-3 px-4 border-b border-gray-200">{t.matrixHeadFeature}</th>
-                  <th className="text-left font-bold text-primary py-3 px-4 border-b-2 border-primary bg-primary-lighter rounded-t-lg">{t.matrixHeadSeal}</th>
-                  <th className="text-left font-medium text-gray-700 py-3 px-4 border-b border-gray-200">{t.matrixHeadBlur}</th>
-                  <th className="text-left font-medium text-gray-700 py-3 px-4 border-b border-gray-200">{t.matrixHeadMask}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {t.matrixRows.map((row) => (
-                  <tr key={row.feature}>
-                    <td className="py-3 px-4 border-b border-gray-100 font-medium text-gray-900 break-keep">{row.feature}</td>
-                    <td className="py-3 px-4 border-b border-gray-100 bg-primary-lighter/50 text-gray-900 font-medium break-keep">{row.seal}</td>
-                    <td className="py-3 px-4 border-b border-gray-100 text-gray-500 break-keep">{row.blur}</td>
-                    <td className="py-3 px-4 border-b border-gray-100 text-gray-500 break-keep">{row.mask}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {/* 미드 CTA(②A-3·5-2) — 검증을 본 직후, 샘플로 확인 유도 */}
+          <MidCta
+            locale={locale}
+            className="mt-14"
+            label={t.ctaSecondary}
+            href={contactEnterpriseHref('seal')}
+            lead={
+              locale === 'ko'
+                ? '샘플 영상으로 결과를 먼저 확인해 보세요.'
+                : locale === 'jp'
+                ? 'サンプル映像で結果を先にご確認ください。'
+                : 'See the result on a sample video first.'
+            }
+          />
         </div>
       </AnimatedSection>
 
@@ -852,32 +862,7 @@ export default function SealView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* 9. Use cases */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.useEyebrow}</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 break-keep">{t.useTitle}</h2>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.useSub}</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.useCases.map((u, i) => {
-              const Icon = useCaseIcons[i];
-              return (
-                <div key={u.title} className="card p-7 h-full">
-                  <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{u.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed break-keep">{u.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* 10. SEAL as an SDK — promise + code mockup + integration */}
+      {/* 10. SEAL as an SDK — promise + code mockup + integration (+ use cases 흡수, ②5-1) */}
       <AnimatedSection className="py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-14 max-w-2xl">
@@ -924,6 +909,29 @@ export default function SealView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+
+          {/* Use cases — SDK 도입 실무 하위로 흡수(②5-1) */}
+          <div className="mt-16 pt-14 border-t border-gray-100">
+            <div className="mb-10 max-w-2xl">
+              <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.useEyebrow}</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 break-keep">{t.useTitle}</h3>
+              <p className="text-gray-600 leading-relaxed break-keep">{t.useSub}</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {t.useCases.map((u, i) => {
+                const Icon = useCaseIcons[i];
+                return (
+                  <div key={u.title} className="card p-7 h-full">
+                    <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
+                    </div>
+                    <h4 className="text-base font-bold text-gray-900 mb-2 break-keep">{u.title}</h4>
+                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{u.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </AnimatedSection>
 
@@ -949,10 +957,19 @@ export default function SealView({ locale }: { locale: Locale }) {
           <p className="text-gray-600 text-lg mb-9 break-keep">
             {t.ctaSub}
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2">
-            {t.ctaPrimary}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* 이중 CTA(② D2·5-2): 주=도입 문의(트랙 E 표준 목적지), 보조=평가판·샘플(FAQ 무료 평가 연결) */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href={localeHref(locale, contactEnterpriseHref('seal'))} className="btn-primary btn-lg gap-2">
+              {t.ctaPrimary}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href={`mailto:SAAI@deepingsource.io?subject=${encodeURIComponent(t.ctaSecondary)}`}
+              className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors"
+            >
+              {t.ctaSecondary}
+            </a>
+          </div>
         </div>
       </AnimatedSection>
     </div>
