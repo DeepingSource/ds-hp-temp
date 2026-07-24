@@ -731,15 +731,21 @@ select[aria-invalid="true"]:focus-visible {
    REDUCED MOTION (접근성)
    ======================================== */
 
-/* Word-by-word maskRise — the SAAI reveal (nextrise-motion film00). Pure CSS so it
-   runs at first paint (SSR/SSG-safe, no hydration wait); honors reduced-motion below. */
+/* Word-by-word maskRise — the SAAI reveal (nextrise-motion film00). SSR/SSG-safe: the
+   text ships visible; a tiny <head> script (layout.tsx) adds `wr-fonts-ready` once web
+   fonts finish loading, which is when the rise animates. Gating it on fonts-ready fixes
+   ①8-5: a `font-display:swap` recalc landing mid-rise used to flash an overlap. Honors
+   reduced-motion below (that rule uses !important so it always wins). */
 .wr-clip {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
 }
+/* Fallback (no JS / fonts still pending): fully visible, static — no swap-race, always readable. */
 .wr-word {
   display: inline-block;
+}
+html.wr-fonts-ready .wr-word {
   transform: translateY(110%);
   animation: wordRise 0.6s var(--ease-out-cubic) both;
 }

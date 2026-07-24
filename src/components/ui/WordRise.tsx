@@ -2,11 +2,12 @@ import { Fragment } from 'react';
 
 /**
  * WordRise — word-by-word maskRise reveal (the SAAI launch motif, nextrise-motion
- * film00). Each word rises from a clipped line, staggered. Pure CSS (see globals.css
- * `.wr-clip`/`.wr-word`/`wordRise`), so it runs at first paint with no JS/hydration
- * wait — keeps the component a server component and is SSG-safe. Honors
- * prefers-reduced-motion (words appear instantly). Text stays a single readable
- * string for screen readers / SEO; spaces between words allow normal line wrapping.
+ * film00). Each word rises from a clipped line, staggered. CSS-driven (see globals.css
+ * `.wr-clip`/`.wr-word`/`wordRise`) — stays a server component, SSG-safe. The text ships
+ * visible; the rise animates only once `html.wr-fonts-ready` is set by a tiny parse-time
+ * <head> script (layout.tsx) after web fonts load, so a `font-display:swap` recalc can't
+ * land mid-animation and flash an overlap (①8-5). Honors prefers-reduced-motion (words
+ * appear instantly). Text stays a single readable string for screen readers / SEO.
  */
 export default function WordRise({
   text,

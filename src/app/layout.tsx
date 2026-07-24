@@ -128,6 +128,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* ①8-5: enable the WordRise maskRise only after web fonts load, so a
+            font-display:swap recalc can't land mid-animation and flash an overlap.
+            Runs at parse time (pre-hydration); text is already visible without it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var h=document.documentElement,g=function(){h.classList.add('wr-fonts-ready')};if(!document.fonts){g();return;}if(document.fonts.status==='loaded'){g();return;}document.fonts.ready.then(g).catch(g);}catch(e){document.documentElement.classList.add('wr-fonts-ready')}})();",
+          }}
+        />
         <link rel="manifest" href="/manifest.json" />
         <script
           type="application/ld+json"
