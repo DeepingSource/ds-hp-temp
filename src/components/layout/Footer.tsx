@@ -32,7 +32,7 @@ const techLinks: FLink[] = [
   { href: '/technology/spatial-ai', label: L('Spatial AI', 'Spatial AI', 'Spatial AI') },
   { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI') },
   { href: '/technology/seal', label: L('SEAL (SDK)', 'SEAL', 'SEAL') },
-  { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models') },
+  // Vision Models는 임시 숨김(② D1) — 영상 확보 후 복귀
 ];
 
 const companyLinks: FLink[] = [

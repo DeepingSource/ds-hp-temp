@@ -46,7 +46,7 @@ const TRANSLATED_PATHS = new Set<string>([
   '/technology/anonymizer',
   '/technology/seal',
   '/technology/spatial-ai',
-  '/technology/models',
+  '/technology/models', // 숨김 페이지지만 ko/jp 물리 라우트 보존 — 직접 URL 접근 유지(② 6-1)
   '/solutions',
   '/solutions/retail',
   '/solutions/food-beverage',

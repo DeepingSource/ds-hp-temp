@@ -225,7 +225,7 @@ export const saaiPromiseLayer: Record<Locale, {
     pillars: [
       { key: 'spatial', letter: 'S', label: 'Spatial', promise: '공간을 읽습니다. POS 너머 흐름까지.', tech: '/technology/spatial-ai' },
       { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '누구인지 남기지 않습니다. 모든 것의 시작.', tech: '/technology/seal' },
-      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '무엇을 바꿀지 짚어줍니다. 결정은 사람이.', tech: '/technology/models' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '무엇을 바꿀지 짚어줍니다. 결정은 사람이.', tech: '/technology/agentic-ai' },
       { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '쓸수록 정확해집니다. 매장에 맞춰 학습하며.', tech: '/technology' },
     ],
     bridge: '네 개의 근거가, 하나의 루프로 돌아갑니다.',
@@ -237,7 +237,7 @@ export const saaiPromiseLayer: Record<Locale, {
     pillars: [
       { key: 'spatial', letter: 'S', label: 'Spatial', promise: 'Reads the space, beyond the POS.', tech: '/technology/spatial-ai' },
       { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: 'Leaves no one identifiable. Where everything begins.', tech: '/technology/seal' },
-      { key: 'agentic', letter: 'A', label: 'Agentic', promise: 'Points to what to change. People decide.', tech: '/technology/models' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: 'Points to what to change. People decide.', tech: '/technology/agentic-ai' },
       { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: 'Gets sharper the more you use it.', tech: '/technology' },
     ],
     bridge: 'Four foundations, one loop.',
@@ -249,7 +249,7 @@ export const saaiPromiseLayer: Record<Locale, {
     pillars: [
       { key: 'spatial', letter: 'S', label: 'Spatial', promise: '空間を読みます。POSの先の流れまで。', tech: '/technology/spatial-ai' },
       { key: 'anonymized', letter: 'A', label: 'Anonymized', promise: '誰かを残しません。すべての始まり。', tech: '/technology/seal' },
-      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '何を変えるかを示します。決めるのは人。', tech: '/technology/models' },
+      { key: 'agentic', letter: 'A', label: 'Agentic', promise: '何を変えるかを示します。決めるのは人。', tech: '/technology/agentic-ai' },
       { key: 'intelligence', letter: 'I', label: 'Intelligence', promise: '使うほど正確になります。店舗に合わせて学習し。', tech: '/technology' },
     ],
     bridge: '四つの根拠が、ひとつのループへ。',

@@ -57,7 +57,7 @@ const NAV: NavItem[] = [
       { href: '/technology/agentic-ai', label: L('Agentic AI', 'Agentic AI', 'Agentic AI'), desc: L('접근 철학·자율화 단계', 'Principles & levels of autonomy', 'アプローチの哲学・自律化の段階') },
       { header: L('부차적 지원 모듈', 'Supporting Tech Modules', '補助技術モジュール') },
       { href: '/technology/seal', label: L('SEAL', 'SEAL', 'SEAL'), desc: L('Edge SDK', 'Edge SDK', 'Edge SDK') },
-      { href: '/technology/models', label: L('Vision Models', 'Vision Models', 'Vision Models'), desc: L('모델 카탈로그', 'Model catalog', 'モデルカタログ') },
+      // Vision Models(/technology/models)는 임시 숨김(② D1) — 데모 영상 확보 후 복귀. 라우트·데이터 보존.
     ],
   },
   {

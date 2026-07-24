@@ -31,7 +31,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/technology/anonymizer', priority: 0.7, freq: 'monthly' },
   { path: '/technology/seal', priority: 0.7, freq: 'monthly' },
   { path: '/technology/spatial-ai', priority: 0.7, freq: 'monthly' },
-  { path: '/technology/models', priority: 0.7, freq: 'monthly' },
+  // /technology/models — 임시 숨김(② D1): 색인 제외, 라우트는 보존
   { path: '/solutions', priority: 0.8, freq: 'monthly' },
   { path: '/solutions/diagnosis', priority: 0.7, freq: 'monthly' },
   { path: '/solutions/retail', priority: 0.7, freq: 'monthly' },

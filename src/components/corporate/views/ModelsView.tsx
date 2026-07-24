@@ -12,6 +12,12 @@ import { ModelCatalogMockup } from '@/components/mockups';
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
 import LoopVideo from '@/components/ui/LoopVideo';
 
+// ⚠️ 임시 숨김 상태(② D1, 2026-07-24) — 네비·sitemap 제외 + noindex, 라우트·데이터 보존.
+// 데모 영상 확보 후 복귀 시 체크리스트(② §6 복귀 귀속 항목):
+//   1) CTA "모델 요청" → "모델 구성 상담" (⑤§4-2)
+//   2) heroSub "누구가 아니라" → "누구인지가 아니라" 비문 수정 (⑤§5)
+//   3) Header·Footer·sitemap·기술 허브 stack 링크 복원
+//
 // Two-class stage (technology_models_콘텐츠_v1 §1): everything is Live except the models in
 // COMING_SOON below. Live asserts production availability — verify per-model before release.
 type Stage = 'Live' | 'ComingSoon';
