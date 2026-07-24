@@ -217,19 +217,19 @@ method:
 cta:
   ctaHeading:
     ko: |-
-      데이터센터가 아니라,
-      사람이 사는 세상을 만듭니다.
+      데이터센터를 넘어,
+      사람이 사는 공간을 바꿉니다.
     en: |-
-      Not a world in a data center.
-      We build the world people live in.
+      Beyond the data center —
+      we change the spaces people live in.
     jp: |-
-      データセンターの中ではなく、
-      人が暮らす世界をつくります。
+      データセンターを超えて、
+      人が生きる空間を変えます。
   ctaSub:
     ko: 도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요. 영업일 1–2일 안에 회신합니다.
     en: From adoption inquiries to partnership proposals, reach out anytime. We reply within 1–2 business days.
     jp: 導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。1〜2営業日以内にご返信します。
   ctaButton:
-    ko: 문의하기
-    en: Get in touch
-    jp: お問い合わせ
+    ko: 도입 상담 신청
+    en: Request a consultation
+    jp: 導入のご相談

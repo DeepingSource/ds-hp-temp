@@ -52,15 +52,15 @@ leaders:
       ko: VP of Engineering
       en: VP of Engineering
       jp: VP of Engineering
-    # J6: 직함 동어반복 bio 삭제 — 유효 정보는 focus로 통합, 경력 확보 시 bio 복원
+    # ①8-2: 약력 보강(서울대 SW 석사 · 골프존 · SAP) — 김태훈·금상호와 서술 분량 균형
     focus:
       ko: 엔지니어링 조직 총괄 · 플랫폼 구현
       en: Heads engineering · platform delivery
       jp: エンジニアリング統括 · プラットフォーム実装
     bio:
-      ko: ""
-      en: ""
-      jp: ""
+      ko: 서울대학교 소프트웨어 석사. 골프존과 SAP를 거치며 대규모 플랫폼 엔지니어링 경험을 쌓았고, 지금은 공간 AI 플랫폼 구현과 엔지니어링 조직을 총괄합니다.
+      en: M.S. in Software from Seoul National University. Built large-scale platform engineering experience across Golfzon and SAP; now leads engineering and the delivery of the spatial AI platform.
+      jp: ソウル大学ソフトウェア修士。GolfzonとSAPで大規模プラットフォームエンジニアリングの経験を積み、現在は空間AIプラットフォームの実装とエンジニアリング組織を統括しています。
     initials:
       ko: 고
       en: BK

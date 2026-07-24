@@ -450,7 +450,8 @@ export default function AboutView({ locale }: { locale: Locale }) {
               {productsLine.cta} →
             </Link>
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2 rounded-xl inline-flex items-center">
+          {/* J3 확정: 트랙 E 표준 목적지(§2-5). '제품 보기'는 위 productsLine이 secondary 역할 */}
+          <Link href={localeHref(locale, '/contact?type=enterprise')} className="btn-primary btn-lg gap-2 rounded-xl inline-flex items-center">
             {t.ctaButton} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

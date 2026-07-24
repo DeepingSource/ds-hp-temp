@@ -710,9 +710,9 @@
       "partnersSub": "Used across {industries} industries, from convenience stores to hospitals. An NVIDIA Inception partner.",
       "partnerStatsNote": "* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.",
       "certsLabel": "Awards & credentials",
-      "ctaHeading": "Not a world in a data center.\nWe build the world people live in.",
+      "ctaHeading": "Beyond the data center —\nwe change the spaces people live in.",
       "ctaSub": "From adoption inquiries to partnership proposals, reach out anytime. We reply within 1–2 business days.",
-      "ctaButton": "Get in touch",
+      "ctaButton": "Request a consultation",
       "partnerStatLabels": [
         "Cumulative funding",
         "Patents",
@@ -782,9 +782,9 @@
       "partnersSub": "편의점부터 병원까지 {industries}개 업종에서 쓰입니다. NVIDIA Inception 파트너입니다.",
       "partnerStatsNote": "* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.",
       "certsLabel": "인증과 수상",
-      "ctaHeading": "데이터센터가 아니라,\n사람이 사는 세상을 만듭니다.",
+      "ctaHeading": "데이터센터를 넘어,\n사람이 사는 공간을 바꿉니다.",
       "ctaSub": "도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요. 영업일 1–2일 안에 회신합니다.",
-      "ctaButton": "문의하기",
+      "ctaButton": "도입 상담 신청",
       "partnerStatLabels": [
         "누적 투자",
         "특허",
@@ -854,9 +854,9 @@
       "partnersSub": "コンビニから病院まで{industries}業種で使われています。NVIDIA Inceptionパートナーです。",
       "partnerStatsNote": "* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。",
       "certsLabel": "認証と受賞",
-      "ctaHeading": "データセンターの中ではなく、\n人が暮らす世界をつくります。",
+      "ctaHeading": "データセンターを超えて、\n人が生きる空間を変えます。",
       "ctaSub": "導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。1〜2営業日以内にご返信します。",
-      "ctaButton": "お問い合わせ",
+      "ctaButton": "導入のご相談",
       "partnerStatLabels": [
         "累計調達",
         "特許",
@@ -5265,7 +5265,7 @@
         "name": "Bong-kyung Ko",
         "role": "VP of Engineering",
         "focus": "Heads engineering · platform delivery",
-        "bio": "",
+        "bio": "M.S. in Software from Seoul National University. Built large-scale platform engineering experience across Golfzon and SAP; now leads engineering and the delivery of the spatial AI platform.",
         "initials": "BK",
         "photo": "/images/team/bongkyung-ko.webp"
       }
@@ -5294,7 +5294,7 @@
         "name": "고봉경",
         "role": "VP of Engineering",
         "focus": "엔지니어링 조직 총괄 · 플랫폼 구현",
-        "bio": "",
+        "bio": "서울대학교 소프트웨어 석사. 골프존과 SAP를 거치며 대규모 플랫폼 엔지니어링 경험을 쌓았고, 지금은 공간 AI 플랫폼 구현과 엔지니어링 조직을 총괄합니다.",
         "initials": "고",
         "photo": "/images/team/bongkyung-ko.webp"
       }
@@ -5323,7 +5323,7 @@
         "name": "Bong-kyung Ko (コ・ボンギョン)",
         "role": "VP of Engineering",
         "focus": "エンジニアリング統括 · プラットフォーム実装",
-        "bio": "",
+        "bio": "ソウル大学ソフトウェア修士。GolfzonとSAPで大規模プラットフォームエンジニアリングの経験を積み、現在は空間AIプラットフォームの実装とエンジニアリング組織を統括しています。",
         "initials": "BK",
         "photo": "/images/team/bongkyung-ko.webp"
       }
