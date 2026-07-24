@@ -219,6 +219,7 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
                     aria-pressed={seld}
                     aria-label={`${z.label}: ${z.metric}`}
                     onClick={() => setSel(i)}
+                    onFocus={() => setSel(i)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSel(i); }
                     }}
@@ -235,6 +236,8 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
                       strokeWidth={seld ? 3 : 1}
                       className="transition-all duration-300 motion-reduce:transition-none"
                     />
+                    {/* 지도 라벨 기법: 어두운 글자 + 흰 후광(paint-order stroke) — 발열도(옅은 흰~중간 파랑)
+                        전 구간에서 대비 확보. 흰 글자는 가장 진한 존(op≈0.79)에서도 AA 미달이라 폐기. */}
                     <text
                       x={cx}
                       y={cy}
@@ -242,7 +245,11 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
                       dominantBaseline="middle"
                       fontSize={g.h < 40 ? 12 : 13}
                       fontWeight={700}
-                      fill={z.heat > 0.5 ? '#ffffff' : '#374151'}
+                      fill="#1f2937"
+                      stroke="#ffffff"
+                      strokeWidth={3}
+                      paintOrder="stroke"
+                      strokeLinejoin="round"
                       className="pointer-events-none select-none"
                     >
                       {z.label}
@@ -259,7 +266,7 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
             </svg>
 
             {/* heat legend */}
-            <div className="mt-3 flex items-center gap-2 text-2xs font-medium text-gray-400">
+            <div className="mt-3 flex items-center gap-2 text-2xs font-medium text-gray-500">
               <span>{t.legendLow}</span>
               <span
                 className="h-2 flex-1 rounded-full"
@@ -276,7 +283,7 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               {zone.label}
             </div>
-            <p className="text-xs font-medium text-gray-400">{t.metricLabel}</p>
+            <p className="text-xs font-medium text-gray-500">{t.metricLabel}</p>
             <p className="mt-1 text-lg font-semibold text-gray-900 leading-relaxed break-keep">{zone.metric}</p>
           </div>
         </div>

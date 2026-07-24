@@ -125,6 +125,7 @@ const cafeOrderContent: Record<Locale, DeepPartial<OrderFlowCopy>> = {
     cardTitle: '우유 40팩 추가 발주',
     cardReason: '오후 라떼 수요 대비 재고 소진 예상 — 3시 결품 위험',
     item: '우유 (1L)',
+    qtyUnit: '팩', // 발주서 수량행도 카드 계수사(팩)와 일치시킴 — 기본 '개'는 편의점 낱개 단위
     vendor: '유제품·베이커리 물류',
   },
   en: {
@@ -139,6 +140,7 @@ const cafeOrderContent: Record<Locale, DeepPartial<OrderFlowCopy>> = {
     cardTitle: '牛乳40パックの追加発注',
     cardReason: '午後のラテ需要で在庫が枯渇する見込み — 15時に欠品の恐れ',
     item: '牛乳（1L）',
+    qtyUnit: 'パック', // 発注書の数量行もカード計数詞(パック)に合わせる
     vendor: '乳製品・ベーカリー物流',
   },
 };
