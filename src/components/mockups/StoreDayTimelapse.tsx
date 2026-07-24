@@ -59,9 +59,9 @@ interface CopyShape {
 
 const COPY: Record<Locale, CopyShape> = {
   ko: {
-    badge: '예시 화면',
-    title: '강남역점의 하루',
-    subtitle: '하나의 화면에서 펼쳐지는 매장의 하루 — 케어·에이전트·인사이트',
+    badge: '개념 시각화',
+    title: '도심 편의점의 하루',
+    subtitle: '아침부터 밤까지, 매장은 하루 종일 바뀝니다 — 케어·에이전트·인사이트로.',
     play: '재생',
     pause: '일시정지',
     timeOf: (t) => {
@@ -82,9 +82,9 @@ const COPY: Record<Locale, CopyShape> = {
     events: Object.fromEntries(canonicalDay.events.map((e) => [e.refId, e.summary])),
   },
   en: {
-    badge: 'Sample screen',
-    title: 'A Day at Gangnam Station',
-    subtitle: 'A store’s whole day on one screen — Care, Agent, Insight',
+    badge: 'Concept',
+    title: 'A day in a city-center store',
+    subtitle: 'From morning to night, the store keeps changing — through Care, Agent, and Insight.',
     play: 'Play',
     pause: 'Pause',
     timeOf: (t) => {
@@ -113,9 +113,9 @@ const COPY: Record<Locale, CopyShape> = {
     },
   },
   jp: {
-    badge: 'サンプル画面',
-    title: '江南駅店の一日',
-    subtitle: '一画面で広がる店舗の一日 — ケア・エージェント・インサイト',
+    badge: 'コンセプト',
+    title: '都心の店舗の一日',
+    subtitle: '朝から夜まで、店舗は一日中変わり続けます — ケア・エージェント・インサイトで。',
     play: '再生',
     pause: '一時停止',
     timeOf: (t) => {

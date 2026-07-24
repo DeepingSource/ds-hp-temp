@@ -268,7 +268,7 @@ export const DEMOS: DemoItem[] = [
   // ── 체험형 데모 (v5 Experience) ──
   {
     id: 'day-timelapse',
-    label: '#16 강남역점의 하루 (타임랩스)',
+    label: '#16 도심 편의점의 하루 (개념 타임랩스)',
     product: '공통',
     device: 'experience',
     description: '24종이 공유하는 세계관 종합. 스크럽/재생 + 시간대 차트·히트맵·이벤트 피드·KPI. 슬라이더로 직접 조작.',

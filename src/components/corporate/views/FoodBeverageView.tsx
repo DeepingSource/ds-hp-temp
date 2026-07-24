@@ -10,6 +10,8 @@ import {
   Coffee,
 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import type { OrderFlowCopy } from '@/components/mockups/OrderFlowMockup';
+import type { DeepPartial } from '@/components/mockups/types';
 import { localeHref, type Locale } from '@/lib/i18n';
 import SolutionCaseStudies from '@/components/corporate/SolutionCaseStudies';
 import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
@@ -109,9 +111,36 @@ const OrderFlowMockup = dynamic(() => import('@/components/mockups/OrderFlowMock
 
 // 섹션 연결 문구 — 목업 자체 카피(자동 발주·승인 한 번으로)와 톤 정합, 3로케일 동시 작성
 const orderFlowCopy: Record<Locale, { eyebrow: string; heading: string }> = {
-  ko: { eyebrow: '실제 화면', heading: '재고가 떨어지기 전에, 승인 한 번으로 발주까지' },
-  en: { eyebrow: 'Live preview', heading: 'Approve once — ordered before you run out' },
-  jp: { eyebrow: '実際の画面', heading: '在庫が切れる前に、承認ひとつで発注まで' },
+  ko: { eyebrow: '예시 화면', heading: '재고가 떨어지기 전에, 승인 한 번으로 발주까지' },
+  en: { eyebrow: 'Sample screen', heading: 'Approve once — ordered before you run out' },
+  jp: { eyebrow: 'サンプル画面', heading: '在庫が切れる前に、承認ひとつで発注まで' },
+};
+
+// ①5-2: 발주 목업을 카페/외식 품목으로 업종화 — OrderFlowMockup의 content 오버라이드(DeepPartial).
+// 기본 COPY(편의점 삼각김밥)는 갤러리 등 타 소비처가 쓰므로 유지, 여기서만 카페 맥락 주입.
+// 수량(40)·단가(₩1,300/개)는 목업 상수라 유지 — 우유 40팩 ≈ ₩52,000으로 경제성 정합. 지명도 중립화.
+const cafeOrderContent: Record<Locale, DeepPartial<OrderFlowCopy>> = {
+  ko: {
+    sub: '도심 카페 · 승인 한 번으로',
+    cardTitle: '우유 40팩 추가 발주',
+    cardReason: '오후 라떼 수요 대비 재고 소진 예상 — 3시 결품 위험',
+    item: '우유 (1L)',
+    vendor: '유제품·베이커리 물류',
+  },
+  en: {
+    sub: 'A city café · one tap to approve',
+    cardTitle: 'Reorder 40 cartons of milk',
+    cardReason: 'Afternoon latte demand will deplete stock — stockout risk by 3 PM',
+    item: 'Milk (1L)',
+    vendor: 'Dairy & bakery DC',
+  },
+  jp: {
+    sub: '都心のカフェ · 承認ひとつで',
+    cardTitle: '牛乳40パックの追加発注',
+    cardReason: '午後のラテ需要で在庫が枯渇する見込み — 15時に欠品の恐れ',
+    item: '牛乳（1L）',
+    vendor: '乳製品・ベーカリー物流',
+  },
 };
 
 export default function FoodBeverageView({ locale }: { locale: Locale }) {
@@ -255,7 +284,7 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
           </div>
           {/* 폭만 지정(v2 계약) — 크기는 목업의 MockupViewport(phone 390×844) 소관 */}
           <div className="max-w-[300px] mx-auto">
-            <OrderFlowMockup locale={locale} />
+            <OrderFlowMockup locale={locale} content={cafeOrderContent[locale]} />
           </div>
         </div>
       </AnimatedSection>
