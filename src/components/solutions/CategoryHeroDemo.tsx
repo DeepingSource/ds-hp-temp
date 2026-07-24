@@ -130,10 +130,10 @@ function FoodBeverageDemo({ locale }: { locale: Locale }) {
 /* ─────────────────────────── drug-store ─────────────────────────── */
 
 type Zone = { label: string; heat: number; metric: string };
-const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: string }> = {
+const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: string; door: string; legendLow: string; legendHigh: string }> = {
   ko: {
     eyebrow: '구역별 관심 히트맵', heading: '어느 매대가 팔리는지, 바닥이 말해줍니다',
-    metricLabel: '관심도 (접근 · 체류)', hot: 'HOT',
+    metricLabel: '관심도 (접근 · 체류)', hot: 'HOT', door: '입구', legendLow: '낮음', legendHigh: '높음',
     zones: [
       { label: '진입부', heat: 0.45, metric: '통과 62% · 평균 체류 8초' },
       { label: '헬스 · 뷰티', heat: 0.95, metric: '접근 41% · 평균 체류 34초 — 최다 관심' },
@@ -143,7 +143,7 @@ const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: str
   },
   en: {
     eyebrow: 'Zone interest heatmap', heading: 'The floor shows which aisle sells',
-    metricLabel: 'Interest (approach · dwell)', hot: 'HOT',
+    metricLabel: 'Interest (approach · dwell)', hot: 'HOT', door: 'Entrance', legendLow: 'Low', legendHigh: 'High',
     zones: [
       { label: 'Entrance', heat: 0.45, metric: '62% pass-by · 8s avg dwell' },
       { label: 'Health · beauty', heat: 0.95, metric: '41% approach · 34s avg dwell — top interest' },
@@ -153,7 +153,7 @@ const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: str
   },
   jp: {
     eyebrow: 'ゾーン別関心ヒートマップ', heading: 'どの棚が売れるか、フロアが教える',
-    metricLabel: '関心度 (接近 · 滞在)', hot: 'HOT',
+    metricLabel: '関心度 (接近 · 滞在)', hot: 'HOT', door: '入口', legendLow: '低', legendHigh: '高',
     zones: [
       { label: '入口部', heat: 0.45, metric: '通過62% · 平均滞在8秒' },
       { label: 'ヘルス · ビューティ', heat: 0.95, metric: '接近41% · 平均滞在34秒 — 最多関心' },
@@ -162,6 +162,15 @@ const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: str
     ],
   },
 };
+
+// Top-down floor-plan geometry (viewBox 320×252). Index order matches DRUG[].zones:
+// [진입부(입구 앞 스트립), 헬스·뷰티(중앙 대형 = HOT), 카운터(전면 우측), 안쪽 매대(후면 사각지대)]
+const DRUG_GEO = [
+  { x: 20, y: 196, w: 148, h: 28 }, // 0 진입부
+  { x: 20, y: 84, w: 132, h: 98 },  // 1 헬스·뷰티 (HOT)
+  { x: 208, y: 140, w: 92, h: 64 }, // 2 카운터
+  { x: 176, y: 22, w: 124, h: 82 }, // 3 안쪽 매대
+] as const;
 
 function DrugStoreDemo({ locale }: { locale: Locale }) {
   const t = DRUG[locale];
@@ -172,26 +181,93 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
   return (
     <Frame head={t}>
       <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-8 shadow-card">
-        <div className="grid gap-6 sm:grid-cols-[1fr_1fr] items-center">
-          {/* heat grid */}
-          <div className="grid grid-cols-2 gap-2.5" role="group" aria-label={t.metricLabel}>
-            {t.zones.map((z, i) => (
-              <button
-                key={z.label}
-                type="button"
-                aria-pressed={sel === i}
-                onClick={() => setSel(i)}
-                className={`relative flex aspect-[4/3] flex-col justify-end rounded-2xl p-3 text-left transition-all ${
-                  sel === i ? 'ring-2 ring-primary ring-offset-2' : 'ring-1 ring-transparent'
-                }`}
-                style={{ backgroundColor: `rgb(var(--primary-rgb) / ${0.08 + z.heat * 0.6})` }}
-              >
-                {i === hottest && (
-                  <span className="absolute right-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-2xs font-bold text-primary shadow-sm">{t.hot}</span>
-                )}
-                <span className={`text-sm font-bold break-keep ${z.heat > 0.5 ? 'text-white' : 'text-gray-700'}`}>{z.label}</span>
-              </button>
-            ))}
+        {/* ①6-2: 추상 존 버튼 → 매장 평면도(top-down) + 구역별 발열 오버레이 */}
+        <div className="grid gap-6 sm:grid-cols-[1.5fr_1fr] sm:items-center">
+          {/* floor-plan heatmap */}
+          <div>
+            <svg viewBox="0 0 320 252" className="w-full h-auto" role="group" aria-label={t.metricLabel}>
+              {/* store outline */}
+              <rect x="8" y="8" width="304" height="224" rx="14" fill="white" stroke="#e5e7eb" strokeWidth="2" />
+              {/* floor grid */}
+              <g stroke="#f1f5f9" strokeWidth="1" aria-hidden="true">
+                {[48, 88, 128, 168, 208, 248, 288].map((x) => (
+                  <line key={`v${x}`} x1={x} y1="10" x2={x} y2="230" />
+                ))}
+                {[48, 88, 128, 168, 208].map((y) => (
+                  <line key={`h${y}`} x1="10" y1={y} x2="310" y2={y} />
+                ))}
+              </g>
+              {/* door opening on the bottom wall + inward marker */}
+              <rect x="94" y="226" width="48" height="12" fill="white" aria-hidden="true" />
+              <line x1="94" y1="232" x2="94" y2="240" stroke="#cbd5e1" strokeWidth="2" aria-hidden="true" />
+              <line x1="142" y1="232" x2="142" y2="240" stroke="#cbd5e1" strokeWidth="2" aria-hidden="true" />
+              <path d="M112 220 l6 8 l6 -8" fill="none" stroke="#cbd5e1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" />
+              <text x="118" y="248" textAnchor="middle" fontSize="10" fontWeight={600} fill="#94a3b8" aria-hidden="true">{t.door}</text>
+
+              {/* zones — heat by fill opacity, keyboard-accessible */}
+              {t.zones.map((z, i) => {
+                const g = DRUG_GEO[i];
+                const op = 0.12 + z.heat * 0.7;
+                const seld = sel === i;
+                const cx = g.x + g.w / 2;
+                const cy = g.y + g.h / 2;
+                return (
+                  <g
+                    key={z.label}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={seld}
+                    aria-label={`${z.label}: ${z.metric}`}
+                    onClick={() => setSel(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSel(i); }
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <rect
+                      x={g.x}
+                      y={g.y}
+                      width={g.w}
+                      height={g.h}
+                      rx="10"
+                      fill={`rgb(var(--primary-rgb) / ${op})`}
+                      stroke={seld ? 'rgb(var(--primary-rgb))' : 'rgb(var(--primary-rgb) / 0.25)'}
+                      strokeWidth={seld ? 3 : 1}
+                      className="transition-all duration-300 motion-reduce:transition-none"
+                    />
+                    <text
+                      x={cx}
+                      y={cy}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fontSize={g.h < 40 ? 12 : 13}
+                      fontWeight={700}
+                      fill={z.heat > 0.5 ? '#ffffff' : '#374151'}
+                      className="pointer-events-none select-none"
+                    >
+                      {z.label}
+                    </text>
+                    {i === hottest && (
+                      <g pointerEvents="none" aria-hidden="true">
+                        <rect x={g.x + g.w - 40} y={g.y + 7} width="32" height="15" rx="7" fill="#ffffff" opacity="0.92" />
+                        <text x={g.x + g.w - 24} y={g.y + 15} textAnchor="middle" dominantBaseline="middle" fontSize="9" fontWeight={800} fill="rgb(var(--primary-rgb))">{t.hot}</text>
+                      </g>
+                    )}
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* heat legend */}
+            <div className="mt-3 flex items-center gap-2 text-2xs font-medium text-gray-400">
+              <span>{t.legendLow}</span>
+              <span
+                className="h-2 flex-1 rounded-full"
+                style={{ background: 'linear-gradient(90deg, rgb(var(--primary-rgb) / 0.12), rgb(var(--primary-rgb) / 0.85))' }}
+                aria-hidden="true"
+              />
+              <span>{t.legendHigh}</span>
+            </div>
           </div>
 
           {/* readout */}
