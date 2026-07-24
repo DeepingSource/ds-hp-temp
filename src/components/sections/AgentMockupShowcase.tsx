@@ -148,8 +148,9 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
           {/* ── 오른쪽: 고정 프레임 + 내부 콘텐츠 전환 ── */}
           <div className="w-full lg:w-auto lg:flex-shrink-0 flex justify-center min-h-[520px] lg:min-h-[660px]">
             <div className="relative w-full max-w-[360px]">
-              {/* 배경 글로우 */}
-              <div className="absolute inset-0 bg-primary/10 rounded-3xl blur-3xl scale-90 pointer-events-none" aria-hidden="true" />
+              {/* 배경 글로우 제거(④5-2 · 랜딩 A-1) — 컬럼 전체를 덮는 색 블록이
+                  프레임보다 길어 "프레임 뒤 배경 잔상"으로 보였다. 프레임 자체
+                  그림자(PhoneFrame boxShadow)만 남긴다. */}
               {/* 프레임: grid 스택으로 항상 동일 크기 유지, opacity로 전환 */}
               <div
                 className="grid h-full"

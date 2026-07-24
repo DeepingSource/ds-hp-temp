@@ -98,7 +98,9 @@ export default function StoreCareDeviceTabs({
             style={{ gridArea: 'stack' }}
             className={`min-w-0 ${reduced ? '' : 'transition-opacity duration-300'} ${active === 1 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
           >
-            <KakaoAlertMockup locale={locale} active={active === 1} />
+            {/* B2C 가격 카드 숨김 — B2B 페이지 부적합 + 패널 높이 불일치로 인한
+                프레임 밖 배경 블록 잔상 제거 (④3-2 · A-1) */}
+            <KakaoAlertMockup locale={locale} active={active === 1} showPriceCard={false} />
           </div>
         </div>
       </div>
