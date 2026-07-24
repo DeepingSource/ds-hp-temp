@@ -192,3 +192,78 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
     },
   },
 };
+
+/**
+ * 페이지별 핵심 블록(③2-1·3-1·4-1 신규 카피) — 승격 서사의 골자.
+ * queue=의사결정 지원·고객 경험 / pop=만들기→측정 루프·리테일 미디어 /
+ * fit=두 개의 신호원(외부 트렌드는 roadmap 톤)·agentic 발주 제안.
+ */
+export const TOOL_EXTRA: Record<ToolKey, Record<Locale, { title: string; body: string; badge?: string }[]>> = {
+  queue: {
+    ko: [
+      { title: '의사결정 지원', body: '계산대를 더 열까, 셀프 체크아웃을 도입할까 — 지금 붐비는 정도로 정합니다.' },
+      { title: '고객 경험', body: '"예상 대기 6분" 한 줄이, 이탈 대신 기다림을 만듭니다.' },
+    ],
+    en: [
+      { title: 'Decision support', body: 'Open another till, or add self-checkout? Decide by how busy it is right now.' },
+      { title: 'Customer experience', body: 'One line — "about 6 minutes" — turns walk-outs into waiting.' },
+    ],
+    jp: [
+      { title: '意思決定支援', body: 'レジをもう一台開けるか、セルフレジを導入するか — 今の混み具合で決めます。' },
+      { title: '顧客体験', body: '「予想待ち6分」の一行が、離脱を待つ行動に変えます。' },
+    ],
+  },
+  pop: {
+    ko: [
+      { title: '만들고 → 붙이고 → 측정합니다', body: 'saai.store로 1분에 만들고, store pop으로 효과를 측정합니다 — 붙인 뒤가 진짜입니다.' },
+      { title: '리테일 미디어로', body: '측정이 쌓이면 매대 앞은 광고 지면이 됩니다 — saai ads insight로 이어집니다.' },
+    ],
+    en: [
+      { title: 'Make it → post it → measure it', body: 'Make it in a minute on saai.store, then measure it with store pop — what happens after you post it is what counts.' },
+      { title: 'Toward retail media', body: 'As measurement accumulates, the shelf front becomes ad inventory — leading into saai ads insight.' },
+    ],
+    jp: [
+      { title: '作る → 貼る → 測る', body: 'saai.storeで1分で作り、store popで効果を計測します — 貼った後が本番です。' },
+      { title: 'リテールメディアへ', body: '計測が積み重なると、棚の前は広告面になります — saai ads insight につながります。' },
+    ],
+  },
+  fit: {
+    ko: [
+      { title: '두 개의 신호원', body: '밖에서 뜨는 트렌드와, 우리 매장 안의 반응 — 둘을 겹쳐 봅니다.', badge: '외부 트렌드 감지 · 로드맵' },
+      { title: 'agentic 발주 제안', body: '"이 상품, 발주할까요?" — 적합/보류를 근거와 함께 답합니다.' },
+    ],
+    en: [
+      { title: 'Two signal sources', body: 'The trend rising outside, and how your own store reacts — read together.', badge: 'External trend sensing · roadmap' },
+      { title: 'Agentic ordering', body: '"Order this one?" — fit or hold, answered with the evidence.' },
+    ],
+    jp: [
+      { title: '二つのシグナル源', body: '外で伸びるトレンドと、自店の中の反応 — 重ねて見ます。', badge: '外部トレンド検知 · ロードマップ' },
+      { title: 'エージェント発注提案', body: '「この商品、発注しますか？」 — 適合/保留を根拠とともに答えます。' },
+    ],
+  },
+};
+
+/** 페이지별 맥락형 CTA(③7.5 · D4) — 라벨은 맥락형, 목적지는 트랙 규칙(§2-1). */
+export const TOOL_CTA: Record<ToolKey, {
+  mainHref: string;
+  main: Record<Locale, string>;
+  secondary?: { href: string; label: Record<Locale, string> };
+}> = {
+  queue: {
+    mainHref: '/contact?type=enterprise&product=store-queue',
+    main: { ko: '대기·혼잡 진단 문의', en: 'Ask for a queue & crowding review', jp: '待機・混雑診断のご相談' },
+  },
+  pop: {
+    // 두 갈래(ⓐ 제작=사장님 1순위 / ⓑ 측정=브랜드·본사)
+    mainHref: 'https://saai.store',
+    main: { ko: 'POP 만들어보기', en: 'Make a POP on saai.store', jp: 'POPを作ってみる' },
+    secondary: {
+      href: '/contact?type=enterprise&product=store-pop',
+      label: { ko: 'POP 효과 측정 문의', en: 'Ask about POP measurement', jp: 'POP効果測定のご相談' },
+    },
+  },
+  fit: {
+    mainHref: '/contact?type=enterprise&product=store-fit',
+    main: { ko: '발주 판단 상담', en: 'Talk through an ordering decision', jp: '発注判断のご相談' },
+  },
+};

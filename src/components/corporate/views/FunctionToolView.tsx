@@ -11,7 +11,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { MODE_ORDER } from '@/lib/brand-canon';
 import { MODE_COPY, MATRIX_COPY } from '@/data/function-matrix-i18n';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
-import { TOOL_COPY, TOOL_SECTIONS, type ToolKey } from '@/data/tool-pages-i18n';
+import { TOOL_COPY, TOOL_SECTIONS, TOOL_EXTRA, TOOL_CTA, type ToolKey } from '@/data/tool-pages-i18n';
 
 /**
  * FunctionToolView — the standard skeleton for an individual function tool
@@ -124,6 +124,8 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
   const s = TOOL_SECTIONS[locale];
   const modes = MODE_COPY[locale];
   const cells = MATRIX_COPY[locale][tool];
+  const cta = TOOL_CTA[tool];
+  const extras = TOOL_EXTRA[tool][locale];
 
   return (
     <>
@@ -153,6 +155,24 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
             {t.privacy}
           </p>
+          {/* Hero 이중 CTA(③0-A·7.5): 메인=맥락형 전환 + 보조=페이지 내 앵커(이탈 대신 하단 탐색) */}
+          <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
+            {cta.mainHref.startsWith('http') ? (
+              <a href={cta.mainHref} target="_blank" rel="noopener noreferrer" className="btn-primary btn-lg inline-flex items-center gap-2">
+                {cta.main[locale]}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            ) : (
+              <Link href={localeHref(locale, cta.mainHref)} className="btn-primary btn-lg inline-flex items-center gap-2">
+                {cta.main[locale]}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            )}
+            <a href="#what" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">
+              {s.what}
+              <ArrowRight className="w-4 h-4 rotate-90" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -171,7 +191,7 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
       </AnimatedSection>
 
       {/* ── ④ What you learn ── */}
-      <Section variant="alt">
+      <Section variant="alt" id="what">
         <Container>
           <div className="mb-8 max-w-2xl">
             <Eyebrow className="mb-4">{s.what}</Eyebrow>
@@ -183,6 +203,25 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
               </li>
             ))}
           </ul>
+        </Container>
+      </Section>
+
+      {/* ── ④.5 페이지별 핵심 블록 (③2-1·3-1·4-1) — 의사결정/경험·제작→측정 루프·신호원·발주 제안 ── */}
+      <Section variant="default" pad="compact">
+        <Container>
+          <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+            {extras.map((x) => (
+              <div key={x.title} className="rounded-2xl border border-primary/15 bg-primary-lighter/20 p-7">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <h2 className="text-base font-bold text-gray-900 break-keep">{x.title}</h2>
+                  {x.badge && (
+                    <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-2xs font-semibold text-gray-500">{x.badge}</span>
+                  )}
+                </div>
+                <p className="text-gray-700 leading-relaxed break-keep">{x.body}</p>
+              </div>
+            ))}
+          </div>
         </Container>
       </Section>
 
@@ -222,26 +261,47 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
         </Container>
       </Section>
 
-      {/* ── ⑧ Connect · CTA ── */}
+      {/* ── ⑧ Connect · CTA — 반론해소(프라이버시 재확인) 직후 맥락형 CTA(D4) + 옆길 순환 ── */}
       <AnimatedSection className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+            {t.privacy}
+          </p>
+          <div className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            {cta.mainHref.startsWith('http') ? (
+              <a href={cta.mainHref} target="_blank" rel="noopener noreferrer" className="btn-primary btn-lg inline-flex items-center gap-2">
+                {cta.main[locale]}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            ) : (
+              <Link href={localeHref(locale, cta.mainHref)} className="btn-primary btn-lg inline-flex items-center gap-2">
+                {cta.main[locale]}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            )}
+            {cta.secondary && (
+              <Link
+                href={localeHref(locale, cta.secondary.href)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-700 hover:border-primary-light transition-colors no-underline"
+              >
+                {cta.secondary.label[locale]}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            )}
+          </div>
           <Eyebrow className="mb-6 justify-center">{s.connect}</Eyebrow>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {t.connect.map((c) => {
-              const isCta = c.href === '/contact';
-              return (
-                <Link
-                  key={c.label}
-                  href={localeHref(locale, c.href)}
-                  className={isCta
-                    ? 'btn-primary btn-lg inline-flex items-center gap-2'
-                    : 'inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline'}
-                >
-                  {c.label}
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              );
-            })}
+            {t.connect.filter((c) => c.href !== '/contact').map((c) => (
+              <Link
+                key={c.label}
+                href={localeHref(locale, c.href)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:border-primary-light transition-colors no-underline"
+              >
+                {c.label}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            ))}
           </div>
           <Link
             href={localeHref(locale, '/products/functions')}
