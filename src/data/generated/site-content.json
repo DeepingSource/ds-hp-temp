@@ -1769,7 +1769,7 @@
       "differentiatorEyebrow": "Differentiator",
       "differentiatorHeading": "Why our agent excels is not the LLM",
       "differentiatorBody1": "Those judgements are not something just anyone can produce.",
-      "differentiatorBody2": "Agent capabilities are no longer determined by which LLM is used. Frontier model performance is largely comparable. The true difference lies in harness, ontology, and domain knowledge — the scaffolding that makes models operate safely and repeatedly in real workflows, the data structure that precisely represents physical retail stores, and the domain wisdom of what constitutes a vital decision.",
+      "differentiatorBody2": "Agent capability is no longer decided by which LLM you use. The real difference comes from three things we have spent years building in one domain — the harness (scaffolding that runs a model safely and repeatably in real work), the ontology (a data structure that precisely represents the store domain), and domain knowledge (knowing which judgements matter).",
       "differentiatorBody3": "The data fed into it is also different. Spatial data accumulated by anonymizing existing CCTVs and aligning them via MTMC — movement, dwell, conversion — cannot be built overnight.",
       "differentiatorBody4": "We do not build LLMs. There is no need to. Our job is to make these tools operate seamlessly on physical spaces through harnesses, ontologies, and domain knowledge.",
       "baselineEyebrow": "Baseline",
@@ -1807,7 +1807,7 @@
         },
         {
           "title": "Spatial context",
-          "desc": "Multiple cameras are reconciled into one space to read flow, dwell, and conversion. Not who — what moved, and how.",
+          "desc": "An agent that cannot read the space cannot make a single judgement in a store. Flow, dwell, and conversion — cameras reconciled into one space — are the agent’s eyes. Not who; what moved, and how.",
           "linkLabel": "More on Spatial AI"
         },
         {
@@ -1867,7 +1867,7 @@
           "footer": "Execution guardrails · approval loop"
         },
         {
-          "desc": "A domain ontology that reconciles CCTV flow, dwell, and POS transactions into one store context.",
+          "desc": "A Domain Knowledge Graph (domain KG) that reconciles CCTV flow, dwell, and POS into one store context — and normalizes many stores onto the same coordinates and definitions.",
           "footer": "Spatial alignment · data context"
         },
         {
@@ -1890,7 +1890,7 @@
       "differentiatorEyebrow": "차별점",
       "differentiatorHeading": "에이전트가 잘하는 이유는, LLM이 아닙니다",
       "differentiatorBody1": "그 판단, 아무나 낼 수 있는 게 아닙니다.",
-      "differentiatorBody2": "에이전트의 실력은 이제 어떤 LLM을 쓰는지로 갈리지 않습니다. 프론티어 모델의 성능은 이미 거기서 거기입니다. 진짜 차이는 하네스·온톨로지·도메인 지식에서 납니다 — 모델을 실제 업무에서 안전하게, 반복해서 작동하게 만드는 뼈대, 매장이라는 도메인을 정확히 표현하는 데이터 구조, 그리고 무엇이 중요한 판단인지 아는 지식. 저희는 매장 운영이라는 한 도메인에만 몇 년째 파고들며 이 세 가지를 쌓아왔습니다.",
+      "differentiatorBody2": "에이전트의 실력은 이제 어떤 LLM을 쓰는지로 갈리지 않습니다. 진짜 차이는 저희가 매장 운영 한 도메인에서 몇 년째 쌓아온 세 가지 — 하네스(모델을 실무에서 안전하게 반복 작동시키는 뼈대), 온톨로지(매장 도메인을 정확히 표현하는 데이터 구조), 도메인 지식(무엇이 중요한 판단인지 아는 현장 지식)에서 납니다.",
       "differentiatorBody3": "그 위에 올릴 데이터도 다릅니다. 이미 있는 CCTV를 익명화하고 MTMC로 정합해 쌓아온 공간 데이터 — 동선·체류·전환 — 는 하루아침에 만들 수 없습니다.",
       "differentiatorBody4": "LLM은 저희가 만들지 않습니다. 그럴 필요가 없습니다. 저희 일은 이 도구를 하네스와 온톨로지, 도메인 지식으로 실제 물리 공간 위에서 작동하게 만드는 것입니다.",
       "baselineEyebrow": "베이스라인",
@@ -1928,7 +1928,7 @@
         },
         {
           "title": "공간 컨텍스트",
-          "desc": "여러 대의 카메라를 하나의 공간으로 정합해 동선·체류·전환을 읽습니다. \"누가\"가 아니라 \"무엇이 어떻게 움직였는가\"를 봅니다.",
+          "desc": "공간을 읽지 못하는 에이전트는 매장에서 아무 판단도 못 합니다. 여러 카메라를 하나의 공간으로 정합한 동선·체류·전환이 에이전트의 눈입니다 — \"누가\"가 아니라 \"무엇이 어떻게 움직였는가\".",
           "linkLabel": "Spatial AI 자세히"
         },
         {
@@ -1988,7 +1988,7 @@
           "footer": "실행 가드레일 · 승인 루프"
         },
         {
-          "desc": "CCTV 동선·체류·POS 결제 데이터를 하나의 매장 맥락으로 정합하는 도메인 온톨로지.",
+          "desc": "CCTV 동선·체류·POS 결제를 하나의 매장 맥락으로 정합하는 Domain Knowledge Graph(도메인 KG). 한 매장의 정합을 넘어, 여러 매장을 같은 좌표계·같은 정의로 정규화합니다.",
           "footer": "공간 좌표 정합 · 데이터 맥락"
         },
         {
@@ -2011,7 +2011,7 @@
       "differentiatorEyebrow": "差別化要因",
       "differentiatorHeading": "エージェントが優れている理由は、LLMではありません",
       "differentiatorBody1": "その判断は、誰もが出せるものではありません。",
-      "differentiatorBody2": "エージェントの実力はもはやどのLLMを使うかでは決まりません。フロンティアモデルの性能はすでに拮抗しています。真の差はハーネス・オントロジー・ドメイン知識から生まれます。",
+      "differentiatorBody2": "エージェントの実力はもはやどのLLMを使うかでは決まりません。真の差は、店舗運営という一つのドメインで数年かけて積み上げてきた三つ — ハーネス（モデルを実務で安全に繰り返し動かす骨組み）、オントロジー（店舗ドメインを正確に表すデータ構造）、ドメイン知識（何が重要な判断かを知る現場知）から生まれます。",
       "differentiatorBody3": "その上に載せるデータも異なります。既存のCCTVを匿名化し、MTMCで整合して蓄積してきた空間データ（動線・滞在・転換）は一朝一夕には作れません。",
       "differentiatorBody4": "LLMは私たちが作るわけではありません。その必要もありません。私たちの仕事は、このツールをハーネスとオントロジー、ドメイン知識によって実際の物理空間の上で動作させることです。",
       "baselineEyebrow": "ベースライン",
@@ -2049,7 +2049,7 @@
         },
         {
           "title": "空間コンテキスト",
-          "desc": "複数のカメラを一つの空間として整合し、動線・滞在・転換を読みます。「誰が」ではなく「何がどう動いたか」を見ます。",
+          "desc": "空間を読めないエージェントは、店舗では何の判断もできません。複数のカメラを一つの空間に整合した動線・滞在・転換がエージェントの目です——「誰が」ではなく「何がどう動いたか」。",
           "linkLabel": "Spatial AI の詳細"
         },
         {
@@ -2109,7 +2109,7 @@
           "footer": "実行ガードレール・承認ループ"
         },
         {
-          "desc": "CCTVの動線・滞在・POS決済データを一つの店舗コンテキストへ整合するドメインオントロジー。",
+          "desc": "CCTVの動線・滞在・POS決済を一つの店舗コンテキストへ整合する Domain Knowledge Graph（ドメインKG）。1店舗の整合を超え、複数店舗を同じ座標系・同じ定義へ正規化します。",
           "footer": "空間座標の整合・データ文脈"
         },
         {

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { ArrowRight } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
@@ -23,35 +22,8 @@ import { MODE_COPY, FUNCTIONS_PAGE_COPY } from '@/data/function-matrix-i18n';
  * `src/data/function-matrix-i18n.ts`.
  */
 
-// PriorityEngineDiagram 배치 근거(MM Phase 3 D12): "신호 입력 → 점수화 → 분류 →
-// Top 3" 파이프라인은 기능 단위 설명(모드가 모은 신호가 액션이 되는 과정)에 직결 —
-// 개별 기능 상세(FunctionToolView: count/queue/pop/fit 단일 도구)에는 교차 서사가
-// 없어 허브 FunctionsView의 매트릭스 직후가 적소다("표가 실제로 작동하는 모습").
-// 서버 뷰라 ssr:false 불가(Next App Router 제약) — StoreInsightView 선례대로
-// loading placeholder만 지정하고 클라이언트에서 지연 로드한다.
-const PriorityEngineDiagram = dynamic(
-  () => import('@/components/mockups/PriorityEngineDiagram'),
-  {
-    /* Viewport 예외 목업(고정 캔버스 없음) — 대략 높이 예약, 정확 비율 아님 */
-    loading: () => <div className="h-[520px] animate-pulse rounded-2xl bg-gray-100 sm:h-[440px]" />,
-  }
-);
-
-/** 매트릭스 → 다이어그램 연결 문구 (신규 카피 최소 — 3로케일 동시 작성). */
-const ENGINE_COPY: Record<Locale, { heading: string; sub: string }> = {
-  ko: {
-    heading: '매트릭스가 실제로 작동하는 모습',
-    sub: '기능이 모은 신호가 점수화·분류를 거쳐 상위 3개 액션으로 압축되는 과정 — agent 모드의 우선순위 엔진 예시입니다.',
-  },
-  en: {
-    heading: 'The matrix at work',
-    sub: 'Signals collected by the functions are scored, classified, and compressed into a top-3 shortlist — the agent-mode priority engine.',
-  },
-  jp: {
-    heading: 'マトリクスが実際に動く様子',
-    sub: '機能が集めたシグナルはスコア化・分類を経て上位3件のアクションに圧縮されます — agentモードの優先順位エンジンの例です。',
-  },
-};
+// PriorityEngineDiagram은 agentic AI 기술 서사에 속해 /technology/agentic-ai로
+// 이관됨(③1-3 — 허브는 리스트업+라우팅에 집중).
 
 /** Functions that currently own a page of their own. */
 const FUNCTION_LINKS: Partial<Record<string, string>> = {
@@ -70,7 +42,6 @@ const MODE_HREF = {
 export default function FunctionsView({ locale }: { locale: Locale }) {
   const c = FUNCTIONS_PAGE_COPY[locale];
   const modes = MODE_COPY[locale];
-  const engine = ENGINE_COPY[locale];
 
   return (
     <>
@@ -149,17 +120,6 @@ export default function FunctionsView({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ul>
-
-          {/* ── Priority engine — 매트릭스가 작동하는 모습 (라이브 다이어그램) ── */}
-          <div className="mt-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep mb-3">
-              {engine.heading}
-            </h2>
-            <p className="text-base text-gray-500 leading-relaxed break-keep mb-8 max-w-2xl">
-              {engine.sub}
-            </p>
-            <PriorityEngineDiagram locale={locale} />
-          </div>
         </Container>
       </Section>
 
