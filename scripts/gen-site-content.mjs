@@ -240,6 +240,18 @@ const RESOURCES_FLAT = [
   'eyebrow', 'heroTitle', 'heroSub', 'featuredLabel', 'featuredTitle',
   'featuredDesc', 'featuredCta', 'cardCta',
 ];
+// ── enterprise — 핵심 카피만 CMS(J6), 구조 배열(challenges·golden·faq 등)은 뷰 코드 유지 ──
+const ENTERPRISE_FLAT = [
+  'badge', 'category', 'heroTitleA', 'heroTitleB', 'heroSub', 'ctaEmail', 'emailSubject', 'ownerEscape',
+  'challengesTitle', 'challengesSub', 'challengesRoot',
+  'spineEyebrow', 'spineTitle', 'spineBody', 'goldenDetailLabel', 'goldenLink',
+  'evidenceEyebrow', 'evidenceQuote',
+  'dashboardEyebrow', 'dashboardTitle', 'dashboardSub', 'midCtaLead',
+  'processTitle', 'processSub', 'faqEyebrow', 'faqTitle', 'faqSub',
+  'ctaTitleA', 'ctaTitleB', 'ctaSub', 'ctaReassure',
+];
+const enterprise = toLocaleMajor(load('content/site/enterprise.yaml'), ENTERPRISE_FLAT);
+
 const resourcesYaml = load('content/site/resources.yaml');
 const resourcesFlat = toLocaleMajor(resourcesYaml, RESOURCES_FLAT);
 const resourceCards = arrayItemsLocaleMajor(resourcesYaml.resources, ['title', 'description', 'label']);
@@ -573,7 +585,7 @@ if (diagnosis) {
 fs.writeFileSync(path.join(OUT_DIR, 'gated-docs.json'), JSON.stringify(gatedDocs, null, 2) + '\n');
 fs.writeFileSync(
   path.join(OUT_DIR, 'site-content.json'),
-  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, technology, agenticAi, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, team, milestones, career, solutionPages }, null, 2) + '\n',
+  JSON.stringify({ homeCopy, products, storeAgent, saai, solutions, about, contact, pricing, enterprise, technology, agenticAi, resources, retail, drug, foodBeverage, largeSpace, news, company, glossary, leadership, team, milestones, career, solutionPages }, null, 2) + '\n',
 );
 console.log('✓ generated src/data/generated/site-content.json (…, leadership, team, milestones, career, solutionPages)');
 console.log(`✓ generated src/data/generated/gated-docs.json (${gatedDocs.gatedSlugs.length} gated)`);

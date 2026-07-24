@@ -1,0 +1,128 @@
+# Enterprise 페이지 핵심 카피 — Keystatic에서 편집 (/keystatic → "Enterprise — 본사 카피").
+# J6(2026-07-24): 반복 수정 대상인 히어로·Pain·Spine·대시보드·프로세스·FAQ 제목·클로징만 이관.
+# 구조 배열(challenges·spineSteps·golden·process·faq 본문)과 아이콘·링크는 EnterpriseView 코드 유지.
+# 1차 CTA 라벨은 cta-canon(CTA_TRACK_E) 참조라 여기 없음 — 전 구간 통일 원칙.
+badge:
+  ko: Enterprise
+  en: Enterprise
+  jp: Enterprise
+category:
+  ko: 익명화 공간 AI
+  en: Anonymized Spatial AI
+  jp: 匿名化空間AI
+heroTitleA:
+  ko: 전국 매장을 읽고 —
+  en: Read every store —
+  jp: 全店舗を読み、
+heroTitleB:
+  ko: 당신의 비즈니스에 맞춘 제안.
+  en: a proposal built for your business.
+  jp: あなたのビジネスに合う提案を。
+heroSub:
+  ko: 프랜차이즈 본사를 위한 익명화 공간 AI. 매뉴얼이 아니라, 전국 매장을 읽어 잘되는 운영을 찾고 당신의 브랜드에 맞춰 전 매장에 옮깁니다. 쓰던 CCTV로, 얼굴 없이.
+  en: Anonymized Spatial AI for franchise HQ. Not a playbook — we read every store, find what works, and roll it out tuned to your brand. On the CCTV you already have, without faces.
+  jp: フランチャイズ本部のための匿名化空間AI。マニュアルではなく — 全店舗を読み、うまくいく運営を見つけ、御社ブランドに合わせて全店へ展開します。すでにあるCCTVで、顔なしで。
+ctaEmail:
+  ko: 이메일 문의
+  en: Email us
+  jp: メールでお問い合わせ
+emailSubject:
+  ko: "[본사·다점포 도입] 도입 상담 문의"
+  en: "[HQ & multi-store] Consultation inquiry"
+  jp: "【本部・多店舗導入】導入相談のお問い合わせ"
+ownerEscape:
+  ko: 개별 매장 점주세요? 개별 매장 요금 보기
+  en: Running a single store? See single-store pricing
+  jp: 個人店オーナーですか？ 個別店舗の料金を見る
+challengesTitle:
+  ko: 본사가 겪는 핵심 과제
+  en: The core challenges HQ faces
+  jp: 本部が抱える主な課題
+challengesSub:
+  ko: 매장이 늘수록 관리는 복잡해지고, 편차는 커집니다.
+  en: As stores multiply, management grows complex and variance widens.
+  jp: 店舗が増えるほど管理は複雑になり、ばらつきも大きくなります。
+challengesRoot:
+  ko: 세 가지의 뿌리는 하나입니다 — 본사가 매장 안에서 실제로 무슨 일이 일어나는지 읽지 못하기 때문입니다.
+  en: All three share one root — HQ can’t read what actually happens inside the store.
+  jp: 三つの根はひとつ — 本部が店内で実際に何が起きているかを読めないからです。
+spineEyebrow:
+  ko: 그래서, 맞춤
+  en: So, tailored
+  jp: だから、最適化
+spineTitle:
+  ko: 그래서 — 당신의 매장을 먼저 읽습니다.
+  en: So — we read your stores first.
+  jp: だから — まずあなたの店舗を読みます。
+spineBody:
+  ko: 컨설팅 리포트도, 범용 AI도 일반론을 줍니다 — 당신의 동선도, 진열도, 손님도 본 적이 없으니까요. 딥핑소스는 전국 매장을 직접 읽어 잘되는 이유를 찾고, 당신의 브랜드 기준에 맞춰 제안합니다.
+  en: Consulting decks and general AI give you generalities — because they’ve never seen your paths, your displays, your shoppers. DeepingSource reads every store directly, finds why the best ones work, and proposes to your brand’s standard.
+  jp: コンサルの資料も汎用AIも一般論を返します — あなたの動線も、陳列も、お客様も見たことがないからです。ディーピングソースは全店舗を直接読み、うまくいく理由を見つけ、御社ブランドの基準に合わせて提案します。
+goldenDetailLabel:
+  ko: "'맞춥니다'가 실제로 도는 방식 — Golden Case 5단계"
+  en: "How 'We tailor' actually runs — the 5-stage Golden Case cycle"
+  jp: "「合わせる」が実際に回る仕組み — Golden Case 5段階"
+goldenLink:
+  ko: 5단계를 대표하는 도입 사례 5건 보기
+  en: See 5 case studies, one per stage
+  jp: 5つの段階を代表する導入事例5件を見る
+evidenceEyebrow:
+  ko: 도입 사례
+  en: Proof
+  jp: 導入事例
+evidenceQuote:
+  ko: 한 매장이 아니라, 브랜드 전체가 하나같이.
+  en: Not one store — the whole brand, moving as one.
+  jp: 一店舗ではなく、ブランド全体が一つになって。
+dashboardEyebrow:
+  ko: 본사 대시보드
+  en: HQ dashboard
+  jp: 本部ダッシュボード
+dashboardTitle:
+  ko: 전 매장을, 한눈에
+  en: Every store, at a glance
+  jp: 全店舗を、ひと目で
+dashboardSub:
+  ko: 본사 슈퍼바이저는 전체 매장의 매출·방문자·알림을 한 화면에서 파악하고, 문제 매장을 바로 식별합니다.
+  en: HQ supervisors see sales, visitors, and alerts across all stores on one screen — and pinpoint problem stores instantly.
+  jp: 本部のスーパーバイザーは全店舗の売上・来店者・通知をひとつの画面で把握し、問題のある店舗をすぐに特定できます。
+midCtaLead:
+  ko: 이 화면을 우리 브랜드 매장으로 채우고 싶다면
+  en: Want this screen filled with your own stores?
+  jp: この画面を自社ブランドの店舗で埋めたいなら
+processTitle:
+  ko: 도입 방식 — 리스크 없이
+  en: How you adopt it — without the risk
+  jp: 導入の進め方 — リスクなく
+processSub:
+  ko: 파일럿부터 시작해, 검증된 모델만 확산합니다.
+  en: Start with a pilot, and scale only what’s proven.
+  jp: パイロットから始め、検証できたモデルのみを展開します。
+faqEyebrow:
+  ko: FAQ
+  en: FAQ
+  jp: FAQ
+faqTitle:
+  ko: 결정 전에, 자주 묻는 것들
+  en: Before you decide — the questions we hear most
+  jp: 決める前に、よく聞かれること
+faqSub:
+  ko: 개인정보·장비·비용·기간 — 본사가 가장 먼저 확인하는 네 가지.
+  en: Privacy, hardware, cost, timeline — the four HQ checks first.
+  jp: プライバシー・機器・費用・期間 — 本部が最初に確認する四つ。
+ctaTitleA:
+  ko: 전국 매장을 읽어,
+  en: We read every store,
+  jp: 全店舗を読み、
+ctaTitleB:
+  ko: 당신의 비즈니스에 맞춥니다.
+  en: and tune it to your business.
+  jp: あなたのビジネスに合わせます。
+ctaSub:
+  ko: 운영 환경에 맞는 맞춤 제안을 드립니다. 먼저 제안을 받아보세요.
+  en: We’ll tailor a proposal to your operating environment. Start by getting one.
+  jp: 運営環境に合わせた最適なご提案を差し上げます。まずはご提案を受け取ってください。
+ctaReassure:
+  ko: 무료 상담 · 영업일 1–2일 내 연락
+  en: Free consultation · reply within 1–2 business days
+  jp: 無料相談・営業日1〜2日以内に連絡
