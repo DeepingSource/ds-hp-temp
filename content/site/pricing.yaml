@@ -9,9 +9,9 @@ hero:
     en: What goal do you want to achieve?
     jp: どのような目標を達成したいですか？
   heroSub:
-    ko: 원하는 성과에 맞는 제품을 선택하고, 투명하고 합리적인 요금을 확인하세요.
-    en: Pick the product that matches the outcome you want, with transparent and fair pricing.
-    jp: ご希望の成果に合った製品をお選びいただき、透明で合理的な料金をご確認ください。
+    ko: 가격은 공간과 매장 규모에 따라 달라집니다 — 목표에 맞는 참고 가이드와 견적을 드립니다.
+    en: Pricing depends on your space and scale — we give you a reference guide and a quote that fit your goal.
+    jp: 価格は空間と店舗規模によって異なります — 目標に合った参考ガイドとお見積もりをご案内します。
   toggleB2c:
     ko: 개별 매장
     en: Single store
@@ -38,9 +38,9 @@ b2c:
     en: Real-time, CCTV-based store monitoring
     jp: CCTVベースのリアルタイム店舗モニタリング
   carePerMonth:
-    ko: ~/월
-    en: ~/mo
-    jp: 〜/月
+    ko: 월 구독 · 규모별 상이
+    en: Monthly · varies by scale
+    jp: 月額 · 規模により異なる
   careFeatures:
     ko:
       - 오염·진열 이상 감지
@@ -63,13 +63,13 @@ b2c:
     en: Customer-behavior analytics and insight dashboard
     jp: 顧客行動分析とインサイトダッシュボード
   insightPerMonth:
-    ko: ~/월
-    en: ~/mo
-    jp: 〜/月
+    ko: 카메라 수에 따라 산정
+    en: Priced by camera count
+    jp: カメラ台数に応じて算定
   insightBasis:
-    ko: 카메라 8대 기준
-    en: Based on 8 cameras
-    jp: カメラ8台を基準
+    ko: 상담 시 견적
+    en: Quoted on consultation
+    jp: ご相談時にお見積もり
   insightFeatures:
     ko:
       - 구역별 방문자 객수
@@ -96,22 +96,22 @@ b2c:
     en: Free
     jp: 無料
   agentPriceTail:
-    ko: ~25,000원/월
-    en: ~25,000 KRW/mo
-    jp: 〜25,000円/月
+    ko: 로 시작 · 기능별 유료 확장
+    en: ' to start · paid add-ons by feature'
+    jp: で開始 · 機能別に有料拡張
   agentFeatures:
     ko:
       - 매일 모닝 브리핑 (무료)
-      - POS 연동 분석 (15,000원~)
-      - 대화형 AI 채팅 (25,000원~)
+      - POS 연동 분석 (유료 옵션)
+      - 대화형 AI 채팅 (유료 옵션)
     en:
       - Daily morning briefing (free)
-      - POS-integrated analysis (from 15,000 KRW)
-      - Conversational AI chat (from 25,000 KRW)
+      - POS-integrated analysis (paid option)
+      - Conversational AI chat (paid option)
     jp:
       - 毎朝のモーニングブリーフィング（無料）
-      - POS連携分析（15,000円〜）
-      - 対話型AIチャット（25,000円〜）
+      - POS連携分析（有料オプション）
+      - 対話型AIチャット（有料オプション）
   freeConsult:
     ko: 무료 상담 신청
     en: Request a free consultation
@@ -189,9 +189,9 @@ b2bSim:
     en: Multi-store quote simulation
     jp: 多店舗見積もりシミュレーション
   b2bSimSub:
-    ko: 매장 수에 따른 할인율과 예상 비용을 확인하세요.
-    en: See the discount rate and estimated cost based on your store count.
-    jp: 店舗数に応じた割引率と想定費用をご確認ください。
+    ko: 규모가 커질수록 시너지가 커지는 구조를 확인하고, 정확한 견적은 이메일로 받아보세요.
+    en: See how synergy grows with scale — and get your exact quote by email.
+    jp: 規模が大きいほどシナジーが大きくなる構造を確認し、正確なお見積もりはメールでお受け取りください。
   b2bCamLabel:
     ko: 매장당 평균 카메라 수
     en: Average cameras per store
@@ -233,9 +233,9 @@ b2bSim:
     en: '100'
     jp: 100店舗
   discountLabel:
-    ko: 시너지 할인율
-    en: Synergy discount
-    jp: シナジー割引率
+    ko: 시너지 단계
+    en: Synergy level
+    jp: シナジー段階
   perStoreCost:
     ko: 매장당 예상 비용
     en: Estimated cost per store
@@ -294,18 +294,18 @@ count:
     en: One camera counts the footfall outside, the customers who walk in, and your capture rate — every day. We adjust the setup to your store count and contract term.
     jp: 店の前の通行・入店・流入率を、カメラ1台で毎日数えます。店舗数と契約期間に合わせて構成を調整します。
   countPrice:
-    ko: 월 30만 원부터 · Standard 대여형
-    en: From ₩300K/mo · Standard rental
-    jp: 月30万ウォンから · Standardレンタル
+    ko: Standard 대여형 · 규모·기간에 따라 구성
+    en: Standard rental · configured by scale & term
+    jp: Standardレンタル · 規模・期間に応じて構成
   countOptions:
     ko:
-      - Pro — LTE 실시간 (월 40만 원)
+      - Pro — LTE 실시간 (별도 견적)
       - Connect — 기존 CCTV 연동 (별도 견적)
     en:
-      - Pro — real-time over LTE (₩400K/mo)
+      - Pro — real-time over LTE (quoted separately)
       - Connect — reuse existing CCTV (quoted separately)
     jp:
-      - Pro — LTEリアルタイム（月40万ウォン）
+      - Pro — LTEリアルタイム（別途見積）
       - Connect — 既存CCTV連携（別途見積）
   countCta:
     ko: 요금 상담 신청
@@ -404,9 +404,9 @@ bundle:
     en: 'Deploy all three products together and '
     jp: 3つの製品をまとめて導入されると、
   bundleBodyStrong:
-    ko: 최대 30% 시너지 할인
-    en: a synergy discount of up to 30%
-    jp: 最大30%のシナジー割引
+    ko: 최대 시너지 할인
+    en: the maximum synergy discount
+    jp: 最大のシナジー割引
   bundleBodyPost:
     ko: 이 적용됩니다. 매장 운영을 하나의 흐름으로 잇습니다.
     en: ' applies — connecting your store operations into one flow.'

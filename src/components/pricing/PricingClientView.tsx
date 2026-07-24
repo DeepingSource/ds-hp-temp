@@ -71,6 +71,9 @@ export interface Content {
   won: string;
   estimateDisclaimer: string;
   tiers: { range: string; rate: string }[];
+  /** J5 방향화 표기 — 금액·% 대신 시너지 단계/방향 문구 */
+  synergyLevel: (level: number, total: number) => string;
+  synergyDirection: string;
   b2bEmailLabel: string;
   emailPlaceholder: string;
   getQuote: string;
@@ -130,6 +133,7 @@ type PricingCode = Pick<
   | 'diffFooterPre' | 'diffFooterInfo' | 'diffFooterMid' | 'diffFooterMonitor' | 'diffFooterPost'
   | 'tiers' | 'totalBasis' | 'simPerDay' | 'simReqMessage' | 'b2bReqMessage'
   | 'simReqName' | 'simReqInquiry' | 'b2bReqName' | 'b2bReqInquiry'
+  | 'synergyLevel' | 'synergyDirection'
 >;
 type PricingCms = Omit<Content, keyof PricingCode>;
 const CMS = siteContent.pricing as Record<Locale, PricingCms>;
@@ -149,6 +153,8 @@ const CODE: Record<Locale, PricingCode> = {
       { range: '50개 이상', rate: '30%' },
     ],
     simPerDay: (n) => `하루 약 ${n}원`,
+    synergyLevel: (level, total) => `${level} / ${total} 단계`,
+    synergyDirection: '규모가 커질수록 매장당 비용이 내려갑니다. 정확한 금액은 아래에서 이메일로 견적을 받아보세요.',
     simReqName: '요금 시뮬레이터',
     simReqInquiry: '견적 요청',
     simReqMessage: ({ cam, cost }) => `카메라 ${cam}대 기준 saai insight 예상 비용 ${cost}원/월 견적 요청`,
@@ -170,6 +176,8 @@ const CODE: Record<Locale, PricingCode> = {
       { range: '50+ stores', rate: '30%' },
     ],
     simPerDay: (n) => `About ${n} KRW/day`,
+    synergyLevel: (level, total) => `Level ${level} of ${total}`,
+    synergyDirection: 'The larger the scale, the lower the cost per store. Get your exact figure by email below.',
     simReqName: 'Pricing simulator',
     simReqInquiry: 'Quote request',
     simReqMessage: ({ cam, cost }) => `saai insight quote request — estimated ${cost} KRW/mo based on ${cam} cameras`,
@@ -191,6 +199,8 @@ const CODE: Record<Locale, PricingCode> = {
       { range: '50店舗以上', rate: '30%' },
     ],
     simPerDay: (n) => `1日あたり約${n} KRW`,
+    synergyLevel: (level, total) => `${total}段階中 ${level}段階`,
+    synergyDirection: '規模が大きいほど店舗あたりの費用は下がります。正確な金額は下のメールでお見積もりをお受け取りください。',
     simReqName: '料金シミュレーター',
     simReqInquiry: '見積もり依頼',
     simReqMessage: ({ cam, cost }) => `カメラ${cam}台を基準とした saai insight 想定費用 ${cost} KRW/月の見積もり依頼`,
@@ -275,15 +285,10 @@ export default function PricingClientView({ locale = 'en' }: PricingClientViewPr
           <p className="text-gray-300 mb-8 leading-relaxed max-w-xl mx-auto">
             {t.bundleBodyPre}<strong className="text-white font-medium">{t.bundleBodyStrong}</strong>{t.bundleBodyPost}
           </p>
+          {/* 시뮬 진입점 3→1(⑤3-5): 시뮬레이터 링크는 B2C 플랜 하단 1곳으로 일원화 */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href={localeHref(locale, '/contact')} className="btn-primary px-8 py-4 shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[box-shadow]">
+            <Link href={localeHref(locale, '/contact?type=enterprise')} className="btn-primary px-8 py-4 shadow-[0_0_20px_rgb(var(--primary-rgb)_/_0.3)] hover:shadow-[0_0_30px_rgb(var(--primary-rgb)_/_0.5)] transition-[box-shadow]">
               {t.bundleCta}
-            </Link>
-            <Link
-              href={localeHref(locale, '/pricing/simulator')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-medium hover:bg-white/20 transition-colors text-sm"
-            >
-              {t.bundleSimLink}
             </Link>
           </div>
         </div>
