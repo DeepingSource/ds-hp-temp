@@ -5,7 +5,8 @@ import { StaggerItem } from '@/components/ui/StaggerItem';
 import { CountUp } from '@/components/ui/CountUp';
 import { AnonymizationPipeline } from '@/components/technology/AnonymizationPipeline';
 import LoopVideo from '@/components/ui/LoopVideo';
-import IntegratedLoopDiagram from '@/components/mockups/IntegratedLoopDiagram';
+import IntegratedLoopDiagram, { type IntegratedLoopCopy } from '@/components/mockups/IntegratedLoopDiagram';
+import type { DeepPartial } from '@/components/mockups/types';
 import {
   Fingerprint, Grid3x3, Shield, ArrowRight,
   CheckCircle2, AlertCircle, Zap, BrainCircuit,
@@ -96,6 +97,75 @@ const poweredHrefs = [
 ];
 
 const CMS = siteContent.technology as unknown as Record<Locale, Copy>;
+
+/**
+ * 기술 허브 전용 루프 카피 오버라이드(② D3·§1-2) — 제품 3형제 서사 대신 기술 3축
+ * (Anonymize → Spatial AI → Agentic AI) 어휘로 재구성. 기본 COPY(제품 축)는
+ * SaaiView·MockupGallery가 계속 쓰므로 여기서만 mergeMockupContent로 주입한다.
+ * 브랜치 3노드는 스택 갤러리 3카드와 동일 명칭·순서(Anonymize→Spatial→Agentic)를 따른다.
+ */
+const TECH_LOOP: Record<Locale, DeepPartial<IntegratedLoopCopy>> = {
+  ko: {
+    eyebrow: '기술 3축 루프',
+    heading: '세 기술 축이 하나의 루프로 닫힙니다',
+    lead: '입력은 먼저 익명화되고(Anonymize), 공간 좌표와 동선으로 정합되며(Spatial AI), 판단과 제안으로 이어집니다(Agentic AI). 사람의 행동 결과가 되먹임되어 루프가 닫힙니다.',
+    nodes: {
+      seal: { label: 'Anonymize · SEAL', tip: '축 1 — 입력 시점 익명화. 원본은 저장하지 않습니다.' },
+      hub: { label: '익명 공간 데이터', tip: '세 축이 공유하는 단일 익명 이벤트 스트림.' },
+      insight: { label: 'Spatial AI · 분석', tip: '축 2 — 공간 좌표·동선으로 어제의 패턴을 설명합니다.' },
+      care: { label: 'Spatial AI · 감지', tip: '축 2 — 공간 신호로 지금의 이상을 알립니다.' },
+      agent: { label: 'Agentic AI · 제안', tip: '축 3 — 신호를 판단해 다음 행동을 제안합니다.' },
+    },
+    cards: [
+      { no: '01', title: '익명화가 먼저입니다', body: '모든 신호는 입력 시점에 익명화됩니다(Anonymize). 원본 없이 시작해야 규제 걱정 없이 확장됩니다.' },
+      { no: '02', title: '공간 지능이 좌표를 만듭니다', body: 'Spatial AI가 흩어진 카메라 신호를 하나의 공간 좌표·동선으로 정합합니다(MTMC).' },
+      { no: '03', title: '에이전트가 행동으로 잇습니다', body: 'Agentic AI가 신호를 판단해 다음 행동을 제안합니다. 결정과 책임은 끝까지 사람의 자리.' },
+    ],
+    cta: '이 루프가 제품이 됩니다 — SAAI 제품 보기 →',
+    svgTitle: '기술 3축 신호 흐름 다이어그램',
+    svgDesc: '입력(CCTV·POS·외부 컨텍스트·유입 관측)이 입력 시점 익명화(Anonymize)를 거쳐 익명 공간 데이터로 모이고, Spatial AI의 분석·감지와 Agentic AI의 제안으로 흐른 뒤 사람의 결정과 행동으로 이어지며, 그 결과가 되먹임되는 기술 루프.',
+  },
+  en: {
+    eyebrow: 'The three-axis loop',
+    heading: 'Three technology axes close into one loop',
+    lead: 'Input is anonymized first (Anonymize), aligned into spatial coordinates and journeys (Spatial AI), and carried into judgment and suggestions (Agentic AI). Human actions feed back and close the loop.',
+    nodes: {
+      seal: { label: 'Anonymize · SEAL', tip: 'Axis 1 — anonymized at the point of capture. No raw footage is stored.' },
+      hub: { label: 'Anonymized spatial data', tip: 'One anonymized event stream shared by all three axes.' },
+      insight: { label: 'Spatial AI · analyze', tip: 'Axis 2 — explains yesterday’s patterns through coordinates and journeys.' },
+      care: { label: 'Spatial AI · detect', tip: 'Axis 2 — flags what is happening now from spatial signals.' },
+      agent: { label: 'Agentic AI · suggest', tip: 'Axis 3 — judges the signals and proposes the next action.' },
+    },
+    cards: [
+      { no: '01', title: 'Anonymization comes first', body: 'Every signal is anonymized on capture (Anonymize). Starting without raw footage is what lets it scale without regulatory risk.' },
+      { no: '02', title: 'Spatial AI builds the coordinates', body: 'Spatial AI aligns scattered camera signals into one spatial coordinate system and journey (MTMC).' },
+      { no: '03', title: 'The agent turns it into action', body: 'Agentic AI judges the signals and proposes what to do next. Decisions and accountability stay with people.' },
+    ],
+    cta: 'This loop becomes the product — see SAAI →',
+    svgTitle: 'Three-axis technology signal-flow diagram',
+    svgDesc: 'Inputs (CCTV, POS, external context, footfall sensing) are anonymized on capture (Anonymize), gather as anonymized spatial data, flow through Spatial AI analysis/detection and Agentic AI suggestions into human decision and action, and feed back into the loop.',
+  },
+  jp: {
+    eyebrow: '技術3軸ループ',
+    heading: '三つの技術軸が一つのループへと閉じます',
+    lead: '入力はまず匿名化され（Anonymize）、空間座標と動線に整合され（Spatial AI）、判断と提案へつながります（Agentic AI）。人の行動の結果がフィードバックされ、ループが閉じます。',
+    nodes: {
+      seal: { label: 'Anonymize · SEAL', tip: '軸1 — 取得時点の匿名化。原本は保存しません。' },
+      hub: { label: '匿名空間データ', tip: '三つの軸が共有する単一の匿名イベントストリーム。' },
+      insight: { label: 'Spatial AI · 分析', tip: '軸2 — 空間座標・動線で昨日のパターンを説明します。' },
+      care: { label: 'Spatial AI · 検知', tip: '軸2 — 空間信号で今の異常を知らせます。' },
+      agent: { label: 'Agentic AI · 提案', tip: '軸3 — 信号を判断し、次の行動を提案します。' },
+    },
+    cards: [
+      { no: '01', title: '匿名化が先です', body: 'すべての信号は取得時点で匿名化されます（Anonymize）。原本なしで始めるから、規制の心配なく拡張できます。' },
+      { no: '02', title: '空間知能が座標をつくります', body: 'Spatial AIが散在するカメラ信号を一つの空間座標・動線に整合します（MTMC）。' },
+      { no: '03', title: 'エージェントが行動へつなぎます', body: 'Agentic AIが信号を判断し、次の行動を提案します。判断と責任は最後まで人の領域です。' },
+    ],
+    cta: 'このループが製品になります — SAAI製品を見る →',
+    svgTitle: '技術3軸の信号フロー図',
+    svgDesc: '入力（CCTV・POS・外部コンテキスト・流入観測）が取得時点の匿名化（Anonymize）を経て匿名空間データに集まり、Spatial AIの分析・検知と Agentic AIの提案へ流れ、人の判断・行動につながり、その結果がフィードバックされる技術ループです。',
+  },
+};
 
 
 export default function TechnologyView({ locale }: { locale: Locale }) {
@@ -198,25 +268,17 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
           <p className="mt-8 max-w-4xl text-center text-sm sm:text-base text-gray-500 break-keep">
             {t.dilemmaNote}
           </p>
-        </div>
-      </AnimatedSection>
 
-      {/* ── 3단계 프로세스 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.howEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 break-keep">{t.howTitle}</h2>
-            <p className="text-lg text-gray-500 max-w-xl break-keep">{t.howSub}</p>
+          {/* 3단계 프로세스 — 딜레마와 같은 섹션으로 압축(②1-1: Layer 1 익명화를 1~2섹션으로).
+              "왜 익명화가 먼저인가"의 근거와 방법을 한 호흡으로 읽게 한다. */}
+          <div className="mt-16 pt-14 border-t border-gray-100">
+            <div className="mb-10">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t.howEyebrow}</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{t.howTitle}</h3>
+              <p className="text-lg text-gray-500 max-w-xl break-keep">{t.howSub}</p>
+            </div>
+            <AnonymizationPipeline locale={locale} />
           </div>
-          <AnonymizationPipeline locale={locale} />
-        </div>
-      </AnimatedSection>
-
-      {/* ── 통합 신호 루프 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <IntegratedLoopDiagram locale={locale} />
         </div>
       </AnimatedSection>
 
@@ -291,6 +353,13 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
               );
             })}
           </StaggerContainer>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 기술 3축 루프 — 세 축을 소개한 뒤 "이 셋이 하나의 루프로 닫힌다" (②1-1 순서·1-2 D3 오버라이드) ── */}
+      <AnimatedSection className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <IntegratedLoopDiagram locale={locale} content={TECH_LOOP[locale]} />
         </div>
       </AnimatedSection>
 
