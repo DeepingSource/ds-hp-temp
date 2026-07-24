@@ -114,6 +114,32 @@ const orderFlowCopy: Record<Locale, { eyebrow: string; heading: string }> = {
   jp: { eyebrow: '実際の画面', heading: '在庫が切れる前に、承認ひとつで発注まで' },
 };
 
+// ①5-2 — 발주 목업 업종화: 편의점 품목(삼각김밥) → 카페 품목 오버라이드(mergeMockupContent).
+// 수량·금액은 목업 내부 상수(40개·₩52,000)를 공유하므로 수량과 어울리는 품목(우유 팩)으로 맞춘다.
+const ORDER_CAFE: Record<Locale, Partial<import('@/components/mockups/OrderFlowMockup').OrderFlowCopy>> = {
+  ko: {
+    sub: '도심 카페 · 승인 한 번으로',
+    cardTitle: '우유(900ml) 40팩 추가 발주',
+    cardReason: '주말 라떼 수요 대비 재고 소진 예상 — 일요일 오전 결품 위험',
+    item: '바리스타용 우유 900ml',
+    vendor: '유제품 물류센터',
+  },
+  en: {
+    sub: 'Downtown café · one tap to approve',
+    cardTitle: 'Reorder 40 milk packs',
+    cardReason: 'Weekend latte demand will deplete stock — stockout risk Sunday morning',
+    item: 'Barista milk 900ml',
+    vendor: 'Dairy DC',
+  },
+  jp: {
+    sub: '都心のカフェ · 承認ひとつで',
+    cardTitle: '牛乳(900ml) 40パックの追加発注',
+    cardReason: '週末のラテ需要で在庫が枯渇する見込み — 日曜午前に欠品の恐れ',
+    item: 'バリスタ用牛乳900ml',
+    vendor: '乳製品物流センター',
+  },
+};
+
 export default function FoodBeverageView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
 
@@ -255,7 +281,7 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
           </div>
           {/* 폭만 지정(v2 계약) — 크기는 목업의 MockupViewport(phone 390×844) 소관 */}
           <div className="max-w-[300px] mx-auto">
-            <OrderFlowMockup locale={locale} />
+            <OrderFlowMockup locale={locale} content={ORDER_CAFE[locale]} />
           </div>
         </div>
       </AnimatedSection>

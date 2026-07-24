@@ -163,6 +163,16 @@ const DRUG: Record<Locale, Head & { zones: Zone[]; metricLabel: string; hot: str
   },
 };
 
+// ①6-2 평면도화: 추상 2×2 그리드 → 매장 도면 위 존 오버레이. 좌표는 도면 컨테이너 %.
+const ZONE_RECTS = [
+  { left: '7%', top: '68%', width: '40%', height: '26%' },  // 진입부 (출입문 안쪽)
+  { left: '7%', top: '8%', width: '40%', height: '54%' },   // 헬스·뷰티 (좌측 벽면 매대)
+  { left: '53%', top: '62%', width: '40%', height: '32%' }, // 카운터 (우하단)
+  { left: '53%', top: '8%', width: '40%', height: '48%' },  // 안쪽 매대 (우상단 안쪽)
+] as const;
+
+const DOOR_LABEL: Record<Locale, string> = { ko: '출입문', en: 'Entrance', jp: '入口' };
+
 function DrugStoreDemo({ locale }: { locale: Locale }) {
   const t = DRUG[locale];
   const hottest = t.zones.reduce((m, z, i) => (z.heat > t.zones[m].heat ? i : m), 0);
@@ -172,24 +182,53 @@ function DrugStoreDemo({ locale }: { locale: Locale }) {
   return (
     <Frame head={t}>
       <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-8 shadow-card">
-        <div className="grid gap-6 sm:grid-cols-[1fr_1fr] items-center">
-          {/* heat grid */}
-          <div className="grid grid-cols-2 gap-2.5" role="group" aria-label={t.metricLabel}>
+        <div className="grid gap-6 sm:grid-cols-[1.2fr_1fr] items-center">
+          {/* 매장 평면도 + 존 발열 오버레이 (①6-2 — "바닥이 말해준다"를 도면으로 증명) */}
+          <div
+            className="relative aspect-[4/3] rounded-2xl border-2 border-gray-300 bg-gray-50/80 overflow-hidden"
+            role="group"
+            aria-label={t.metricLabel}
+          >
+            {/* 도면 결: 바닥 그리드 + 매대 라인 */}
+            <svg viewBox="0 0 400 300" className="absolute inset-0 h-full w-full" aria-hidden="true">
+              <defs>
+                <pattern id="floor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M20 0H0V20" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+                </pattern>
+              </defs>
+              <rect width="400" height="300" fill="url(#floor-grid)" />
+              {/* 벽면 매대 표기 */}
+              <rect x="28" y="30" width="10" height="150" rx="2" fill="#d1d5db" />
+              <rect x="362" y="30" width="10" height="130" rx="2" fill="#d1d5db" />
+              {/* 중앙 곤돌라 2줄 */}
+              <rect x="120" y="60" width="12" height="110" rx="2" fill="#e5e7eb" />
+              <rect x="250" y="60" width="12" height="110" rx="2" fill="#e5e7eb" />
+            </svg>
+
+            {/* 출입문 노치 */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-md bg-white border border-b-0 border-gray-300 px-2 py-0.5 text-3xs font-medium text-gray-400">
+              {DOOR_LABEL[locale]}
+            </div>
+
+            {/* 존 발열 오버레이 버튼 */}
             {t.zones.map((z, i) => (
               <button
                 key={z.label}
                 type="button"
                 aria-pressed={sel === i}
                 onClick={() => setSel(i)}
-                className={`relative flex aspect-[4/3] flex-col justify-end rounded-2xl p-3 text-left transition-all ${
-                  sel === i ? 'ring-2 ring-primary ring-offset-2' : 'ring-1 ring-transparent'
+                className={`absolute flex flex-col justify-end rounded-xl p-2 text-left transition-all cursor-pointer ${
+                  sel === i ? 'ring-2 ring-primary ring-offset-1' : 'ring-1 ring-transparent'
                 }`}
-                style={{ backgroundColor: `rgb(var(--primary-rgb) / ${0.08 + z.heat * 0.6})` }}
+                style={{
+                  ...ZONE_RECTS[i],
+                  backgroundColor: `rgb(var(--primary-rgb) / ${0.1 + z.heat * 0.55})`,
+                }}
               >
                 {i === hottest && (
-                  <span className="absolute right-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-2xs font-bold text-primary shadow-sm">{t.hot}</span>
+                  <span className="absolute right-1.5 top-1.5 rounded-full bg-white/90 px-1.5 py-0.5 text-3xs font-bold text-primary shadow-sm">{t.hot}</span>
                 )}
-                <span className={`text-sm font-bold break-keep ${z.heat > 0.5 ? 'text-white' : 'text-gray-700'}`}>{z.label}</span>
+                <span className={`text-xs sm:text-sm font-bold break-keep ${z.heat > 0.5 ? 'text-white' : 'text-gray-700'}`}>{z.label}</span>
               </button>
             ))}
           </div>
@@ -239,6 +278,16 @@ const LARGE: Record<Locale, Head & {
     camLabel: 'カメラ', coordLabel: '同一人物 · 統合座標', unknown: '同一人物か不明',
   },
 };
+
+// ①7-1: 핵심 증명 — 평면 좌표에서 "끊긴 3궤적 → 이어진 1궤적"이 실제로 보이게.
+const PLAN_LABEL: Record<Locale, string> = { ko: '통합 평면 좌표', en: 'Merged floor view', jp: '統合平面座標' };
+// 카메라별 궤적 세그먼트(viewBox 300×80) + 통합 시 이어붙는 브릿지 2개
+const PLAN_SEGMENTS = [
+  'M12,62 C34,58 58,52 84,48',
+  'M116,42 C140,38 160,34 184,30',
+  'M216,26 C240,22 264,20 288,16',
+] as const;
+const PLAN_BRIDGES = ['M84,48 C95,46 105,44 116,42', 'M184,30 C195,29 205,27 216,26'] as const;
 
 // per-camera dot position (%) — three distinct viewpoints of one person
 const CAM_DOTS = [{ x: 68, y: 40 }, { x: 30, y: 62 }, { x: 52, y: 28 }];
@@ -293,6 +342,52 @@ function LargeSpaceDemo({ locale }: { locale: Locale }) {
               )}
             </div>
           ))}
+        </div>
+
+        {/* ①7-1 — 평면 좌표 스트립: 끊긴 3궤적이 MTMC 통합 시 하나의 연속 궤적으로 이어진다 */}
+        <div className="relative mt-3 h-24 overflow-hidden rounded-xl border border-white/10 bg-slate-900">
+          <span className="absolute left-2 top-2 z-10 rounded bg-black/40 px-1.5 py-0.5 text-2xs font-medium text-white/70">
+            {PLAN_LABEL[locale]}
+          </span>
+          <svg viewBox="0 0 300 80" className="absolute inset-0 h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+            {/* 카메라 커버리지 경계 */}
+            <line x1="100" y1="0" x2="100" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+            <line x1="200" y1="0" x2="200" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+            {/* 카메라별 궤적 세그먼트 — 분리 시 앰버(끊김), 통합 시 프라이머리 */}
+            {PLAN_SEGMENTS.map((d) => (
+              <path
+                key={d}
+                d={d}
+                fill="none"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                className="transition-[stroke] duration-500"
+                stroke={merged ? 'var(--color-primary, #2563eb)' : '#fbbf24'}
+              />
+            ))}
+            {/* 통합 브릿지 — MTMC일 때만 이어짐 */}
+            {PLAN_BRIDGES.map((d) => (
+              <path
+                key={d}
+                d={d}
+                fill="none"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                stroke="var(--color-primary, #2563eb)"
+                className="transition-opacity duration-500"
+                opacity={merged ? 1 : 0}
+              />
+            ))}
+            {/* 궤적 종점(현재 위치) */}
+            <circle cx="288" cy="16" r="4" fill={merged ? 'var(--color-primary, #2563eb)' : '#fbbf24'} className="transition-[fill] duration-500" />
+          </svg>
+          {/* 분리 모드에서 단절 지점 표시 */}
+          {!merged && (
+            <>
+              <span className="absolute left-[31%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border border-amber-400/60 bg-slate-900" aria-hidden="true" />
+              <span className="absolute left-[64.5%] top-[38%] h-2 w-2 rounded-full border border-amber-400/60 bg-slate-900" aria-hidden="true" />
+            </>
+          )}
         </div>
 
         {/* verdict strip */}
