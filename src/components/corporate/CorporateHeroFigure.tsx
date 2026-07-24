@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useHeroRotation } from '@/components/ui/HeroRotation';
+import { useCurrentTime } from '@/lib/mockup-time';
 
 /**
  * CorporateHeroFigure — the hero's evidence visual (HERO_SPACES_PLAN_v1 §4).
@@ -42,6 +43,12 @@ export default function CorporateHeroFigure({
   const rot = useHeroRotation();
   const localReduced = usePrefersReducedMotion();
   const reduced = rot ? rot.reduced : localReduced;
+
+  // D8: 타임스탬프는 이미지에 박제하지 않고 상대 규칙으로 렌더(빌드 시점 박제 금지).
+  // reduced-motion이면 훅이 갱신을 멈추므로 정적 시각 1회 표시로 자연 축퇴.
+  const { raw: nowRaw } = useCurrentTime({ interval: 1000 });
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  const osdStamp = `${nowRaw.getFullYear()}-${p2(nowRaw.getMonth() + 1)}-${p2(nowRaw.getDate())} ${p2(nowRaw.getHours())}:${p2(nowRaw.getMinutes())}:${p2(nowRaw.getSeconds())}`;
 
   /* ── which frame the clock wants vs which frame we can show ── */
   const target = rot && !reduced ? rot.index % images.length : 0;
@@ -154,11 +161,18 @@ export default function CorporateHeroFigure({
             />
           );
         })}
-        {/* The frames carry baked-in anonymized tracking; we only add the live chip. */}
+        {/* The frames carry baked-in anonymized tracking; we only add the live chips.
+            타임스탬프는 D8로 webp에서 제거(재생성) — 여기 코드 오버레이가 유일한 시각. */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gray-950/70 px-2.5 py-1 text-2xs font-medium text-white backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
             {trackLabel}
+          </span>
+          <span
+            suppressHydrationWarning
+            className="absolute right-3 top-3 rounded-md bg-gray-950/70 px-2 py-1 text-2xs font-mono tabular-nums text-white/90 backdrop-blur-sm"
+          >
+            {osdStamp}
           </span>
         </div>
       </motion.div>
