@@ -1,7 +1,10 @@
+> **[닫힘 2026-07-23]** 이 문서는 `docs/MOCKUP_MASTER_PLAN_v1.md`로 통합·대체됨 (Jamin 결정 D5). 이후 갱신은 마스터 문서에서만.
+
 # 목업 시스템 v2 — SAAI DS 정합 · 레이아웃 강건화 · 모션 정교화 계획 (v1)
 
 > 작성 2026-07-23 · 대상: `deepingsource.io` 코퍼레이트 사이트
 > 선행 문서: `docs/MOCKUP_ELEVATION_ROLLOUT_PLAN_v1.md`(배치·재사용), `docs/MOCKUP_SYSTEM_GUIDE.md`(v1 규약), `DESIGN.md`(사이트 토큰), `design-system/`(SAAI DS export)
+> **검수 근거: `docs/MOCKUP_AUDIT_RESULTS_260723.md`** — 전수조사·A1~A10 원인추적·시나리오 교차검수 결과. Phase 1~3의 구체 항목은 이 문서에서 파생 (2026-07-23 개정).
 > 이 문서는 v1 가이드를 **대체하지 않고 확장**한다 — v1의 콘텐츠 오버라이드 규약·빈 화면 금지 원칙은 그대로 계승.
 
 ---
@@ -13,7 +16,7 @@
 | D1 | **목업 내부 = SAAI DS 전면 채택** | 목업은 "SAAI 제품 화면의 재현"이므로 목업 **내부**만 `design-system/` 토큰을 SSOT로 삼는다. 목업 바깥(섹션·탭·설명 카드)은 기존 사이트 토큰 유지. |
 | D2 | **제품 구분색(emerald/violet) 폐지** | SAAI 단일 블루 원칙으로 통일. 제품 구분은 `SaaiHeader` 워드마크(`saai \| care` 등)와 타이포로. 색은 차트/상태 칩에만 SAAI 데이터 hue 사용. |
 | D3 | **framer-motion 정교화 (Lottie 미도입)** | 공용 모션 토큰·variants로 규격화. 목업 내부 모션은 SAAI Motion 스펙(`out_quint`, no spring/bounce)을 따른다. |
-| D4 | **계획서 우선, 실사용 목업부터 단계 적용** | 실사용 12뷰 + 홈 → 콘텐츠 핍진성 → 고아 22종 순. |
+| D4 | **계획서 우선, 실사용 목업부터 단계 적용** | 실사용 14뷰 + 홈 → 콘텐츠 핍진성 → 고아 9종 순. (07-23 전수조사로 12뷰→14뷰, 고아 22종→9종 갱신) |
 
 ### D1의 원칙 정리 — DESIGN.md와의 관계
 
@@ -138,20 +141,62 @@ SAAI Motion 스펙을 그대로 토큰화(§2-A gen에 포함)하고, 그 위에
 
 각 배치 공통 작업: Viewport 감싸기 → 호출부 임의 컨테이너 제거 → SAAI 토큰 치환 → motion variants 치환 → 검증 하네스 통과 → 스크린샷 전후 비교.
 
-**Acceptance**: 실사용 뷰 12개+홈에서 emerald/violet 0건, 호출부 사이즈 지정은 "폭"만, /demo 하네스 전 항목 그린.
+**Acceptance**: 실사용 뷰 14개+홈에서 emerald/violet 0건, 호출부 사이즈 지정은 "폭"만, /demo 하네스 전 항목 그린.
+
+#### Phase 1 구체 수정 항목 (2026-07-23 검수 반영 — AUDIT_RESULTS §2·§3, 착수는 Jamin 확인 후)
+
+| # | 항목 | 근거 |
+|---|---|---|
+| 1-① | `HqRollupDashboardMockup` "전국 240개"(:44/75/106)·KPI 세트 → `canonicalHq` 파생화 | A2 · 매장수 4갈래(200/240/128/12) 해소 — 심각도 상 |
+| 1-② | `AgentHqMiniMockup` "전국 128개"(:15) → `canonicalHq` 파생 + :24의 방문 1,204/구매 342/전환 6.2% 재산정(canonical 342 방문자 오전용 + 내부 산술 불일치) | A2 확장 발견 — 심각도 상 |
+| 1-③ | `MultiStoreDashboardMockup` "5개 매장 연결됨" → "예시 5개 매장" 라벨 명확화 | A2 |
+| 1-④ | `FeatureCarousel.tsx:339` 이미지 패널 `lg:col-span-6` 누락 수정 + count 탭 에셋(세로 스크린샷 `inflow-rate.png`) 가로형 교체 | A4 |
+| 1-⑤ | `ChatMockup` 메시지 컬럼 하단 고정(`justify-end`) — 실제 메신저 관성, 빈 화면 금지 | A9 (연출 의도 아닌 결함 판정) |
+| 1-⑥ | `HqRollupDashboardMockup` 랭킹 테이블 단기 패치(`table-fixed`+`truncate`) — 근본 해결은 0-2 MockupViewport | A8 |
+| 1-⑦ | `StoreCareMockup` 폰 화면 하단 1/3 공백 — 시나리오 항목 1개 승격 추가 | A6 |
+| 1-⑧ | `WordRise` 클립 line-height 정합 (`globals.css:697-711` + StoreCare/StoreInsight 히어로) — 재현 후 | A3 |
+| 1-⑨ | `useScrollAnimation` 발화 완화(`rootMargin` 상단 사전 트리거 + threshold 하향) — 재현 후 | A5 |
+| 1-⑩ | 미등록 4종 registry 등록 + `LiveDemoSection.tsx` 죽은 코드 `_archive` 이관 | AUDIT §1 |
+
+배포 확인 선행 2건: A7(올리브영 — 소스는 d736076c8에서 익명화 완료)·A10(-261 — 현 코드에 수치 없음)은 **Vercel 배포 SHA를 HEAD와 대조 후** 재판단.
 
 ### Phase 2 — 콘텐츠 핍진성 패스
 
-- canonical v2 확장(§2-D) → 실사용 목업의 하드코딩 숫자 전수 조사·파생 전환.
-- 시나리오 파일(storeagent/storecare/storeinsight/enterprise/…) 교차 정합 감사 — 같은 강남역점이 화면마다 다른 숫자를 말하지 않는지.
-- KO/EN/JP 3로케일 문구 동기화 + 표기 규칙 적용. 신규 카피는 기존 규칙대로 **Jamin 확정 후 반영(placeholder 금지)**.
-- 체크리스트 7항 전 목업 통과 기록(간단한 표로 가이드 v2에 부록).
+교차 정합 감사는 **2026-07-23 완료** (`MOCKUP_AUDIT_RESULTS_260723.md` §3). 확정된 수정 대상:
 
-### Phase 3 — 고아 22종 정리·재배치
+| # | 항목 | 근거 |
+|---|---|---|
+| 2-① | `storeagent.ts:307` + `storeagent-mock-i18n.ts:276/286/296` — 푸시 알림 "오늘 매출 ₩1,243,000" 오표기 수정 (₩1,243,000은 `yesterdayRevenueWon`. "어제 매출"로 정정 또는 오늘 값 ₩1,245,000으로 교체 — 같은 파일 :142와의 자기모순 해소) | 검수 결함 중 |
+| 2-② | `storecare.ts:10` `careScore=92` 하드코딩 → `canonicalStore.perfScore` 파생 (현재 값 일치, 드리프트 예방) | 검수 경미 |
+| 2-③ | `EnterpriseAppShowcase:114` 강남역점 명칭에 방문 3,332명(10배 스케일) — 매장명 재중립화 or canonical 스케일 반영 결정 | 검수 중 |
+| 2-④ | `StoreInsightDesktopMockup:97` "전체 12개 매장" — 점주 체인 규모를 canonical에 명시적 필드로 승격 or 라벨 제거 | 검수 중 |
+| 2-⑤ | 히어로 webp 6종 타임스탬프(baked-in "35:33:48") — 에셋 재생성 or 오버레이 코드 이관(`mockup-time.formatTimeWithSeconds`) — §2-D "빌드 시점 박제 금지"와 묶음 | A1 |
+| 2-⑥ | `CaseStudyChartMockup`(hex 17개) 토큰화 — 콘텐츠 차트 중 로컬 hex 최다 | 검수 §3-3 |
 
-- `ROLLOUT_PLAN_v1` §4(목업 없는 22뷰)와 매칭해 재배치 vs `_archive` 이관을 목업별로 결정.
+이후 기존 계획대로: canonical v2 확장(§2-D) · KO/EN/JP 동기화(검수 결과 로케일 간 숫자 드리프트 0건 확인 — 잘못된 수치도 3로케일 동일하므로 수정도 3로케일 동시) · 신규 카피는 **Jamin 확정 후 반영(placeholder 금지)** · 체크리스트 7항 통과 기록.
+
+참고(모범 사례): storeinsight/enterprise/simulator는 canonical 파생 + 교차 일치(홍대78·잠실65)로 이미 통과 수준 — 마이그레이션 시 이 3종의 패턴을 표준으로 삼는다.
+
+### Phase 3 — 고아 9종 정리·재배치 (22종 → 9종, 2026-07-23 전수조사 반영)
+
+갭 맵 확정본은 `MOCKUP_AUDIT_RESULTS_260723.md` §4. 요약:
+
+| 고아 | 재배치 제안 |
+|---|---|
+| RoiCalculatorWidget | ProductsView(허브) + SaaiForOwnersView 공유 |
+| FiveQuestionsMockup | SolutionsView(허브) + DiagnosisView 공유 |
+| AgentDaySimulator | SaaiForOwnersView (v5 최고 완성도 → 점주 1인칭 체험) |
+| StoreDayTimelapse | RetailView |
+| OrderFlowMockup | FoodBeverageView |
+| AlertFatigueComparison | DrugView |
+| PriorityEngineDiagram | FunctionsView / FunctionToolView |
+| PrivacyJourneyMockup | 후순위 — Anonymizer/Seal 보강용(두 곳 다 이미 목업 보유) |
+| AnonymizationMockup | **폐기 후보** — SealView BeforeAfterSlider와 중복 판정 후 결정 |
+
+- 고아 없는 갭 뷰: LargeSpaceView→SpatialTrajectory 재사용, SaaiAdsInsightView→FunnelDiagram 재사용.
+- 목업 비대상 11뷰(Career·Team·News·Investors·Partnership·Docs·Faq·Glossary·GlossaryDetail·Resources 등 콘텐츠·회사 계열)는 의도적 제외로 기록.
 - 재배치 확정분만 v2 마이그레이션 적용(죽일 자산에 공수 쓰지 않음).
-- registry(`index.ts`) 최종 정리 — 등록 목록 = 실제 사용 목록.
+- registry(`index.ts`) 최종 정리 — 등록 목록 = 실제 사용 목록 (미등록 4종 등록은 Phase 1-⑩에서 선행).
 
 ### Phase 4 (옵션) — 회귀 방지 자동화
 

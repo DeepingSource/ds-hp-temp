@@ -1,3 +1,5 @@
+> **[닫힘 2026-07-23]** 이 문서는 `docs/MOCKUP_MASTER_PLAN_v1.md`로 통합·대체됨 (Jamin 결정 D5). 인벤토리(§1)·갭 맵은 마스터 §3·§6이 최신.
+
 # 목업 자산 고도화 & 페이지별 롤아웃 계획 (v1)
 
 > 작성 2026-07-23 · 대상: `deepingsource.io` 코퍼레이트 사이트(`ds-hp-temp`)
@@ -27,15 +29,15 @@
 | 히어로 회전 이미지 | 6장(완성) + hero-v2 후보 세트 | 아래 1-4 참고 |
 | GPT 이미지 생성 스크립트 | 3종 | `generate-hero-spaces.mjs`, `generate-brand-avatars.mjs`(구 `generate-openai/gpt-avatars.mjs` 대체) |
 
-### 1-2. 배치 현황 — 34개 서브페이지 뷰 기준
+### 1-2. 배치 현황 — 35개 서브페이지 뷰 기준 (2026-07-23 전수조사로 갱신 — `docs/MOCKUP_AUDIT_RESULTS_260723.md` §1)
 
 | 상태 | 수량 | 목록 |
 |---|---|---|
-| 목업을 쓰는 뷰 | 12 / 34 | AboutView, AnonymizerView, EnterpriseView, ModelsView, SaaiView, SealView, SpatialAiView, StoreAgentView, StoreCareView, StoreCountView, StoreInsightView, TechnologyView |
-| 목업이 전혀 없는 뷰 | 22 / 34 | AgenticAiTechView, CareerView, DocsView, DrugView, FaqView, FoodBeverageView, FunctionsView, FunctionToolView, GlossaryDetailView, GlossaryView, InvestorsView, LargeSpaceView, NewsView, PartnershipView, **ProductsView**, ResourcesView, **RetailView**, SaaiAdsInsightView, SaaiForOwnersView, **SolutionDetailView**, **SolutionsView**, TeamView |
-| 홈페이지 | 1개 목업만(`SpatialTrajectoryMockup`) | — |
+| 목업을 쓰는 뷰 | 14 / 35 | AboutView, **AgenticAiTechView**(신규 — AutonomyLadder·LearningFlywheel·PosJoin), AnonymizerView, EnterpriseView, ModelsView, SaaiView, SealView, **SolutionDetailView**(신규 — SolutionMockupPreview 경유), SpatialAiView, StoreAgentView, StoreCareView, StoreCountView, StoreInsightView, TechnologyView |
+| 목업이 전혀 없는 뷰 | 21 / 35 | CareerView, **DiagnosisView**, DocsView, DrugView, FaqView, FoodBeverageView, FunctionsView, FunctionToolView, GlossaryDetailView, GlossaryView, InvestorsView, LargeSpaceView, NewsView, PartnershipView, **ProductsView**, ResourcesView, **RetailView**, SaaiAdsInsightView, SaaiForOwnersView, **SolutionsView**, TeamView |
+| 홈페이지 | 목업 5종+ | SpatialTrajectory(직접) · SpaceAiAnswerBeat→Chat+StoreInsight · HomeEnterpriseBeat→MultiStore · FeatureCarousel→ActionCard+IntegratedLoop |
 
-등록된 44종 중 **22종은 `/demo` 갤러리 밖에서 전혀 쓰이지 않는 "고아" 상태**다: `PhoneFrame·TabletFrame·MacBookFrame`(프레임류, 다른 목업의 부품으로 쓰이는 게 정상이라 별도 취급), `StoreInsightMockup`, `StoreCountCountingMockup`, `StoreCareStatusMockup`, `ActionCardMockup`, `ChatMockup`, `PushNotificationMockup`, `BriefingMockup`, `MockupImage`, `AnonymizationMockup`, `AutonomyLadderTimeline`, `PriorityEngineDiagram`, `OrderFlowMockup`, `CaseStudyChartMockup`, `FiveQuestionsMockup`, `RoiCalculatorWidget`, `AlertFatigueComparison`, `PrivacyJourneyMockup`, `AgentDaySimulator`, `StoreDayTimelapse`.
+고아는 **22종 → 9종으로 감소** (2026-07-23 기준): `AnonymizationMockup`, `FiveQuestionsMockup`, `OrderFlowMockup`, `PriorityEngineDiagram`, `PrivacyJourneyMockup`, `RoiCalculatorWidget`, `AlertFatigueComparison`, `AgentDaySimulator`, `StoreDayTimelapse`. 프레임·부품류(PhoneFrame·PhoneScreen·TabletFrame·MacBookFrame·BrowserChrome·MockupBadge·SaaiHeader·ScanlineOverlay)는 목업 내부 부품으로 정상 사용 중이라 고아에서 제외. 그 밖에 `StoreCountCountingMockup`·`StoreCareStatusMockup`은 coex 박람회 이벤트 랜딩에, `CaseStudyChartMockup`은 CaseStudyDetailView에, `BriefingMockup`·`MockupImage`는 storeagent 레거시 페이지에 배치됨. 미등록 4종(`EnterpriseAppShowcase`·`AgentHqMiniMockup`·`HqRollupDashboardMockup`·`DoorSplitDiagram`)은 **여전히 index.ts 미등록**. 죽은 코드 1건: `src/components/sections/LiveDemoSection.tsx`(BriefingMockup import하나 어떤 페이지에서도 미사용 — `_archive` 이관 후보).
 
 ### 1-3. 코드 품질 — 대표 7종 감사 결과
 
