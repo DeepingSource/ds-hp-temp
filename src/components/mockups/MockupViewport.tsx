@@ -63,6 +63,10 @@ export default function MockupViewport({
   const [scale, setScale] = useState(1);
   // card(가변 높이) 캔버스만 콘텐츠 높이를 측정해 자리를 잡는다
   const [contentH, setContentH] = useState<number | null>(null);
+  // minScale 바닥에 걸려 스케일된 지오메트리가 컨테이너보다 넓어질 때만 true.
+  // 이때만 가로 오버플로를 클립하고, 평상시엔 프레임 드롭섀도우가 새어 나오게 둔다
+  // (섀도우는 페인트 효과라 스크롤·레이아웃에 영향 없음 → 클립하면 A-1 사각 잔상만 생긴다).
+  const [floored, setFloored] = useState(false);
 
   useEffect(() => {
     const outer = outerRef.current;
@@ -71,6 +75,7 @@ export default function MockupViewport({
       const w = outer.clientWidth;
       if (w > 0) {
         setScale(Math.min(maxScale, Math.max(minScale, w / canvas.w)));
+        setFloored(w < canvas.w * minScale);
       }
       if (canvas.h == null && contentRef.current) {
         setContentH(contentRef.current.offsetHeight);
@@ -107,7 +112,15 @@ export default function MockupViewport({
               ? { height: contentH * scale, maxWidth: canvas.w * maxScale }
               : { maxWidth: canvas.w * maxScale }
         }
-        className={`mx-auto ${canvas.h == null && contentH == null ? '' : 'overflow-hidden'}`}
+        className={`mx-auto ${
+          canvas.h == null
+            ? contentH == null
+              ? '' // card 측정 전 — 클립 없음
+              : 'overflow-hidden' // card 측정 후 — 높이에 맞춰 클립
+            : floored
+              ? 'overflow-hidden' // 고정 캔버스가 minScale 바닥 — 가로 지오메트리 클립
+              : 'overflow-visible' // 고정 캔버스 평상시 — 프레임 섀도우 노출(A-1)
+        }`}
       >
         <div
           ref={contentRef}

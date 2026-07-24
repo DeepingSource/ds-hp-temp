@@ -13,7 +13,7 @@ const StoreCountCountingMockup = dynamic(() => import('@/components/mockups/Stor
 const StoreCareStatusMockup = dynamic(() => import('@/components/mockups/StoreCareStatusMockup'), { ssr: false });
 const PopMakerMockup = dynamic(() => import('./PopMakerMockup'), { ssr: false });
 
-/** store count — 유동인구·유입 카운팅 앱(기준선 드로잉 + 실시간 카운트). */
+/** saai count — 유동인구·유입 카운팅 앱(기준선 드로잉 + 실시간 카운트). */
 export function CountMockup({ locale }: { locale: Locale }) {
   return (
     <div className="w-full max-w-[300px] mx-auto">

@@ -148,18 +148,21 @@ export default function SpatialTrajectoryMockup({
         ))}
       </div>
 
-      {/* Real MTMC tracking footage — one person, one ID, across multiple cameras (no faces) */}
-      <div className="relative rounded-xl overflow-hidden bg-black/40 ring-1 ring-white/10">
-        <LoopVideo
-          mp4="/videos/mtmc-tracking.mp4"
-          poster="/images/technology/spatial-ai/mtmc-tracking-poster.webp"
-          ariaLabel={t.videoAlt}
-          className="block h-auto w-full"
-        />
-      </div>
+      {/* A-6: 영상(좌, 큼) + 01/02/03 카드(우, 세로 스택) 2단 배치로 세로 점유 축소.
+          영상은 max-h 상한을 둬 컨테이너가 넓어도 카드 높이에 맞춘다. */}
+      <div className="grid gap-4 lg:grid-cols-5 lg:items-stretch">
+        {/* Real MTMC tracking footage — one person, one ID, across multiple cameras (no faces) */}
+        <div className="relative rounded-xl overflow-hidden bg-black/40 ring-1 ring-white/10 lg:col-span-3">
+          <LoopVideo
+            mp4="/videos/mtmc-tracking.mp4"
+            poster="/images/technology/spatial-ai/mtmc-tracking-poster.webp"
+            ariaLabel={t.videoAlt}
+            className="block h-auto max-h-[360px] w-full object-cover lg:h-full lg:max-h-none"
+          />
+        </div>
 
-      {/* Promise cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+        {/* Promise cards — 우측 세로 스택(모바일은 아래로) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:col-span-2 lg:grid-cols-1 gap-3">
         {t.cards.map((card, i) => {
           const emph = i === 1; // card 02 — key differentiator
           return (
@@ -200,6 +203,7 @@ export default function SpatialTrajectoryMockup({
             </div>
           );
         })}
+        </div>
       </div>
 
       {playMode === 'once' && done && !reducedMotion && (

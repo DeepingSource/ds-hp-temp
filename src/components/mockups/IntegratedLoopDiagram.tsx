@@ -52,12 +52,12 @@ const COPY: Record<Locale, IntegratedLoopCopy> = {
   ko: {
     eyebrow: '셋이 함께 서면',
     heading: '세 시간 축이 하나의 운영 루프로 닫힙니다',
-    lead: '매장 안팎의 신호 — 매출·영상에 더해 밖의 유입(store count)까지 — 이 익명 허브에 모입니다. 그 위에서 Insight가 어제를 정리하고, Care가 지금을 알리고, Agent가 다음을 짚습니다. 운영자의 행동 결과가 되먹임이 되어 셋을 다 더 똑똑하게 만듭니다.',
+    lead: '매장 안팎의 신호 — 매출·영상에 더해 밖의 유입(saai count)까지 — 이 익명 허브에 모입니다. 그 위에서 Insight가 어제를 정리하고, Care가 지금을 알리고, Agent가 다음을 짚습니다. 운영자의 행동 결과가 되먹임이 되어 셋을 다 더 똑똑하게 만듭니다.',
     nodes: {
       cctv: { label: 'CCTV', tip: '매장 영상 신호 — 입력 시점에 익명화됩니다.' },
       pos: { label: 'POS', tip: '거래·매출 신호 — 개인 식별 없이 집계됩니다.' },
       ext: { label: '외부 컨텍스트', tip: '날씨·상권·이벤트 등 외부 맥락 신호.' },
-      count: { label: '유입 관측', tip: 'store count가 매장 앞 유입을 익명으로 관측·집계하는 입력 신호.' },
+      count: { label: '유입 관측', tip: 'saai count가 매장 앞 유입을 익명으로 관측·집계하는 입력 신호.' },
       seal: { label: 'SEAL + Anonymizer', tip: '입력 시점 익명화 — 원본은 저장하지 않습니다.' },
       hub: { label: '익명화 이벤트 허브', tip: '세 제품이 공유하는 단일 익명 이벤트 스트림.' },
       insight: { label: 'Insight', tip: '어제 · 왜 — 지난 패턴을 정리해 원인을 설명합니다.' },
@@ -86,18 +86,18 @@ const COPY: Record<Locale, IntegratedLoopCopy> = {
     cta: '세 제품의 통합 가이드 →',
     svgTitle: '세 제품 통합 신호 흐름 다이어그램',
     svgDesc:
-      '입력(CCTV·POS·외부 컨텍스트·유입 관측 store count)이 SEAL과 Anonymizer를 거쳐 익명화 이벤트 허브로 모이고, Insight·Care·Agent 세 갈래로 흐른 뒤 사람의 결정과 행동으로 이어지며, 그 결과가 다시 허브로 되먹임되는 운영 루프.',
+      '입력(CCTV·POS·외부 컨텍스트·유입 관측 saai count)이 SEAL과 Anonymizer를 거쳐 익명화 이벤트 허브로 모이고, Insight·Care·Agent 세 갈래로 흐른 뒤 사람의 결정과 행동으로 이어지며, 그 결과가 다시 허브로 되먹임되는 운영 루프.',
     scrollLabel: '통합 신호 흐름 다이어그램 — 좌우로 스크롤할 수 있습니다',
   },
   en: {
     eyebrow: 'When the three stand together',
     heading: 'Three time horizons close into one operating loop',
-    lead: 'Signals from inside and outside the store — sales, video, and footfall at the door (store count) — gather in one anonymized hub. On top of it, Insight makes sense of yesterday, Care tells you what is happening now, and Agent points to what comes next. The operator’s actions feed back and make all three sharper.',
+    lead: 'Signals from inside and outside the store — sales, video, and footfall at the door (saai count) — gather in one anonymized hub. On top of it, Insight makes sense of yesterday, Care tells you what is happening now, and Agent points to what comes next. The operator’s actions feed back and make all three sharper.',
     nodes: {
       cctv: { label: 'CCTV', tip: 'In-store video signal — anonymized at the point of capture.' },
       pos: { label: 'POS', tip: 'Transaction signal — aggregated without identifying anyone.' },
       ext: { label: 'External context', tip: 'Weather, foot traffic, local events and other context.' },
-      count: { label: 'Footfall sensing', tip: 'store count anonymously observes and counts footfall in front of the store.' },
+      count: { label: 'Footfall sensing', tip: 'saai count anonymously observes and counts footfall in front of the store.' },
       seal: { label: 'SEAL + Anonymizer', tip: 'Anonymized on capture — no raw footage is stored.' },
       hub: { label: 'Anonymized event hub', tip: 'One anonymized event stream shared by all three products.' },
       insight: { label: 'Insight', tip: 'Yesterday · why — explains the cause behind past patterns.' },
@@ -126,18 +126,18 @@ const COPY: Record<Locale, IntegratedLoopCopy> = {
     cta: 'The integrated guide to all three →',
     svgTitle: 'Integrated signal-flow diagram across the three products',
     svgDesc:
-      'Inputs (CCTV, POS, external context, and footfall sensing by store count) pass through SEAL and the Anonymizer into an anonymized event hub, branch into Insight, Care and Agent, lead to human decision and action, and feed the outcome back into the hub.',
+      'Inputs (CCTV, POS, external context, and footfall sensing by saai count) pass through SEAL and the Anonymizer into an anonymized event hub, branch into Insight, Care and Agent, lead to human decision and action, and feed the outcome back into the hub.',
     scrollLabel: 'Integrated signal-flow diagram — scroll horizontally to explore',
   },
   jp: {
     eyebrow: '三つが揃うと',
     heading: '三つの時間軸が一つの運用ループへと閉じます',
-    lead: '店舗の内外の信号 — 売上・映像に加えて店頭の流入(store count)まで — が一つの匿名ハブに集まります。その上で Insight が昨日を整理し、Care が今を知らせ、Agent が次を示します。運用者の行動の結果がフィードバックとなり、三つすべてをより賢くします。',
+    lead: '店舗の内外の信号 — 売上・映像に加えて店頭の流入(saai count)まで — が一つの匿名ハブに集まります。その上で Insight が昨日を整理し、Care が今を知らせ、Agent が次を示します。運用者の行動の結果がフィードバックとなり、三つすべてをより賢くします。',
     nodes: {
       cctv: { label: 'CCTV', tip: '店舗映像信号 — 取得時点で匿名化されます。' },
       pos: { label: 'POS', tip: '取引・売上信号 — 個人を特定せず集計します。' },
       ext: { label: '外部コンテキスト', tip: '天候・商圏・イベントなどの外部の文脈信号です。' },
-      count: { label: '流入観測', tip: 'store countが店頭の流入を匿名で観測・集計する入力信号です。' },
+      count: { label: '流入観測', tip: 'saai countが店頭の流入を匿名で観測・集計する入力信号です。' },
       seal: { label: 'SEAL + Anonymizer', tip: '取得時点で匿名化 — 原本は保存しません。' },
       hub: { label: '匿名化イベントハブ', tip: '三製品が共有する単一の匿名イベントストリームです。' },
       insight: { label: 'Insight', tip: '昨日・なぜ — 過去のパターンを整理し原因を説明します。' },
@@ -166,7 +166,7 @@ const COPY: Record<Locale, IntegratedLoopCopy> = {
     cta: '3製品の統合ガイド →',
     svgTitle: '三製品を統合した信号フロー図',
     svgDesc:
-      '入力（CCTV・POS・外部コンテキスト・流入観測 store count）が SEAL と Anonymizer を経て匿名化イベントハブに集まり、Insight・Care・Agent の三方向へ流れ、人の判断・行動へとつながり、その結果が再びハブへフィードバックされる運用ループです。',
+      '入力（CCTV・POS・外部コンテキスト・流入観測 saai count）が SEAL と Anonymizer を経て匿名化イベントハブに集まり、Insight・Care・Agent の三方向へ流れ、人の判断・行動へとつながり、その結果が再びハブへフィードバックされる運用ループです。',
     scrollLabel: '統合信号フロー図 — 左右にスクロールできます',
   },
 };

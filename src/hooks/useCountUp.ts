@@ -6,13 +6,19 @@ import { easeOutQuint } from '@/lib/easing';
 // tween, spring 금지. (기존 easeOutCubic → easeOutQuint — 같은 계열의 한 방향
 // 곡선이라 시각 변화는 미세하다.)
 
-export function useCountUp(target: number, active: boolean, duration = 1000) {
-  const [value, setValue] = useState(0);
+/**
+ * @param from  시작 비율(0..1). 0=기존(0→target). 목업이 뷰포트 진입 전
+ *   0값을 노출하지 않도록(B-2) 예: 0.55 — idle에 target×0.55를 보이고
+ *   진입 시 그 지점부터 target까지 카운트업한다.
+ */
+export function useCountUp(target: number, active: boolean, duration = 1000, from = 0) {
+  // B-2: 0이 아니라 최종값의 from 비율에서 시작 — 진입 전에도 로딩 실패처럼 보이지 않게.
+  const [value, setValue] = useState(() => Math.round(target * from));
   const rafRef = useRef<number>(0);
   const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) return; // 진입 전 — 초기 from 비율값을 유지
     if (reduced) {
       setValue(target);
       return;
@@ -22,12 +28,13 @@ export function useCountUp(target: number, active: boolean, duration = 1000) {
     const tick = (now: number) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      setValue(Math.round(easeOutQuint(progress) * target));
+      const eased = from + (1 - from) * easeOutQuint(progress);
+      setValue(Math.round(eased * target));
       if (progress < 1) rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [target, active, duration, reduced]);
+  }, [target, active, duration, reduced, from]);
 
   return value;
 }
@@ -51,8 +58,9 @@ export function useCountUpGroup(
   targets: number[],
   active: boolean,
   durations: number | number[] = 1000,
+  from = 0,
 ): number[] {
-  const [values, setValues] = useState<number[]>(() => targets.map(() => 0));
+  const [values, setValues] = useState<number[]>(() => targets.map((t) => Math.round(t * from)));
   const rafRef = useRef<number>(0);
   const reduced = usePrefersReducedMotion();
 
@@ -65,8 +73,8 @@ export function useCountUpGroup(
   durationsRef.current = durations;
 
   useEffect(() => {
-    if (!active) return;
     const t = targetsRef.current;
+    if (!active) return; // 진입 전 — 초기 from 비율값 유지(B-2: 0값 노출 방지)
     if (reduced) {
       setValues([...t]);
       return;
@@ -81,15 +89,15 @@ export function useCountUpGroup(
       setValues(
         t.map((target, i) => {
           const progress = Math.min(elapsed / durs[i], 1);
-          return Math.round(easeOutQuint(progress) * target);
+          const eased = from + (1 - from) * easeOutQuint(progress);
+          return Math.round(eased * target);
         }),
       );
       if (elapsed < maxDur) rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetsKey, durationsKey, active, reduced]);
+  }, [targetsKey, durationsKey, active, reduced, from]);
 
   return values;
 }

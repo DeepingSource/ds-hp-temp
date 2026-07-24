@@ -12,6 +12,7 @@ import SpacesShowcase from './SpacesShowcase';
 import TrustCharter from './TrustCharter';
 import ParallaxWatermark from './ParallaxWatermark';
 import DiagnosisLauncher from './diagnosis/DiagnosisLauncher';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import { homeCopy, localeHref, type Locale } from '@/lib/i18n';
 import { seam, purpose, productPrimary, productSecondary, type ProductKey } from '@/lib/brand-canon';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
@@ -30,7 +31,7 @@ const ctaDict: Record<
     kicker: 'REINVENT OFFLINE · 오프라인을, 다시.',
     heading: '당신의 공간을, 완벽하게.',
     sub: '한 매장이 바뀌면, 운영 전체가 바뀝니다.\n도입 상담으로 가장 빠른 길을 함께 찾습니다.',
-    close: '도입 상담',
+    close: '가장 빠른 길 찾기',
     reassure: '무료 상담 · 영업일 1–2일 내 회신',
     revealLead: '본사와 매장, 사장과 손님 — 보이지 않던 사이를 메웁니다.',
     revealSign: '그것이 SAAI입니다 (Spatial·Anonymized·Agentic·Intelligence).',
@@ -81,6 +82,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
   const cta = ctaDict[locale];
   return (
     <div className={`snap-home lang-${locale}`}>
+      <ScrollProgress />
       <JsonLd
         data={itemList(
           productDict[locale].map((p) =>
@@ -127,7 +129,8 @@ export default function HomeView({ locale }: { locale: Locale }) {
       {/* Beat 8 — Trust: 컴팩트 신뢰 밴드 + MTMC (한 섹션 두 블록, "신뢰·기술 검증") */}
       <TrustCharter locale={locale} />
       <AnimatedSection className="pb-16 pt-2 lg:pb-20 bg-[var(--layer-section-alt,#F7F9FC)]">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        {/* A-6: max-w-6xl → 5xl(약 1024px)로 좁혀 MTMC 카드의 세로 점유를 줄인다 */}
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <SpatialTrajectoryMockup locale={locale} playMode="once" />
         </div>
       </AnimatedSection>

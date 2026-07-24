@@ -108,7 +108,7 @@ export const valueAnchors: Record<string, string> = {
   premium: '하루 833원',
 };
 
-/** store count — B2B 상권·유입 진단 (대여형, 원/월). 매장 수·계약 기간에 따라 조정. */
+/** saai count — B2B 상권·유입 진단 (대여형, 원/월). 매장 수·계약 기간에 따라 조정. */
 export const COUNT_PRICING = {
   standard: 300_000, // Standard 대여형
   pro: 400_000,      // Pro — LTE 실시간

@@ -162,7 +162,7 @@ export const categoryKeyword: Record<Locale, string> = {
  *
  * ⚠️ RELABELED 2026-07-21 (제품체계 재설계 v1 §3·§6): care Observe→**Detect**,
  * agent Suggest→**Act** — the labels now agree with the landing STAGE_LABEL and the
- * suite standard. OBSERVE no longer belongs to care; it moves to `store count`, the
+ * suite standard. OBSERVE no longer belongs to care; it moves to `saai count`, the
  * SOURCE entry tool (유입을 세는 첫 걸음 → insight). Order is temporal: insight·care·agent·learn.
  * `mode` is the machine-readable link — see `MODES` / `FUNCTION_MODE_MATRIX` below.
  */
@@ -295,10 +295,15 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  * Product naming — single source for how the four products are named on the surface
  * (naming reorg §14/§15, option B). `saai` = value brand = the PRIMARY public label;
  * `store` = domain implementation (the URL slug's name) = the secondary.
- * 2026-07-16 결정: saai 전면 확정 — count 포함 (콘텐츠_수정확장_실행계획 §7 #2;
- * §12.B의 "count = SOURCE 도구라 store 유지"는 이 결정으로 대체).
+ * 2026-07-24 결정: count의 공개 명칭을 전 표면에서 'saai count'로 통일(사용자 결정).
+ * 네 제품 모두 `productPrimary`가 saai 브랜드명을 반환한다(saai care/insight/agent/count).
+ * `store: 'store count'`는 오직 route(/products/store-count)와 정합하는 도메인 슬러그
+ * 라벨로만 남으며 productSecondary→JSON-LD alternateName에서만 노출된다(가시 제품명은
+ * 항상 productPrimary). 참고: functionName/matrixSentence(아래 매트릭스 섹션)는 현재
+ * 어디서도 렌더되지 않는 헬퍼다.
  * Names are locale-invariant (lowercase). URLs are /products/saai-* (P1-3);
  * the old /products/store-* paths 301-redirect to them (see next.config.ts).
+ * count의 URL만 예외로 /products/store-count 유지(route는 변경 안 함).
  */
 /**
  * SURFACE KEY — the four page/route surfaces the site currently ships.
@@ -314,7 +319,7 @@ export const productFunction: Record<'insight' | 'care' | 'agent', Record<Locale
  */
 export type ProductKey = 'count' | 'insight' | 'care' | 'agent';
 export const productNaming: Record<ProductKey, { store: string; saai?: string }> = {
-  count: { store: 'store count' },
+  count: { store: 'store count', saai: 'saai count' },
   insight: { store: 'store insight', saai: 'saai insight' },
   care: { store: 'store care', saai: 'saai care' },
   agent: { store: 'store agent', saai: 'saai agent' },
@@ -341,8 +346,8 @@ export const productSecondary = (k: ProductKey): string | null =>
  * EXTENSION RULE: a new capability adds ONE ROW and three mode experiences appear
  * for free. No new product, no new name (Naming Grammar 확장 문법과 정합).
  *
- * NAMING: functions are lowercase verbs, spaced when prefixed — `store count`.
- * One cell reads: "saai care가 store count를 돌린다".
+ * NAMING: functions are lowercase verbs, spaced when prefixed — `store queue`.
+ * One cell reads: "saai care가 store queue를 돌린다".
  * ──────────────────────────────────────────────────────────────────────────── */
 
 /** The three products. These — and only these — are products. */
@@ -424,11 +429,11 @@ export const FUNCTION_MODE_MATRIX: Record<FunctionKey, Record<ModeKey, string>> 
 /** One cell — "what does {mode} do with {fn}?" */
 export const matrixCell = (fn: FunctionKey, mode: ModeKey): string => FUNCTION_MODE_MATRIX[fn][mode];
 
-/** Function name as written on a surface — lowercase, spaced. `store count`. */
+/** Function name as written on a surface — lowercase, spaced. `store queue`. */
 export const functionName = (fn: FunctionKey, prefix: 'store' | 'space' | 'saai' = 'store'): string =>
   `${prefix} ${fn}`;
 
-/** One matrix cell as a sentence — "saai care가 store count를 돌린다". */
+/** One matrix cell as a sentence — "saai care가 store queue를 돌린다". */
 export const matrixSentence = (fn: FunctionKey, mode: ModeKey): string =>
   `${MODES[mode].name}가 ${functionName(fn)}를 돌린다`;
 

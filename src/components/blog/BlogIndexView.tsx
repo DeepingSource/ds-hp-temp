@@ -20,7 +20,7 @@ const TOPICS: Record<Locale, BlogTopic[]> = {
     { label: '업종', tags: ['편의점', '드럭스토어', '카페', '대형마트', '물류', '패션', '전시'] },
   ],
   en: [
-    { label: 'Product', tags: ['Product', 'saai agent', 'store count', 'saai insight', 'saai care', 'AI agent'] },
+    { label: 'Product', tags: ['Product', 'saai agent', 'saai count', 'saai insight', 'saai care', 'AI agent'] },
     { label: 'Technology', tags: ['Tech', 'Technology', 'anonymization', 'privacy'] },
     { label: 'Trends', tags: ['Trend', 'Trends', 'trade-area analytics'] },
     { label: 'Operations', tags: ['store operations', 'capture rate', 'inventory', 'staffing'] },

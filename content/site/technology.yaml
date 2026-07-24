@@ -296,9 +296,9 @@ complianceItems:
 poweredProducts:
   - id: count
     name:
-      ko: store count
-      en: store count
-      jp: store count
+      ko: saai count
+      en: saai count
+      jp: saai count
     desc:
       ko: 밖을 세다 — 문 앞의 유입과 상권
       en: Counts outside — footfall and trade area at the door

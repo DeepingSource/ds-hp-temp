@@ -29,7 +29,7 @@ const STAGE_STRUCT: { key: StageKey; Icon: typeof Eye; href: string }[] = [
 type StageCopy = {
   label: string;   // OBSERVE
   tag: string;     // 관찰 · 입문
-  product: string; // store count
+  product: string; // saai count
   caption: string; // one-line what-this-screen-is
 };
 
@@ -83,7 +83,7 @@ const DEMO: Record<Locale, DemoCopy> = {
     detailCta: 'View detail',
     loopClose: 'The result feeds back in — every turn of the loop, less falls on human hands.',
     stages: {
-      observe: { label: 'OBSERVE', tag: 'Observe · entry', product: 'store count', caption: 'Who passed the door and who came in — where footfall begins.' },
+      observe: { label: 'OBSERVE', tag: 'Observe · entry', product: 'saai count', caption: 'Who passed the door and who came in — where footfall begins.' },
       analyze: { label: 'ANALYZE', tag: 'Analyze · yesterday', product: 'saai insight', caption: "Yesterday's flow as a funnel — pinpointing where you lost them." },
       detect: { label: 'DETECT', tag: 'Detect · now', product: 'saai care', caption: 'Not a flood of alerts — only the moments to act, now.' },
       act: { label: 'ACT', tag: 'Act · next', product: 'saai agent', caption: 'The next task, down to the order sheet — the person decides.' },
@@ -109,7 +109,7 @@ const DEMO: Record<Locale, DemoCopy> = {
     detailCta: '詳しく見る',
     loopClose: '結果が再び入力へ — ループを一周するたび、人の手は軽くなります。',
     stages: {
-      observe: { label: 'OBSERVE', tag: '観察 · 入門', product: 'store count', caption: '扉の前を通った人と入った人 — 集客の起点。' },
+      observe: { label: 'OBSERVE', tag: '観察 · 入門', product: 'saai count', caption: '扉の前を通った人と入った人 — 集客の起点。' },
       analyze: { label: 'ANALYZE', tag: '分析 · 昨日', product: 'saai insight', caption: '昨日の流れをファネルで — どこで逃したかを特定。' },
       detect: { label: 'DETECT', tag: '検知 · 今', product: 'saai care', caption: 'あふれる通知ではなく、今手を打つ瞬間だけ。' },
       act: { label: 'ACT', tag: '実行 · 次', product: 'saai agent', caption: '次にやることを発注書まで — 決めるのは人。' },

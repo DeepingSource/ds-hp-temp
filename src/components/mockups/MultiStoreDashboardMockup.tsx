@@ -164,6 +164,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
     [store.revenue, store.visitors, store.alerts, store.perf],
     kpiActive,
     kpiConfigs.map((c) => c.countUpDuration),
+    0.5, // B-2: 진입 전·매장 전환 사이에도 0이 아니라 최종값의 절반부터 — 로딩 실패처럼 보이지 않게
   );
 
   const kpiValuesByField: Record<string, number> = { revenue, visitors, alerts: alrtCnt, perf };
@@ -305,17 +306,26 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
               {/* Visitor bar chart */}
               <div className={`col-span-3 ${S.cardClass} p-3 flex flex-col`}>
                 <p className="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.chartVisitors}</p>
-                <div className="flex items-end gap-0.5 flex-1 min-h-0" aria-hidden="true">
+                {/* A-5: 각 막대 뒤에 고스트 트랙(전체 실루엣)을 상시 깔아 카운트업 전에도
+                    패널이 비어 보이지 않게 한다 + baseline. 색막대는 그 위에서 애니메이션. */}
+                <div className="flex items-end gap-0.5 flex-1 min-h-0 border-b border-gray-100" aria-hidden="true">
                   {/* i=3·4 = canonicalDay 12~13시(점심 피크, 9시 시작 12포인트 창) — 하이라이트가 카피와 정합 */}
-                  {chartData.map((v, i) => (
-                    <motion.div
-                      key={`${barsKey}-${i}`}
-                      className={`flex-1 rounded-t-sm ${i === 3 || i === 4 ? 'bg-primary' : 'bg-primary/35'}`}
-                      initial={{ height: reducedMotion ? `${(v / chartMax) * 100}%` : 0 }}
-                      animate={{ height: kpiActive ? `${(v / chartMax) * 100}%` : 0 }}
-                      transition={reducedMotion ? { duration: 0 } : { ...motionEnter, delay: i * 0.04 }}
-                    />
-                  ))}
+                  {chartData.map((v, i) => {
+                    const h = `${(v / chartMax) * 100}%`;
+                    const isPeak = i === 3 || i === 4;
+                    return (
+                      <div key={i} className="relative flex flex-1 items-end self-stretch">
+                        <div className="absolute inset-x-0 bottom-0 rounded-t-sm bg-primary/10" style={{ height: h }} />
+                        <motion.div
+                          key={`${barsKey}-${i}`}
+                          className={`relative w-full rounded-t-sm ${isPeak ? 'bg-primary' : 'bg-primary/45'}`}
+                          initial={{ height: reducedMotion ? h : 0 }}
+                          animate={{ height: kpiActive ? h : 0 }}
+                          transition={reducedMotion ? { duration: 0 } : { ...motionEnter, delay: i * 0.04 }}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

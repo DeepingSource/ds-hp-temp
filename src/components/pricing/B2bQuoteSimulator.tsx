@@ -211,9 +211,9 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
           </div>
         </div>
 
-        {/* ── store count 진단 + 엔터프라이즈 카드 ── */}
+        {/* ── saai count 진단 + 엔터프라이즈 카드 ── */}
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
-          {/* store count — 상권·유입 진단 (B2B 대여형) */}
+          {/* saai count — 상권·유입 진단 (B2B 대여형) */}
           <div className="relative p-7 bg-white rounded-2xl border border-gray-200 shadow-sm flex flex-col">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-lighter rounded-full text-xs font-bold text-primary mb-5 border border-primary/10">

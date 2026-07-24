@@ -20,7 +20,7 @@ import {
 } from '@/data/mockup-scenarios/storecount';
 
 /**
- * StoreCountCountingMockup — store count(StoreCount) 카운팅 앱을 사이트 디자인 시스템으로
+ * StoreCountCountingMockup — saai count(StoreCount) 카운팅 앱을 사이트 디자인 시스템으로
  * 재현한 다크 목업. 카메라 뷰 위에 기준선(유동인구 cyan 2 · 유입 pink 1)이 그려지고,
  * 사람 dot이 선을 가로지르며 하단 카드의 유동인구·유입·전환율이 카운트업된다.
  * ⚠️ SVG 라인은 CSS stroke-dashoffset로 드로잉(framer SVG는 이 스택에서 미하이드레이션),
@@ -35,21 +35,21 @@ const C: Record<Locale, {
   gender: string; male: string; female: string; age: string;
 }> = {
   ko: {
-    app: 'store count', ready: '측정 준비됨', measuring: '측정 중', done: '완료',
+    app: 'saai count', ready: '측정 준비됨', measuring: '측정 중', done: '완료',
     footfall: '유동인구', footfallSub: '통과 카운팅', entry: '유입', entrySub: '진입 카운팅', conversion: '전환율',
     f1: '유동인구 1', f2: '유동인구 2', entryLabel: '유입', note: '예시 수치',
     segLive: '측정', segReport: '리포트', reportTitle: '상권 리포트', pass: '통행', visit: '방문', inflow: '유입률',
     gender: '성별', male: '남', female: '여', age: '연령대',
   },
   en: {
-    app: 'store count', ready: 'Ready', measuring: 'Measuring', done: 'Done',
+    app: 'saai count', ready: 'Ready', measuring: 'Measuring', done: 'Done',
     footfall: 'Footfall', footfallSub: 'passers-by', entry: 'Entries', entrySub: 'walk-ins', conversion: 'Conv.',
     f1: 'Footfall 1', f2: 'Footfall 2', entryLabel: 'Entry', note: 'sample figures',
     segLive: 'Live', segReport: 'Report', reportTitle: 'Trade-area report', pass: 'Passing', visit: 'Visits', inflow: 'Inflow',
     gender: 'Gender', male: 'M', female: 'F', age: 'Age',
   },
   jp: {
-    app: 'store count', ready: '測定準備', measuring: '測定中', done: '完了',
+    app: 'saai count', ready: '測定準備', measuring: '測定中', done: '完了',
     footfall: '通行量', footfallSub: '通過カウント', entry: '入店', entrySub: '入店カウント', conversion: '転換率',
     f1: '通行 1', f2: '通行 2', entryLabel: '入店', note: '例の数値',
     segLive: '測定', segReport: 'レポート', reportTitle: '商圏レポート', pass: '通行', visit: '来店', inflow: '入店率',

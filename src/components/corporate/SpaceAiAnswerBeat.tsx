@@ -11,9 +11,8 @@ const GenericAiMockup = dynamic(() => import('@/components/mockups/GenericAiMock
   loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
 });
 
-const StoreInsightMockup = dynamic(() => import('@/components/mockups/StoreInsightMockup'), {
-  // MockupViewport(phone 390×844) 자리 예약과 동일 비율 — 로드 전후 CLS 0
-  loading: () => <div className="aspect-[390/844] animate-pulse rounded-2xl bg-slate-800/40" />,
+const SpatialChatMockup = dynamic(() => import('@/components/mockups/SpatialChatMockup'), {
+  loading: () => <div className="h-[440px] animate-pulse rounded-2xl bg-slate-800/40" />,
 });
 
 type Pillar = { letter: string; name: string; title: string; desc: string };
@@ -212,11 +211,11 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                   ))}
                 </ul>
 
-                {/* Right card demo — 같은 질문에 실데이터·행동으로 답하는 SAAI (좌측 재생 완료 후 시작).
-                    크기는 MockupViewport 비율 스케일 소관 — 호출부는 폭만 지정(v2 계약).
-                    폭 240/255는 구 scale-[0.85] 해킹 시절의 실효 크기를 승계한 값. */}
-                <div className="pt-3 max-w-[240px] sm:max-w-[255px] mx-auto">
-                  <StoreInsightMockup locale={locale} active={leftDone} playMode="once" />
+                {/* Right card demo — 같은 챗 프레임으로 받되, 답을 매장 평면도·히트맵·동선 위
+                    하이라이트 + 오늘의 행동으로 내놓는 SAAI(좌측 재생 완료 후 시작, A-2).
+                    좌측 GenericAiMockup과 같은 card 프레임·폭(≤400px)으로 비교를 정렬. */}
+                <div className="pt-3 mx-auto w-full max-w-[400px]">
+                  <SpatialChatMockup locale={locale} active={leftDone} playMode="once" />
                 </div>
               </div>
 

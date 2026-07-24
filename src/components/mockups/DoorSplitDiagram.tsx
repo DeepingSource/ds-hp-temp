@@ -11,7 +11,7 @@ import { canonicalDoorTraffic } from '@/data/mockup-scenarios/canonical';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
- * Left of the door: store count reads footfall + capture rate (342 ÷ 1,036 = 33%).
+ * Left of the door: saai count reads footfall + capture rate (342 ÷ 1,036 = 33%).
  * Right of the door: store insight reads flow/dwell (heatmap) + the conversion
  * funnel (342→317→65). Shared on both product pages as a contrast pair. Inline
  * SVG/CSS, no raster. Sample values (caption marks it).
@@ -38,33 +38,33 @@ const dict: Record<Locale, {
   boundary: string; caption: string;
 }> = {
   ko: {
-    outsideTag: '문 밖 · store count', outsideTitle: '상권·통행·유입률',
+    outsideTag: '문 밖 · saai count', outsideTitle: '상권·통행·유입률',
     passersby: '지나감', passersbyN: N.passersby,
     captureLabel: '유입률', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `입장 ${N.entered} ÷ 지나감 ${N.passersby}`,
     insideTag: '문 안 · store insight', insideTitle: '동선·체류·전환',
     heatLabel: '체류 히트맵',
     funnel: [{ label: '입장', n: N.entered }, { label: '체류', n: N.browsed }, { label: '구매', n: N.purchased }],
-    boundary: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를 — 유입률이 둘을 잇습니다.',
+    boundary: 'saai count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를 — 유입률이 둘을 잇습니다.',
     caption: '* 수치는 설명용 예시입니다.',
   },
   en: {
-    outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · capture rate',
+    outsideTag: 'Outside · saai count', outsideTitle: 'Trade area · footfall · capture rate',
     passersby: 'Passing by', passersbyN: N.passersby,
     captureLabel: 'Inflow rate', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `Entered ${N.entered} ÷ passing ${N.passersby}`,
     insideTag: 'Inside · store insight', insideTitle: 'Flow · dwell · conversion',
     heatLabel: 'Dwell heatmap',
     funnel: [{ label: 'Entered', n: N.entered }, { label: 'Dwell', n: N.browsed }, { label: 'Bought', n: N.purchased }],
-    boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — capture rate is the handoff between them.',
+    boundary: 'saai count reads the footfall outside the door; store insight reads what happened inside, and why — capture rate is the handoff between them.',
     caption: '* Figures are illustrative.',
   },
   jp: {
-    outsideTag: '店の外 · store count', outsideTitle: '商圏・通行・流入率',
+    outsideTag: '店の外 · saai count', outsideTitle: '商圏・通行・流入率',
     passersby: '通行', passersbyN: N.passersby,
     captureLabel: '流入率', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `入店 ${N.entered} ÷ 通行 ${N.passersby}`,
     insideTag: '店の中 · store insight', insideTitle: '動線・滞在・転換',
     heatLabel: '滞在ヒートマップ',
     funnel: [{ label: '入店', n: N.entered }, { label: '滞在', n: N.browsed }, { label: '購入', n: N.purchased }],
-    boundary: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを — 流入率が両者をつなぎます。',
+    boundary: 'saai count は店の外の通行を、store insight は店の中で何がなぜ起きたかを — 流入率が両者をつなぎます。',
     caption: '* 数値は説明用の例示です。',
   },
 };
@@ -85,7 +85,7 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
   return (
     <figure ref={ref} role="img" aria-label={ariaLabel ?? `${t.outsideTag} ↔ ${t.insideTag}`} className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-card">
       <div className="grid items-stretch gap-4 sm:grid-cols-[1fr_auto_1fr]">
-        {/* Outside — store count */}
+        {/* Outside — saai count */}
         <div className="rounded-xl border border-gray-100 bg-gray-50 p-4">
           <p className="text-2xs font-bold uppercase tracking-wider text-primary mb-1">{t.outsideTag}</p>
           <p className="text-xs text-gray-500 mb-3 break-keep">{t.outsideTitle}</p>

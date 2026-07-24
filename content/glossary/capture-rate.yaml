@@ -24,7 +24,7 @@ relatedIndustries:
   - drugstore
   - mart
 saaiUsage:
-  ko: store count는 카메라 한 대로 매장 앞 유동인구와 입장객을 함께 세어 기간별·시간대별 유입률(%)을 제공합니다. saai insight는 유입 이후의 동선·체류·전환을 이어서 분석해, 유입률과 구매 전환율을 하나의 퍼널로 연결합니다.
+  ko: saai count는 카메라 한 대로 매장 앞 유동인구와 입장객을 함께 세어 기간별·시간대별 유입률(%)을 제공합니다. saai insight는 유입 이후의 동선·체류·전환을 이어서 분석해, 유입률과 구매 전환율을 하나의 퍼널로 연결합니다.
   en: ''
   jp: ''
 metaDescription:

@@ -11,6 +11,7 @@ import { DoorOpen, Grid3x3, Radar, ClipboardCheck, ArrowRight, type LucideIcon }
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
+import PlanSteps from './PlanSteps';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -75,6 +76,7 @@ const PRODUCTS: ProductStruct[] = [
   {
     key: 'count',
     name: productNaming.count.store,
+    saaiName: productNaming.count.saai,
     icon: DoorOpen,
     href: '/products/store-count',
     // 1-④(MM A4): 원본 inflow-rate.png는 세로 2533px 문서 캡처라 4/3 cover에서
@@ -116,7 +118,7 @@ const dict: Record<
       care: 'saai care — 모니터링 알림 화면',
       insight: 'saai insight — 체류 및 구매전환 동선 분석 대시보드',
       agent: 'saai agent — 실시간 매장 관리 및 AI POP 가이드',
-      count: 'store count — 유동인구 대비 입문 전환 분석',
+      count: 'saai count — 유동인구 대비 입문 전환 분석',
     },
   },
   en: {
@@ -140,7 +142,7 @@ const dict: Record<
       care: 'saai care — monitoring alerts',
       insight: 'saai insight — dwell & pre-purchase flow dashboard',
       agent: 'saai agent — live store management & AI POP guide',
-      count: 'store count — capture rate analytics',
+      count: 'saai count — capture rate analytics',
     },
   },
   jp: {
@@ -164,7 +166,7 @@ const dict: Record<
       care: 'saai care — モニタリング通知画面',
       insight: 'saai insight — 滞在および購買転換動線分析ダッシュボード',
       agent: 'saai agent — リアルタイム店舗管理およびAI POPガイド',
-      count: 'store count — 流入転換分析',
+      count: 'saai count — 流入転換分析',
     },
   },
 };
@@ -225,16 +227,14 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        <div id="plan-section" className="mx-auto mb-12 max-w-3xl text-center">
-          <Eyebrow className="mb-3">{locale === 'ko' ? '계획 & 작동 방식' : locale === 'jp' ? '計画と仕組み' : 'Plan & Operation'}</Eyebrow>
-          <h2 className="mb-4 font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">
-            {locale === 'ko' ? '복잡함 없이 3단계로 시작합니다' : locale === 'jp' ? '複雑さなし、3ステップで開始' : 'Simple 3-step operation loop'}
-          </h2>
-          <div className="text-base sm:text-lg leading-relaxed text-gray-700 break-keep space-y-1.5 font-medium max-w-xl mx-auto text-left sm:text-center">
-            <p>{locale === 'ko' ? '① 쓰던 CCTV 그대로 연결' : locale === 'jp' ? '① 既存CCTV接続' : '① Connect existing CCTVs'}</p>
-            <p>{locale === 'ko' ? '② 매장마다 세 제품이 함께 돌아갑니다' : locale === 'jp' ? '② 各店舗で三つの製品が一緒に動きます' : '② Three products run together in every store'}</p>
-            <p>{locale === 'ko' ? '③ 본사 한 화면에서 표준화' : locale === 'jp' ? '③ 本部画面で標準化' : '③ Standardize fleet-wide'}</p>
+        <div id="plan-section" className="mb-12">
+          <div className="mx-auto mb-8 max-w-3xl text-center">
+            <Eyebrow className="mb-3">{locale === 'ko' ? '계획 & 작동 방식' : locale === 'jp' ? '計画と仕組み' : 'Plan & Operation'}</Eyebrow>
+            <h2 className="font-display text-3xl font-bold text-gray-900 break-keep sm:text-4xl">
+              {locale === 'ko' ? '복잡함 없이 3단계로 시작합니다' : locale === 'jp' ? '複雑さなし、3ステップで開始' : 'Simple 3-step operation loop'}
+            </h2>
           </div>
+          <PlanSteps locale={locale} />
         </div>
 
         <motion.div
@@ -290,7 +290,7 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                     {t.steps[active.key]}
                   </p>
                   <h3 className="text-2xl font-bold text-white font-display break-keep sm:text-3xl">
-                    {active.name}
+                    {active.saaiName ?? active.name}
                   </h3>
                   <p className="text-sm leading-relaxed text-gray-300 break-keep sm:text-base">
                     {t.taglines[active.key]}

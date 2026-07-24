@@ -59,8 +59,8 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
     <Section variant="default" pad="compact">
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary-lighter/60 via-white to-white px-6 py-10 sm:px-10 sm:py-12">
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12 items-center">
-            <div className="lg:col-span-6">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-10 items-center">
+            <div className="lg:col-span-5">
               <Eyebrow tone="primary" className="mb-3">{t.eyebrow}</Eyebrow>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep font-display tracking-tight">
                 {t.heading}
@@ -98,10 +98,10 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
             </div>
 
             {/* HQ Multi-Store Control Dashboard Mockup */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-7">
               {/* 크기·프레임은 목업(MockupViewport+디바이스 프레임) 소관 — 호출부는 폭만(v2 계약).
-                  구 overflow-hidden ring/scale-95 래퍼는 이중 프레이밍이라 제거. */}
-              <div className="max-w-xl mx-auto">
+                  A-5: 6:6 → 5:7 재조정 + max-w-xl(576) → max-w-2xl 상향으로 랩톱을 크게(가독 확보). */}
+              <div className="max-w-2xl lg:max-w-none mx-auto">
                 <MultiStoreDashboardMockup locale={locale} />
               </div>
             </div>

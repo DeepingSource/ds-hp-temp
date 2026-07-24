@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: '機能ライブラリ — 機能は3つのモードを横断します | DEEPINGSOURCE',
   description:
     '4つの機能 — count・queue・pop・fit — を saai care・insight・agent の3モードがそれぞれどう使うか。機能は製品ではありません。',
-  keywords: ['saai 機能', 'store count', 'store trail', '機能マトリクス', '匿名化空間AI', '来店計測', '待ち行列分析', '棚モニタリング', 'DeepingSource'],
+  keywords: ['saai 機能', 'saai count', 'store trail', '機能マトリクス', '匿名化空間AI', '来店計測', '待ち行列分析', '棚モニタリング', 'DeepingSource'],
   alternates: {
     canonical: '/jp/products/functions',
     languages: {

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Function library — functions cross all three modes | DEEPINGSOURCE',
   description:
     'Four capabilities — count, queue, pop, fit — and how saai care, saai insight and saai agent each put them to work. A function is not a product.',
-  keywords: ['saai functions', 'store count', 'store queue', 'retail capability matrix', 'anonymized spatial AI', 'footfall', 'queue analytics', 'POP effectiveness', 'DeepingSource'],
+  keywords: ['saai functions', 'saai count', 'store queue', 'retail capability matrix', 'anonymized spatial AI', 'footfall', 'queue analytics', 'POP effectiveness', 'DeepingSource'],
   alternates: {
     canonical: '/products/functions',
     languages: {

@@ -131,12 +131,15 @@ interface Props {
   playMode?: 'loop' | 'once';
 }
 
+// B-2: idle/진입 전에도 최종값의 일정 비율을 표시(0값 노출 방지). 진입 시 이 값에서 카운트업한다.
+const COUNT_FROM = 0.55;
+
 function StoreInsightMockup({ active = true, storeName, locale = 'en', content, playMode = 'loop' }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const t = mergeMockupContent(C[locale] ?? C.en, content);
   const resolvedStoreName = storeName ?? t.storeName;
   const [activeTab, setActiveTab]           = useState<InsightTab>('sales');
-  const [countProgress, setCountProgress]   = useState(0);
+  const [countProgress, setCountProgress]   = useState(COUNT_FROM);
   const [insightVisible, setInsightVisible] = useState(false);
   const [done, setDone]                     = useState(false);
   const [replayKey, setReplayKey]           = useState(0);
@@ -175,7 +178,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
       const tick = (now: number) => {
         if (cancelled) return;
         const p = Math.min((now - start) / dur, 1);
-        setCountProgress(1 - Math.pow(1 - p, 3));
+        setCountProgress(COUNT_FROM + (1 - COUNT_FROM) * (1 - Math.pow(1 - p, 3)));
         if (p < 1) countRaf.id = requestAnimationFrame(tick);
       };
       countRaf.id = requestAnimationFrame(tick);

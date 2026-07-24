@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 interface StaggerContainerProps {
   children: React.ReactNode;
@@ -21,19 +22,23 @@ export function StaggerContainer({
   children,
   className,
   staggerDelay = 0.1,
-  // -80px는 카드가 뷰포트 하단에 걸친 채 스크롤이 멈추면 발화하지 않아
-  // 반투명 잔류를 만든다(홈 정제계획 F4) — 얕은 마진으로 완화.
-  margin = '-40px',
+  // B-1: 양수 마진 — 카드가 뷰포트에 들어오기 전(아래 160px)에 발화시켜, 헤딩만 뜬 채
+  // 본문이 opacity:0으로 비어 보이는 "빈 여백" 구간을 없앤다. (음수 마진은 늦게 발화)
+  margin = '160px',
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
   const isInView = useInView(ref, { once: true, margin: margin as `${number}px` });
+  // B-7: reduced-motion이면 리빌 없이 처음부터 최종 상태로 렌더(MotionProvider가 opacity는
+  // 남겨 두므로 여기서 명시적으로 우회한다).
+  const show = reduced || isInView;
 
   return (
     <motion.div
       ref={ref}
       variants={containerVariants(staggerDelay)}
-      initial="hidden"
-      animate={isInView ? 'show' : 'hidden'}
+      initial={reduced ? 'show' : 'hidden'}
+      animate={show ? 'show' : 'hidden'}
       className={className}
     >
       {children}

@@ -38,9 +38,9 @@ const ADS_CARD: Record<Locale, { stage: string; desc: string }> = {
 };
 
 const FUNCTIONS_CARD: Record<Locale, { stage: string; title: string; desc: string; cta: string }> = {
-  ko: { stage: '가로축', title: '기능 라이브러리', desc: 'store count·queue·pop·fit — 네 개의 기능은 한 제품에 속하지 않고 세 모드를 모두 가로지릅니다.', cta: '매트릭스 보기' },
-  en: { stage: 'Across', title: 'Function library', desc: 'store count, queue, pop, fit — four capabilities that belong to no single product and cross all three modes.', cta: 'See the matrix' },
-  jp: { stage: '横軸', title: '機能ライブラリ', desc: 'store count・queue・pop・fit — 4つの機能は一つの製品に属さず、3つのモードを横断します。', cta: 'マトリクスを見る' },
+  ko: { stage: '가로축', title: '기능 라이브러리', desc: 'saai count·queue·pop·fit — 네 개의 기능은 한 제품에 속하지 않고 세 모드를 모두 가로지릅니다.', cta: '매트릭스 보기' },
+  en: { stage: 'Across', title: 'Function library', desc: 'saai count, queue, pop, fit — four capabilities that belong to no single product and cross all three modes.', cta: 'See the matrix' },
+  jp: { stage: '横軸', title: '機能ライブラリ', desc: 'saai count・queue・pop・fit — 4つの機能は一つの製品に属さず、3つのモードを横断します。', cta: 'マトリクスを見る' },
 };
 
 type OwnerStruct = { id: string; name: string; href: string };
@@ -115,19 +115,19 @@ const jsonLdProducts: Record<Locale, { name: string; description: string; path: 
     { name: productNaming.insight.saai ?? 'saai insight', description: '어제 매장의 체류·전환·동선을 데이터로 읽는 SAAI 분석 모드.', path: '/products/saai-insight' },
     { name: productNaming.care.saai ?? 'saai care', description: '지금 매장의 결품·온도·도난을 24시간 실시간 감지하는 SAAI 감지 모드.', path: '/products/saai-care' },
     { name: productNaming.agent.saai ?? 'saai agent', description: '오늘의 현장 발주·진열·행동 가이드를 자율 제안하는 SAAI 실행 모드.', path: '/products/saai-agent' },
-    { name: 'store count', description: 'CCTV 1대로 유동인구 대비 입문 유입률을 파악하는 입문 기능 모듈.', path: '/products/store-count' },
+    { name: 'saai count', description: 'CCTV 1대로 유동인구 대비 입문 유입률을 파악하는 입문 기능 모듈.', path: '/products/store-count' },
   ],
   en: [
     { name: productNaming.insight.saai ?? 'saai insight', description: 'Analyze yesterday floor flow, dwell, and pre-purchase conversion.', path: '/products/saai-insight' },
     { name: productNaming.care.saai ?? 'saai care', description: 'Detect live stock-outs, fridge alerts, and anomalies 24/7.', path: '/products/saai-care' },
     { name: productNaming.agent.saai ?? 'saai agent', description: 'Act on daily automated action guides for stocking and floor staff.', path: '/products/saai-agent' },
-    { name: 'store count', description: 'Single camera footfall capture rate module.', path: '/products/store-count' },
+    { name: 'saai count', description: 'Single camera footfall capture rate module.', path: '/products/store-count' },
   ],
   jp: [
     { name: productNaming.insight.saai ?? 'saai insight', description: '昨日の滞在・転換・動線をデータで分析する SAAI insight。', path: '/products/saai-insight' },
     { name: productNaming.care.saai ?? 'saai care', description: '今の欠品・温度・防損を24時間リアルタイム検知する SAAI care。', path: '/products/saai-care' },
     { name: productNaming.agent.saai ?? 'saai agent', description: '今日の現場発注・陳列・行動ガイドを自律提案する SAAI agent。', path: '/products/saai-agent' },
-    { name: 'store count', description: 'カメラ1台で通行と入店率を比較する store count 모듈。', path: '/products/store-count' },
+    { name: 'saai count', description: 'カメラ1台で通行と入店率を比較する saai count 모듈。', path: '/products/store-count' },
   ],
 };
 
@@ -226,13 +226,13 @@ export default function ProductsView({ locale }: { locale: Locale }) {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* store count (entry module) */}
+            {/* saai count (entry module) */}
             <div className="p-7 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-2xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full mb-4 inline-block">
                   입문 모듈 · OBSERVE
                 </span>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">store count</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">saai count</h3>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep mb-6">
                   CCTV 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 파악합니다. 상권 문제인지 매장 문제인지 정밀하게 구분합니다.
                 </p>
@@ -241,7 +241,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                 href={localeHref(locale, '/products/store-count')}
                 className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
               >
-                <span>store count 자세히 보기</span>
+                <span>saai count 자세히 보기</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
