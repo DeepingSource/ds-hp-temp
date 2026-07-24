@@ -67,7 +67,7 @@ const COPY: Record<Locale, {
     demoHeading: '도입 전에, 여기서 먼저 체험해보세요',
     demoSub: '에이전트가 제안한 하루를 직접 결정해보고, ROI 계산기로 우리 매장의 도입 효과를 추정해보세요.',
     ctaHeading: '우리 매장에 딱 맞는 사장님 전용 서비스를 경험해보세요',
-    ctaSub: '지금 바로 사장님 전용 서비스 사이트에서 자세한 기능과 시연을 확인하실 수 있습니다.',
+    ctaSub: '사장님 전용 서비스 사이트에서 자세한 기능과 시연을 확인하실 수 있습니다.',
   },
   en: {
     eyebrow: 'B2C OWNER SUITE · FOR STORE OWNERS',
