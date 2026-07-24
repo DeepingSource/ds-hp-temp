@@ -101,7 +101,7 @@ const C: Record<Locale, {
     ctaSecondary: '분석 화면 보기',
     posComplementTitle: 'POS 매출 데이터에 매장 안의 "왜"를 더합니다',
     posComplementSub: 'POS는 "무엇이"를, saai insight는 "왜"를 압니다.',
-    dashEyebrow: 'DASHBOARD · 종합 관측',
+    dashEyebrow: '대시보드 · 종합 관측',
     dashTitle: '어제의 매장을 한 화면에서 읽습니다',
     dashSub: '방문·동선·체류·전환을 한 화면으로. 입장 순간부터 결제 순간까지 — 매출 데이터가 놓친 구매 전 미세 행동이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',

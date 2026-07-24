@@ -8,6 +8,9 @@ patentsPending: 37
 patentsLabel: "등록 66개 · 출원 37개"
 partnerBrands: 8
 industries: 7
+fundingCumulativeBillionKrw: 300
+seriesABillionKrw: 55
+certLabel: "SOC 2 · PIPA"
 nvidiaPartner: "NVIDIA Inception Partner"
 site: "https://storeagent.kr"
 corporate: "https://www.deepingsource.io"

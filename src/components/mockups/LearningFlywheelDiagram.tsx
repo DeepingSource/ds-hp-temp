@@ -41,7 +41,7 @@ export interface LearningFlywheelDiagramProps {
 
 const defaultCopy: Record<Locale, LearningFlywheelCopy> = {
   ko: {
-    eyebrow: 'COMPOUNDING LOOP · 선순환 구조',
+    eyebrow: '복리형 루프 · 선순환 구조',
     heading: '한 매장에서 배운 건, 모든 매장이 씁니다',
     lead: '공간을 읽고(이해) → 판단을 다듬고(학습) → 매장이 나아지고(최적화) → 그 배움이 다른 공간으로 퍼집니다(전파). 공간이 늘수록 다음 이해는 더 정확해집니다.',
     nodes: [

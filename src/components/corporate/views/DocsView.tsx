@@ -26,7 +26,7 @@ const C: Record<Locale, {
   comingSoonManuals: { title: string; desc: string }[];
 }> = {
   ko: {
-    eyebrow: 'Docs',
+    eyebrow: '문서',
     heroTitle: '제품 문서',
     heroSub: 'DeepingSource 제품의 설치, 연동, 운영에 필요한 기술 문서를 제공합니다. 아래에서 필요한 주제를 골라 시작하세요.',
     sidebarLabel: '제품 문서',

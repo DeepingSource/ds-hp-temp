@@ -52,7 +52,7 @@ const C: Record<Locale, {
   filter: string;
 }> = {
   ko: {
-    eyebrow: 'Blog',
+    eyebrow: '블로그',
     heading: '인사이트 & 가이드',
     sub: (n) => `프라이버시 AI, 영상 익명화, 공간 데이터 분석에 대한 ${n}개의 아티클.`,
     emptyTitle: '콘텐츠를 준비하고 있습니다',

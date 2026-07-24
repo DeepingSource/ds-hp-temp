@@ -7,6 +7,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 import { CheckCircle2, Check, ArrowRight, Eye, BarChart3, Zap, AlertCircle } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { CTA_TRACK_O, OWNER_START_URL } from '@/lib/cta-canon';
 import Spinner from '@/components/ui/Spinner';
 import { trackEvent } from '@/components/Analytics';
 import siteContent from '@/data/generated/site-content.json';
@@ -59,6 +60,12 @@ type Content = {
   };
   planLabels: Record<string, string>;
   productLabels: Record<string, string>;
+  /** 2-패스 트랙 스위치 (⑤1-4) — 점주 vs 본사·다점포 */
+  trackHeading: string;
+  trackOwner: { label: string; desc: string; formNote: string };
+  trackEnterprise: { label: string; desc: string };
+  enterpriseFormTitle: string;
+  enterpriseFormSubtitle: string;
 };
 
 // Display prose comes from the CMS (content/site/contact.yaml → generated JSON);
@@ -68,6 +75,7 @@ type CodeContent = Pick<
   Content,
   | 'contextHeading' | 'noticeIssue' | 'storeCountOptions' | 'affiliationTypeOptions'
   | 'planLabels' | 'productLabels' | 'formTitleWith' | 'successTitleWith' | 'validation'
+  | 'trackHeading' | 'trackOwner' | 'trackEnterprise' | 'enterpriseFormTitle' | 'enterpriseFormSubtitle'
 >;
 type ContactCms = Omit<Content, keyof CodeContent | 'cards'> & {
   cards: Record<string, { label: string; desc: string }>;
@@ -117,6 +125,18 @@ const CODE: Record<Locale, CodeContent> = {
       StoreCare: 'saai care',
       StoreInsight: 'saai insight',
     },
+    trackHeading: '어떤 방식으로 시작하시겠어요?',
+    trackOwner: {
+      label: '혼자 시작할게요 · 점주',
+      desc: '내 매장 하나 — 앱으로 바로, 첫 달 무료',
+      formNote: '상담을 원하시면 아래 폼으로 문의하셔도 됩니다.',
+    },
+    trackEnterprise: {
+      label: '여러 매장 · 본사 도입',
+      desc: '다점포 표준화 — 맞춤 상담과 견적',
+    },
+    enterpriseFormTitle: '본사·다점포 도입 상담',
+    enterpriseFormSubtitle: '지점 규모와 현황을 알려주시면 본사 단위 도입 방안과 견적을 안내해 드립니다.',
   },
   en: {
     contextHeading: (
@@ -160,6 +180,18 @@ const CODE: Record<Locale, CodeContent> = {
       StoreCare: 'saai care',
       StoreInsight: 'saai insight',
     },
+    trackHeading: 'How would you like to start?',
+    trackOwner: {
+      label: 'On my own · store owner',
+      desc: 'One store — start in the app, first month free',
+      formNote: 'Prefer to talk? The form below works too.',
+    },
+    trackEnterprise: {
+      label: 'Multi-store · HQ adoption',
+      desc: 'Standardize across stores — tailored consultation & quote',
+    },
+    enterpriseFormTitle: 'HQ & multi-store consultation',
+    enterpriseFormSubtitle: 'Tell us your store count and situation — we’ll propose an HQ-level rollout and quote.',
   },
   jp: {
     contextHeading: (
@@ -203,6 +235,18 @@ const CODE: Record<Locale, CodeContent> = {
       StoreCare: 'saai care',
       StoreInsight: 'saai insight',
     },
+    trackHeading: 'どの形で始めますか？',
+    trackOwner: {
+      label: '1人で始める · 店舗オーナー',
+      desc: '1店舗 — アプリですぐ、初月無料',
+      formNote: 'ご相談を希望の場合は、下のフォームもご利用いただけます。',
+    },
+    trackEnterprise: {
+      label: '複数店舗 · 本部導入',
+      desc: '多店舗標準化 — カスタム相談とお見積もり',
+    },
+    enterpriseFormTitle: '本部・多店舗導入のご相談',
+    enterpriseFormSubtitle: '店舗数と状況をお知らせいただければ、本部単位の導入プランとお見積もりをご案内します。',
   },
 };
 
@@ -257,10 +301,20 @@ function ContactForm({ locale }: { locale: Locale }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+
+  // 2-패스 트랙 (⑤1-4): 명시 선택 > ?type=enterprise > 폼 신호(본사/SV 또는 6개 이상).
+  const [track, setTrack] = useState<'owner' | 'enterprise' | null>(null);
+  const watchedAffiliation = watch('affiliationType');
+  const watchedStoreCount = watch('storeCount');
+  const looksEnterprise =
+    watchedAffiliation === 'hq-ops' || watchedAffiliation === 'sv' || watchedStoreCount === '6+';
+  const effectiveTrack =
+    track ?? (sourceParam === 'enterprise' || looksEnterprise ? 'enterprise' : null);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -275,7 +329,13 @@ function ContactForm({ locale }: { locale: Locale }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...data, plan: planParam ?? undefined, product: productParam ?? undefined, source: sourceParam ?? undefined }),
+        body: JSON.stringify({
+          ...data,
+          plan: planParam ?? undefined,
+          product: productParam ?? undefined,
+          // 트랙 E로 판별·선택된 리드는 ?type=enterprise와 동일하게 태깅 (§2-5)
+          source: effectiveTrack === 'enterprise' ? 'enterprise' : sourceParam ?? undefined,
+        }),
         signal: controller.signal,
       });
 
@@ -388,13 +448,61 @@ function ContactForm({ locale }: { locale: Locale }) {
             <p className="text-xs text-gray-500 mb-1">{t.mobileTrustLabel}</p>
             <p className="text-sm font-medium text-gray-700">{t.mobileTrustBrands}</p>
           </div>
+          {/* 2-패스 트랙 스위치 (⑤1-4) — 점주는 자가 시작으로, 본사는 상담·견적 문구로 분기 */}
+          <div className="mb-8">
+            <p className="text-xs font-semibold text-gray-500 mb-2 text-center">{t.trackHeading}</p>
+            <div className="grid grid-cols-2 gap-2" role="group" aria-label={t.trackHeading}>
+              {(
+                [
+                  { key: 'owner' as const, label: t.trackOwner.label, desc: t.trackOwner.desc },
+                  { key: 'enterprise' as const, label: t.trackEnterprise.label, desc: t.trackEnterprise.desc },
+                ]
+              ).map(({ key, label, desc }) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={effectiveTrack === key}
+                  onClick={() => setTrack(key)}
+                  className={`rounded-xl border p-3 text-left transition-colors cursor-pointer ${
+                    effectiveTrack === key
+                      ? 'border-primary bg-primary-lighter/40'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <span className="block text-sm font-bold text-gray-900 break-keep">{label}</span>
+                  <span className="block text-2xs text-gray-500 mt-0.5 break-keep">{desc}</span>
+                </button>
+              ))}
+            </div>
+            {effectiveTrack === 'owner' && (
+              <div className="mt-3 p-4 rounded-xl bg-primary-lighter/30 border border-primary/15 text-center">
+                <a
+                  href={OWNER_START_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center gap-2"
+                >
+                  {CTA_TRACK_O[locale]}
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </a>
+                <p className="mt-2 text-xs text-gray-500 break-keep">{t.trackOwner.formNote}</p>
+              </div>
+            )}
+          </div>
+
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-              {planLabel ? t.formTitleWith(planLabel) : productLabel ? t.formTitleWith(productLabel) : t.formTitle}
+              {effectiveTrack === 'enterprise'
+                ? t.enterpriseFormTitle
+                : planLabel
+                ? t.formTitleWith(planLabel)
+                : productLabel
+                ? t.formTitleWith(productLabel)
+                : t.formTitle}
             </h1>
             <p className="text-gray-600">
-              {t.formSubtitle}
+              {effectiveTrack === 'enterprise' ? t.enterpriseFormSubtitle : t.formSubtitle}
             </p>
           </div>
 

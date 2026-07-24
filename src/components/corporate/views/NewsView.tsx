@@ -43,14 +43,14 @@ type Copy = {
 
 const C: Record<Locale, Copy> = {
   ko: {
-    badge: 'Press & Media',
+    badge: '보도 · 미디어',
     heroMaster: '모든 공간을, 완벽하게.',
     heroMasterAccent: '그 여정을 언론이 기록합니다',
     heroSub: '익명화 AI와 오프라인 공간 인텔리전스에 관한 보도자료, 수상·인증, 미디어 언급을 한곳에 모았습니다.',
-    coverageEyebrow: 'Coverage',
+    coverageEyebrow: '보도 기사',
     coverageHeading: '대표 미디어 커버리지',
     coverageNote: '외부 매체 보도로 연결됩니다 (새 창에서 열림).',
-    badgesEyebrow: 'Awards & Credentials',
+    badgesEyebrow: '수상 · 인증',
     badgesHeading: '증명된 기술, 검증된 신뢰',
     badgesSub: '수상과 인증, 그리고 누적된 특허가 딥핑소스의 기술력을 뒷받침합니다.',
     badges: [

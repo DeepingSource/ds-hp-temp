@@ -33,7 +33,7 @@ export type CaseStudiesCopy = {
 
 export const caseStudiesCopy: Record<Locale, CaseStudiesCopy> = {
   ko: {
-    eyebrow: 'Case Studies',
+    eyebrow: '도입 사례',
     heroTitle: '약속이 아니라 측정',
     heroSub:
       '5건의 사례를 Golden Case 5단계 — 발견·검증·번역·전파·재측정 — 순서대로 읽으면 한 매장의 성공이 어떻게 전국으로 옮겨가는지 보입니다.',

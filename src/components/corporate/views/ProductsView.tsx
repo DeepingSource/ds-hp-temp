@@ -70,7 +70,7 @@ const BELIEF_COPY: Record<Locale, { belief: string; whyTitle: string; whyBody: s
 type IndustryStruct = { name: string; desc: string; href: string };
 const INDUSTRIES: Record<Locale, { eyebrow: string; title: string; fieldLine: string; list: IndustryStruct[] }> = {
   ko: {
-    eyebrow: 'BEYOND RETAIL · 모든 공간',
+    eyebrow: '리테일 너머 · 모든 공간',
     title: '매장을 넘어, 모든 공간에서.',
     fieldLine: '리테일·F&B·무인매장·대형 공간 등 실제 공간 최적화 유스케이스가 준비되어 있습니다.',
     list: [

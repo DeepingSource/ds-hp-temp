@@ -23,7 +23,7 @@ const UI: Record<Locale, { beforeTab: string; afterTab: string }> = {
 const CONTENT: Record<string, Record<Locale, ToggleCopy>> = {
   'food-beverage': {
     ko: {
-      eyebrow: 'Before · After',
+      eyebrow: '전 · 후 비교',
       heading: '붐비고 나서 대응에서, 붐비기 전에 준비로',
       before: {
         label: '지켜보던 운영',
@@ -70,7 +70,7 @@ const CONTENT: Record<string, Record<Locale, ToggleCopy>> = {
   },
   'drug-store': {
     ko: {
-      eyebrow: 'Before · After',
+      eyebrow: '전 · 후 비교',
       heading: '항의받고 채우기에서, 비기 전에 채우기로',
       before: {
         label: '지켜보던 운영',
@@ -117,7 +117,7 @@ const CONTENT: Record<string, Record<Locale, ToggleCopy>> = {
   },
   'large-space': {
     ko: {
-      eyebrow: 'Before · After',
+      eyebrow: '전 · 후 비교',
       heading: '카메라마다 따로 보기에서, 공간을 하나로 보기로',
       before: {
         label: '지켜보던 운영',

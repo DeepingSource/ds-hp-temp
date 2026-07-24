@@ -15,6 +15,7 @@ import WordRise from '@/components/ui/WordRise';
 import SolutionsExplorer, { type ExplorerGroup } from '@/components/corporate/SolutionsExplorer';
 import { crumb } from '@/lib/breadcrumb-labels';
 import siteContent from '@/data/generated/site-content.json';
+import { COMPANY } from '@/lib/company-data';
 
 /**
  * SolutionsView — shared problem-solution catalog (index) composition.
@@ -172,19 +173,31 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
             <DiagnosisLauncher variant="button" locale={locale} />
           </div>
 
-          {/* Early Proof & Trust Band */}
+          {/* Early Proof & Trust Band — 수치는 SOT(COMPANY) 참조 (J4), 문구 3로케일 */}
           <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-slate-400 font-semibold">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>특허 103건 기술 검증</span>
+              <span>
+                {locale === 'ko'
+                  ? `특허 ${COMPANY.patents}건 기술 검증`
+                  : locale === 'jp'
+                  ? `特許${COMPANY.patents}件の技術検証`
+                  : `${COMPANY.patents} patents`}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary-light" />
-              <span>NVIDIA Inception 파트너</span>
+              <span>{locale === 'ko' ? 'NVIDIA Inception 파트너' : COMPANY.nvidiaPartner}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-indigo-400" />
-              <span>전국 8+ 파트너 브랜드 도입</span>
+              <span>
+                {locale === 'ko'
+                  ? `전국 ${COMPANY.partnerBrands}+ 파트너 브랜드 도입`
+                  : locale === 'jp'
+                  ? `${COMPANY.partnerBrands}+ パートナーブランド導入`
+                  : `${COMPANY.partnerBrands}+ partner brands`}
+              </span>
             </div>
           </div>
         </div>

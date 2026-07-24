@@ -18,6 +18,12 @@ export interface Company {
   patentsLabel: string;
   partnerBrands: number;
   industries: number;
+  /** 누적 투자 (억 원) — J4 확정 신뢰 수치, 신뢰 스트립 SOT */
+  fundingCumulativeBillionKrw: number;
+  /** 시리즈 A 규모 (억 원, KDDI 리드) */
+  seriesABillionKrw: number;
+  /** 인증 표기 — "SOC 2 · PIPA" */
+  certLabel: string;
   nvidiaPartner: string;
   site: string;
   corporate: string;

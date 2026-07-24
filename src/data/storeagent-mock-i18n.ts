@@ -313,7 +313,7 @@ export const showcaseCopy: Record<Locale, {
   tabs: { key: 'action' | 'chat' | 'push'; label: string; tagline: string; features: string[] }[];
 }> = {
   ko: {
-    eyebrow: 'Mobile',
+    eyebrow: '모바일',
     heading: '모바일에서도 — 손 안의 매장 요약',
     sub: '웹앱의 판단을 그대로 폰에서 — 액션 카드, AI 채팅, 푸시 알림으로.',
     tablistLabel: '인터페이스 유형 선택',

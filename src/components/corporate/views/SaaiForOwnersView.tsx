@@ -50,7 +50,7 @@ const COPY: Record<Locale, {
   ctaSub: string;
 }> = {
   ko: {
-    eyebrow: 'B2C OWNER SUITE · 소상공인·매장 사장님 전용',
+    eyebrow: 'B2C · 소상공인·매장 사장님 전용',
     heroTitle: '복잡한 장비 없이, 사장님의 스마트폰 하나로 시작하는 SAAI 소상공인 서비스',
     heroSub: '매장 크기나 복잡한 인프라 공사 걱정 없이 — 모바일 및 카메라리스 전용 솔루션부터 지능형 보안·이상 알림까지, 사장님에게 꼭 필요한 서비스만 골라 이용하세요.',
     saaiStoreTitle: 'saai.store — 카메라리스 사장님 운영 Suite',

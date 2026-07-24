@@ -60,10 +60,10 @@ const COPY: Record<Locale, {
     heroSub: '누가 근무하든 같은 기준으로 — 도난·위생·설비 이상을 전 매장에서 실시간 감지해 본사 한 화면으로 모읍니다. 기존 CCTV 그대로, 원본 영상은 남기지 않고.',
     heroCta: '본사 도입 상담하기',
     ownerLink: '한 매장만 운영하시나요? storecare.ai 셀프 서비스 바로가기 ↗',
-    threatEyebrow: 'SCALE RISK · 본사 관측의 한계',
+    threatEyebrow: '규모의 리스크 · 본사 관측의 한계',
     threatTitle: '매장이 100개면, 사고와 위험도 100가지 편차.',
     threatBody: '본사는 매장에서 일어나는 개별 사건만 겨우 전달받을 뿐, 전체 추세는 보이지 않습니다. 작은 실수가 리콜이나 브랜드 손상으로 번지기 전에, 지금 전 매장을 누가 동일하게 보고 있습니까?',
-    ladderEyebrow: 'VALUE LADDER · 가치 번역',
+    ladderEyebrow: '가치 사다리 · B2C→B2B 번역',
     ladderTitle: '사장님의 안심을, 본사의 강력한 통제력으로.',
     ladderSub: 'storecare.ai가 1개 매장 사장님을 지키는 방식 그대로 — 본사 규모의 표준화된 운영 체계로 승격합니다.',
     ladderItems: [

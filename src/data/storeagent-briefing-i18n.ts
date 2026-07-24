@@ -175,7 +175,7 @@ export const liveDemoCopy: Record<Locale, {
   timeLabels: Record<string, string>;
 }> = {
   ko: {
-    eyebrow: 'Live Demo',
+    eyebrow: '라이브 데모',
     heading: '우리 매장에선 이런 액션 제안을 받습니다',
     sub: '상권마다 다른 AI 제안을 확인하세요',
     tablistLabel: '상권 유형 선택',

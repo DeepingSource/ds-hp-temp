@@ -44,7 +44,7 @@ type Copy = {
 
 const COPY: Record<Locale, Copy> = {
   ko: {
-    eyebrow: 'Spatial AI · MTMC Tracking',
+    eyebrow: '공간 지능 · MTMC 추적',
     heading: '카메라가 몇 대든, 같은 사람을 이어서 추적합니다 — 얼굴 없이',
     lead: '대형마트·쇼핑몰·물류 센터에서 한 사람의 동선을 여러 카메라에 걸쳐 추적해야 합니다. 그러나 얼굴 인식 없이. MTMC가 이 두 요구를 동시에 풉니다.',
     steps: ['픽셀', '카메라', '공간 좌표'],

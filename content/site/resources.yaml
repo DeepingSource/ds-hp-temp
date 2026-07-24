@@ -1,9 +1,9 @@
 # Resources hub copy — edited in Keystatic (/keystatic → "Resources — 리소스 카피").
 # 카드 href·아이콘·featured 링크·metadata 는 코드 유지. resources id 순서 = 코드 아이콘 순서, 재정렬 금지.
 eyebrow:
-  ko: Resources
+  ko: 리소스
   en: Resources
-  jp: Resources
+  jp: リソース
 heroTitle:
   ko: 필요한 자료를 한곳에서
   en: Everything you need, in one place

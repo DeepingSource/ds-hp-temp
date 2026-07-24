@@ -18,7 +18,7 @@ const COPY: Record<Locale, {
   }[];
 }> = {
   ko: {
-    eyebrow: 'SAAI DEFINITION · 차별적 기술 토대',
+    eyebrow: 'SAAI 정의 · 차별적 기술 토대',
     headline: '네 글자에, SAAI의 방법이 다 있습니다.',
     sub: '모든 것은 얼굴과 신원을 지우는 익명화에서 시작합니다. 오프라인 공간을 있는 그대로 읽고, 운영을 돕고, 쓸수록 학습하는 단 하나의 공간 AI.',
     categoryTag: '카테고리는 하나 — 익명화 공간 AI (Spatial Anonymized Agentic Intelligence)',

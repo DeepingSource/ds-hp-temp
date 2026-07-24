@@ -54,9 +54,9 @@ newTitle:
   en: Erase identity, keep the analysis
   jp: 身元は消し、分析はそのまま
 howEyebrow:
-  ko: How It Works
+  ko: 작동 방식
   en: How It Works
-  jp: How It Works
+  jp: 仕組み
 howTitle:
   ko: 입력 시점에 신원을 지웁니다
   en: Identity is erased at the moment of input
@@ -66,9 +66,9 @@ howSub:
   en: Erase before you read — every analysis begins only on top of anonymization.
   jp: 読む前に、まず消す — すべての分析は匿名化の上でのみ始まります。
 demoEyebrow:
-  ko: Anonymizer Demo
+  ko: 익명화 데모
   en: Anonymizer Demo
-  jp: Anonymizer Demo
+  jp: 匿名化デモ
 demoTitle:
   ko: 들어오는 순간, 신원을 지웁니다
   en: The instant it arrives, identity is gone
@@ -86,9 +86,9 @@ demoAria:
   en: A three-panel clip showing real anonymization output — original, anonymized, and tracked while anonymized
   jp: 原本・匿名化・匿名追跡の3分割で示す実際の匿名化出力映像
 coreEyebrow:
-  ko: Three Axes
+  ko: 세 개의 축
   en: Three Axes
-  jp: Three Axes
+  jp: 3つの軸
 coreTitle:
   ko: 공간을 운영하는, 세 개의 기술 축
   en: Three technical axes that operate space

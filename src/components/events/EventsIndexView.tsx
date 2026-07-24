@@ -10,7 +10,7 @@ import PageCta from '@/components/corporate/PageCta';
 
 const C: Record<Locale, { eyebrow: string; heading: string; sub: string; emptyTitle: string; emptyBody: string }> = {
   ko: {
-    eyebrow: 'Events',
+    eyebrow: '행사',
     heading: '이벤트 & 박람회',
     sub: '컨퍼런스, 박람회, 웨비나에서 딥핑소스를 만나보세요.',
     emptyTitle: '예정된 이벤트가 없습니다',
