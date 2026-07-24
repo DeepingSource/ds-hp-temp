@@ -6,17 +6,17 @@ badge:
 heroTitle:
   ko:
     - 결품도 이상도,
-    - 놓치지 않는 매장
+    - 모든 지점에서 놓치지 않는 매장
   en:
-    - Never miss a stockout
-    - or an anomaly
+    - Across every store,
+    - never miss a stockout or an anomaly
   jp:
     - 欠品も異常も、
-    - 見逃さない店舗
+    - 全店舗で見逃さない店舗
 heroSub:
-  ko: 결품, 매장 간 운영 편차, 놓치기 쉬운 이상 상황까지. 매장 운영의 핵심 문제를 같은 기준으로 살펴 일관된 운영을 돕습니다.
-  en: Out-of-stock, store-to-store inconsistency, and easy-to-miss anomalies. We watch the core problems of store operations by the same standard, for consistent operations.
-  jp: 欠品、店舗間の運営のばらつき、見逃しやすい異常まで。店舗運営の核心的な課題を同じ基準で見守り、一貫した運営を支援します。
+  ko: 결품, 지점 간 운영 편차, 놓치기 쉬운 이상까지 — 전 매장을 같은 기준으로 살펴 본사가 원하는 일관성을 만듭니다.
+  en: Out-of-stock, store-to-store variance, and easy-to-miss anomalies — we watch every store by the same standard, building the consistency HQ needs.
+  jp: 欠品、店舗間の運営のばらつき、見逃しやすい異常まで — 全店舗を同じ基準で見守り、本部が求める一貫性をつくります。
 heroCta:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -55,18 +55,18 @@ ctaEyebrow:
   jp: 無料相談
 ctaTitle:
   ko:
-    - 우리 매장에 맞는
-    - 운영 기준을 만들어 보세요
+    - 전 지점에 같은
+    - 운영 기준을 세워 보세요
   en:
-    - Build the operating standard
-    - that fits your store
+    - Set the same operating standard
+    - across every store
   jp:
-    - 自店に合った
-    - 運営基準をつくりましょう
+    - 全店舗に同じ
+    - 運営基準を築きましょう
 ctaSub:
-  ko: 매장 현황을 알려주시면 적합한 적용 방안을 안내해 드립니다.
-  en: Tell us about your store and we will guide you to the right approach.
-  jp: 店舗の状況をお知らせいただければ、最適な導入方法をご案内します。
+  ko: 운영 중인 지점 규모와 현황을 알려주시면 본사 단위 도입 방안을 안내해 드립니다.
+  en: Tell us your store count and situation — we will propose an HQ-level rollout.
+  jp: 運営中の店舗数と状況をお知らせいただければ、本部単位の導入方法をご案内します。
 ctaButton:
   ko: 도입 상담 신청
   en: Request a consultation
@@ -127,9 +127,9 @@ beforeAfter:
       en: Operating standards that differ store by store
       jp: 店舗ごとにばらばらな運営水準
     after:
-      ko: 같은 기준으로 비교되는, 한 매장처럼 일관된 운영
-      en: Compared by one standard — consistent, run as one store
-      jp: 同じ基準で比較される、ひとつの店舗のような一貫した運営
+      ko: 본사 기준으로 정렬된 다점포 운영
+      en: Multi-store operations aligned to the HQ standard
+      jp: 本部基準に揃った多店舗運営
   - id: ba3
     before:
       ko: 사람이 종일 모니터를 지켜봐야 하는 일

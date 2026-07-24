@@ -18,9 +18,9 @@ heroSub:
   en: However large the space, see it at a glance. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.
   jp: どれほど広い空間も、ひと目で。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。
 heroCta:
-  ko: 본사 도입 상담
-  en: Enterprise consultation
-  jp: 本社導入のご相談
+  ko: 도입 상담 신청
+  en: Request a consultation
+  jp: 導入のご相談
 scenariosEyebrow:
   ko: 대형 공간의 운영 과제
   en: Operating challenges of large spaces
@@ -89,9 +89,9 @@ ctaSub:
   en: Tell us the scale and environment of the spaces you run, and we will guide you to an enterprise-wide approach.
   jp: 運営中の空間の規模と環境をお知らせいただければ、本社単位の導入方法をご案内します。
 ctaButton:
-  ko: 본사 도입 상담
-  en: Enterprise consultation
-  jp: 本社導入のご相談
+  ko: 도입 상담 신청
+  en: Request a consultation
+  jp: 導入のご相談
 scenarios:
   - id: s1
     tag:

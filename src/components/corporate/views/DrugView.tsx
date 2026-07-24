@@ -18,6 +18,9 @@ import AdoptionJourney from '@/components/solutions/AdoptionJourney';
 import BeforeAfterToggle from '@/components/solutions/BeforeAfterToggle';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
+import MidCta from '@/components/corporate/MidCta';
+import SolutionTrustBand from '@/components/corporate/SolutionTrustBand';
+import { CTA_TRACK_O, OWNER_START_URL, contactEnterpriseHref } from '@/lib/cta-canon';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, service } from '@/lib/structured-data';
 import siteContent from '@/data/generated/site-content.json';
@@ -47,7 +50,6 @@ const SCENARIO_IMGS = [
   '/images/cctv/cctv-display-price-label-missing.webp',
   '/images/cctv/cctv-drugstore-aisle.webp',
 ];
-const DASH_IMG = '/images/industries/drugstore-dashboard.webp';
 
 type Copy = {
   badge: string;
@@ -70,7 +72,13 @@ type Copy = {
 
 const CMS = siteContent.drug as unknown as Record<Locale, Copy>;
 
-const dashCaption: Record<Locale, string> = { ko: '* 분석 화면 예시', en: '* Example analysis screen', jp: '* 分析画面の例' };
+// ①1-3에서 '분석 화면 예시' 정적 이미지 제거 — 라이브 목업(AlertFatigue·히트맵)이 그림 역할을 대신한다.
+
+const MID_CTA_LEAD: Record<Locale, string> = {
+  ko: '우리 지점의 알림도 3장으로 줄일 수 있는지 궁금하시다면',
+  en: 'Wondering if your alerts could shrink to three cards too?',
+  jp: '自店のアラートも3枚に減らせるか気になったら',
+};
 
 export default function DrugView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
@@ -108,11 +116,14 @@ export default function DrugView({ locale }: { locale: Locale }) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 blur-[120px] rounded-full" aria-hidden="true" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('drug', locale), path: '/solutions/drug-store' }]} locale={locale} tone="dark" className="mb-4" />
-          <Link href={localeHref(locale, '/solutions')} className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-light hover:text-white transition-colors">
-            {locale === 'ko' ? '다른 업종 문제 찾기' : locale === 'jp' ? '他の業種の課題を探す' : 'Browse other industries'}
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-          </Link>
+          {/* ①1-9: 업종 전환 링크를 브레드크럼 라인과 같은 행으로 정렬 */}
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }, { name: crumb('drug', locale), path: '/solutions/drug-store' }]} locale={locale} tone="dark" />
+            <Link href={localeHref(locale, '/solutions')} className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-light hover:text-white transition-colors">
+              {locale === 'ko' ? '다른 업종 문제 찾기' : locale === 'jp' ? '他の業種の課題を探す' : 'Browse other industries'}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
+          </div>
           <HeroBadge tone="dark">
             <Pill className="w-3.5 h-3.5" />
             {t.badge}
@@ -129,10 +140,19 @@ export default function DrugView({ locale }: { locale: Locale }) {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href={localeHref(locale, '/contact')} className="btn-primary-dark gap-2 w-full sm:w-auto">
+            <Link href={localeHref(locale, contactEnterpriseHref())} className="btn-primary-dark gap-2 w-full sm:w-auto">
               {t.heroCta}
               <ArrowRight className="w-4 h-4" />
             </Link>
+            {/* §2-1: 점주 자가 시작 경로는 secondary로 병기 */}
+            <a
+              href={OWNER_START_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-5 py-3 text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+            >
+              {CTA_TRACK_O[locale]}
+            </a>
           </div>
         </div>
       </section>
@@ -171,6 +191,8 @@ export default function DrugView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <AlertFatigueComparison locale={locale} />
+          {/* 미드 CTA — 대표 증거(1,353건 목업) 직후 (④8-0 ②지점) */}
+          <MidCta locale={locale} lead={MID_CTA_LEAD[locale]} className="mt-10" />
         </div>
       </AnimatedSection>
 
@@ -178,16 +200,6 @@ export default function DrugView({ locale }: { locale: Locale }) {
       <AnimatedSection className="py-12 lg:py-16 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <CategoryHeroDemo category="drug-store" locale={locale} />
-        </div>
-      </AnimatedSection>
-
-      {/* ── 분석 대시보드 ── */}
-      <AnimatedSection className="py-12 lg:py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-gray-200 shadow-card bg-slate-50">
-            <Image src={DASH_IMG} alt={`${t.badge} 분석 대시보드 예시`} fill sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
-          </div>
-          <p className="mt-3 text-xs text-gray-400 text-center">{dashCaption[locale]}</p>
         </div>
       </AnimatedSection>
 
@@ -230,9 +242,10 @@ export default function DrugView({ locale }: { locale: Locale }) {
 
       <SolutionCaseStudies solutionSlug="drug-store" locale={locale} />
 
-      {/* ── CTA ── */}
+      {/* ── CTA — 신뢰 스트립 직전 삽입 (①0.5 · 드럭은 수치만, J2) ── */}
       <section className="py-20 bg-slate-950">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <SolutionTrustBand locale={locale} industry="drug-store" className="mb-12" />
           <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">{t.ctaEyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-keep">
             {t.ctaTitle[0]}
@@ -242,7 +255,7 @@ export default function DrugView({ locale }: { locale: Locale }) {
           <p className="text-slate-300 text-lg mb-10 break-keep">
             {t.ctaSub}
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary-dark gap-2">
+          <Link href={localeHref(locale, contactEnterpriseHref())} className="btn-primary-dark gap-2">
             {t.ctaButton}
             <ArrowRight className="w-4 h-4" />
           </Link>
