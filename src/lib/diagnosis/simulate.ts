@@ -9,6 +9,7 @@
 
 import {
   applyAnswer,
+  applyConfirm,
   createState,
   deriveClusters,
   nextStep,
@@ -33,6 +34,8 @@ export interface SimReport {
   deadQuestions: string[];
   /** 한 번도 선택 가능 상태로 노출되지 않은 정적 옵션 "questionId:optionId" */
   deadOptions: string[];
+  /** adaptive 전용 — 확인 스텝 노출 횟수와 reject 루프 종료 보장 확인 (v4 §5) */
+  confirmCount: number;
 }
 
 /** 활성 질문의 선택 가능한 옵션 id 목록 — 런타임 파생 옵션(업종·클러스터) 포함 */
@@ -58,10 +61,20 @@ export function enumerateAll(kb: DiagnosisKB): SimReport {
   let minLen = Infinity;
   let maxLen = 0;
 
+  let confirmCount = 0;
+
   const stack: EngineState[] = [createState()];
   while (stack.length > 0) {
     const state = stack.pop()!;
     const step = nextStep(kb, state);
+    // adaptive 확인 스텝 — 긍정/부정 두 분기 모두 열거. 부정은 rejects 증가로
+    // 유한(maxRejects 초과 시 closest 종결) — 무한 루프면 이 열거가 발산해 잡힌다.
+    if (step.kind === 'confirm') {
+      confirmCount++;
+      stack.push(applyConfirm(kb, state, true));
+      stack.push(applyConfirm(kb, state, false));
+      continue;
+    }
     if (step.kind === 'result') {
       pathCount++;
       resultCounts[step.slug] = (resultCounts[step.slug] ?? 0) + 1;
@@ -109,6 +122,7 @@ export function enumerateAll(kb: DiagnosisKB): SimReport {
     exitCounts,
     deadQuestions,
     deadOptions,
+    confirmCount,
   };
 }
 
@@ -139,10 +153,11 @@ export function runFixture(kb: DiagnosisKB, fx: Fixture): FixtureRun {
       step = nextStep(kb, state);
     }
     if (step.kind !== 'question') {
+      const at = step.kind === 'exit' ? step.to : step.kind === 'result' ? step.slug : 'confirm';
       return {
         name: fx.name,
         ok: false,
-        detail: `답 "${optionId}"를 적용할 질문이 없습니다 — 현재 스텝: ${step.kind === 'exit' ? step.to : step.slug}`,
+        detail: `답 "${optionId}"를 적용할 질문이 없습니다 — 현재 스텝: ${at}`,
         transcript,
       };
     }
@@ -165,7 +180,9 @@ export function runFixture(kb: DiagnosisKB, fx: Fixture): FixtureRun {
     return { name: fx.name, ok, detail: ok ? 'exit 일치' : `기대 exit ${fx.expect.exit}, 실제 ${final.kind === 'exit' ? final.to : final.kind}`, transcript };
   }
   if (final.kind !== 'result') {
-    return { name: fx.name, ok: false, detail: `결과에 도달하지 못했습니다 — 스텝: ${final.kind === 'question' ? `question:${final.question.id}` : final.to}`, transcript };
+    const at =
+      final.kind === 'question' ? `question:${final.question.id}` : final.kind === 'exit' ? final.to : 'confirm';
+    return { name: fx.name, ok: false, detail: `결과에 도달하지 못했습니다 — 스텝: ${at}`, transcript };
   }
   if (fx.expect.result && final.slug !== fx.expect.result) {
     return { name: fx.name, ok: false, detail: `기대 ${fx.expect.result}, 실제 ${final.slug}`, transcript };
@@ -174,4 +191,102 @@ export function runFixture(kb: DiagnosisKB, fx: Fixture): FixtureRun {
     return { name: fx.name, ok: false, detail: `질문 수 ${state.answers.length} > 최대 ${fx.expect.maxQuestions}`, transcript };
   }
   return { name: fx.name, ok: true, detail: `${final.slug} (${state.answers.length}문항)`, transcript };
+}
+
+// ═══ E3 셀렉터 동등성 (v4 §5) ══════════════════════════════════════════════════
+
+/** fixture answers(fixedOrder 위치 기반)를 질문 group → 답 매핑으로 변환 */
+const GROUP_SLOT: Record<string, number> = { role: 0, industry: 1, scale: 2, problem: 3, refine: 4, goal: 5 };
+
+export interface AdaptiveRun {
+  name: string;
+  ok: boolean;
+  detail: string;
+  questionCount: number;
+  confirmShown: boolean;
+  transcript: { question: string; answer: string }[];
+}
+
+/**
+ * adaptive 셀렉터로 fixture 재생 — 질문이 어떤 순서로 나와도 group 슬롯으로 답을
+ * 찾는다. 확인 스텝은 긍정으로 응답(골든 패스 = 사용자가 요약에 동의하는 경로).
+ * cluster 답은 fixture의 clusterId를 복합키로 변환해 적용한다.
+ */
+export function runFixtureAdaptive(kb: DiagnosisKB, fx: Fixture): AdaptiveRun {
+  const adaptiveKb: DiagnosisKB = { ...kb, flow: { ...kb.flow, selector: 'adaptive' } };
+  let state = createState(fx.preset);
+  const transcript: { question: string; answer: string }[] = [];
+  let confirmShown = false;
+
+  // 발산 방어 — maxQuestions + 확인 reject 상한을 넘는 스텝 수는 구성 오류
+  for (let guard = 0; guard < 32; guard++) {
+    let step = nextStep(adaptiveKb, state);
+    if (step.kind === 'exit') {
+      if (step.to === 'exit-owner' && fx.answers.length > transcript.length) {
+        state = resumeFromExit(state);
+        step = nextStep(adaptiveKb, state);
+      } else {
+        const ok = fx.expect.exit === step.to;
+        return { name: fx.name, ok, detail: ok ? 'exit 일치' : `exit ${step.to}`, questionCount: state.answers.length, confirmShown, transcript };
+      }
+    }
+    if (step.kind === 'confirm') {
+      confirmShown = true;
+      state = applyConfirm(adaptiveKb, state, true);
+      continue;
+    }
+    if (step.kind === 'result') {
+      const ok = !fx.expect.result || step.slug === fx.expect.result;
+      return {
+        name: fx.name,
+        ok,
+        detail: ok ? `${step.slug} (${state.answers.length}문항)` : `기대 ${fx.expect.result}, 실제 ${step.slug}`,
+        questionCount: state.answers.length,
+        confirmShown,
+        transcript,
+      };
+    }
+    if (step.kind !== 'question') break;
+    const q = step.question;
+    const slot = GROUP_SLOT[q.group];
+    let answer = slot != null ? fx.answers[slot] : undefined;
+    // cluster는 복합키 변환, 슬롯에 답이 없으면(짧은 exit fixture 등) 첫 옵션으로 진행
+    if (q.signal === 'cluster' && answer) answer = `${state.signals.industry}:${answer.includes(':') ? answer.split(':')[1] : answer}`;
+    const valid = optionsFor(adaptiveKb, state, q);
+    if (!answer || !valid.includes(answer)) answer = valid[0];
+    if (!answer) {
+      return { name: fx.name, ok: false, detail: `질문 "${q.id}"에 적용할 답이 없습니다`, questionCount: state.answers.length, confirmShown, transcript };
+    }
+    transcript.push({ question: q.text.ko, answer });
+    state = applyAnswer(adaptiveKb, state, q.id, answer);
+  }
+  return { name: fx.name, ok: false, detail: '스텝 상한 초과 — 종료 조건 미충족(구성 오류)', questionCount: state.answers.length, confirmShown, transcript };
+}
+
+export interface EquivalenceRow {
+  fixture: string;
+  fixedResult: string;
+  adaptiveResult: string;
+  fixedQuestions: number;
+  adaptiveQuestions: number;
+  match: boolean;
+}
+
+/** 셀렉터 동등성 리포트 — 동일 fixture에 대한 fixed vs adaptive 결과·질문 수 비교 (v4 §5) */
+export function equivalenceReport(kb: DiagnosisKB, fixtures: Fixture[]): EquivalenceRow[] {
+  const fixedKb: DiagnosisKB = { ...kb, flow: { ...kb.flow, selector: 'fixed' } };
+  return fixtures.map((fx) => {
+    const fixed = runFixture(fixedKb, fx);
+    const adaptive = runFixtureAdaptive(kb, fx);
+    const fixedResult = fixed.ok ? fixed.detail.split(' ')[0] : `FAIL:${fixed.detail}`;
+    const adaptiveResult = adaptive.ok ? adaptive.detail.split(' ')[0] : `FAIL:${adaptive.detail}`;
+    return {
+      fixture: fx.name,
+      fixedResult,
+      adaptiveResult,
+      fixedQuestions: fixed.transcript.length,
+      adaptiveQuestions: adaptive.questionCount,
+      match: fixed.ok && adaptive.ok && fixedResult === adaptiveResult,
+    };
+  });
 }
