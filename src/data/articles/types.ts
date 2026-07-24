@@ -19,6 +19,7 @@ export interface Article {
   lang: 'en' | 'ko' | 'jp'; // content language (Velite frontmatter, default 'ko')
   target?: 'company' | 'saai'; // distribution target (Velite frontmatter)
   draft?: boolean; // true = excluded from site lists/routes (Velite default false)
+  featured?: boolean; // true = large card at the top of the blog index (⑤3-2, one per locale)
 }
 
 export type ArticleMeta = Omit<Article, 'body'>;

@@ -7,7 +7,7 @@ const hero = siteContent.pricing.en;
 export const metadata: Metadata = {
   title: 'Pricing | DEEPINGSOURCE',
   description:
-    'Compare store care · store insight · store agent pricing at a glance. Choose the plan that fits your store size and needs.',
+    'A pricing guide and quote that fit your store size — store care · store insight · store agent, configured to your goal.',
   alternates: {
     canonical: '/pricing',
     languages: {
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   openGraph: {
     locale: 'en_US',
     title: 'Pricing | DEEPINGSOURCE',
-    description: 'Compare store care · store insight · store agent pricing at a glance.',
+    description: 'A pricing guide and quote that fit your store size.',
     url: '/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Pricing | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing | DEEPINGSOURCE',
-    description: 'Compare store care · store insight · store agent pricing at a glance.',
+    description: 'A pricing guide and quote that fit your store size.',
   },
 };
 

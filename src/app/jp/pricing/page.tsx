@@ -7,7 +7,7 @@ const hero = siteContent.pricing.jp;
 export const metadata: Metadata = {
   title: '料金のご案内 | DEEPINGSOURCE',
   description:
-    'store care · store insight · store agent の料金を一目で比較できます。店舗規模やニーズに合ったプランをお選びください。',
+    '店舗規模に合った料金ガイドとお見積もり。store care · store insight · store agent を目標に合わせて構成します。',
   alternates: {
     canonical: '/jp/pricing',
     languages: {
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   openGraph: {
     locale: 'ja_JP',
     title: '料金のご案内 | DEEPINGSOURCE',
-    description: 'store care · store insight · store agent の料金を一目で比較できます。',
+    description: '店舗規模に合った料金ガイドとお見積もりをご案内します。',
     url: '/jp/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: '料金のご案内 | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '料金のご案内 | DEEPINGSOURCE',
-    description: 'store care · store insight · store agent の料金を一目で比較できます。',
+    description: '店舗規模に合った料金ガイドとお見積もりをご案内します。',
   },
 };
 

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Check, Eye, LayoutGrid, Zap, Calculator, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { B2C_PRICING } from '@/lib/pricing-data';
 import { type Content } from './PricingClientView';
 
 interface PlanCardDescriptor {
@@ -69,18 +68,14 @@ function PlanCard({ icon, step, title, price, desc, features, ctaHref, ctaLabel,
 }
 
 export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) {
-  // Canonical KRW notation: ko '14,900원', en/jp '14,900 KRW' (no '원'/'円' leak on non-ko).
-  const fmtWon = (n: number) => (locale === 'ko' ? `${n.toLocaleString('ko-KR')}원` : `${n.toLocaleString('en-US')} KRW`);
+  // 견적 중심 재구성(⑤3-5·J5): 확정가 비노출 — 숫자 SOT(pricing-data)는 보존, 표시는 방향화.
   const cards: PlanCardDescriptor[] = [
     {
       icon: <Eye className="w-5 h-5 text-primary" />,
       step: t.careStep,
       title: 'store care',
       price: (
-        <>
-          <span className="text-3xl font-bold text-gray-900">{fmtWon(B2C_PRICING.storeCare.basic)}</span>
-          <span className="text-sm text-gray-500">{t.carePerMonth}</span>
-        </>
+        <span className="text-xl font-bold text-gray-900 break-keep">{t.carePerMonth}</span>
       ),
       desc: t.careDesc,
       features: t.careFeatures,
@@ -93,8 +88,7 @@ export default function B2cPlans({ t, locale }: { t: Content; locale: Locale }) 
       title: 'store insight',
       price: (
         <>
-          <span className="text-3xl font-bold text-gray-900">{fmtWon(B2C_PRICING.storeInsight.base + B2C_PRICING.storeInsight.perCamera * 8)}</span>
-          <span className="text-sm text-gray-500">{t.insightPerMonth}</span>
+          <span className="text-xl font-bold text-gray-900 break-keep">{t.insightPerMonth}</span>
           <span className="text-xs text-gray-500 block mt-1">{t.insightBasis}</span>
         </>
       ),

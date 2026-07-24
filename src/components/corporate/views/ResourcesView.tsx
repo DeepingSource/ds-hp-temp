@@ -6,6 +6,7 @@ import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { type Locale, localeHref } from '@/lib/i18n';
 import siteContent from '@/data/generated/site-content.json';
+import SegmentCta from '@/components/corporate/SegmentCta';
 
 /**
  * ResourcesView — shared resources hub composition.
@@ -115,6 +116,9 @@ export default function ResourcesView({ locale }: { locale: Locale }) {
               );
             })}
           </div>
+
+          {/* 하단 세그먼트 분기 CTA(⑤4-4) — 리소스를 다 본 방문자를 트랙별 전환 경로로 */}
+          <SegmentCta locale={locale} variant="switch" className="mt-14" />
         </div>
       </AnimatedSection>
     </div>

@@ -15,6 +15,10 @@ import { type Content } from './PricingClientView';
 // prior 24,500/store figure while making the "cameras per store" slider drive the estimate.
 const B2B_PER_CAMERA = B2B_PRICING.perCamera;
 
+// J5(2026-07-24) 되돌리기 스위치 — 화면 표시만 방향화(금액·% 비노출). true 로 바꾸면
+// 기존 금액·할인율 표기가 그대로 복원된다. 계산 로직·이메일 견적 기능은 항상 유지.
+const SHOW_AMOUNTS = false;
+
 export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Content; locale: Locale; onBackToB2c: () => void }) {
   /* ── B2B multi-store simulator ── */
   const [b2bStoreCount, setB2bStoreCount] = useState(10);
@@ -125,32 +129,50 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                 </div>
               </div>
 
-              {/* 할인율 및 개별 매장 비용 */}
-              <div className="grid sm:grid-cols-3 gap-4 mb-4">
-                <div className="p-4 bg-primary/5 rounded-xl text-center">
-                  <p className="text-xs font-medium text-gray-500 mb-1">{t.discountLabel}</p>
-                  <p className="text-2xl font-bold text-primary">{discount}%</p>
+              {/* 시너지 표시 — J5 방향화: 금액·% 대신 단계/방향. SHOW_AMOUNTS=true 로 기존 표기 복원 */}
+              {SHOW_AMOUNTS ? (
+                <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                  <div className="p-4 bg-primary/5 rounded-xl text-center">
+                    <p className="text-xs font-medium text-gray-500 mb-1">{t.discountLabel}</p>
+                    <p className="text-2xl font-bold text-primary">{discount}%</p>
+                  </div>
+                  <div className="p-4 bg-primary-lighter rounded-xl text-center">
+                    <p className="text-xs font-medium text-gray-500 mb-1">{t.perStoreCost}</p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
+                    </p>
+                    <p className="text-xs text-gray-500">{t.perStoreBasis}</p>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-xl text-center">
+                    <p className="text-xs font-medium text-gray-500 mb-1">{t.totalMonthly}</p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100 * b2bStoreCount).toLocaleString()}{t.won}
+                    </p>
+                    <p className="text-xs text-gray-500">{t.totalBasis(b2bStoreCount)}</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-primary-lighter rounded-xl text-center">
-                  <p className="text-xs font-medium text-gray-500 mb-1">{t.perStoreCost}</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100).toLocaleString()}{t.won}
-                  </p>
-                  <p className="text-xs text-gray-500">{t.perStoreBasis}</p>
+              ) : (
+                <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                  <div className="p-4 bg-primary/5 rounded-xl text-center">
+                    <p className="text-xs font-medium text-gray-500 mb-1">{t.discountLabel}</p>
+                    <p className="text-2xl font-bold text-primary tabular-nums">
+                      {t.synergyLevel(
+                        B2B_PRICING.discountTiers.filter((tg) => b2bStoreCount >= tg.minStores).length,
+                        B2B_PRICING.discountTiers.length,
+                      )}
+                    </p>
+                  </div>
+                  <div className="sm:col-span-2 p-4 bg-primary-lighter rounded-xl flex items-center gap-3 text-left">
+                    <TrendingUp className="w-6 h-6 text-primary shrink-0" aria-hidden="true" />
+                    <p className="text-sm text-gray-700 leading-relaxed break-keep">{t.synergyDirection}</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-xl text-center">
-                  <p className="text-xs font-medium text-gray-500 mb-1">{t.totalMonthly}</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    ~{(Math.round(B2B_PER_CAMERA * b2bCamerasPerStore * (1 - discount / 100) / 100) * 100 * b2bStoreCount).toLocaleString()}{t.won}
-                  </p>
-                  <p className="text-xs text-gray-500">{t.totalBasis(b2bStoreCount)}</p>
-                </div>
-              </div>
+              )}
               <p className="text-xs text-gray-500 mb-8">{t.estimateDisclaimer}</p>
 
-              {/* 할인 구간 안내 */}
+              {/* 시너지 구간 안내 — 방향화 시 %는 숨기고 구간만 */}
               <div className="flex flex-wrap gap-2 mb-8">
-                {t.tiers.map((tier) => (
+                {t.tiers.map((tier, i) => (
                   <span
                     key={tier.range}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
@@ -159,7 +181,7 @@ export default function B2bQuoteSimulator({ t, locale, onBackToB2c }: { t: Conte
                         : 'bg-gray-50 text-gray-500 border-gray-100'
                     }`}
                   >
-                    {tier.range}: {tier.rate}
+                    {SHOW_AMOUNTS ? `${tier.range}: ${tier.rate}` : `${tier.range} · ${'↑'.repeat(i + 1)}`}
                   </span>
                 ))}
               </div>

@@ -7,7 +7,7 @@ const hero = siteContent.pricing.ko;
 export const metadata: Metadata = {
   title: '요금 안내 | DEEPINGSOURCE',
   description:
-    'store care · store insight · store agent 요금을 한눈에 비교하세요. 매장 규모와 필요에 맞는 플랜을 선택하세요.',
+    '매장 규모에 맞는 요금 가이드와 견적. store care · store insight · store agent 를 목표에 맞게 구성해 드립니다.',
   alternates: {
     canonical: '/ko/pricing',
     languages: {
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   openGraph: {
     locale: 'ko_KR',
     title: '요금 안내 | DEEPINGSOURCE',
-    description: 'store care · store insight · store agent 요금을 한눈에 비교하세요.',
+    description: '매장 규모에 맞는 요금 가이드와 견적을 안내합니다.',
     url: '/ko/pricing',
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: '요금 안내 | DeepingSource' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '요금 안내 | DEEPINGSOURCE',
-    description: 'store care · store insight · store agent 요금을 한눈에 비교하세요.',
+    description: '매장 규모에 맞는 요금 가이드와 견적을 안내합니다.',
   },
 };
 
