@@ -17,14 +17,15 @@ import { productPrimary } from '@/lib/brand-canon';
  */
 
 export const industryLabelI18n: Record<string, Partial<Record<Locale, string>>> = {
-  convenience: { en: 'Convenience stores', jp: 'コンビニ' },
-  cafe: { en: 'Cafés & restaurants', jp: 'カフェ・飲食店' },
-  unmanned: { en: 'Unmanned stores', jp: '無人店舗' },
-  drugstore: { en: 'Drugstores', jp: 'ドラッグストア' },
-  mart: { en: 'Hypermarkets', jp: '大型スーパー' },
-  exhibition: { en: 'Exhibition spaces', jp: '展示空間' },
-  logistics: { en: 'Logistics & warehouses', jp: '物流・倉庫' },
-  fashion: { en: 'Fashion & apparel', jp: 'ファッション・アパレル' },
+  // ko 라벨: 진단 런처 등 yaml 폴백이 없는 소비처용 — 뷰들은 locale==='ko'면 yaml 라벨을 우선한다.
+  convenience: { ko: '편의점', en: 'Convenience stores', jp: 'コンビニ' },
+  cafe: { ko: '카페·음식점', en: 'Cafés & restaurants', jp: 'カフェ・飲食店' },
+  unmanned: { ko: '무인매장', en: 'Unmanned stores', jp: '無人店舗' },
+  drugstore: { ko: '드럭스토어', en: 'Drugstores', jp: 'ドラッグストア' },
+  mart: { ko: '대형마트', en: 'Hypermarkets', jp: '大型スーパー' },
+  exhibition: { ko: '전시 공간', en: 'Exhibition spaces', jp: '展示空間' },
+  logistics: { ko: '물류·창고', en: 'Logistics & warehouses', jp: '物流・倉庫' },
+  fashion: { ko: '패션·의류', en: 'Fashion & apparel', jp: 'ファッション・アパレル' },
 };
 
 type Product = 'StoreCare' | 'StoreInsight' | 'StoreAgent';

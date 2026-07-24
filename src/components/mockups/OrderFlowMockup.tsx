@@ -179,8 +179,9 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
   // reduced-motion: 최종 상태(step 3 = index 2) 고정
   const activeStep = reducedMotion ? 2 : step;
 
-  const effectWon = useCountUp(EFFECT_WON, loopActive, 1600);
-  const approvals = useCountUp(APPROVALS_TODAY, loopActive, 1200);
+  // B-2: 진입 전 0값("+₩0") 노출 금지 — 최종값의 일부에서 시작해 카운트업
+  const effectWon = useCountUp(EFFECT_WON, loopActive, 1600, 0.55);
+  const approvals = useCountUp(APPROVALS_TODAY, loopActive, 1200, 0.5);
 
   return (
     // v2 계약: MockupViewport 크기 계약(phone 390×844) + --saai-* 토큰 + mockup-motion(no spring).

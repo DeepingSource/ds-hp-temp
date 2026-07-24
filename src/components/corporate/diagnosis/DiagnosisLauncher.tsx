@@ -66,7 +66,7 @@ export default function DiagnosisLauncher({
   const title =
     customTitle ??
     (industryName
-      ? `지금 겪는 문제를 알려주시면, ${industryName} 사례 중 맞는 답을 찾아드립니다`
+      ? ui.launcherBanner.presetTitle(industryName)
       : ui.launcherBanner.defaultTitle);
 
   const sub = customSub ?? ui.launcherBanner.defaultSub;

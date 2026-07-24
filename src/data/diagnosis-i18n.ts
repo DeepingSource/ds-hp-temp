@@ -51,6 +51,8 @@ export const DIAGNOSIS_UI: Record<
     };
     launcherBanner: {
       defaultTitle: string;
+      /** 업종 프리셋이 있을 때의 헤드라인 — industryName은 로케일 라벨(슬러그 노출 금지). */
+      presetTitle: (industryName: string) => string;
       defaultSub: string;
       ctaText: string;
     };
@@ -91,6 +93,7 @@ export const DIAGNOSIS_UI: Record<
     },
     launcherBanner: {
       defaultTitle: '우리 매장·공간, 어디서부터 최적화해야 할까요?',
+      presetTitle: (industryName) => `지금 겪는 문제를 알려주시면, ${industryName} 사례 중 맞는 답을 찾아드립니다`,
       defaultSub: '질문 3개면 충분합니다. 내 현장에 꼭 맞는 답을 찾아드립니다.',
       ctaText: '30초 진단 시작하기',
     },
@@ -130,6 +133,7 @@ export const DIAGNOSIS_UI: Record<
     },
     launcherBanner: {
       defaultTitle: 'Where should you start optimizing your store or venue?',
+      presetTitle: (industryName) => `Tell us what you're facing — we'll match it to real ${industryName.toLowerCase()} cases`,
       defaultSub: '3 questions are enough to find the right answer for your site.',
       ctaText: 'Start 30s Diagnosis',
     },
@@ -169,6 +173,7 @@ export const DIAGNOSIS_UI: Record<
     },
     launcherBanner: {
       defaultTitle: '店舗・空間の最適化、どこから始めるべきですか？',
+      presetTitle: (industryName) => `いま抱えている課題を教えてください。${industryName}の事例から最適な答えを見つけます`,
       defaultSub: '3つの質問で、あなたの現場に合う答えを見つけます。',
       ctaText: '30秒診断を始める',
     },
