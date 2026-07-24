@@ -24,7 +24,6 @@ import StoreCareMockup from './StoreCareMockup';
 import StoreInsightMockup from './StoreInsightMockup';
 import StoreInsightDesktopMockup from './StoreInsightDesktopMockup';
 import MultiStoreDashboardMockup from './MultiStoreDashboardMockup';
-import AnonymizationMockup from './AnonymizationMockup';
 // S1 다이어그램 + S2 기술 목업 (MOCKUP_PROPOSALS_v4)
 import IntegratedLoopDiagram from './IntegratedLoopDiagram';
 import AutonomyLadderTimeline from './AutonomyLadderTimeline';
@@ -140,15 +139,6 @@ export const DEMOS: DemoItem[] = [
       <MultiStoreDashboardMockup active={active} locale={locale} device="macbook" />
     ),
   },
-  {
-    id: 'anonymization',
-    label: '익명화 데모',
-    product: '공통',
-    device: 'phone',
-    description: '영상 내 인물 익명화 처리 전/후 시퀀스.',
-    render: ({ active, locale }) => <AnonymizationMockup active={active} locale={locale} />,
-  },
-
   // ── S1 다이어그램 4종 (회색조+브랜드블루) ──
   {
     id: 'integrated-loop',

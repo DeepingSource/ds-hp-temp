@@ -9,13 +9,11 @@ const StoreCareMockup      = dynamic(() => import('@/components/mockups/StoreCar
 const ActionCardMockup     = dynamic(() => import('@/components/mockups/ActionCardMockup'), { ssr: false });
 const StoreInsightMockup   = dynamic(() => import('@/components/mockups/StoreInsightMockup'), { ssr: false });
 
-const PRODUCT_META = {
-  StoreCare:    { color: 'emerald', dotCls: 'bg-emerald-500', activeCls: 'border-emerald-300 bg-emerald-50', textCls: 'text-emerald-700' },
-  StoreInsight: { color: 'violet',  dotCls: 'bg-violet-500',  activeCls: 'border-violet-300 bg-violet-50',  textCls: 'text-violet-700'  },
-  StoreAgent:   { color: 'blue',    dotCls: 'bg-primary',    activeCls: 'border-primary-light bg-primary-lighter',      textCls: 'text-primary-dark'    },
-} as const;
+// D2(G5 기본안·J3): 제품별 구분색 3종 폐지 — 구분은 스텝 번호+워드마크가
+// 담당하고, 색은 활성/비활성 상태만 SAAI 단일 블루로 표현한다. 구분력이 부족하다고
+// 판정될 때만 B안(SAAI 데이터 hue 단계 칩)을 투입한다(MM §7).
 
-/** Display labels — the keys above stay as logic identifiers (SolutionStep['product']). */
+/** Display labels — the keys stay as logic identifiers (SolutionStep['product']). */
 const PRODUCT_DISPLAY: Record<SolutionStep['product'], string> = {
   StoreCare:    'store care',
   StoreInsight: 'store insight',
@@ -70,8 +68,6 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
 
   if (products.length === 0) return null;
 
-  const meta = PRODUCT_META[activeProduct];
-
   return (
     <div>
       <p className="text-sm font-medium text-primary mb-5 tracking-wider uppercase">{t.eyebrow}</p>
@@ -83,7 +79,6 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
       {products.length > 1 && (
         <div className="flex gap-2 mb-6 flex-wrap">
           {products.map((product) => {
-            const m = PRODUCT_META[product];
             const isActive = product === activeProduct;
             return (
               <button
@@ -92,12 +87,11 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
                 onClick={() => setActiveProduct(product)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-colors cursor-pointer ${
                   isActive
-                    ? `${m.activeCls} ${m.textCls}`
+                    ? 'border-primary-light bg-primary-lighter text-primary-dark'
                     : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
-                <span className={`w-2 h-2 rounded-full shrink-0 ${m.dotCls}`} />
-                {t.productLabels[product]} · {PRODUCT_DISPLAY[product]}
+                {t.productLabels[product]} · <span className="font-semibold">{PRODUCT_DISPLAY[product]}</span>
               </button>
             );
           })}
@@ -107,14 +101,17 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
       {/* 목업 표시 */}
       <div className="flex flex-col sm:flex-row gap-6 items-start">
         <div className="w-full sm:w-auto sm:flex-shrink-0 flex justify-center">
-          {/* Fixed size container for consistent mockup sizing */}
-          <div className="w-full max-w-[320px]" style={{ aspectRatio: '9/19', maxHeight: '640px' }}>
-            <div className="grid h-full" style={{ gridTemplateAreas: '"stack"' }}>
+          {/* 크기는 각 목업의 MockupViewport(phone 390×844) 소관 — 호출부는 폭만(v2 계약).
+              구 aspectRatio 9/19 임의 컨테이너는 캔버스 비율과 어긋나 제거. */}
+          <div className="w-full max-w-[320px]">
+            <div className="grid items-start" style={{ gridTemplateAreas: '"stack"' }}>
               {products.map((product) => (
+                /* min-w-0: Viewport 내부 고정폭(390)이 그리드 트랙 min-content로 전파돼
+                   셀이 캔버스 폭까지 벌어지는 것을 차단 — 없으면 scale이 1로 자기고정된다. */
                 <div
                   key={product}
                   style={{ gridArea: 'stack' }}
-                  className={`transition-opacity duration-300 h-full flex items-center justify-center ${product === activeProduct ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  className={`min-w-0 transition-opacity duration-300 ${product === activeProduct ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 >
                   <MockupComponent product={product} active={product === activeProduct} locale={locale} />
                 </div>
@@ -128,12 +125,8 @@ export default function SolutionMockupPreview({ steps, locale = 'en' }: Props) {
           {steps
             .filter((s) => s.product === activeProduct)
             .map((step, i) => (
-              <div key={i} className={`p-5 rounded-2xl border ${
-                activeProduct === 'StoreCare'    ? 'border-emerald-100 bg-emerald-50/50' :
-                activeProduct === 'StoreInsight' ? 'border-violet-100 bg-violet-50/50' :
-                                                    'border-primary-lighter bg-primary-lighter/50'
-              }`}>
-                <p className={`text-xs font-bold mb-2 ${meta.textCls}`}>{step.productLabel}</p>
+              <div key={i} className="p-5 rounded-2xl border border-primary-lighter bg-primary-lighter/50">
+                <p className="text-xs font-bold mb-2 text-primary-dark">{step.productLabel}</p>
                 <p className="font-bold text-gray-900 mb-2 break-keep">{step.title}</p>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep">{step.desc}</p>
               </div>

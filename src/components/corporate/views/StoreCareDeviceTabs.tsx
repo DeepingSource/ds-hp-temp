@@ -80,12 +80,14 @@ export default function StoreCareDeviceTabs({
 
       <div className="relative mx-auto max-w-[320px]">
         <div className="grid items-start" style={{ gridTemplateAreas: '"stack"' }}>
+          {/* min-w-0(양 패널): MockupViewport 고정폭이 그리드 트랙 min-content로 전파돼
+              셀이 캔버스 폭(390)까지 벌어지는 것을 차단 — 없으면 scale 1로 자기고정. */}
           <div
             id="care-panel-store"
             role="tabpanel"
             aria-hidden={active !== 0}
             style={{ gridArea: 'stack' }}
-            className={`${reduced ? '' : 'transition-opacity duration-300'} ${active === 0 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+            className={`min-w-0 ${reduced ? '' : 'transition-opacity duration-300'} ${active === 0 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
           >
             <StoreCareMockup locale={locale} active={active === 0} />
           </div>
@@ -94,7 +96,7 @@ export default function StoreCareDeviceTabs({
             role="tabpanel"
             aria-hidden={active !== 1}
             style={{ gridArea: 'stack' }}
-            className={`${reduced ? '' : 'transition-opacity duration-300'} ${active === 1 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+            className={`min-w-0 ${reduced ? '' : 'transition-opacity duration-300'} ${active === 1 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
           >
             <KakaoAlertMockup locale={locale} active={active === 1} />
           </div>

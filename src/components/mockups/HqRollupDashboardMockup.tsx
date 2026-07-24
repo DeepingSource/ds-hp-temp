@@ -6,8 +6,9 @@ import { CountUp } from '@/components/ui/CountUp';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { springGentle } from '@/lib/spring-config';
-import { MOCKUP_STATUS_CLASS, type MockupStatus } from '@/lib/mockup-tokens';
+import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
+import { MOCKUP_STATUS_CLASS, SAAI_COLORS, type MockupStatus } from '@/lib/mockup-tokens';
+import { canonicalHq } from '@/data/mockup-scenarios/canonical';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -16,6 +17,7 @@ import { type Locale } from '@/lib/i18n';
  * store-ranking table, live alert feed, per-type bars + SEAL badge. Sample data only
  * (caption says so). Brand blue = product chrome; status colors (ok/warn/risk) are
  * used ONLY for severity, always paired with a text label (no color-only signal).
+ * Viewport 전환 이연(MM A8 단기 패치 적용) — .saai-scope 부재라 색은 SAAI_COLORS import.
  */
 
 /** 심각도는 공용 MOCKUP_STATUS_CLASS 를 그대로 쓴다 — 목업마다 로컬 색 맵을
@@ -27,6 +29,15 @@ const sevCls = (sev: Sev): string => {
   const s = MOCKUP_STATUS_CLASS[SEV_STATUS[sev]];
   return `${s.text} ${s.bg} ring-current/20`;
 };
+
+// D6: KPI·scope 수치는 canonicalHq 파생 — 미해결=warning+critical, 방문 필요=critical
+const HQ = {
+  stores: canonicalHq.totalStores,
+  anomalies: String(canonicalHq.todayAnomalies),
+  hygiene: `${canonicalHq.hygieneOkPct}%`,
+  openAlerts: String(canonicalHq.statusDistribution.warning + canonicalHq.statusDistribution.critical),
+  visitNeeded: String(canonicalHq.statusDistribution.critical),
+} as const;
 
 const dict: Record<Locale, {
   brand: string; scope: string; live: string;
@@ -41,12 +52,12 @@ const dict: Record<Locale, {
   seal: string; caption: string;
 }> = {
   ko: {
-    brand: 'store care · HQ', scope: '전국 240개 매장', live: 'LIVE',
+    brand: 'store care · HQ', scope: `전국 ${HQ.stores}개 매장`, live: 'LIVE',
     kpis: [
-      { label: '오늘 이상 감지', value: '37' },
-      { label: '위생·온도 충족', value: '94%' },
-      { label: '미해결 알림', value: '8' },
-      { label: '방문 필요', value: '3' },
+      { label: '오늘 이상 감지', value: HQ.anomalies },
+      { label: '위생·온도 충족', value: HQ.hygiene },
+      { label: '미해결 알림', value: HQ.openAlerts },
+      { label: '방문 필요', value: HQ.visitNeeded },
     ],
     rankTitle: '매장 랭킹 — 사고 건수', colStore: '매장', colIncidents: '7일 건수', colStatus: '상태',
     rows: [
@@ -72,12 +83,12 @@ const dict: Record<Locale, {
     seal: 'SEAL 익명화 — 원본 미보존', caption: '* 샘플 화면 · 데이터 예시',
   },
   en: {
-    brand: 'store care · HQ', scope: '240 stores nationwide', live: 'LIVE',
+    brand: 'store care · HQ', scope: `${HQ.stores} stores nationwide`, live: 'LIVE',
     kpis: [
-      { label: 'Anomalies today', value: '37' },
-      { label: 'Hygiene·temp met', value: '94%' },
-      { label: 'Open alerts', value: '8' },
-      { label: 'Visit needed', value: '3' },
+      { label: 'Anomalies today', value: HQ.anomalies },
+      { label: 'Hygiene·temp met', value: HQ.hygiene },
+      { label: 'Open alerts', value: HQ.openAlerts },
+      { label: 'Visit needed', value: HQ.visitNeeded },
     ],
     rankTitle: 'Store ranking — incidents', colStore: 'Store', colIncidents: '7-day', colStatus: 'Status',
     rows: [
@@ -103,12 +114,12 @@ const dict: Record<Locale, {
     seal: 'Anonymized by SEAL — no footage stored', caption: '* Sample screen · illustrative data',
   },
   jp: {
-    brand: 'store care · HQ', scope: '全国240店舗', live: 'LIVE',
+    brand: 'store care · HQ', scope: `全国${HQ.stores}店舗`, live: 'LIVE',
     kpis: [
-      { label: '本日の異常検知', value: '37' },
-      { label: '衛生·温度の充足', value: '94%' },
-      { label: '未解決アラート', value: '8' },
-      { label: '訪問が必要', value: '3' },
+      { label: '本日の異常検知', value: HQ.anomalies },
+      { label: '衛生·温度の充足', value: HQ.hygiene },
+      { label: '未解決アラート', value: HQ.openAlerts },
+      { label: '訪問が必要', value: HQ.visitNeeded },
     ],
     rankTitle: '店舗ランキング — 事故件数', colStore: '店舗', colIncidents: '7日間', colStatus: '状態',
     rows: [
@@ -176,8 +187,15 @@ export default function HqRollupDashboardMockup({
         </div>
         <div className="flex items-center gap-2 text-2xs font-medium text-gray-300">
           <span>{t.scope}</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-emerald-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+          <span
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5"
+            /* .saai-scope 밖 — SAAI_COLORS import 경로, /15는 color-mix */
+            style={{
+              backgroundColor: `color-mix(in srgb, ${SAAI_COLORS['status-success']} 15%, transparent)`,
+              color: SAAI_COLORS['status-success'],
+            }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: SAAI_COLORS['status-success'] }} aria-hidden="true" />
             {t.live}
           </span>
         </div>
@@ -206,7 +224,7 @@ export default function HqRollupDashboardMockup({
           <div>
             <p className="mb-2 text-xs font-bold text-gray-700">{t.rankTitle}</p>
             <div className="overflow-hidden rounded-xl border border-gray-100">
-              <table className="w-full text-left">
+              <table className="w-full table-fixed text-left">
                 <thead>
                   <tr className="bg-gray-50 text-2xs uppercase tracking-wide text-gray-400">
                     <th scope="col" className="px-3 py-2 font-medium">{t.colStore}</th>
@@ -226,7 +244,7 @@ export default function HqRollupDashboardMockup({
                         transitionDelay: reduced ? undefined : `${0.15 + i * 0.1}s`,
                       }}
                     >
-                      <td className="px-3 py-2 text-xs font-medium text-gray-900 whitespace-nowrap">{r.store}</td>
+                      <td className="truncate px-3 py-2 text-xs font-medium text-gray-900">{r.store}</td>
                       <td className="px-3 py-2 text-xs text-gray-700 tabular-nums">{r.n}</td>
                       <td className="px-3 py-2"><Pill sev={r.sev} label={r.status} /></td>
                     </tr>
@@ -248,10 +266,10 @@ export default function HqRollupDashboardMockup({
                     initial={reduced ? false : { opacity: 0, y: -12 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
-                    transition={reduced ? { duration: 0.15 } : springGentle}
+                    transition={reduced ? motionAffordance : motionEnter}
                     className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white px-3 py-2.5"
                   >
-                    <span className={`h-8 w-1 rounded-full ${f.sev === 'risk' ? 'bg-red-500' : f.sev === 'warn' ? 'bg-amber-500' : 'bg-emerald-500'}`} aria-hidden="true" />
+                    <span className={`h-8 w-1 rounded-full ${MOCKUP_STATUS_CLASS[SEV_STATUS[f.sev]].dot}`} aria-hidden="true" />
                     <span className="flex-1">
                       <span className="block text-xs font-medium text-gray-900 break-keep">{f.type}</span>
                       <span className="block text-2xs text-gray-500">{f.store}</span>
@@ -290,9 +308,9 @@ export default function HqRollupDashboardMockup({
         {/* footer — legend + SEAL */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
           <div className="flex items-center gap-3 text-2xs text-gray-400">
-            <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />{t.sevLegend.ok}</span>
-            <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-500" aria-hidden="true" />{t.sevLegend.warn}</span>
-            <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-red-500" aria-hidden="true" />{t.sevLegend.risk}</span>
+            <span className="inline-flex items-center gap-1"><span className={`h-2 w-2 rounded-full ${MOCKUP_STATUS_CLASS.normal.dot}`} aria-hidden="true" />{t.sevLegend.ok}</span>
+            <span className="inline-flex items-center gap-1"><span className={`h-2 w-2 rounded-full ${MOCKUP_STATUS_CLASS.warning.dot}`} aria-hidden="true" />{t.sevLegend.warn}</span>
+            <span className="inline-flex items-center gap-1"><span className={`h-2 w-2 rounded-full ${MOCKUP_STATUS_CLASS.critical.dot}`} aria-hidden="true" />{t.sevLegend.risk}</span>
           </div>
           <span className="inline-flex items-center gap-1.5 text-2xs font-medium text-primary">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />

@@ -34,11 +34,11 @@ export default function BrowserChrome({ variant = 'dark', size = 'md', children,
           : 'bg-gray-100 border-b border-gray-200'
       }`}
     >
-      {/* Traffic light dots */}
+      {/* Traffic light dots — 실 OS 크롬 재현 색(macOS 신호등), SAAI 토큰 치환 대상 아님 */}
       <div className="flex items-center gap-2">
-        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-rose-400/70' : 'bg-red-400'}`} />
-        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-amber-400/70' : 'bg-yellow-400'}`} />
-        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-emerald-400/70' : 'bg-green-400'}`} />
+        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-red-400/70' : 'bg-red-400'}`} />
+        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-yellow-400/70' : 'bg-yellow-400'}`} />
+        <span className={`${DOT_CLASSES[size]} rounded-full ${isDark ? 'bg-green-400/70' : 'bg-green-400'}`} />
       </div>
 
       {/* Center content */}

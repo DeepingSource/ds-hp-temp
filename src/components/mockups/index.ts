@@ -29,9 +29,12 @@ export { default as MockupImage } from './MockupImage';
 // ── 데스크톱 목업 ───────────────────────────────────────────────────────────
 export { default as StoreInsightDesktopMockup } from './StoreInsightDesktopMockup';
 
-// ── 멀티 매장·익명화 목업 ───────────────────────────────────────────────────
+// ── 멀티 매장·본사(HQ) 목업 ─────────────────────────────────────────────────
+// AnonymizationMockup은 SealView BeforeAfterSlider와 중복으로 폐기(D10 — _archive).
 export { default as MultiStoreDashboardMockup } from './MultiStoreDashboardMockup';
-export { default as AnonymizationMockup } from './AnonymizationMockup';
+export { default as HqRollupDashboardMockup } from './HqRollupDashboardMockup';
+export { default as AgentHqMiniMockup } from './AgentHqMiniMockup';
+export { default as EnterpriseAppShowcase } from './EnterpriseAppShowcase';
 
 // ── S1 다이어그램 (회색조+브랜드블루) ─────────────────────────────────────────
 export { default as IntegratedLoopDiagram } from './IntegratedLoopDiagram';
@@ -39,6 +42,7 @@ export { default as AutonomyLadderTimeline } from './AutonomyLadderTimeline';
 export { default as PriorityEngineDiagram } from './PriorityEngineDiagram';
 export { default as FunnelDiagram } from './FunnelDiagram';
 export { default as PosJoinDiagram } from './PosJoinDiagram';
+export { default as DoorSplitDiagram } from './DoorSplitDiagram';
 export { default as LearningFlywheelDiagram } from './LearningFlywheelDiagram';
 
 // ── S2 기술 페이지 목업 (다크) ───────────────────────────────────────────────

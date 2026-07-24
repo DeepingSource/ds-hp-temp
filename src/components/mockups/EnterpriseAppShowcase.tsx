@@ -11,7 +11,9 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { useCountUp } from '@/hooks/useCountUp';
-import { springGentle } from '@/lib/spring-config';
+import { motionEnter } from '@/lib/mockup-motion';
+import { ease } from '@/lib/easing';
+import { SAAI_COLORS, SAAI_MOTION } from '@/lib/mockup-tokens.gen';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -25,6 +27,10 @@ import { type Locale } from '@/lib/i18n';
  * 탭 진입마다 채팅이 순차로 도착하고(질문→처리→핵심), 우측 화면이 열리며 차트가 자라고
  * 수치가 카운트업된다. 클릭하면 즉시 그 시나리오로. reduced-motion이면 정적(최종 상태).
  * SVG 라인은 이 스택에서 framer로 하이드레이션되지 않으므로 도넛은 CSS 트랜지션으로 채운다.
+ *
+ * MockupViewport 예외(§2-B): 섹션형 인터랙티브 데모(헤딩+6탭+내부 스크롤 페인) —
+ * 유동 폭·반응형이 설계 의도이며 lg:h-[560px]는 스크롤 페인 높이라 고정 캔버스 부적합.
+ * D11: 수치(3,332 등)와 '강남역점' 명칭의 canonical 재산정은 Phase 2(2-③) 소관 — 여기서 변경 금지.
  */
 
 type Tri = { ko: string; en: string; jp: string };
@@ -157,6 +163,7 @@ export default function EnterpriseAppShowcase({ locale = 'en' }: { locale?: Loca
           >
             {/* 크롬 상단바 */}
             <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-gray-50">
+              {/* 실 OS 크롬 재현 색(macOS 신호등) — SAAI 토큰 치환 대상 아님 */}
               <div className="flex items-center gap-1.5" aria-hidden="true">
                 <span className="w-3 h-3 rounded-full bg-red-400" />
                 <span className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -205,7 +212,7 @@ export default function EnterpriseAppShowcase({ locale = 'en' }: { locale?: Loca
                 <motion.div
                   initial={reduced ? false : { opacity: 0, y: 10 }}
                   animate={reduced ? undefined : { opacity: 1, y: 0 }}
-                  transition={{ ...springGentle, delay: 0.55 }}
+                  transition={{ ...motionEnter, delay: 0.55 }}
                 >
                   <ContentPanel tabKey={active} T={T} />
                 </motion.div>
@@ -238,7 +245,7 @@ function ChatPanel({ tabKey, T }: { tabKey: string; T: (t: Tri) => string }) {
   const enter = (delay: number) =>
     reduced
       ? {}
-      : { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, transition: { ...springGentle, delay } };
+      : { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, transition: { ...motionEnter, delay } };
 
   return (
     <div className="h-full bg-gray-100/70 p-5 sm:p-6 flex flex-col gap-4">
@@ -353,7 +360,7 @@ function Bar({ pct, className, delay = 0 }: { pct: number; className: string; de
       style={{ height: `${pct}%`, transformOrigin: 'bottom' }}
       initial={reduced ? false : { scaleY: 0 }}
       animate={reduced ? undefined : { scaleY: 1 }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, delay, ease: ease.outQuint }}
     />
   );
 }
@@ -553,10 +560,11 @@ function StaffPanel({ T }: { T: (t: Tri) => string }) {
         {/* 도넛 */}
         <div className="relative w-32 h-32 shrink-0">
           <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-            <circle cx="50" cy="50" r="42" fill="none" stroke="#EEF2F7" strokeWidth="9" />
-            <circle cx="50" cy="50" r="42" fill="none" stroke="#376AE2" strokeWidth="9" strokeLinecap="round"
+            {/* SVG 인라인 속성 — .saai-scope 밖이라 CSS 변수 미해석, SAAI_COLORS 직참조 */}
+            <circle cx="50" cy="50" r="42" fill="none" stroke={SAAI_COLORS['blue-50']} strokeWidth="9" />
+            <circle cx="50" cy="50" r="42" fill="none" stroke={SAAI_COLORS['blue-500']} strokeWidth="9" strokeLinecap="round"
               strokeDasharray={`${dash} ${circ}`}
-              style={reduced ? undefined : { transition: 'stroke-dasharray 1.1s cubic-bezier(0.22,1,0.36,1)' }} />
+              style={reduced ? undefined : { transition: `stroke-dasharray 1.1s ${SAAI_MOTION.ease['out-quint']}` }} />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-2xl font-bold text-gray-900">{score}</span>
@@ -581,7 +589,7 @@ function StaffPanel({ T }: { T: (t: Tri) => string }) {
         className="flex h-6 rounded-lg overflow-hidden text-3xs font-bold text-white origin-left"
         initial={reduced ? false : { scaleX: 0 }}
         animate={reduced ? undefined : { scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, delay: 0.7, ease: ease.outQuint }}
       >
         <div className="bg-primary flex items-center justify-center" style={{ width: '10.4%' }}>10.4</div>
         <div className="bg-primary/70 flex items-center justify-center" style={{ width: '14.9%' }}>14.9</div>

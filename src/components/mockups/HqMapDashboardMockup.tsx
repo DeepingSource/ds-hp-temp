@@ -14,7 +14,12 @@ import SaaiHeader from './SaaiHeader';
 import { homeCopy } from '@/lib/i18n';
 import type { Locale } from '@/lib/i18n';
 import { type DeepPartial, mergeMockupContent } from './types';
-import { type MockupStatus as Status, MOCKUP_STATUS_HEX, MOCKUP_STATUS_CLASS } from '@/lib/mockup-tokens';
+import { type MockupStatus as Status, MOCKUP_STATUS_HEX, MOCKUP_STATUS_CLASS, SAAI_COLORS } from '@/lib/mockup-tokens';
+
+// MockupViewport 예외(MM §5 1c): 반응형 카드 대시보드 — 지도 aspect 고정 + KPI/카드
+// 그리드 재배치가 설계 의도, 모바일 세로 스택 유지가 가독에 유리. 고정 캔버스 스케일은
+// 극좁 폭에서 오히려 가독성 퇴행 (IntegratedLoopDiagram 예외 형식).
+// .saai-scope 밖 → --saai-* 변수 미해석. 색은 SAAI_COLORS/MOCKUP_STATUS_HEX 인라인(D2).
 
 /** 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
  *
@@ -244,9 +249,15 @@ export default function HqMapDashboardMockup({
           <span className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-2xs font-medium text-slate-500">
             <span className="relative flex h-1.5 w-1.5">
               {!reducedMotion && (
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                  style={{ backgroundColor: SAAI_COLORS['status-success'] }}
+                />
               )}
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span
+                className="relative inline-flex h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: SAAI_COLORS['status-success'] }}
+              />
             </span>
             {t.liveLabel}
           </span>
@@ -337,7 +348,7 @@ export default function HqMapDashboardMockup({
                       r={isActive ? r + 4 : r}
                       fill={MOCKUP_STATUS_HEX[p.status]}
                       fillOpacity={p.status === 'normal' && !isActive ? 0.6 : 0.95}
-                      stroke="#fff"
+                      stroke={SAAI_COLORS.white}
                       strokeWidth={isActive ? 3 : 1.5}
                     />
                   </g>
@@ -391,9 +402,13 @@ export default function HqMapDashboardMockup({
               <div className="flex items-center justify-between">
                 <span className="text-xs text-slate-400">{t.cardRevenue}</span>
                 <span
-                  className={`flex items-center gap-0.5 text-lg font-bold tabular-nums ${
-                    cardRevenueDelta >= 0 ? 'text-emerald-600' : 'text-red-500'
-                  }`}
+                  className="flex items-center gap-0.5 text-lg font-bold tabular-nums"
+                  style={{
+                    color:
+                      cardRevenueDelta >= 0
+                        ? SAAI_COLORS['chart-positive']
+                        : SAAI_COLORS['chart-negative'],
+                  }}
                 >
                   {cardRevenueDelta >= 0 ? (
                     <ArrowUpRight className="h-4 w-4" aria-hidden />

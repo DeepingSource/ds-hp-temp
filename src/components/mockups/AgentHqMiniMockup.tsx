@@ -1,18 +1,40 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
+import { canonicalStore, canonicalStoreName, canonicalHq } from '@/data/mockup-scenarios/canonical';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
 
 /**
  * AgentHqMiniMockup — "한 매장이 아니라, 브랜드 전체가" 밴드의 본부 롤업 미니 목업.
  * pricingSub에서 걷어낸 "방문·구매·전환율" 디테일이 이 화면의 컬럼으로 옮겨온 것.
- * 정적 재현(서버 컴포넌트, 훅 없음) — 숫자는 예시 데이터.
+ * 정적 재현(서버 컴포넌트, 훅 없음) — 수치는 canonical 파생(D6).
  */
+
+// MockupViewport 예외(MM §5 1c): 정적 서버 컴포넌트 랭킹 카드 — 리플로우 안정
+// 표형이라 고정 캔버스 불필요.
 
 type Tri = { ko: string; en: string; jp: string };
 const tri = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
 
+// D6: 강남역점 방문 = canonicalStore.visitorsToday(342) · 전환율 = 구매÷방문 렌더 시
+// 산출(23.1/20.5/18.8/17.5%) — 표기와 산술이 항상 일치. KPI는 표시 행 합에서 파생.
+const ROWS: { store: Tri; visits: number; purchases: number; up: boolean }[] = [
+  { store: canonicalStoreName, visits: canonicalStore.visitorsToday, purchases: 79, up: true },
+  { store: tri('홍대점', 'Hongdae', '弘大店'), visits: 298, purchases: 61, up: true },
+  { store: tri('잠실점', 'Jamsil', '蚕室店'), visits: 276, purchases: 52, up: false },
+  { store: tri('신촌점', 'Sinchon', '新村店'), visits: 189, purchases: 33, up: false },
+];
+const convPct = (r: { visits: number; purchases: number }) =>
+  `${((r.purchases / r.visits) * 100).toFixed(1)}%`;
+const totalVisits = ROWS.reduce((a, r) => a + r.visits, 0); // 1,105
+const totalPurchases = ROWS.reduce((a, r) => a + r.purchases, 0); // 225
+
 const COPY = {
   brand: tri('store agent · HQ', 'store agent · HQ', 'store agent · HQ'),
-  scope: tri('전국 128개 매장', '128 stores nationwide', '全国128店舗'),
+  scope: tri(
+    `전국 ${canonicalHq.totalStores}개 매장`,
+    `${canonicalHq.totalStores} stores nationwide`,
+    `全国${canonicalHq.totalStores}店舗`,
+  ),
   live: 'LIVE',
   cols: {
     store: tri('매장', 'Store', '店舗'),
@@ -20,15 +42,15 @@ const COPY = {
     purchases: tri('구매', 'Purchases', '購入'),
     conv: tri('전환율', 'Conv.', '転換率'),
   },
-  rows: [
-    { store: tri('강남역점', 'Gangnam Station', '江南駅店'), visits: '1,204', purchases: '342', conv: '6.2%', up: true },
-    { store: tri('판교점', 'Pangyo', '板橋店'), visits: '1,411', purchases: '388', conv: '5.5%', up: true },
-    { store: tri('홍대입구점', 'Hongdae', '弘大入口店'), visits: '987', purchases: '231', conv: '4.8%', up: false },
-    { store: tri('부산 서면점', 'Busan Seomyeon', '釜山西面店'), visits: '1,092', purchases: '246', conv: '4.1%', up: false },
-  ],
   kpis: [
-    { label: tri('오늘 총 방문', 'Visits today', '本日の総来店'), value: '12,940' },
-    { label: tri('평균 전환율', 'Avg conversion', '平均転換率'), value: '5.1%' },
+    {
+      label: tri('오늘 총 방문 (상위 4개점)', 'Visits today (top 4 stores)', '本日の総来店 (上位4店舗)'),
+      value: totalVisits.toLocaleString('en-US'),
+    },
+    {
+      label: tri('평균 전환율', 'Avg conversion', '平均転換率'),
+      value: `${((totalPurchases / totalVisits) * 100).toFixed(1)}%`,
+    },
     { label: tri('권고 실행률', 'Calls acted on', '推奨実行率'), value: '82%' },
   ],
   caption: tri('* 샘플 화면 · 데이터 예시', '* Sample screen · illustrative data', '* サンプル画面 · データは例示'),
@@ -51,8 +73,19 @@ export default function AgentHqMiniMockup({ locale, className }: { locale: Local
         </div>
         <div className="flex items-center gap-2 text-2xs font-medium text-gray-300">
           <span>{T(COPY.scope)}</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-emerald-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+          {/* Viewport 예외 파일 = .saai-scope 밖(StoreAgentView) → --saai-* 변수 미해석. SAAI_COLORS 인라인 사용(D2). */}
+          <span
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5"
+            style={{
+              backgroundColor: `color-mix(in srgb, ${SAAI_COLORS['status-success']} 15%, transparent)`,
+              color: SAAI_COLORS['green-300'],
+            }}
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ backgroundColor: SAAI_COLORS['status-success'] }}
+              aria-hidden="true"
+            />
             {COPY.live}
           </span>
         </div>
@@ -81,15 +114,15 @@ export default function AgentHqMiniMockup({ locale, className }: { locale: Local
               </tr>
             </thead>
             <tbody>
-              {COPY.rows.map((r) => (
+              {ROWS.map((r) => (
                 <tr key={r.store.ko} className="border-t border-gray-100">
                   <td className="whitespace-nowrap px-3 py-2 text-xs font-medium text-gray-900">{T(r.store)}</td>
-                  <td className="px-3 py-2 text-right text-xs tabular-nums text-gray-700">{r.visits}</td>
-                  <td className="px-3 py-2 text-right text-xs tabular-nums text-gray-700">{r.purchases}</td>
+                  <td className="px-3 py-2 text-right text-xs tabular-nums text-gray-700">{r.visits.toLocaleString('en-US')}</td>
+                  <td className="px-3 py-2 text-right text-xs tabular-nums text-gray-700">{r.purchases.toLocaleString('en-US')}</td>
                   <td className="px-3 py-2 text-right">
                     <span className={`inline-flex items-center gap-1 text-xs font-bold tabular-nums ${r.up ? 'text-primary' : 'text-gray-500'}`}>
                       {r.up ? <TrendingUp className="h-3 w-3" aria-hidden="true" /> : <TrendingDown className="h-3 w-3" aria-hidden="true" />}
-                      {r.conv}
+                      {convPct(r)}
                     </span>
                   </td>
                 </tr>

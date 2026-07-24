@@ -65,6 +65,10 @@ export const canonicalHq = {
   statusDistribution: { normal: 203, warning: 10, critical: 4 },
   /** 일일 본부 알림 총건수 — 217점 비례 재산정 (첫자리 1, 벤포드 정합) */
   dailyAlerts: 1353,
+  /** 오늘 이상 감지 건수 — HQ 롤업 KPI (첫자리 3, 벤포드 정합) */
+  todayAnomalies: 37,
+  /** 위생·온도 기준 충족률 (%) — HQ 롤업 KPI */
+  hygieneOkPct: 94,
   /** 점주 평균 응답률 (%) — 217점 평균 */
   responseRate: 89,
   /** 점포당 일일 운영시간 절감 (시간) */

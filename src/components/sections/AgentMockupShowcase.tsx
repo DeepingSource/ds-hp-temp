@@ -157,6 +157,8 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
               >
                 {tabs.map(({ key }) => {
                   const Mockup = TAB_MOCKUPS[key];
+                  // min-w-0: MockupViewport 고정폭이 그리드 트랙 min-content로 전파돼
+                  // 셀이 캔버스 폭까지 벌어지는 것을 차단(scale 1 자기고정 방지).
                   return (
                     <div
                       key={key}
@@ -165,7 +167,7 @@ export default function AgentMockupShowcase({ locale = 'en' }: { locale?: Locale
                       aria-labelledby={`agent-tab-${key}`}
                       aria-hidden={activeTab !== key}
                       style={{ gridArea: 'stack' }}
-                      className={`${reducedMotion ? '' : 'transition-[opacity,transform] duration-300'} ${activeTab === key ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
+                      className={`min-w-0 ${reducedMotion ? '' : 'transition-[opacity,transform] duration-300'} ${activeTab === key ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
                     >
                       <Mockup active={activeTab === key} locale={locale} />
                     </div>

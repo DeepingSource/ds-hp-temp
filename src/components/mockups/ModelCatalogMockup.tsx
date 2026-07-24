@@ -99,7 +99,7 @@ const stageStyle: Record<ModelStage, string> = {
   Planned: 'bg-gray-100 text-gray-500',
 };
 
-// People figures in SVG space 0 0 100 75 (mirrors AnonymizationMockup layout).
+// People figures in SVG space 0 0 100 75 (원래 AnonymizationMockup 레이아웃 미러 — 해당 목업은 D10으로 _archive).
 const figures = [
   { cx: 22, cy: 32, r: 5,   bx: 18.5, by: 37.5, bw: 7, bh: 18 },
   { cx: 50, cy: 27, r: 4.5, bx: 46.5, by: 32,   bw: 7, bh: 16 },

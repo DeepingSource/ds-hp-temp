@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────────────────────
-// i18n overlay for StoreAgent LiveDemoSection + BriefingMockup.
+// i18n overlay for StoreAgent BriefingMockup (+ 구 LiveDemoSection — 미사용으로 _archive, MM 1-⑩).
 //
 // briefingData.ts and seasonal/* are multi-consumer (the /storeagent/sample
 // minisite depends on them) and MUST NOT be edited. This overlay re-localizes
@@ -158,7 +158,7 @@ export function areaValueProps<T extends ValuePropI18n>(id: string, fallback: T[
   return AREA_I18N[locale]?.[id]?.valueProps ?? fallback;
 }
 
-// ── In-component string labels rendered by LiveDemoSection / BriefingMockup ──
+// ── In-component string labels rendered by BriefingMockup (구 LiveDemoSection 포함) ──
 
 export const liveDemoCopy: Record<Locale, {
   eyebrow: string;

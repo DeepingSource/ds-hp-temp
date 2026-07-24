@@ -35,6 +35,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Nested standalone project (own git history) — not part of this app.
     "Hompage/**",
+    // Archived dead code (MM 1-⑩ — 빌드 그래프 밖, 유지보수 대상 아님).
+    "src/components/_archive/**",
   ]),
 ]);
 
