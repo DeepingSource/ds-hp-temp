@@ -21,6 +21,16 @@ export const DIAGNOSIS_UI: Record<
     back: string;
     restart: string;
     resultKicker: string;
+    /** E3 확인 스텝(v4 §3-3·§3-4) — 수집한 답의 요약("정리하면"), 추리 연출 금지 */
+    adaptiveConfirm: {
+      text: (industry: string, cluster: string, symptom: string | null) => string;
+      yes: string;
+      no: string;
+    };
+    /** maxRejects 초과 closest 종결의 결과 킥커 (v4 §3-3) */
+    resultClosestKicker: string;
+    /** 결과 top2 병기 헤딩 — "혹시 이쪽에 더 가깝다면" */
+    secondHeading: string;
     problemHeading: string;
     stepsHeading: string;
     resultsHeading: string;
@@ -55,6 +65,14 @@ export const DIAGNOSIS_UI: Record<
     back: '이전',
     restart: '다시 진단하기',
     resultKicker: '진단 결과',
+    adaptiveConfirm: {
+      text: (ind, cl, sym) =>
+        `정리하면 — ${ind}에서 ‘${cl}’ 문제${sym ? `, 특히 “${sym}” 상황` : ''}으로 보여요. 맞을까요?`,
+      yes: '네, 맞아요',
+      no: '조금 달라요',
+    },
+    resultClosestKicker: '가장 가까운 사례',
+    secondHeading: '혹시 이쪽에 더 가깝다면',
     problemHeading: '이런 문제, 맞을까요',
     stepsHeading: '이렇게 접근합니다',
     resultsHeading: '실제 결과',
@@ -86,6 +104,14 @@ export const DIAGNOSIS_UI: Record<
     back: 'Back',
     restart: 'Restart diagnosis',
     resultKicker: 'Diagnosis',
+    adaptiveConfirm: {
+      text: (ind, cl, sym) =>
+        `To sum up — a ‘${cl}’ problem at your ${ind}${sym ? `, especially “${sym}”` : ''}. Did we get that right?`,
+      yes: 'Yes, that’s right',
+      no: 'Not quite',
+    },
+    resultClosestKicker: 'Closest match',
+    secondHeading: 'If this feels closer',
     problemHeading: "Is this the problem you're facing?",
     stepsHeading: 'How we approach it',
     resultsHeading: 'Real results',
@@ -117,6 +143,14 @@ export const DIAGNOSIS_UI: Record<
     back: '戻る',
     restart: 'もう一度診断する',
     resultKicker: '診断結果',
+    adaptiveConfirm: {
+      text: (ind, cl, sym) =>
+        `整理すると — ${ind}で「${cl}」の課題${sym ? `、特に「${sym}」という状況` : ''}のようです。合っていますか？`,
+      yes: 'はい、合っています',
+      no: '少し違います',
+    },
+    resultClosestKicker: '最も近い事例',
+    secondHeading: 'こちらに近い場合は',
     problemHeading: 'この課題で合っていますか',
     stepsHeading: 'このように取り組みます',
     resultsHeading: '実際の結果',

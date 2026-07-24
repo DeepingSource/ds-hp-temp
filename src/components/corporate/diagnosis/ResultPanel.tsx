@@ -20,6 +20,10 @@ interface ResultPanelProps {
   goal?: string | null;
   /** symptom 되받기 문장 — 결과 도입부에서 사용자의 답을 되받는다 (v3 §5) */
   reflectLine?: string | null;
+  /** E3 closest 종결(v4 §3-3) — 킥커를 "가장 가까운 사례" 톤으로 */
+  closest?: boolean;
+  /** E3 결과 top2 병기 — "혹시 이쪽에 더 가깝다면" (adaptive에서만 전달) */
+  secondSlug?: string | null;
   locale: Locale;
   onRestart: () => void;
 }
@@ -32,6 +36,8 @@ export default function ResultPanel({
   scale,
   goal,
   reflectLine,
+  closest = false,
+  secondSlug = null,
   locale,
   onRestart,
 }: ResultPanelProps) {
@@ -92,7 +98,7 @@ export default function ResultPanel({
       <div className={REVEAL}>
         <div className="flex items-center justify-between mb-4">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            {ui.resultKicker}
+            {closest ? ui.resultClosestKicker : ui.resultKicker}
           </span>
           <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-primary-lighter text-primary-dark">
             {sol.impact} {impactLabel}
@@ -190,6 +196,23 @@ export default function ResultPanel({
 
       {/* Related solutions · glossary · CTA — 1050ms */}
       <div className={REVEAL} style={{ animationDelay: '1050ms' }}>
+      {/* E3 top2 병기(v4 §3-3) — relatedSolutions 슬롯 재사용, 확인을 거친 결과의 보조 제안 */}
+      {secondSlug && solutionsBySlug[secondSlug] && (
+        <div className="mb-8">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">
+            {ui.secondHeading}
+          </p>
+          <Link
+            href={localeHref(locale, `/solutions/${secondSlug}`)}
+            className="flex items-center justify-between gap-3 p-3 rounded-lg border border-primary/20 bg-primary-lighter/30 hover:border-primary-light transition-colors text-xs sm:text-sm font-bold text-primary-dark"
+          >
+            <span className="break-keep">
+              {(locale !== 'ko' && solutionCardI18n[secondSlug]?.[locale]?.title) || solutionsBySlug[secondSlug].title}
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          </Link>
+        </div>
+      )}
       {relatedSolutionObjects.length > 0 && (
         <div className="mb-8">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">

@@ -48,10 +48,15 @@ export default function DiagnosisConversation({
     indLabel,
     clusterLabel,
     answer,
+    answerConfirm,
     declineIndustryConfirm,
     rewindToQuestion,
     restart,
     continueFromExit,
+    resultClosest,
+    resultSecond,
+    symptomLabel,
+    candidateCount,
   } = engine;
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -64,9 +69,15 @@ export default function DiagnosisConversation({
   const lastManualScrollRef = useRef(0); // §6-1: 수동 스크롤 중 자동 스크롤 스킵
   const mountedRef = useRef(false); // 첫 로드에는 스크롤하지 않는다 (페이지 점프 방지)
 
-  // 활성 스텝 식별자 — 타이밍/스크롤 effect의 트리거 (질문 id·exit 종류·결과)
+  // 활성 스텝 식별자 — 타이밍/스크롤 effect의 트리거 (질문 id·exit 종류·확인·결과)
   const stepKey =
-    uiStep.kind === 'question' ? `q:${uiStep.question.id}` : uiStep.kind === 'exit' ? uiStep.to : 'result';
+    uiStep.kind === 'question'
+      ? `q:${uiStep.question.id}`
+      : uiStep.kind === 'exit'
+        ? uiStep.to
+        : uiStep.kind === 'confirm'
+          ? `confirm:${uiStep.top}` // reject 후 새 top이면 확인 연출 재생
+          : 'result';
   const isResult = uiStep.kind === 'result';
 
   const prefersReduced = () =>
@@ -144,6 +155,8 @@ export default function DiagnosisConversation({
         step: uiStep.question.id,
         n: stepNumber,
         option: optionId,
+        // E4(v4 §6): 답변 시점의 생존 후보 수 — 연속 이벤트 차분이 질문별 분별 기여도
+        candidates: candidateCount,
       });
     }
     answer(optionId, answerText, qText);
@@ -156,12 +169,25 @@ export default function DiagnosisConversation({
       goal: signals.goal ?? 'none',
       scale: signals.scale ?? 'none',
       result: resultSlug,
+      // E4: closest 종결 여부 — 확인 부정 경로의 품질 추적(v4 §6 배포 기준 재료)
+      closest: resultClosest ? 1 : 0,
     });
   }, [isResult, resultSlug, signals.goal, signals.scale]);
 
 
   const progressPercent = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
-  const showChrome = uiStep.kind === 'question';
+  const showChrome = uiStep.kind === 'question' || uiStep.kind === 'confirm';
+
+  // E3 확인 스텝 문구(v4 §3-3) — 자유 작문이 아니라 템플릿+태그 라벨 조합.
+  // "정리하면"(요약)이지 "제 추측엔"(추리 연출)이 아니다(§3-4 정직성 가드레일).
+  const confirmText =
+    uiStep.kind === 'confirm' && industry && signals.cluster
+      ? ui.adaptiveConfirm.text(
+          indLabel(industry, availableIndustries.find((i) => i.slug === industry)?.label ?? industry),
+          clusterLabel(signals.cluster),
+          symptomLabel,
+        )
+      : '';
 
   // ── 활성 질문 텍스트·옵션 해석 ────────────────────────────────────────────
   const q = uiStep.kind === 'question' ? uiStep.question : null;
@@ -375,6 +401,42 @@ export default function DiagnosisConversation({
           </div>
         )}
 
+        {/* E3 Confirm Step — 진단 요약 확인 (v4 §3-3 Akinator 체감의 핵심) */}
+        {!isTyping && uiStep.kind === 'confirm' && (
+          <div ref={activeRef} className="flex flex-col gap-3 self-start w-full scroll-mt-3">
+            <div className="p-4 rounded-2xl bg-white border border-gray-150 text-gray-900 text-sm sm:text-base font-bold shadow-2xs break-keep max-w-[85%] sm:max-w-[75%]">
+              {confirmText}
+            </div>
+            {showOptions && (
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    // E4: 확인 부정률 = no 비율 (v4 §6 배포 기준 — 20% 미만)
+                    trackEvent('diagnosis_confirm', { accepted: 'yes', top: uiStep.kind === 'confirm' ? uiStep.top : '' });
+                    answerConfirm(true);
+                  }}
+                  className={`px-4 py-3 rounded-xl border border-primary-light bg-primary-lighter/40 text-left text-xs sm:text-sm font-bold text-primary-dark transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                  style={chipDelay(0)}
+                >
+                  {ui.adaptiveConfirm.yes}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    trackEvent('diagnosis_confirm', { accepted: 'no', top: uiStep.kind === 'confirm' ? uiStep.top : '' });
+                    answerConfirm(false);
+                  }}
+                  className={`px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light text-left text-xs sm:text-sm font-medium text-gray-600 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
+                  style={chipDelay(1)}
+                >
+                  {ui.adaptiveConfirm.no}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Analyzing Result State */}
         {isAnalyzingResult && (
           <div className="self-start p-4 rounded-2xl bg-white border border-gray-150 flex items-center gap-3 text-gray-600 text-xs sm:text-sm font-medium animate-pulse motion-reduce:animate-none">
@@ -394,6 +456,8 @@ export default function DiagnosisConversation({
               scale={signals.scale}
               goal={signals.goal}
               reflectLine={reflectLine}
+              closest={resultClosest}
+              secondSlug={resultSecond}
               locale={locale}
               onRestart={restart}
             />

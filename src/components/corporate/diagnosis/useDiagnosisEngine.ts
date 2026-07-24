@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { industryList } from '@/data/industryList';
 import { Q3_CLUSTER_LABEL, type PersonaId } from '@/data/diagnosis-i18n';
 import { industryLabelI18n } from '@/data/solutions-i18n';
@@ -8,13 +8,16 @@ import type { Locale } from '@/lib/i18n';
 import diagnosisKbJson from '@/data/generated/diagnosis.json';
 import {
   applyAnswer,
+  applyConfirm,
   createState,
+  liveCandidates,
   deriveClusters,
   industryHasScenarios,
   nextStep,
   progress,
   resumeFromExit,
   rewindTo,
+  scoreCandidates,
   type ClusterOption,
   type DiagnosisKB,
   type EngineState,
@@ -49,6 +52,8 @@ export interface TranscriptItem {
 export type UiStep =
   | { kind: 'question'; question: Question; isIndustryConfirm: boolean }
   | { kind: 'exit'; to: string }
+  /** E3 확인 스텝(v4 §3-3) — top 후보 요약 확인. second는 결과 병기용 차순위 */
+  | { kind: 'confirm'; top: string; second: string | null }
   | { kind: 'result'; slug: string };
 
 export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
@@ -105,6 +110,39 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     [engineStep],
   );
 
+  /** E3 확인 스텝 응답 — 긍정: 결과 확정 / 부정: top 제외 후 재개(v4 §3-3) */
+  const answerConfirm = useCallback((accepted: boolean) => {
+    setState((s) => applyConfirm(kb, s, accepted));
+  }, []);
+
+  // dev 점수표 콘솔(v4 §3-1) — "왜 이 결과가 나왔나"를 답변마다 재현 가능하게
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') return;
+    if (kb.flow.selector !== 'adaptive' || state.answers.length === 0) return;
+    // eslint-disable-next-line no-console
+    console.table(scoreCandidates(kb, state).slice(0, 8));
+  }, [state]);
+
+  // E4 계측용 — 현재 살아있는 후보 수(연속 이벤트 차분 = 질문별 분별 기여도)
+  const candidateCount = useMemo(() => liveCandidates(kb, state).length, [state]);
+
+  // 결과 병기용 차순위(top2) — adaptive에서만 의미(v4 §3-3), fixed는 null
+  const resultSecond = useMemo(() => {
+    if (kb.flow.selector !== 'adaptive' || !state.resultSlug) return null;
+    return scoreCandidates(kb, state).find((c) => c.slug !== state.resultSlug)?.slug ?? null;
+  }, [state]);
+
+  // 확인 문구 조합용 — 사용자가 고른 증상 옵션의 로케일 라벨 (없으면 null)
+  const symptomLabel = useMemo(() => {
+    for (const a of state.answers) {
+      const q = kb.questions.find((x) => x.id === a.questionId);
+      if (q?.signal !== 'symptom') continue;
+      const opt = (q.options ?? []).find((o) => o.id === a.optionId);
+      if (opt) return opt.label[locale];
+    }
+    return null;
+  }, [state.answers, locale]);
+
   /** 프리셋 확인 칩 "아니에요" — 답 기록 없이 일반 업종 그리드로 전환 */
   const declineIndustryConfirm = useCallback(() => setConfirmDeclined(true), []);
 
@@ -156,6 +194,10 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     resultSlug: state.resultSlug,
     privacySelected,
     reflectLine,
+    resultClosest: state.resultClosest,
+    resultSecond,
+    candidateCount,
+    symptomLabel,
     transcript,
     availableIndustries,
     clusters,
@@ -164,6 +206,7 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     indLabel,
     clusterLabel,
     answer,
+    answerConfirm,
     declineIndustryConfirm,
     rewindToQuestion,
     restart,
