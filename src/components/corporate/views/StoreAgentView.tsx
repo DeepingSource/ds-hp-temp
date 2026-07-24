@@ -16,7 +16,8 @@ import { JsonLd, softwareApplication } from '@/lib/structured-data';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import MidCta from '@/components/corporate/MidCta';
+import { contactEnterpriseHref } from '@/lib/cta-canon';
 import siteContent from '@/data/generated/site-content.json';
 
 /**
@@ -51,8 +52,15 @@ type StoreAgentCopy = {
 // Copy lives in the CMS (content/site/store-agent.yaml → generated JSON).
 const SA = siteContent.storeAgent as Record<Locale, StoreAgentCopy>;
 
+/** ④5-1: 서브히어로 첫 마침표 뒤 데스크톱 줄바꿈 — CMS 문자열은 그대로, 렌더에서 분할. */
+function splitFirstSentence(s: string): [string, string] {
+  const m = s.match(/^(.+?[.。!?])\s*(.+)$/);
+  return m ? [m[1], m[2]] : [s, ''];
+}
+
 export default function StoreAgentView({ locale }: { locale: Locale }) {
   const t = SA[locale];
+  const [heroSubFirst, heroSubRest] = splitFirstSentence(t.heroSub);
 
   return (
     <>
@@ -76,10 +84,16 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
             {solutionTaglines.agent[locale]}
           </p>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto break-keep mb-10">
-            {t.heroSub}
+            {heroSubFirst}
+            {heroSubRest && (
+              <>
+                <br className="hidden sm:block" />{' '}
+                {heroSubRest}
+              </>
+            )}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href={localeHref(locale, '/contact') + '?product=StoreAgent'} className="btn-primary btn-lg">
+            <Link href={localeHref(locale, contactEnterpriseHref('StoreAgent'))} className="btn-primary btn-lg">
               {t.ctaPrimary}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -122,6 +136,23 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
       {/* ── saai agent의 하루 — 타임라인 (구 How-it-works 4카드 대체) ── */}
       <AgentDayTimeline locale={locale} />
 
+      {/* 미드 CTA(④8-6) — 제품이 하루를 어떻게 운영하는지 본 직후가 전환 지점 */}
+      <AnimatedSection className="py-10 bg-white border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <MidCta
+            locale={locale}
+            product="StoreAgent"
+            lead={
+              locale === 'ko'
+                ? '우리 매장의 하루는 어떻게 달라질지, 데모로 보여드립니다.'
+                : locale === 'jp'
+                ? 'あなたの店舗の一日がどう変わるか、デモでお見せします。'
+                : 'See in a demo how your store’s day would change.'
+            }
+          />
+        </div>
+      </AnimatedSection>
+
       {/* ── 보조: 사장님(폰) 뷰 목업 (액션 카드·AI 채팅·푸시 알림).
              #proactive — 진화 섹션 3번째 칸("먼저 말을 겁니다")이 여기로 딥링크한다. ── */}
       <div id="proactive" className="scroll-mt-24">
@@ -150,9 +181,6 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 기능 × agent 열 (Matrix v1.0 · 재정돈 Phase 4) ── */}
-      <ModeFunctionSection mode="agent" locale={locale} />
-
       {/* ── 기술 배경 링크 밴드 — 원리 설명은 기술 페이지에 위임(역할 계약 §2) ── */}
       <AnimatedSection className="border-y border-gray-200 bg-white py-10">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left">
@@ -179,7 +207,7 @@ export default function StoreAgentView({ locale }: { locale: Locale }) {
           <p className="text-lg text-gray-300 mb-10 break-keep">
             {t.finalSub}
           </p>
-          <Link href={localeHref(locale, '/contact') + '?product=StoreAgent'} className="btn-primary btn-lg">
+          <Link href={localeHref(locale, contactEnterpriseHref('StoreAgent'))} className="btn-primary btn-lg">
             {t.finalCta}
             <ArrowRight className="w-5 h-5 ml-2" />
           </Link>
