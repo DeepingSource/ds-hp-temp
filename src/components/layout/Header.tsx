@@ -365,7 +365,7 @@ export default function Header() {
                             className="flex items-center justify-between p-3 rounded-xl bg-slate-900 text-white hover:bg-primary transition-colors group"
                           >
                             <div className="flex items-center gap-2.5">
-                              <span className="flex h-5 w-5 items-center justify-center rounded bg-emerald-500 text-white font-bold text-2xs">B2C</span>
+                              <span className="inline-flex h-5 items-center justify-center rounded px-1.5 bg-emerald-500 text-white font-bold text-2xs leading-none">B2C</span>
                               <span className="text-xs font-semibold">{L('소상공인·매장 사장님이신가요? 사장님 전용 서비스 보기', 'For Store Owners · View dedicated owner suite', '店舗オーナー様向けサービスを見る')[locale]}</span>
                             </div>
                             <ArrowRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />

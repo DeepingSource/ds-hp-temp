@@ -297,10 +297,10 @@ bridgeSub:
   en: What you actually get — see it on the product page.
   jp: 何を得られるかは、製品ページでご確認ください。
 bridgeCta:
-  ko: saai agent 보기
-  en: See saai agent
-  jp: saai agent を見る
-bridgeCtaSecondary:
   ko: 도입 문의하기
   en: Talk to us
   jp: 導入のご相談
+bridgeCtaSecondary:
+  ko: saai agent 보기
+  en: See saai agent
+  jp: saai agent を見る

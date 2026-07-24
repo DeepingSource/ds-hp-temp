@@ -26,9 +26,9 @@ heroStackLine:
   en: Anonymizer · Spatial AI · Agentic AI
   jp: 匿名化 · 空間知能 · エージェントAI
 problemEyebrow:
-  ko: Layer 1 · Anonymizer
-  en: Layer 1 · Anonymizer
-  jp: Layer 1 · Anonymizer
+  ko: 첫 번째 축 · 익명화
+  en: First axis · Anonymizer
+  jp: 第一の軸 · 匿名化
 problemTitle:
   ko: 비전 AI는, 결국 사람을 봅니다
   en: Vision AI, in the end, sees people
@@ -146,9 +146,9 @@ ctaPrimary:
   en: Request an adoption consultation
   jp: 導入検討のご相談
 ctaSecondary:
-  ko: 회사 소개 보기
-  en: About the company
-  jp: 会社紹介を見る
+  ko: SAAI 제품 보기
+  en: See SAAI products
+  jp: SAAI 製品を見る
 dilemmaOld:
   ko:
     - 원본 영상에 얼굴과 신원이 그대로

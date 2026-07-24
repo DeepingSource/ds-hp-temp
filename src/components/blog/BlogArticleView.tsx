@@ -81,7 +81,7 @@ export default function BlogArticleView({ locale, article }: { locale: Locale; a
           datePublished: `${article.date}T00:00:00+09:00`,
         })}
       />
-      <ArticleScrollWrapper />
+      <ArticleScrollWrapper locale={locale} />
 
       {/* Header */}
       <section className="bg-white border-b border-gray-100">

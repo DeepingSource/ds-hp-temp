@@ -265,9 +265,12 @@ export default function NewsView({ locale }: { locale: Locale }) {
           <p className="text-slate-300 text-lg mb-10 break-keep">
             {t.ctaSub}
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary-dark btn-lg gap-2 rounded-xl">
+          <a
+            href={`mailto:${COMPANY.contactEmail}?subject=${encodeURIComponent(t.ctaButton)}`}
+            className="btn-primary-dark btn-lg gap-2 rounded-xl"
+          >
             {t.ctaButton} <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
       </AnimatedSection>
     </div>

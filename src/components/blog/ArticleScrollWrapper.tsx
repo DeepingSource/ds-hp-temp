@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import ReadingProgress from './ReadingProgress';
 import FloatingCta from './FloatingCta';
+import type { Locale } from '@/lib/i18n';
 
 /**
  * 블로그 상세 페이지 전용 스크롤 상태 관리.
  * ReadingProgress와 FloatingCta가 공유하는 단일 scroll 리스너 + RAF를 담당.
  */
-export default function ArticleScrollWrapper() {
+export default function ArticleScrollWrapper({ locale = 'ko' }: { locale?: Locale }) {
   const [readProgress, setReadProgress] = useState(0);
   const [ctaVisible, setCtaVisible] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
@@ -53,7 +54,7 @@ export default function ArticleScrollWrapper() {
   return (
     <>
       <ReadingProgress progress={readProgress} />
-      <FloatingCta visible={ctaVisible} reducedMotion={reducedMotion} />
+      <FloatingCta visible={ctaVisible} reducedMotion={reducedMotion} locale={locale} />
     </>
   );
 }

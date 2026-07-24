@@ -1406,7 +1406,7 @@
       "heroSub": "Anonymization, spatial intelligence, and agentic AI — three axes that read space and operate it.",
       "heroPatentsLabel": "Patents",
       "heroStackLine": "Anonymizer · Spatial AI · Agentic AI",
-      "problemEyebrow": "Layer 1 · Anonymizer",
+      "problemEyebrow": "First axis · Anonymizer",
       "problemTitle": "Vision AI, in the end, sees people",
       "problemSub": "The moment it sees a person, that becomes personal data. GDPR, CCPA, Korea’s PIPA — none of them let faces and identities just sit there.",
       "oldTag": "Left as-is",
@@ -1436,7 +1436,7 @@
       "ctaTitle": "The technology that operates space",
       "ctaSub": "Spatial intelligence on top of anonymization, agentic AI on top of that. Deployment requirements and tech specs, explained directly by our team.",
       "ctaPrimary": "Request an adoption consultation",
-      "ctaSecondary": "About the company",
+      "ctaSecondary": "See SAAI products",
       "dilemmaOld": [
         "Faces and identities remain in the raw footage",
         "Dozens of people exposed without consent",
@@ -1524,7 +1524,7 @@
       "heroSub": "익명화, 공간 지능, 그리고 에이전트 AI — 세 개의 축이 공간을 읽고, 운영합니다.",
       "heroPatentsLabel": "보유 특허",
       "heroStackLine": "익명화 · 공간 지능 · 에이전트 AI",
-      "problemEyebrow": "Layer 1 · Anonymizer",
+      "problemEyebrow": "첫 번째 축 · 익명화",
       "problemTitle": "비전 AI는, 결국 사람을 봅니다",
       "problemSub": "사람을 보는 그 순간, 그건 개인정보가 됩니다. GDPR도, CCPA도, 국내 개인정보보호법도 — 얼굴과 신원을 그냥 두지 않습니다.",
       "oldTag": "그냥 두면",
@@ -1554,7 +1554,7 @@
       "ctaTitle": "기술이, 공간을 운영합니다",
       "ctaSub": "익명화 위에 공간 지능, 그 위에 에이전트 AI. 도입 요건과 기술 스펙, 전문 팀이 직접 설명합니다.",
       "ctaPrimary": "도입 검토 상담 신청",
-      "ctaSecondary": "회사 소개 보기",
+      "ctaSecondary": "SAAI 제품 보기",
       "dilemmaOld": [
         "원본 영상에 얼굴과 신원이 그대로",
         "동의 없이 다수가 노출되는 구조",
@@ -1642,7 +1642,7 @@
       "heroSub": "匿名化、空間知能、そしてエージェントAI — 三つの軸が空間を読み、運営します。",
       "heroPatentsLabel": "保有特許",
       "heroStackLine": "匿名化 · 空間知能 · エージェントAI",
-      "problemEyebrow": "Layer 1 · Anonymizer",
+      "problemEyebrow": "第一の軸 · 匿名化",
       "problemTitle": "ビジョンAIは、結局は人を見ます",
       "problemSub": "人を見たその瞬間、それは個人情報になります。GDPRも、CCPAも、韓国の個人情報保護法も — 顔と身元をそのままにはしません。",
       "oldTag": "そのままにすると",
@@ -1672,7 +1672,7 @@
       "ctaTitle": "技術が、空間を運営します",
       "ctaSub": "匿名化の上に空間知能、その上にエージェントAI。導入要件と技術仕様、専門チームが直接ご説明します。",
       "ctaPrimary": "導入検討のご相談",
-      "ctaSecondary": "会社紹介を見る",
+      "ctaSecondary": "SAAI 製品を見る",
       "dilemmaOld": [
         "原本映像に顔と身元がそのまま残る",
         "同意なく多数の人がさらされる構造",
@@ -1783,8 +1783,8 @@
       "bridgeEyebrow": "Into the product",
       "bridgeHeading": "The product built on these principles",
       "bridgeSub": "What you actually get — see it on the product page.",
-      "bridgeCta": "See saai agent",
-      "bridgeCtaSecondary": "Talk to us",
+      "bridgeCta": "Talk to us",
+      "bridgeCtaSecondary": "See saai agent",
       "philosophy": [
         {
           "title": "The AI recommends. People decide.",
@@ -1904,8 +1904,8 @@
       "bridgeEyebrow": "제품으로",
       "bridgeHeading": "이 철학으로 만든 제품",
       "bridgeSub": "무엇을 얻게 되는지는, 제품에서 확인하세요.",
-      "bridgeCta": "saai agent 보기",
-      "bridgeCtaSecondary": "도입 문의하기",
+      "bridgeCta": "도입 문의하기",
+      "bridgeCtaSecondary": "saai agent 보기",
       "philosophy": [
         {
           "title": "권고는 AI, 결정은 사람",
@@ -2025,8 +2025,8 @@
       "bridgeEyebrow": "製品へ",
       "bridgeHeading": "この哲学でつくった製品",
       "bridgeSub": "何を得られるかは、製品ページでご確認ください。",
-      "bridgeCta": "saai agent を見る",
-      "bridgeCtaSecondary": "導入のご相談",
+      "bridgeCta": "導入のご相談",
+      "bridgeCtaSecondary": "saai agent を見る",
       "philosophy": [
         {
           "title": "推奨はAI、決定は人",

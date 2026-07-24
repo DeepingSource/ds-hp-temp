@@ -317,7 +317,7 @@ function ContactForm({ locale }: { locale: Locale }) {
           <div className="p-4 bg-gray-50 rounded-xl mb-6 animate-fade-in-up delay-300">
             <p className="text-sm text-gray-500 mb-2">{t.insightPrompt}</p>
             <Link
-              href="/storeagent/blog"
+              href={localeHref(locale, '/resources/blog')}
               className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
             >
               {t.insightLink}

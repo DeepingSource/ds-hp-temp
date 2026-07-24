@@ -355,14 +355,14 @@ export default function AgenticAiTechView({ locale }: { locale: Locale }) {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
-                href={localeHref(locale, '/products/saai-agent')}
+                href={localeHref(locale, '/contact')}
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
               >
                 {t.bridgeCta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
-                href={localeHref(locale, '/contact')}
+                href={localeHref(locale, '/products/saai-agent')}
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/10"
               >
                 {t.bridgeCtaSecondary}

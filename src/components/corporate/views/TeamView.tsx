@@ -369,9 +369,6 @@ export default function TeamView({ locale }: { locale: Locale }) {
             <Link href={localeHref(locale, '/company/about')} className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors">
               <span>{locale === 'ko' ? '회사 소개' : locale === 'jp' ? '会社紹介' : 'About DeepingSource'}</span>
             </Link>
-            <Link href={localeHref(locale, '/company/investors')} className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl transition-colors">
-              <span>{locale === 'ko' ? '투자자 정보' : locale === 'jp' ? '投資家情報' : 'For investors'}</span>
-            </Link>
           </div>
         </Container>
       </Section>
