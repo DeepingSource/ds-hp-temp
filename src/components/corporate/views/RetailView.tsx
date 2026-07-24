@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   ArrowRight,
   PackageX,
@@ -32,7 +33,11 @@ const SCENARIO_IMGS = [
   '/images/cctv/cctv-cvs-entrance.webp',
   '/images/cctv/cctv-intrusion-night-ir.webp',
 ];
-const DASH_IMG = '/images/industries/convenience-dashboard.webp';
+
+// '매장의 하루' 라이브 목업 (Phase 3: 정적 대시보드 캡처 → canonicalDay 파생 타임랩스)
+const StoreDayTimelapse = dynamic(() => import('@/components/mockups/StoreDayTimelapse'), {
+  loading: () => <div className="h-[520px] animate-pulse rounded-2xl bg-gray-100" />,
+});
 
 type Copy = {
   badge: string;
@@ -57,8 +62,6 @@ type Copy = {
 };
 
 const CMS = siteContent.retail as unknown as Record<Locale, Copy>;
-
-const dashCaption: Record<Locale, string> = { ko: '* 분석 화면 예시', en: '* Example analysis screen', jp: '* 分析画面の例' };
 
 export default function RetailView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
@@ -162,13 +165,10 @@ export default function RetailView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── 분석 대시보드 ── */}
+      {/* ── 매장의 하루 — 라이브 타임랩스 목업 (정적 대시보드 캡처 대체) ── */}
       <AnimatedSection className="py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-gray-200 shadow-card bg-slate-50">
-            <Image src={DASH_IMG} alt={`${t.badge} 분석 대시보드 예시`} fill sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
-          </div>
-          <p className="mt-3 text-xs text-gray-400 text-center">{dashCaption[locale]}</p>
+          <StoreDayTimelapse locale={locale} />
         </div>
       </AnimatedSection>
 

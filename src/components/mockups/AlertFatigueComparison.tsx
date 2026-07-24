@@ -9,10 +9,18 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { useCountUp } from '@/hooks/useCountUp';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
+import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 
+// MockupViewport 예외(MM Phase 3 D12): 제품 UI 재현이 아닌 비교형(legacy vs saai)
+// 2패널 레이아웃이라 고정 캔버스 대신 grid-cols-1↔2 반응형 재배치가 설계 의도 —
+// 강제 스케일은 극좁 폭에서 오히려 가독성 퇴행. (1a IntegratedLoop 형식)
+
 // ── Copy (ko/en/jp), English-first per D6 ──────────────────────────────
+// heading의 '1,353' 리터럴은 canonicalHq.dailyAlerts(1353)와 동일해야 한다(D6) —
+// 좌측 카운터가 같은 값으로 count-up 하므로 값 변경 시 3로케일 동시 갱신.
 const COPY: Record<
   Locale,
   {
@@ -54,11 +62,15 @@ const COPY: Record<
   },
 };
 
+// Viewport 예외 파일 = .saai-scope 밖 → --saai-* CSS 변수 미해석. SAAI_COLORS 인라인 사용(D2).
+const TONE_HIGH = { color: SAAI_COLORS['red-600'], backgroundColor: SAAI_COLORS['red-50'] };
+const TONE_MEDIUM = { color: SAAI_COLORS['yellow-700'], backgroundColor: SAAI_COLORS['yellow-50'] };
+
 // English-first concise titles for the right panel (actionCards titles are Korean).
 const RIGHT_CARDS = [
-  { title: 'Restock umbrellas & ponchos', meta: 'Rain 70% tomorrow · sales +180%', priority: 'High', tone: 'text-red-600 bg-red-50' },
-  { title: 'Reorder onigiri', meta: 'Stock 12 · ~35/day · sells out by 3pm', priority: 'Medium', tone: 'text-amber-600 bg-amber-50' },
-  { title: 'Add peak-time staff', meta: 'Sat 4–6pm wait 3.2min over 1.5 target', priority: 'High', tone: 'text-red-600 bg-red-50' },
+  { title: 'Restock umbrellas & ponchos', meta: 'Rain 70% tomorrow · sales +180%', priority: 'High', tone: TONE_HIGH },
+  { title: 'Reorder onigiri', meta: 'Stock 12 · ~35/day · sells out by 3pm', priority: 'Medium', tone: TONE_MEDIUM },
+  { title: 'Add peak-time staff', meta: 'Sat 4–6pm wait 3.2min over 1.5 target', priority: 'High', tone: TONE_HIGH },
 ].map((c, i) => ({ ...c, src: actionCards[i] }));
 
 const MAX_ROWS = 40;
@@ -190,7 +202,7 @@ export default function AlertFatigueComparison({
         {t.heading}
       </h3>
 
-      <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:grid-cols-2">
+      <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card md:grid-cols-2">
         {/* center divider (desktop only) */}
         <div
           aria-hidden
@@ -225,7 +237,7 @@ export default function AlertFatigueComparison({
                   key={r.id}
                   initial={reducedMotion ? false : { opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.12 }}
+                  transition={motionAffordance}
                   className="flex items-center gap-2 rounded bg-white/70 px-2 py-1 text-2xs text-gray-500"
                 >
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gray-300" />
@@ -264,12 +276,12 @@ export default function AlertFatigueComparison({
                 key={c.title}
                 initial={reducedMotion ? false : { opacity: 0, y: 10 }}
                 animate={cardsIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.4, delay: reducedMotion ? 0 : i * 0.18 }}
-                className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm"
+                transition={{ ...motionEnter, delay: reducedMotion ? 0 : i * 0.18 }}
+                className="rounded-xl border border-gray-200 bg-white p-3 shadow-card"
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-medium text-gray-900">{c.title}</p>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-3xs font-bold ${c.tone}`}>
+                  <span style={c.tone} className="shrink-0 rounded-full px-2 py-0.5 text-3xs font-bold">
                     {c.priority}
                   </span>
                 </div>

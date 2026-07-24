@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   ArrowRight,
   LayoutGrid,
@@ -26,6 +27,19 @@ import siteContent from '@/data/generated/site-content.json';
  * Rendered by `/solutions/drug-store` (en), `/ko/solutions/drug-store`, `/jp/solutions/drug-store`
  * with the locale prop (PLAN_v1.1 D6 path-prefix i18n).
  */
+
+// AlertFatigueComparison 배치 근거(MM Phase 3 D12): 드럭스토어의 로스 방지·알림 피로
+// 스토리 — 시나리오 3종(문제 나열) 직후 "그 문제들이 알림 1,353건으로 쏟아질 때 vs
+// 우선순위 3장" 대비를 라이브로 보여준다. 헤딩 카피는 목업 자체 3로케일 사용(신규 카피 0).
+// 서버 뷰라 ssr:false 불가(Next App Router 제약) — StoreInsightView 선례대로
+// loading placeholder만 지정하고 클라이언트에서 지연 로드한다.
+const AlertFatigueComparison = dynamic(
+  () => import('@/components/mockups/AlertFatigueComparison'),
+  {
+    /* Viewport 예외 목업(고정 캔버스 없음) — 대략 높이 예약, 정확 비율 아님 */
+    loading: () => <div className="h-[560px] animate-pulse rounded-2xl bg-gray-100 md:h-[540px]" />,
+  }
+);
 
 const HERO_IMG = '/images/industries/drugstore-hero.webp';
 const SCENARIO_IMGS = [
@@ -150,6 +164,13 @@ export default function DrugView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 알림 피로 비교 (1,353건 vs 우선순위 3장 · 라이브 목업) ── */}
+      <AnimatedSection className="py-12 lg:py-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <AlertFatigueComparison locale={locale} />
         </div>
       </AnimatedSection>
 

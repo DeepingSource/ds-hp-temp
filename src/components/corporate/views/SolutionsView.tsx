@@ -8,6 +8,7 @@ import { localeHref, type Locale } from '@/lib/i18n';
 import { DIAGNOSIS_UI } from '@/data/diagnosis-i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
+import FiveQuestionsLazy from '@/components/corporate/FiveQuestionsLazy';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
 import WordRise from '@/components/ui/WordRise';
@@ -193,6 +194,15 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
       {/* ── 단계적 탐색: 업종 → 문제 → 상세 ── */}
       <section className="py-14 lg:py-20">
         <SolutionsExplorer groups={groups} locale={locale} viewSolutionLabel={t.viewSolution} />
+      </section>
+
+      {/* ── 다섯 질문 (MM Phase 3: 진단형 진입 장치 — 히어로의 DiagnosisLauncher와
+           중복되지 않도록 탐색기 뒤에 배치. 모든 솔루션이 통과해야 하는 기준 공개로
+           탐색 결과의 신뢰 보강. 헤딩·카피는 목업 자체 3로케일, 신규 카피 0건) ── */}
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <FiveQuestionsLazy locale={locale} />
+        </div>
       </section>
 
       <RelatedGlossary

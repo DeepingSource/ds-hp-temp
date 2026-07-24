@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
 import MockupBadge from './MockupBadge';
+import MockupViewport from './MockupViewport';
+import { motionEnter } from '@/lib/mockup-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useCountUp } from '@/hooks/useCountUp';
@@ -110,9 +112,8 @@ export default function AgentDaySimulator({
     return () => clearTimeout(id);
   }, [isResult, gated, total, delta, reducedMotion, t]);
 
-  const stepTransition = reducedMotion
-    ? { duration: 0 }
-    : { duration: 0.3, ease: 'easeOut' as const };
+  /* v2 모션 계약(D3): 인라인 easeOut → mockup-motion out_quint 단일 곡선 */
+  const stepTransition = reducedMotion ? { duration: 0 } : motionEnter;
 
   return (
     <div ref={containerRef} className={className}>
@@ -120,6 +121,10 @@ export default function AgentDaySimulator({
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
         {announce}
       </div>
+      {/* v2 크기 계약(MM Phase 3): 폰 UI 재현 → MockupViewport phone 390×844 자체 래핑
+          (ChatMockup 패턴). 내부 인터랙션(승인/보류 탭)은 transform 스케일에서도 동작하며,
+          .saai-scope 안이라 --saai-* 변수를 소비한다. 호출부는 폭만 지정. */}
+      <MockupViewport design="phone">
       <PhoneFrame>
         <PhoneScreen statusBarBg="bg-white" homeBg="bg-white" darkStatusBar darkHomeIndicator badge={false}>
           <MockupBadge locale={locale} />
@@ -209,8 +214,8 @@ export default function AgentDaySimulator({
                                     ? { opacity: 0, x: 120, rotate: 6 }
                                     : { opacity: 0, x: -120, rotate: -6 }
                               }
-                              transition={reducedMotion ? { duration: 0 } : { duration: 0.32, ease: 'easeOut' }}
-                              className="w-full rounded-2xl border border-gray-100 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-5"
+                              transition={stepTransition}
+                              className="w-full rounded-2xl border border-gray-100 bg-white shadow-card p-5"
                             >
                               <span className="inline-block text-2xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                                 {i + 1} / {CARD_ORDER.length}
@@ -218,9 +223,9 @@ export default function AgentDaySimulator({
                               <h4 className="mt-3 text-lg font-bold leading-snug">{card.title}</h4>
 
                               <div className="mt-4 space-y-2">
-                                <div className="flex items-start gap-2 rounded-lg bg-emerald-50 px-3 py-2">
-                                  <Check className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" aria-hidden="true" />
-                                  <span className="text-xs text-emerald-900 leading-relaxed">{card.approveNote}</span>
+                                <div className="flex items-start gap-2 rounded-lg bg-(--saai-green-50) px-3 py-2">
+                                  <Check className="w-4 h-4 text-(--saai-chart-positive) mt-0.5 shrink-0" aria-hidden="true" />
+                                  <span className="text-xs text-(--saai-green-800) leading-relaxed">{card.approveNote}</span>
                                 </div>
                                 <div className="flex items-start gap-2 rounded-lg bg-gray-50 px-3 py-2">
                                   <Pause className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" aria-hidden="true" />
@@ -265,11 +270,12 @@ export default function AgentDaySimulator({
                 >
                   <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />
                   <p className="text-sm font-medium text-gray-700">{t.calculating}</p>
+                  {/* v2 모션 계약: bounce 금지 → opacity 펄스 점 3개로 대체 */}
                   <div className="flex gap-1.5" aria-hidden="true">
                     {[0, 1, 2].map((i) => (
                       <span
                         key={i}
-                        className="w-2 h-2 rounded-full bg-primary/60 animate-bounce motion-reduce:animate-none"
+                        className="w-2 h-2 rounded-full bg-primary/60 animate-pulse motion-reduce:animate-none"
                         style={{ animationDelay: `${i * 0.15}s` }}
                       />
                     ))}
@@ -295,7 +301,7 @@ export default function AgentDaySimulator({
                       </span>
                       <span
                         className={`mb-1 text-xs font-bold px-2 py-0.5 rounded-full ${
-                          delta >= 0 ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700'
+                          delta >= 0 ? 'bg-primary/10 text-primary' : 'bg-(--saai-red-50) text-(--saai-chart-negative)'
                         }`}
                       >
                         {t.result.vsBase} {formatDelta(delta)}
@@ -315,7 +321,7 @@ export default function AgentDaySimulator({
                           >
                             <span
                               className={`mt-0.5 shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full ${
-                                approved ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-500'
+                                approved ? 'bg-(--saai-green-100) text-(--saai-green-700)' : 'bg-gray-200 text-gray-500'
                               }`}
                               aria-hidden="true"
                             >
@@ -324,7 +330,7 @@ export default function AgentDaySimulator({
                             <div className="min-w-0">
                               <p className="text-xs font-medium text-gray-800">
                                 {card.title}
-                                <span className={`ml-1.5 font-bold ${approved ? 'text-emerald-600' : 'text-gray-400'}`}>
+                                <span className={`ml-1.5 font-bold ${approved ? 'text-(--saai-chart-positive)' : 'text-gray-400'}`}>
                                   · {approved ? t.decide.approve : t.decide.hold}
                                 </span>
                               </p>
@@ -368,6 +374,7 @@ export default function AgentDaySimulator({
           </div>
         </PhoneScreen>
       </PhoneFrame>
+      </MockupViewport>
     </div>
   );
 }

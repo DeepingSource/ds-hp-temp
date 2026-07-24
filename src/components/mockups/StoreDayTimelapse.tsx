@@ -14,9 +14,15 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
+import { motionEnter } from '@/lib/mockup-motion';
 import { canonicalDay, canonicalStore, formatWon } from '@/data/mockup-scenarios/canonical';
 import type { DayHour, DayEvent, DayEventKind } from '@/data/mockup-scenarios/canonical';
 import type { Locale } from '@/lib/i18n';
+
+// MockupViewport 예외(MM §5 Phase 3, 1a IntegratedLoop 형식): 스크러버·재생 컨트롤을
+// 가진 인터랙티브 위젯 + lg 3컬럼 반응형 레이아웃 — 고정 캔버스 비율 스케일은 슬라이더
+// 히트 타깃을 축소시키므로 유동 폭을 유지한다. 색은 .saai-scope 밖이라 SAAI_COLORS 인라인.
 
 // ── Time domain constants ────────────────────────────────────────────────────
 const T_START = 360; // 06:00
@@ -24,21 +30,11 @@ const T_END = 1440; // 24:00
 const T_SPAN = T_END - T_START;
 const LOOP_MS = 30_000; // 30s per full day
 
-// ── Kind → color ─────────────────────────────────────────────────────────────
-const KIND_DOT: Record<DayEventKind, string> = {
-  care: 'bg-emerald-500',
-  agent: 'bg-primary',
-  insight: 'bg-violet-500',
-};
-const KIND_RING: Record<DayEventKind, string> = {
-  care: 'ring-emerald-400',
-  agent: 'ring-primary',
-  insight: 'ring-violet-400',
-};
-const KIND_MARK: Record<DayEventKind, string> = {
-  care: '#10b981',
-  agent: '#376AE2',
-  insight: '#8b5cf6',
+// ── Kind → color (v2: 제품 구분 emerald/violet 폐지 D2 → SAAI hue 파생) ──────
+const KIND_COLOR: Record<DayEventKind, string> = {
+  care: SAAI_COLORS['status-success'],
+  agent: SAAI_COLORS['primary'],
+  insight: SAAI_COLORS['chart-cat-3'],
 };
 
 // ── Localized COPY ───────────────────────────────────────────────────────────
@@ -198,12 +194,19 @@ function interpolatedHeat(hours: DayHour[], t: number): number[] {
   return a.heat.map((v, i) => v + (b.heat[i] - v) * frac);
 }
 
+// heat endpoints — SAAI 시퀀셜 양끝(blue-25 → blue-500) 토큰 파생, raw hex 없음
+const hexRgb = (hex: string): [number, number, number] => [
+  parseInt(hex.slice(1, 3), 16),
+  parseInt(hex.slice(3, 5), 16),
+  parseInt(hex.slice(5, 7), 16),
+];
+const HEAT_LOW = hexRgb(SAAI_COLORS['blue-25']);
+const HEAT_HIGH = hexRgb(SAAI_COLORS['blue-500']);
+
 function heatColor(v: number): string {
-  // 0..10 → light → brand blue. rgb interpolation toward brand --primary #376AE2.
+  // 0..10 → light → brand blue (SAAI sequential endpoints interpolation)
   const tNorm = Math.max(0, Math.min(1, v / 10));
-  const r = Math.round(241 + (55 - 241) * tNorm);
-  const g = Math.round(245 + (106 - 245) * tNorm);
-  const b = Math.round(249 + (226 - 249) * tNorm);
+  const [r, g, b] = HEAT_LOW.map((lo, i) => Math.round(lo + (HEAT_HIGH[i] - lo) * tNorm));
   return `rgb(${r},${g},${b})`;
 }
 
@@ -416,7 +419,7 @@ export default function StoreDayTimelapse({
 
   const containerCls = kiosk
     ? 'w-full h-full bg-white text-slate-900'
-    : 'w-full rounded-2xl bg-white text-slate-900 shadow-xl ring-1 ring-slate-200';
+    : 'w-full rounded-2xl bg-white text-slate-900 shadow-card ring-1 ring-slate-200';
 
   return (
     <div
@@ -430,7 +433,7 @@ export default function StoreDayTimelapse({
       <motion.div
         initial={reducedMotion ? false : { opacity: 0, y: 12 }}
         animate={isVisible ? { opacity: 1, y: 0 } : undefined}
-        transition={{ duration: 0.4 }}
+        transition={motionEnter}
         className={kiosk ? 'p-6 md:p-10' : 'p-4 md:p-6'}
       >
         {/* Header */}
@@ -474,7 +477,7 @@ export default function StoreDayTimelapse({
                   onClick={() => jumpToEvent(e)}
                   aria-label={`${COPY[locale]?.events[e.refId] ?? e.summary} (${clockOf(e.t)})`}
                   className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 h-3 w-3 rounded-full ring-2 ring-white shadow"
-                  style={{ left: `${left}%`, backgroundColor: KIND_MARK[e.kind] }}
+                  style={{ left: `${left}%`, backgroundColor: KIND_COLOR[e.kind] }}
                 />
               );
             })}
@@ -596,10 +599,15 @@ export default function StoreDayTimelapse({
                   <div
                     key={e.refId}
                     className={`flex gap-2 rounded-lg p-2 text-2xs ring-1 transition ${
-                      isHi ? `bg-slate-50 ring-2 ${KIND_RING[e.kind]}` : 'ring-slate-100'
+                      isHi ? 'bg-slate-50 ring-2' : 'ring-slate-100'
                     }`}
+                    style={isHi ? ({ '--tw-ring-color': KIND_COLOR[e.kind] } as React.CSSProperties) : undefined}
                   >
-                    <span className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${KIND_DOT[e.kind]}`} aria-hidden="true" />
+                    <span
+                      className="mt-0.5 h-2 w-2 shrink-0 rounded-full"
+                      style={{ backgroundColor: KIND_COLOR[e.kind] }}
+                      aria-hidden="true"
+                    />
                     <div className="min-w-0">
                       <p className="leading-snug text-slate-700">
                         <span className="sr-only">{e.kind}: </span>

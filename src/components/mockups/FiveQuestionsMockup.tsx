@@ -7,7 +7,14 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import { type Locale, localeHref } from '@/lib/i18n';
+import { motionEnter } from '@/lib/mockup-motion';
 import { type DeepPartial, mergeMockupContent } from './types';
+
+// MockupViewport 예외(MM §5 1a IntegratedLoop 형식): 제품 UI 재현이 아닌
+// 텍스트 비교형 기준 카드(질문 5개 × 통과/탈락) — 반응형 재배치(모바일 세로
+// 스택 ↔ md 5열 그리드)가 설계 의도라 고정 캔버스 비율 스케일은 모바일에서
+// 글자만 축소해 가독성 퇴행. 색은 사이트 primary/gray 시맨틱(raw hex 0건),
+// 모션은 mockup-motion out_quint로 계약 충족.
 
 interface QuestionCopy {
   q: string;
@@ -189,11 +196,12 @@ export default function FiveQuestionsMockup({
         aria-label={t.heading}
       >
         {t.questions.map((item, i) => (
+          /* 카드 순차 등장 — mockup-motion enter(out_quint 300ms) + 60ms 스태거(listStagger 계약) */
           <motion.li
             key={i}
             initial={reveal ? { opacity: 0, y: 16 } : false}
             animate={reveal ? { opacity: 1, y: 0 } : undefined}
-            transition={{ duration: 0.4, delay: i * 0.08, ease: 'easeOut' }}
+            transition={{ ...motionEnter, delay: i * 0.06 }}
             className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:ring-1 hover:ring-primary/40 focus-within:border-primary/60"
           >
             <div className="flex items-baseline gap-2">

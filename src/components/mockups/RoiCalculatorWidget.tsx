@@ -12,7 +12,13 @@ import {
 } from '@/data/mockup-scenarios/canonical';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
 import { type DeepPartial, mergeMockupContent } from './types';
+
+// MockupViewport 예외(MM §5 1a IntegratedLoop 형식): 제품 화면 재현이 아닌
+// 인터랙티브 위젯(실제 조작하는 슬라이더 입력) — 고정 캔버스 비율 스케일은
+// range 썸 히트 영역을 축소해 조작성을 해친다. 반응형 카드(max-w-md)가 설계 의도.
+// 색은 SAAI_COLORS 인라인(.saai-scope 밖), 수치는 canonicalRoi 파생으로 계약 충족.
 
 /* ────────────────────────────────────────────────────────────
  * 보수적 추정 가정 (footnoted constants) — 모두 canonicalRoi에서 파생
@@ -148,7 +154,7 @@ function Slider({ id, label, value, min, max, step, display, onChange }: SliderP
         onChange={(e) => onChange(Number(e.target.value))}
         className="roi-range w-full"
         style={{
-          background: `linear-gradient(to right, var(--color-primary, #376AE2) ${pct}%, #e5e7eb ${pct}%)`,
+          background: `linear-gradient(to right, ${SAAI_COLORS.primary} ${pct}%, ${SAAI_COLORS['border-subtle']} ${pct}%)`,
         }}
       />
     </div>
@@ -254,16 +260,16 @@ export default function RoiCalculatorWidget({
           width: 18px;
           height: 18px;
           border-radius: 9999px;
-          background: var(--color-primary, #376AE2);
-          border: 2px solid #fff;
+          background: ${SAAI_COLORS.primary};
+          border: 2px solid ${SAAI_COLORS.white};
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         .roi-range::-moz-range-thumb {
           width: 18px;
           height: 18px;
           border-radius: 9999px;
-          background: var(--color-primary, #376AE2);
-          border: 2px solid #fff;
+          background: ${SAAI_COLORS.primary};
+          border: 2px solid ${SAAI_COLORS.white};
         }
         .roi-range:focus-visible {
           box-shadow: 0 0 0 3px rgb(var(--primary-rgb) / 0.35);

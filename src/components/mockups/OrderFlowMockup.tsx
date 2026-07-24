@@ -5,11 +5,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
 import MockupBadge from './MockupBadge';
+import MockupViewport from './MockupViewport';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { useCountUp } from '@/hooks/useCountUp';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { springGentle, springSnappy } from '@/lib/spring-config';
+import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
 import { canonicalStore, formatWon } from '@/data/mockup-scenarios/canonical';
 import type { Locale } from '@/lib/i18n';
 import { type DeepPartial, mergeMockupContent } from './types';
@@ -182,7 +183,9 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
   const approvals = useCountUp(APPROVALS_TODAY, loopActive, 1200);
 
   return (
+    // v2 계약: MockupViewport 크기 계약(phone 390×844) + --saai-* 토큰 + mockup-motion(no spring).
     <div ref={ref} className={className}>
+      <MockupViewport design="phone">
       <PhoneFrame>
         <PhoneScreen statusBarBg="bg-white" homeBg="bg-gray-50" badge={false}>
           <MockupBadge locale={locale} />
@@ -228,11 +231,11 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
               }`}
             >
               <div className="flex items-start gap-3 mb-2">
-                <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
-                  <ShoppingCart className="w-5 h-5 text-amber-600" aria-hidden="true" />
+                <div className="w-9 h-9 rounded-lg bg-(--saai-yellow-50) flex items-center justify-center shrink-0">
+                  <ShoppingCart className="w-5 h-5 text-(--saai-yellow-700)" aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="text-3xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 inline-block mb-1">
+                  <span className="text-3xs font-bold px-2 py-0.5 rounded-full bg-(--saai-yellow-100) text-(--saai-yellow-800) inline-block mb-1">
                     {t.priority}
                   </span>
                   <h4 className="text-sm font-medium text-gray-900 leading-snug">{t.cardTitle}</h4>
@@ -250,7 +253,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                       ? { scale: [1, 0.9, 1] }
                       : { scale: 1 }
                   }
-                  transition={activeStep === 0 && !reducedMotion ? { duration: 0.5, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1.1 } : springSnappy}
+                  transition={activeStep === 0 && !reducedMotion ? { ...motionAffordance, duration: 0.5, repeat: Infinity, repeatDelay: 1.1 } : motionAffordance}
                 >
                   {activeStep > 0 ? <CheckCircle2 className="w-3 h-3" aria-hidden="true" /> : <Check className="w-3 h-3" aria-hidden="true" />}
                   {t.approve}
@@ -274,7 +277,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                   initial={reducedMotion ? false : { opacity: 0, x: 28 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 28 }}
-                  transition={springGentle}
+                  transition={motionEnter}
                   className="bg-white rounded-xl shadow-card border border-gray-100 overflow-hidden"
                 >
                   <div className="flex items-center gap-2 px-4 py-2.5 bg-primary/5 border-b border-gray-100">
@@ -315,12 +318,12 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                   initial={reducedMotion ? false : { opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 18 }}
-                  transition={springGentle}
-                  className="bg-white rounded-xl p-4 shadow-card border border-emerald-100"
+                  transition={motionEnter}
+                  className="bg-white rounded-xl p-4 shadow-card border border-(--saai-green-100)"
                 >
                   <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500" aria-hidden="true" />
+                    <div className="w-9 h-9 rounded-full bg-(--saai-green-50) flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-5 h-5 text-(--saai-status-success)" aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-bold text-gray-900">{t.sentTitle}</p>
@@ -338,13 +341,13 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                       <li key={node.label} className="flex-1 flex flex-col items-center relative">
                         {i < arr.length - 1 && (
                           <span
-                            className={`absolute top-3 left-1/2 w-full h-0.5 ${arr[i + 1].done || node.done ? 'bg-emerald-300' : 'bg-gray-200'}`}
+                            className={`absolute top-3 left-1/2 w-full h-0.5 ${arr[i + 1].done || node.done ? 'bg-(--saai-green-300)' : 'bg-gray-200'}`}
                             aria-hidden="true"
                           />
                         )}
                         <span
                           className={`relative z-10 w-6 h-6 rounded-full flex items-center justify-center ${
-                            node.done ? 'bg-emerald-500 text-white' : 'bg-white border-2 border-amber-300 text-amber-500'
+                            node.done ? 'bg-(--saai-status-success) text-white' : 'bg-white border-2 border-(--saai-yellow-400) text-(--saai-yellow-700)'
                           }`}
                         >
                           <node.Icon className="w-3 h-3" aria-hidden="true" />
@@ -353,7 +356,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
                       </li>
                     ))}
                   </ol>
-                  <p className="text-2xs text-amber-600 font-medium text-center mt-2">{t.eta}</p>
+                  <p className="text-2xs text-(--saai-yellow-800) font-medium text-center mt-2">{t.eta}</p>
                 </motion.section>
               )}
             </AnimatePresence>
@@ -375,6 +378,7 @@ export default function OrderFlowMockup({ active = true, locale = 'en', classNam
           </div>
         </PhoneScreen>
       </PhoneFrame>
+      </MockupViewport>
     </div>
   );
 }

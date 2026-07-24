@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   ArrowRight,
   Sparkles,
@@ -58,6 +59,19 @@ type Copy = {
 const CMS = siteContent.foodBeverage as unknown as Record<Locale, Copy>;
 
 const dashCaption: Record<Locale, string> = { ko: '* 분석 화면 예시', en: '* Example analysis screen', jp: '* 分析画面の例' };
+
+// 자동 발주 라이브 목업 (Phase 3: 주문·발주 흐름 = F&B 핵심 서사).
+// placeholder는 MockupViewport phone 캔버스(390×844) 자리 예약과 동일 비율 — CLS 0.
+const OrderFlowMockup = dynamic(() => import('@/components/mockups/OrderFlowMockup'), {
+  loading: () => <div className="aspect-[390/844] animate-pulse rounded-[2.5rem] bg-gray-100" />,
+});
+
+// 섹션 연결 문구 — 목업 자체 카피(자동 발주·승인 한 번으로)와 톤 정합, 3로케일 동시 작성
+const orderFlowCopy: Record<Locale, { eyebrow: string; heading: string }> = {
+  ko: { eyebrow: '실제 화면', heading: '재고가 떨어지기 전에, 승인 한 번으로 발주까지' },
+  en: { eyebrow: 'Live preview', heading: 'Approve once — ordered before you run out' },
+  jp: { eyebrow: '実際の画面', heading: '在庫が切れる前に、承認ひとつで発注まで' },
+};
 
 export default function FoodBeverageView({ locale }: { locale: Locale }) {
   const t = CMS[locale];
@@ -175,6 +189,24 @@ export default function FoodBeverageView({ locale }: { locale: Locale }) {
             <Image src={DASH_IMG} alt={`${t.badge} 분석 대시보드 예시`} fill sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
           </div>
           <p className="mt-3 text-xs text-gray-400 text-center">{dashCaption[locale]}</p>
+        </div>
+      </AnimatedSection>
+
+      {/* ── 자동 발주 라이브 목업 (관찰→분석→실행 서사의 '실행' 비트) ── */}
+      <AnimatedSection className="py-16 lg:py-24 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <p className="text-sm font-medium text-primary mb-3 tracking-wider uppercase">
+              {orderFlowCopy[locale].eyebrow}
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 break-keep">
+              {orderFlowCopy[locale].heading}
+            </h2>
+          </div>
+          {/* 폭만 지정(v2 계약) — 크기는 목업의 MockupViewport(phone 390×844) 소관 */}
+          <div className="max-w-[300px] mx-auto">
+            <OrderFlowMockup locale={locale} />
+          </div>
         </div>
       </AnimatedSection>
 

@@ -13,6 +13,7 @@ import SaaiPillarsSection from '@/components/corporate/products/SaaiPillarsSecti
 import SaaiSuiteSection from '@/components/corporate/products/SaaiSuiteSection';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
+import RoiCalculatorLazy from '@/components/corporate/products/RoiCalculatorLazy';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
@@ -283,6 +284,16 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                 <span>{fnCard.cta} →</span>
               </Link>
             </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── Beat 6.5 — ROI Calculator (MM Phase 3: 허브 전환 기여 — 제품·모듈 카드 뒤,
+             CTA 앞에서 도입 효과를 정량으로. 헤딩·카피는 위젯 자체 3로케일 사용, 신규 카피 0건) ── */}
+      <AnimatedSection className="py-16 lg:py-24 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mx-auto w-full max-w-md">
+            <RoiCalculatorLazy locale={locale} />
           </div>
         </div>
       </AnimatedSection>

@@ -7,7 +7,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { canonicalStore, canonicalStoreName, canonicalHq, formatWon } from '@/data/mockup-scenarios/canonical';
+import { SAAI_COLORS } from '@/lib/mockup-tokens.gen';
+import { motionEnter } from '@/lib/mockup-motion';
 import type { Locale } from '@/lib/i18n';
+
+// MockupViewport 예외(MM Phase 3 D12): 제품 UI 재현이 아닌 개념 다이어그램(플로 레일)
+// 이라 고정 캔버스 대신 flex-col↔row 반응형 재배치가 설계 의도 — 강제 스케일은
+// 극좁 폭에서 오히려 가독성 퇴행. 수치는 canonical 파생(perfScore·dailyAlerts 등)으로
+// 계약 충족. (1a IntegratedLoop 형식)
 
 /**
  * #3 PriorityEngineDiagram — StoreAgent 우선순위 엔진 (원리 → 결과; pairs with ActionCard).
@@ -15,7 +22,7 @@ import type { Locale } from '@/lib/i18n';
  *
  * NOTE: priority classes use P1–P4 (distinct from the L0–L5 autonomy ladder; 'L' = autonomy only).
  *
- * DESIGN: grayscale diagram + single brand-blue (#376AE2) accent. Light bg, no gradient/shadow/3D.
+ * DESIGN: grayscale diagram + single brand-blue (SAAI primary) accent. Light bg, no gradient/shadow/3D.
  * D6 (HQ/본사-facing slot): English-FIRST technical labels in every locale; ko/jp add supporting microcopy.
  */
 
@@ -245,7 +252,7 @@ export default function PriorityEngineDiagram({
               key={`${scenarioStep}-trigger`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={motionEnter}
               className="block truncate text-3xs font-medium leading-tight text-gray-800"
             >
               {trigger}
@@ -262,7 +269,7 @@ export default function PriorityEngineDiagram({
               key={`${activeScenario}-score`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={motionEnter}
               className="text-2xl font-bold tabular-nums text-gray-900"
             >
               {sc.score}
@@ -279,7 +286,7 @@ export default function PriorityEngineDiagram({
             {P_CLASSES.map((lvl) => (
               <span
                 key={lvl}
-                className={`flex h-6 flex-1 items-center justify-center rounded text-[9px] font-bold tabular-nums transition-colors ${
+                className={`flex h-6 flex-1 items-center justify-center rounded text-3xs font-bold tabular-nums transition-colors ${
                   isLit(2) && lvl === sc.topClass
                     ? 'bg-primary text-white'
                     : 'bg-gray-100 text-gray-400'
@@ -289,7 +296,7 @@ export default function PriorityEngineDiagram({
               </span>
             ))}
           </div>
-          <p className="mt-1.5 text-[9px] leading-tight text-gray-400">{t.classLegend}</p>
+          <p className="mt-1.5 text-3xs leading-tight text-gray-400">{t.classLegend}</p>
         </FlowStage>
 
         <Connector lit={isLit(3)} />
@@ -301,7 +308,7 @@ export default function PriorityEngineDiagram({
               <motion.li
                 key={card.theme}
                 layout={reducedMotion ? false : true}
-                transition={{ duration: 0.3 }}
+                transition={motionEnter}
                 className={`flex items-center gap-2 rounded-md border px-2 py-1 ${
                   isLit(3) && i === 0
                     ? 'border-primary/40 bg-primary/5'
@@ -309,7 +316,7 @@ export default function PriorityEngineDiagram({
                 }`}
               >
                 <span
-                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold tabular-nums ${
+                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-3xs font-bold tabular-nums ${
                     isLit(3) && i === 0
                       ? 'bg-primary text-white'
                       : 'bg-gray-300 text-white'
@@ -322,7 +329,7 @@ export default function PriorityEngineDiagram({
                   <span className="block truncate text-2xs font-medium leading-tight text-gray-800">
                     {card.action}
                   </span>
-                  <span className="block truncate text-[9px] leading-tight text-gray-400">
+                  <span className="block truncate text-3xs leading-tight text-gray-400">
                     {i === 0 ? `${sc.topClass} · ` : ''}
                     {card.theme} · {card.note}
                   </span>
@@ -347,14 +354,15 @@ export default function PriorityEngineDiagram({
           fill="none"
           aria-hidden="true"
         >
+          {/* raw hex → SAAI_COLORS (D2). Viewport 예외 파일 = .saai-scope 밖이라 인라인 소비. */}
           <path
             d="M8 24 C 8 4, 56 4, 56 24"
-            stroke="#376AE2"
+            stroke={SAAI_COLORS.primary}
             strokeWidth="1.5"
             strokeDasharray="3 3"
             fill="none"
           />
-          <path d="M8 24 l3 -4 M8 24 l5 -1" stroke="#376AE2" strokeWidth="1.5" />
+          <path d="M8 24 l3 -4 M8 24 l5 -1" stroke={SAAI_COLORS.primary} strokeWidth="1.5" />
         </svg>
 
         <div className="flex-1 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2">
@@ -417,21 +425,21 @@ function FlowStage({
       } ${grow ? 'sm:flex-[1.4]' : 'sm:flex-1'}`}
       initial={false}
       animate={{ opacity: lit ? 1 : 0.55 }}
-      transition={{ duration: 0.3 }}
+      transition={motionEnter}
     >
       <div className="mb-1.5 flex items-center justify-between gap-2">
         <span className="text-2xs font-bold uppercase tracking-wide text-gray-800">
           {label}
         </span>
         <span
-          className={`text-[9px] font-bold tabular-nums ${lit ? 'text-primary' : 'text-gray-300'}`}
+          className={`text-3xs font-bold tabular-nums ${lit ? 'text-primary' : 'text-gray-300'}`}
           aria-hidden="true"
         >
           {index + 1}
         </span>
       </div>
       {children}
-      {note ? <p className="mt-1.5 text-[9px] leading-tight text-gray-400">{note}</p> : null}
+      {note ? <p className="mt-1.5 text-3xs leading-tight text-gray-400">{note}</p> : null}
     </motion.li>
   );
 }

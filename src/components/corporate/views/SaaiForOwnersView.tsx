@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { 
   Store, 
   ShieldAlert, 
@@ -19,6 +20,19 @@ import WordRise from '@/components/ui/WordRise';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { localeHref, type Locale } from '@/lib/i18n';
 
+/* MM Phase 3(D12): 점주 1인칭 체험 목업 배치 — dynamic(ssr:false) + 비율 placeholder(CLS 0).
+   RoiCalculatorWidget은 ProductsView와 공유 — 공용 래퍼 RoiCalculatorLazy를 그대로 import. */
+import RoiCalculatorLazy from '@/components/corporate/products/RoiCalculatorLazy';
+
+const AgentDaySimulator = dynamic(
+  () => import('@/components/mockups/AgentDaySimulator'),
+  {
+    ssr: false,
+    /* MockupViewport(phone 390×844) 자리 예약과 동일 비율 */
+    loading: () => <div className="aspect-[390/844] w-full animate-pulse rounded-[2.5rem] bg-gray-100" />,
+  },
+);
+
 const COPY: Record<Locale, {
   eyebrow: string;
   heroTitle: string;
@@ -30,6 +44,8 @@ const COPY: Record<Locale, {
   storeCareSub: string;
   storeCareDesc: string;
   features: string[];
+  demoHeading: string;
+  demoSub: string;
   ctaHeading: string;
   ctaSub: string;
 }> = {
@@ -48,6 +64,8 @@ const COPY: Record<Locale, {
       '사장님 전용 모바일 앱으로 언제 어디서나 매장 상태 확인',
       '월 구독 형태의 합리적인 소상공인 맞춤 가격 체계',
     ],
+    demoHeading: '도입 전에, 여기서 먼저 체험해보세요',
+    demoSub: '에이전트가 제안한 하루를 직접 결정해보고, ROI 계산기로 우리 매장의 도입 효과를 추정해보세요.',
     ctaHeading: '우리 매장에 딱 맞는 사장님 전용 서비스를 경험해보세요',
     ctaSub: '지금 바로 사장님 전용 서비스 사이트에서 자세한 기능과 시연을 확인하실 수 있습니다.',
   },
@@ -66,6 +84,8 @@ const COPY: Record<Locale, {
       'Check live store status anytime via the dedicated owner app',
       'Affordable monthly subscription tailored for small business owners',
     ],
+    demoHeading: 'Try it here before you install',
+    demoSub: 'Decide an agent-proposed day yourself, then estimate the impact on your store with the ROI calculator.',
     ctaHeading: 'Experience SAAI services designed for store owners',
     ctaSub: 'Visit our dedicated owner service sites to explore features and live demos.',
   },
@@ -84,6 +104,8 @@ const COPY: Record<Locale, {
       '専用アプリでいつでもどこでも店舗状態を確認',
       '小規模店舗に最適な月額サブスクリプション体系',
     ],
+    demoHeading: '導入前に、ここでまず体験してください',
+    demoSub: 'エージェントが提案する一日を自分で決定し、ROI計算機で店舗への導入効果を試算できます。',
     ctaHeading: '店舗オーナー専用の SAAI サービスを体験',
     ctaSub: '専用サイトで詳細な機能とデモをご確認いただけます。',
   },
@@ -228,6 +250,29 @@ export default function SaaiForOwnersView({ locale }: { locale: Locale }) {
                 </p>
               </div>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* ── Try-it Demos — MM Phase 3(D12): AgentDaySimulator(점주 1인칭 하루 체험) +
+          RoiCalculatorWidget(ProductsView와 공유) 배치. CTA 직전 체험 슬롯. ── */}
+      <Section variant="default" pad="default">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 break-keep">
+              {c.demoHeading}
+            </h2>
+            <p className="mt-3 text-gray-600 break-keep">
+              {c.demoSub}
+            </p>
+          </div>
+
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center max-w-5xl mx-auto">
+            {/* 폭만 지정 — 크기는 MockupViewport(phone) 비율 스케일 소관(v2 계약) */}
+            <div className="w-full max-w-sm mx-auto">
+              <AgentDaySimulator locale={locale} />
+            </div>
+            <RoiCalculatorLazy locale={locale} />
           </div>
         </Container>
       </Section>

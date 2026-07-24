@@ -3,6 +3,7 @@ import Eyebrow from '@/components/ui/Eyebrow';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import DiagnosisGuide from '@/components/corporate/DiagnosisGuide';
+import FiveQuestionsLazy from '@/components/corporate/FiveQuestionsLazy';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { DIAGNOSIS_UI } from '@/data/diagnosis-i18n';
 import { type Locale } from '@/lib/i18n';
@@ -36,6 +37,15 @@ export default function DiagnosisView({ locale }: { locale: Locale }) {
           <p className="text-gray-600 leading-relaxed break-keep mb-10 max-w-xl">{ui.sub}</p>
 
           <DiagnosisGuide locale={locale} />
+        </Container>
+      </Section>
+
+      {/* ── 다섯 질문 (MM Phase 3: 진단 플로우와 짝 — Quiet Utility 원칙상 도구(Q&A)를
+           먼저 두고, 진단 결과가 기대는 판단 기준을 그 아래에서 공개한다. 5열 그리드라
+           narrow 컨테이너 밖 별도 Section(default 폭). 신규 카피 0건) ── */}
+      <Section pad="none" className="pb-20">
+        <Container>
+          <FiveQuestionsLazy locale={locale} />
         </Container>
       </Section>
     </div>

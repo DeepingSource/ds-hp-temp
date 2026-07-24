@@ -40,7 +40,6 @@ export { default as EnterpriseAppShowcase } from './EnterpriseAppShowcase';
 export { default as IntegratedLoopDiagram } from './IntegratedLoopDiagram';
 export { default as AutonomyLadderTimeline } from './AutonomyLadderTimeline';
 export { default as PriorityEngineDiagram } from './PriorityEngineDiagram';
-export { default as FunnelDiagram } from './FunnelDiagram';
 export { default as PosJoinDiagram } from './PosJoinDiagram';
 export { default as DoorSplitDiagram } from './DoorSplitDiagram';
 export { default as LearningFlywheelDiagram } from './LearningFlywheelDiagram';
@@ -57,12 +56,15 @@ export { default as OrderFlowMockup } from './OrderFlowMockup';
 export { default as ModelCatalogMockup } from './ModelCatalogMockup';
 export { default as CaseStudyChartMockup } from './CaseStudyChartMockup';
 export { default as FiveQuestionsMockup } from './FiveQuestionsMockup';
-export { default as VisionCoordinatesMockup } from './VisionCoordinatesMockup';
 export { default as RoiCalculatorWidget } from './RoiCalculatorWidget';
+
+// registry 최종 정리(MM Phase 3): 등록 목록 = 실사용 목록. 실사용 0인
+// FunnelDiagram(StoreInsightView→DoorSplit 대체)·VisionCoordinatesMockup(About 6-2
+// 텍스트 3줄 축소로 해제)·PrivacyJourneyMockup(갭 맵 후순위
+// 보류 — Anonymizer/Seal 보강 재료)은 /demo 갤러리 직접 import·파일만 유지.
 
 // ── 체험형 데모 (MOCKUP_PROPOSALS_v5) ─────────────────────────────────────────
 export { default as AlertFatigueComparison } from './AlertFatigueComparison';
-export { default as PrivacyJourneyMockup } from './PrivacyJourneyMockup';
 export { default as AgentDaySimulator } from './AgentDaySimulator';
 export { default as StoreDayTimelapse } from './StoreDayTimelapse';
 
