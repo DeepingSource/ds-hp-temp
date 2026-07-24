@@ -1,13 +1,18 @@
 'use client';
 
-import { ShieldCheck, Layers, Bot, ArrowUp, type LucideIcon } from 'lucide-react';
+import { ShieldCheck, Layers, Bot, type LucideIcon } from 'lucide-react';
 
 /**
- * SpatialStackDiagram — About Beat 3의 3층 수직 스택(01 익명화 → 02 공간지능 → 03 에이전트AI).
+ * SpatialStackDiagram — About Beat 3의 3층 파운데이션 스택
+ * (01 익명화 토대 → 02 공간 지능 → 03 에이전트 AI).
  *
- * 카피는 about.yaml `method.*`가 SOT다 (AB §1-A A3: 유령 CMS 필드 역전 — Keystatic에서
- * 고치면 화면이 바뀌어야 한다). AboutView가 생성 JSON(t.method*)을 `copy`로 주입하고,
- * 이 컴포넌트는 레이어 프레젠테이션(level/name/아이콘/스타일)만 소유한다.
+ * ①8-3 재디자인: 층 사이 작은 화살표 배지(겹침·과소)를 제거하고, 세 층이 물리적으로
+ * 맞붙어 아래가 위를 받치는 하나의 적층 블록으로 표현한다. 방향은 화살표 대신
+ * 층 경계(divider) · 색 위계(토대=진한 다크 → 위=옅은 파랑) · 좌측 레벨 레일 정렬로 준다.
+ * 모바일에서는 레일이 상단 스트립으로 접혀 겹치지 않는다.
+ *
+ * 카피는 about.yaml `method.*`가 SOT다 (AB §1-A A3). AboutView가 생성 JSON(t.method*)을
+ * `copy`로 주입하고, 이 컴포넌트는 레이어 프레젠테이션(level/name/아이콘/스타일)만 소유한다.
  * steps는 id(anonymizer/spatial/agentic) 기준 매핑이라 yaml 순서(토대→위)와
  * 렌더 순서(위→토대)가 달라도 안전하다.
  */
@@ -25,12 +30,55 @@ interface SpatialStackDiagramProps {
   className?: string;
 }
 
-/** 렌더 순서 = 위(agentic)→토대(anonymizer). level/name은 프레젠테이션 상수. */
-const LAYER_PRESENTATION: { id: string; level: string; name: string; icon: LucideIcon }[] = [
-  { id: 'agentic', level: 'TOP LAYER · 03', name: 'Agentic AI', icon: Bot },
-  { id: 'spatial', level: 'MID LAYER · 02', name: 'Spatial AI', icon: Layers },
-  { id: 'anonymizer', level: 'BASE LAYER · 01', name: 'Anonymizer', icon: ShieldCheck },
+type Tone = 'top' | 'mid' | 'base';
+
+/** 렌더 순서 = 위(agentic)→토대(anonymizer). level/name/tone은 프레젠테이션 상수. */
+const LAYER_PRESENTATION: {
+  id: string;
+  num: string;
+  level: string;
+  name: string;
+  icon: LucideIcon;
+  tone: Tone;
+}[] = [
+  { id: 'agentic', num: '03', level: 'TOP', name: 'Agentic AI', icon: Bot, tone: 'top' },
+  { id: 'spatial', num: '02', level: 'MID', name: 'Spatial AI', icon: Layers, tone: 'mid' },
+  { id: 'anonymizer', num: '01', level: 'BASE', name: 'Anonymizer', icon: ShieldCheck, tone: 'base' },
 ];
+
+/** 색 위계: 토대=진한 다크(모든 것의 시작), 위로 갈수록 옅은 파랑 → 위로 받치는 관계. */
+const TONE_STYLE: Record<Tone, { row: string; rail: string; num: string; level: string; title: string; desc: string; tag: string; icon: string }> = {
+  top: {
+    row: 'bg-gradient-to-r from-primary-lighter/50 via-white to-white',
+    rail: 'bg-primary/10 text-primary',
+    num: 'text-primary',
+    level: 'text-primary',
+    title: 'text-gray-900',
+    desc: 'text-gray-600',
+    tag: 'bg-primary/10 text-primary',
+    icon: 'bg-white text-primary border border-primary/20',
+  },
+  mid: {
+    row: 'bg-white',
+    rail: 'bg-primary/15 text-primary',
+    num: 'text-primary',
+    level: 'text-primary',
+    title: 'text-gray-900',
+    desc: 'text-gray-600',
+    tag: 'bg-gray-100 text-gray-600',
+    icon: 'bg-primary/10 text-primary border border-primary/20',
+  },
+  base: {
+    row: 'bg-slate-900',
+    rail: 'bg-primary text-white',
+    num: 'text-white',
+    level: 'text-primary-light',
+    title: 'text-white',
+    desc: 'text-slate-300',
+    tag: 'bg-slate-800 text-slate-300',
+    icon: 'bg-primary text-white shadow-lg shadow-primary/30',
+  },
+};
 
 export default function SpatialStackDiagram({ copy, className }: SpatialStackDiagramProps) {
   return (
@@ -47,83 +95,49 @@ export default function SpatialStackDiagram({ copy, className }: SpatialStackDia
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-3 relative">
-        {LAYER_PRESENTATION.map((layer, index) => {
+      {/* 하나의 물리적 적층 블록 — 세 층이 맞붙고, 층 경계(divide)가 화살표를 대신한다.
+          토대(다크)가 아래에서 위를 받치는 구조. */}
+      <div className="max-w-3xl mx-auto overflow-hidden rounded-3xl border border-gray-200 shadow-xl divide-y divide-gray-200">
+        {LAYER_PRESENTATION.map((layer) => {
           const step = copy.steps[layer.id];
           if (!step) return null;
           const Icon = layer.icon;
-          const isBase = index === 2;
-          const isTop = index === 0;
+          const s = TONE_STYLE[layer.tone];
 
           return (
-            <div key={layer.id} className="relative">
-              {/* Stack layer card */}
-              <div
-                className={`rounded-2xl p-6 sm:p-7 border transition-shadow ${
-                  isBase
-                    ? 'bg-slate-900 text-white border-slate-800 shadow-xl'
-                    : isTop
-                      ? 'bg-gradient-to-r from-primary-lighter/40 via-white to-white border-primary/30 shadow-md'
-                      : 'bg-white border-gray-200 shadow-card'
-                }`}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                        isBase
-                          ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                          : 'bg-primary/10 text-primary border border-primary/20'
-                      }`}
-                    >
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span
-                          className={`font-mono text-2xs font-bold uppercase tracking-wider ${
-                            isBase ? 'text-primary-light' : 'text-primary'
-                          }`}
-                        >
-                          {layer.level}
-                        </span>
-                        <span
-                          className={`text-2xs font-semibold px-2 py-0.5 rounded-full ${
-                            isBase
-                              ? 'bg-slate-800 text-slate-300'
-                              : 'bg-gray-100 text-gray-600'
-                          }`}
-                        >
-                          {step.tag}
-                        </span>
-                      </div>
-                      <h4
-                        className={`text-lg font-bold break-keep ${
-                          isBase ? 'text-white' : 'text-gray-900'
-                        }`}
-                      >
-                        {step.title}
-                      </h4>
-                      <p
-                        className={`mt-1 text-xs sm:text-sm leading-relaxed break-keep ${
-                          isBase ? 'text-slate-300' : 'text-gray-600'
-                        }`}
-                      >
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            <div
+              key={layer.id}
+              className={`grid grid-cols-1 sm:grid-cols-[6rem_1fr] ${s.row}`}
+            >
+              {/* 레벨 레일 — BASE/MID/TOP + 01/02/03 정렬(①8-3: 층 라벨 정렬).
+                  모바일: 상단 가로 스트립 / sm+: 좌측 세로 컬럼 */}
+              <div className={`flex sm:flex-col items-center justify-center gap-2 sm:gap-1 px-4 py-2.5 sm:py-6 ${s.rail}`}>
+                <span className="font-mono text-2xl sm:text-3xl font-bold leading-none tabular-nums">{layer.num}</span>
+                <span className="font-mono text-2xs font-bold uppercase tracking-[0.18em] leading-none opacity-90">
+                  {layer.level}
+                </span>
               </div>
 
-              {/* Upward stack indicator arrow between layers */}
-              {!isBase && (
-                <div className="flex justify-center -my-1.5 relative z-10 pointer-events-none">
-                  <div className="w-7 h-7 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-primary">
-                    <ArrowUp className="w-3.5 h-3.5" />
-                  </div>
+              {/* 콘텐츠 */}
+              <div className="flex items-start gap-4 px-6 py-6 sm:py-7">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${s.icon}`}>
+                  <Icon className="w-5 h-5" />
                 </div>
-              )}
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className={`font-mono text-2xs font-bold uppercase tracking-wider ${s.level}`}>
+                      {layer.name}
+                    </span>
+                    <span className={`text-2xs font-semibold px-2 py-0.5 rounded-full ${s.tag}`}>
+                      {step.tag}
+                    </span>
+                  </div>
+                  <h4 className={`text-lg font-bold break-keep ${s.title}`}>{step.title}</h4>
+                  <p className={`mt-1 text-xs sm:text-sm leading-relaxed break-keep ${s.desc}`}>
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
             </div>
           );
         })}
