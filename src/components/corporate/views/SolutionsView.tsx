@@ -147,25 +147,24 @@ export default function SolutionsView({ locale }: { locale: Locale }) {
           <Breadcrumb items={[{ name: crumb('solutions', locale), path: '/solutions' }]} locale={locale} tone="dark" className="mb-6" />
           <HeroBadge tone="dark">
             <Lightbulb className="w-3.5 h-3.5" />
-            {locale === 'ko' ? '현장 맞춤형 솔루션 가이드' : locale === 'jp' ? '現場カスタマイズソリューション' : 'Field-Tailored Solutions'}
+            {t.badge}
           </HeroBadge>
 
+          {/* CMS 참조 복구(⑤§5) — solutions.yaml heroTitle/heroSub가 사문이던 것을 정본으로 승격.
+              heroTitle[1]이 하이라이트 라인. */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6 break-keep font-display">
-            {locale === 'ko' ? (
-              <>당신의 공간은, <span className="text-primary-light">어디인가요?</span></>
-            ) : locale === 'jp' ? (
-              <>あなたの空間は、<span className="text-primary-light">どこですか?</span></>
-            ) : (
-              <>Where is <span className="text-primary-light">your physical space?</span></>
-            )}
+            {t.heroTitle[0]}{locale === 'jp' ? '' : ' '}
+            <span className="text-primary-light">{t.heroTitle[1]}</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto break-keep mb-8">
-            {locale === 'ko'
-              ? '편의점부터 대형 유통·물류센터까지 — 당신 같은 공간에서 무엇이 어떻게 달라졌는지 확인하세요.'
-              : locale === 'jp'
-              ? 'コンビニから大型流通・物流センターまで — あなたと同じ空間で何がどう変わったか確認してください。'
-              : 'From convenience stores to logistics centers — see how physical spaces like yours transformed.'}
+            {t.heroSub.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br className="hidden sm:block" />}
+                {i < arr.length - 1 && ' '}
+              </span>
+            ))}
           </p>
 
           {/* Entry point into the guided Q&A alternative */}

@@ -618,12 +618,12 @@
   },
   "solutions": {
     "en": {
-      "badge": "Problem–solution guide",
+      "badge": "Field-tailored solutions",
       "heroTitle": [
-        "Proven answers",
-        "to on-site problems"
+        "Where is",
+        "your physical space?"
       ],
-      "heroSub": "From overnight theft at retail stores to hazard detection in logistics centers. See how SAAI solves the real problems of each industry.",
+      "heroSub": "From convenience stores to logistics centers\nsee how physical spaces like yours transformed.",
       "viewSolution": "View solution",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
@@ -638,12 +638,12 @@
       "ctaSecondary": "View case studies"
     },
     "ko": {
-      "badge": "문제-해결 가이드",
+      "badge": "현장 맞춤형 솔루션 가이드",
       "heroTitle": [
-        "현장 문제에",
-        "검증된 해결책"
+        "당신의 공간은,",
+        "어디인가요?"
       ],
-      "heroSub": "매장 야간 도난부터 물류센터 위험 감지까지. 업종별 실제 문제를 SAAI가 어떻게 해결하는지 확인하세요.",
+      "heroSub": "편의점부터 대형 유통·물류센터까지\n당신 같은 공간에서 무엇이 어떻게 달라졌는지 확인하세요.",
       "viewSolution": "솔루션 보기",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
@@ -658,12 +658,12 @@
       "ctaSecondary": "도입 사례 보기"
     },
     "jp": {
-      "badge": "課題解決ガイド",
+      "badge": "現場カスタマイズソリューション",
       "heroTitle": [
-        "現場の課題に",
-        "実証された解決策"
+        "あなたの空間は、",
+        "どこですか?"
       ],
-      "heroSub": "店舗の夜間盗難から物流センターの危険検知まで。業種ごとの実際の課題を SAAI がどう解決するのかをご確認ください。",
+      "heroSub": "コンビニから大型流通・物流センターまで\nあなたと同じ空間で何がどう変わったか確認してください。",
       "viewSolution": "ソリューションを見る",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [
