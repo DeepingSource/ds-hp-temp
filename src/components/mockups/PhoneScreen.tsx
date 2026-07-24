@@ -5,7 +5,7 @@ import MockupBadge from './MockupBadge';
 
 interface PhoneScreenProps {
   children: ReactNode;
-  /** IosStatusBar bg class (e.g. 'bg-emerald-600') */
+  /** IosStatusBar bg class (e.g. 'bg-primary') */
   statusBarBg?: string;
   /** IosHomeIndicator wrapper bg class */
   homeBg?: string;

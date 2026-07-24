@@ -8,12 +8,16 @@ import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import LoopVideo from '@/components/ui/LoopVideo';
 import MockupReplayButton from '@/components/ui/MockupReplayButton';
-import { SAAI_COLORS } from '@/lib/mockup-tokens';
+import { MOCKUP_SCHEME, SAAI_COLORS } from '@/lib/mockup-tokens';
 import type { Locale } from '@/lib/i18n';
 
 // MockupViewport 예외(MM §5 1a): 제품 UI 재현이 아니라 헤딩+실사 MTMC 영상+카피 카드로
 // 구성된 쇼케이스 카드라 고정 캔버스가 성립하지 않는다 — 유동 폭이 설계 의도.
 // 색 계약만 준수: framer color 애니메이션은 SAAI_COLORS 파생(raw hex 금지).
+
+// 다크 축은 MOCKUP_SCHEME.dark 파생("SAAI grey 역전 + blue 유지")으로 정렬 —
+// 배경·본문·보조 텍스트만. 스킴 필드가 없는 gray-200/300/600·ring-white/10은 유지.
+const S = MOCKUP_SCHEME.dark;
 
 interface Props {
   active?: boolean;
@@ -103,7 +107,7 @@ export default function SpatialTrajectoryMockup({
     <div
       ref={ref}
       {...hoverProps}
-      className={`relative rounded-2xl bg-slate-950 ring-1 ring-white/10 p-5 sm:p-7 text-gray-200 overflow-hidden ${className}`}
+      className={`relative rounded-2xl ${S.bodyBg} ring-1 ring-white/10 p-5 sm:p-7 text-gray-200 overflow-hidden ${className}`}
     >
       <MockupBadge locale={locale} />
 
@@ -112,10 +116,10 @@ export default function SpatialTrajectoryMockup({
       <p className="font-mono text-2xs tracking-wider text-primary-light/90 uppercase mb-2">
         {t.eyebrow}
       </p>
-      <h2 className="text-lg sm:text-xl font-bold text-white leading-snug mb-2">
+      <h2 className={`text-lg sm:text-xl font-bold ${S.textPrimary} leading-snug mb-2`}>
         {t.heading}
       </h2>
-      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-5 max-w-2xl">
+      <p className={`text-xs sm:text-sm ${S.textSecondary} leading-relaxed mb-5 max-w-2xl`}>
         {t.lead}
       </p>
 
@@ -174,13 +178,13 @@ export default function SpatialTrajectoryMockup({
               )}
               <div className="flex items-baseline gap-2 mb-1.5">
                 <span
-                  className={`font-mono text-xs ${emph ? 'text-primary-light' : 'text-gray-500'}`}
+                  className={`font-mono text-xs ${emph ? 'text-primary-light' : S.textMuted}`}
                 >
                   {card.n}
                 </span>
                 <h3
                   className={`text-sm font-medium leading-tight ${
-                    emph ? 'text-white' : 'text-gray-200'
+                    emph ? S.textPrimary : 'text-gray-200'
                   }`}
                 >
                   {card.title}
@@ -188,7 +192,7 @@ export default function SpatialTrajectoryMockup({
               </div>
               <p
                 className={`text-xs leading-relaxed ${
-                  emph ? 'text-gray-300' : 'text-gray-400'
+                  emph ? 'text-gray-300' : S.textSecondary
                 }`}
               >
                 {card.body}

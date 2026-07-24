@@ -5,12 +5,24 @@ import { useRef } from 'react';
 import { Camera, Fingerprint, Shield, Cpu, BarChart3, ArrowRight } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
 
+/*
+ * 익명화 파이프라인 다이어그램 (technology 페이지).
+ *
+ * v2 계약 배치 1d 메모:
+ * - mockups/ 밖(components/technology)에 있는 프리-v2 컴포넌트다.
+ *   v2 편입(목업 레지스트리 등록·MockupBadge 배지)은 Phase 3에서 판단한다.
+ * - MockupViewport 예외: 제품 UI 재현이 아닌 순수 개념 다이어그램이라
+ *   고정 캔버스 스케일 대상이 아니다.
+ * - D2: 스텝 구분색(violet/indigo/emerald) 폐지 — 구분은 스텝 아이콘·라벨이
+ *   담당한다(1c SolutionMockupPreview G5 기본안 선례). 색은 "원본 입력(뉴트럴)
+ *   → 익명화 이후(primary 단일 블루)"의 카테고리 강조만 남긴다.
+ */
 const nodeStyles = [
   { icon: Camera, color: 'bg-slate-100 text-slate-600', border: 'border-slate-200' },
-  { icon: Fingerprint, color: 'bg-violet-100 text-violet-700', border: 'border-violet-200' },
-  { icon: Shield, color: 'bg-indigo-100 text-indigo-700', border: 'border-indigo-200' },
+  { icon: Fingerprint, color: 'bg-primary-lighter text-primary-dark', border: 'border-primary-light' },
+  { icon: Shield, color: 'bg-primary-lighter text-primary-dark', border: 'border-primary-light' },
   { icon: Cpu, color: 'bg-primary-lighter text-primary-dark', border: 'border-primary-light' },
-  { icon: BarChart3, color: 'bg-emerald-100 text-emerald-700', border: 'border-emerald-200' },
+  { icon: BarChart3, color: 'bg-primary-lighter text-primary-dark', border: 'border-primary-light' },
 ];
 
 const C: Record<Locale, {
@@ -94,7 +106,7 @@ export function AnonymizationPipeline({ locale = 'en' }: { locale?: Locale }) {
             <div key={node.label} className="flex items-center gap-2 flex-shrink-0">
               <motion.div
                 variants={nodeVariants}
-                className={`flex flex-col items-center text-center p-5 rounded-2xl border ${node.border} bg-white w-[152px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-shadow duration-300`}
+                className={`flex flex-col items-center text-center p-5 rounded-2xl border ${node.border} bg-white w-[152px] shadow-card hover:shadow-card-hover transition-shadow duration-300`}
               >
                 <div className={`w-12 h-12 rounded-xl ${node.color} flex items-center justify-center mb-3`}>
                   <Icon className="w-6 h-6" />
@@ -130,7 +142,7 @@ export function AnonymizationPipeline({ locale = 'en' }: { locale?: Locale }) {
             <div key={node.label} className="flex flex-col items-center gap-1">
               <motion.div
                 variants={nodeVariants}
-                className={`flex items-center gap-4 p-4 rounded-2xl border ${node.border} bg-white w-full shadow-[0_2px_8px_rgba(0,0,0,0.04)]`}
+                className={`flex items-center gap-4 p-4 rounded-2xl border ${node.border} bg-white w-full shadow-card`}
               >
                 <div className={`w-10 h-10 rounded-xl ${node.color} flex items-center justify-center flex-shrink-0`}>
                   <Icon className="w-5 h-5" />
@@ -157,10 +169,10 @@ export function AnonymizationPipeline({ locale = 'en' }: { locale?: Locale }) {
         variants={nodeVariants}
         initial="hidden"
         animate={isInView ? 'show' : 'hidden'}
-        className="mt-8 p-5 bg-violet-50 border border-violet-100 rounded-2xl flex items-start gap-3"
+        className="mt-8 p-5 bg-primary-lighter border border-primary-light rounded-2xl flex items-start gap-3"
       >
-        <div className="w-2 h-2 rounded-full bg-violet-500 mt-1.5 flex-shrink-0" />
-        <p className="text-sm text-violet-800 leading-relaxed break-keep">
+        <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+        <p className="text-sm text-gray-800 leading-relaxed break-keep">
           <strong>{t.coreLabel}</strong> {t.coreBody}
         </p>
       </motion.div>

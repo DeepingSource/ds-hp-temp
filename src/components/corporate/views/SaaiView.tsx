@@ -84,7 +84,7 @@ const PLANS_STRUCT: { id: string; highlight?: boolean }[] = [
 ];
 
 const stageStyle: Record<Stage, string> = {
-  live: 'bg-emerald-50 text-emerald-700',
+  live: 'bg-success/10 text-success',
   soon: 'bg-amber-50 text-amber-700',
   research: 'bg-gray-100 text-gray-500',
 };

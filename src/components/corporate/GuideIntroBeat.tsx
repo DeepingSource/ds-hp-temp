@@ -113,7 +113,7 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
 
           <div className="rounded-2xl bg-gray-50 border border-gray-100 p-6 flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <p className="text-3xl font-bold text-gray-900 mb-1">NVIDIA Inception</p>
@@ -123,7 +123,7 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
 
           <div className="rounded-2xl bg-gray-50 border border-gray-100 p-6 flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center mb-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3">
                 <Building2 className="w-5 h-5" />
               </div>
               <p className="text-3xl font-bold text-gray-900 mb-1">{t.partnersMetric}</p>

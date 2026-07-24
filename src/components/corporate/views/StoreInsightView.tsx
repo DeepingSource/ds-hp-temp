@@ -525,7 +525,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
                 <ul className="space-y-2 text-sm text-slate-100 font-medium">
                   {t.after.map((a, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
                       <span>{a}</span>
                     </li>
                   ))}

@@ -8,6 +8,16 @@ import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import type { Locale } from '@/lib/i18n';
 import { type DeepPartial, mergeMockupContent } from './types';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
+
+/*
+ * 자율 주행 매장 사다리(L0→L5) 타임라인.
+ *
+ * v2 계약 배치 1d 메모:
+ * - MockupViewport 예외: 제품 UI 재현이 아닌 순수 개념 다이어그램(인터랙티브
+ *   타임라인)이라 고정 캔버스 스케일 대상이 아니다.
+ * - raw hex 리터럴(#376AE2 등)은 SAAI_COLORS 참조로 토큰화(아래 nodeStyle 참고).
+ */
 
 interface Props {
   active?: boolean;
@@ -209,26 +219,42 @@ const COPY: Record<Locale, AutonomyLadderCopy> = {
 
 /**
  * Grayscale → brand-blue progression. LOW levels (L0~L2) render as light GRAY
- * with DARK text; HIGH levels (L3~L5) transition to solid brand-blue (#376AE2)
- * with WHITE text. The background lerps from a neutral gray (#E5E7EB) to the
- * brand blue, so every label stays readable (C4 fix).
+ * with DARK text; HIGH levels (L3~L5) transition to solid brand-blue
+ * (SAAI blue-500) with WHITE text. The background lerps from a neutral gray to
+ * the brand blue, so every label stays readable (C4 fix).
+ *
+ * v2 계약(배치 1d): lerp 입력을 SAAI_COLORS 참조로 토큰화. blue-500(#376AE2)은
+ * 기존 리터럴과 동일 값(시각 무변화). 회색 끝점·다크 텍스트는 tailwind
+ * gray-200(#E5E7EB)/gray-800(#1F2937) 리터럴을 SAAI grey-100(#D9DBDD)/
+ * grey-800(#2F343B) 근접값으로 정렬(미세 시각차 — 규칙 통일 목적).
  */
 function lerp(a: number, b: number, t: number) {
   return Math.round(a + (b - a) * t);
 }
 
+function hexToRgb(hex: string): [number, number, number] {
+  return [
+    parseInt(hex.slice(1, 3), 16),
+    parseInt(hex.slice(3, 5), 16),
+    parseInt(hex.slice(5, 7), 16),
+  ];
+}
+
+const LADDER_GRAY_RGB = hexToRgb(SAAI_COLORS['grey-100']);
+const LADDER_BLUE_RGB = hexToRgb(SAAI_COLORS['blue-500']);
+
 function nodeStyle(index: number, total: number, selected: boolean) {
   const t = index / (total - 1); // 0 → 1
-  // Gray (229,231,235) → brand-blue (55,106,226).
-  const r = lerp(229, 55, t);
-  const g = lerp(231, 106, t);
-  const b = lerp(235, 226, t);
+  // SAAI grey-100 → SAAI blue-500.
+  const r = lerp(LADDER_GRAY_RGB[0], LADDER_BLUE_RGB[0], t);
+  const g = lerp(LADDER_GRAY_RGB[1], LADDER_BLUE_RGB[1], t);
+  const b = lerp(LADDER_GRAY_RGB[2], LADDER_BLUE_RGB[2], t);
   // Dark text on the light (gray) end, white text on the dark (blue) end.
   const dark = t < 0.5;
   return {
     backgroundColor: `rgb(${r}, ${g}, ${b})`,
-    color: dark ? '#1F2937' : '#FFFFFF',
-    borderColor: selected ? '#376AE2' : 'transparent',
+    color: dark ? SAAI_COLORS['grey-800'] : 'white',
+    borderColor: selected ? SAAI_COLORS['blue-500'] : 'transparent',
   };
 }
 

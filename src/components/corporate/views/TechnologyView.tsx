@@ -232,7 +232,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
             <div className="grid sm:grid-cols-3 gap-4">
               {t.demoItems.map((item) => (
                 <div key={item.label} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-success shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-medium text-white">{item.label}</p>
                     <p className="text-sm text-slate-400">{item.desc}</p>
@@ -252,7 +252,7 @@ export default function TechnologyView({ locale }: { locale: Locale }) {
             </div>
             {/* PROOF BAR — 0.03s erase + no original kept (merged from the retired Privacy Journey) */}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 px-5 py-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-bold text-emerald-300 tabular-nums">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-2.5 py-1 text-xs font-bold text-success tabular-nums">
                 <Zap className="w-3.5 h-3.5" aria-hidden="true" />&lt; {pj.procChip}
               </span>
               <p className="text-sm font-medium text-white break-keep">{pj.heading}</p>

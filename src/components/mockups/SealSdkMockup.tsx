@@ -7,11 +7,24 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MacBookFrame from './MacBookFrame';
 import MockupBadge from './MockupBadge';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
 
 /**
  * #6 SealSdkMockup — privacy-first spatial SDK code editor + live output.
  * D5 dark IDE inside a MacBook frame. Restrained grayscale + one brand-blue accent.
  * D7: edit ONLY the CODE_LINES / LOG_LINES arrays to update the demo.
+ *
+ * ⚠️ v2 재현 예외(파일 단위) — 실제 개발 환경(IDE) 재현이 목적인 색은 SAAI 토큰으로
+ * 치환하지 않는다. KakaoAlertMockup(카카오톡/LINE 브랜드색)·BrowserChrome(macOS
+ * 신호등)과 동일한 원칙:
+ *  - IDE 크롬: GitHub-dark 계열 #0d1117 · #161b22 · #0b0e13 · #11161d
+ *  - 트래픽라이트: #ff5f57 · #febc2e · #28c840 (macOS 신호등)
+ *  - 코드 신택스 하이라이트 COLORS 맵의 그레이 계열(base/comment/string)
+ * 단, SAAI 브랜드 액센트(keyword/brand)는 재현이 아니라 브랜드색이므로 예외가 아니며
+ * SAAI_COLORS['blue-500'] 참조로 유지한다.
+ *
+ * ⚠️ Viewport 예외 — MockupViewport 고정 캔버스를 쓰지 않는다. IDE 데모 카드는
+ * 유동 폭 리플로우(코드 pre overflow-x + md: 2패널 분할)가 설계 의도.
  */
 
 // ── D7: keep demo content in data arrays. Only these change later. ──
@@ -91,12 +104,13 @@ const COPY: Record<Locale, Copy> = {
 };
 
 // Syntax tokens — restrained: 2 grays + brand-blue only. No green, no rainbow.
+// 그레이 3종은 IDE 신택스 재현 예외(헤더 주석) — 브랜드 블루만 SAAI_COLORS 참조.
 const COLORS = {
   base: '#c9d1d9', // gray 1 (default text)
   comment: '#6b7280', // gray 2 (dim)
-  keyword: '#376AE2', // brand-blue
+  keyword: SAAI_COLORS['blue-500'], // brand-blue
   string: '#9aa4b2', // muted gray-blue (was green)
-  brand: '#376AE2',
+  brand: SAAI_COLORS['blue-500'],
 };
 
 function renderCodeLine(line: string) {

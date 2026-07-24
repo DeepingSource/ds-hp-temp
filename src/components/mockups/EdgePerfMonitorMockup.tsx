@@ -8,7 +8,13 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
+import { MOCKUP_SCHEME, SAAI_COLORS } from '@/lib/mockup-tokens';
 import { canonicalEdge } from '@/data/mockup-scenarios/canonical';
+
+// 다크 파생 규칙(MOCKUP_SCHEME §2-A): SAAI DS 다크 스펙 미출시 — "SAAI grey 스케일
+// 역전 + blue 유지" 원칙의 MOCKUP_SCHEME.dark 파생 클래스로 배경·본문·보조 텍스트
+// 축을 정렬한다. 다크 배경 위 SVG stroke/fill은 SAAI_COLORS 상수 참조(raw hex 금지).
+const S = MOCKUP_SCHEME.dark;
 
 const COPY: Record<
   Locale,
@@ -131,13 +137,13 @@ function Gauge({
   return (
     <div className="flex-1 min-w-0">
       <div className="flex items-baseline justify-between gap-2">
-        <span className="font-mono text-3xs uppercase tracking-wider text-gray-400 truncate">
+        <span className={`font-mono text-3xs uppercase tracking-wider ${S.textSecondary} truncate`}>
           {label}
         </span>
-        <span className="font-mono text-3xs text-gray-500">{unit}</span>
+        <span className={`font-mono text-3xs ${S.textMuted}`}>{unit}</span>
       </div>
       <div className="mt-1 flex items-baseline gap-1">
-        <span className="font-mono text-2xl font-bold tabular-nums text-white">
+        <span className={`font-mono text-2xl font-bold tabular-nums ${S.textPrimary}`}>
           {value}
         </span>
       </div>
@@ -148,7 +154,7 @@ function Gauge({
         />
       </div>
       {hint && (
-        <span className="mt-1 block font-mono text-[9px] leading-none text-gray-500">
+        <span className={`mt-1 block font-mono text-[9px] leading-none ${S.textMuted}`}>
           {hint}
         </span>
       )}
@@ -203,7 +209,7 @@ export default function EdgePerfMonitorMockup({
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950 p-5 text-white ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/10 ${S.bodyBg} p-5 ${S.textPrimary} ${className}`}
     >
       <MockupBadge locale={locale} />
 
@@ -211,10 +217,10 @@ export default function EdgePerfMonitorMockup({
       <div className="flex items-center justify-between">
         <div>
           <SaaiHeader name="anonymizer" tone="dark" className="mb-1.5" />
-          <h3 className="font-mono text-sm font-medium text-white">
+          <h3 className={`font-mono text-sm font-medium ${S.textPrimary}`}>
             {t.title}
           </h3>
-          <p className="font-mono text-3xs text-gray-400">{t.subtitle}</p>
+          <p className={`font-mono text-3xs ${S.textSecondary}`}>{t.subtitle}</p>
         </div>
         <span className="flex items-center gap-1.5 font-mono text-3xs uppercase tracking-wider text-primary">
           <span className="relative flex h-2 w-2">
@@ -254,7 +260,7 @@ export default function EdgePerfMonitorMockup({
       {/* Sparkline */}
       <div className="mt-5">
         <div className="mb-1.5 flex items-center justify-between">
-          <span className="font-mono text-3xs uppercase tracking-wider text-gray-400">
+          <span className={`font-mono text-3xs uppercase tracking-wider ${S.textSecondary}`}>
             {t.sparkLabel}
           </span>
           <span className="font-mono text-3xs text-gray-600">
@@ -273,8 +279,8 @@ export default function EdgePerfMonitorMockup({
           <desc>{t.sparkDesc}</desc>
           <defs>
             <linearGradient id="edgeSparkFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#376AE2" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#376AE2" stopOpacity="0.12" />
+              <stop offset="0%" stopColor={SAAI_COLORS['blue-500']} stopOpacity="0.12" />
+              <stop offset="100%" stopColor={SAAI_COLORS['blue-500']} stopOpacity="0.12" />
             </linearGradient>
           </defs>
           <polygon
@@ -284,7 +290,7 @@ export default function EdgePerfMonitorMockup({
           <motion.polyline
             points={points}
             fill="none"
-            stroke="#376AE2"
+            stroke={SAAI_COLORS['blue-500']}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -292,7 +298,7 @@ export default function EdgePerfMonitorMockup({
             animate={run && !reducedMotion ? { pathLength: 1 } : undefined}
             transition={{ duration: 1.2, ease: 'easeOut' }}
           />
-          <circle cx={lastX} cy={lastY} r="3" fill="#376AE2" />
+          <circle cx={lastX} cy={lastY} r="3" fill={SAAI_COLORS['blue-500']} />
         </svg>
       </div>
 
@@ -303,7 +309,7 @@ export default function EdgePerfMonitorMockup({
           height="16"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#376AE2"
+          stroke={SAAI_COLORS['blue-500']}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

@@ -302,10 +302,11 @@ export const DEMOS: DemoItem[] = [
 
 const PRODUCTS: (Product | '전체')[] = ['전체', 'StoreAgent', 'StoreCare', 'StoreInsight', '공통'];
 
+// D2: 제품 구분색 폐지 — 갤러리 필터 칩도 단일 블루 농도 차로만 구분(내부용).
 const PRODUCT_BADGE: Record<Product, string> = {
   StoreAgent: 'bg-primary-lighter text-primary ring-primary/20',
-  StoreCare: 'bg-rose-50 text-rose-700 ring-rose-200',
-  StoreInsight: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+  StoreCare: 'bg-primary/5 text-primary-dark ring-primary/15',
+  StoreInsight: 'bg-primary-lighter/60 text-primary ring-primary/10',
   공통: 'bg-gray-100 text-gray-600 ring-gray-200',
 };
 

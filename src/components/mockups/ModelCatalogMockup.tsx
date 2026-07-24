@@ -9,6 +9,8 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { Locale } from '@/lib/i18n';
 import { CATALOG_MODELS, MODEL_STAGES, MODEL_PROMISE } from '@/data/models';
 import type { ModelStage } from '@/data/models';
+import type { CSSProperties } from 'react';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
 
 // Overlay kinds mirror CatalogModel.overlay in @/data/models (SOT). 'path' = trajectory.
 type OverlayKind = 'mosaic' | 'plate' | 'bbox' | 'pose' | 'reid' | 'path' | 'count' | 'dwell' | 'shelf';
@@ -84,11 +86,18 @@ const COPY: Record<Locale, Copy> = {
   },
 };
 
-const productStyle: Record<Product, string> = {
-  Insight: 'bg-primary-lighter text-primary',
-  Care: 'bg-emerald-50 text-emerald-700',
-  Agent: 'bg-amber-50 text-amber-700',
-  SAAI: 'bg-violet-50 text-violet-700',
+/**
+ * D2: 제품 구분 배지 — emerald/amber/violet 폐지 → SAAI 데이터 hue(모델 카테고리 구분
+ * 의미이므로 hue 유지가 허용되는 케이스). 이 컴포넌트는 MockupViewport 미사용
+ * (.saai-scope 밖)이라 --saai-* 변수가 해석되지 않아 SAAI_COLORS 인라인 style을 쓴다
+ * (1c AgentHqMini 선례). Insight=primary(블루) 유지 · Care=green · Agent=yellow ·
+ * SAAI=purple. yellow는 SAAI 램프가 밝아 텍스트를 -800으로 한 단계 내려 대비 확보.
+ */
+const productStyle: Record<Product, { className: string; style?: CSSProperties }> = {
+  Insight: { className: 'bg-primary-lighter text-primary' },
+  Care: { className: '', style: { backgroundColor: SAAI_COLORS['green-50'], color: SAAI_COLORS['green-700'] } },
+  Agent: { className: '', style: { backgroundColor: SAAI_COLORS['yellow-50'], color: SAAI_COLORS['yellow-800'] } },
+  SAAI: { className: '', style: { backgroundColor: SAAI_COLORS['purple-50'], color: SAAI_COLORS['purple-700'] } },
 };
 
 // Status badge (SOT: MODEL_STAGES). Two classes shown now — Live(=제공 가용) + 준비 중 —
@@ -106,9 +115,22 @@ const figures = [
   { cx: 76, cy: 34, r: 4,   bx: 72.5, by: 38.5, bw: 7, bh: 15 },
 ];
 
-const mosaicPalette = ['#64748b', '#475569', '#94a3b8', '#cbd5e1', '#334155', '#52606d'];
+// 모자이크 셀 팔레트 — 기존 slate 근접값을 SAAI grey 스케일로 치환(400/600/300/100/700/500).
+const mosaicPalette = [
+  SAAI_COLORS['grey-400'], SAAI_COLORS['grey-600'], SAAI_COLORS['grey-300'],
+  SAAI_COLORS['grey-100'], SAAI_COLORS['grey-700'], SAAI_COLORS['grey-500'],
+];
 
-/** Static dark store scene — gray SVG, no real photo. */
+// 다크 CCTV 화면 위 오버레이 스트로크/라벨 — SAAI 브랜드 블루(raw hex 리터럴 대신 상수 참조, D2).
+const OVERLAY_BLUE = SAAI_COLORS['blue-500'];
+
+/**
+ * Static dark store scene — gray SVG, no real photo.
+ * 연출 예외(1c BrowserChrome 신호등 선례): 야간 CCTV 실화면 재현 배경 — 벽·선반·바닥의
+ * 딥 네이비 계열(#0f172a/#080d18/#1e293b/#26384d/#1e2d3d)은 UI 색이 아니라 장면 연출
+ * 색이므로 SAAI 토큰 치환 대상에서 제외한다(인물 실루엣 #374151/#9ca3af, 번호판 소품
+ * #3b4d63/#475569/#cbd5e1 동일 성격).
+ */
 function StoreScene() {
   return (
     <>
@@ -179,9 +201,9 @@ function Overlay({ kind, label }: OverlayProps) {
             <rect
               x={f.bx - 1} y={f.cy - f.r - 1.5}
               width={f.bw + 2} height={f.bh + f.r + 3}
-              fill="none" stroke="#376AE2" strokeWidth="0.7"
+              fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.7"
             />
-            <text x={f.bx - 1} y={f.cy - f.r - 2.4} fontSize="2.4" fill="#376AE2" fontFamily="monospace">person</text>
+            <text x={f.bx - 1} y={f.cy - f.r - 2.4} fontSize="2.4" fill={OVERLAY_BLUE} fontFamily="monospace">person</text>
           </g>
         ))}
 
@@ -191,7 +213,7 @@ function Overlay({ kind, label }: OverlayProps) {
           <rect x="34" y="49" width="32" height="9" rx="1" fill="#26384d" stroke="#3b4d63" strokeWidth="0.5" />
           <rect x="40" y="51" width="20" height="5" fill="#475569" />
           <text x="50" y="55" textAnchor="middle" fontSize="3" fill="#cbd5e1" fontFamily="monospace">▮▮▮▮</text>
-          <rect x="39" y="50.5" width="22" height="6" fill="none" stroke="#376AE2" strokeWidth="0.7" strokeDasharray="2 1" />
+          <rect x="39" y="50.5" width="22" height="6" fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.7" strokeDasharray="2 1" />
         </g>
       )}
 
@@ -200,7 +222,7 @@ function Overlay({ kind, label }: OverlayProps) {
         figures.map((f, i) => {
           const hipY = f.by + f.bh;
           return (
-            <g key={`p-${i}`} stroke="#376AE2" strokeWidth="0.7" fill="#376AE2">
+            <g key={`p-${i}`} stroke={OVERLAY_BLUE} strokeWidth="0.7" fill={OVERLAY_BLUE}>
               <line x1={f.cx} y1={f.cy + f.r} x2={f.cx} y2={f.by + f.bh * 0.55} />
               <line x1={f.cx} y1={f.by + f.bh * 0.2} x2={f.cx - f.bw * 0.7} y2={f.by + f.bh * 0.45} />
               <line x1={f.cx} y1={f.by + f.bh * 0.2} x2={f.cx + f.bw * 0.7} y2={f.by + f.bh * 0.45} />
@@ -222,23 +244,23 @@ function Overlay({ kind, label }: OverlayProps) {
         <g>
           {[figures[0], figures[2]].map((f, i) => (
             <g key={`rid-${i}`}>
-              <rect x={f.bx - 1} y={f.cy - f.r - 1.5} width={f.bw + 2} height={f.bh + f.r + 3} fill="none" stroke="#376AE2" strokeWidth="0.7" />
-              <text x={f.bx - 1} y={f.cy - f.r - 2.4} fontSize="2.3" fill="#376AE2" fontFamily="monospace">ID#41</text>
+              <rect x={f.bx - 1} y={f.cy - f.r - 1.5} width={f.bw + 2} height={f.bh + f.r + 3} fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.7" />
+              <text x={f.bx - 1} y={f.cy - f.r - 2.4} fontSize="2.3" fill={OVERLAY_BLUE} fontFamily="monospace">ID#41</text>
             </g>
           ))}
-          <line x1={figures[0].cx} y1={figures[0].by} x2={figures[2].cx} y2={figures[2].by} stroke="#376AE2" strokeWidth="0.5" strokeDasharray="1.5 1" />
-          <text x="50" y="20" textAnchor="middle" fontSize="2.6" fill="#376AE2" fontFamily="monospace">match 0.97</text>
+          <line x1={figures[0].cx} y1={figures[0].by} x2={figures[2].cx} y2={figures[2].by} stroke={OVERLAY_BLUE} strokeWidth="0.5" strokeDasharray="1.5 1" />
+          <text x="50" y="20" textAnchor="middle" fontSize="2.6" fill={OVERLAY_BLUE} fontFamily="monospace">match 0.97</text>
         </g>
       )}
 
       {/* trajectory dotted path */}
       {kind === 'path' && (
         <g>
-          <path d="M14 70 Q35 50 50 55 T86 30" fill="none" stroke="#376AE2" strokeWidth="0.8" strokeDasharray="1.5 1.5" />
+          <path d="M14 70 Q35 50 50 55 T86 30" fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.8" strokeDasharray="1.5 1.5" />
           {[[14, 70], [33, 53], [50, 55], [68, 44], [86, 30]].map(([x, y], k) => (
-            <circle key={k} cx={x} cy={y} r="1.2" fill="#376AE2" />
+            <circle key={k} cx={x} cy={y} r="1.2" fill={OVERLAY_BLUE} />
           ))}
-          <circle cx="86" cy="30" r="2" fill="none" stroke="#376AE2" strokeWidth="0.6" />
+          <circle cx="86" cy="30" r="2" fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.6" />
         </g>
       )}
 
@@ -246,9 +268,9 @@ function Overlay({ kind, label }: OverlayProps) {
       {kind === 'count' &&
         figures.map((f, i) => (
           <g key={`c-${i}`}>
-            <rect x={f.bx - 1} y={f.cy - f.r - 1.5} width={f.bw + 2} height={f.bh + f.r + 3} fill="none" stroke="#376AE2" strokeWidth="0.6" />
-            <circle cx={f.bx + f.bw + 1} cy={f.cy - f.r} r="2.2" fill="#376AE2" />
-            <text x={f.bx + f.bw + 1} y={f.cy - f.r + 1} textAnchor="middle" fontSize="2.6" fill="#fff" fontFamily="monospace">{i + 1}</text>
+            <rect x={f.bx - 1} y={f.cy - f.r - 1.5} width={f.bw + 2} height={f.bh + f.r + 3} fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.6" />
+            <circle cx={f.bx + f.bw + 1} cy={f.cy - f.r} r="2.2" fill={OVERLAY_BLUE} />
+            <text x={f.bx + f.bw + 1} y={f.cy - f.r + 1} textAnchor="middle" fontSize="2.6" fill={SAAI_COLORS['on-primary']} fontFamily="monospace">{i + 1}</text>
           </g>
         ))}
 
@@ -256,23 +278,24 @@ function Overlay({ kind, label }: OverlayProps) {
       {kind === 'dwell' &&
         figures.map((f, i) => (
           <g key={`d-${i}`}>
-            <ellipse cx={f.cx} cy="62" rx={5 + i * 2} ry={2 + i} fill="#376AE2" opacity={0.18 + i * 0.12} />
-            <text x={f.cx} y="63" textAnchor="middle" fontSize="2.4" fill="#9dbcff" fontFamily="monospace">{[12, 48, 90][i]}s</text>
+            <ellipse cx={f.cx} cy="62" rx={5 + i * 2} ry={2 + i} fill={OVERLAY_BLUE} opacity={0.18 + i * 0.12} />
+            {/* 초 단위 라벨 — 다크 배경 위 가독용 라이트 블루: SAAI blue-200(기존 #9dbcff 근접값) */}
+            <text x={f.cx} y="63" textAnchor="middle" fontSize="2.4" fill={SAAI_COLORS['blue-200']} fontFamily="monospace">{[12, 48, 90][i]}s</text>
           </g>
         ))}
 
       {/* shelf-vacancy box on a shelf */}
       {kind === 'shelf' && (
         <g>
-          <rect x="2" y="32" width="8" height="8" fill="none" stroke="#376AE2" strokeWidth="0.8" strokeDasharray="2 1" />
-          <text x="12" y="37" fontSize="2.6" fill="#376AE2" fontFamily="monospace">vacancy</text>
-          <rect x="90" y="40" width="8" height="8" fill="none" stroke="#376AE2" strokeWidth="0.8" strokeDasharray="2 1" />
+          <rect x="2" y="32" width="8" height="8" fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.8" strokeDasharray="2 1" />
+          <text x="12" y="37" fontSize="2.6" fill={OVERLAY_BLUE} fontFamily="monospace">vacancy</text>
+          <rect x="90" y="40" width="8" height="8" fill="none" stroke={OVERLAY_BLUE} strokeWidth="0.8" strokeDasharray="2 1" />
         </g>
       )}
 
-      {/* timestamp / cam id */}
-      <text x="2" y="73" fontSize="3" fill="#22d3ee" fontFamily="monospace">2026-06-05  14:23:07</text>
-      <text x="75" y="73" fontSize="3" fill="#22d3ee" fontFamily="monospace">CAM 02</text>
+      {/* timestamp / cam id — CCTV OSD 연출 시안을 SAAI cyan-400으로 대응(raw #22d3ee 제거) */}
+      <text x="2" y="73" fontSize="3" fill={SAAI_COLORS['cyan-400']} fontFamily="monospace">2026-06-05  14:23:07</text>
+      <text x="75" y="73" fontSize="3" fill={SAAI_COLORS['cyan-400']} fontFamily="monospace">CAM 02</text>
     </svg>
   );
 }
@@ -283,6 +306,14 @@ interface Props {
   className?: string;
 }
 
+/**
+ * ModelCatalogMockup — 비전 모델 카탈로그 테이블 + 선택 모델의 라이브 CCTV 오버레이.
+ *
+ * Viewport 예외(§2-B): MockupViewport 미사용 — 라이트 카탈로그 카드로, 좌측 테이블이
+ * 고정 캔버스 스케일 대신 overflow-x 스크롤(min-w-[420px])로 좁은 폭을 감당하는 설계.
+ * 따라서 .saai-scope 밖이며, 다크 CCTV 패널 SVG·배지 색은 SAAI_COLORS 상수를
+ * 인라인으로 소비한다(D2).
+ */
 export default function ModelCatalogMockup({ active = true, locale = 'en', className }: Props) {
   const t = COPY[locale] ?? COPY.en;
   const reducedMotion = usePrefersReducedMotion();
@@ -369,7 +400,10 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
                     <td className="py-1.5 px-2 text-3xs text-gray-500 font-mono whitespace-nowrap">{m.input}</td>
                     <td className="py-1.5 px-2 text-3xs text-gray-500 font-mono whitespace-nowrap">{m.output}</td>
                     <td className="py-1.5 px-2">
-                      <span className={`inline-block text-[9px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${productStyle[m.product]}`}>
+                      <span
+                        className={`inline-block text-[9px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap ${productStyle[m.product].className}`}
+                        style={productStyle[m.product].style}
+                      >
                         {m.product}
                       </span>
                     </td>
@@ -384,7 +418,7 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
         <div className="p-3 sm:p-4 lg:border-l border-gray-100 flex flex-col gap-2">
           <div className="relative rounded-xl overflow-hidden border border-gray-700 bg-gray-900" style={{ aspectRatio: '4/3' }}>
             <Overlay kind={selected.overlay} label={t.overlayLabels[selected.overlay]} />
-            {/* live indicator */}
+            {/* live indicator — REC 도트 red-500은 CCTV 관제 화면 재현 색, SAAI 토큰 치환 대상 아님(연출 예외) */}
             <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/55 px-1.5 py-0.5 rounded-full backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse motion-reduce:animate-none" />
               <span className="text-[9px] font-medium text-white">{t.liveLabel}</span>
@@ -397,7 +431,10 @@ export default function ModelCatalogMockup({ active = true, locale = 'en', class
               <code className="text-2xs font-mono font-medium text-primary">{selected.id}</code>
               <p className="text-2xs text-gray-600 truncate">{t.overlayLabels[selected.overlay]}</p>
             </div>
-            <span className={`shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-full ${productStyle[selected.product]}`}>
+            <span
+              className={`shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-full ${productStyle[selected.product].className}`}
+              style={productStyle[selected.product].style}
+            >
               {selected.product}
             </span>
           </div>

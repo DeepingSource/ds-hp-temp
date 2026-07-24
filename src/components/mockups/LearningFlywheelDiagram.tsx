@@ -3,7 +3,20 @@
 import { Sparkles, RefreshCw, ArrowRight } from 'lucide-react';
 import { type Locale } from '@/lib/i18n';
 import { type DeepPartial, mergeMockupContent } from './types';
+import { MOCKUP_SCHEME } from '@/lib/mockup-tokens';
 import { cn } from '@/lib/cn';
+
+/*
+ * 선순환(플라이휠) 다이어그램.
+ *
+ * v2 계약 배치 1d 메모:
+ * - MockupViewport 예외: 제품 UI 재현이 아닌 순수 개념 다이어그램(헤딩+카드 그리드)
+ *   이라 고정 캔버스 스케일 대상이 아니다.
+ * - 다크 축은 로컬 slate 계열 대신 MOCKUP_SCHEME.dark("SAAI grey 역전 + blue 유지"
+ *   파생 규칙)에서 가져온다. 스킴에 슬롯이 없는 자리(배지 bg, hover 보더)만
+ *   같은 gray 축의 리터럴 클래스를 쓴다.
+ * - framer-motion 미사용(정적 렌더 + CSS 애니메이션만).
+ */
 
 export interface FlywheelNode {
   n: string;
@@ -73,7 +86,7 @@ export default function LearningFlywheelDiagram({
   const merged = mergeMockupContent(defaultCopy[locale], content);
 
   return (
-    <div className={cn('rounded-3xl border border-slate-800 bg-slate-950 p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden', className)}>
+    <div className={cn('rounded-3xl border', MOCKUP_SCHEME.dark.border, MOCKUP_SCHEME.dark.bodyBg, 'p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden', className)}>
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
 
@@ -85,7 +98,7 @@ export default function LearningFlywheelDiagram({
         <h3 className="text-2xl sm:text-3xl font-bold font-display text-white mb-3 break-keep">
           {merged.heading}
         </h3>
-        <p className="text-sm sm:text-base text-slate-300 leading-relaxed break-keep">
+        <p className={cn('text-sm sm:text-base leading-relaxed break-keep', MOCKUP_SCHEME.dark.textSecondary)}>
           {merged.lead}
         </p>
       </div>
@@ -101,12 +114,12 @@ export default function LearningFlywheelDiagram({
                 'rounded-2xl p-6 border transition-colors relative flex flex-col justify-between',
                 isPropagate
                   ? 'bg-primary/15 border-primary/60 shadow-lg shadow-primary/10'
-                  : 'bg-slate-900/80 border-slate-800 hover:border-slate-700'
+                  : cn(MOCKUP_SCHEME.dark.cardBg, MOCKUP_SCHEME.dark.border, 'hover:border-gray-700')
               )}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className={cn('font-mono text-xs font-extrabold px-2 py-0.5 rounded', isPropagate ? 'bg-primary text-white' : 'bg-slate-800 text-slate-400')}>
+                  <span className={cn('font-mono text-xs font-extrabold px-2 py-0.5 rounded', isPropagate ? 'bg-primary text-white' : cn('bg-gray-800', MOCKUP_SCHEME.dark.textSecondary))}>
                     {node.n}
                   </span>
                   {isPropagate && (
@@ -116,7 +129,7 @@ export default function LearningFlywheelDiagram({
                   )}
                 </div>
                 <h4 className="text-base font-bold text-white mb-2 break-keep">{node.title}</h4>
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed break-keep">{node.desc}</p>
+                <p className={cn('text-xs sm:text-sm leading-relaxed break-keep', MOCKUP_SCHEME.dark.textSecondary)}>{node.desc}</p>
               </div>
             </div>
           );
@@ -124,12 +137,12 @@ export default function LearningFlywheelDiagram({
       </div>
 
       {/* Center Loop Footer Indicator */}
-      <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div className={cn('relative z-10 mt-8 pt-6 border-t', MOCKUP_SCHEME.dark.border, 'flex flex-col sm:flex-row items-center justify-between gap-4 text-xs')}>
         <div className="flex items-center gap-2 text-primary-light font-bold">
           <RefreshCw className="w-4 h-4 text-primary animate-spin-slow" />
           <span>{merged.centerLabel.big}</span>
         </div>
-        <p className="text-slate-400 text-2xs sm:text-xs">{merged.centerLabel.small}</p>
+        <p className={cn(MOCKUP_SCHEME.dark.textSecondary, 'text-2xs sm:text-xs')}>{merged.centerLabel.small}</p>
       </div>
     </div>
   );
