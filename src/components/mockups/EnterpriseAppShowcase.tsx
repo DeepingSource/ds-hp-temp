@@ -20,8 +20,9 @@ import { type Locale } from '@/lib/i18n';
  * EnterpriseAppShowcase — store agent의 B2B 엔터프라이즈 웹앱을 사이트 디자인 시스템으로
  * "다시 그린" 목업(실제 스크린샷이 아닌 재현). 좌: 자연어 채팅 · 우: 전용 분석 화면.
  * 6탭(아침브리핑·차트질문·발주·선반·직원·CCTV). 소스: storeagent_demo_v2_20scenes.
- * 실제 앱의 초록 액센트는 사이트 One-Blue로 통일, 데모 매장명은 중립(강남역점)으로 치환.
- * 수치는 소스 스크린샷 발췌(예시).
+ * 실제 앱의 초록 액센트는 사이트 One-Blue로 통일, 데모 매장명은 승인 매장명(홍대점)으로 치환.
+ * 수치는 canonical 세계관으로 재산정(D6) — 홍대점 = AgentHqMini 승인 행(방문 298 · 구매 61 ·
+ * 전환 20.5%)과 같은 자릿수의 매장. 발주 수량·강수량·트렌드 %는 시나리오 상수라 유지.
  *
  * 웹 화면 중심 라이브 데모: 고정 크기 브라우저 프레임 + 6탭 자동 순환(hover 시 일시정지).
  * 탭 진입마다 채팅이 순차로 도착하고(질문→처리→핵심), 우측 화면이 열리며 차트가 자라고
@@ -30,7 +31,7 @@ import { type Locale } from '@/lib/i18n';
  *
  * MockupViewport 예외(§2-B): 섹션형 인터랙티브 데모(헤딩+6탭+내부 스크롤 페인) —
  * 유동 폭·반응형이 설계 의도이며 lg:h-[560px]는 스크롤 페인 높이라 고정 캔버스 부적합.
- * D11: 수치(3,332 등)와 '강남역점' 명칭의 canonical 재산정은 Phase 2(2-③) 소관 — 여기서 변경 금지.
+ * D11(2-③) 반영 완료: 매장명 홍대점 통일 + 10배 스케일 수치의 canonical 재산정.
  */
 
 type Tri = { ko: string; en: string; jp: string };
@@ -55,7 +56,7 @@ const HEADER = {
   ),
 };
 
-const STORE = tri('강남역점', 'Gangnam Station', '江南駅店');
+const STORE = tri('홍대점', 'Hongdae', '弘大店');
 const APP = tri('store agent', 'store agent', 'store agent');
 
 const TAB_LABELS: { key: string; label: Tri }[] = [
@@ -108,27 +109,27 @@ const CHAT: Record<string, { user: Tri; progress: Tri; core: Tri }> = {
     user: tri('선반 재배치 추천해줘', 'Suggest a shelf re-layout', '棚replaceを提案して'),
     progress: tri('재배치 전략 생성', 'Layout strategy', 'replace戦略生成'),
     core: tri(
-      '전략 7개를 생성했습니다. 최상위는 "선반 효율 최적화"로 교환 5건에 월 +440,300원 예상입니다. 라면2 ⇄ 초콜릿2 등 인접 배치를 바꾸면 동선 상 노출과 동반 구매가 늘어납니다. 우측에서 Before/After를 시뮬레이션해 보세요.',
-      'Generated 7 strategies. Top is “Shelf efficiency” — 5 swaps for ~+₩440,300/month. Swapping adjacencies like Ramen-2 ⇄ Chocolate-2 lifts exposure and basket pairing along the path. Simulate before/after on the right.',
-      '戦略を7つ生成しました。最上位は「棚効率最適化」で交換5件・月+440,300ウォン見込み。ラーメン2 ⇄ チョコ2など隣接を入替えると動線上の露出と併買が増えます。右でBefore/Afterをシミュレーションできます。',
+      '전략 7개를 생성했습니다. 최상위는 "선반 효율 최적화"로 교환 5건에 월 +254,100원 예상입니다. 라면2 ⇄ 초콜릿2 등 인접 배치를 바꾸면 동선 상 노출과 동반 구매가 늘어납니다. 우측에서 Before/After를 시뮬레이션해 보세요.',
+      'Generated 7 strategies. Top is “Shelf efficiency” — 5 swaps for ~+₩254,100/month. Swapping adjacencies like Ramen-2 ⇄ Chocolate-2 lifts exposure and basket pairing along the path. Simulate before/after on the right.',
+      '戦略を7つ生成しました。最上位は「棚効率最適化」で交換5件・月+254,100ウォン見込み。ラーメン2 ⇄ チョコ2など隣接を入替えると動線上の露出と併買が増えます。右でBefore/Afterをシミュレーションできます。',
     ),
   },
   staff: {
     user: tri('직원 효율성 분석해줘', 'Analyze staff efficiency', 'スタッフ効率を分析して'),
     progress: tri('직원 효율성 분석', 'Staff efficiency', 'スタッフ効率分析'),
     core: tri(
-      '최근 14일 일평균 방문 3,332명, 직원 검출 367건, 영수증 408건으로 전환율 4.5%입니다. 피크는 11·12·16시에 몰려 있어 점심 전후와 오후 초반 대응이 핵심입니다. 피크 시간대에 1인 고정보다 탄력 배치로 응대 밀도를 높이는 쪽이 맞습니다.',
-      'Over 14 days: 3,332 daily visits, 367 staff detections, 408 receipts — 4.5% conversion. Peaks cluster at 11:00, 12:00, 16:00, so around-lunch and early-afternoon coverage matters most. Flexible staffing beats a fixed single at peak.',
-      '直近14日で来店3,332人/日、スタッフ検出367件、レシート408件、転換率4.5%。ピークは11・12・16時に集中し、昼前後と午後前半の対応が要。ピーク帯は1人固定より弾力配置で応対密度を上げるのが適切です。',
+      '최근 14일 일평균 방문 298명, 직원 검출 33건, 영수증 61건으로 전환율 20.5%입니다. 피크는 11·12·16시에 몰려 있어 점심 전후와 오후 초반 대응이 핵심입니다. 피크 시간대에 1인 고정보다 탄력 배치로 응대 밀도를 높이는 쪽이 맞습니다.',
+      'Over 14 days: 298 daily visits, 33 staff detections, 61 receipts — 20.5% conversion. Peaks cluster at 11:00, 12:00, 16:00, so around-lunch and early-afternoon coverage matters most. Flexible staffing beats a fixed single at peak.',
+      '直近14日で来店298人/日、スタッフ検出33件、レシート61件、転換率20.5%。ピークは11・12・16時に集中し、昼前後と午後前半の対応が要。ピーク帯は1人固定より弾力配置で応対密度を上げるのが適切です。',
     ),
   },
   cctv: {
     user: tri('도시락 코너는 지금 어때?', "How's the lunchbox corner now?", '弁当コーナーは今どう?'),
     progress: tri('도시락 코너 혼잡', 'Lunchbox corner load', '弁当コーナー混雑'),
     core: tri(
-      '도시락/즉석식 코너는 지금 보통입니다. 현재 고객 7명 수준이고 권고는 현 인력 유지입니다. 다만 짧은 시간 변동이 있을 수 있어 10~20분만 더 지켜보면 됩니다.',
-      'The lunchbox / grab-and-go corner is moderate right now — about 7 customers, and the recommendation is to keep current staffing. Short-term swings are possible, so watch for another 10–20 minutes.',
-      '弁当・即席コーナーは今「普通」です。現在の客数は約7名、推奨は現行人員の維持。短時間の変動があり得るため、あと10〜20分見守れば十分です。',
+      '도시락/즉석식 코너는 지금 보통입니다. 현재 고객 3명 수준이고 권고는 현 인력 유지입니다. 다만 짧은 시간 변동이 있을 수 있어 10~20분만 더 지켜보면 됩니다.',
+      'The lunchbox / grab-and-go corner is moderate right now — about 3 customers, and the recommendation is to keep current staffing. Short-term swings are possible, so watch for another 10–20 minutes.',
+      '弁当・即席コーナーは今「普通」です。現在の客数は約3名、推奨は現行人員の維持。短時間の変動があり得るため、あと10〜20分見守れば十分です。',
     ),
   },
 };
@@ -456,7 +457,8 @@ function OrderPanel({ T }: { T: (t: Tri) => string }) {
       <PanelHead T={T} crumb={tri('매장 오버뷰', 'Overview', 'オーバービュー')} title={tri('발주 추천 — 도시락', 'Ordering — lunchboxes', '発注推奨 — 弁当')} />
       <div className="grid grid-cols-4 gap-2.5 mb-4">
         <Kpi label={T(tri('상품 수', 'SKUs', '商品数'))} value="12" />
-        <Kpi label={T(tri('총 발주 수량', 'Total order', '総発注'))} value="14" />
+        {/* 좌측 채팅 서술("총 16개 발주 추천")과 산술 정합 — 표시 3행(2+2+3=7) + 비표시 9제품 9개 */}
+        <Kpi label={T(tri('총 발주 수량', 'Total order', '総発注'))} value="16" />
         <Kpi label={T(tri('폐기 주의', 'Waste risk', '廃棄注意'))} value="7" note={T(tri('폐기율 ≥15%', 'waste ≥15%', '廃棄率≥15%'))} alert />
         <Kpi label={T(tri('신규 상품', 'New', '新規'))} value="0" note={T(tri('판매일수 ≤3', 'sold ≤3 days', '販売日数≤3'))} />
       </div>
@@ -494,10 +496,10 @@ function OrderPanel({ T }: { T: (t: Tri) => string }) {
 // 탭 D — 선반 재배치 시뮬레이션
 function ShelfPanel({ T }: { T: (t: Tri) => string }) {
   const strategies: { name: Tri; gain: string; swaps: string }[] = [
-    { name: tri('선반 효율 최적화', 'Shelf efficiency', '棚効率最適化'), gain: '+440,300', swaps: '5' },
-    { name: tri('구매 전환 갭 해소', 'Close conversion gap', '転換ギャップ解消'), gain: '+430,400', swaps: '5' },
-    { name: tri('동반 구매 인접 배치', 'Basket adjacency', '併買隣接配置'), gain: '+325,900', swaps: '3' },
-    { name: tri('체류 시간 최적화', 'Dwell optimization', '滞在最適化'), gain: '+432,400', swaps: '5' },
+    { name: tri('선반 효율 최적화', 'Shelf efficiency', '棚効率最適化'), gain: '+254,100', swaps: '5' },
+    { name: tri('구매 전환 갭 해소', 'Close conversion gap', '転換ギャップ解消'), gain: '+248,300', swaps: '5' },
+    { name: tri('동반 구매 인접 배치', 'Basket adjacency', '併買隣接配置'), gain: '+187,600', swaps: '3' },
+    { name: tri('체류 시간 최적화', 'Dwell optimization', '滞在最適化'), gain: '+249,700', swaps: '5' },
   ];
   // Before/After 히트맵 셀 강도
   const before = [2, 3, 1, 0, 2, 1, 3, 0, 1];
@@ -507,7 +509,7 @@ function ShelfPanel({ T }: { T: (t: Tri) => string }) {
     <>
       <PanelHead T={T} title={tri('선반 효율 최적화', 'Shelf efficiency', '棚効率最適化')} right={<span className="rounded-lg bg-primary px-2.5 py-1 text-2xs font-bold text-white">{T(tri('직접 배치', 'Place', '直接配置'))}</span>} />
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
-        <Kpi label={T(tri('예상 추가매출/월', 'Est. lift/mo', '予想増収/月'))} value="+440,300" alert />
+        <Kpi label={T(tri('예상 추가매출/월', 'Est. lift/mo', '予想増収/月'))} value="+254,100" alert />
         <Kpi label={T(tri('교환', 'Swaps', '交換'))} value="5" />
         <Kpi label={T(tri('평균 마진', 'Avg margin', '平均マージン'))} value="3,664" />
         <Kpi label={T(tri('선반 활용률', 'Shelf usage', '棚活用率'))} value="47%" />
@@ -577,10 +579,10 @@ function StaffPanel({ T }: { T: (t: Tri) => string }) {
           <Kpi label={T(tri('진열대 관리', 'Shelf mgmt', '陳列管理'))} value="49.6%" note="138/278" />
           <Kpi label={T(tri('카운터 공백', 'Counter gap', 'カウンター空白'))} value="142" note={T(tri('고객 있지만 부재', 'staff absent', 'スタッフ不在'))} alert />
           <Kpi label={T(tri('직원:고객', 'Staff:cust', 'スタッフ:客'))} value="5.9%" />
-          <Kpi label={T(tri('직원 감지', 'Staff seen', 'スタッフ検出'))} value="268" />
-          <Kpi label={T(tri('고객 감지', 'Cust seen', '客検出'))} value="4,538" />
+          <Kpi label={T(tri('직원 감지', 'Staff seen', 'スタッフ検出'))} value="24" />
+          <Kpi label={T(tri('고객 감지', 'Cust seen', '客検出'))} value="406" />
           <Kpi label={T(tri('평균 체류', 'Avg dwell', '平均滞在'))} value="4.7분" />
-          <Kpi label={T(tri('인력 부족', 'Understaffed', '人員不足'))} value="7" note={T(tri('고객 50+ 구간', 'cust 50+ slots', '客50+帯'))} alert />
+          <Kpi label={T(tri('인력 부족', 'Understaffed', '人員不足'))} value="7" note={T(tri('고객 6+ 구간', 'cust 6+ slots', '客6+帯'))} alert />
         </div>
       </div>
       {/* Score Evidence 바 */}
@@ -614,7 +616,7 @@ function CctvPanel({ T }: { T: (t: Tri) => string }) {
       <PanelHead T={T} crumb={tri('돌아가기', 'Back', '戻る')} title={tri('실시간 혼잡도 — 도시락/즉석식', 'Live load — lunchbox corner', 'リアルタイム混雑 — 弁当')}
         right={<span className="rounded-lg bg-primary/10 px-2.5 py-1 text-2xs font-bold text-primary">{T(tri('보통', 'Moderate', '普通'))}</span>} />
       <div className="grid grid-cols-4 gap-2.5 mb-4">
-        <Kpi label={T(tri('현재 고객', 'Customers', '現在客数'))} value="7" />
+        <Kpi label={T(tri('현재 고객', 'Customers', '現在客数'))} value="3" />
         <Kpi label={T(tri('직원', 'Staff', 'スタッフ'))} value="0" />
         <Kpi label={T(tri('평균 체류', 'Avg dwell', '平均滞在'))} value="—" />
         <Kpi label={T(tri('전주 대비', 'vs last wk', '前週比'))} value="0.0%" />
