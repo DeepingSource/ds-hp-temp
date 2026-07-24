@@ -198,7 +198,10 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
  * queue=의사결정 지원·고객 경험 / pop=만들기→측정 루프·리테일 미디어 /
  * fit=두 개의 신호원(외부 트렌드는 roadmap 톤)·agentic 발주 제안.
  */
-export const TOOL_EXTRA: Record<ToolKey, Record<Locale, { title: string; body: string; badge?: string }[]>> = {
+export const TOOL_EXTRA: Record<
+  ToolKey,
+  Record<Locale, { title: string; body: string; badge?: string; links?: { label: string; href: string }[] }[]>
+> = {
   queue: {
     ko: [
       { title: '의사결정 지원', body: '계산대를 더 열까, 셀프 체크아웃을 도입할까 — 지금 붐비는 정도로 정합니다.' },
@@ -214,16 +217,38 @@ export const TOOL_EXTRA: Record<ToolKey, Record<Locale, { title: string; body: s
     ],
   },
   pop: {
+    // ③3-1: '만들기(saai.store) → 측정(store pop)' 루프에 교차 링크 2개(제작 도구·박람회)
     ko: [
-      { title: '만들고 → 붙이고 → 측정합니다', body: 'saai.store로 1분에 만들고, store pop으로 효과를 측정합니다 — 붙인 뒤가 진짜입니다.' },
+      {
+        title: '만들고 → 붙이고 → 측정합니다',
+        body: 'saai.store로 1분에 만들고, store pop으로 효과를 측정합니다 — 붙인 뒤가 진짜입니다.',
+        links: [
+          { label: 'saai.store에서 만들기', href: 'https://saai.store' },
+          { label: '프랜차이즈 박람회에서 보기', href: '/events/coex-franchise-expo-84' },
+        ],
+      },
       { title: '리테일 미디어로', body: '측정이 쌓이면 매대 앞은 광고 지면이 됩니다 — saai ads insight로 이어집니다.' },
     ],
     en: [
-      { title: 'Make it → post it → measure it', body: 'Make it in a minute on saai.store, then measure it with store pop — what happens after you post it is what counts.' },
+      {
+        title: 'Make it → post it → measure it',
+        body: 'Make it in a minute on saai.store, then measure it with store pop — what happens after you post it is what counts.',
+        links: [
+          { label: 'Make one on saai.store', href: 'https://saai.store' },
+          { label: 'See it at the franchise expo', href: '/events/coex-franchise-expo-84' },
+        ],
+      },
       { title: 'Toward retail media', body: 'As measurement accumulates, the shelf front becomes ad inventory — leading into saai ads insight.' },
     ],
     jp: [
-      { title: '作る → 貼る → 測る', body: 'saai.storeで1分で作り、store popで効果を計測します — 貼った後が本番です。' },
+      {
+        title: '作る → 貼る → 測る',
+        body: 'saai.storeで1分で作り、store popで効果を計測します — 貼った後が本番です。',
+        links: [
+          { label: 'saai.storeで作る', href: 'https://saai.store' },
+          { label: 'フランチャイズ博覧会で見る', href: '/events/coex-franchise-expo-84' },
+        ],
+      },
       { title: 'リテールメディアへ', body: '計測が積み重なると、棚の前は広告面になります — saai ads insight につながります。' },
     ],
   },

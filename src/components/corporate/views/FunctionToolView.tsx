@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, ArrowLeft, Check, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, ShieldCheck, Clock } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -30,9 +30,9 @@ const HREF: Record<ToolKey, string> = {
 /** Lightweight, self-contained mockup labels per tool per locale. */
 const MOCK: Record<ToolKey, Record<Locale, Record<string, string>>> = {
   queue: {
-    ko: { waiting: '대기 인원', minutes: '예상 대기', people: '4명', mins: '6분', peak: '요일별 혼잡 피크' },
-    en: { waiting: 'People waiting', minutes: 'Est. wait', people: '4', mins: '6 min', peak: 'Crowding peak by day' },
-    jp: { waiting: '待ち人数', minutes: '予想待ち', people: '4人', mins: '6分', peak: '曜日別の混雑ピーク' },
+    ko: { waiting: '대기 인원', minutes: '예상 대기', people: '4명', mins: '6분', peak: '요일별 혼잡 피크', signage: '예상 대기 약 6분 · 잠시만 기다려 주세요', signageLabel: '고객 안내 사이니지' },
+    en: { waiting: 'People waiting', minutes: 'Est. wait', people: '4', mins: '6 min', peak: 'Crowding peak by day', signage: 'About 6 min wait · thanks for your patience', signageLabel: 'Customer signage' },
+    jp: { waiting: '待ち人数', minutes: '予想待ち', people: '4人', mins: '6分', peak: '曜日別の混雑ピーク', signage: '予想待ち 約6分 · 少々お待ちください', signageLabel: '顧客案内サイネージ' },
   },
   pop: {
     ko: { attention: '주목', conversion: '전환', a: 'POP A · 게시됨', b: 'POP B · 가려짐', c: 'POP C · 훼손' },
@@ -40,9 +40,9 @@ const MOCK: Record<ToolKey, Record<Locale, Record<string, string>>> = {
     jp: { attention: '注目', conversion: '転換', a: 'POP A · 掲出', b: 'POP B · 隠れ', c: 'POP C · 破損' },
   },
   fit: {
-    ko: { score: '적합도', saw: '본 사람', pick: '집음', buy: '구매' },
-    en: { score: 'Fit score', saw: 'Saw it', pick: 'Picked up', buy: 'Bought' },
-    jp: { score: '適合度', saw: '見た人', pick: '手に取る', buy: '購入' },
+    ko: { score: '적합도', saw: '본 사람', pick: '집음', buy: '구매', trend: '외부 트렌드 신호', trendVal: '수제 약과 · 급상승', roadmap: '로드맵' },
+    en: { score: 'Fit score', saw: 'Saw it', pick: 'Picked up', buy: 'Bought', trend: 'External trend signal', trendVal: 'Artisan snacks · rising', roadmap: 'roadmap' },
+    jp: { score: '適合度', saw: '見た人', pick: '手に取る', buy: '購入', trend: '外部トレンド信号', trendVal: '手作り和菓子 · 急上昇', roadmap: 'ロードマップ' },
   },
 };
 
@@ -62,7 +62,13 @@ function ToolMockup({ tool, locale }: { tool: ToolKey; locale: Locale }) {
             <p className="mt-2 text-2xs text-gray-500">{m.minutes}</p>
           </div>
         </div>
-        <p className="mt-5 mb-2 text-2xs font-medium text-gray-400">{m.peak}</p>
+        {/* ③2-1 고객 경험: 고객 대면 디지털 사이니지 — 운영 지표(위 카드)와 시각 구분 */}
+        <p className="mt-4 mb-1.5 text-3xs font-semibold uppercase tracking-wider text-gray-400">{m.signageLabel}</p>
+        <div className="flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-center">
+          <Clock className="h-4 w-4 text-primary-light shrink-0" aria-hidden="true" />
+          <span className="text-sm font-bold text-white break-keep">{m.signage}</span>
+        </div>
+        <p className="mt-5 mb-2 text-2xs font-medium text-gray-500">{m.peak}</p>
         <div className="flex items-end gap-1.5 h-20">
           {bars.map((h, i) => (
             <div key={i} className={`flex-1 rounded-t ${h >= 92 ? 'bg-primary' : 'bg-primary/30'}`} style={{ height: `${h}%` }} />
@@ -101,6 +107,17 @@ function ToolMockup({ tool, locale }: { tool: ToolKey; locale: Locale }) {
   const funnel = [{ label: m.saw, value: '320' }, { label: m.pick, value: '96' }, { label: m.buy, value: '41' }];
   return (
     <div>
+      {/* ③4-1: 외부 트렌드 신호 미니 카드 — 현재 역량(적합도)과 시각 구분 위해 roadmap 배지 */}
+      <div className="mb-3 flex items-center justify-between gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-2.5">
+        <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+          {m.trend}
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="text-xs font-bold text-gray-800 tabular-nums">{m.trendVal}</span>
+          <span className="rounded-full bg-gray-200 px-2 py-0.5 text-2xs font-bold uppercase tracking-wide text-gray-500">{m.roadmap}</span>
+        </span>
+      </div>
       <div className="rounded-xl border border-primary/20 bg-primary-lighter/40 p-5 text-center">
         <p className="text-4xl font-bold text-primary font-mono leading-none">78<span className="text-lg text-primary/50"> / 100</span></p>
         <p className="mt-2 text-2xs text-primary/80">{m.score}</p>
@@ -220,6 +237,25 @@ export default function FunctionToolView({ tool, locale }: { tool: ToolKey; loca
                   )}
                 </div>
                 <p className="text-gray-700 leading-relaxed break-keep">{x.body}</p>
+                {x.links && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {x.links.map((lk) => {
+                      const external = lk.href.startsWith('http');
+                      const cls = 'inline-flex items-center gap-1 rounded-lg border border-primary/25 bg-white px-3 py-1.5 text-xs font-semibold text-primary hover:border-primary transition-colors no-underline';
+                      return external ? (
+                        <a key={lk.label} href={lk.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                          {lk.label}
+                          <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <Link key={lk.label} href={localeHref(locale, lk.href)} className={cls}>
+                          {lk.label}
+                          <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             ))}
           </div>
