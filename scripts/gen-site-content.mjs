@@ -122,7 +122,7 @@ const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_F
 const ABOUT_FLAT = [
   'badge', 'heroFactValues', 'heroFactLabels',
   'missionStatement', 'missionStatementSub', 'vision', 'mission',
-  'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
+  'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'namingDetail', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
   'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
   'methodEyebrow', 'methodHeading', 'methodIntro',

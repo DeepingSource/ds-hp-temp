@@ -680,7 +680,7 @@
   },
   "about": {
     "en": {
-      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE",
       "heroFactValues": [
         "{foundingYear}",
         "~₩30B",
@@ -698,19 +698,20 @@
       "vision": "Starting from your space — to every space.",
       "mission": "If you can measure it, you can improve it. We bring the force that remade online to the physical world.",
       "storyHeading": "From anonymization to the physical world",
-      "storySub": "In 2018, as privacy regulation tightened, we chose to face that dilemma head-on — with 'anonymized AI' that erases identity at the moment of capture while keeping the features analysis needs. Starting from anonymization, we read space with vision AI and met the physical world where people work and live; today we read that space, safeguard it, and carry it through to operations.",
+      "storySub": "In 2018, as privacy regulation tightened, we chose to face the dilemma head-on. Erase identity the moment footage is captured, keep only the features analysis needs — that is 'anonymized AI'. On that foundation, we now read, safeguard, and run physical spaces.",
       "namingHeading": "About the name — Deeping Source",
-      "namingBody": "Deeping Source joins Deep Learning and Source Code — going deep into the source that powers everything: data. After the founder's first venture (Olaworks) joined Intel, watching GDPR and CCPA reshape AI convinced them that responsible data is AI's future, and Deeping Source began. (It's Deeping Source, not dipping sauce.)",
-      "leadershipEyebrow": "Leadership",
+      "namingBody": "Deeping Source joins Deep Learning and Source Code. (It's Deeping Source, not dipping sauce.)",
+      "namingDetail": "It means going deep into the source that powers everything — data. After his first venture (Olaworks) joined Intel, founder Pete Kim watched GDPR and CCPA reshape AI, became convinced that responsible data is AI's future, and started Deeping Source.",
+      "leadershipEyebrow": "People",
       "leadershipHeading": "The people remaking space",
-      "leadershipSub": "Roots in anonymization, global business, and engineering execution — three axes, one goal.",
-      "partnersEyebrow": "Trusted Partners",
-      "partnersHeading": "{partnerBrands} partner brands work with us",
-      "partnersSub": "SAAI proven across {industries} industries. As an {nvidiaPartner}, we follow the global standard.",
+      "leadershipSub": "Roots in anonymization, global business, engineering execution. Three people, one goal.",
+      "partnersEyebrow": "Trusted partners",
+      "partnersHeading": "Proof, in numbers and names",
+      "partnersSub": "Used across {industries} industries, from convenience stores to hospitals. An NVIDIA Inception partner.",
       "partnerStatsNote": "* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.",
-      "certsLabel": "Awards & Credentials",
-      "ctaHeading": "Not a world in a data center —\nthe world people live in",
-      "ctaSub": "From adoption inquiries to partnership proposals, reach out anytime.",
+      "certsLabel": "Awards & credentials",
+      "ctaHeading": "Not a world in a data center.\nWe build the world people live in.",
+      "ctaSub": "From adoption inquiries to partnership proposals, reach out anytime. We reply within 1–2 business days.",
       "ctaButton": "Get in touch",
       "partnerStatLabels": [
         "Cumulative funding",
@@ -718,9 +719,9 @@
         "Partner brands",
         "Certified & compliant"
       ],
-      "methodEyebrow": "3-TIER ARCHITECTURE",
+      "methodEyebrow": "3-Tier Structure",
       "methodHeading": "Agentic AI on Spatial AI, built on Anonymization",
-      "methodIntro": "Three layers stacked from the ground up, completing safe and powerful offline intelligence.",
+      "methodIntro": "Each layer rests on the one below. Nothing starts without anonymization.",
       "certs": {
         "soc2": {
           "sub": "Security controls certification (2024)"
@@ -735,7 +736,7 @@
       "methodSteps": {
         "anonymizer": {
           "title": "Anonymization Foundation (Base)",
-          "desc": "Identities are erased permanently at capture — zero compliance risk across the space.",
+          "desc": "Faces and identities are erased the moment they enter. No originals remain.",
           "tag": "Instant Erasure · SEAL"
         },
         "spatial": {
@@ -745,13 +746,13 @@
         },
         "agentic": {
           "title": "Agentic AI (Act)",
-          "desc": "Points to what to change on the floor with live staff guides (People decide).",
+          "desc": "Points to what to change today. AI recommends; people decide.",
           "tag": "Proactive Advice · Staff Guide"
         }
       }
     },
     "ko": {
-      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE",
       "heroFactValues": [
         "{foundingYear}",
         "약 300억 원",
@@ -765,23 +766,24 @@
         "정보보안 인증"
       ],
       "missionStatement": "온라인은 20년간 최적화됐습니다.\n현장은, 거의 그대로입니다.",
-      "missionStatementSub": "딥핑소스는, 그 현장을\n다시 만듭니다",
+      "missionStatementSub": "딥핑소스는, 그 현장을\n다시 만듭니다.",
       "vision": "당신의 공간에서 시작해, 모든 공간으로.",
       "mission": "측정할 수 있으면, 나아질 수 있습니다. 온라인을 바꾼 그 힘을, 이제 물리 세계로.",
       "storyHeading": "익명화에서, 물리 세계로",
-      "storySub": "개인정보 규제가 강해지던 2018년, 우리는 그 딜레마를 정면으로 풀기로 했습니다 — 촬영하는 그 순간 신원을 지우되, 분석에 필요한 특징은 남기는 '익명화된 AI'로. 익명화에서 출발해 비전 AI로 공간을 읽다가 사람이 일하고 사는 물리 세계를 만났고, 지금은 그 공간을 읽고 지키고 운영까지 잇습니다.",
+      "storySub": "개인정보 규제가 강해지던 2018년, 우리는 딜레마를 정면으로 풀기로 했습니다. 촬영하는 순간 신원을 지우되, 분석에 필요한 특징은 남긴다 — '익명화 AI'입니다. 그 토대 위에서 지금은 공간을 읽고, 지키고, 운영까지 잇습니다.",
       "namingHeading": "이름에 대하여 — 딥핑소스",
-      "namingBody": "딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다. 모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻이죠. 창업자는 인텔에 합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가 AI의 미래임을 확신하고 딥핑소스를 시작했습니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)",
-      "leadershipEyebrow": "Leadership",
+      "namingBody": "딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)",
+      "namingDetail": "모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻입니다. 창업자 김태훈 대표는 인텔에 합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가 AI의 미래임을 확신하고 딥핑소스를 시작했습니다.",
+      "leadershipEyebrow": "사람들",
       "leadershipHeading": "공간을 다시 만드는 사람들",
-      "leadershipSub": "익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.",
-      "partnersEyebrow": "Trusted Partners",
-      "partnersHeading": "{partnerBrands}개 파트너 브랜드가 함께합니다",
-      "partnersSub": "{industries}개 업종에서 검증된 SAAI. {nvidiaPartner}로서 글로벌 표준을 따릅니다.",
+      "leadershipSub": "익명화의 뿌리, 글로벌 사업, 엔지니어링 실행. 셋이 같은 목표를 봅니다.",
+      "partnersEyebrow": "함께하는 파트너",
+      "partnersHeading": "검증은 숫자와 이름으로 합니다",
+      "partnersSub": "편의점부터 병원까지 {industries}개 업종에서 쓰입니다. NVIDIA Inception 파트너입니다.",
       "partnerStatsNote": "* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.",
-      "certsLabel": "Awards & Credentials",
-      "ctaHeading": "데이터센터가 아니라,\n사람이 사는 세상을",
-      "ctaSub": "도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요",
+      "certsLabel": "인증과 수상",
+      "ctaHeading": "데이터센터가 아니라,\n사람이 사는 세상을 만듭니다.",
+      "ctaSub": "도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요. 영업일 1–2일 안에 회신합니다.",
       "ctaButton": "문의하기",
       "partnerStatLabels": [
         "누적 투자",
@@ -789,9 +791,9 @@
         "파트너 브랜드",
         "인증 · 준수"
       ],
-      "methodEyebrow": "3-TIER ARCHITECTURE · 3층 구조",
+      "methodEyebrow": "3층 구조",
       "methodHeading": "익명화 위에 공간 지능, 그 위에 에이전트 AI",
-      "methodIntro": "세 개의 층이 바닥부터 탄탄하게 쌓여, 안전하고 강력한 오프라인 인텔리전스를 완성합니다.",
+      "methodIntro": "아래층이 위층을 떠받칩니다. 익명화 없이는 아무것도 시작하지 않습니다.",
       "certs": {
         "soc2": {
           "sub": "정보보안 통제 인증 (2024)"
@@ -806,7 +808,7 @@
       "methodSteps": {
         "anonymizer": {
           "title": "익명화 파운데이션 (토대)",
-          "desc": "얼굴과 신원은 입력 시점에 원천 삭제되어 규제 리스크 없이 공간 전체를 분석합니다.",
+          "desc": "얼굴과 신원은 들어오는 순간 지웁니다. 원본은 남지 않습니다.",
           "tag": "신원 원천 삭제 · SEAL"
         },
         "spatial": {
@@ -816,13 +818,13 @@
         },
         "agentic": {
           "title": "에이전트 AI (실행)",
-          "desc": "오늘 현장에서 무엇을 바꿀지 짚어주고 실시간 가이드를 안내합니다 (결정은 사람).",
+          "desc": "오늘 무엇을 바꿀지 짚어 줍니다. 권고는 AI가, 결정은 사람이 합니다.",
           "tag": "자율 제안 · 행동 가이드"
         }
       }
     },
     "jp": {
-      "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
+      "badge": "REINVENT OFFLINE",
       "heroFactValues": [
         "{foundingYear}",
         "約300億ウォン",
@@ -840,19 +842,20 @@
       "vision": "あなたの空間から始めて、すべての空間へ。",
       "mission": "測定できれば、よくできます。オンラインを変えたその力を、いま物理世界へ。",
       "storyHeading": "匿名化から、物理世界へ",
-      "storySub": "個人情報規制が強まる2018年、私たちはその葛藤を正面から解くことにしました — 撮影するその瞬間に身元を消しつつ、分析に必要な特徴は残す「匿名化されたAI」で。匿名化から出発し、ビジョンAIで空間を読むうちに人が働き暮らす物理世界に出会い、いまはその空間を読み、守り、運営までつなぎます。",
+      "storySub": "個人情報規制が強まる2018年、私たちはそのジレンマに正面から向き合うことにしました。撮影した瞬間に身元を消し、分析に必要な特徴だけを残す — それが「匿名化AI」です。その土台の上で、いまは空間を読み、守り、運営までつなぎます。",
       "namingHeading": "名前について — Deeping Source",
-      "namingBody": "Deeping Source は Deep Learning と Source Code の組み合わせ。あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者は最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。（dipping sauce ではありません。）",
-      "leadershipEyebrow": "Leadership",
+      "namingBody": "Deeping Source は Deep Learning と Source Code の組み合わせです。（dipping sauce ではありません。）",
+      "namingDetail": "あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者のPete Kim（キム・テフン）代表は、最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。",
+      "leadershipEyebrow": "メンバー",
       "leadershipHeading": "空間を作り直す人々",
-      "leadershipSub": "匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。",
-      "partnersEyebrow": "Trusted Partners",
-      "partnersHeading": "{partnerBrands}社のパートナーブランドがともにあります",
-      "partnersSub": "{industries}業種で実証されたSAAI。{nvidiaPartner}として、グローバル標準に準拠します。",
+      "leadershipSub": "匿名化のルーツ、グローバル事業、エンジニアリングの実行。三人が同じ目標を見ています。",
+      "partnersEyebrow": "共に歩むパートナー",
+      "partnersHeading": "検証は、数字と名前で",
+      "partnersSub": "コンビニから病院まで{industries}業種で使われています。NVIDIA Inceptionパートナーです。",
       "partnerStatsNote": "* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。",
-      "certsLabel": "Awards & Credentials",
-      "ctaHeading": "データセンターの中ではなく、\n人が暮らす世界を",
-      "ctaSub": "導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。",
+      "certsLabel": "認証と受賞",
+      "ctaHeading": "データセンターの中ではなく、\n人が暮らす世界をつくります。",
+      "ctaSub": "導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。1〜2営業日以内にご返信します。",
       "ctaButton": "お問い合わせ",
       "partnerStatLabels": [
         "累計調達",
@@ -860,9 +863,9 @@
         "パートナーブランド",
         "認証・準拠"
       ],
-      "methodEyebrow": "3-TIER ARCHITECTURE · 3層構造",
+      "methodEyebrow": "3層構造",
       "methodHeading": "匿名化の上に空間知能、その上にエージェントAI",
-      "methodIntro": "3つの層が土台から堅固に積み重なり、安全で強力なオフラインインテリジェンスを完成させます。",
+      "methodIntro": "下の層が上の層を支えます。匿名化なしには、何も始めません。",
       "certs": {
         "soc2": {
           "sub": "情報セキュリティ統制認証 (2024)"
@@ -877,7 +880,7 @@
       "methodSteps": {
         "anonymizer": {
           "title": "匿名化ファウンデーション (土台)",
-          "desc": "顔と身元は入力時点で消去され、規制リスクなく空間全体を分析します。",
+          "desc": "顔と身元は、入ってきた瞬間に消します。原本は残りません。",
           "tag": "身元消去 · SEAL"
         },
         "spatial": {
@@ -887,7 +890,7 @@
         },
         "agentic": {
           "title": "エージェントAI (実行)",
-          "desc": "今日現場で何を改善すべきかを示し、リアルタイムガイドを案内します (決定は人)。",
+          "desc": "今日何を変えるべきかを示します。推奨はAIが、決定は人が行います。",
           "tag": "自律提案 · 行動ガイド"
         }
       }
@@ -5157,8 +5160,8 @@
         "key": "vpe",
         "name": "Bong-kyung Ko",
         "role": "VP of Engineering",
-        "focus": "Engineering · platform",
-        "bio": "Leads DeepingSource’s engineering organization, turning anonymization, spatial intelligence, and agentic AI into reliable products.",
+        "focus": "Heads engineering · platform delivery",
+        "bio": "",
         "initials": "BK",
         "photo": "/images/team/bongkyung-ko.webp"
       }
@@ -5186,8 +5189,8 @@
         "key": "vpe",
         "name": "고봉경",
         "role": "VP of Engineering",
-        "focus": "엔지니어링 · 플랫폼",
-        "bio": "딥핑소스 엔지니어링 조직을 총괄하며, 익명화·공간 지능·에이전트 AI를 안정적인 제품으로 구현합니다.",
+        "focus": "엔지니어링 조직 총괄 · 플랫폼 구현",
+        "bio": "",
         "initials": "고",
         "photo": "/images/team/bongkyung-ko.webp"
       }
@@ -5215,8 +5218,8 @@
         "key": "vpe",
         "name": "Bong-kyung Ko (コ・ボンギョン)",
         "role": "VP of Engineering",
-        "focus": "エンジニアリング · プラットフォーム",
-        "bio": "ディーピングソースのエンジニアリング組織を統括し、匿名化・空間知能・エージェントAIを安定した製品として実装します。",
+        "focus": "エンジニアリング統括 · プラットフォーム実装",
+        "bio": "",
         "initials": "BK",
         "photo": "/images/team/bongkyung-ko.webp"
       }

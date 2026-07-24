@@ -40,6 +40,7 @@ type AboutCopy = {
   storySub: string;
   namingHeading: string;
   namingBody: string;
+  namingDetail: string;
   leadershipEyebrow: string;
   leadershipHeading: string;
   leadershipSub: string;
@@ -73,36 +74,36 @@ const NEXT: Record<Locale, {
   eyebrow: string; aTitle: string; aLead: string; goalLabel: string; goals: [string, string, string];
 }> = {
   ko: {
-    eyebrow: "What's next · 향후 5년",
-    aTitle: 'Vision 2031 — 우리가 가려는 좌표',
-    aLead: "익명화·공간·운영이 겹치는 거의 유일한 자리. 시장이 'Physical AI'를 말할 때, 공간 쪽에서 가장 먼저 불리는 이름.",
+    eyebrow: '향후 5년',
+    aTitle: 'Vision 2031, 우리가 가려는 좌표',
+    aLead: '익명화·공간·운영을 한 회사가 다 하는 곳은 드뭅니다. 우리는 그 교집합에 서 있습니다.',
     goalLabel: '목표',
     goals: [
-      '국내 리테일 — 편의점·드럭스토어·카페·무인매장의 디지털 매장 운영 인프라',
-      '공간 확장 — 공장·물류·시설·병원으로, 매장 외 매출 비중 30% 이상 (2031)',
-      "글로벌 — 일본·동남아 확장, '익명화 공간 AI' 선도 상위 3사",
+      '국내 리테일: 편의점·드럭스토어·카페·무인매장의 디지털 매장 운영 인프라',
+      '공간 확장: 공장·물류·시설·병원으로, 매장 외 매출 비중 30% 이상 (2031)',
+      "글로벌: 일본·동남아 확장, '익명화 공간 AI' 선도 상위 3사",
     ],
   },
   en: {
-    eyebrow: "What's next · Next 5 years",
-    aTitle: 'Vision 2031 — the coordinates we aim for',
-    aLead: "One of the very few places where anonymization, space and operations overlap. When the market says 'Physical AI', the first name called on the spatial side.",
+    eyebrow: 'Next 5 years',
+    aTitle: 'Vision 2031, the coordinates we aim for',
+    aLead: 'Few companies do anonymization, space, and operations in one place. We stand at that intersection.',
     goalLabel: 'Goal',
     goals: [
-      'Korean retail — the digital store-operations infrastructure for convenience stores, drugstores, cafés, and unmanned stores',
-      'Beyond stores — factories, logistics, facilities, and hospitals; 30%+ of revenue outside stores (2031)',
-      "Global — expansion across Japan and Southeast Asia; a top-3 leader in 'anonymized spatial AI'",
+      'Korean retail: the digital store-operations infrastructure for convenience stores, drugstores, cafés, and unmanned stores',
+      'Beyond stores: factories, logistics, facilities, and hospitals; 30%+ of revenue outside stores (2031)',
+      "Global: expansion across Japan and Southeast Asia; a top-3 leader in 'anonymized spatial AI'",
     ],
   },
   jp: {
-    eyebrow: "What's next · 今後5年",
-    aTitle: 'Vision 2031 — 目指す座標',
-    aLead: '匿名化・空間・運営が重なる、ほぼ唯一の場所。市場が「Physical AI」を語るとき、空間の側で最初に呼ばれる名前。',
+    eyebrow: '今後5年',
+    aTitle: 'Vision 2031、目指す座標',
+    aLead: '匿名化・空間・運営をひとつの会社で担う所は多くありません。私たちはその交差点に立っています。',
     goalLabel: '目標',
     goals: [
-      '国内リテール — コンビニ・ドラッグストア・カフェ・無人店舗のデジタル店舗運営インフラ',
-      '空間の拡張 — 工場・物流・施設・病院へ、店舗外売上比率30%以上 (2031)',
-      'グローバル — 日本・東南アジアへ拡張、「匿名化空間AI」のトップ3',
+      '国内リテール: コンビニ・ドラッグストア・カフェ・無人店舗のデジタル店舗運営インフラ',
+      '空間の拡張: 工場・物流・施設・病院へ、店舗外売上比率30%以上 (2031)',
+      'グローバル: 日本・東南アジアへ拡張、「匿名化空間AI」のトップ3',
     ],
   },
 };
@@ -120,9 +121,9 @@ function renderLead(text: string, hl: string) {
 }
 
 const WHY: Record<Locale, { eyebrow: string; head: string }> = {
-  ko: { eyebrow: '왜냐하면 · Why', head: '카메라는 결국, 사람을 봅니다.' },
-  en: { eyebrow: 'Why', head: 'A camera ultimately looks at people.' },
-  jp: { eyebrow: 'なぜなら · Why', head: 'カメラは結局、人を見ます。' },
+  ko: { eyebrow: '왜 우리인가', head: '카메라는 결국, 사람을 봅니다.' },
+  en: { eyebrow: 'Why us', head: 'A camera ultimately looks at people.' },
+  jp: { eyebrow: 'なぜ私たちか', head: 'カメラは結局、人を見ます。' },
 };
 
 const ROLES: Record<Locale, { strip: string; enterprise: string; partnership: string }> = {
@@ -140,13 +141,15 @@ const PRODUCTS_LINE: Record<Locale, { line: string; cta: string }> = {
 
 const FUNDING_TOTAL: Record<Locale, string> = { ko: '약 300억', en: '~₩30B', jp: '約300億' };
 
+const NAMING_MORE: Record<Locale, string> = { ko: '창업 배경', en: 'Founding story', jp: '創業の背景' };
+
 const VM_LABELS: Record<Locale, { vision: string; mission: string }> = {
   ko: { vision: '비전', mission: '미션' },
   en: { vision: 'Vision', mission: 'Mission' },
   jp: { vision: 'ビジョン', mission: 'ミッション' },
 };
 
-const TOGETHER: Record<Locale, string> = { ko: '함께하자 · Together', en: 'Together', jp: '一緒に · Together' };
+const TOGETHER: Record<Locale, string> = { ko: '함께', en: 'Together', jp: '共に' };
 
 const ALL_TEAM_LINK: Record<Locale, string> = {
   ko: '딥핑소스 사람들 전체 보기',
@@ -251,6 +254,14 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <div className="mx-auto max-w-3xl rounded-3xl border border-primary/15 bg-white p-8 sm:p-10 shadow-card">
             <Eyebrow className="mb-3">{t.namingHeading}</Eyebrow>
             <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
+            {/* B5 읽기 레이어 — 스캔은 위 2문장으로 완결, 창업 배경은 펼침 */}
+            <details className="mt-3 group">
+              <summary className="cursor-pointer list-none text-sm font-bold text-primary inline-flex items-center gap-1">
+                {NAMING_MORE[locale]}
+                <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+              </summary>
+              <p className="mt-2 text-sm text-gray-500 leading-relaxed break-keep">{t.namingDetail}</p>
+            </details>
           </div>
           <div className="mt-6 grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             <div className="p-7 rounded-2xl bg-slate-50 border border-gray-100">
@@ -297,7 +308,8 @@ export default function AboutView({ locale }: { locale: Locale }) {
                     <p className="text-xl font-bold text-gray-900 mb-1 break-keep text-center">{l.name}</p>
                     <p className="text-xs font-bold text-primary mb-4 break-keep text-center">{l.role}</p>
                     <p className="text-xs font-semibold text-gray-500 mb-3 break-keep text-center">{l.focus}</p>
-                    <p className="text-sm text-gray-600 leading-relaxed break-keep">{l.bio}</p>
+                    {/* J6: bio가 빈 리더(VPE)는 focus까지만 — 직함 동어반복 bio 제거 */}
+                    {l.bio && <p className="text-sm text-gray-600 leading-relaxed break-keep">{l.bio}</p>}
                   </div>
                 </div>
               </StaggerItem>

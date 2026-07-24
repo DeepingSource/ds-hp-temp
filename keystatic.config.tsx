@@ -1021,6 +1021,7 @@ export default config({
         story: fields.object({
           storyHeading: localized('스토리 제목 (storyHeading)'),
           storySub: localized('스토리 서브 (storySub)'),
+          namingDetail: localized('네이밍 카드 펼침 상세 — 창업 배경 (namingDetail)'),
         }, { label: '스토리' }),
         leadership: fields.object({
           leadershipEyebrow: localized('리더십 Eyebrow (leadershipEyebrow)'),

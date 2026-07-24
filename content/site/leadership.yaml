@@ -52,14 +52,15 @@ leaders:
       ko: VP of Engineering
       en: VP of Engineering
       jp: VP of Engineering
+    # J6: 직함 동어반복 bio 삭제 — 유효 정보는 focus로 통합, 경력 확보 시 bio 복원
     focus:
-      ko: 엔지니어링 · 플랫폼
-      en: Engineering · platform
-      jp: エンジニアリング · プラットフォーム
+      ko: 엔지니어링 조직 총괄 · 플랫폼 구현
+      en: Heads engineering · platform delivery
+      jp: エンジニアリング統括 · プラットフォーム実装
     bio:
-      ko: 딥핑소스 엔지니어링 조직을 총괄하며, 익명화·공간 지능·에이전트 AI를 안정적인 제품으로 구현합니다.
-      en: Leads DeepingSource’s engineering organization, turning anonymization, spatial intelligence, and agentic AI into reliable products.
-      jp: ディーピングソースのエンジニアリング組織を統括し、匿名化・空間知能・エージェントAIを安定した製品として実装します。
+      ko: ""
+      en: ""
+      jp: ""
     initials:
       ko: 고
       en: BK

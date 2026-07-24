@@ -3,9 +3,9 @@
 # — gen-site-content.mjs가 컴파일 시 평탄화하므로 생성 JSON(공개 shape)은 불변.
 hero:
   badge:
-    ko: REINVENT OFFLINE · About DEEPINGSOURCE
-    en: REINVENT OFFLINE · About DEEPINGSOURCE
-    jp: REINVENT OFFLINE · About DEEPINGSOURCE
+    ko: REINVENT OFFLINE
+    en: REINVENT OFFLINE
+    jp: REINVENT OFFLINE
   # 신뢰 사실 스트립 (AB B1) — 선언 반복 자리를 사실로 채운다. {foundingYear}/{patents}는
   # company 싱글톤 값으로 뷰에서 치환.
   heroFactValues:
@@ -54,7 +54,7 @@ vm:
   missionStatementSub:
     ko: |-
       딥핑소스는, 그 현장을
-      다시 만듭니다
+      다시 만듭니다.
     en: |-
       DeepingSource is here to
       reinvent it.
@@ -76,52 +76,48 @@ story:
     en: From anonymization to the physical world
     jp: 匿名化から、物理世界へ
   storySub:
-    ko: 개인정보 규제가 강해지던 2018년, 우리는 그 딜레마를 정면으로 풀기로 했습니다 — 촬영하는 그 순간 신원을 지우되, 분석에 필요한 특징은 남기는 '익명화된 AI'로. 익명화에서 출발해 비전 AI로 공간을 읽다가 사람이 일하고 사는 물리 세계를 만났고, 지금은 그 공간을 읽고 지키고 운영까지 잇습니다.
-    en: In 2018, as privacy regulation tightened, we chose to face that dilemma head-on — with 'anonymized AI' that erases identity at the moment of capture while keeping the features analysis needs. Starting from anonymization, we read space with vision AI and met the physical world where people work and live; today we read that space, safeguard it, and carry it through to operations.
-    jp: 個人情報規制が強まる2018年、私たちはその葛藤を正面から解くことにしました — 撮影するその瞬間に身元を消しつつ、分析に必要な特徴は残す「匿名化されたAI」で。匿名化から出発し、ビジョンAIで空間を読むうちに人が働き暮らす物理世界に出会い、いまはその空間を読み、守り、運営までつなぎます。
+    ko: 개인정보 규제가 강해지던 2018년, 우리는 딜레마를 정면으로 풀기로 했습니다. 촬영하는 순간 신원을 지우되, 분석에 필요한 특징은 남긴다 — '익명화 AI'입니다. 그 토대 위에서 지금은 공간을 읽고, 지키고, 운영까지 잇습니다.
+    en: In 2018, as privacy regulation tightened, we chose to face the dilemma head-on. Erase identity the moment footage is captured, keep only the features analysis needs — that is 'anonymized AI'. On that foundation, we now read, safeguard, and run physical spaces.
+    jp: 個人情報規制が強まる2018年、私たちはそのジレンマに正面から向き合うことにしました。撮影した瞬間に身元を消し、分析に必要な特徴だけを残す — それが「匿名化AI」です。その土台の上で、いまは空間を読み、守り、運営までつなぎます。
   namingHeading:
     ko: 이름에 대하여 — 딥핑소스
     en: About the name — Deeping Source
     jp: 名前について — Deeping Source
   namingBody:
-    ko: >-
-      딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다.
-      모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻이죠. 창업자는 인텔에
-      합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가
-      AI의 미래임을 확신하고 딥핑소스를 시작했습니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)
-    en: >-
-      Deeping Source joins Deep Learning and Source Code — going deep into the source
-      that powers everything: data. After the founder's first venture (Olaworks) joined
-      Intel, watching GDPR and CCPA reshape AI convinced them that responsible data is
-      AI's future, and Deeping Source began. (It's Deeping Source, not dipping sauce.)
-    jp: >-
-      Deeping Source は Deep Learning と Source Code の組み合わせ。あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者は最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。（dipping sauce ではありません。）
+    ko: 딥핑소스(Deeping Source)는 딥러닝(Deep Learning)과 소스 코드(Source Code)의 결합입니다. (참고로, 디핑소스(dipping sauce)가 아닙니다.)
+    en: Deeping Source joins Deep Learning and Source Code. (It's Deeping Source, not dipping sauce.)
+    jp: Deeping Source は Deep Learning と Source Code の組み合わせです。（dipping sauce ではありません。）
+  # B5 읽기 레이어 — 창업자 배경은 펼침으로. 실명 연결(리더십과 호응, AB Beat 2)
+  namingDetail:
+    ko: 모든 것의 원동력이 되는 소스, 곧 데이터를 심층(deep)까지 파고든다는 뜻입니다. 창업자 김태훈 대표는 인텔에 합류한 첫 벤처(올라웍스) 이후 GDPR·CCPA가 AI의 판을 바꾸는 것을 지켜보며, 책임 있는 데이터가 AI의 미래임을 확신하고 딥핑소스를 시작했습니다.
+    en: It means going deep into the source that powers everything — data. After his first venture (Olaworks) joined Intel, founder Pete Kim watched GDPR and CCPA reshape AI, became convinced that responsible data is AI's future, and started Deeping Source.
+    jp: あらゆるものの原動力となる「ソース」＝データを深く（deep）掘り下げるという意味です。創業者のPete Kim（キム・テフン）代表は、最初のベンチャー（Olaworks）がインテルに加わった後、GDPR・CCPAがAIの前提を変えるのを目の当たりにし、「責任あるデータ」こそAIの未来だと確信してDeeping Sourceを始めました。
 leadership:
   leadershipEyebrow:
-    ko: Leadership
-    en: Leadership
-    jp: Leadership
+    ko: 사람들
+    en: People
+    jp: メンバー
   leadershipHeading:
     ko: 공간을 다시 만드는 사람들
     en: The people remaking space
     jp: 空間を作り直す人々
   leadershipSub:
-    ko: 익명화의 뿌리, 글로벌 사업, 엔지니어링 실행 — 세 축이 같은 목표를 봅니다.
-    en: Roots in anonymization, global business, and engineering execution — three axes, one goal.
-    jp: 匿名化のルーツ、グローバル事業、エンジニアリングの実行 — 三つの軸が同じ目標を見ます。
+    ko: 익명화의 뿌리, 글로벌 사업, 엔지니어링 실행. 셋이 같은 목표를 봅니다.
+    en: Roots in anonymization, global business, engineering execution. Three people, one goal.
+    jp: 匿名化のルーツ、グローバル事業、エンジニアリングの実行。三人が同じ目標を見ています。
 partners:
   partnersEyebrow:
-    ko: Trusted Partners
-    en: Trusted Partners
-    jp: Trusted Partners
+    ko: 함께하는 파트너
+    en: Trusted partners
+    jp: 共に歩むパートナー
   partnersHeading:
-    ko: '{partnerBrands}개 파트너 브랜드가 함께합니다'
-    en: '{partnerBrands} partner brands work with us'
-    jp: '{partnerBrands}社のパートナーブランドがともにあります'
+    ko: 검증은 숫자와 이름으로 합니다
+    en: Proof, in numbers and names
+    jp: 検証は、数字と名前で
   partnersSub:
-    ko: '{industries}개 업종에서 검증된 SAAI. {nvidiaPartner}로서 글로벌 표준을 따릅니다.'
-    en: SAAI proven across {industries} industries. As an {nvidiaPartner}, we follow the global standard.
-    jp: '{industries}業種で実証されたSAAI。{nvidiaPartner}として、グローバル標準に準拠します。'
+    ko: 편의점부터 병원까지 {industries}개 업종에서 쓰입니다. NVIDIA Inception 파트너입니다.
+    en: Used across {industries} industries, from convenience stores to hospitals. An NVIDIA Inception partner.
+    jp: コンビニから病院まで{industries}業種で使われています。NVIDIA Inceptionパートナーです。
   partnerStatsNote:
     ko: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.'
     en: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.'
@@ -144,9 +140,9 @@ partners:
       - パートナーブランド
       - 認証・準拠
   certsLabel:
-    ko: Awards & Credentials
-    en: Awards & Credentials
-    jp: Awards & Credentials
+    ko: 인증과 수상
+    en: Awards & credentials
+    jp: 認証と受賞
   certs:
     - id: soc2
       sub:
@@ -167,17 +163,17 @@ partners:
 # 하드코딩)를 그대로 이관해 역전(화면 diff 0) — 카피 갱신은 Stage 6-3(AB Beat 3 수정안) 몫.
 method:
   methodEyebrow:
-    ko: 3-TIER ARCHITECTURE · 3층 구조
-    en: 3-TIER ARCHITECTURE
-    jp: 3-TIER ARCHITECTURE · 3層構造
+    ko: 3층 구조
+    en: 3-Tier Structure
+    jp: 3層構造
   methodHeading:
     ko: 익명화 위에 공간 지능, 그 위에 에이전트 AI
     en: Agentic AI on Spatial AI, built on Anonymization
     jp: 匿名化の上に空間知能、その上にエージェントAI
   methodIntro:
-    ko: 세 개의 층이 바닥부터 탄탄하게 쌓여, 안전하고 강력한 오프라인 인텔리전스를 완성합니다.
-    en: Three layers stacked from the ground up, completing safe and powerful offline intelligence.
-    jp: 3つの層が土台から堅固に積み重なり、安全で強力なオフラインインテリジェンスを完成させます。
+    ko: 아래층이 위층을 떠받칩니다. 익명화 없이는 아무것도 시작하지 않습니다.
+    en: Each layer rests on the one below. Nothing starts without anonymization.
+    jp: 下の層が上の層を支えます。匿名化なしには、何も始めません。
   methodSteps:
     - id: anonymizer
       title:
@@ -185,9 +181,9 @@ method:
         en: Anonymization Foundation (Base)
         jp: 匿名化ファウンデーション (土台)
       desc:
-        ko: 얼굴과 신원은 입력 시점에 원천 삭제되어 규제 리스크 없이 공간 전체를 분석합니다.
-        en: Identities are erased permanently at capture — zero compliance risk across the space.
-        jp: 顔と身元は入力時点で消去され、規制リスクなく空間全体を分析します。
+        ko: 얼굴과 신원은 들어오는 순간 지웁니다. 원본은 남지 않습니다.
+        en: Faces and identities are erased the moment they enter. No originals remain.
+        jp: 顔と身元は、入ってきた瞬間に消します。原本は残りません。
       tag:
         ko: 신원 원천 삭제 · SEAL
         en: Instant Erasure · SEAL
@@ -211,9 +207,9 @@ method:
         en: Agentic AI (Act)
         jp: エージェントAI (実行)
       desc:
-        ko: 오늘 현장에서 무엇을 바꿀지 짚어주고 실시간 가이드를 안내합니다 (결정은 사람).
-        en: Points to what to change on the floor with live staff guides (People decide).
-        jp: 今日現場で何を改善すべきかを示し、リアルタイムガイドを案内します (決定は人)。
+        ko: 오늘 무엇을 바꿀지 짚어 줍니다. 권고는 AI가, 결정은 사람이 합니다.
+        en: Points to what to change today. AI recommends; people decide.
+        jp: 今日何を変えるべきかを示します。推奨はAIが、決定は人が行います。
       tag:
         ko: 자율 제안 · 행동 가이드
         en: Proactive Advice · Staff Guide
@@ -222,17 +218,17 @@ cta:
   ctaHeading:
     ko: |-
       데이터센터가 아니라,
-      사람이 사는 세상을
+      사람이 사는 세상을 만듭니다.
     en: |-
-      Not a world in a data center —
-      the world people live in
+      Not a world in a data center.
+      We build the world people live in.
     jp: |-
       データセンターの中ではなく、
-      人が暮らす世界を
+      人が暮らす世界をつくります。
   ctaSub:
-    ko: 도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요
-    en: From adoption inquiries to partnership proposals, reach out anytime.
-    jp: 導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。
+    ko: 도입 문의부터 협업 제안까지, 무엇이든 편하게 연락 주세요. 영업일 1–2일 안에 회신합니다.
+    en: From adoption inquiries to partnership proposals, reach out anytime. We reply within 1–2 business days.
+    jp: 導入のお問い合わせから協業のご提案まで、お気軽にご連絡ください。1〜2営業日以内にご返信します。
   ctaButton:
     ko: 문의하기
     en: Get in touch
