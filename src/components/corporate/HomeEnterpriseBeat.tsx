@@ -11,7 +11,8 @@ import { localeHref, type Locale } from '@/lib/i18n';
 const MultiStoreDashboardMockup = dynamic(
   () => import('@/components/mockups/MultiStoreDashboardMockup'),
   {
-    loading: () => <div className="h-64 animate-pulse rounded-2xl bg-gray-100" />,
+    // MockupViewport(desktop 1280×800) 자리 예약과 동일 비율 — 로드 전후 CLS 0
+    loading: () => <div className="aspect-[1280/800] animate-pulse rounded-2xl bg-gray-100" />,
   }
 );
 
@@ -98,7 +99,9 @@ export default function HomeEnterpriseBeat({ locale }: { locale: Locale }) {
 
             {/* HQ Multi-Store Control Dashboard Mockup */}
             <div className="lg:col-span-6">
-              <div className="max-w-xl mx-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-gray-900/10 scale-95 origin-top">
+              {/* 크기·프레임은 목업(MockupViewport+디바이스 프레임) 소관 — 호출부는 폭만(v2 계약).
+                  구 overflow-hidden ring/scale-95 래퍼는 이중 프레이밍이라 제거. */}
+              <div className="max-w-xl mx-auto">
                 <MultiStoreDashboardMockup locale={locale} />
               </div>
             </div>

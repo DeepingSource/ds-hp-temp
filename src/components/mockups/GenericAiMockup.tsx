@@ -7,8 +7,9 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useSequencedLoop } from '@/hooks/useSequencedLoop';
 import { AnimatePresence, motion } from 'framer-motion';
 import BrowserChrome from './BrowserChrome';
+import MockupViewport from './MockupViewport';
 import MockupReplayButton from '@/components/ui/MockupReplayButton';
-import { springBubble } from '@/lib/spring-config';
+import { motionEnter } from '@/lib/mockup-motion';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -20,7 +21,9 @@ import { type Locale } from '@/lib/i18n';
  *
  * 비주얼 규약(홈 랜딩 정제계획 §3-2): PhoneFrame을 쓰지 않는다(SAAI 폰과 실루엣
  * 분리). 의도적으로 브랜드 블루·퍼플을 배제한 무채색 slate 팔레트 — "범용"의
- * 익명성 연출이므로 MOCKUP_SCHEME 대신 slate를 직접 쓴다.
+ * 익명성 연출이므로 --saai-* 토큰 대신 slate를 직접 쓴다(D2 색 계약의 의도적 예외).
+ *
+ * 크기 계약(§v2-2): MockupViewport design="card"(480 고정 설계 캔버스) 래핑.
  *
  * 모션 정책(§4): 뷰포트 50% 진입 시 1회 재생 → 최종 프레임(두 답변 모두 노출)
  * 정지 + ↻ 재생 버튼. reduced-motion은 최종 프레임 정적 표시.
@@ -162,10 +165,9 @@ export default function GenericAiMockup({
   const replay = () => setReplayKey((k) => k + 1);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full max-w-[400px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card"
-    >
+    <div ref={containerRef}>
+    <MockupViewport design="card">
+    <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
       <BrowserChrome variant="light" size="sm">
         <Bot className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
         {t.header}
@@ -186,7 +188,7 @@ export default function GenericAiMockup({
                 className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
                 initial={{ opacity: 0, scale: 0.88, y: 5 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={springBubble}
+                transition={motionEnter}
                 style={{ transformOrigin: isUser ? 'bottom right' : 'bottom left' }}
               >
                 {!isUser && (
@@ -195,7 +197,7 @@ export default function GenericAiMockup({
                   </div>
                 )}
                 <div
-                  className={`max-w-[82%] whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed sm:text-sm ${
+                  className={`max-w-[82%] whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                     isUser
                       ? 'rounded-br-md bg-slate-700 text-white'
                       : 'rounded-bl-md border border-slate-200 bg-white text-slate-700 shadow-card'
@@ -217,7 +219,7 @@ export default function GenericAiMockup({
               initial={{ opacity: 0, scale: 0.8, y: 4 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 4 }}
-              transition={springBubble}
+              transition={motionEnter}
               style={{ transformOrigin: 'bottom left' }}
             >
               <div className="rounded-2xl rounded-bl-md border border-slate-200 bg-white px-4 py-2.5 shadow-card">
@@ -245,7 +247,7 @@ export default function GenericAiMockup({
 
       {/* Input strip — 정적 (범용 AI 쪽은 실행 버튼이 없다는 대비의 일부) */}
       <div className="border-t border-slate-200 bg-white px-4 py-3">
-        <div className="rounded-full bg-slate-100 px-4 py-2.5 text-xs text-slate-400 sm:text-sm">
+        <div className="rounded-full bg-slate-100 px-4 py-2.5 text-sm text-slate-400">
           {t.inputPlaceholder}
         </div>
       </div>
@@ -253,6 +255,8 @@ export default function GenericAiMockup({
       {done && !reducedMotion && (
         <MockupReplayButton locale={locale} onReplay={replay} className="bottom-[4.25rem]" />
       )}
+    </div>
+    </MockupViewport>
     </div>
   );
 }

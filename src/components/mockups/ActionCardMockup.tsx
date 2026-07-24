@@ -9,7 +9,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import TapIndicator from '@/components/ui/TapIndicator';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
-import { springGentle, springDismiss, springSnappy } from '@/lib/spring-config';
+import MockupViewport from './MockupViewport';
+import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { MOCKUP_SCHEME, PRODUCT_THEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
 
@@ -24,6 +25,9 @@ import { type DeepPartial, mergeMockupContent } from './types';
 const iconMap: Record<string, LucideIcon> = {
   CloudRain, ShoppingCart, Palette, Users, Tag,
 };
+
+// 스와이프 퇴장 — spring 금지(D3): out_quint tween으로 밀어내는 감각만 유지.
+const motionDismiss = { duration: 0.4, ease: motionEnter.ease };
 
 type CardPhase = 'hidden' | 'visible' | 'approving' | 'pressed' | 'dismissed' | 'holding' | 'heldPressed' | 'held';
 
@@ -145,7 +149,9 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
     phases.slice(0, 4).every(p => p === 'dismissed' || p === 'held');
 
   return (
+    // v2 계약: MockupViewport 크기 계약(phone 390×844) + --saai-* 토큰 + mockup-motion(no spring).
     <div ref={containerRef}>
+    <MockupViewport design="phone">
     <PhoneFrame>
     <PhoneScreen statusBarBg="bg-white" homeBg="bg-gray-50" badge={false}>
 
@@ -160,7 +166,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
             <div className="w-9 h-9 bg-primary-lighter rounded-xl flex items-center justify-center">
               <Bell className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-3xs font-bold text-white flex items-center justify-center" aria-hidden="true">5</span>
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-(--saai-status-error) rounded-full text-3xs font-bold text-white flex items-center justify-center" aria-hidden="true">5</span>
           </div>
         </div>
         <div className="flex gap-2">
@@ -183,13 +189,13 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
               initial={{ opacity: 0, scale: 0.92, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92 }}
-              transition={springGentle}
+              transition={motionEnter}
               className="bg-white rounded-xl p-4 shadow-card border border-gray-50"
               aria-hidden="true"
             >
               <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                <div className="w-9 h-9 rounded-full bg-(--saai-green-50) flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-5 h-5 text-(--saai-status-success)" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-gray-900">{t.emptyTitle}</p>
@@ -205,13 +211,13 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                     <div key={item.label} className="flex items-center gap-2">
                       <div
                         className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${
-                          status === 'approved' ? 'bg-emerald-50' : status === 'held' ? 'bg-amber-50' : 'bg-gray-100'
+                          status === 'approved' ? 'bg-(--saai-green-50)' : status === 'held' ? 'bg-(--saai-yellow-50)' : 'bg-gray-100'
                         }`}
                       >
                         {status === 'approved' ? (
-                          <Check className="w-3 h-3 text-emerald-500" />
+                          <Check className="w-3 h-3 text-(--saai-status-success)" />
                         ) : (
-                          <Pause className={`w-3 h-3 ${status === 'held' ? 'text-amber-500' : 'text-gray-400'}`} />
+                          <Pause className={`w-3 h-3 ${status === 'held' ? 'text-(--saai-status-warning)' : 'text-gray-400'}`} />
                         )}
                       </div>
                       <Icon
@@ -258,10 +264,10 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                 animate={isHidden ? { opacity: 0, y: 14, scale: 0.93 } : { opacity: 1, y: 0, scale: 1 }}
                 exit={
                   isHoldFlow
-                    ? { x: '-112%', rotate: -2, opacity: 0, transition: springDismiss }
-                    : { x: '112%', rotate: 2, opacity: 0, transition: springDismiss }
+                    ? { x: '-112%', rotate: -2, opacity: 0, transition: motionDismiss }
+                    : { x: '112%', rotate: 2, opacity: 0, transition: motionDismiss }
                 }
-                transition={springGentle}
+                transition={motionEnter}
                 style={{ willChange: 'transform, opacity' }}
                 className={`bg-white rounded-xl p-4 shadow-card border ${
                   isApproving
@@ -271,11 +277,11 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                     : 'border-gray-50'
                 } relative overflow-hidden`}
               >
-                {/* Approval flash (emerald) */}
+                {/* Approval flash (green) */}
                 <AnimatePresence>
                   {isPressed && (
                     <motion.div
-                      className="absolute inset-0 bg-emerald-400/10 pointer-events-none"
+                      className="absolute inset-0 bg-(--saai-green-500)/10 pointer-events-none"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -320,9 +326,9 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                         key={badge.label}
                         className={`inline-flex items-center gap-1 text-3xs font-medium px-1.5 py-0.5 rounded-full ${
                           badge.up === true
-                            ? 'bg-emerald-50 text-emerald-700'
+                            ? 'bg-(--saai-green-50) text-(--saai-green-700)'
                             : badge.up === false
-                            ? 'bg-red-50 text-red-600'
+                            ? 'bg-(--saai-red-50) text-(--saai-red-600)'
                             : 'bg-gray-100 text-gray-600'
                         }`}
                       >
@@ -346,7 +352,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                         isApproving ? 'ring-2 ring-primary/40 ring-offset-1 shadow-md shadow-primary/30' : ''
                       }`}
                       animate={isPressed ? { scale: 0.88 } : { scale: 1 }}
-                      transition={springSnappy}
+                      transition={motionAffordance}
                     >
                       <Check className="w-3 h-3" aria-hidden="true" /> {t.approve}
                     </motion.button>
@@ -362,7 +368,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
                           : 'border-gray-200 text-gray-500'
                       }`}
                       animate={isHeldPressed ? { scale: 0.88 } : { scale: 1 }}
-                      transition={springSnappy}
+                      transition={motionAffordance}
                     >
                       {isHoldFlow && <Pause className="w-3 h-3" aria-hidden="true" />} {isHoldFlow ? t.hold : t.later}
                     </motion.button>
@@ -376,6 +382,7 @@ function ActionCardMockup({ active = true, storeName, locale = 'en', content }: 
 
     </PhoneScreen>
     </PhoneFrame>
+    </MockupViewport>
     </div>
   );
 }

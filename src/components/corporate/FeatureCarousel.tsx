@@ -77,7 +77,9 @@ const PRODUCTS: ProductStruct[] = [
     name: productNaming.count.store,
     icon: DoorOpen,
     href: '/products/store-count',
-    images: [{ src: '/images/si-guide/inflow-rate.png', primary: true }],
+    // 1-④(MM A4): 원본 inflow-rate.png는 세로 2533px 문서 캡처라 4/3 cover에서
+    // 중앙만 잘려 보였다 — 유입률 KPI+일별 차트 영역의 가로형 파생 크롭으로 교체.
+    images: [{ src: '/images/si-guide/inflow-rate-wide.png', primary: true }],
   },
 ];
 
@@ -309,8 +311,11 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
                 <motion.div key={active.key} className="absolute inset-0" {...swap(28)}>
                   {active.key === 'agent' ? (
                     /* Task 1-5: Live Action Card Mockup for Agent slide */
+                    /* 크기는 MockupViewport 비율 스케일 소관 — 호출부는 폭만(v2 계약).
+                       4/3 패널 높이(≈폭×0.75) 대비 폰 세로(폭×2.16) 스필을 구 수준(±80px)
+                       이하로 묶는 폭 — 250/300이면 위아래로 과하게 넘친다. */
                     <div className="absolute inset-0 flex items-center justify-center p-2">
-                      <div className="w-full max-w-[280px] sm:max-w-[320px] scale-90 sm:scale-95 origin-center">
+                      <div className="w-full max-w-[210px] sm:max-w-[240px]">
                         <ActionCardMockup locale={locale} active={active.key === 'agent'} />
                       </div>
                     </div>

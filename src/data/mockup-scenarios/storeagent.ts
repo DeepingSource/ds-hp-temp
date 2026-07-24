@@ -28,12 +28,12 @@ export interface ActionCardData {
 export const actionCards: ActionCardData[] = [
   {
     iconKey: 'CloudRain',
-    iconColor: 'text-sky-500',
-    iconBg: 'bg-sky-50',
+    iconColor: 'text-(--saai-blue-300)',
+    iconBg: 'bg-(--saai-blue-50)',
     title: '우산·우비 발주 추가 권장',
     reason: '내일 오후 강수 70%. 비 오는 날 우산 판매 +180% (최근 3개월)',
     priority: '높음',
-    priorityColor: 'text-red-600 bg-red-50',
+    priorityColor: 'text-(--saai-red-600) bg-(--saai-red-50)',
     meta: '자동 발주 수량: 우산 15개 · 우비 8개',
     statBadges: [
       { label: '우산 판매↑', value: '+180%', up: true },
@@ -42,12 +42,12 @@ export const actionCards: ActionCardData[] = [
   },
   {
     iconKey: 'ShoppingCart',
-    iconColor: 'text-emerald-600',
-    iconBg: 'bg-emerald-50',
+    iconColor: 'text-(--saai-green-600)',
+    iconBg: 'bg-(--saai-green-50)',
     title: '삼각김밥 추가 발주',
     reason: '현재 재고 12개 · 일 평균 판매 35개 · 오후 3시 품절 예상',
     priority: '보통',
-    priorityColor: 'text-amber-600 bg-amber-50',
+    priorityColor: 'text-(--saai-yellow-800) bg-(--saai-yellow-50)',
     meta: '제안 수량: 40개 (납품처 자동 선택)',
     statBadges: [
       { label: '현재 재고', value: '12개', up: false },
@@ -56,12 +56,12 @@ export const actionCards: ActionCardData[] = [
   },
   {
     iconKey: 'Users',
-    iconColor: 'text-violet-600',
-    iconBg: 'bg-violet-50',
+    iconColor: 'text-(--saai-purple-600)',
+    iconBg: 'bg-(--saai-purple-50)',
     title: '피크타임 인력 추가 배치',
     reason: '토요일 16~18시 계산 대기 평균 3.2분. 목표(1.5분) 초과',
     priority: '높음',
-    priorityColor: 'text-red-600 bg-red-50',
+    priorityColor: 'text-(--saai-red-600) bg-(--saai-red-50)',
     meta: '추가 인력 1명 배치 → 대기 1.4분 예상',
     statBadges: [
       { label: '현재 대기', value: '3.2분', up: false },
@@ -70,8 +70,8 @@ export const actionCards: ActionCardData[] = [
   },
   {
     iconKey: 'Tag',
-    iconColor: 'text-rose-500',
-    iconBg: 'bg-rose-50',
+    iconColor: 'text-(--saai-red-500)',
+    iconBg: 'bg-(--saai-red-50)',
     title: '음료 1+1 행사 연장 제안',
     reason: '행사 구역 매출 +34%. AI가 다음 주 행사 POP 포스터를 준비했습니다.',
     priority: '새 제안',
@@ -83,8 +83,8 @@ export const actionCards: ActionCardData[] = [
   },
   {
     iconKey: 'Palette',
-    iconColor: 'text-pink-500',
-    iconBg: 'bg-pink-50',
+    iconColor: 'text-(--saai-purple-400)',
+    iconBg: 'bg-(--saai-purple-50)',
     title: '봄 시즌 POP 포스터 완성',
     reason: 'AI가 3월 봄 신상 포스터 디자인을 완성했습니다. 확인 후 인쇄하세요.',
     priority: '새 제안',
@@ -104,11 +104,11 @@ export interface CompletedItemData {
 }
 
 export const completedItems: CompletedItemData[] = [
-  { iconKey: 'CloudRain', label: '우산·우비 발주 승인', color: 'text-sky-500' },
-  { iconKey: 'ShoppingCart', label: '삼각김밥 추가 발주', color: 'text-emerald-600' },
-  { iconKey: 'Users', label: '인력 1명 추가 배치', color: 'text-violet-600' },
-  { iconKey: 'Tag', label: '음료 1+1 행사 연장', color: 'text-rose-500' },
-  { iconKey: 'Palette', label: '봄 시즌 POP 인쇄 요청', color: 'text-pink-500' },
+  { iconKey: 'CloudRain', label: '우산·우비 발주 승인', color: 'text-(--saai-blue-300)' },
+  { iconKey: 'ShoppingCart', label: '삼각김밥 추가 발주', color: 'text-(--saai-green-600)' },
+  { iconKey: 'Users', label: '인력 1명 추가 배치', color: 'text-(--saai-purple-600)' },
+  { iconKey: 'Tag', label: '음료 1+1 행사 연장', color: 'text-(--saai-red-500)' },
+  { iconKey: 'Palette', label: '봄 시즌 POP 인쇄 요청', color: 'text-(--saai-purple-400)' },
 ];
 
 // ── Chat Mockup types & data ─────────────────────────────────────────────────
@@ -150,7 +150,7 @@ const chatScenario1: ChatMessageData[] = [
       { label: '우산 판매 증가', value: '+180%', up: true, sub: '비 오는 날' },
       { label: '내일 강수확률', value: '70%' },
     ],
-    action: { iconKey: 'CloudRain', label: '발주 승인', color: 'bg-sky-500' },
+    action: { iconKey: 'CloudRain', label: '발주 승인', color: 'bg-(--saai-blue-500)' },
   },
   {
     role: 'user',
@@ -161,7 +161,7 @@ const chatScenario1: ChatMessageData[] = [
     role: 'ai',
     text: '우산·우비 발주 완료! 내일 오전 10시 입고 예정이에요.\n\n저녁 6~9시 Top3: ①삼각김밥 ②컵라면 ③음료수. 삼각김밥 현재 재고 12개 — 품절 위험 있어요.',
     time: '오전 6:02',
-    action: { iconKey: 'ShoppingCart', label: '삼각김밥 추가 발주', color: 'bg-emerald-500' },
+    action: { iconKey: 'ShoppingCart', label: '삼각김밥 추가 발주', color: 'bg-(--saai-green-600)' },
   },
   {
     role: 'ai',
@@ -170,7 +170,7 @@ const chatScenario1: ChatMessageData[] = [
     stats: [
       { label: '행사 구역 매출', value: '+34%', up: true },
     ],
-    action: { iconKey: 'TrendingUp', label: 'POP 포스터 보기', color: 'bg-rose-500' },
+    action: { iconKey: 'TrendingUp', label: 'POP 포스터 보기', color: 'bg-(--saai-red-500)' },
   },
 ];
 
@@ -199,7 +199,7 @@ const chatScenario2: ChatMessageData[] = [
       { label: '현재 대기', value: '3.2분', up: false, sub: '목표 초과' },
       { label: '3분+ 비율', value: '12%', up: false },
     ],
-    action: { iconKey: 'Users', label: '인력 배치 승인', color: 'bg-violet-500' },
+    action: { iconKey: 'Users', label: '인력 배치 승인', color: 'bg-(--saai-purple-600)' },
   },
   {
     role: 'user',
@@ -227,7 +227,7 @@ const chatScenario3: ChatMessageData[] = [
       { label: '삼각김밥 재고', value: '8개', up: false, sub: '품절 위험' },
       { label: '예상 소진', value: '21시', sub: '현재 추세' },
     ],
-    action: { iconKey: 'ShoppingCart', label: '긴급 발주', color: 'bg-rose-500' },
+    action: { iconKey: 'ShoppingCart', label: '긴급 발주', color: 'bg-(--saai-red-600)' },
   },
   {
     role: 'user',

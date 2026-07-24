@@ -201,13 +201,13 @@ export default function ChatMockup({
           <div className="flex-1 min-w-0">
             <h3 className={`${S.textPrimary} ${D.headerTitle} flex items-center gap-1.5`}>
               {t.assistant}
-              <Sparkles className="w-3.5 h-3.5 text-yellow-500" aria-hidden="true" />
+              <Sparkles className="w-3.5 h-3.5 text-(--saai-status-warning)" aria-hidden="true" />
             </h3>
             <p className={`${S.textSecondary} ${D.headerSub}`}>
               {`${resolvedStoreName} · ${[t.subBriefing, t.subPeak, t.subEvening][scenarioIdx] ?? t.subBriefing}`}
             </p>
           </div>
-          <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse motion-reduce:animate-none shrink-0" aria-hidden="true" />
+          <div className="w-2 h-2 bg-(--saai-status-success) rounded-full animate-pulse motion-reduce:animate-none shrink-0" aria-hidden="true" />
         </div>
       </div>
 
@@ -246,7 +246,7 @@ export default function ChatMockup({
                             <p className="text-xs font-bold text-gray-900 tabular-nums leading-tight">{s.value}</p>
                             {s.sub && (
                               <p className={`text-3xs font-medium leading-tight ${
-                                s.up === true ? 'text-emerald-500' : s.up === false ? 'text-red-400' : 'text-gray-500'
+                                s.up === true ? 'text-(--saai-chart-positive)' : s.up === false ? 'text-(--saai-chart-negative)' : 'text-gray-500'
                               }`}>{s.sub}</p>
                             )}
                           </div>

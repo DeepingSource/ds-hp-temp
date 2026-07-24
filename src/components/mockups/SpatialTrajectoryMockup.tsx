@@ -8,7 +8,12 @@ import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
 import LoopVideo from '@/components/ui/LoopVideo';
 import MockupReplayButton from '@/components/ui/MockupReplayButton';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
 import type { Locale } from '@/lib/i18n';
+
+// MockupViewport 예외(MM §5 1a): 제품 UI 재현이 아니라 헤딩+실사 MTMC 영상+카피 카드로
+// 구성된 쇼케이스 카드라 고정 캔버스가 성립하지 않는다 — 유동 폭이 설계 의도.
+// 색 계약만 준수: framer color 애니메이션은 SAAI_COLORS 파생(raw hex 금지).
 
 interface Props {
   active?: boolean;
@@ -120,7 +125,7 @@ export default function SpatialTrajectoryMockup({
           <div key={label} className="flex items-center gap-2">
             <motion.span
               animate={{
-                color: activeLabel === i ? '#376AE2' : '#94a3b8',
+                color: activeLabel === i ? SAAI_COLORS['blue-500'] : SAAI_COLORS['grey-300'],
                 opacity: activeLabel === i ? 1 : 0.6,
               }}
               transition={{ duration: 0.3 }}
@@ -158,12 +163,12 @@ export default function SpatialTrajectoryMockup({
               key={card.n}
               className={`relative rounded-xl p-4 transition-colors ${
                 emph
-                  ? 'bg-primary/10 ring-2 ring-primary/60 shadow-[0_0_24px_-6px_rgba(55,106,226,0.5)]'
+                  ? 'bg-primary/10 ring-2 ring-primary/60 shadow-[0_0_24px_-6px_color-mix(in_srgb,var(--primary)_50%,transparent)]'
                   : 'bg-white/[0.03] ring-1 ring-white/10'
               }`}
             >
               {emph && (
-                <span className="absolute -top-2 left-3 text-[9px] font-bold uppercase tracking-wide bg-primary text-white px-1.5 py-0.5 rounded">
+                <span className="absolute -top-2 left-3 text-2xs font-bold uppercase tracking-wide bg-primary text-white px-1.5 py-0.5 rounded">
                   {t.emphasized}
                 </span>
               )}

@@ -9,12 +9,12 @@ import TapIndicator from '@/components/ui/TapIndicator';
 import MockupReplayButton from '@/components/ui/MockupReplayButton';
 import PhoneFrame from './PhoneFrame';
 import PhoneScreen from './PhoneScreen';
+import MockupViewport from './MockupViewport';
 import IosSegmentedControl from '@/components/ui/IosSegmentedControl';
-import { springGentle } from '@/lib/spring-config';
-import { MOCKUP_SCHEME, PRODUCT_THEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
+import { motionEnter } from '@/lib/mockup-motion';
+import { MOCKUP_SCHEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
 
 const S = MOCKUP_SCHEME.light;
-const P = PRODUCT_THEME.StoreInsight;
 const D = MOCKUP_DEVICE.phone;
 import {
   phoneBars as BARS,
@@ -224,16 +224,19 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
   const convStr  = Math.round(phoneKpiTargets.conversionRate * countProgress).toString();
 
   return (
+    // v2 마이그레이션: MockupViewport 크기 계약 + SAAI 토큰(--saai-*, Viewport의
+    // .saai-scope에서 해석) + mockup-motion(no spring). ChatMockup 패턴을 따른다.
     <div ref={containerRef} className="relative">
+    <MockupViewport design="phone">
     <PhoneFrame>
     <PhoneScreen statusBarBg="bg-white" homeBg="bg-white">
 
       {/* App Header */}
-      <div className={`${S.headerBg} ${D.headerPadding} border-b-2 ${P.headerBorder}`}>
+      <div className={`${S.headerBg} ${D.headerPadding} border-b-2 border-(--saai-primary)`}>
         <div className="flex items-center justify-between">
           <div>
             <h3 className={`${D.headerTitle} flex items-center gap-2 ${S.textPrimary}`}>
-              <LayoutGrid className={`w-5 h-5 ${P.text}`} aria-hidden="true" />
+              <LayoutGrid className="w-5 h-5 text-(--saai-primary)" aria-hidden="true" />
               <span className="lowercase tracking-tight">
                 <span className="font-normal opacity-50">saai</span><span className="opacity-30 mx-1">|</span>store insight
               </span>
@@ -255,7 +258,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               { key: 'visitors', label: t.segVisitors },
             ]}
             active={activeTab}
-            activeTextClass="text-violet-700"
+            activeTextClass="text-(--saai-primary)"
             layoutId="insight-mobile-seg"
           />
         </div>
@@ -271,7 +274,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               <span className="text-xs font-medium">{t.kpiRevenue}</span>
             </div>
             <div className="text-lg font-bold text-gray-900 tabular-nums">{revStr}{t.unitMan}</div>
-            <div className="flex items-center gap-1 text-xs text-emerald-600 font-medium mt-0.5">
+            <div className="flex items-center gap-1 text-xs text-(--saai-chart-positive) font-medium mt-0.5">
               <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
               <span>+12%</span>
             </div>
@@ -283,7 +286,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               <span className="text-xs font-medium">{t.kpiVisitors}</span>
             </div>
             <div className="text-lg font-bold text-gray-900 tabular-nums">{visitStr}{t.unitName}</div>
-            <div className="flex items-center gap-1 text-xs text-red-500 font-medium mt-0.5">
+            <div className="flex items-center gap-1 text-xs text-(--saai-chart-negative) font-medium mt-0.5">
               <ArrowDownRight className="w-3 h-3" aria-hidden="true" />
               <span>-5%</span>
             </div>
@@ -295,7 +298,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               <span className="text-xs font-medium">{t.kpiDwell}</span>
             </div>
             <div className="text-lg font-bold text-gray-900 tabular-nums">{stayStr}{t.unitMin}</div>
-            <div className="flex items-center gap-1 text-xs text-emerald-600 font-medium mt-0.5">
+            <div className="flex items-center gap-1 text-xs text-(--saai-chart-positive) font-medium mt-0.5">
               <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
               <span>+18%</span>
             </div>
@@ -307,7 +310,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               <span className="text-xs font-medium">{t.kpiConv}</span>
             </div>
             <div className="text-lg font-bold text-gray-900 tabular-nums">{convStr}%</div>
-            <div className="flex items-center gap-1 text-xs text-emerald-600 font-medium mt-0.5">
+            <div className="flex items-center gap-1 text-xs text-(--saai-chart-positive) font-medium mt-0.5">
               <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
               <span>+4.2%</span>
             </div>
@@ -320,19 +323,19 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
             <h4 className="text-sm font-bold text-gray-800">
               {t.chartLabel[activeTab]}
             </h4>
-            <span className={`text-xs ${P.text} ${P.bgLight} px-2 py-0.5 rounded font-medium`}>{t.realtime}</span>
+            <span className="text-xs text-(--saai-primary) bg-(--saai-blue-50) px-2 py-0.5 rounded font-medium">{t.realtime}</span>
           </div>
 
           <div className="h-28 flex items-end justify-between gap-1.5 px-1 mt-2" aria-hidden="true">
             {BARS[activeTab].map((targetH, i) => {
               const isHighlight = i === HIGHLIGHT_IDX[activeTab];
               const isFuture = i > currentIdx;
-              // 강조(인사이트 대상) 우선 → 미래(예측, 점선 저채도) → 실측(violet-200)
+              // 강조(인사이트 대상) 우선 → 미래(예측, 점선 저채도) → 실측(blue-200 명도 차)
               const barClass = isHighlight
-                ? `${P.bg} shadow-[0_0_8px_rgba(139,92,246,0.3)]`
+                ? 'bg-(--saai-primary) shadow-[0_0_8px_color-mix(in_srgb,var(--saai-primary)_30%,transparent)]'
                 : isFuture
-                  ? 'bg-violet-300/30 border border-dashed border-violet-400/60'
-                  : 'bg-violet-200';
+                  ? 'bg-(--saai-blue-300)/30 border border-dashed border-(--saai-blue-400)/60'
+                  : 'bg-(--saai-blue-200)';
               return (
               <div key={i} className="w-full h-full flex flex-col justify-end items-center">
                 <motion.div
@@ -340,7 +343,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
                   className={`w-full rounded-t-sm ${barClass}`}
                   initial={{ height: reducedMotion ? `${targetH}%` : 0 }}
                   animate={{ height: `${targetH}%` }}
-                  transition={reducedMotion ? { duration: 0 } : { ...springGentle, delay: i * 0.04 }}
+                  transition={reducedMotion ? { duration: 0 } : { ...motionEnter, delay: i * 0.04 }}
                 />
                 <span className={`text-3xs font-medium mt-1 shrink-0 ${isFuture && !isHighlight ? 'text-gray-300' : 'text-gray-500'}`}>{t.hourSuffix(i + 10)}</span>
               </div>
@@ -358,14 +361,14 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
-              transition={springGentle}
+              transition={motionEnter}
             >
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center shrink-0">
-                  <TrendingUp className={`w-4 h-4 ${P.text}`} aria-hidden="true" />
+                <div className="w-8 h-8 rounded-full bg-(--saai-blue-50) flex items-center justify-center shrink-0">
+                  <TrendingUp className="w-4 h-4 text-(--saai-primary)" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-violet-900 mb-1">{t.aiReportTitle}</p>
+                  <p className="text-sm font-bold text-(--saai-blue-900) mb-1">{t.aiReportTitle}</p>
                   <p className="text-sm text-gray-600 leading-relaxed">{t.insights[activeTab]}</p>
                 </div>
               </div>
@@ -383,7 +386,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
             { Icon: Clock,      label: t.navLabels[2], active: false },
             { Icon: Settings,   label: t.navLabels[3], active: false },
           ].map(({ Icon, label, active }) => (
-            <div key={label} className={`flex flex-col items-center gap-1 ${active ? P.text : 'text-gray-500'}`}>
+            <div key={label} className={`flex flex-col items-center gap-1 ${active ? 'text-(--saai-primary)' : 'text-gray-500'}`}>
               <Icon className="w-5 h-5" />
               <span className="text-3xs font-medium">{label}</span>
             </div>
@@ -392,6 +395,7 @@ function StoreInsightMockup({ active = true, storeName, locale = 'en', content, 
       </div>
     </PhoneScreen>
     </PhoneFrame>
+    </MockupViewport>
     {playMode === 'once' && done && !reducedMotion && (
       <MockupReplayButton
         locale={locale}

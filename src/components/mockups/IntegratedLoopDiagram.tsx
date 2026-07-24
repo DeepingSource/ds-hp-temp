@@ -14,6 +14,10 @@ import { type DeepPartial, mergeMockupContent } from './types';
 type NodeCopy = { label: string; tip: string };
 type CardCopy = { no: string; title: string; body: string };
 
+// MockupViewport 예외(MM §5 1a): 제품 UI 재현이 아닌 개념 다이어그램(SVG)이라
+// 고정 캔버스 대신 min-w+overflow-x-auto 가로 스크롤이 설계 의도 — 강제 스케일은
+// 극좁 폭에서 오히려 가독성 퇴행. 색·수치는 이미 계약 충족(primary 시맨틱·canonical 파생).
+
 /**
  * 문구 오버라이드 단위 — 부분 병합(mergeMockupContent). 기본: COPY[locale].
  * 이 컴포넌트는 (FunnelDiagram/MultiStoreDashboardMockup과 달리) 고정 개수 훅 호출이

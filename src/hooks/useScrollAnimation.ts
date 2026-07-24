@@ -78,7 +78,10 @@ export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
       },
       // rootMargin 하단 15% 확장: 요소가 뷰포트 하단에 닿기 전 미리 트리거해
       // 빠른 스크롤에도 진입 여유를 준다.
-      { threshold, rootMargin: '0px 0px 15% 0px' }
+      // 상단 200px(A5·MM §4-1): top-entry(위에서 진입 — 앵커 점프 후 위로 스크롤 등)는
+      // 상단 확장이 없으면 threshold만큼 늦게 발화한다(600px 요소 실측 +100px 지연).
+      // threshold는 유지 — 하단 진입(일반 스크롤) 연출 타이밍을 바꾸지 않는 보수 완화.
+      { threshold, rootMargin: '200px 0px 15% 0px' }
     );
 
     observer.observe(element);

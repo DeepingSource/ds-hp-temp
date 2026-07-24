@@ -62,15 +62,17 @@ export const chartSets: Record<number, number[]> = {
   5: [32, 48, 66, 85, 72, 60, 70, 82, 68, 50, 44, 36],
 };
 
+// v2 색 계약(D2): 클래스는 --saai-* 변수만 — MockupViewport의 .saai-scope 안에서 해석
 export const statusMeta: Record<StoreStatus, StatusMeta> = {
-  normal:   { dot: 'bg-emerald-500', badge: 'bg-emerald-50 text-emerald-700', text: '정상' },
-  warning:  { dot: 'bg-amber-500',   badge: 'bg-amber-50 text-amber-700',     text: '주의' },
-  critical: { dot: 'bg-red-500',     badge: 'bg-red-50 text-red-700',         text: '긴급' },
+  normal:   { dot: 'bg-(--saai-status-success)', badge: 'bg-(--saai-green-50) text-(--saai-green-700)',  text: '정상' },
+  warning:  { dot: 'bg-(--saai-status-warning)', badge: 'bg-(--saai-yellow-50) text-(--saai-yellow-800)', text: '주의' },
+  critical: { dot: 'bg-(--saai-status-error)',   badge: 'bg-(--saai-red-50) text-(--saai-red-700)',       text: '긴급' },
 };
 
+// color/bg는 KPI "카테고리 구분" 의도 — 제품색이 아니라 SAAI 데이터 hue를 쓴다
 export const kpiConfigs: KpiConfig[] = [
-  { iconName: 'BarChart3',  label: '일 매출',  field: 'revenue',  unit: '만', color: 'text-violet-600', bg: 'bg-violet-50',  countUpDuration: 700, deltaType: 'pct' },
-  { iconName: 'Users',      label: '방문자',   field: 'visitors', unit: '명', color: 'text-primary',   bg: 'bg-primary-lighter',    countUpDuration: 700, deltaType: 'pct' },
-  { iconName: 'Bell',       label: '알림',     field: 'alerts',   unit: '건', color: 'text-red-500',    bg: 'bg-red-50',     countUpDuration: 400, deltaType: 'count', invert: true },
-  { iconName: 'TrendingUp', label: '성과점수', field: 'perf',     unit: '점', color: 'text-emerald-600',bg: 'bg-emerald-50', countUpDuration: 700, deltaType: 'pts' },
+  { iconName: 'BarChart3',  label: '일 매출',  field: 'revenue',  unit: '만', color: 'text-(--saai-purple-500)', bg: 'bg-(--saai-purple-50)', countUpDuration: 700, deltaType: 'pct' },
+  { iconName: 'Users',      label: '방문자',   field: 'visitors', unit: '명', color: 'text-(--saai-primary)',    bg: 'bg-(--saai-blue-50)',   countUpDuration: 700, deltaType: 'pct' },
+  { iconName: 'Bell',       label: '알림',     field: 'alerts',   unit: '건', color: 'text-(--saai-status-error)', bg: 'bg-(--saai-red-50)',  countUpDuration: 400, deltaType: 'count', invert: true },
+  { iconName: 'TrendingUp', label: '성과점수', field: 'perf',     unit: '점', color: 'text-(--saai-green-600)',  bg: 'bg-(--saai-green-50)',  countUpDuration: 700, deltaType: 'pts' },
 ];

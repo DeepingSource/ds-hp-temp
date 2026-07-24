@@ -12,7 +12,8 @@ const GenericAiMockup = dynamic(() => import('@/components/mockups/GenericAiMock
 });
 
 const StoreInsightMockup = dynamic(() => import('@/components/mockups/StoreInsightMockup'), {
-  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
+  // MockupViewport(phone 390×844) 자리 예약과 동일 비율 — 로드 전후 CLS 0
+  loading: () => <div className="aspect-[390/844] animate-pulse rounded-2xl bg-slate-800/40" />,
 });
 
 type Pillar = { letter: string; name: string; title: string; desc: string };
@@ -168,7 +169,7 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                 <ul className="space-y-3">
                   {t.generalAiPoints.map((pt, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-slate-400">
-                      <XCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                      <XCircle className="w-4 h-4 text-error/80 shrink-0 mt-0.5" />
                       <span className="break-keep">{pt}</span>
                     </li>
                   ))}
@@ -205,21 +206,17 @@ export default function SpaceAiAnswerBeat({ locale }: { locale: Locale }) {
                 <ul className="space-y-3">
                   {t.spatialAiPoints.map((pt, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-white font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
                       <span className="break-keep">{pt}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Right card demo — 같은 질문에 실데이터·행동으로 답하는 SAAI (좌측 재생 완료 후 시작).
-                    scale + 부정 마진으로 시각 크기와 레이아웃 높이를 함께 축소 (B6).
-                    %마진의 컨테이닝 블록이 폰 래퍼(max-w) 자신이 되도록 이중 구조 —
-                    폰 높이가 래퍼 너비에 비례(aspect 393/852)하므로 33% ≈ 0.15×높이가
-                    전 뷰포트에서 성립한다 (카드 너비 기준이면 태블릿 1열에서 겹침). */}
-                <div className="pt-3 max-w-[280px] sm:max-w-[300px] mx-auto">
-                  <div className="scale-[0.85] origin-top -mb-[33%]">
-                    <StoreInsightMockup locale={locale} active={leftDone} playMode="once" />
-                  </div>
+                    크기는 MockupViewport 비율 스케일 소관 — 호출부는 폭만 지정(v2 계약).
+                    폭 240/255는 구 scale-[0.85] 해킹 시절의 실효 크기를 승계한 값. */}
+                <div className="pt-3 max-w-[240px] sm:max-w-[255px] mx-auto">
+                  <StoreInsightMockup locale={locale} active={leftDone} playMode="once" />
                 </div>
               </div>
 

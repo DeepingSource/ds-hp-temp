@@ -9,7 +9,8 @@ import MacBookFrame from './MacBookFrame';
 import TabletFrame from './TabletFrame';
 import BrowserChrome from './BrowserChrome';
 import MockupBadge from './MockupBadge';
-import { springGentle } from '@/lib/spring-config';
+import MockupViewport from './MockupViewport';
+import { motionEnter } from '@/lib/mockup-motion';
 import { MOCKUP_SCHEME, MOCKUP_DEVICE } from '@/lib/mockup-tokens';
 import { type DeepPartial, mergeMockupContent } from './types';
 
@@ -61,7 +62,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     kpiUnits: { revenue: '만', visitors: '명', alerts: '건', perf: '점' },
     sidebarTitle: '전체 매장 관리',
     badgeLabel: '예시 화면',
-    storesConnected: (n) => `${n}개 매장 연결됨`,
+    storesConnected: (n) => `예시 ${n}개 매장`,
     realtimeSync: '실시간 동기화',
     aiAnalysis: 'AI 분석',
     chartVisitors: '방문이 두 차례 몰림 — 두 번째 피크가 가장 높음',
@@ -78,7 +79,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     kpiUnits: { revenue: 'k', visitors: '', alerts: '', perf: 'pts' },
     sidebarTitle: 'All Stores',
     badgeLabel: 'Example dashboard',
-    storesConnected: (n) => `${n} stores connected`,
+    storesConnected: (n) => `${n} example stores`,
     realtimeSync: 'Live sync',
     aiAnalysis: 'AI analysis',
     chartVisitors: 'Two visit surges — the later peak is highest',
@@ -95,7 +96,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     kpiUnits: { revenue: '万', visitors: '人', alerts: '件', perf: '点' },
     sidebarTitle: '全店舗管理',
     badgeLabel: 'サンプル画面',
-    storesConnected: (n) => `${n}店舗が接続されています`,
+    storesConnected: (n) => `サンプル${n}店舗`,
     realtimeSync: 'リアルタイム同期',
     aiAnalysis: 'AI分析',
     chartVisitors: '来店は二度のピーク — 後半のピークが最も高い',
@@ -179,11 +180,15 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
   }));
 
   return (
-    <div ref={containerRef} className={`w-full ${isTablet ? 'max-w-3xl' : 'max-w-5xl'} mx-auto`}>
-      <Frame>
+    // v2 크기 계약: desktop 1280×800 고정 캔버스. 프레임 포함 800 근접 —
+    // macbook은 프레임 크롬(노치·힌지·베이스 등 ~110px)만큼 스크린을 줄인다.
+    <div ref={containerRef}>
+      {/* minScale 0.25: 홈 2열 컬럼(~490px = 0.38×)처럼 좁은 호출부에서 기본 0.4 클램프가
+          걸리면 캔버스가 컨테이너보다 넓어져 우측이 잘린다 — 데스크톱 캔버스는 하한을 낮춘다. */}
+      <MockupViewport design="desktop" minScale={0.25}>
+      <Frame className="max-w-none!">
         <MockupBadge label={t.badgeLabel} />
-        {/* tablet: 13" 16:10 screen — chrome + body fill the aspect box */}
-        <div className={isTablet ? 'flex flex-col aspect-[16/10] overflow-hidden rounded-[1rem]' : 'contents'}>
+        <div className={`flex flex-col overflow-hidden ${isTablet ? 'h-[790px] rounded-[1rem]' : 'h-[740px]'}`}>
         <BrowserChrome variant="light">
           <div className="flex-1 flex items-center gap-1.5 bg-white rounded-md px-3 py-1 text-xs text-gray-500 border border-gray-200">
             <Lock className="w-3 h-3 text-gray-400 shrink-0" aria-hidden="true" />
@@ -192,15 +197,15 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
         </BrowserChrome>
 
         {/* App layout */}
-        <div className={`flex ${S.bodyBg} ${isTablet ? 'flex-1 min-h-0' : 'h-[408px]'}`}>
+        <div className={`flex ${S.bodyBg} flex-1 min-h-0`}>
           {/* Sidebar */}
-          <div className="w-32 sm:w-44 bg-gray-900 text-white shrink-0 flex flex-col">
+          <div className="w-44 bg-gray-900 text-white shrink-0 flex flex-col">
             <div className="px-4 py-3 border-b border-white/10">
               <div className="flex items-center gap-2">
-                <Store className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
+                <Store className="w-3.5 h-3.5 text-(--saai-blue-300)" aria-hidden="true" />
                 <span className="text-sm font-bold">{t.sidebarTitle}</span>
               </div>
-              <p className="text-2xs sm:text-3xs text-gray-400 mt-0.5">{t.storesConnected(stores.length)}</p>
+              <p className="text-2xs text-gray-400 mt-0.5">{t.storesConnected(stores.length)}</p>
             </div>
             <nav className="flex-1 py-2" aria-hidden="true">
               {stores.map((s, i) => {
@@ -208,14 +213,14 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                 return (
                   <div
                     key={s.id}
-                    className={`px-4 py-2.5 flex items-center gap-2.5 border-l-2 transition-colors duration-300 ${selIdx === i ? 'bg-white/10 border-emerald-400' : 'border-transparent'}`}
+                    className={`px-4 py-2.5 flex items-center gap-2.5 border-l-2 transition-colors duration-300 ${selIdx === i ? 'bg-white/10 border-(--saai-blue-300)' : 'border-transparent'}`}
                   >
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`} />
                     <span className={`text-xs transition-colors duration-300 ${selIdx === i ? 'text-white font-medium' : 'text-gray-400'}`}>
                       {t.storeNames[s.id]}
                     </span>
                     {s.alerts > 0 && (
-                      <span className="ml-auto text-3xs font-bold bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center shrink-0">
+                      <span className="ml-auto text-3xs font-bold bg-(--saai-status-error) text-white w-4 h-4 rounded-full flex items-center justify-center shrink-0">
                         {s.alerts}
                       </span>
                     )}
@@ -225,14 +230,14 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
             </nav>
             <div className="px-4 py-3 border-t border-white/10">
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse motion-reduce:animate-none" />
-                <span className="text-2xs sm:text-3xs text-gray-400">{t.realtimeSync}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-(--saai-status-success) animate-pulse motion-reduce:animate-none" />
+                <span className="text-2xs text-gray-400">{t.realtimeSync}</span>
               </div>
             </div>
           </div>
 
           {/* Main content */}
-          <div className={`flex-1 p-4 overflow-hidden ${isTablet ? 'flex flex-col' : ''}`}>
+          <div className="flex-1 p-4 overflow-hidden flex flex-col">
             {/* Header — min-height prevents row collapse during the name swap (AnimatePresence) */}
             <div className="flex items-center justify-between mb-3 min-h-[1.75rem]">
               <AnimatePresence mode="wait">
@@ -241,17 +246,17 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                   initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0 }}
-                  transition={springGentle}
+                  transition={motionEnter}
                   className="flex items-center gap-2"
                 >
                   <h2 className={`${D.headerTitle} ${S.textPrimary}`}>{t.storeNames[store.id]}</h2>
-                  <span className={`text-2xs sm:text-3xs font-bold px-1.5 py-0.5 rounded-full ${sm.badge}`}>
+                  <span className={`text-2xs font-bold px-1.5 py-0.5 rounded-full ${sm.badge}`}>
                     {t.statusText[store.status]}
                   </span>
                 </motion.div>
               </AnimatePresence>
               <div className="flex items-center gap-2" aria-hidden="true">
-                <span className="flex items-center gap-1 text-2xs sm:text-3xs text-gray-400">
+                <span className="flex items-center gap-1 text-2xs text-gray-400">
                   <Clock className="w-3 h-3" aria-hidden="true" />
                   {t.updatedLabel}
                 </span>
@@ -263,7 +268,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
             </div>
 
             {/* KPI cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3" aria-hidden="true">
+            <div className="grid grid-cols-4 gap-2 mb-3" aria-hidden="true">
               {kpis.map((kpi) => {
                 const Icon = kpi.icon;
                 return (
@@ -271,19 +276,19 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                     <div className={`w-6 h-6 rounded-md ${kpi.bg} flex items-center justify-center mb-1.5`}>
                       <Icon className={`w-3 h-3 ${kpi.color}`} aria-hidden="true" />
                     </div>
-                    <p className="text-2xs sm:text-3xs text-gray-400 mb-0.5">{kpi.label}</p>
+                    <p className="text-2xs text-gray-400 mb-0.5">{kpi.label}</p>
                     <div className="flex items-end justify-between gap-1">
                       <p className={`text-base font-bold ${S.textPrimary} tabular-nums leading-none`}>
                         {kpi.value.toLocaleString('en-US')}
-                        <span className="text-2xs sm:text-3xs font-medium text-gray-400 ml-0.5">{kpi.unit}</span>
+                        <span className="text-2xs font-medium text-gray-400 ml-0.5">{kpi.unit}</span>
                       </p>
                       {(() => {
                         const d = kpi.delta;
-                        const cls = `text-2xs sm:text-3xs font-bold tabular-nums shrink-0 transition-opacity duration-300 ${kpiActive ? 'opacity-100' : 'opacity-0'}`;
+                        const cls = `text-2xs font-bold tabular-nums shrink-0 transition-opacity duration-300 ${kpiActive ? 'opacity-100' : 'opacity-0'}`;
                         if (d === 0) return <span className={`${cls} text-gray-300`}>—</span>;
                         const bad = kpi.invert ? d > 0 : d < 0;
                         return (
-                          <span className={`${cls} ${bad ? 'text-red-500' : 'text-emerald-600'}`}>
+                          <span className={`${cls} ${bad ? 'text-(--saai-chart-negative)' : 'text-(--saai-chart-positive)'}`}>
                             {d > 0 ? '▲' : '▼'}{Math.abs(d)}{kpi.deltaSuffix}
                           </span>
                         );
@@ -295,30 +300,30 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
             </div>
 
             {/* Charts row */}
-            <div className={`grid grid-cols-1 sm:grid-cols-5 gap-2 mb-2 ${isTablet ? 'flex-1 min-h-0' : ''}`}>
+            <div className="grid grid-cols-5 gap-2 mb-2 flex-1 min-h-0">
               {/* Visitor bar chart */}
-              <div className={`sm:col-span-3 ${S.cardClass} p-3 ${isTablet ? 'flex flex-col' : ''}`}>
-                <p className="text-2xs sm:text-3xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.chartVisitors}</p>
-                <div className={`flex items-end gap-0.5 ${isTablet ? 'flex-1 min-h-0' : 'h-24'}`} aria-hidden="true">
+              <div className={`col-span-3 ${S.cardClass} p-3 flex flex-col`}>
+                <p className="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.chartVisitors}</p>
+                <div className="flex items-end gap-0.5 flex-1 min-h-0" aria-hidden="true">
                   {chartData.map((v, i) => (
                     <motion.div
                       key={`${barsKey}-${i}`}
                       className={`flex-1 rounded-t-sm ${i === 3 || i === 4 ? 'bg-primary' : 'bg-primary/35'}`}
                       initial={{ height: reducedMotion ? `${(v / chartMax) * 100}%` : 0 }}
                       animate={{ height: kpiActive ? `${(v / chartMax) * 100}%` : 0 }}
-                      transition={reducedMotion ? { duration: 0 } : { ...springGentle, delay: i * 0.04 }}
+                      transition={reducedMotion ? { duration: 0 } : { ...motionEnter, delay: i * 0.04 }}
                     />
                   ))}
                 </div>
               </div>
 
               {/* Store ranking */}
-              <div className={`sm:col-span-2 ${S.cardClass} p-3`}>
-                <p className="text-2xs sm:text-3xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.storePerformance}</p>
+              <div className={`col-span-2 ${S.cardClass} p-3`}>
+                <p className="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.storePerformance}</p>
                 <div className="space-y-1.5" aria-hidden="true">
                   {stores.slice(0, 4).map((s, i) => (
                     <div key={s.id} className="flex items-center gap-1">
-                      <span className={`text-2xs sm:text-3xs w-12 sm:w-10 shrink-0 truncate ${s.id === store.id ? 'font-bold text-primary' : 'text-gray-500'}`}>
+                      <span className={`text-2xs w-12 shrink-0 truncate ${s.id === store.id ? 'font-bold text-primary' : 'text-gray-500'}`}>
                         {t.storeNames[s.id]}
                       </span>
                       <div className="flex-1 bg-gray-100 rounded-full h-1.5 overflow-hidden">
@@ -326,7 +331,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
                           className={`h-full rounded-full ${s.id === store.id ? 'bg-primary' : 'bg-gray-300'}`}
                           initial={{ scaleX: 0 }}
                           animate={{ scaleX: kpiActive ? s.perf / 100 : 0 }}
-                          transition={{ ...springGentle, delay: i * 0.1 + 0.3 }}
+                          transition={{ ...motionEnter, delay: i * 0.1 + 0.3 }}
                           style={{ originX: 0 }}
                         />
                       </div>
@@ -364,6 +369,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
         </div>
         </div>
       </Frame>
+      </MockupViewport>
     </div>
   );
 }
