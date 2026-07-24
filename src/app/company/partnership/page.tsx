@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'Partnership — DEEPINGSOURCE Inc. | Your store, like one too',
   description: `${COMPANY.name}'s partner program. Grow offline spatial AI together with installation, channel, and technology partners.`,
   keywords: ['DeepingSource', 'Partnership', 'Partner program', 'SAAI', 'Channel partner', 'Reseller'],
+  // Soft archive(⑤3-1) — NEXT_PUBLIC_SHOW_IR 재노출 시 robots 복구
+  robots: { index: false, follow: false },
   alternates: {
     canonical: 'https://www.deepingsource.io/company/partnership',
     languages: {

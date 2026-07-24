@@ -43,8 +43,7 @@ const routes: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/company/about', priority: 0.7, freq: 'monthly' },
   { path: '/company/news', priority: 0.6, freq: 'weekly' },
   { path: '/company/career', priority: 0.6, freq: 'monthly' },
-  { path: '/company/partnership', priority: 0.6, freq: 'monthly' },
-  { path: '/company/investors', priority: 0.6, freq: 'monthly' },
+  // /company/partnership · /company/investors — Soft archive(⑤3-1): 색인 제외, 라우트 보존
   { path: '/resources/blog', priority: 0.7, freq: 'weekly' },
   { path: '/resources/case-studies', priority: 0.7, freq: 'monthly' },
   { path: '/resources/docs', priority: 0.6, freq: 'monthly' },

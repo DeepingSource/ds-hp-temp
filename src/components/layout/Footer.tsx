@@ -41,8 +41,13 @@ const companyLinks: FLink[] = [
   { href: '/company/news', label: L('보도자료', 'News', 'プレスリリース') },
   { href: '/events', label: L('이벤트', 'Events', 'イベント') },
   { href: '/company/career', label: L('채용', 'Careers', '採用') },
-  { href: '/company/partnership', label: L('파트너십', 'Partnership', 'パートナーシップ') },
-  { href: '/company/investors', label: L('IR', 'Investors', 'IR') },
+  // 파트너십·IR — Soft archive(⑤3-1): NEXT_PUBLIC_SHOW_IR=1 로 재노출 (소스·라우트 보존)
+  ...(process.env.NEXT_PUBLIC_SHOW_IR === '1'
+    ? [
+        { href: '/company/partnership', label: L('파트너십', 'Partnership', 'パートナーシップ') },
+        { href: '/company/investors', label: L('IR', 'Investors', 'IR') },
+      ]
+    : []),
 ];
 
 const resourceLinks: FLink[] = [

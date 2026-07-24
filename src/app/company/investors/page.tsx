@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'Investor Relations — DEEPINGSOURCE Inc.',
   description: `${COMPANY.name}'s vision, market opportunity, and investor information. In the Physical AI era, offline spatial intelligence makes every store, like one.`,
   keywords: ['DeepingSource', 'IR', 'Investors', 'Investor Relations', 'Physical AI', 'IR Deck'],
+  // Soft archive(⑤3-1) — NEXT_PUBLIC_SHOW_IR 재노출 시 robots 복구
+  robots: { index: false, follow: false },
   alternates: {
     canonical: 'https://www.deepingsource.io/company/investors',
     languages: {
