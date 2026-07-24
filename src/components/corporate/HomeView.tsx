@@ -61,7 +61,7 @@ const productDict: Record<Locale, { key: ProductKey; description: string; path: 
     { key: 'insight', description: '매장에서 일어나는 일을 데이터로 읽습니다. 동선·체류·전환을 교차 분석해, 결제 데이터가 놓치는 구매 전 행동까지 짚어냅니다.', path: '/products/saai-insight' },
     { key: 'care', description: '작은 매장에도 든든한 눈 하나. 진열·온도·청결을 대신 지켜보고, 필요한 순간에만 알립니다.', path: '/products/saai-care' },
     { key: 'agent', description: '데이터에서 의사결정으로. POS와 비전을 하나로 — 무엇을, 얼마나, 어디에 둘지 물으면 답과 실행안까지.', path: '/products/saai-agent' },
-    { key: 'count', description: '카메라 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 읽습니다. 상권 문제인지 매장 문제인지 구분해 드립니다.', path: '/products/store-count' },
+    { key: 'count', description: '카메라 1대로 매장 밖 유동인구와 입점 고객을 비교해 유입률을 읽습니다. 상권 문제인지 매장 문제인지 구분해 드립니다.', path: '/products/store-count' },
   ],
   en: [
     { key: 'insight', description: 'Read what happens in your stores as data. Cross-analyzing flow, dwell, and conversion, it captures the pre-purchase behavior payment data misses.', path: '/products/saai-insight' },

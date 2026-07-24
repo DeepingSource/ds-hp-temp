@@ -115,7 +115,7 @@ const jsonLdProducts: Record<Locale, { name: string; description: string; path: 
     { name: productNaming.insight.saai ?? 'saai insight', description: '어제 매장의 체류·전환·동선을 데이터로 읽는 SAAI 분석 모드.', path: '/products/saai-insight' },
     { name: productNaming.care.saai ?? 'saai care', description: '지금 매장의 결품·온도·도난을 24시간 실시간 감지하는 SAAI 감지 모드.', path: '/products/saai-care' },
     { name: productNaming.agent.saai ?? 'saai agent', description: '오늘의 현장 발주·진열·행동 가이드를 자율 제안하는 SAAI 실행 모드.', path: '/products/saai-agent' },
-    { name: 'saai count', description: 'CCTV 1대로 유동인구 대비 입문 유입률을 파악하는 입문 기능 모듈.', path: '/products/store-count' },
+    { name: 'saai count', description: 'CCTV 1대로 유동인구 대비 입점 유입률을 파악하는 입문 기능 모듈.', path: '/products/store-count' },
   ],
   en: [
     { name: productNaming.insight.saai ?? 'saai insight', description: 'Analyze yesterday floor flow, dwell, and pre-purchase conversion.', path: '/products/saai-insight' },
@@ -127,7 +127,7 @@ const jsonLdProducts: Record<Locale, { name: string; description: string; path: 
     { name: productNaming.insight.saai ?? 'saai insight', description: '昨日の滞在・転換・動線をデータで分析する SAAI insight。', path: '/products/saai-insight' },
     { name: productNaming.care.saai ?? 'saai care', description: '今の欠品・温度・防損を24時間リアルタイム検知する SAAI care。', path: '/products/saai-care' },
     { name: productNaming.agent.saai ?? 'saai agent', description: '今日の現場発注・陳列・行動ガイドを自律提案する SAAI agent。', path: '/products/saai-agent' },
-    { name: 'saai count', description: 'カメラ1台で通行と入店率を比較する saai count 모듈。', path: '/products/store-count' },
+    { name: 'saai count', description: 'カメラ1台で通行と入店率を比較する saai count モジュール。', path: '/products/store-count' },
   ],
 };
 

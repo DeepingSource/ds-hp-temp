@@ -54,10 +54,10 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
     ko: {
       eyebrow: '기능 · store queue · 대기·혼잡',
       h1: '줄이 길어지는 순간, 손님은 말없이 나갑니다',
-      sub: '계산대 대기(시간·인원)와 매장 혼잡을 실시간으로 재 시각화 — 붐비기 전에 인력을 옮길 수 있게.',
+      sub: '계산대 대기(시간·인원)와 매장 혼잡을 실시간으로 보여줍니다. 붐비기 전에, 인력을 옮길 수 있게.',
       privacy: '개인 식별 없이, 대기·혼잡만',
       limits: '줄은 길어진 뒤에야 눈에 띕니다. 언제 붐빌지 미리 알면 인력을 옮길 수 있는데, 그 예측이 없었습니다.',
-      solution: '대기열(시간·인원)과 매장 혼잡을 실시간으로 재, 임계를 넘기 전에 알립니다.',
+      solution: '대기열(시간·인원)과 매장 혼잡을 실시간으로 측정해, 임계를 넘기 전에 알립니다.',
       what: ['대기시간 — 지금 몇 분', '대기 인원 — 몇 명', '혼잡 주기 — 밀물·썰물', '피크 — 요일·시간대'],
       connect: [
         { label: 'store count', href: '/products/store-count' },
@@ -101,10 +101,10 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
     ko: {
       eyebrow: '기능 · store pop · 판촉물(POP)',
       h1: '붙여둔 POP이, 정말 보이고 있나요?',
-      sub: '게시된 판촉물의 노출·주목·전환을 재고 — 문구·위치·교체 시점까지 제안합니다.',
+      sub: '붙여둔 판촉물의 노출·주목·전환을 측정하고, 문구·위치·교체 시점까지 제안합니다.',
       privacy: '개인 식별 없이, 반응만',
       limits: 'POP은 붙이고 나면 효과를 모릅니다. 제대로 붙었는지, 눈에 들었는지, 매출로 이어졌는지 확인할 방법이 없었습니다.',
-      solution: '게시 상태(노출·훼손)부터 시선·전환까지 재, POP 한 장의 실제 효과를 숫자로.',
+      solution: '게시 상태(노출·훼손)부터 시선·전환까지 측정해, POP 한 장의 실제 효과를 숫자로.',
       what: ['게시 상태 — 붙었나·가려졌나·훼손', '주목 — 본 비율', '전환 — 구매로 이어진 비율'],
       connect: [
         { label: 'saai ads insight', href: '/products/saai-ads-insight' },
@@ -151,7 +151,7 @@ export const TOOL_COPY: Record<ToolKey, Record<Locale, ToolCopy>> = {
       sub: '신상품이 이 매장에 맞는지 — 시선·집어듦·재방문으로 트렌드 적합도를. 감이 아니라 첫 주 데이터로.',
       privacy: '개인 식별 없이, 상품 반응만',
       limits: '신상품의 운명은 보통 한 달 뒤에 압니다. 왜 안 팔렸는지 — 안 보여서·안 끌려서·집었다 놓아서 — 는 POS에 없습니다.',
-      solution: '진열 첫날부터 상품 앞 시선·집어듦·재방문을 익명으로 재, 이 매장·손님층에 맞는지 점수로.',
+      solution: '진열 첫날부터 상품 앞 시선·집어듦·재방문을 익명으로 측정해, 이 매장·손님층에 맞는지 점수로.',
       what: ['관심도 — 본 비율', 'gaze→pick — 집은 비율', '매장 적합 — 또래 대비'],
       connect: [
         { label: 'saai ads insight', href: '/products/saai-ads-insight' },

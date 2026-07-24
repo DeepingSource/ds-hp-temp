@@ -348,7 +348,7 @@ export default function Header() {
                               </Link>
                               <Link href={localeHref(locale, '/products/store-count')} className="block p-2.5 rounded-xl hover:bg-gray-50 transition-colors">
                                 <p className="text-xs font-bold text-gray-900">saai count</p>
-                                <p className="text-2xs text-gray-500">{L('유동인구 · 입문 모듈', 'Footfall & entry module', '来店人数・入門')[locale]}</p>
+                                <p className="text-2xs text-gray-500">{L('유동인구 · 입점 모듈', 'Footfall & entry module', '通行・入店モジュール')[locale]}</p>
                               </Link>
                               <Link href={localeHref(locale, '/products/saai-ads-insight')} className="block p-2.5 rounded-xl hover:bg-gray-50 transition-colors">
                                 <p className="text-xs font-bold text-gray-900">saai ads insight</p>

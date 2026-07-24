@@ -96,7 +96,7 @@ const dict: Record<
       care: solutionTaglines.care.ko,
       insight: solutionTaglines.insight.ko,
       agent: solutionTaglines.agent.ko,
-      count: '카메라 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 읽습니다.',
+      count: '카메라 1대로 매장 밖 유동인구와 입점 고객을 비교해 유입률을 읽습니다.',
     },
   },
   en: {

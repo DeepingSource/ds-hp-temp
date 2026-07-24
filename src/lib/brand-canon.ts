@@ -122,7 +122,7 @@ export const saaiSpellout: { linear: string; gloss: Record<Locale, string[]> } =
 
 /** Category definition — the recurring thesis. */
 export const categoryLine: Record<Locale, string> = {
-  ko: '이미 달린 CCTV 위에서, 누구가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
+  ko: '이미 달린 CCTV 위에서, 누구인지가 아니라 무엇을 어떻게. 익명으로 관찰하고, 분석하고, 제안하고, 학습하는 AI.',
   en: 'On the CCTV you already have — not who, but what and how. AI that observes, analyzes, suggests, and learns, anonymously.',
   jp: 'すでにあるCCTVの上で、誰かではなく、何をどう。匿名で観察し、分析し、提案し、学習するAI。',
 };

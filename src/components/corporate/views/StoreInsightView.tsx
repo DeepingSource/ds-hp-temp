@@ -103,7 +103,7 @@ const C: Record<Locale, {
     posComplementSub: 'POS는 "무엇이"를, saai insight는 "왜"를 압니다.',
     dashEyebrow: 'DASHBOARD · 종합 관측',
     dashTitle: '어제의 매장을 한 화면에서 읽습니다',
-    dashSub: '방문·동선·체류·전환을 한 화면으로. 입문 순간부터 결제 순간까지 — 매출 데이터가 놓친 구매 전 미세 행동이 보입니다.',
+    dashSub: '방문·동선·체류·전환을 한 화면으로. 입장 순간부터 결제 순간까지 — 매출 데이터가 놓친 구매 전 미세 행동이 보입니다.',
     mockupNote: '* AI 분석 예시 화면입니다.',
     jobHeading: '본사 MD와 SV의 4대 핵심 결정을 지원합니다',
     jobSub: '감으로 하던 매장 판단을 데이터 기반의 명확한 행동 가이드로 전환합니다.',
@@ -114,7 +114,7 @@ const C: Record<Locale, {
       { title: '개선 성과 검증', subtitle: '바꾼 레이아웃이 실제 먹혔는가', desc: '바꾼 레이아웃의 효과를 체류·전환 데이터로 입증합니다.' },
     ],
     funnelHeading: '지나감에서 결제까지, 보이지 않던 손님이 보입니다',
-    funnelSub: `POS엔 결제한 ${DT.purchased}명만 남지만, saai insight는 입문 앞의 ${DT.passersby}명 전체 행동 퍼널을 펼쳐 어디서 새는지 찾습니다.`,
+    funnelSub: `POS엔 결제한 ${DT.purchased}명만 남지만, saai insight는 문 앞의 ${DT.passersby}명 전체 행동 퍼널을 펼쳐 어디서 새는지 찾습니다.`,
     kpis: [
       { label: '지나감', desc: `매장 앞을 지난 ${DT.passersby}명` },
       { label: '입장', desc: `안으로 들어온 ${DT.entered}명` },
