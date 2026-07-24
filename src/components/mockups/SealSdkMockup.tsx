@@ -8,6 +8,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import MacBookFrame from './MacBookFrame';
 import MockupBadge from './MockupBadge';
 import { SAAI_COLORS } from '@/lib/mockup-tokens';
+import { canonicalEdge } from '@/data/mockup-scenarios/canonical';
 
 /**
  * #6 SealSdkMockup — privacy-first spatial SDK code editor + live output.
@@ -54,7 +55,8 @@ const LOG_LINES: LogLine[] = [
   { tag: 'Priority', text: 'zone B raised' },
   { tag: 'Response', text: 'staff routed' },
   { tag: 'Context', text: 'on-device only' },
-  { tag: 'Outcome', text: '0 PII stored · 28ms' },
+  // D6: 지연 수치는 canonicalEdge.latencyMs 파생 — #7 EdgePerfMonitor의 28ms와 정합(SOT 단일화)
+  { tag: 'Outcome', text: `0 PII stored · ${canonicalEdge.latencyMs}ms` },
 ];
 
 type Beat = 'typing' | 'running' | 'done';

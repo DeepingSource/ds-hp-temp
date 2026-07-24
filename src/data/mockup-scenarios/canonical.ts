@@ -192,6 +192,175 @@ export const canonicalRoi = {
   setupCostPerStore: 750_000,
 } as const;
 
+// ── canonical v2 확장 (MM Phase 2 2-⑥) — 명부·주간·구성비·유입·알림 사전 ──────
+// D6 원칙 동일 적용: 벤포드 정합(반올림 흔적 금지), 화면 내 산술 정합,
+// 값 변경 시 서술 카피 3로케일 동시 갱신.
+
+export type RosterRegion = 'metro' | 'nonMetro';
+export type RosterStatus = 'normal' | 'warning' | 'critical';
+
+export interface RosterStore {
+  slug: string;
+  name: { ko: string; en: string; jp: string };
+  region: RosterRegion;
+  status: RosterStatus;
+  /** 일 방문자 (명) — 구매·전환 수는 소비처에서 파생한다(여기 두지 않음) */
+  dailyVisitors: number;
+  /** 성과점수 (0~100) */
+  perfScore: number;
+}
+
+/**
+ * canonicalRoster — 매장 명부 20개 (G7 확정: 지명+'점' 규칙).
+ * 217점 세계관의 정합 표본: metro 12 / nonMetro 8 = 60/40 근사(regionSplit),
+ * 상태 normal 18 / warning 1 / critical 1 → 203/10/4 분포 근사(statusDistribution).
+ * en/jp 표기는 기존 관례를 따른다 — AgentHqMiniMockup(Hongdae/弘大店·Jamsil/蚕室店·
+ * Sinchon/新村店)·canonicalStoreName(Gangnam Stn./江南駅店)·HqRollup(Seomyeon/西面店).
+ * 신촌점 critical은 기존 목업들의 '신촌 긴급' 연출 유지.
+ */
+export const canonicalRoster: RosterStore[] = [
+  // ── metro 12 ──
+  // 강남역점 = canonicalStore와 정합 (visitorsToday 342 · perfScore 92 직접 참조)
+  { slug: 'gangnam-stn', name: { ko: '강남역점', en: 'Gangnam Stn.', jp: '江南駅店' }, region: 'metro', status: 'normal', dailyVisitors: canonicalStore.visitorsToday, perfScore: canonicalStore.perfScore },
+  { slug: 'hongdae', name: { ko: '홍대점', en: 'Hongdae', jp: '弘大店' }, region: 'metro', status: 'normal', dailyVisitors: 298, perfScore: 78 },
+  { slug: 'jamsil', name: { ko: '잠실점', en: 'Jamsil', jp: '蚕室店' }, region: 'metro', status: 'normal', dailyVisitors: 276, perfScore: 65 },
+  { slug: 'sinchon', name: { ko: '신촌점', en: 'Sinchon', jp: '新村店' }, region: 'metro', status: 'critical', dailyVisitors: 189, perfScore: 58 },
+  { slug: 'kondae', name: { ko: '건대점', en: 'Kondae', jp: '建大店' }, region: 'metro', status: 'normal', dailyVisitors: 214, perfScore: 71 },
+  { slug: 'seongsu', name: { ko: '성수점', en: 'Seongsu', jp: '聖水店' }, region: 'metro', status: 'normal', dailyVisitors: 312, perfScore: 84 },
+  { slug: 'pangyo', name: { ko: '판교점', en: 'Pangyo', jp: '板橋店' }, region: 'metro', status: 'normal', dailyVisitors: 287, perfScore: 81 },
+  { slug: 'suwon-stn', name: { ko: '수원역점', en: 'Suwon Stn.', jp: '水原駅店' }, region: 'metro', status: 'normal', dailyVisitors: 264, perfScore: 74 },
+  { slug: 'ilsan', name: { ko: '일산점', en: 'Ilsan', jp: '一山店' }, region: 'metro', status: 'normal', dailyVisitors: 243, perfScore: 69 },
+  { slug: 'bundang', name: { ko: '분당점', en: 'Bundang', jp: '盆唐店' }, region: 'metro', status: 'normal', dailyVisitors: 329, perfScore: 86 },
+  { slug: 'gimpo', name: { ko: '김포점', en: 'Gimpo', jp: '金浦店' }, region: 'metro', status: 'normal', dailyVisitors: 176, perfScore: 63 },
+  { slug: 'anyang', name: { ko: '안양점', en: 'Anyang', jp: '安養店' }, region: 'metro', status: 'warning', dailyVisitors: 158, perfScore: 61 },
+  // ── nonMetro 8 ──
+  { slug: 'seomyeon', name: { ko: '서면점', en: 'Seomyeon', jp: '西面店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 297, perfScore: 79 },
+  { slug: 'haeundae', name: { ko: '해운대점', en: 'Haeundae', jp: '海雲台店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 251, perfScore: 72 },
+  { slug: 'dongseongno', name: { ko: '동성로점', en: 'Dongseongno', jp: '東城路店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 218, perfScore: 68 },
+  { slug: 'dunsan', name: { ko: '둔산점', en: 'Dunsan', jp: '屯山店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 187, perfScore: 64 },
+  { slug: 'sangmu', name: { ko: '상무점', en: 'Sangmu', jp: '尚武店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 164, perfScore: 62 },
+  { slug: 'jeonju', name: { ko: '전주점', en: 'Jeonju', jp: '全州店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 149, perfScore: 59 },
+  { slug: 'cheonan', name: { ko: '천안점', en: 'Cheonan', jp: '天安店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 172, perfScore: 66 },
+  { slug: 'chuncheon', name: { ko: '춘천점', en: 'Chuncheon', jp: '春川店' }, region: 'nonMetro', status: 'normal', dailyVisitors: 136, perfScore: 57 },
+];
+
+/**
+ * canonicalWeek — 강남역점 요일별 매출 7일 (월~일, 만원 단위).
+ * Σ = 112.4+108.7+117.3+121.6+132.8+146.2+138.5 = 877.5만원
+ * (forecastRevenueManwon 124.5 × 7 = 871.5만원과 자릿수 정합 — 일평균 125.4만원,
+ *  '오늘 예상 124.5만원'이 평일 곡선 안에 자연스럽게 놓인다).
+ * 주말 상향(토 146.2 최고), 무반올림 — 벤포드 정합.
+ */
+export const canonicalWeek = [
+  { day: 'mon', revenueManwon: 112.4 },
+  { day: 'tue', revenueManwon: 108.7 },
+  { day: 'wed', revenueManwon: 117.3 },
+  { day: 'thu', revenueManwon: 121.6 },
+  { day: 'fri', revenueManwon: 132.8 },
+  { day: 'sat', revenueManwon: 146.2 },
+  { day: 'sun', revenueManwon: 138.5 },
+] as const;
+
+/**
+ * canonicalCategoryMix — 카테고리 구성비 (편의점 서사).
+ * Σpct = 34+27+18+12+9 = 100 (정확히).
+ */
+export const canonicalCategoryMix = [
+  { key: 'drinks', label: { ko: '음료', en: 'Drinks', jp: '飲料' }, pct: 34 },
+  { key: 'freshFood', label: { ko: '즉석식품', en: 'Fresh food', jp: '即席食品' }, pct: 27 },
+  { key: 'snacks', label: { ko: '스낵', en: 'Snacks', jp: 'スナック' }, pct: 18 },
+  { key: 'household', label: { ko: '생활용품', en: 'Household', jp: '生活用品' }, pct: 12 },
+  { key: 'etc', label: { ko: '기타', en: 'Others', jp: 'その他' }, pct: 9 },
+] as const;
+
+/**
+ * canonicalDoorTraffic — 유입 퍼널 세계관 통일 (DoorSplit · StoreInsightView Beat4 공유).
+ * 산술 유도 관계:
+ *   passersby 1,036 = entered 342 ÷ captureRatePct 33% (342 ÷ 0.33 = 1,036.36…
+ *     → 1,036 — 반올림 흔적 없는 첫자리 1, 벤포드 정합)
+ *   entered 342 = canonicalStore.visitorsToday (직접 참조)
+ *   browsed 317 ÷ entered 342 = 92.7% (입장 후 매대 둘러봄)
+ *   purchased 65 ÷ entered 342 = 19.0% 구매 전환
+ * 주의: canonicalFunnel(매대 단위, buy 23%)과 다른 층위 — 이쪽은 '문 앞→구매' 매장 단위.
+ */
+export const canonicalDoorTraffic = {
+  passersby: 1036,
+  entered: canonicalStore.visitorsToday, // 342
+  captureRatePct: 33,
+  browsed: 317,
+  purchased: 65,
+} as const;
+
+/**
+ * alertCatalog — 알림 문구 사전 (기존 승인 문구의 SOT화 — 신규 창작 0건).
+ * 수집 출처(문구 원문 그대로):
+ *   fridgeTemp·stockLow·rainOrder·salesHigh → src/data/storeagent-mock-i18n.ts
+ *     PUSH[locale].items[0..3].title (PushNotificationMockup 승인 문구)
+ *   hqFridgeTemp·hqFloorSpill·hqExitBlocked → src/components/mockups/HqRollupDashboardMockup.tsx
+ *     T[locale].feed[0..2].type (HQ 실시간 알림 피드 승인 문구)
+ * 소비처 배선은 별도 담당 — 여기서는 사전만 제공한다.
+ */
+export const alertCatalog = {
+  /** 냉장고 온도 이상 */
+  fridgeTemp: {
+    ko: '긴급: 음료 냉장고 온도 이상 감지',
+    en: 'Urgent: drink fridge temperature anomaly',
+    jp: '緊急: 飲料冷蔵庫の温度異常を検知',
+  },
+  /** 삼각김밥 재고 */
+  stockLow: {
+    ko: '삼각김밥 재고 12개 — 오후 품절 예상',
+    en: 'Rice balls at 12 — afternoon sell-out expected',
+    jp: 'おにぎり在庫12個 — 午後に品切れ見込み',
+  },
+  /** 우산 발주 제안 */
+  rainOrder: {
+    ko: '내일 강수 70% — 우산·우비 발주 제안',
+    en: '70% rain tomorrow — order umbrellas & ponchos',
+    jp: '明日の降水70% — 傘・レインコート発注のご提案',
+  },
+  /** 어제 매출 ('어제 매출' 신 라벨 기준) */
+  salesHigh: {
+    ko: '어제 매출 ₩1,243,000 · 이번 주 최고',
+    en: 'Yesterday’s sales ₩1,243,000 · weekly high',
+    jp: '昨日の売上 ₩1,243,000 · 今週最高',
+  },
+  /** HQ 피드 — 냉장 온도 초과 */
+  hqFridgeTemp: {
+    ko: '냉장 온도 초과',
+    en: 'Fridge temp exceeded',
+    jp: '冷蔵温度の超過',
+  },
+  /** HQ 피드 — 바닥 오염 감지 */
+  hqFloorSpill: {
+    ko: '바닥 오염 감지',
+    en: 'Floor spill detected',
+    jp: '床の汚れを検知',
+  },
+  /** HQ 피드 — 비상구 적치 */
+  hqExitBlocked: {
+    ko: '비상구 적치',
+    en: 'Exit blocked',
+    jp: '非常口の物品',
+  },
+} as const satisfies Record<string, { ko: string; en: string; jp: string }>;
+
+// SOT 교차검증 (v2 확장분) — 주석의 산술 약속을 개발 모드에서 단언
+if (process.env.NODE_ENV !== 'production') {
+  const mixSum = canonicalCategoryMix.reduce((a, c) => a + c.pct, 0);
+  if (mixSum !== 100) {
+    console.warn(`[canonical] categoryMix Σpct=${mixSum} (기대 100)`);
+  }
+  const statusCount = { normal: 0, warning: 0, critical: 0 } as Record<RosterStatus, number>;
+  canonicalRoster.forEach((s) => { statusCount[s.status] += 1; });
+  if (canonicalRoster.length !== 20 || statusCount.normal !== 18 || statusCount.warning !== 1 || statusCount.critical !== 1) {
+    console.warn(
+      `[canonical] roster 분포 불일치: n=${canonicalRoster.length}, ` +
+      `상태=${statusCount.normal}/${statusCount.warning}/${statusCount.critical} (기대 20 · 18/1/1)`,
+    );
+  }
+}
+
 /** 원 단위를 ₩1,245,000 형식으로 포맷 */
 export function formatWon(won: number): string {
   return '₩' + won.toLocaleString('ko-KR');

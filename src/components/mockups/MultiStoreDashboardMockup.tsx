@@ -19,7 +19,7 @@ const D = MOCKUP_DEVICE.desktop;
 import { useCountUpGroup } from '@/hooks/useCountUp';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { stores, chartSets, statusMeta, kpiConfigs } from '@/data/mockup-scenarios/enterprise';
+import { stores, chartSets, statusMeta, kpiConfigs, storeNamesByLocale } from '@/data/mockup-scenarios/enterprise';
 import type { KpiConfig, StoreStatus } from '@/data/mockup-scenarios/enterprise';
 import { type Locale } from '@/lib/i18n';
 
@@ -56,7 +56,8 @@ export interface MultiStoreDashboardCopy {
 
 const C: Record<Locale, MultiStoreDashboardCopy> = {
   ko: {
-    storeNames: { 1: '강남역점', 2: '홍대점', 3: '잠실점', 4: '신촌점', 5: '건대점' },
+    // 매장명은 canonicalRoster.name 파생 (enterprise.ts storeNamesByLocale) — 로케일 드리프트 방지
+    storeNames: storeNamesByLocale.ko,
     statusText: { normal: '정상', warning: '주의', critical: '긴급' },
     kpiLabels: { revenue: '일 매출', visitors: '방문자', alerts: '알림', perf: '성과점수' },
     kpiUnits: { revenue: '만', visitors: '명', alerts: '건', perf: '점' },
@@ -65,7 +66,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     storesConnected: (n) => `예시 ${n}개 매장`,
     realtimeSync: '실시간 동기화',
     aiAnalysis: 'AI 분석',
-    chartVisitors: '방문이 두 차례 몰림 — 두 번째 피크가 가장 높음',
+    chartVisitors: '방문이 두 차례 몰림 — 점심 피크가 가장 높음',
     storePerformance: '매장 성과',
     updatedLabel: '방금 업데이트',
     insightCritical: (name, alerts) => `${name}: 알림 ${alerts}건 미처리. 즉시 확인이 필요합니다.`,
@@ -73,7 +74,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     insightNormal: (name, perf) => `${name}: 정상 운영 중. 오늘 성과 ${perf}점 달성.`,
   },
   en: {
-    storeNames: { 1: 'Gangnam', 2: 'Hongdae', 3: 'Jamsil', 4: 'Sinchon', 5: 'Konkuk' },
+    storeNames: storeNamesByLocale.en,
     statusText: { normal: 'Normal', warning: 'Warning', critical: 'Critical' },
     kpiLabels: { revenue: 'Daily Sales', visitors: 'Visitors', alerts: 'Alerts', perf: 'Performance' },
     kpiUnits: { revenue: 'k', visitors: '', alerts: '', perf: 'pts' },
@@ -82,7 +83,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     storesConnected: (n) => `${n} example stores`,
     realtimeSync: 'Live sync',
     aiAnalysis: 'AI analysis',
-    chartVisitors: 'Two visit surges — the later peak is highest',
+    chartVisitors: 'Two visit surges — the lunch peak is highest',
     storePerformance: 'Store performance',
     updatedLabel: 'Updated just now',
     insightCritical: (name, alerts) => `${name}: ${alerts} alerts unresolved. Immediate review required.`,
@@ -90,7 +91,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     insightNormal: (name, perf) => `${name}: operating normally. Performance ${perf} pts today.`,
   },
   jp: {
-    storeNames: { 1: '江南駅店', 2: '弘大店', 3: '蚕室店', 4: '新村店', 5: '建大店' },
+    storeNames: storeNamesByLocale.jp,
     statusText: { normal: '正常', warning: '注意', critical: '緊急' },
     kpiLabels: { revenue: '日次売上', visitors: '来店者', alerts: 'アラート', perf: '成果スコア' },
     kpiUnits: { revenue: '万', visitors: '人', alerts: '件', perf: '点' },
@@ -99,7 +100,7 @@ const C: Record<Locale, MultiStoreDashboardCopy> = {
     storesConnected: (n) => `サンプル${n}店舗`,
     realtimeSync: 'リアルタイム同期',
     aiAnalysis: 'AI分析',
-    chartVisitors: '来店は二度のピーク — 後半のピークが最も高い',
+    chartVisitors: '来店は二度のピーク — 昼のピークが最も高い',
     storePerformance: '店舗成果',
     updatedLabel: '更新したばかり',
     insightCritical: (name, alerts) => `${name}：アラート${alerts}件が未処理です。直ちに確認が必要です。`,
@@ -305,6 +306,7 @@ export default function MultiStoreDashboardMockup({ active = true, locale = 'en'
               <div className={`col-span-3 ${S.cardClass} p-3 flex flex-col`}>
                 <p className="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t.chartVisitors}</p>
                 <div className="flex items-end gap-0.5 flex-1 min-h-0" aria-hidden="true">
+                  {/* i=3·4 = canonicalDay 12~13시(점심 피크, 9시 시작 12포인트 창) — 하이라이트가 카피와 정합 */}
                   {chartData.map((v, i) => (
                     <motion.div
                       key={`${barsKey}-${i}`}

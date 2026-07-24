@@ -8,7 +8,13 @@ import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { motionEnter, motionAffordance } from '@/lib/mockup-motion';
 import { MOCKUP_STATUS_CLASS, SAAI_COLORS, type MockupStatus } from '@/lib/mockup-tokens';
-import { canonicalHq } from '@/data/mockup-scenarios/canonical';
+import {
+  alertCatalog,
+  canonicalHq,
+  canonicalRoster,
+  type RosterStatus,
+  type RosterStore,
+} from '@/data/mockup-scenarios/canonical';
 import { type Locale } from '@/lib/i18n';
 
 /**
@@ -39,16 +45,59 @@ const HQ = {
   visitNeeded: String(canonicalHq.statusDistribution.critical),
 } as const;
 
+// D6(v2): 매장 랭킹 = canonicalRoster 파생 — 상태 나쁜 순(critical→warning→normal,
+// 신촌 critical 우선), 동상태에선 방문 많은 순. 7일 사고 건수는 값 박제 대신
+// 방문 규모·상태 기반 결정적 산식으로 파생한다:
+//   incidents7d = round(dailyVisitors × INCIDENT_MULT[status] ÷ 30)
+// (방문이 많고 상태가 나쁠수록 사고가 잦다는 단순 비례 —
+//  신촌 13 · 안양 6 · 강남역 3 · 분당 3, Σ = RANK_TOTAL = 25)
+const ROSTER_SEV: Record<RosterStatus, Sev> = { normal: 'ok', warning: 'warn', critical: 'risk' };
+const INCIDENT_MULT: Record<RosterStatus, number> = { critical: 2, warning: 1.2, normal: 0.3 };
+const incidents7d = (s: RosterStore): number =>
+  Math.round((s.dailyVisitors * INCIDENT_MULT[s.status]) / 30);
+const STATUS_RANK: Record<RosterStatus, number> = { critical: 0, warning: 1, normal: 2 };
+const RANKED: RosterStore[] = [...canonicalRoster]
+  .sort((a, b) => STATUS_RANK[a.status] - STATUS_RANK[b.status] || b.dailyVisitors - a.dailyVisitors)
+  .slice(0, 4);
+const RANK_TOTAL = RANKED.reduce((sum, s) => sum + incidents7d(s), 0);
+
+// 유형별 바 = 랭킹 4행과 같은 사고 풀의 유형 분해 — Σ바 = Σ랭킹 = RANK_TOTAL
+// (핍진성 체크리스트 2항: 화면 내 합계 산술 정합). 비중은 기존 승인 분포
+// (위생 42 / 설비 28 / 도난 19 / 안전 11 %)를 유지하되 최대잔여법으로 정수 배분
+// → 10/7/5/3건.
+const TYPE_SHARE = [0.42, 0.28, 0.19, 0.11] as const;
+const BAR_COUNTS: number[] = (() => {
+  const counts = TYPE_SHARE.map((r) => Math.floor(RANK_TOTAL * r));
+  const rest = RANK_TOTAL - counts.reduce((a, n) => a + n, 0);
+  TYPE_SHARE
+    .map((r, i) => ({ i, frac: RANK_TOTAL * r - counts[i] }))
+    .sort((a, b) => b.frac - a.frac || a.i - b.i)
+    .slice(0, rest)
+    .forEach(({ i }) => { counts[i] += 1; });
+  return counts;
+})();
+
+// 실시간 알림 피드 — 문구는 alertCatalog(SOT) 참조, 매장은 roster 참조(승인 고유명사만).
+// 알림 심각도는 매장 상태와 별개다(정상 매장에도 주의 알림은 뜬다) — 단, 위험 알림은
+// critical 매장(신촌)에 붙여 랭킹 연출과 정합시킨다.
+const rosterStore = (slug: string): RosterStore => {
+  const s = canonicalRoster.find((r) => r.slug === slug);
+  if (!s) throw new Error(`[HqRollup] canonicalRoster에 없는 slug: ${slug}`);
+  return s;
+};
+const FEED_DEF = [
+  { type: alertCatalog.hqFridgeTemp, store: rosterStore('sinchon'), sev: 'risk' },
+  { type: alertCatalog.hqFloorSpill, store: rosterStore('seomyeon'), sev: 'warn' },
+  { type: alertCatalog.hqExitBlocked, store: rosterStore('anyang'), sev: 'warn' },
+] satisfies { type: Record<Locale, string>; store: RosterStore; sev: Sev }[];
+
 const dict: Record<Locale, {
   brand: string; scope: string; live: string;
   kpis: { label: string; value: string }[];
   rankTitle: string; colStore: string; colIncidents: string; colStatus: string;
-  rows: { store: string; n: string; sev: Sev; status: string }[];
   feedTitle: string;
-  feed: { type: string; store: string; sev: Sev }[];
-  barsTitle: string;
-  bars: { label: string; pct: number }[];
-  sevLegend: { ok: string; warn: string; risk: string };
+  barsTitle: string; barLabels: string[]; caseUnit: string;
+  sevLegend: Record<Sev, string>;
   seal: string; caption: string;
 }> = {
   ko: {
@@ -60,25 +109,10 @@ const dict: Record<Locale, {
       { label: '방문 필요', value: HQ.visitNeeded },
     ],
     rankTitle: '매장 랭킹 — 사고 건수', colStore: '매장', colIncidents: '7일 건수', colStatus: '상태',
-    rows: [
-      { store: '강남 2호점', n: '12', sev: 'risk', status: '위험' },
-      { store: '판교 테크원점', n: '7', sev: 'warn', status: '주의' },
-      { store: '홍대입구점', n: '5', sev: 'warn', status: '주의' },
-      { store: '잠실 롯데점', n: '1', sev: 'ok', status: '정상' },
-    ],
     feedTitle: '실시간 알림',
-    feed: [
-      { type: '냉장 온도 초과', store: '강남 2호점', sev: 'risk' },
-      { type: '바닥 오염 감지', store: '서면점', sev: 'warn' },
-      { type: '비상구 적치', store: '판교 테크원점', sev: 'warn' },
-    ],
-    barsTitle: '유형별 이상 (이번 주)',
-    bars: [
-      { label: '위생', pct: 42 },
-      { label: '설비', pct: 28 },
-      { label: '도난·이상', pct: 19 },
-      { label: '안전', pct: 11 },
-    ],
+    barsTitle: '유형별 이상 — 상위 4개점 · 7일',
+    barLabels: ['위생', '설비', '도난·이상', '안전'],
+    caseUnit: '건',
     sevLegend: { ok: '정상', warn: '주의', risk: '위험' },
     seal: 'SEAL 익명화 — 원본 미보존', caption: '* 샘플 화면 · 데이터 예시',
   },
@@ -91,25 +125,10 @@ const dict: Record<Locale, {
       { label: 'Visit needed', value: HQ.visitNeeded },
     ],
     rankTitle: 'Store ranking — incidents', colStore: 'Store', colIncidents: '7-day', colStatus: 'Status',
-    rows: [
-      { store: 'Gangnam #2', n: '12', sev: 'risk', status: 'At risk' },
-      { store: 'Pangyo TechOne', n: '7', sev: 'warn', status: 'Watch' },
-      { store: 'Hongdae', n: '5', sev: 'warn', status: 'Watch' },
-      { store: 'Jamsil Lotte', n: '1', sev: 'ok', status: 'OK' },
-    ],
     feedTitle: 'Live alerts',
-    feed: [
-      { type: 'Fridge temp exceeded', store: 'Gangnam #2', sev: 'risk' },
-      { type: 'Floor spill detected', store: 'Seomyeon', sev: 'warn' },
-      { type: 'Exit blocked', store: 'Pangyo TechOne', sev: 'warn' },
-    ],
-    barsTitle: 'Anomalies by type (this week)',
-    bars: [
-      { label: 'Hygiene', pct: 42 },
-      { label: 'Equipment', pct: 28 },
-      { label: 'Theft·anomaly', pct: 19 },
-      { label: 'Safety', pct: 11 },
-    ],
+    barsTitle: 'By type — top 4 stores · 7 days',
+    barLabels: ['Hygiene', 'Equipment', 'Theft·anomaly', 'Safety'],
+    caseUnit: '',
     sevLegend: { ok: 'OK', warn: 'Watch', risk: 'At risk' },
     seal: 'Anonymized by SEAL — no footage stored', caption: '* Sample screen · illustrative data',
   },
@@ -122,25 +141,10 @@ const dict: Record<Locale, {
       { label: '訪問が必要', value: HQ.visitNeeded },
     ],
     rankTitle: '店舗ランキング — 事故件数', colStore: '店舗', colIncidents: '7日間', colStatus: '状態',
-    rows: [
-      { store: '江南2号店', n: '12', sev: 'risk', status: '危険' },
-      { store: '板橋テックワン店', n: '7', sev: 'warn', status: '注意' },
-      { store: '弘大入口店', n: '5', sev: 'warn', status: '注意' },
-      { store: '蚕室ロッテ店', n: '1', sev: 'ok', status: '正常' },
-    ],
     feedTitle: 'リアルタイムアラート',
-    feed: [
-      { type: '冷蔵温度の超過', store: '江南2号店', sev: 'risk' },
-      { type: '床の汚れを検知', store: '西面店', sev: 'warn' },
-      { type: '非常口の物品', store: '板橋テックワン店', sev: 'warn' },
-    ],
-    barsTitle: 'タイプ別の異常（今週）',
-    bars: [
-      { label: '衛生', pct: 42 },
-      { label: '設備', pct: 28 },
-      { label: '盗難·異常', pct: 19 },
-      { label: '安全', pct: 11 },
-    ],
+    barsTitle: 'タイプ別の異常 — 上位4店舗 · 7日間',
+    barLabels: ['衛生', '設備', '盗難·異常', '安全'],
+    caseUnit: '件',
     sevLegend: { ok: '正常', warn: '注意', risk: '危険' },
     seal: 'SEALで匿名化 — 原本は保存しません', caption: '* サンプル画面 · データは例示',
   },
@@ -166,17 +170,29 @@ export default function HqRollupDashboardMockup({
   immediate?: boolean;
 }) {
   const t = dict[locale];
+  // roster·catalog 파생 뷰모델 — 수치·매장·문구는 canonical SOT, 여기서는 로케일 표기만 결합
+  const rows = RANKED.map((s) => ({
+    store: s.name[locale],
+    n: String(incidents7d(s)),
+    sev: ROSTER_SEV[s.status],
+  }));
+  const feedItems = FEED_DEF.map((f) => ({
+    type: f.type[locale],
+    store: f.store.name[locale],
+    sev: f.sev,
+  }));
+  const bars = t.barLabels.map((label, i) => ({ label, count: BAR_COUNTS[i] }));
   const kpiIcons = [AlertTriangle, Thermometer, Bell, MapPin];
   const reduced = usePrefersReducedMotion();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.3, immediate });
   // live alert feed — rotate the newest to the top while in view (pause on hover)
   const { step: feedStep, hoverProps } = useMockupLoop({
-    steps: t.feed.length,
+    steps: feedItems.length,
     interval: 2800,
     active: isVisible,
     pauseOnHover: true,
   });
-  const feed = [...t.feed.slice(feedStep), ...t.feed.slice(0, feedStep)];
+  const feed = [...feedItems.slice(feedStep), ...feedItems.slice(0, feedStep)];
   return (
     <figure ref={ref} {...hoverProps} role="img" aria-label={ariaLabel ?? t.brand} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-elevated">
       {/* chrome header */}
@@ -233,7 +249,7 @@ export default function HqRollupDashboardMockup({
                   </tr>
                 </thead>
                 <tbody>
-                  {t.rows.map((r, i) => (
+                  {rows.map((r, i) => (
                     <tr
                       key={r.store}
                       className="border-t border-gray-100"
@@ -246,7 +262,7 @@ export default function HqRollupDashboardMockup({
                     >
                       <td className="truncate px-3 py-2 text-xs font-medium text-gray-900">{r.store}</td>
                       <td className="px-3 py-2 text-xs text-gray-700 tabular-nums">{r.n}</td>
-                      <td className="px-3 py-2"><Pill sev={r.sev} label={r.status} /></td>
+                      <td className="px-3 py-2"><Pill sev={r.sev} label={t.sevLegend[r.sev]} /></td>
                     </tr>
                   ))}
                 </tbody>
@@ -286,20 +302,21 @@ export default function HqRollupDashboardMockup({
         <div>
           <p className="mb-2 text-xs font-bold text-gray-700">{t.barsTitle}</p>
           <div className="space-y-2">
-            {t.bars.map((b, i) => (
+            {bars.map((b, i) => (
               <div key={b.label} className="flex items-center gap-3">
                 <span className="w-20 shrink-0 text-2xs text-gray-500 break-keep">{b.label}</span>
                 <span className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
                   <span
                     className="block h-full rounded-full bg-primary"
                     style={{
-                      width: isVisible ? `${b.pct}%` : '0%',
+                      /* 바 폭 = 건수 ÷ RANK_TOTAL — 유형 합이 랭킹 합과 같으므로 구성비로 안전 */
+                      width: isVisible ? `${(b.count / RANK_TOTAL) * 100}%` : '0%',
                       transition: reduced ? undefined : 'width 0.7s var(--ease-out-cubic)',
                       transitionDelay: reduced ? undefined : `${0.2 + i * 0.1}s`,
                     }}
                   />
                 </span>
-                <span className="w-8 shrink-0 text-right text-2xs text-gray-400 tabular-nums">{b.pct}%</span>
+                <span className="w-10 shrink-0 text-right text-2xs text-gray-400 tabular-nums">{b.count}{t.caseUnit}</span>
               </div>
             ))}
           </div>

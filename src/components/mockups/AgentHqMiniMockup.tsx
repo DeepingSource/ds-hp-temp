@@ -1,6 +1,6 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
-import { canonicalStore, canonicalStoreName, canonicalHq } from '@/data/mockup-scenarios/canonical';
+import { canonicalHq, canonicalRoster } from '@/data/mockup-scenarios/canonical';
 import { SAAI_COLORS } from '@/lib/mockup-tokens';
 
 /**
@@ -15,14 +15,20 @@ import { SAAI_COLORS } from '@/lib/mockup-tokens';
 type Tri = { ko: string; en: string; jp: string };
 const tri = (ko: string, en: string, jp: string): Tri => ({ ko, en, jp });
 
-// D6: 강남역점 방문 = canonicalStore.visitorsToday(342) · 전환율 = 구매÷방문 렌더 시
-// 산출(23.1/20.5/18.8/17.5%) — 표기와 산술이 항상 일치. KPI는 표시 행 합에서 파생.
-const ROWS: { store: Tri; visits: number; purchases: number; up: boolean }[] = [
-  { store: canonicalStoreName, visits: canonicalStore.visitorsToday, purchases: 79, up: true },
-  { store: tri('홍대점', 'Hongdae', '弘大店'), visits: 298, purchases: 61, up: true },
-  { store: tri('잠실점', 'Jamsil', '蚕室店'), visits: 276, purchases: 52, up: false },
-  { store: tri('신촌점', 'Sinchon', '新村店'), visits: 189, purchases: 33, up: false },
-];
+// D6: 매장명·방문 = canonicalRoster 파생(name·dailyVisitors — 강남역 342·홍대 298·
+// 잠실 276·신촌 189). 구매(79/61/52/33)는 roster에 없어 파일 내 상수로 유지 —
+// 전환율 = 구매÷방문 렌더 시 산출(23.1/20.5/18.8/17.5%), 표기와 산술이 항상 일치.
+// KPI는 표시 행 합에서 파생.
+const rosterStore = (slug: string) => canonicalRoster.find((s) => s.slug === slug)!;
+const ROWS: { store: Tri; visits: number; purchases: number; up: boolean }[] = ([
+  { slug: 'gangnam-stn', purchases: 79, up: true },
+  { slug: 'hongdae', purchases: 61, up: true },
+  { slug: 'jamsil', purchases: 52, up: false },
+  { slug: 'sinchon', purchases: 33, up: false },
+] as const).map(({ slug, purchases, up }) => {
+  const s = rosterStore(slug);
+  return { store: s.name, visits: s.dailyVisitors, purchases, up };
+});
 const convPct = (r: { visits: number; purchases: number }) =>
   `${((r.purchases / r.visits) * 100).toFixed(1)}%`;
 const totalVisits = ROWS.reduce((a, r) => a + r.visits, 0); // 1,105

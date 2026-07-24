@@ -32,12 +32,22 @@ import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
+import { canonicalDoorTraffic } from '@/data/mockup-scenarios/canonical';
 
-// 홈 ProblemBeat에서 이식한 매장 전체 퍼널(382→65·−317) — 정제계획 §8-2 · C2.
-// Beat 4 kpis(1,160·382·317·65)와 같은 숫자 세계관 (매대 단위 FunnelDiagram 대체).
+// 홈 ProblemBeat에서 이식한 매장 전체 퍼널(342→65) — 정제계획 §8-2 · C2.
+// Beat 4 kpis(1,036·342·317·65)와 같은 숫자 세계관 (매대 단위 FunnelDiagram 대체)
+// — canonicalDoorTraffic 파생 (MM Phase 2 2-⑥).
 const InsightFunnelBlock = dynamic(() => import('@/components/corporate/InsightFunnelBlock'), {
   loading: () => <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />,
 });
+
+// canonicalDoorTraffic 파생 표기 문자열 — Beat 4 kpis·funnelSub 3로케일 공유
+const DT = {
+  passersby: canonicalDoorTraffic.passersby.toLocaleString('en-US'), // '1,036'
+  entered: String(canonicalDoorTraffic.entered), // '342'
+  browsed: String(canonicalDoorTraffic.browsed), // '317'
+  purchased: String(canonicalDoorTraffic.purchased), // '65'
+};
 
 const C: Record<Locale, {
   heroTitle: [string, string];
@@ -104,12 +114,12 @@ const C: Record<Locale, {
       { title: '개선 성과 검증', subtitle: '바꾼 레이아웃이 실제 먹혔는가', desc: '바꾼 레이아웃의 효과를 체류·전환 데이터로 입증합니다.' },
     ],
     funnelHeading: '지나감에서 결제까지, 보이지 않던 손님이 보입니다',
-    funnelSub: 'POS엔 결제한 65명만 남지만, saai insight는 입문 앞의 1,160명 전체 행동 퍼널을 펼쳐 어디서 새는지 찾습니다.',
+    funnelSub: `POS엔 결제한 ${DT.purchased}명만 남지만, saai insight는 입문 앞의 ${DT.passersby}명 전체 행동 퍼널을 펼쳐 어디서 새는지 찾습니다.`,
     kpis: [
-      { label: '지나감', desc: '매장 앞을 지난 1,160명' },
-      { label: '입장', desc: '안으로 들어온 382명' },
-      { label: '체류', desc: '둘러보다 나간 317명' },
-      { label: '결제', desc: 'POS에 남은 65명' },
+      { label: '지나감', desc: `매장 앞을 지난 ${DT.passersby}명` },
+      { label: '입장', desc: `안으로 들어온 ${DT.entered}명` },
+      { label: '체류', desc: `둘러보다 나간 ${DT.browsed}명` },
+      { label: '결제', desc: `POS에 남은 ${DT.purchased}명` },
     ],
     baHeading: '감으로 보던 매장, 데이터로 봅니다',
     baBeforeLabel: 'BEFORE · 감으로 보던 매장',
@@ -188,12 +198,12 @@ const C: Record<Locale, {
       { title: 'Measuring Optimization Impact', subtitle: 'Did the new layout work?', desc: 'Prove a layout change worked, with dwell and conversion data.' },
     ],
     funnelHeading: 'From passing by to paying — the invisible majority, made visible',
-    funnelSub: 'POS keeps only the 65 who paid. saai insight unfolds the 1,160 pre-entry funnel to pinpoint where leaks occur.',
+    funnelSub: `POS keeps only the ${DT.purchased} who paid. saai insight unfolds the ${DT.passersby} pre-entry funnel to pinpoint where leaks occur.`,
     kpis: [
-      { label: 'Passed by', desc: '1,160 walked past' },
-      { label: 'Entered', desc: '382 came inside' },
-      { label: 'Dwelled', desc: '317 browsed, then left' },
-      { label: 'Paid', desc: '65 reached your POS' },
+      { label: 'Passed by', desc: `${DT.passersby} walked past` },
+      { label: 'Entered', desc: `${DT.entered} came inside` },
+      { label: 'Dwelled', desc: `${DT.browsed} browsed, then left` },
+      { label: 'Paid', desc: `${DT.purchased} reached your POS` },
     ],
     baHeading: 'The store you ran on instinct, now seen in data',
     baBeforeLabel: 'BEFORE · Run on instinct',
@@ -272,12 +282,12 @@ const C: Record<Locale, {
       { title: '改善成果の検証', subtitle: '変更したレイアウトは効果があったか', desc: '変更の効果を滞在・転換データで証明します。' },
     ],
     funnelHeading: '通過から決済まで、見えなかったお客様が見えます',
-    funnelSub: 'POS に残るのは決済した 65 人だけ。saai insight は 1,160 人の全体行動ファネルを広げ取りこぼしを探します。',
+    funnelSub: `POS に残るのは決済した ${DT.purchased} 人だけ。saai insight は ${DT.passersby} 人の全体行動ファネルを広げ取りこぼしを探します。`,
     kpis: [
-      { label: '通過', desc: '店頭を通った 1,160 人' },
-      { label: '入店', desc: '中に入った 382 人' },
-      { label: '滞在', desc: '見て回り出た 317 人' },
-      { label: '決済', desc: 'POS に残った 65 人' },
+      { label: '通過', desc: `店頭を通った ${DT.passersby} 人` },
+      { label: '入店', desc: `中に入った ${DT.entered} 人` },
+      { label: '滞在', desc: `見て回り出た ${DT.browsed} 人` },
+      { label: '決済', desc: `POS に残った ${DT.purchased} 人` },
     ],
     baHeading: '感覚で見ていた店舗を、データで見ます',
     baBeforeLabel: 'BEFORE · 感覚で見る店舗',

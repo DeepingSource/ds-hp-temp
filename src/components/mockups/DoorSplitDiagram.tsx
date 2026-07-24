@@ -7,14 +7,24 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { ease } from '@/lib/easing';
 import { CountUp } from '@/components/ui/CountUp';
+import { canonicalDoorTraffic } from '@/data/mockup-scenarios/canonical';
 
 /**
  * DoorSplitDiagram — count(outside) ↔ insight(inside) boundary (product-reorg D4, §10.5).
- * Left of the door: store count reads footfall + capture rate (382 ÷ 1,160 = 33%).
+ * Left of the door: store count reads footfall + capture rate (342 ÷ 1,036 = 33%).
  * Right of the door: store insight reads flow/dwell (heatmap) + the conversion
- * funnel (382→317→65). Shared on both product pages as a contrast pair. Inline
+ * funnel (342→317→65). Shared on both product pages as a contrast pair. Inline
  * SVG/CSS, no raster. Sample values (caption marks it).
+ * Numbers derive from canonicalDoorTraffic (MM Phase 2 2-⑥ — no local hardcoding).
  */
+
+// canonicalDoorTraffic 파생 표기 문자열 — dict 3로케일이 공유 (수치 변경은 canonical.ts에서)
+const N = {
+  passersby: canonicalDoorTraffic.passersby.toLocaleString('en-US'), // '1,036'
+  entered: String(canonicalDoorTraffic.entered), // '342'
+  browsed: String(canonicalDoorTraffic.browsed), // '317'
+  purchased: String(canonicalDoorTraffic.purchased), // '65'
+};
 
 // MockupViewport 예외(MM §5 1b): 제품 UI 재현이 아닌 순수 개념 다이어그램이라
 // 고정 캔버스 대신 sm: 그리드 재배치(세로↔가로)가 설계 의도 — 강제 스케일은
@@ -29,31 +39,31 @@ const dict: Record<Locale, {
 }> = {
   ko: {
     outsideTag: '문 밖 · store count', outsideTitle: '상권·통행·유입률',
-    passersby: '지나감', passersbyN: '1,160',
-    captureLabel: '유입률', captureRate: 33, captureSub: '입장 382 ÷ 지나감 1,160',
+    passersby: '지나감', passersbyN: N.passersby,
+    captureLabel: '유입률', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `입장 ${N.entered} ÷ 지나감 ${N.passersby}`,
     insideTag: '문 안 · store insight', insideTitle: '동선·체류·전환',
     heatLabel: '체류 히트맵',
-    funnel: [{ label: '입장', n: '382' }, { label: '체류', n: '317' }, { label: '구매', n: '65' }],
+    funnel: [{ label: '입장', n: N.entered }, { label: '체류', n: N.browsed }, { label: '구매', n: N.purchased }],
     boundary: 'store count는 문 밖의 통행을, store insight는 문 안에서 무슨 일이 왜 일어났는지를 — 유입률이 둘을 잇습니다.',
     caption: '* 수치는 설명용 예시입니다.',
   },
   en: {
     outsideTag: 'Outside · store count', outsideTitle: 'Trade area · footfall · capture rate',
-    passersby: 'Passing by', passersbyN: '1,160',
-    captureLabel: 'Inflow rate', captureRate: 33, captureSub: 'Entered 382 ÷ passing 1,160',
+    passersby: 'Passing by', passersbyN: N.passersby,
+    captureLabel: 'Inflow rate', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `Entered ${N.entered} ÷ passing ${N.passersby}`,
     insideTag: 'Inside · store insight', insideTitle: 'Flow · dwell · conversion',
     heatLabel: 'Dwell heatmap',
-    funnel: [{ label: 'Entered', n: '382' }, { label: 'Dwell', n: '317' }, { label: 'Bought', n: '65' }],
+    funnel: [{ label: 'Entered', n: N.entered }, { label: 'Dwell', n: N.browsed }, { label: 'Bought', n: N.purchased }],
     boundary: 'store count reads the footfall outside the door; store insight reads what happened inside, and why — capture rate is the handoff between them.',
     caption: '* Figures are illustrative.',
   },
   jp: {
     outsideTag: '店の外 · store count', outsideTitle: '商圏・通行・流入率',
-    passersby: '通行', passersbyN: '1,160',
-    captureLabel: '流入率', captureRate: 33, captureSub: '入店 382 ÷ 通行 1,160',
+    passersby: '通行', passersbyN: N.passersby,
+    captureLabel: '流入率', captureRate: canonicalDoorTraffic.captureRatePct, captureSub: `入店 ${N.entered} ÷ 通行 ${N.passersby}`,
     insideTag: '店の中 · store insight', insideTitle: '動線・滞在・転換',
     heatLabel: '滞在ヒートマップ',
-    funnel: [{ label: '入店', n: '382' }, { label: '滞在', n: '317' }, { label: '購入', n: '65' }],
+    funnel: [{ label: '入店', n: N.entered }, { label: '滞在', n: N.browsed }, { label: '購入', n: N.purchased }],
     boundary: 'store count は店の外の通行を、store insight は店の中で何がなぜ起きたかを — 流入率が両者をつなぎます。',
     caption: '* 数値は説明用の例示です。',
   },
@@ -118,7 +128,7 @@ export default function DoorSplitDiagram({ locale, ariaLabel }: { locale: Locale
               <span key={f.label} className="flex-1 text-center">
                 <motion.span
                   className="block origin-bottom rounded-t bg-primary/80"
-                  style={{ height: `${(Number(f.n) / 382) * 36 + 8}px` }}
+                  style={{ height: `${(Number(f.n) / canonicalDoorTraffic.entered) * 36 + 8}px` }}
                   initial={{ scaleY: 0 }}
                   animate={{ scaleY: show ? 1 : 0 }}
                   transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.3 + i * 0.12, ease: ease.outCubic }}
