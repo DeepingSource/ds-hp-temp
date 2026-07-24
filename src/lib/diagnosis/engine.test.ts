@@ -76,7 +76,7 @@ describe('diagnosis engine — 되감기 신호 재구축 (v3 §7 시나리오 D
     expect(rewound.resultSlug).toBeNull();
 
     // 다른 클러스터로 재진행 — 1-slug 직행 + 증상 질문 경유
-    let s2 = applyAnswer(kb, rewound, 'problem-cluster', 'cafe:merchandising');
+    const s2 = applyAnswer(kb, rewound, 'problem-cluster', 'cafe:merchandising');
     expect(s2.resultSlug).toBe('cafe-low-seat-turnover');
     const next = nextStep(kb, s2);
     expect(next.kind).toBe('question');

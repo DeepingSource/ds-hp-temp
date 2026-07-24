@@ -307,7 +307,7 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
         <Container className="max-w-4xl text-center">
           <Eyebrow tone="light" className="mb-3 justify-center">{c.threatEyebrow}</Eyebrow>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-display break-keep">
-            "{c.threatTitle}"
+            &quot;{c.threatTitle}&quot;
           </h2>
           <p className="text-lg text-slate-300 leading-relaxed break-keep">
             {c.threatBody}

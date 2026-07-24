@@ -194,7 +194,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
             {belief.whyTitle}
           </span>
           <p className="text-xl sm:text-2xl font-bold leading-relaxed text-slate-100 break-keep">
-            "{belief.whyBody}"
+            &quot;{belief.whyBody}&quot;
           </p>
         </div>
       </AnimatedSection>
