@@ -2236,10 +2236,10 @@
     "en": {
       "badge": "Retail · Convenience",
       "heroTitle": [
-        "Never miss a stockout",
-        "or an anomaly"
+        "Across every store,",
+        "never miss a stockout or an anomaly"
       ],
-      "heroSub": "Out-of-stock, store-to-store inconsistency, and easy-to-miss anomalies. We watch the core problems of store operations by the same standard, for consistent operations.",
+      "heroSub": "Out-of-stock, store-to-store variance, and easy-to-miss anomalies — we watch every store by the same standard, building the consistency HQ needs.",
       "heroCta": "Request a consultation",
       "scenariosEyebrow": "Common on-site problems",
       "scenariosHeading": "Three moments on the floor",
@@ -2250,10 +2250,10 @@
       "resultsNote": "* Illustrative, based on customer cases — results vary by store conditions.",
       "ctaEyebrow": "Free consultation",
       "ctaTitle": [
-        "Build the operating standard",
-        "that fits your store"
+        "Set the same operating standard",
+        "across every store"
       ],
-      "ctaSub": "Tell us about your store and we will guide you to the right approach.",
+      "ctaSub": "Tell us your store count and situation — we will propose an HQ-level rollout.",
       "ctaButton": "Request a consultation",
       "baEyebrow": "What changes",
       "baHeading": "From watching, to knowing first",
@@ -2281,7 +2281,7 @@
         },
         {
           "before": "Operating standards that differ store by store",
-          "after": "Compared by one standard — consistent, run as one store"
+          "after": "Multi-store operations aligned to the HQ standard"
         },
         {
           "before": "Someone watching the monitor all day",
@@ -2293,9 +2293,9 @@
       "badge": "리테일 · 편의점",
       "heroTitle": [
         "결품도 이상도,",
-        "놓치지 않는 매장"
+        "모든 지점에서 놓치지 않는 매장"
       ],
-      "heroSub": "결품, 매장 간 운영 편차, 놓치기 쉬운 이상 상황까지. 매장 운영의 핵심 문제를 같은 기준으로 살펴 일관된 운영을 돕습니다.",
+      "heroSub": "결품, 지점 간 운영 편차, 놓치기 쉬운 이상까지 — 전 매장을 같은 기준으로 살펴 본사가 원하는 일관성을 만듭니다.",
       "heroCta": "도입 상담 신청",
       "scenariosEyebrow": "자주 마주치는 현장 문제",
       "scenariosHeading": "현장의 세 가지 순간",
@@ -2306,10 +2306,10 @@
       "resultsNote": "* 고객사 사례 기준 예시 — 매장 조건에 따라 다를 수 있습니다.",
       "ctaEyebrow": "무료 상담",
       "ctaTitle": [
-        "우리 매장에 맞는",
-        "운영 기준을 만들어 보세요"
+        "전 지점에 같은",
+        "운영 기준을 세워 보세요"
       ],
-      "ctaSub": "매장 현황을 알려주시면 적합한 적용 방안을 안내해 드립니다.",
+      "ctaSub": "운영 중인 지점 규모와 현황을 알려주시면 본사 단위 도입 방안을 안내해 드립니다.",
       "ctaButton": "도입 상담 신청",
       "baEyebrow": "무엇이 달라지나요",
       "baHeading": "지켜보던 운영에서, 먼저 아는 운영으로",
@@ -2337,7 +2337,7 @@
         },
         {
           "before": "매장마다 제각각인 운영 수준",
-          "after": "같은 기준으로 비교되는, 한 매장처럼 일관된 운영"
+          "after": "본사 기준으로 정렬된 다점포 운영"
         },
         {
           "before": "사람이 종일 모니터를 지켜봐야 하는 일",
@@ -2349,9 +2349,9 @@
       "badge": "リテール · コンビニ",
       "heroTitle": [
         "欠品も異常も、",
-        "見逃さない店舗"
+        "全店舗で見逃さない店舗"
       ],
-      "heroSub": "欠品、店舗間の運営のばらつき、見逃しやすい異常まで。店舗運営の核心的な課題を同じ基準で見守り、一貫した運営を支援します。",
+      "heroSub": "欠品、店舗間の運営のばらつき、見逃しやすい異常まで — 全店舗を同じ基準で見守り、本部が求める一貫性をつくります。",
       "heroCta": "導入のご相談",
       "scenariosEyebrow": "よく直面する現場の課題",
       "scenariosHeading": "現場の三つの瞬間",
@@ -2362,10 +2362,10 @@
       "resultsNote": "* 導入事例に基づく例 — 店舗条件により異なる場合があります。",
       "ctaEyebrow": "無料相談",
       "ctaTitle": [
-        "自店に合った",
-        "運営基準をつくりましょう"
+        "全店舗に同じ",
+        "運営基準を築きましょう"
       ],
-      "ctaSub": "店舗の状況をお知らせいただければ、最適な導入方法をご案内します。",
+      "ctaSub": "運営中の店舗数と状況をお知らせいただければ、本部単位の導入方法をご案内します。",
       "ctaButton": "導入のご相談",
       "baEyebrow": "何が変わるのか",
       "baHeading": "見守る運営から、先に気づく運営へ",
@@ -2393,7 +2393,7 @@
         },
         {
           "before": "店舗ごとにばらばらな運営水準",
-          "after": "同じ基準で比較される、ひとつの店舗のような一貫した運営"
+          "after": "本部基準に揃った多店舗運営"
         },
         {
           "before": "人が一日中モニターを見守る作業",
@@ -2654,7 +2654,7 @@
         "managed at a glance"
       ],
       "heroSub": "However large the space, see it at a glance. We unify crowd management, flow analysis, and anomaly detection under the same standard to support large-space operations.",
-      "heroCta": "Enterprise consultation",
+      "heroCta": "Request a consultation",
       "scenariosEyebrow": "Operating challenges of large spaces",
       "scenariosHeading": "Even a vast space, one flow",
       "quote": "\"It was large and multi-level, so it was hard to tell where it was crowded — but seeing the whole space on one screen lets us prepare staffing and guidance in advance.\"",
@@ -2668,7 +2668,7 @@
         "into one operating system"
       ],
       "ctaSub": "Tell us the scale and environment of the spaces you run, and we will guide you to an enterprise-wide approach.",
-      "ctaButton": "Enterprise consultation",
+      "ctaButton": "Request a consultation",
       "mtmcBadge": "Spatial AI · MTMC",
       "mtmcHeading": "Many cameras, as one space",
       "mtmcBody": "MTMC (Multi-Target Multi-Camera) Spatial AI stitches the views of scattered cameras into a single space. It follows flow seamlessly across wide floors and levels, so a large space can be watched like one store.",
@@ -2703,7 +2703,7 @@
         "한눈에 관리"
       ],
       "heroSub": "아무리 넓은 공간도 한눈에. 혼잡 관리, 동선 분석, 이상 감지를 같은 기준으로 통합해 대형 공간 운영을 돕습니다.",
-      "heroCta": "본사 도입 상담",
+      "heroCta": "도입 상담 신청",
       "scenariosEyebrow": "대형 공간의 운영 과제",
       "scenariosHeading": "넓은 공간도, 하나의 흐름으로",
       "quote": "\"넓고 층이 많아 어디가 붐비는지 파악이 어려웠는데, 전체 공간을 한 화면으로 보니 인력 배치와 안내를 미리 준비할 수 있게 됐습니다.\"",
@@ -2717,7 +2717,7 @@
         "하나의 운영 체계로"
       ],
       "ctaSub": "운영 중인 공간 규모와 환경을 알려주시면 본사 단위 적용 방안을 안내해 드립니다.",
-      "ctaButton": "본사 도입 상담",
+      "ctaButton": "도입 상담 신청",
       "mtmcBadge": "Spatial AI · MTMC",
       "mtmcHeading": "여러 카메라를 하나의 공간으로",
       "mtmcBody": "MTMC(Multi-Target Multi-Camera) 공간 AI는 흩어진 여러 카메라의 시야를 하나의 공간으로 이어 붙입니다. 넓은 매장과 층을 넘나드는 흐름도 끊김 없이 이해해, 대형 공간을 한 매장처럼 살필 수 있도록 돕습니다.",
@@ -2752,7 +2752,7 @@
         "ひと目で管理"
       ],
       "heroSub": "どれほど広い空間も、ひと目で。混雑管理、動線分析、異常検知を同じ基準で統合し、大型空間の運営を支援します。",
-      "heroCta": "本社導入のご相談",
+      "heroCta": "導入のご相談",
       "scenariosEyebrow": "大型空間の運営課題",
       "scenariosHeading": "広い空間も、ひとつの流れで",
       "quote": "「広く階数が多くどこが混んでいるか把握が難しかったのですが、空間全体を一つの画面で見ることで、人員配置と案内を前もって準備できるようになりました。」",
@@ -2766,7 +2766,7 @@
         "ひとつの運営体系へ"
       ],
       "ctaSub": "運営中の空間の規模と環境をお知らせいただければ、本社単位の導入方法をご案内します。",
-      "ctaButton": "本社導入のご相談",
+      "ctaButton": "導入のご相談",
       "mtmcBadge": "Spatial AI · MTMC",
       "mtmcHeading": "複数のカメラをひとつの空間へ",
       "mtmcBody": "MTMC(Multi-Target Multi-Camera)空間AIは、散らばった複数カメラの視野をひとつの空間へとつなぎ合わせます。広い店舗や階をまたぐ流れも途切れなく理解し、大型空間をひとつの店舗のように見守れるよう支援します。",

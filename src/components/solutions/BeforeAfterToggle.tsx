@@ -21,6 +21,54 @@ const UI: Record<Locale, { beforeTab: string; afterTab: string }> = {
 };
 
 const CONTENT: Record<string, Record<Locale, ToggleCopy>> = {
+  // ①1-7 — BA 토글 표준 패턴을 리테일에도 도입 (결품 맥락, 3로케일)
+  retail: {
+    ko: {
+      eyebrow: '전 · 후 비교',
+      heading: '비고 나서 채우기에서, 비기 전에 아는 진열로',
+      before: {
+        label: '지켜보던 운영',
+        lead: '빈 매대는 손님이 먼저 발견합니다. 팔릴 상품이 없던 시간만큼 매출이 빠져나갑니다.',
+        points: ['매대가 빈 걸 순회 때에야 발견', '지점마다 다른 점검 기준', '야간 이상은 다음 날 아침에야 확인'],
+      },
+      after: {
+        label: '먼저 아는 운영',
+        lead: '결품·이상 신호를 먼저 받아, 전 지점이 같은 기준으로 채우고 대응합니다.',
+        points: ['결품 신호를 채워야 할 순간에 알림', '본사 기준으로 정렬된 지점 점검', '야간 이상도 실시간 감지'],
+        tag: 'saai care · store count',
+      },
+    },
+    en: {
+      eyebrow: 'Before · After',
+      heading: 'From refilling after it empties, to knowing before it does',
+      before: {
+        label: 'Watching',
+        lead: 'Customers find the empty shelf first. Revenue leaks for every minute the product is gone.',
+        points: ['Empty shelves found only on rounds', 'Check standards differ by store', 'Overnight anomalies seen next morning'],
+      },
+      after: {
+        label: 'Knowing first',
+        lead: 'Out-of-stock and anomaly signals arrive first — every store restocks and responds by the same standard.',
+        points: ['Stock-out alert at the moment to refill', 'Store checks aligned to the HQ standard', 'Overnight anomalies detected live'],
+        tag: 'saai care · store count',
+      },
+    },
+    jp: {
+      eyebrow: 'Before · After',
+      heading: '空いてから補充から、空く前に分かる陳列へ',
+      before: {
+        label: '見守る運営',
+        lead: '空いた棚はお客様が先に見つけます。商品がなかった時間の分だけ、売上が逃げていきます。',
+        points: ['棚の欠品は巡回時にようやく発見', '店舗ごとに異なる点検基準', '夜間の異常は翌朝にしか分からない'],
+      },
+      after: {
+        label: '先に気づく運営',
+        lead: '欠品・異常のサインを先に受け取り、全店舗が同じ基準で補充・対応します。',
+        points: ['補充すべき瞬間に欠品アラート', '本部基準に揃った店舗点検', '夜間の異常もリアルタイム検知'],
+        tag: 'saai care · store count',
+      },
+    },
+  },
   'food-beverage': {
     ko: {
       eyebrow: '전 · 후 비교',
