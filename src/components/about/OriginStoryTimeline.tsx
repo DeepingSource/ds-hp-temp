@@ -8,8 +8,10 @@ import { type Locale } from '@/lib/i18n';
 import { COMPANY } from '@/lib/company-data';
 
 // B5 2층 구조(AB §1-B): 기본 노출 = 연도 + 제목 + 한 줄(lead), 나머지 본문(more)은
-// 항목 펼침으로 강등 — 제목 7개만 읽어도 창업→검증→전환→완성 서사가 완결된다.
-// '유지' 판정 항목(01·02·04·05)은 문장 무손상 분할(lead+more 합치면 원문과 동일).
+// 항목 펼침으로 강등 — 제목만 읽어도 창업→집중→확장→정립 서사가 완결된다.
+// 연혁 내용은 ①8-1 정정안(2026-07-24)이 정본 — 구 서사('2019 CCTV라는 가능성',
+// '2021 100개 매장 상용화' 등)는 사실 오류로 폐기. 투자·인증 팩트(시리즈 A·SOC 2·
+// 특허)는 milestones.yaml 요약 카드가 담당한다(J4 검증 완료).
 type Item = { phase: string; title: string; year: string; lead: string; more?: string };
 
 const MORE_LABEL: Record<Locale, string> = { ko: '자세히', en: 'More', jp: '詳しく' };
@@ -19,52 +21,50 @@ const C: Record<Locale, { items: Item[] }> = {
     items: [
       {
         phase: '출발',
-        title: '데이터 장벽',
+        title: '창업 — 익명화에서 출발',
         year: '2018',
-        lead: '규제와 기술의 한계로 잠들어 있던 데이터를 깨우는 것이 첫 번째 과제였습니다.',
-        more: '오프라인 공간은 데이터가 넘쳐 흐르지만, 그 누구도 활용할 수 없었습니다.',
+        lead: 'AI에는 데이터가 필요하지만, 그 데이터는 익명화가 전제되어야 한다는 문제의식에서 출발했습니다.',
+        more: '창업부터 2020년까지는 공간 AI를 포함한 익명화 데이터에 집중했습니다.',
       },
       {
-        phase: '발견',
-        title: 'CCTV라는 가능성',
-        year: '2019',
-        lead: '이미 모든 공간에 설치되어 있지만 활용되지 못하던 CCTV.',
-        more: '컴퓨터 비전 기술과 만나 공간을 이해하는 열쇠가 되었습니다. 추가 장치 없이, 지금 있는 것으로 시작할 수 있었습니다.',
+        phase: '집중',
+        title: '공간 AI 본격화',
+        year: '2020',
+        lead: '익명화 데이터가 AI 학습을 넘어 실제로 필요한 공간 — 리테일에 집중하기 시작했습니다.',
+      },
+      {
+        phase: '기술',
+        title: '엣지 처리',
+        year: '2021',
+        lead: '동선 데이터를 엣지 디바이스에서 처리할 수 있도록 구현했습니다.',
+        more: '원본 영상을 밖으로 내보내지 않는 지금의 구조가 이때 자리를 잡았습니다.',
       },
       {
         phase: '확장',
-        title: '현장이 AI를 검증하다',
-        year: '2019',
-        lead: 'NVIDIA Inception 합류, 시리즈 A 약 55억 원 투자 유치(KDDI 리드).',
-        more: '익명화 기술이 실제 매장에서 작동한다는 것을 수십 개 현장이 증명했습니다.',
-      },
-      {
-        phase: '증명',
-        title: '100개 매장이 데이터를 증명했다',
-        year: '2021',
-        lead: '익명화 히트맵 대시보드를 상용화했습니다.',
-        more: '파일럿이 아닌 실제 운영 매장 100개가 넘어선 시점 — AI는 이제 현장 언어로 말하기 시작했습니다.',
-      },
-      {
-        phase: '현실',
-        title: '데이터만으로는 부족했다',
+        title: '사업 확장 · 행동 인식',
         year: '2022',
-        lead: '“그래서 뭘 해야 하는데요?” — 데이터를 보여주는 것만으로는 현장이 바뀌지 않았습니다.',
-        more: '진짜 문제는 데이터가 아니라 실행이었습니다.',
+        lead: '본격적인 사업 확장과 함께 Action Recognition을 도입해, 동선을 넘어 행동까지 읽기 시작했습니다.',
+        more: 'SEAL을 기반으로 익명화를 더 쉽게 적용할 수 있도록 개발을 마치고 판매를 시작했습니다.',
       },
       {
-        phase: '신뢰',
-        title: '외부가 방식을 검증하다',
+        phase: '전환',
+        title: '에이전틱 AI 도입',
+        year: '2023',
+        lead: '데이터 제공만으로는 고객이 활용하기 어려웠습니다 — 공간 확장을 더 쉽게 하기 위해 Agentic AI를 도입하기 시작했습니다.',
+      },
+      {
+        phase: '제품',
+        title: 'Store Care — 현 saai care',
         year: '2024',
-        lead: 'SOC 2 인증 취득, NextRise 2024 ‘Top Innovator’ 수상.',
-        more: '누적 특허 {patents}건.',
+        lead: '공간과 사람을 넘어, 공간 안의 객체 중심으로 Store Care를 개발했습니다.',
+        more: '기본 플랫폼 위에 구현해 Store Care 브랜드로 공급을 시작했습니다.',
       },
       {
-        phase: '완성',
-        title: '고객과 함께 만든 답',
+        phase: '정립',
+        title: 'SAAI 정립',
         year: '2025',
-        lead: '에이전트 AI는 고객 매장에서 만들어졌습니다.',
-        more: '수백 개 매장, 수천 번의 검증을 거쳤습니다.',
+        lead: 'Physical AI·로보틱스 연계를 고민하며 SAAI를 정립했습니다.',
+        more: 'Agent를 제품에 본격 탑재하며 care · insight · agent 체계를 완성했습니다.',
       },
     ],
   },
@@ -72,52 +72,50 @@ const C: Record<Locale, { items: Item[] }> = {
     items: [
       {
         phase: 'Start',
-        title: 'The Data Barrier',
+        title: 'Founded — Starting From Anonymization',
         year: '2018',
-        lead: 'Our first challenge was waking the data left dormant by regulatory and technical limits.',
-        more: 'Offline spaces overflow with data, yet no one could put it to use.',
+        lead: 'AI needs data — and we started from the conviction that such data must be anonymized first.',
+        more: 'From founding through 2020, we focused on anonymized data, including spatial AI.',
       },
       {
-        phase: 'Discovery',
-        title: 'CCTV as Opportunity',
-        year: '2019',
-        lead: 'CCTV was already installed everywhere but went unused.',
-        more: 'Paired with computer vision, it became the key to understanding space — no extra hardware, starting with what was already there.',
+        phase: 'Focus',
+        title: 'Spatial AI in Earnest',
+        year: '2020',
+        lead: 'We turned to the space where anonymized data is needed beyond AI training — retail.',
+      },
+      {
+        phase: 'Technology',
+        title: 'Edge Processing',
+        year: '2021',
+        lead: 'We made movement data processable on edge devices.',
+        more: 'The architecture that keeps raw footage from ever leaving the site took shape here.',
       },
       {
         phase: 'Expansion',
-        title: 'The Field Validates the AI',
-        year: '2019',
-        lead: 'Joined NVIDIA Inception and raised a ~₩5.5B Series A led by KDDI.',
-        more: 'Dozens of sites proved that anonymization technology works in real stores.',
-      },
-      {
-        phase: 'Proof',
-        title: '100 Stores Proved the Data',
-        year: '2021',
-        lead: 'We commercialized the anonymized heatmap dashboard.',
-        more: 'Past 100 live operating stores — not pilots — the AI began to speak the language of the field.',
-      },
-      {
-        phase: 'Reality',
-        title: 'Data Alone Was Not Enough',
+        title: 'Business Growth · Action Recognition',
         year: '2022',
-        lead: '“So what should we actually do?” — showing the data alone did not change the field.',
-        more: 'The real problem was not data, but execution.',
+        lead: 'Alongside full-scale expansion, we adopted Action Recognition — reading behavior beyond movement.',
+        more: 'Built on SEAL, we finished making anonymization easier to apply and began selling it.',
       },
       {
-        phase: 'Trust',
-        title: 'Outside Validation of the Method',
+        phase: 'Turn',
+        title: 'Introducing Agentic AI',
+        year: '2023',
+        lead: 'Providing data alone was often not enough for customers — we began adopting Agentic AI to make spatial expansion easier.',
+      },
+      {
+        phase: 'Product',
+        title: 'Store Care — Now saai care',
         year: '2024',
-        lead: 'Achieved SOC 2 certification and won NextRise 2024 ‘Top Innovator’.',
-        more: '{patents} patents filed to date.',
+        lead: 'Beyond spaces and people, we built Store Care around the objects inside a space.',
+        more: 'Implemented on our core platform and supplied under the Store Care brand.',
       },
       {
-        phase: 'Realization',
-        title: 'An Answer Built With Customers',
+        phase: 'Foundation',
+        title: 'SAAI Established',
         year: '2025',
-        lead: 'Our agentic AI was built in customers’ stores.',
-        more: 'Hundreds of stores, thousands of validations.',
+        lead: 'Exploring links to Physical AI and robotics, we established SAAI.',
+        more: 'With agents shipping in the product, the care · insight · agent system was completed.',
       },
     ],
   },
@@ -125,52 +123,50 @@ const C: Record<Locale, { items: Item[] }> = {
     items: [
       {
         phase: '出発',
-        title: 'データの壁',
+        title: '創業 — 匿名化から出発',
         year: '2018',
-        lead: '規制と技術の限界によって眠っていたデータを呼び覚ますことが、最初の課題でした。',
-        more: 'オフライン空間はデータであふれていながら、誰も活用できずにいました。',
+        lead: 'AIにはデータが必要ですが、そのデータは匿名化が前提であるべきだという問題意識から出発しました。',
+        more: '創業から2020年までは、空間AIを含む匿名化データに集中しました。',
       },
       {
-        phase: '発見',
-        title: 'CCTVという可能性',
-        year: '2019',
-        lead: 'すでにあらゆる空間に設置されながら活用されていなかったCCTV。',
-        more: 'コンピュータービジョン技術と出会い、空間を理解する鍵となりました。追加の機器なしに、今あるもので始めることができました。',
+        phase: '集中',
+        title: '空間AIの本格化',
+        year: '2020',
+        lead: '匿名化データがAIの学習を超えて実際に必要とされる空間 — リテールへの集中を始めました。',
+      },
+      {
+        phase: '技術',
+        title: 'エッジ処理',
+        year: '2021',
+        lead: '動線データをエッジデバイスで処理できるように実装しました。',
+        more: '元映像を外に出さない現在の構造が、この時期に固まりました。',
       },
       {
         phase: '拡大',
-        title: '現場がAIを検証する',
-        year: '2019',
-        lead: 'NVIDIA Inceptionへの参加、シリーズA 約55億ウォンを調達（KDDIリード）。',
-        more: '匿名化技術が実際の店舗で機能することを、数十の現場が証明しました。',
-      },
-      {
-        phase: '証明',
-        title: '100店舗がデータを証明した',
-        year: '2021',
-        lead: '匿名化ヒートマップダッシュボードを商用化しました。',
-        more: 'パイロットではなく実運用の店舗が100を超えた時点で — AIは現場の言葉で語り始めました。',
-      },
-      {
-        phase: '現実',
-        title: 'データだけでは足りなかった',
+        title: '事業拡大 · 行動認識',
         year: '2022',
-        lead: '「で、何をすればいいの?」 — データを見せるだけでは現場は変わりませんでした。',
-        more: '本当の課題はデータではなく、実行でした。',
+        lead: '本格的な事業拡大とともにAction Recognitionを導入し、動線を超えて行動まで読み始めました。',
+        more: 'SEALを基盤に、匿名化をより簡単に適用できるよう開発を終え、販売を開始しました。',
       },
       {
-        phase: '信頼',
-        title: '外部が方式を検証する',
+        phase: '転換',
+        title: 'エージェンティックAIの導入',
+        year: '2023',
+        lead: 'データ提供だけではお客様が活用しづらいことも多く、空間拡張をより容易にするためAgentic AIの導入を始めました。',
+      },
+      {
+        phase: '製品',
+        title: 'Store Care — 現 saai care',
         year: '2024',
-        lead: 'SOC 2認証を取得、NextRise 2024「Top Innovator」を受賞。',
-        more: '累計特許{patents}件。',
+        lead: '空間と人を超えて、空間内のオブジェクト中心のStore Careを開発しました。',
+        more: '基盤プラットフォーム上に実装し、Store Careブランドとして供給を開始しました。',
       },
       {
-        phase: '完成',
-        title: 'お客様と共につくった答え',
+        phase: '確立',
+        title: 'SAAIの確立',
         year: '2025',
-        lead: 'エージェントAIは、お客様の店舗でつくられました。',
-        more: '数百の店舗、数千回の検証を経ています。',
+        lead: 'Physical AI・ロボティクスとの連携を見据え、SAAIを確立しました。',
+        more: 'エージェントを製品に本格搭載し、care · insight · agent の体系を完成させました。',
       },
     ],
   },
@@ -239,7 +235,7 @@ export function OriginStoryTimeline({ locale = 'en' }: { locale?: Locale }) {
       {/* 수직 라인 — scroll-in 시 위→아래로 draw */}
       <TimelineSpine className="absolute left-5 top-5 bottom-5 w-px hidden sm:block" lineClassName="bg-gray-100" />
       <div className="space-y-6">
-        {/* 2019가 두 항목(발견·시리즈 A)이라 연도 단독 key는 중복 — index 결합 */}
+        {/* 연도-인덱스 결합 key — 같은 연도가 복수 항목이 되어도 안전 */}
         {items.map((item, i) => (
           <TimelineItem key={`${item.year}-${i}`} item={item} index={i} moreLabel={MORE_LABEL[locale]} />
         ))}
