@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import MockupBadge from './MockupBadge';
 import SaaiHeader from './SaaiHeader';
+import { SAAI_COLORS } from '@/lib/mockup-tokens';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import type { Locale } from '@/lib/i18n';
@@ -110,6 +111,28 @@ const LINE_PATH = SERIES.map(
 const ADOPTION_X = xAt(ADOPTION_INDEX);
 const Y_TICKS = [0, 15, 30, 45];
 
+/* SAAI chart 팔레트 시맨틱 매핑 — Viewport 미사용 파일(.saai-scope 밖)이라
+ * --saai-* CSS 변수가 해석되지 않으므로 SAAI_COLORS 상수를 인라인 참조한다
+ * (AgentHqMini·ModelCatalog 선례, D1/D2). */
+const CHART = {
+  /** 주 계열(측정 라인·도입 마커·도입 후 강조점/값) */
+  series: SAAI_COLORS['chart-cat-1'],
+  /** 축선 + 축 텍스트(눈금 숫자·x 라벨) */
+  axis: SAAI_COLORS['chart-axis'],
+  /** 짧은 눈금 마크 */
+  tick: SAAI_COLORS['chart-axis-tick'],
+  /** 그리드라인 */
+  grid: SAAI_COLORS['chart-grid'],
+  /** 맥락 라벨(도입 전/후 영역 표기) */
+  context: SAAI_COLORS['chart-context'],
+  /** 맥락 데이터(도입 전 시작점 dot·값 라벨) */
+  contextStrong: SAAI_COLORS['chart-context-strong'],
+  /** y축 제목(본문 보조 텍스트 톤) */
+  axisTitle: SAAI_COLORS['fg-secondary'],
+  /** 도입 전 음영 밴드(그리드와 겹쳐도 구분되는 최연한 grey) */
+  beforeBand: SAAI_COLORS['grey-25'],
+};
+
 interface Props {
   active?: boolean;
   locale?: Locale;
@@ -166,7 +189,7 @@ export default function CaseStudyChartMockup({
             y={PAD_T}
             width={ADOPTION_X - PAD_L}
             height={PLOT_H}
-            fill="#F3F4F6"
+            fill={CHART.beforeBand}
           />
 
           {/* gridlines + y ticks */}
@@ -179,7 +202,7 @@ export default function CaseStudyChartMockup({
                   y1={y}
                   x2={VB_W - PAD_R}
                   y2={y}
-                  stroke="#E5E7EB"
+                  stroke={CHART.grid}
                   strokeWidth={1}
                 />
                 <text
@@ -187,7 +210,7 @@ export default function CaseStudyChartMockup({
                   y={y + 3.5}
                   textAnchor="end"
                   fontSize={10}
-                  fill="#6B7280"
+                  fill={CHART.axis}
                   fontFamily="system-ui, sans-serif"
                 >
                   {v}
@@ -202,7 +225,7 @@ export default function CaseStudyChartMockup({
             y1={PAD_T}
             x2={PAD_L}
             y2={PAD_T + PLOT_H}
-            stroke="#9CA3AF"
+            stroke={CHART.axis}
             strokeWidth={1}
           />
           <line
@@ -210,7 +233,7 @@ export default function CaseStudyChartMockup({
             y1={PAD_T + PLOT_H}
             x2={VB_W - PAD_R}
             y2={PAD_T + PLOT_H}
-            stroke="#9CA3AF"
+            stroke={CHART.axis}
             strokeWidth={1}
           />
 
@@ -219,7 +242,7 @@ export default function CaseStudyChartMockup({
             x={12}
             y={PAD_T + PLOT_H / 2}
             fontSize={10}
-            fill="#374151"
+            fill={CHART.axisTitle}
             fontFamily="system-ui, sans-serif"
             textAnchor="middle"
             transform={`rotate(-90 12 ${PAD_T + PLOT_H / 2})`}
@@ -238,14 +261,14 @@ export default function CaseStudyChartMockup({
                   y1={PAD_T + PLOT_H}
                   x2={x}
                   y2={PAD_T + PLOT_H + 3}
-                  stroke="#9CA3AF"
+                  stroke={CHART.tick}
                   strokeWidth={1}
                 />
                 <text
                   x={x}
                   y={PAD_T + PLOT_H + 13}
                   fontSize={9}
-                  fill={isAdopt ? '#376AE2' : '#6B7280'}
+                  fill={isAdopt ? CHART.series : CHART.axis}
                   fontFamily="system-ui, sans-serif"
                   textAnchor="middle"
                   fontWeight={isAdopt ? 600 : 400}
@@ -261,7 +284,7 @@ export default function CaseStudyChartMockup({
             x={PAD_L + PLOT_W / 2}
             y={VB_H - 4}
             fontSize={10}
-            fill="#6B7280"
+            fill={CHART.axis}
             fontFamily="system-ui, sans-serif"
             textAnchor="middle"
           >
@@ -273,7 +296,7 @@ export default function CaseStudyChartMockup({
             x={(PAD_L + ADOPTION_X) / 2}
             y={PAD_T + 12}
             fontSize={9}
-            fill="#9CA3AF"
+            fill={CHART.context}
             fontFamily="system-ui, sans-serif"
             textAnchor="middle"
           >
@@ -283,7 +306,7 @@ export default function CaseStudyChartMockup({
             x={(ADOPTION_X + (VB_W - PAD_R)) / 2}
             y={PAD_T + 12}
             fontSize={9}
-            fill="#9CA3AF"
+            fill={CHART.context}
             fontFamily="system-ui, sans-serif"
             textAnchor="middle"
           >
@@ -296,7 +319,7 @@ export default function CaseStudyChartMockup({
             y1={PAD_T}
             x2={ADOPTION_X}
             y2={PAD_T + PLOT_H}
-            stroke="#376AE2"
+            stroke={CHART.series}
             strokeWidth={1.5}
             strokeDasharray="4 3"
           >
@@ -307,7 +330,7 @@ export default function CaseStudyChartMockup({
           <motion.path
             d={LINE_PATH}
             fill="none"
-            stroke="#376AE2"
+            stroke={CHART.series}
             strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -321,13 +344,13 @@ export default function CaseStudyChartMockup({
             cx={xAt(0)}
             cy={yAt(SERIES[0])}
             r={3}
-            fill="#9CA3AF"
+            fill={CHART.contextStrong}
           />
           <motion.circle
             cx={xAt(SERIES.length - 1)}
             cy={yAt(SERIES[SERIES.length - 1])}
             r={4}
-            fill="#376AE2"
+            fill={CHART.series}
             initial={animate ? { opacity: 0 } : { opacity: 1 }}
             animate={animate ? { opacity: 1 } : { opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.3 }}
@@ -337,7 +360,7 @@ export default function CaseStudyChartMockup({
             x={xAt(0) + 6}
             y={yAt(SERIES[0]) - 6}
             fontSize={10}
-            fill="#6B7280"
+            fill={CHART.contextStrong}
             fontFamily="system-ui, sans-serif"
             fontWeight={600}
           >
@@ -347,7 +370,7 @@ export default function CaseStudyChartMockup({
             x={xAt(SERIES.length - 1) - 4}
             y={yAt(SERIES[SERIES.length - 1]) - 8}
             fontSize={11}
-            fill="#376AE2"
+            fill={CHART.series}
             fontFamily="system-ui, sans-serif"
             fontWeight={700}
             textAnchor="end"
