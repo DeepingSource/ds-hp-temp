@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, ShieldCheck, Eye, Bell, CheckCircle2, Lock, HelpCircle, Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ShieldCheck, Eye, Bell, CheckCircle2, Lock, Layers } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import StoreCareDeviceTabs from '@/components/corporate/views/StoreCareDeviceTabs';
 import HqRollupDashboardMockup from '@/components/mockups/HqRollupDashboardMockup';
@@ -10,8 +10,10 @@ import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import WordRise from '@/components/ui/WordRise';
-import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import Accordion from '@/components/ui/Accordion';
+import MidCta from '@/components/corporate/MidCta';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import { CTA_TRACK_E, contactEnterpriseHref } from '@/lib/cta-canon';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming, productPrimary } from '@/lib/brand-canon';
 import { crumb } from '@/lib/breadcrumb-labels';
@@ -22,7 +24,7 @@ const COPY: Record<Locale, {
   badge: string;
   heroTitle: string;
   heroSub: string;
-  heroCta: string;
+  // heroCta·ctaButton 제거 — 1차 CTA 라벨은 cta-canon(CTA_TRACK_E) 전 구간 통일(④8-0 · §2-1)
   ownerLink: string;
   threatEyebrow: string;
   threatTitle: string;
@@ -38,6 +40,11 @@ const COPY: Record<Locale, {
   dashTitle: string;
   dashSub: string;
   dashPillars: { title: string; desc: string }[];
+  /** 감지 3축(④3-4) — 디바이스 탭 옆 좌측 카피: 현장 능력(청결·진열대·이상 체류).
+   *  dashPillars(본사 가치)와 역할 분담. */
+  detectTitle: string;
+  detectSub: string;
+  detectItems: { title: string; desc: string }[];
   deviceLabels: { store: string; phone: string };
   privacyEyebrow: string;
   privacyTitle: string;
@@ -50,7 +57,6 @@ const COPY: Record<Locale, {
   ctaEyebrow: string;
   ctaTitle: string;
   ctaSub: string;
-  ctaButton: string;
   /** 하단 storecare.ai 셀프 서비스 버튼 — 이전엔 한국어 하드코딩. */
   ownerSelfCta: string;
 }> = {
@@ -58,7 +64,6 @@ const COPY: Record<Locale, {
     badge: 'DETECT · 24시간 실시간 이상 감지',
     heroTitle: '모든 매장을, 한 매장처럼 지켜봅니다.',
     heroSub: '누가 근무하든 같은 기준으로 — 도난·위생·설비 이상을 전 매장에서 실시간 감지해 본사 한 화면으로 모읍니다. 기존 CCTV 그대로, 원본 영상은 남기지 않고.',
-    heroCta: '본사 도입 상담하기',
     ownerLink: '한 매장만 운영하시나요? storecare.ai 셀프 서비스 바로가기 ↗',
     threatEyebrow: '규모의 리스크 · 본사 관측의 한계',
     threatTitle: '매장이 100개면, 사고와 위험도 100가지 편차.',
@@ -83,6 +88,13 @@ const COPY: Record<Locale, {
       { title: '위생·설비, 감사 증빙 기록', desc: '냉장 온도, 바닥 누수, 비상구 상태를 24시간 점검하고 시각을 남깁니다. "아마 괜찮겠지"를 보여줄 수 있는 감사 증빙으로 바꿉니다.' },
       { title: '수만 건 알림 대신, 손쓸 매장 3곳', desc: '사고 건수와 긴급도로 전 매장을 자동으로 정돈하고, 현장 SV가 즉시 방문해야 할 우선순위를 추천합니다.' },
     ],
+    detectTitle: '실제로 무엇을 잡아내나',
+    detectSub: '추상적인 약속이 아니라, 현장에서 매일 잡아내는 세 가지입니다.',
+    detectItems: [
+      { title: '청결 감지', desc: '바닥 오염·쏟김·정리 안 된 매대를 발견 즉시 알립니다.' },
+      { title: '진열대(결품) 감지', desc: '빈 매대와 흐트러진 진열을 시간대별로 짚습니다.' },
+      { title: '이상 체류 감지', desc: '영업 외 시간·금지 구역의 이상 체류를 실시간으로 알립니다.' },
+    ],
     deviceLabels: { store: '매장이 보는 것', phone: '본사 손에 오르는 것' },
     privacyEyebrow: '프라이버시 컴플라이언스',
     privacyTitle: '본사는 감시가 아니라, 브랜드 품질 표준을 지킵니다.',
@@ -100,11 +112,10 @@ const COPY: Record<Locale, {
       { q: '오알림이 너무 많이 발생해서 현장에서 무시하면 어쩌나요?', a: 'saai care의 다단계 노이즈 필터링은 수천 건의 알림 대신 실제 손쓸 순간만을 정밀 필터링하여 알려드립니다.' },
       { q: '이상 발생 시 누가 대응하나요?', a: '매장 근무자 휴대폰 앱 알림과 본사 SV 대시보드로 동시 전송되어, 1차는 매장 자율 해결, 2차는 본사 지원 체계로 이원화 대응합니다.' },
       { q: '시범 도입(Pilot) 후 확장도 가능한가요?', a: '권장 드리는 방식입니다. 직영점 5~10개 매장에서 먼저 4주간 실증을 거친 후 전 매장으로 확산할 수 있습니다.' },
-      { q: '개인정보보호법 컴플라이언스 문제는 없나요?', a: '촬영 순간 사람의 얼굴과 신원이 픽셀 단위로 불가역 익명화되어 개인정보보호법 규제를 완벽히 준수합니다.' },
+      { q: '개인정보보호법 컴플라이언스 문제는 없나요?', a: '촬영 순간 사람의 얼굴과 신원이 픽셀 단위로 불가역 익명화됩니다. 개인정보보호법 준수를 전제로 설계된 구조입니다.' },
     ],
     ctaTitle: '전 매장의 손실을 막고, 품질 표준을 세우세요.',
     ctaSub: '직영점 5개 매장 파일럿부터 전 매장 인프라 확장까지, 딥핑소스 엔터프라이즈 팀이 함께합니다.',
-    ctaButton: '본사 맞춤 파일럿 & 도입 상담',
     ctaEyebrow: '엔터프라이즈 케어',
     ownerSelfCta: 'storecare.ai 사장님 셀프 ↗',
   },
@@ -112,7 +123,6 @@ const COPY: Record<Locale, {
     badge: 'DETECT · 24/7 Real-Time Anomaly Sensing',
     heroTitle: 'Oversee every store — as one floor.',
     heroSub: 'No matter who is on shift — detect stock-outs, sanitation, and after-hours anomalies across all locations live on one dashboard. Zero video retained.',
-    heroCta: 'Request HQ Consultation',
     ownerLink: 'Operating a single store? Visit storecare.ai self-service ↗',
     threatEyebrow: 'SCALE RISK · Limits of HQ Visibility',
     threatTitle: 'With 100 stores comes 100 different operational risks.',
@@ -137,6 +147,13 @@ const COPY: Record<Locale, {
       { title: 'Audit-ready Records', desc: '24/7 inspection of fridge temperatures, leaks, and exit doors transformed into verifiable audit proofs.' },
       { title: 'Top 3 Actionable Stores', desc: 'Automatically sort store urgency so field supervisors spend time where it matters most.' },
     ],
+    detectTitle: 'What it actually catches',
+    detectSub: 'Not abstract promises — the three things it catches on the floor, every day.',
+    detectItems: [
+      { title: 'Cleanliness detection', desc: 'Spills, floor stains, and untidy shelves flagged the moment they appear.' },
+      { title: 'Shelf (stock-out) detection', desc: 'Empty shelves and broken displays, pinpointed by time of day.' },
+      { title: 'Abnormal-dwell detection', desc: 'After-hours or restricted-zone dwell flagged in real time.' },
+    ],
     deviceLabels: { store: 'What the store sees', phone: 'What reaches HQ' },
     privacyEyebrow: 'Privacy compliance',
     privacyTitle: 'HQ enforces brand standards, not employee surveillance.',
@@ -154,11 +171,10 @@ const COPY: Record<Locale, {
       { q: 'How do you prevent false alert fatigue?', a: 'saai care multi-stage noise filters eliminate false alarms and only deliver actionable incidents.' },
       { q: 'Who responds when an anomaly occurs?', a: 'Alerts are dispatched to both floor staff mobile apps and HQ supervisor dashboards for multi-tiered resolution.' },
       { q: 'Can we start with a pilot program?', a: 'Yes, we recommend a 4-week pilot across 5-10 flagship locations before nationwide rollout.' },
-      { q: 'Does this comply with privacy regulations?', a: 'Yes. Irreversible pixel-level anonymization ensures complete compliance with global privacy laws.' },
+      { q: 'Does this comply with privacy regulations?', a: 'Irreversible pixel-level anonymization is applied at capture — the architecture is designed for compliance with privacy laws.' },
     ],
     ctaTitle: 'Prevent store loss and establish brand-wide standards.',
     ctaSub: 'From 5-store pilots to enterprise rollout, DeepingSource Enterprise Team is here to help.',
-    ctaButton: 'Request Enterprise Pilot',
     ctaEyebrow: 'Enterprise care',
     ownerSelfCta: 'storecare.ai self-service ↗',
   },
@@ -166,7 +182,6 @@ const COPY: Record<Locale, {
     badge: 'DETECT · 24時間リアルタイム異常検知',
     heroTitle: 'すべての店舗を、ひとつの店舗のように。',
     heroSub: '誰が働いていても同じ基準で — 万引き・衛生・設備異常を全店舗でリアルタイム検知し、本部一画面に集約。既存CCTVそのまま、動画は残さず。',
-    heroCta: '本部導入のご相談',
     ownerLink: '1店舗のみお持ちですか？ storecare.ai セルフサービス ↗',
     threatEyebrow: 'SCALE RISK · 本部視界の限界',
     threatTitle: '店舗が100あれば、事故とリスクも100のバラツキ。',
@@ -191,6 +206,13 @@ const COPY: Record<Locale, {
       { title: '監査証跡としての記録', desc: '冷蔵温度や非常口の状態を24時間点検し、確かな記録として残します。' },
       { title: '介入すべき3店舗の推奨', desc: '緊急度で全店舗を自動整列し、SVが訪問すべき優先順位を提示。' },
     ],
+    detectTitle: '実際に何を捉えるのか',
+    detectSub: '抽象的な約束ではなく、現場で毎日捉えている3つです。',
+    detectItems: [
+      { title: '清潔検知', desc: '床の汚れ・こぼれ・乱れた棚を発見と同時に通知します。' },
+      { title: '棚（欠品）検知', desc: '空の棚と乱れた陳列を時間帯ごとに特定します。' },
+      { title: '異常滞留検知', desc: '営業時間外・立入禁止区域の異常滞留をリアルタイムで通知します。' },
+    ],
     deviceLabels: { store: '店舗が見るもの', phone: '本部に届くもの' },
     privacyEyebrow: 'プライバシーコンプライアンス',
     privacyTitle: '本部は監視ではなく、品質標準を守ります。',
@@ -208,11 +230,10 @@ const COPY: Record<Locale, {
       { q: '誤検知が多くて現場で無視されませんか？', a: 'saai careのマルチノイズフィルタが誤アラートを排除し、必要な瞬間のみを伝えます。' },
       { q: '異常発生時は誰が対応しますか？', a: '店舗スタッフのアプリと本部のSVダッシュボードへ同時送信され、二段構えで対応します。' },
       { q: 'パイロット導入からの開始は可能ですか？', a: 'はい、直営5〜10店舗での4週間実証を経てからの全体展開を推奨しています。' },
-      { q: '個人情報保護法のコンプライアンスは問題ありませんか？', a: '撮影の瞬間にピクセル単位で不可逆匿名化されるため、完全に対応しています。' },
+      { q: '個人情報保護法のコンプライアンスは問題ありませんか？', a: '撮影の瞬間にピクセル単位で不可逆匿名化されます。個人情報保護法の遵守を前提に設計された構造です。' },
     ],
     ctaTitle: '全店舗の損失を防ぎ、品質標準を確立しましょう。',
     ctaSub: '5店舗のパイロットから全店舗展開まで、エンタープライズチームがサポートします。',
-    ctaButton: '本部パイロット & 導入相談',
     ctaEyebrow: 'エンタープライズケア',
     ownerSelfCta: 'storecare.ai セルフサービス ↗',
   },
@@ -251,10 +272,10 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               </p>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
                 <Link
-                  href={localeHref(locale, '/contact?product=saai-care')}
+                  href={localeHref(locale, contactEnterpriseHref('saai-care'))}
                   className="btn-primary btn-lg inline-flex items-center justify-center gap-2"
                 >
-                  <span>{c.heroCta}</span>
+                  <span>{CTA_TRACK_E[locale]}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
@@ -268,9 +289,10 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            {/* HQ Rollup Dashboard Preview in Hero */}
-            <div className="lg:col-span-5">
-              <div className="rounded-3xl border border-white/10 bg-slate-800/80 p-2 shadow-2xl backdrop-blur-md">
+            {/* HQ Rollup Dashboard Preview in Hero — min-w-0: 그리드 min-content 전파로
+                내부 요소가 컬럼을 밀어 프레임이 깨지는 것 차단 (④3-1 · MM §6 교훈) */}
+            <div className="lg:col-span-5 min-w-0">
+              <div className="rounded-3xl border border-white/10 bg-slate-800/80 p-2 shadow-2xl backdrop-blur-md overflow-hidden">
                 {/* Hero = 항상 최초 뷰포트 → 스크롤-리빌 게이팅 제외 (immediate) */}
                 <HqRollupDashboardMockup locale={locale} ariaLabel={c.dashTitle} immediate />
               </div>
@@ -357,10 +379,34 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
         </Container>
       </AnimatedSection>
 
-      {/* Interactive Device & Scene Mockups */}
+      {/* Interactive Device & Scene Mockups — 좌카피(감지 3축)/우목업 2열 (④3-3·3-4:
+          목업만 덩그러니 → 추상 3기둥(본사 가치) 다음에 구체 감지(현장 능력)로 잇는다) */}
       <AnimatedSection className="py-16 lg:py-24 bg-white">
         <Container>
-          <StoreCareDeviceTabs locale={locale} labels={c.deviceLabels} />
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-5">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 font-display break-keep mb-3">
+                {c.detectTitle}
+              </h2>
+              <p className="text-base text-gray-600 break-keep mb-8">{c.detectSub}</p>
+              <ul className="space-y-5">
+                {c.detectItems.map((d, i) => (
+                  <li key={i} className="flex items-start gap-3.5">
+                    <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary-lighter text-primary text-sm font-bold">
+                      0{i + 1}
+                    </span>
+                    <div>
+                      <p className="text-base font-bold text-gray-900 break-keep">{d.title}</p>
+                      <p className="text-sm text-gray-600 leading-relaxed break-keep">{d.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lg:col-span-7 min-w-0">
+              <StoreCareDeviceTabs locale={locale} labels={c.deviceLabels} />
+            </div>
+          </div>
         </Container>
       </AnimatedSection>
 
@@ -386,6 +432,21 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+
+          {/* 미드 CTA(④8-6) — 가맹점 반발 우려가 해소된 직후가 상담 전환 최적 지점 */}
+          <MidCta
+            locale={locale}
+            tone="dark"
+            product="saai-care"
+            className="mt-10"
+            lead={
+              locale === 'ko'
+                ? '가맹점 반발 없이 도입하는 방법, 15분이면 정리됩니다.'
+                : locale === 'jp'
+                ? '加盟店の反発なく導入する方法、15分でご説明します。'
+                : 'How to roll out without franchisee pushback — 15 minutes is enough.'
+            }
+          />
         </Container>
       </AnimatedSection>
       {/* ── Beat 7 — B2B FAQ ── */}
@@ -397,21 +458,14 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
               {c.faqTitle}
             </h2>
           </div>
-          <div className="grid gap-4">
-            {c.faqs.map((faq, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white border border-gray-200 shadow-card">
-                <h3 className="text-base font-bold text-gray-900 mb-2 flex items-start gap-2.5">
-                  <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span>{faq.q}</span>
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed pl-7 break-keep">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          {/* 표준 FAQ 아코디언(④3-5 D3) — /resources/faq와 동일한 Accordion 컴포넌트 */}
+          <Accordion
+            items={c.faqs.map((faq) => ({ question: faq.q, answer: faq.a }))}
+            idPrefix="care-b2b-faq"
+          />
         </Container>
       </Section>
 
-      <ModeFunctionSection mode="care" locale={locale} />
       <RelatedGlossary
         slugs={['stockout-detection', 'store-operations-automation', 'anonymized-cctv', 'retail-ai']}
         locale={locale}
@@ -432,10 +486,10 @@ export default function StoreCareView({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={localeHref(locale, '/contact?product=saai-care')}
+              href={localeHref(locale, contactEnterpriseHref('saai-care'))}
               className="btn-primary btn-lg inline-flex items-center gap-2"
             >
-              <span>{c.ctaButton}</span>
+              <span>{CTA_TRACK_E[locale]}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a

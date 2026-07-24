@@ -27,8 +27,9 @@ import Eyebrow from '@/components/ui/Eyebrow';
 import WordRise from '@/components/ui/WordRise';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { crumb } from '@/lib/breadcrumb-labels';
-import ModeFunctionSection from '@/components/corporate/ModeFunctionSection';
+import MidCta from '@/components/corporate/MidCta';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import { contactEnterpriseHref } from '@/lib/cta-canon';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming } from '@/lib/brand-canon';
 import { JsonLd, softwareApplication } from '@/lib/structured-data';
@@ -74,6 +75,8 @@ const C: Record<Locale, {
   baNote: string;
   featHeading: string;
   featSub: string;
+  /** 접기 토글 라벨(④8-4) — 대표 6개 외 전체 카탈로그 펼침 */
+  featMoreLabel: string;
   features: { name: string; desc: string }[];
   featGroups: string[];
   featNote: string;
@@ -82,7 +85,7 @@ const C: Record<Locale, {
   installNote: string;
   handoffEyebrow: string;
   handoffHeading: string;
-  handoffSub: string;
+  // handoffSub 제거(④8-4) — heading·cardBody와 같은 메시지 3중 반복이라 1회로 압축
   cardTitle: string;
   cardBody: string;
   cardCta: string;
@@ -132,8 +135,9 @@ const C: Record<Locale, {
       '동선 하나 바꿔 수익 +10%, 체류 +25% — 어제와 "왜"에 매일 답합니다.',
     ],
     baNote: '* 수치는 학원가 편의점·시립 전시관 등 실제 운영 사례를 설명하기 위한 예시입니다.',
-    featHeading: '전체 기능 모듈 19가지 (참조 카탈로그)',
+    featHeading: '필요한 분석만 골라 켭니다',
     featSub: '실시간 대시보드부터 CSV 내보내기까지 — saai insight가 제공하는 모듈형 분석입니다.',
+    featMoreLabel: '전체 19개 모듈 펼쳐 보기',
     features: [
       { name: '실시간 대시보드', desc: '전체·구역별 방문객 수와 특성을 실시간으로' },
       { name: '방문자 분석', desc: '기간·시간대별 방문객 수·특성·체류 시간' },
@@ -166,7 +170,6 @@ const C: Record<Locale, {
     installNote: '1차 방문 이후 약 3주 — 상황에 따라 조정·협의할 수 있습니다. 기존 CCTV를 최대한 활용해 추가 비용을 최소화합니다.',
     handoffEyebrow: '분석에서 실행으로',
     handoffHeading: '이유는 insight가, 무엇을 할지는 saai agent가 정합니다.',
-    handoffSub: '어제와 이유는 insight가 읽습니다. 무엇을 할지는 saai agent의 일 — 모든 추천은 하나의 엔진에서.',
     cardTitle: '인사이트를 액션 카드로',
     cardBody: '음료 체류가 2배? saai insight가 원인을 짚으면, saai agent가 발주량·공급처·시점까지 담아 승인용 카드로 만듭니다. 어떤 인사이트에서든 클릭 한 번.',
     cardCta: 'saai agent 보기',
@@ -216,8 +219,9 @@ const C: Record<Locale, {
       'One flow change lifted revenue +10% and dwell +25% — answering yesterday and "why," every day.',
     ],
     baNote: '* Figures illustrate real cases — a campus convenience store and a city exhibition hall.',
-    featHeading: 'All 19 Feature Modules (Reference Catalog)',
+    featHeading: 'Turn on only the analyses you need',
     featSub: 'From the live dashboard to CSV export — modular analyses shipped with saai insight.',
+    featMoreLabel: 'See all 19 modules',
     features: [
       { name: 'Live dashboard', desc: 'Visitor counts and traits, store-wide and by zone, in real time' },
       { name: 'Visitor analysis', desc: 'Counts, traits, and dwell time by period and hour' },
@@ -250,7 +254,6 @@ const C: Record<Locale, {
     installNote: 'About three weeks from the first visit — adjustable by situation. We reuse your existing CCTV to keep extra cost to a minimum.',
     handoffEyebrow: 'From insight to action',
     handoffHeading: 'We show you why. saai agent decides what to do.',
-    handoffSub: 'insight reads yesterday and the why. What to do next is saai agent’s job — every recommendation from one engine.',
     cardTitle: 'Turn an insight into an action card',
     cardBody: 'Beverage dwell up 2×? saai insight flags the cause. saai agent drafts the move — order quantity, supplier, timing — for your approval. One click from any insight.',
     cardCta: 'See saai agent',
@@ -300,8 +303,9 @@ const C: Record<Locale, {
       '動線を一つ変えるだけで売上 +10%、滞在 +25% — 昨日と「なぜ」に毎日お答えします。',
     ],
     baNote: '※ 数値は学習塾街のコンビニ・市立展示館などの実例を説明するための一例です。',
-    featHeading: '全機能モジュール 19種 (参照カタログ)',
+    featHeading: '必要な分析だけを、選んで有効にします',
     featSub: 'リアルタイムダッシュボードからCSVエクスポートまで — saai insight が提供する分析モジュールです。',
+    featMoreLabel: '全19モジュールを見る',
     features: [
       { name: 'リアルタイムダッシュボード', desc: '全体・エリア別の来店数と特性をリアルタイムで' },
       { name: '来店者分析', desc: '期間・時間帯別の来店数・特性・滞在時間' },
@@ -334,7 +338,6 @@ const C: Record<Locale, {
     installNote: '初回訪問から約3週間 — 既存CCTVを最大限活用しコストを抑えます。',
     handoffEyebrow: '分析から実行へ',
     handoffHeading: '理由はinsightが、何をするかはsaai agentが決定します。',
-    handoffSub: '昨日と理由は insight が読みます。次に何をするかは saai agent の役目 — すべての推奨はひとつのエンジンから。',
     cardTitle: 'インサイトのアクションカード化',
     cardBody: '滞在2倍？saai insightが原因を特定すれば、saai agentが発注量やタイミングを提案します。',
     cardCta: 'saai agentを見る',
@@ -363,6 +366,9 @@ const FEAT_GROUPS: { icon: LucideIcon; idx: number[] }[] = [
   { icon: FileText, idx: [13, 14, 16] },
   { icon: Blocks, idx: [17, 18] },
 ];
+
+// 대표 6개(④8-4) — 그룹별 첫 모듈 5 + 방문 그룹 보강 1. 나머지는 접기(details)로.
+const REP_IDX = [...FEAT_GROUPS.map((g) => g.idx[0]), FEAT_GROUPS[0].idx[1]];
 
 export default function StoreInsightView({ locale }: { locale: Locale }) {
   const t = C[locale];
@@ -399,7 +405,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={localeHref(locale, '/contact?product=saai-insight')}
+              href={localeHref(locale, contactEnterpriseHref('saai-insight'))}
               className="btn-primary btn-lg inline-flex items-center justify-center gap-2"
             >
               <span>{t.ctaPrimary}</span>
@@ -544,15 +550,27 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
             </div>
             <p className="mt-4 text-center text-2xs text-slate-400">{t.baNote}</p>
           </div>
+
+          {/* 미드 CTA(④8-6) — Before/After가 가장 강한 증거, 그 직후가 전환 지점 */}
+          <MidCta
+            locale={locale}
+            product="saai-insight"
+            className="mt-10"
+            lead={
+              locale === 'ko'
+                ? '우리 매장 데이터로는 어떻게 보일지 궁금하시다면'
+                : locale === 'jp'
+                ? '自店舗のデータではどう見えるのか、気になる方は'
+                : 'Curious how this looks with your own store data?'
+            }
+          />
         </Container>
       </Section>
 
-      {/* ── Beat 5 — Differentiator: Comparison Principle (증거 다음에 원칙) ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-900 text-white noise-overlay">
-        <Container>
-          <ComparisonPrinciple locale={locale} />
-        </Container>
-      </AnimatedSection>
+      {/* ── Beat 5 — Differentiator: Comparison Principle (증거 다음에 원칙).
+             D2: 다크 래퍼 제거 — 내부가 자체 라이트 Section을 렌더해 박스 2겹이 생겼다.
+             단독 배치로 배경 1겹. ── */}
+      <ComparisonPrinciple locale={locale} />
 
       {/* ── Beat 6 — Hub Data Band — 구 "매출 연동" 텍스트 밴드를 흡수(중복 삭제) ── */}
       <HubDataBand locale={locale} />
@@ -561,7 +579,9 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
       <Section variant="default" pad="compact">
         <Container className="max-w-4xl">
           <div className="mb-10 text-center">
-            <Eyebrow className="mb-2 justify-center">ONBOARDING</Eyebrow>
+            <Eyebrow className="mb-2 justify-center">
+              {locale === 'ko' ? '도입 3단계' : locale === 'jp' ? '導入3ステップ' : 'ONBOARDING'}
+            </Eyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 font-display break-keep">{t.installHeading}</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-6 mb-4">
@@ -582,7 +602,6 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           <div className="text-center mb-10">
             <span className="text-xs font-bold uppercase tracking-wider text-primary-light mb-2 block">{t.handoffEyebrow}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 break-keep">{t.handoffHeading}</h2>
-            <p className="text-base text-slate-300 max-w-2xl mx-auto break-keep">{t.handoffSub}</p>
           </div>
           <div className="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -600,47 +619,69 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
         </Container>
       </AnimatedSection>
 
-      {/* ── Beat 9 — Feature Catalog — 재정돈: 동일 카드 19장 → 5그룹 컴팩트 리스트 ── */}
+      {/* ── Beat 9 — Feature Catalog — ④8-4: 대표 6개만 본문 노출, 전체 19개는 접기.
+             스펙 덤프가 전환 흐름을 끊던 것을 "필요한 분석만 골라 켠다" 재프레임으로. ── */}
       <Section variant="alt" pad="default">
         <Container>
           <div className="mb-10 max-w-2xl">
-            <Eyebrow className="mb-2">FEATURE CATALOG</Eyebrow>
+            <Eyebrow className="mb-2">
+              {locale === 'ko' ? '기능 카탈로그' : locale === 'jp' ? '機能カタログ' : 'FEATURE CATALOG'}
+            </Eyebrow>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 break-keep">{t.featHeading}</h2>
             <p className="text-sm text-gray-600 leading-relaxed break-keep">{t.featSub}</p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
-            {FEAT_GROUPS.map((g, gi) => {
-              const Icon = g.icon;
+          {/* 대표 6개 */}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-6">
+            {REP_IDX.map((i) => {
+              const f = t.features[i];
               return (
-                <div key={gi} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-card">
-                  <div className="mb-4 flex items-center gap-2.5">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary-lighter text-primary">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <h3 className="text-sm font-bold text-gray-900 break-keep">{t.featGroups[gi]}</h3>
-                    <span className="ml-auto text-2xs font-bold tabular-nums text-gray-300">{g.idx.length}</span>
-                  </div>
-                  <ul className="space-y-3">
-                    {g.idx.map((i) => {
-                      const f = t.features[i];
-                      return (
-                        <li key={i} className="border-l-2 border-gray-100 pl-3">
-                          <p className="text-sm font-semibold text-gray-800 break-keep">{f.name}</p>
-                          <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                <div key={i} className="rounded-2xl border border-gray-200 bg-white p-4 shadow-card">
+                  <p className="text-sm font-semibold text-gray-800 break-keep">{f.name}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
                 </div>
               );
             })}
           </div>
+
+          {/* 전체 19개 — 접기 */}
+          <details className="group mb-6">
+            <summary className="cursor-pointer list-none inline-flex items-center gap-1.5 text-sm font-bold text-primary">
+              {t.featMoreLabel}
+              <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {FEAT_GROUPS.map((g, gi) => {
+                const Icon = g.icon;
+                return (
+                  <div key={gi} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-card">
+                    <div className="mb-4 flex items-center gap-2.5">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary-lighter text-primary">
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      <h3 className="text-sm font-bold text-gray-900 break-keep">{t.featGroups[gi]}</h3>
+                      <span className="ml-auto text-2xs font-bold tabular-nums text-gray-300">{g.idx.length}</span>
+                    </div>
+                    <ul className="space-y-3">
+                      {g.idx.map((i) => {
+                        const f = t.features[i];
+                        return (
+                          <li key={i} className="border-l-2 border-gray-100 pl-3">
+                            <p className="text-sm font-semibold text-gray-800 break-keep">{f.name}</p>
+                            <p className="text-xs text-gray-500 leading-relaxed break-keep">{f.desc}</p>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </details>
           <p className="text-xs text-gray-400 break-keep">{t.featNote}</p>
         </Container>
       </Section>
 
-      <ModeFunctionSection mode="insight" locale={locale} />
       <RelatedGlossary
         slugs={['store-heatmap', 'dwell-time', 'footfall-analysis', 'zone-analysis']}
         locale={locale}
@@ -651,7 +692,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
         <Container className="text-center max-w-3xl">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-light mb-4">
             <SaaiSymbol className="w-3.5 h-3.5 text-primary-light" />
-            ENTERPRISE INSIGHT
+            {locale === 'ko' ? '엔터프라이즈 인사이트' : locale === 'jp' ? 'エンタープライズインサイト' : 'ENTERPRISE INSIGHT'}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 font-display break-keep">
             {t.finalHeading}
@@ -661,7 +702,7 @@ export default function StoreInsightView({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={localeHref(locale, '/contact?product=saai-insight')}
+              href={localeHref(locale, contactEnterpriseHref('saai-insight'))}
               className="btn-primary btn-lg inline-flex items-center gap-2"
             >
               <span>{t.finalCta}</span>

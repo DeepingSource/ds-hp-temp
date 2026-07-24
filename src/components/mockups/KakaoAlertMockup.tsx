@@ -21,6 +21,9 @@ interface Props {
    *  카카오톡/LINE 스킨 색(chromeFor)은 실제 서비스 브랜드색 재현이 목적이라
    *  의도적 예외로 토큰화하지 않는다(ROLLOUT_PLAN §3 P1 참고). */
   content?: DeepPartial<KakaoAlertCopy>;
+  /** 폰 밖 하단 B2C 가격 카드(마케팅 크롬). B2B 페이지의 크로스페이드 스택에서는
+   *  패널 높이 불일치·프레임 밖 배경 블록 잔상(④3-2 · 랜딩 A-1)을 만들어 끈다. */
+  showPriceCard?: boolean;
 }
 
 /** Button nature per alert. approve = genuine order/proposal; acknowledge = temp/cleanliness; review = needs human review. */
@@ -154,6 +157,7 @@ export default function KakaoAlertMockup({
   locale = 'en',
   className,
   content,
+  showPriceCard = true,
 }: Props) {
   const t = mergeMockupContent(COPY[locale] ?? COPY.en, content);
   const reducedMotion = usePrefersReducedMotion();
@@ -312,6 +316,7 @@ export default function KakaoAlertMockup({
       </MockupViewport>
 
       {/* Pricing card — Care value. Marketing chrome, kept OUTSIDE the phone/messaging UI. */}
+      {showPriceCard && (
       <div className="mt-4">
         <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-primary/15 shadow-card p-3.5">
           <div className="flex items-center justify-between mb-2">
@@ -327,6 +332,7 @@ export default function KakaoAlertMockup({
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

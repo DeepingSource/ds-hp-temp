@@ -8,6 +8,7 @@ import { solutionCardI18n, solutionDetailI18n } from '@/data/solutions-i18n';
 import { DIAGNOSIS_UI, type PersonaId } from '@/data/diagnosis-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
+import RoiCalculatorLazy from '@/components/corporate/products/RoiCalculatorLazy';
 import { getDiagnosisRoutes, type RouteCard } from './routing';
 
 interface ResultPanelProps {
@@ -240,6 +241,12 @@ export default function ResultPanel({
       {/* Glossary Terms */}
       <div className="mb-8">
         <RelatedGlossary slugs={sol.relatedTerms} locale={locale} />
+      </div>
+
+      {/* ROI 계산기 — 적합성 확인 뒤 "정량 효과" 단계 (④2-1 D1: 제품 허브 Beat 6.5에서
+          이관 — 진단을 마친 사용자에게만 노출, CTA 직전). 위젯 자체 3로케일 카피 사용. */}
+      <div className="mb-8">
+        <RoiCalculatorLazy locale={locale} />
       </div>
 
       {/* CTA Band */}

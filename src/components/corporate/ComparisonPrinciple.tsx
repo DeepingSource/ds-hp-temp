@@ -34,17 +34,17 @@ const dict: Record<
       {
         icon: CalendarRange,
         title: '기간 비교',
-        desc: '7·14·30일을 고르면 모든 지표가 그 기간으로 다시 계산되고, 직전 같은 길이의 기간과 견줍니다. “지난 2주가 그 전 2주보다 어땠나”가 기본 질문입니다.',
+        desc: '7·14·30일을 고르면 모든 지표가 그 기간으로 다시 계산되어, 직전 같은 길이의 기간과 견줍니다.',
       },
       {
         icon: Users,
         title: '또래 보정',
-        desc: '행동이 비슷한 매장끼리 묶어, 또래 평균에서 얼마나 벗어났는지로 읽습니다. 명절·날씨로 다 같이 오르내린 것은 사라지고, 그 매장만의 움직임이 남습니다.',
+        desc: '행동이 비슷한 매장끼리 묶어, 또래 평균에서 얼마나 벗어났는지로 읽습니다.',
       },
       {
         icon: Layers,
         title: '출처 구분',
-        desc: '체류는 우리가 잰 측정값, 매출은 본사가 올린 제공값, 전환율은 추정값입니다. 화면은 이 셋을 같은 무게로 보여주지 않습니다.',
+        desc: '측정값(체류)·제공값(매출)·추정값(전환율)을 같은 무게로 보여주지 않습니다.',
       },
     ],
     caption: '지금 보는 매장이 네트워크 전체에서 어디쯤인지.',
@@ -60,17 +60,17 @@ const dict: Record<
       {
         icon: CalendarRange,
         title: 'Period comparison',
-        desc: 'Pick 7, 14, or 30 days and every metric recomputes for that window, measured against the previous window of equal length. “How did the last two weeks do versus the two before?” is the default question.',
+        desc: 'Pick 7, 14, or 30 days and every metric recomputes against the previous window of equal length.',
       },
       {
         icon: Users,
         title: 'Peer adjustment',
-        desc: "Stores that behave alike are grouped, and each is read by how far it sits from its peer average. Holidays and weather that lift everyone fall away; what's left is the store's own movement.",
+        desc: 'Stores that behave alike are grouped, and each is read by its distance from the peer average.',
       },
       {
         icon: Layers,
         title: 'Source distinction',
-        desc: "Dwell is what we measured, revenue is what HQ provided, conversion is an estimate. The screen doesn't show these three with equal weight.",
+        desc: 'Measured (dwell), provided (revenue), and estimated (conversion) are never shown with equal weight.',
       },
     ],
     caption: "Where the store you're viewing sits across the whole network.",
@@ -86,17 +86,17 @@ const dict: Record<
       {
         icon: CalendarRange,
         title: '期間比較',
-        desc: '7・14・30日を選ぶと、すべての指標がその期間で再計算され、直前の同じ長さの期間と比べます。「この2週間は、その前の2週間よりどうだったか」が基本の問いです。',
+        desc: '7・14・30日を選ぶと、すべての指標がその期間で再計算され、直前の同じ長さの期間と比べます。',
       },
       {
         icon: Users,
         title: '同類補正',
-        desc: '行動が似た店舗どうしをまとめ、同類平均からどれだけ離れているかで読みます。祝日や天候でみな一様に上下したぶんは消え、その店舗だけの動きが残ります。',
+        desc: '行動が似た店舗どうしをまとめ、同類平均からどれだけ離れているかで読みます。',
       },
       {
         icon: Layers,
         title: '出所の区別',
-        desc: '滞在は私たちが計測した値、売上は本部が登録した提供値、転換率は推定値です。画面はこの三つを同じ重みでは見せません。',
+        desc: '計測値（滞在）・提供値（売上）・推定値（転換率）を同じ重みでは見せません。',
       },
     ],
     caption: '今見ている店舗が、ネットワーク全体のどのあたりにいるか。',

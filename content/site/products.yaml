@@ -19,9 +19,9 @@ suiteTitle:
   en: One suite for the enterprise — saai suite, three modes in one loop
   jp: エンタープライズは saai suite ひとつで — 3つのモードが、ひとつのループに
 suiteSub:
-  ko: insight가 어제를 분석하고, care가 지금을 감지하고, agent가 다음을 실행합니다. 학습이 루프를 닫아 결과를 다시 입력으로 — 세 모드가 하나의 익명화 운영 루프로 도는 엔터프라이즈 패키지가 saai suite입니다. 기능은 이 세 모드를 모두 가로지릅니다.
-  en: insight analyzes yesterday, care detects the now, agent acts on next. Learning closes the loop, feeding the result back in — saai suite is the enterprise package where the three modes run as one anonymized operating loop. The functions cross all three modes.
-  jp: insight が昨日を分析し、care が今を検知し、agent が次を実行します。学習がループを閉じ、結果を再び入力へ — 3つのモードがひとつの匿名化オペレーションループとして回るエンタープライズパッケージが saai suite です。機能はこの3つのモードを横断します。
+  ko: insight가 어제를 분석하고, care가 지금을 감지하고, agent가 다음을 실행합니다. 세 모드가 하나의 익명화 루프로 도는 엔터프라이즈 패키지가 saai suite입니다.
+  en: insight analyzes yesterday, care detects the now, agent acts on next. saai suite is the enterprise package where the three modes run as one anonymized loop.
+  jp: insight が昨日を分析し、care が今を検知し、agent が次を実行します。3つのモードがひとつの匿名化ループとして回るエンタープライズパッケージが saai suite です。
 ownersEyebrow:
   ko: 도메인 구현 · 사장님을 위한 B2C (별도 사이트)
   en: Domain implementations · for owners, B2C (separate sites)
@@ -31,9 +31,9 @@ categoryTitle:
   en: One category — Anonymized Spatial AI
   jp: カテゴリーはひとつ — 匿名化空間AI
 categoryBody:
-  ko: 세 모드는 하나의 카테고리 위에 서 있습니다. 영상은 입력 시점에 익명화되어 저장되지 않고, 공간의 흐름만 데이터로 남습니다. 그 위에서 분석(insight)→감지(care)→실행(agent)→학습의 운영 루프가 돌아가고, 기능은 그 세 모드를 모두 가로지릅니다.
-  en: The three modes stand on one category. Footage is anonymized at input and never stored — only the flow of the space remains as data. On top of that runs the operating loop, Analyze (insight) → Detect (care) → Act (agent) → Learn, and the functions cross all three modes.
-  jp: 3つのモードは、ひとつのカテゴリーの上に立っています。映像は入力時点で匿名化されて保存されず、空間の流れだけがデータとして残ります。その上で、分析（insight）→検知（care）→実行（agent）→学習のオペレーションループが回り、機能はその3つのモードを横断します。
+  ko: 영상은 입력 즉시 익명화되어 저장되지 않고, 공간의 흐름만 데이터로 남습니다.
+  en: Footage is anonymized on input and never stored — only the flow of the space remains as data.
+  jp: 映像は入力と同時に匿名化されて保存されず、空間の流れだけがデータとして残ります。
 casesCta:
   ko: 도입 사례 보기
   en: See customer cases
