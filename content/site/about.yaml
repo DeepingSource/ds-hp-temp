@@ -6,38 +6,40 @@ hero:
     ko: REINVENT OFFLINE · About DEEPINGSOURCE
     en: REINVENT OFFLINE · About DEEPINGSOURCE
     jp: REINVENT OFFLINE · About DEEPINGSOURCE
-  heroEyebrowCompany:
-    ko: 온라인은
-    en: Online
-    jp: オンラインは
-  heroMasterCompany:
-    ko: |-
-      측정으로
-      최적화됐다
-    en: |-
-      got optimized
-      by measurement.
-    jp: |-
-      測定で
-      最適化された。
-  heroEyebrowOwner:
-    ko: 현장은
-    en: The physical world
-    jp: 現場は
-  heroMasterOwner:
-    ko: |-
-      거의
-      그대로였다
-    en: |-
-      stayed
-      largely the same.
-    jp: |-
-      ほぼ
-      そのままだった。
-  companyIntro2:
-    ko: 딥핑소스는, 그 현장을 다시 만듭니다.
-    en: DEEPINGSOURCE is here to reinvent it.
-    jp: ディーピングソースは、その現場を作り直します。
+  # 신뢰 사실 스트립 (AB B1) — 선언 반복 자리를 사실로 채운다. {foundingYear}/{patents}는
+  # company 싱글톤 값으로 뷰에서 치환.
+  heroFactValues:
+    ko:
+      - "{foundingYear}"
+      - 약 300억 원
+      - "{patents}건"
+      - SOC 2
+    en:
+      - "{foundingYear}"
+      - "~₩30B"
+      - "{patents}"
+      - SOC 2
+    jp:
+      - "{foundingYear}"
+      - 約300億ウォン
+      - "{patents}件"
+      - SOC 2
+  heroFactLabels:
+    ko:
+      - 창업
+      - 누적 투자
+      - 특허
+      - 정보보안 인증
+    en:
+      - Founded
+      - Cumulative funding
+      - Patents
+      - Security certified
+    jp:
+      - 創業
+      - 累計調達
+      - 特許
+      - セキュリティ認証
 vm:
   missionStatement:
     ko: |-

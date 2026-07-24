@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import TimelineSpine from '@/components/ui/TimelineSpine';
 import { type Locale } from '@/lib/i18n';
+import { COMPANY } from '@/lib/company-data';
 
 type Item = { phase: string; title: string; description: string; year: string };
 
@@ -29,8 +30,8 @@ const C: Record<Locale, { items: Item[] }> = {
         phase: '확장',
         title: '현장이 AI를 검증하다',
         description:
-          'NVIDIA Inception 합류, Series A1 투자 유치. 익명화 기술이 실제 매장에서 작동한다는 것을 수십 개 현장이 증명했습니다.',
-        year: '2020',
+          'NVIDIA Inception 합류, 시리즈 A 약 55억 원 투자 유치(KDDI 리드). 익명화 기술이 실제 매장에서 작동한다는 것을 수십 개 현장이 증명했습니다.',
+        year: '2019',
       },
       {
         phase: '증명',
@@ -45,6 +46,13 @@ const C: Record<Locale, { items: Item[] }> = {
         description:
           '“그래서 뭘 해야 하는데요?” — 데이터를 보여주는 것만으로는 현장이 바뀌지 않았습니다. 진짜 문제는 데이터가 아니라 실행이었습니다.',
         year: '2022',
+      },
+      {
+        phase: '신뢰',
+        title: '외부가 방식을 검증하다',
+        description:
+          'SOC 2 인증 취득, NextRise 2024 ‘Top Innovator’ 수상. 누적 특허 {patents}건.',
+        year: '2024',
       },
       {
         phase: '완성',
@@ -75,8 +83,8 @@ const C: Record<Locale, { items: Item[] }> = {
         phase: 'Expansion',
         title: 'The Field Validates the AI',
         description:
-          'Joined NVIDIA Inception and closed a Series A1 round. Dozens of sites proved that anonymization technology works in real stores.',
-        year: '2020',
+          'Joined NVIDIA Inception and raised a ~₩5.5B Series A led by KDDI. Dozens of sites proved that anonymization technology works in real stores.',
+        year: '2019',
       },
       {
         phase: 'Proof',
@@ -91,6 +99,13 @@ const C: Record<Locale, { items: Item[] }> = {
         description:
           '“So what should we actually do?” — showing the data alone did not change the field. The real problem was not data, but execution.',
         year: '2022',
+      },
+      {
+        phase: 'Trust',
+        title: 'Outside Validation of the Method',
+        description:
+          'Achieved SOC 2 certification and won NextRise 2024 ‘Top Innovator’. {patents} patents filed to date.',
+        year: '2024',
       },
       {
         phase: 'Realization',
@@ -121,8 +136,8 @@ const C: Record<Locale, { items: Item[] }> = {
         phase: '拡大',
         title: '現場がAIを検証する',
         description:
-          'NVIDIA Inceptionへの参加、Series A1の資金調達。匿名化技術が実際の店舗で機能することを、数十の現場が証明しました。',
-        year: '2020',
+          'NVIDIA Inceptionへの参加、シリーズA 約55億ウォンを調達（KDDIリード）。匿名化技術が実際の店舗で機能することを、数十の現場が証明しました。',
+        year: '2019',
       },
       {
         phase: '証明',
@@ -137,6 +152,13 @@ const C: Record<Locale, { items: Item[] }> = {
         description:
           '「で、何をすればいいの?」 — データを見せるだけでは現場は変わりませんでした。本当の課題はデータではなく、実行でした。',
         year: '2022',
+      },
+      {
+        phase: '信頼',
+        title: '外部が方式を検証する',
+        description:
+          'SOC 2認証を取得、NextRise 2024「Top Innovator」を受賞。累計特許{patents}件。',
+        year: '2024',
       },
       {
         phase: '完成',
@@ -187,7 +209,7 @@ function TimelineItem({ item, index }: { item: Item; index: number }) {
           <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
           <span className="text-xs text-gray-500 font-mono ml-auto">{item.year}</span>
         </div>
-        <p className="text-gray-500 leading-relaxed break-keep">{item.description}</p>
+        <p className="text-gray-500 leading-relaxed break-keep">{item.description.replace('{patents}', String(COMPANY.patents))}</p>
       </div>
     </motion.div>
   );
@@ -201,8 +223,9 @@ export function OriginStoryTimeline({ locale = 'en' }: { locale?: Locale }) {
       {/* 수직 라인 — scroll-in 시 위→아래로 draw */}
       <TimelineSpine className="absolute left-5 top-5 bottom-5 w-px hidden sm:block" lineClassName="bg-gray-100" />
       <div className="space-y-6">
+        {/* 2019가 두 항목(발견·시리즈 A)이라 연도 단독 key는 중복 — index 결합 */}
         {items.map((item, i) => (
-          <TimelineItem key={item.year} item={item} index={i} />
+          <TimelineItem key={`${item.year}-${i}`} item={item} index={i} />
         ))}
       </div>
     </div>

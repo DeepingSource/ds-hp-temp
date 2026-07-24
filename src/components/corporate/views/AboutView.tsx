@@ -11,10 +11,9 @@ import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import SpatialStackDiagram from '@/components/about/SpatialStackDiagram';
 import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
 import {
-  ArrowRight, Calendar, Award, Handshake, ShieldCheck, Cpu, Users, Sparkles,
+  ArrowRight, Award, Handshake, ShieldCheck, Cpu, Users, Sparkles,
 } from 'lucide-react';
 import { COMPANY } from '@/lib/company-data';
-import { milestoneHighlights } from '@/lib/company-milestones';
 import { leadership } from '@/lib/leadership';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -27,11 +26,8 @@ const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 type AboutCopy = {
   badge: string;
-  heroEyebrowCompany: string;
-  heroMasterCompany: string;
-  heroEyebrowOwner: string;
-  heroMasterOwner: string;
-  companyIntro2: string;
+  heroFactValues: string[];
+  heroFactLabels: string[];
   missionStatement: string;
   missionStatementSub: string;
   // vision·mission: yaml에 존재, Stage 6에서 렌더 연결 예정 (AB A3 · 1-2 지침)
@@ -180,12 +176,13 @@ export default function AboutView({ locale }: { locale: Locale }) {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* ── Beat 1 — Hero (선언): H1 정체성 문장 + REINVENT OFFLINE 배지 + 공간 비주얼 ── */}
-      <section className="relative pt-28 pb-20 lg:pt-36 overflow-hidden bg-surface-dark">
+      {/* ── Beat 1 — Hero (선언): H1 + sub 1회 + 신뢰 사실 스트립, 1뷰포트 (AB B1·D2).
+          배경은 라벨 없는 야간 매장 컷(J5) — 추적 ID 박스가 '감시' 어감을 만들던 컷 교체. ── */}
+      <section className="relative pt-28 pb-16 lg:pt-36 overflow-hidden bg-surface-dark">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity"
-          style={{ backgroundImage: `url(${BASE}/images/hero/hero-store.webp)` }}
+          style={{ backgroundImage: `url(${BASE}/images/hero/hero-about-night.webp)` }}
         />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <Breadcrumb items={[{ name: crumb('about', locale), path: '/company/about' }]} locale={locale} tone="dark" className="mb-6" />
@@ -208,28 +205,25 @@ export default function AboutView({ locale }: { locale: Locale }) {
               </Fragment>
             ))}
           </h1>
-          <p className="text-xl sm:text-2xl font-bold text-slate-300 leading-snug mb-14 break-keep whitespace-pre-line">
+          <p className="text-xl sm:text-2xl font-bold text-slate-300 leading-snug mb-12 break-keep whitespace-pre-line">
             {renderLead(t.missionStatementSub, LEAD_HL[locale])}
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm text-center">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">{t.heroEyebrowCompany}</p>
-              <p className="text-2xl sm:text-3xl font-bold text-white leading-snug break-keep whitespace-pre-line">
-                {t.heroMasterCompany}
-              </p>
-            </div>
-            <div className="p-8 rounded-3xl bg-primary/20 border border-primary/40 backdrop-blur-sm text-center">
-              <p className="text-xs font-bold text-primary-light uppercase tracking-widest mb-4">{t.heroEyebrowOwner}</p>
-              <p className="text-2xl sm:text-3xl font-bold text-white leading-snug break-keep whitespace-pre-line">
-                {t.heroMasterOwner}
-              </p>
-            </div>
-          </div>
-
-          <p className="mt-14 text-xl sm:text-2xl font-bold text-white max-w-2xl mx-auto leading-snug break-keep">
-            {t.companyIntro2}
-          </p>
+          {/* 신뢰 사실 스트립 (AB B1) — 선언 반복(카드 2장 + 말미 문장) 자리를 사실로 대체 */}
+          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 max-w-3xl mx-auto">
+            {t.heroFactValues.map((v, i) => (
+              <div key={i} className="bg-surface-dark/90 px-4 py-5 text-center">
+                <dd className="text-xl sm:text-2xl font-bold text-white tabular-nums break-keep">
+                  {v
+                    .replace('{foundingYear}', String(COMPANY.foundingYear))
+                    .replace('{patents}', String(COMPANY.patents))}
+                </dd>
+                <dt className="mt-1 text-2xs font-semibold uppercase tracking-widest text-slate-400 break-keep">
+                  {t.heroFactLabels[i]}
+                </dt>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -257,18 +251,8 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
           </div>
 
-          <StaggerContainer margin="0px" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {milestoneHighlights(locale).map((m) => (
-              <StaggerItem key={m.year}>
-                <div className="p-6 bg-white rounded-2xl border border-gray-100 h-full text-center shadow-sm">
-                  <Calendar className="w-5 h-5 text-primary mx-auto mb-3" />
-                  <p className="text-2xl font-bold text-gray-900 mb-1">{m.year}</p>
-                  <p className="text-sm font-bold text-primary mb-2 break-keep">{m.title}</p>
-                  <p className="text-xs text-gray-500 leading-relaxed break-keep">{m.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          {/* 마일스톤 카드 4장은 타임라인과 연혁 이중화라 삭제(AB B2) — 고유 사실
+              (시리즈 A 55억·SOC 2 연도·특허 수)은 타임라인 항목으로 흡수. */}
         </div>
       </AnimatedSection>
 

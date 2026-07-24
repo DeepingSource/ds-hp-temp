@@ -1009,11 +1009,8 @@ export default config({
       schema: {
         hero: fields.object({
           badge: localized('Hero 배지 (badge)'),
-          heroEyebrowCompany: localized('Hero Eyebrow · 회사 (heroEyebrowCompany)'),
-          heroMasterCompany: localized('Hero 마스터 · 회사 — 줄바꿈 \\n 유지 (heroMasterCompany)'),
-          heroEyebrowOwner: localized('Hero Eyebrow · 현장 (heroEyebrowOwner)'),
-          heroMasterOwner: localized('Hero 마스터 · 현장 — 줄바꿈 \\n 유지 (heroMasterOwner)'),
-          companyIntro2: localized('회사 소개 2 · 펀치라인 (companyIntro2)'),
+          heroFactValues: localizedList('사실 스트립 값 · 4개 — {foundingYear}/{patents} 토큰 유지 (heroFactValues)'),
+          heroFactLabels: localizedList('사실 스트립 라벨 · 4개 (heroFactLabels)'),
         }, { label: '히어로' }),
         vm: fields.object({
           missionStatement: localized('미션 스테이트먼트 (missionStatement)'),

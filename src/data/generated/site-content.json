@@ -681,11 +681,18 @@
   "about": {
     "en": {
       "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
-      "heroEyebrowCompany": "Online",
-      "heroMasterCompany": "got optimized\nby measurement.",
-      "heroEyebrowOwner": "The physical world",
-      "heroMasterOwner": "stayed\nlargely the same.",
-      "companyIntro2": "DEEPINGSOURCE is here to reinvent it.",
+      "heroFactValues": [
+        "{foundingYear}",
+        "~₩30B",
+        "{patents}",
+        "SOC 2"
+      ],
+      "heroFactLabels": [
+        "Founded",
+        "Cumulative funding",
+        "Patents",
+        "Security certified"
+      ],
       "missionStatement": "Online was optimized for 20 years.\nPhysical space remained almost untouched.",
       "missionStatementSub": "DeepingSource is here to\nreinvent it.",
       "vision": "Starting from your space — to every space.",
@@ -745,11 +752,18 @@
     },
     "ko": {
       "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
-      "heroEyebrowCompany": "온라인은",
-      "heroMasterCompany": "측정으로\n최적화됐다",
-      "heroEyebrowOwner": "현장은",
-      "heroMasterOwner": "거의\n그대로였다",
-      "companyIntro2": "딥핑소스는, 그 현장을 다시 만듭니다.",
+      "heroFactValues": [
+        "{foundingYear}",
+        "약 300억 원",
+        "{patents}건",
+        "SOC 2"
+      ],
+      "heroFactLabels": [
+        "창업",
+        "누적 투자",
+        "특허",
+        "정보보안 인증"
+      ],
       "missionStatement": "온라인은 20년간 최적화됐습니다.\n현장은, 거의 그대로입니다.",
       "missionStatementSub": "딥핑소스는, 그 현장을\n다시 만듭니다",
       "vision": "당신의 공간에서 시작해, 모든 공간으로.",
@@ -809,11 +823,18 @@
     },
     "jp": {
       "badge": "REINVENT OFFLINE · About DEEPINGSOURCE",
-      "heroEyebrowCompany": "オンラインは",
-      "heroMasterCompany": "測定で\n最適化された。",
-      "heroEyebrowOwner": "現場は",
-      "heroMasterOwner": "ほぼ\nそのままだった。",
-      "companyIntro2": "ディーピングソースは、その現場を作り直します。",
+      "heroFactValues": [
+        "{foundingYear}",
+        "約300億ウォン",
+        "{patents}件",
+        "SOC 2"
+      ],
+      "heroFactLabels": [
+        "創業",
+        "累計調達",
+        "特許",
+        "セキュリティ認証"
+      ],
       "missionStatement": "オンラインは20年間最適化されました。\n現場は、ほとんどそのままです。",
       "missionStatementSub": "ディーピングソースは、\nその現場をつくりなおす。",
       "vision": "あなたの空間から始めて、すべての空間へ。",

@@ -120,8 +120,8 @@ const solutions = toLocaleMajor(load('content/site/solutions.yaml'), SOLUTIONS_F
 //    an array) + id-keyed certs/methodSteps. Cert labels/icons + the closing line
 //    (a brand-canon SOT value) stay in code. ──
 const ABOUT_FLAT = [
-  'badge', 'heroEyebrowCompany', 'heroMasterCompany', 'heroEyebrowOwner', 'heroMasterOwner',
-  'companyIntro2', 'missionStatement', 'missionStatementSub', 'vision', 'mission',
+  'badge', 'heroFactValues', 'heroFactLabels',
+  'missionStatement', 'missionStatementSub', 'vision', 'mission',
   'storyHeading', 'storySub', 'namingHeading', 'namingBody', 'leadershipEyebrow', 'leadershipHeading', 'leadershipSub',
   'partnersEyebrow', 'partnersHeading', 'partnersSub', 'partnerStatsNote', 'certsLabel',
   'ctaHeading', 'ctaSub', 'ctaButton', 'partnerStatLabels',
