@@ -12,7 +12,7 @@ import { type Locale } from '@/lib/i18n';
 
 // 3-10: '올리브영'은 실명 사용 미승인(런칭 블로커)이라 준실명 표기로 익명화. 승인 시 첫 항목만
 // '올리브영'/'Olive Young'/'オリーブヤング'로 되돌리면 됨(PL-5). 나머지 7개는 승인 확인 전까지 유지.
-const trustedBrands: Record<Locale, string[]> = {
+export const trustedBrands: Record<Locale, string[]> = {
   ko: ['국내 1위 H&B 스토어', 'BGF CU', '코리아세븐', 'CJ푸드빌', '롯데GRS', '현대자동차', '롯데월드', '국립박물관재단'],
   en: ['Leading H&B retailer', 'BGF CU', 'Korea Seven', 'CJ Foodville', 'Lotte GRS', 'Hyundai Motor', 'Lotte World', 'National Museum Foundation'],
   jp: ['国内トップのH&Bストア', 'BGF CU', 'コリアセブン', 'CJフードビル', 'ロッテGRS', '現代自動車', 'ロッテワールド', '国立博物館財団'],

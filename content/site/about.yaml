@@ -126,22 +126,23 @@ partners:
     ko: '* 파트너·업종·특허 수는 자사 집계 기준 (2026). 규제 준수는 개인정보보호법(PIPA) 기준.'
     en: '* Partner, industry, and patent counts are company figures (as of 2026). Compliance per Korea PIPA.'
     jp: '* パートナー・業種・特許数は自社集計基準 (2026)。規制準拠は個人情報保護法(PIPA)基準。'
+  # AB B4 스탯 재구성: 누적 투자 승격 · 약한 숫자(업종) 강등 · 인증 셀 통합
   partnerStatLabels:
     ko:
-      - 파트너 브랜드
-      - 지원 업종
+      - 누적 투자
       - 특허
-      - 규제 준수
+      - 파트너 브랜드
+      - 인증 · 준수
     en:
-      - Partner brands
-      - Industries served
+      - Cumulative funding
       - Patents
-      - Compliance
+      - Partner brands
+      - Certified & compliant
     jp:
-      - パートナーブランド
-      - 対応業種
+      - 累計調達
       - 特許
-      - 規制準拠
+      - パートナーブランド
+      - 認証・準拠
   certsLabel:
     ko: Awards & Credentials
     en: Awards & Credentials

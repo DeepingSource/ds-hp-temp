@@ -4,12 +4,15 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Eyebrow from '@/components/ui/Eyebrow';
 import { StaggerContainer } from '@/components/ui/StaggerContainer';
 import { StaggerItem } from '@/components/ui/StaggerItem';
 import WordRise from '@/components/ui/WordRise';
 import { OriginStoryTimeline } from '@/components/about/OriginStoryTimeline';
 import SpatialStackDiagram from '@/components/about/SpatialStackDiagram';
-import VisionCoordinatesMockup from '@/components/mockups/VisionCoordinatesMockup';
+import { trustedBrands } from '@/components/corporate/PartnerGrid';
 import {
   ArrowRight, Award, Handshake, ShieldCheck, Cpu, Users, Sparkles,
 } from 'lucide-react';
@@ -67,36 +70,40 @@ const CERTS_STRUCT: { id: string; label: string; icon: typeof ShieldCheck }[] = 
 const LEAD_HL: Record<Locale, string> = { ko: '다시', en: 'Reinvent', jp: 'つくりなおす' };
 
 const NEXT: Record<Locale, {
-  eyebrow: string; h2: string; aTitle: string; aLead: string; cTransition: string;
-  companyTag: string; companyPromise: string; connector: string;
-  saaiTag: string; saaiName: string; saaiPromise: string; lettersLabel: string; saaiLink: string;
+  eyebrow: string; aTitle: string; aLead: string; goalLabel: string; goals: [string, string, string];
 }> = {
   ko: {
     eyebrow: "What's next · 향후 5년",
-    h2: '5년 뒤, 우리가 설 자리 — 그리고 거기까지 가는 법.',
     aTitle: 'Vision 2031 — 우리가 가려는 좌표',
     aLead: "익명화·공간·운영이 겹치는 거의 유일한 자리. 시장이 'Physical AI'를 말할 때, 공간 쪽에서 가장 먼저 불리는 이름.",
-    cTransition: '이 세 축을, 하나의 플랫폼으로 묶었습니다.',
-    companyTag: '회사 · DeepingSource', companyPromise: '모든 공간을, 완벽하게.', connector: '모든 공간을 완벽하게 하려면 — 당신의 공간부터',
-    saaiTag: '플랫폼 · SAAI', saaiName: 'SAAI — 익명화 공간 AI', saaiPromise: '당신의 공간을, 완벽하게.', lettersLabel: 'S · A · A · I', saaiLink: 'SAAI란 무엇인가',
+    goalLabel: '목표',
+    goals: [
+      '국내 리테일 — 편의점·드럭스토어·카페·무인매장의 디지털 매장 운영 인프라',
+      '공간 확장 — 공장·물류·시설·병원으로, 매장 외 매출 비중 30% 이상 (2031)',
+      "글로벌 — 일본·동남아 확장, '익명화 공간 AI' 선도 상위 3사",
+    ],
   },
   en: {
     eyebrow: "What's next · Next 5 years",
-    h2: "Where we'll stand in five years — and how we get there.",
     aTitle: 'Vision 2031 — the coordinates we aim for',
     aLead: "One of the very few places where anonymization, space and operations overlap. When the market says 'Physical AI', the first name called on the spatial side.",
-    cTransition: 'We tied these three layers into one platform.',
-    companyTag: 'Company · DeepingSource', companyPromise: 'Every space, made perfect.', connector: 'To make every space perfect — start with your space',
-    saaiTag: 'Platform · SAAI', saaiName: 'SAAI — anonymized spatial AI', saaiPromise: 'Your space, made perfect.', lettersLabel: 'S · A · A · I', saaiLink: 'What is SAAI',
+    goalLabel: 'Goal',
+    goals: [
+      'Korean retail — the digital store-operations infrastructure for convenience stores, drugstores, cafés, and unmanned stores',
+      'Beyond stores — factories, logistics, facilities, and hospitals; 30%+ of revenue outside stores (2031)',
+      "Global — expansion across Japan and Southeast Asia; a top-3 leader in 'anonymized spatial AI'",
+    ],
   },
   jp: {
     eyebrow: "What's next · 今後5年",
-    h2: '5年後に立つ場所 — そして、そこまで行く方法。',
     aTitle: 'Vision 2031 — 目指す座標',
     aLead: '匿名化・空間・運営が重なる、ほぼ唯一の場所。市場が「Physical AI」を語るとき、空間の側で最初に呼ばれる名前。',
-    cTransition: 'この三つの軸を、一つのプラットフォームにまとめました。',
-    companyTag: '会社 · DeepingSource', companyPromise: 'すべての空間を、完璧に。', connector: 'すべての空間を完璧にするには — あなたの空間から',
-    saaiTag: 'プラットフォーム · SAAI', saaiName: 'SAAI — 匿名化空間AI', saaiPromise: 'あなたの空間を、完璧に。', lettersLabel: 'S · A · A · I', saaiLink: 'SAAIとは',
+    goalLabel: '目標',
+    goals: [
+      '国内リテール — コンビニ・ドラッグストア・カフェ・無人店舗のデジタル店舗運営インフラ',
+      '空間の拡張 — 工場・物流・施設・病院へ、店舗外売上比率30%以上 (2031)',
+      'グローバル — 日本・東南アジアへ拡張、「匿名化空間AI」のトップ3',
+    ],
   },
 };
 
@@ -124,32 +131,19 @@ const ROLES: Record<Locale, { strip: string; enterprise: string; partnership: st
   jp: { strip: '共に創る場所', enterprise: 'エンタープライズ導入', partnership: 'パートナーシップ・協業のお問い合わせ' },
 };
 
-type ModeMini = { ph: string; name: string; tag: string; href: string };
-const BRIDGE2: Record<Locale, { eyebrow: string; head: string; sub: string; cta: string; modes: [ModeMini, ModeMini, ModeMini] }> = {
-  ko: {
-    eyebrow: '이제, 당신의 공간부터', head: '세 개의 근거가, 하나의 흐름으로', sub: '어제를 읽고, 지금을 알리고, 다음을 실행합니다 — 하나의 흐름으로.', cta: '제품 전체 보기',
-    modes: [
-      { ph: '어제 · Analyze', name: 'saai insight', tag: '어제를 읽다', href: '/products/saai-insight' },
-      { ph: '지금 · Detect', name: 'saai care', tag: '지금을 알리다', href: '/products/saai-care' },
-      { ph: '다음 · Act', name: 'saai agent', tag: '다음을 실행하다', href: '/products/saai-agent' },
-    ],
-  },
-  en: {
-    eyebrow: 'Now, start with your space', head: 'Three grounds, one flow', sub: 'Read yesterday, flag the now, act on next — as one flow.', cta: 'See all products',
-    modes: [
-      { ph: 'Yesterday · Analyze', name: 'saai insight', tag: 'reads yesterday', href: '/products/saai-insight' },
-      { ph: 'Now · Detect', name: 'saai care', tag: 'flags the now', href: '/products/saai-care' },
-      { ph: 'Next · Act', name: 'saai agent', tag: 'acts on next', href: '/products/saai-agent' },
-    ],
-  },
-  jp: {
-    eyebrow: '今、あなたの空間から', head: '三つの根拠が、一つの流れに', sub: '昨日を読み、今を知らせ、次を実行する — 一つの流れで。', cta: '製品をすべて見る',
-    modes: [
-      { ph: '昨日 · Analyze', name: 'saai insight', tag: '昨日を読む', href: '/products/saai-insight' },
-      { ph: '今 · Detect', name: 'saai care', tag: '今を知らせる', href: '/products/saai-care' },
-      { ph: '次 · Act', name: 'saai agent', tag: '次を実行する', href: '/products/saai-agent' },
-    ],
-  },
+// 6B SAAI 브릿지는 홈·제품 재탕이라 한 줄 링크로 축소(AB B3) — CTA 섹션이 흡수.
+const PRODUCTS_LINE: Record<Locale, { line: string; cta: string }> = {
+  ko: { line: '이 방식은 세 제품이 되어 매장에서 돌아갑니다.', cta: '제품 보기' },
+  en: { line: 'This approach runs in stores as three products.', cta: 'See the products' },
+  jp: { line: 'この方式は、三つの製品として店舗で動いています。', cta: '製品を見る' },
+};
+
+const FUNDING_TOTAL: Record<Locale, string> = { ko: '약 300억', en: '~₩30B', jp: '約300億' };
+
+const VM_LABELS: Record<Locale, { vision: string; mission: string }> = {
+  ko: { vision: '비전', mission: '미션' },
+  en: { vision: 'Vision', mission: 'Mission' },
+  jp: { vision: 'ビジョン', mission: 'ミッション' },
 };
 
 const TOGETHER: Record<Locale, string> = { ko: '함께하자 · Together', en: 'Together', jp: '一緒に · Together' };
@@ -166,7 +160,7 @@ export default function AboutView({ locale }: { locale: Locale }) {
   const promise = saaiPromiseLayer[locale];
   const why = WHY[locale];
   const roles = ROLES[locale];
-  const bridge = BRIDGE2[locale];
+  const productsLine = PRODUCTS_LINE[locale];
 
   const partnersHeading = t.partnersHeading.replace('{partnerBrands}', String(COMPANY.partnerBrands));
   const partnersSub = t.partnersSub
@@ -245,46 +239,31 @@ export default function AboutView({ locale }: { locale: Locale }) {
             <OriginStoryTimeline locale={locale} />
           </div>
 
-          {/* Naming Origin — Deeping Source */}
-          <div className="mb-16 mx-auto max-w-3xl rounded-3xl border border-primary/15 bg-white p-8 sm:p-10 shadow-card">
-            <p className="text-xs font-bold text-primary mb-3 tracking-widest uppercase">{t.namingHeading}</p>
-            <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
-          </div>
-
           {/* 마일스톤 카드 4장은 타임라인과 연혁 이중화라 삭제(AB B2) — 고유 사실
               (시리즈 A 55억·SOC 2 연도·특허 수)은 타임라인 항목으로 흡수. */}
         </div>
       </AnimatedSection>
 
-      {/* ── Beat 3 — Method / 3-Tier Stack (방법): SpatialStackDiagram ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          {/* 카피 SOT = about.yaml method.* (AB A3 역전 — Keystatic 편집이 화면에 반영됨) */}
-          <SpatialStackDiagram
-            copy={{
-              eyebrow: t.methodEyebrow,
-              heading: t.methodHeading,
-              sub: t.methodIntro,
-              steps: t.methodSteps,
-            }}
-          />
-        </div>
-      </AnimatedSection>
 
-      {/* ── Beat 4 — Coordinates / Vision 2031 (좌표): 5년 뒤 우리가 설 자리 ── */}
-      <AnimatedSection className="py-20 lg:py-28 bg-slate-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14 max-w-3xl mx-auto">
-            <p className="text-xs font-bold text-primary mb-3 tracking-widest uppercase">{nx.eyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 font-display break-keep">{nx.aTitle}</h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep">{nx.aLead}</p>
+      {/* ── 철학 — 이름의 유래 + Vision·Mission 실제 렌더 (AB §3 순서 3 · A3 완결) ── */}
+      <Section variant="default" className="border-b border-gray-100">
+        <Container size="medium">
+          <div className="mx-auto max-w-3xl rounded-3xl border border-primary/15 bg-white p-8 sm:p-10 shadow-card">
+            <Eyebrow className="mb-3">{t.namingHeading}</Eyebrow>
+            <p className="text-gray-600 leading-relaxed break-keep">{t.namingBody}</p>
           </div>
-
-          <div className="rounded-3xl bg-white p-6 sm:p-8 border border-gray-200/80 shadow-card">
-            <VisionCoordinatesMockup locale={locale} />
+          <div className="mt-6 grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            <div className="p-7 rounded-2xl bg-slate-50 border border-gray-100">
+              <Eyebrow className="mb-2">{VM_LABELS[locale].vision}</Eyebrow>
+              <p className="text-lg font-bold text-gray-900 break-keep leading-snug">{t.vision}</p>
+            </div>
+            <div className="p-7 rounded-2xl bg-slate-50 border border-gray-100">
+              <Eyebrow className="mb-2">{VM_LABELS[locale].mission}</Eyebrow>
+              <p className="text-lg font-bold text-gray-900 break-keep leading-snug">{t.mission}</p>
+            </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </Container>
+      </Section>
 
       {/* ── Beat 5 — People / Leadership (사람): Illustrated Portraits + Team Page Link ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white border-b border-gray-100">
@@ -351,8 +330,16 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <p className="text-base sm:text-lg text-gray-600 mb-10 break-keep">
             {partnersSub}
           </p>
+          {/* 로고 밴드(AB B4) — 홈 PartnerGrid의 브랜드 명판 이식(로고 스프라이트 전환은 PR-17) */}
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-3xl mx-auto mb-10">
+            {trustedBrands[locale].map((b) => (
+              <span key={b} className="text-sm font-semibold text-gray-400 break-keep">{b}</span>
+            ))}
+          </div>
+
+          {/* 스탯 재구성(AB B4): 약한 숫자(업종 7) 강등, 누적 투자 승격, 인증 셀 통합 */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            {[`${COMPANY.partnerBrands}`, `${COMPANY.industries}`, `${COMPANY.patents}`, 'PIPA'].map((stat, i) => (
+            {[FUNDING_TOTAL[locale], `${COMPANY.patents}`, `${COMPANY.partnerBrands}`, 'SOC 2 · PIPA'].map((stat, i) => (
               <div key={i} className="p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
                 {/* AB §1-A A2: 카운트업 램프가 8·7 같은 작은 수를 '0'으로 노출 — 신뢰 스탯은
                     항상 최종값을 정적 표시 (모션은 섹션 fade가 담당) */}
@@ -396,37 +383,42 @@ export default function AboutView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* 6B. SAAI 3-Mode Bridge */}
+
+      {/* ── Beat 3 — Method / 3-Tier Stack (방법): SpatialStackDiagram ── */}
       <AnimatedSection className="py-20 lg:py-28 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <p className="text-xs font-bold text-primary mb-3 tracking-widest uppercase">{bridge.eyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 font-display break-keep">{bridge.head}</h2>
-            <p className="text-base sm:text-lg text-gray-600 break-keep">{bridge.sub}</p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-            {bridge.modes.map((m) => (
-              <Link
-                key={m.name}
-                href={localeHref(locale, m.href)}
-                className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-card hover:border-primary-light transition-colors no-underline"
-              >
-                <p className="text-2xs font-mono font-bold text-primary mb-2 uppercase tracking-wide">{m.ph}</p>
-                <h3 className="text-lg font-bold text-gray-900 mb-1 lowercase">{m.name}</h3>
-                <p className="text-sm text-gray-500 break-keep mb-5">{m.tag}</p>
-                <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-primary">
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link href={localeHref(locale, '/products')} className="btn-primary btn-lg gap-2 rounded-xl inline-flex items-center">
-              {bridge.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </div>
+          {/* 카피 SOT = about.yaml method.* (AB A3 역전 — Keystatic 편집이 화면에 반영됨) */}
+          <SpatialStackDiagram
+            copy={{
+              eyebrow: t.methodEyebrow,
+              heading: t.methodHeading,
+              sub: t.methodIntro,
+              steps: t.methodSteps,
+            }}
+          />
         </div>
       </AnimatedSection>
+
+      {/* ── 향후 5년 (축소 — AB B3·J1·D7): 다크 목업 대신 텍스트 3줄, 목표는 '목표' 라벨 ── */}
+      <Section variant="default" className="border-b border-gray-100">
+        <Container size="medium">
+          <div className="text-center max-w-3xl mx-auto">
+            <Eyebrow className="mb-3">{nx.eyebrow}</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 font-display break-keep">{nx.aTitle}</h2>
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-keep">{nx.aLead}</p>
+          </div>
+          <ul className="mt-10 max-w-2xl mx-auto space-y-3">
+            {nx.goals.map((g) => (
+              <li key={g} className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-gray-100">
+                <span className="shrink-0 mt-0.5 inline-flex items-center rounded-md bg-primary/10 px-2 py-0.5 text-2xs font-bold text-primary">
+                  {nx.goalLabel}
+                </span>
+                <span className="text-sm text-gray-700 break-keep leading-relaxed">{g}</span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
 
       {/* 6C. Final CTA Section */}
       <AnimatedSection className="py-20 lg:py-28 bg-surface-dark">
@@ -436,8 +428,15 @@ export default function AboutView({ locale }: { locale: Locale }) {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 font-display break-keep whitespace-pre-line">
             {t.ctaHeading}
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg mb-10 break-keep">
+          <p className="text-slate-300 text-base sm:text-lg mb-6 break-keep">
             {t.ctaSub}
+          </p>
+          {/* 구 6B 브릿지의 축소형(AB B3) — 제품 설득은 제품 페이지의 잡, 여기선 한 줄 */}
+          <p className="text-sm text-slate-400 mb-10 break-keep">
+            {productsLine.line}{' '}
+            <Link href={localeHref(locale, '/products')} className="font-bold text-primary-light hover:text-white transition-colors">
+              {productsLine.cta} →
+            </Link>
           </p>
           <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2 rounded-xl inline-flex items-center">
             {t.ctaButton} <ArrowRight className="w-4 h-4" />
