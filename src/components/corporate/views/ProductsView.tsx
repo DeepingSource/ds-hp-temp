@@ -13,7 +13,8 @@ import SaaiPillarsSection from '@/components/corporate/products/SaaiPillarsSecti
 import SaaiSuiteSection from '@/components/corporate/products/SaaiSuiteSection';
 import RelatedGlossary from '@/components/corporate/RelatedGlossary';
 import DiagnosisLauncher from '@/components/corporate/diagnosis/DiagnosisLauncher';
-import RoiCalculatorLazy from '@/components/corporate/products/RoiCalculatorLazy';
+import SegmentCta from '@/components/corporate/SegmentCta';
+import MidCta from '@/components/corporate/MidCta';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { crumb } from '@/lib/breadcrumb-labels';
 import { JsonLd, itemList, softwareApplication } from '@/lib/structured-data';
@@ -172,10 +173,18 @@ export default function ProductsView({ locale }: { locale: Locale }) {
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed break-keep max-w-2xl mb-6">
               {c.heroSub}
             </p>
-            <DiagnosisLauncher variant="inline" locale={locale} />
           </div>
         </Container>
       </section>
+
+      {/* ── Beat 1.5 — 적합성 진단 승격 + 세그먼트 분기 (④2-2·8-2: 가치 → "나에게 맞나"를
+             개념 교육보다 먼저. 진단 배너는 독립 카드형, 아래 2분기 스위치로 본사/사장님 조기 분기) ── */}
+      <AnimatedSection className="py-10 lg:py-14 bg-white border-b border-gray-100">
+        <Container className="max-w-4xl">
+          <DiagnosisLauncher variant="banner" locale={locale} />
+          <SegmentCta locale={locale} variant="switch" className="mt-4" />
+        </Container>
+      </AnimatedSection>
 
       {/* ── Beat 2 — Why Band (WHY: Why spaces need spatial AI) ── */}
       <AnimatedSection className="py-16 bg-slate-900 text-white noise-overlay">
@@ -234,7 +243,7 @@ export default function ProductsView({ locale }: { locale: Locale }) {
                 </span>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">saai count</h3>
                 <p className="text-sm text-gray-600 leading-relaxed break-keep mb-6">
-                  CCTV 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 파악합니다. 상권 문제인지 매장 문제인지 정밀하게 구분합니다.
+                  CCTV 1대로 매장 밖 유동인구와 입점 고객을 비교해 유입률을 파악합니다. 상권 문제인지 매장 문제인지 정밀하게 구분합니다.
                 </p>
               </div>
               <Link
@@ -288,14 +297,21 @@ export default function ProductsView({ locale }: { locale: Locale }) {
         </div>
       </AnimatedSection>
 
-      {/* ── Beat 6.5 — ROI Calculator (MM Phase 3: 허브 전환 기여 — 제품·모듈 카드 뒤,
-             CTA 앞에서 도입 효과를 정량으로. 헤딩·카피는 위젯 자체 3로케일 사용, 신규 카피 0건) ── */}
-      <AnimatedSection className="py-16 lg:py-24 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="mx-auto w-full max-w-md">
-            <RoiCalculatorLazy locale={locale} />
-          </div>
-        </div>
+      {/* ── Beat 6.5 — 미드 CTA (④8-6: suite/모듈 카드 직후가 미드 전환 지점.
+             ROI 계산기는 진단 결과 후단으로 이동 — ④2-1 D1, ResultPanel 참조) ── */}
+      <AnimatedSection className="py-12 lg:py-16 bg-white border-b border-gray-100">
+        <Container>
+          <MidCta
+            locale={locale}
+            lead={
+              locale === 'ko'
+                ? '어떤 모드부터 시작할지, 매장 상황을 알려주시면 정리해 드립니다.'
+                : locale === 'jp'
+                ? 'どのモードから始めるべきか、店舗の状況をお聞かせいただければ整理いたします。'
+                : 'Tell us about your stores and we’ll map out where to start.'
+            }
+          />
+        </Container>
       </AnimatedSection>
 
       {/* ── Beat 7 — Industries & Expansion (WHAT IF: Beyond Retail) ── */}
