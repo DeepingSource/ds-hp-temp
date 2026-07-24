@@ -60,7 +60,7 @@ const dict: Record<Locale, {
   jp: {
     leakEyebrow: '信号が漏れる場所',
     leakTitle: '空間の信号は「隙間」で漏れています',
-    leakSub: 'カメラと決断の間、勘とデータの間、本部と店舗の間。\n信号は常にその隙目で消えていきます。',
+    leakSub: 'カメラと決断の間、勘とデータの間、本部と店舗の間。\n信号は常にその隙間で消えていきます。',
     spaces: [
       { label: '小売・コンビニ', problem: '入店した10人のうち8人が、決済せずに出ていきます。\nどこで逃したのか、誰にも分かりません。', href: '/solutions#industry-convenience' },
       { label: 'カフェ・飲食店', problem: 'ピークタイムの行列に疲れた客が引き返します。\n何人逃したか、数える人がいません。', href: '/solutions#industry-cafe' },

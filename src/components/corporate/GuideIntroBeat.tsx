@@ -134,22 +134,24 @@ export default function GuideIntroBeat({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        {/* Partner Logo Ribbon */}
-        <div className="pt-6 border-t border-gray-100">
-          <p className="text-2xs font-bold uppercase tracking-widest text-gray-400 mb-4">
+        {/* Partner Logo Ribbon — 신뢰 증거로서 비중을 키운 밴드.
+            TODO(로고 에셋): PARTNERS[].logoUrl에 공식 로고(SVG)를 채우면 자동으로 이미지로 전환됨.
+            실제 브랜드 로고이므로 상표 가이드라인·사용 허가를 법무/파트너십 담당자와 사전 확인 후 반영할 것. */}
+        <div className="mt-10 rounded-2xl border border-gray-100 bg-gray-50/60 px-6 py-8 sm:px-10 sm:py-10">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 text-center sm:text-left">
             {t.trustedByLabel}
           </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:justify-start">
             {PARTNERS.map((brand, i) => (
               brand.logoUrl ? (
                 <img
                   key={i}
                   src={brand.logoUrl}
                   alt={brand.name}
-                  className="h-6 object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+                  className="h-8 object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
                 />
               ) : (
-                <span key={i} className="text-xs font-bold text-gray-400 tracking-wide hover:text-gray-700 transition-colors">
+                <span key={i} className="text-sm sm:text-base font-bold text-gray-500 tracking-wide hover:text-gray-800 transition-colors">
                   {brand.name}
                 </span>
               )

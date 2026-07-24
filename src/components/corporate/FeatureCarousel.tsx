@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {
   AnimatePresence, motion, useMotionTemplate, useMotionValue, type PanInfo,
 } from 'framer-motion';
-import { DoorOpen, Grid3x3, Radar, ClipboardCheck, ArrowRight, type LucideIcon } from 'lucide-react';
+import { Grid3x3, Radar, ClipboardCheck, ArrowRight, type LucideIcon } from 'lucide-react';
 import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
@@ -14,24 +14,25 @@ import ProductMiniScreen from './FeatureScreens';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
-import { solutionTaglines, productNaming, type ModeKey } from '@/lib/brand-canon';
+import { productNaming, type ModeKey } from '@/lib/brand-canon';
 import { cn } from '@/lib/cn';
 
 /**
  * FeatureCarousel — the home "products at a glance" showcase (replaces ProductPreview).
- * A dark spotlight card auto-cycles the three modes around the operating loop
- * (care → insight → agent), then the count function, each with its tagline + a
- * mini product screen (FeatureScreens — OperatingLoopDemo 문법의 다크 고도화판).
+ * A dark spotlight card auto-cycles the three core operating-loop modes
+ * (care → insight → agent), each with an expanded tagline + a mini product
+ * screen (FeatureScreens — OperatingLoopDemo 문법의 다크 고도화판). saai count는
+ * 이 3단계 흐름에 속하지 않으므로 제외 — 별도 진입점(/products/store-count)에서 다룬다.
  * Pattern adapted from the cult-ui feature carousel to our design system:
  * useMockupLoop drive (pause-on-hover, reduced-motion holds step 1), brand-blue
  * (--color-primary) spotlight, KO/EN/JP.
  */
 
 type ProductStruct = {
-  key: ModeKey | 'count';
+  key: ModeKey;
   name: string;
   saaiName?: string;
-  mode?: ModeKey;
+  mode: ModeKey;
   icon: LucideIcon;
   href: string;
 };
@@ -61,13 +62,6 @@ const PRODUCTS: ProductStruct[] = [
     icon: ClipboardCheck,
     href: '/products/saai-agent',
   },
-  {
-    key: 'count',
-    name: productNaming.count.store,
-    saaiName: productNaming.count.saai,
-    icon: DoorOpen,
-    href: '/products/store-count',
-  },
 ];
 
 const dict: Record<
@@ -90,31 +84,27 @@ const dict: Record<
       care: '1단계 · 실시간 감지',
       insight: '2단계 · 데이터 분석',
       agent: '3단계 · 자율 실행',
-      count: '유입 분석 모듈',
     },
     taglines: {
-      care: solutionTaglines.care.ko,
-      insight: solutionTaglines.insight.ko,
-      agent: solutionTaglines.agent.ko,
-      count: '카메라 1대로 매장 밖 유동인구와 입점 고객을 비교해 유입률을 읽습니다.',
+      care: '매장에서 지금 일어나는 이상 신호를 실시간으로 알립니다.',
+      insight: '어제까지의 동선과 매출 데이터를 모아, 흐름과 추세를 읽어냅니다.',
+      agent: '오늘 무엇을 옮기고 채워야 할지, 다음 행동을 먼저 제안합니다.',
     },
   },
   en: {
     eyebrow: 'SAAI SUITE · SOLUTIONS AT A GLANCE',
     heading: 'Three products, one unified flow.',
-    sub: "Three products split the work — your store's yesterday, right now, and next.",
+    sub: "Three products split the work across your store's yesterday, right now, and next.",
     cta: 'Compare all products',
     steps: {
       care: 'Step 1 · Live Detection',
       insight: 'Step 2 · Data Insights',
       agent: 'Step 3 · Autonomous Action',
-      count: 'Footfall Module',
     },
     taglines: {
-      care: solutionTaglines.care.en,
-      insight: solutionTaglines.insight.en,
-      agent: solutionTaglines.agent.en,
-      count: 'One camera reads outside footfall against customer entrance rates.',
+      care: 'Flags anomalies in your store the moment they happen, in real time.',
+      insight: "Pulls together yesterday's traffic and sales data to surface patterns and trends.",
+      agent: "Recommends today's one action: what to move, what to restock.",
     },
   },
   jp: {
@@ -126,13 +116,11 @@ const dict: Record<
       care: 'ステップ 1 · リアルタイム検知',
       insight: 'ステップ 2 · データ分析',
       agent: 'ステップ 3 · 自律実行',
-      count: '流入分析モジュール',
     },
     taglines: {
-      care: solutionTaglines.care.jp,
-      insight: solutionTaglines.insight.jp,
-      agent: solutionTaglines.agent.jp,
-      count: 'カメラ1台で店外の通行と入店を見比べて流入率を読み取ります。',
+      care: '店舗で今起きている異常を、リアルタイムで知らせます。',
+      insight: '昨日までの来店データと売上を集め、傾向とパターンを読み取ります。',
+      agent: '今日何を動かし、何を補充すべきか、次の一手を先に提案します。',
     },
   },
 };

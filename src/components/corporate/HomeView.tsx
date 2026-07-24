@@ -38,7 +38,7 @@ const ctaDict: Record<
   },
   en: {
     kicker: 'REINVENT OFFLINE',
-    heading: 'Perfect your space — and every space.',
+    heading: 'Perfect your space, and every space beyond it.',
     sub: 'Change one store, and the whole operation changes. Talk to us and we’ll map the fastest path.',
     close: 'Map your fastest path',
     reassure: 'Free consultation · reply within 1–2 business days',
@@ -47,7 +47,7 @@ const ctaDict: Record<
   },
   jp: {
     kicker: 'REINVENT OFFLINE · オフラインを、もう一度。',
-    heading: 'あなたの空間を、完璧に — そしてすべての空間を。',
+    heading: 'あなたの空間を完璧に。そしてすべての空間へ。',
     sub: '一店舗が変われば、運営全体が変わります。導入のご相談で、最短の道を見つけます。',
     close: '最短の道を見つける',
     reassure: '無料相談・営業日1〜2日以内に返信',
