@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: night
     weight: 1
+  reflect:
+    ko: 심야 시간대에 집중된 손실이라면, 이 사례가 가장 가깝습니다.
+    en: If your losses cluster late at night, this case is the closest match.
+    jp: 深夜帯に集中するロスなら、この事例が最も近いです。
 - id: unknown
   label:
     ko: 시간대를 특정하기 어려워요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: unknown
     weight: 1
+  reflect:
+    ko: 시간대 특정이 어려운 손실이라면, 하루 전체를 기록하는 이 방식이 맞습니다.
+    en: If you can't pin the losses to a time window, this approach — recording the whole day — fits.
+    jp: 時間帯を特定できないロスなら、一日全体を記録するこの方式が合います。

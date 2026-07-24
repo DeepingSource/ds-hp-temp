@@ -15,6 +15,11 @@ interface ResultPanelProps {
   industry: string | null;
   persona: PersonaId | null;
   privacySelected?: boolean;
+  /** 규모·목표 신호 (v3 §5 · Stage 4) — 허브 카드 재정렬·프리셋 쿼리·CTA 처리 */
+  scale?: string | null;
+  goal?: string | null;
+  /** symptom 되받기 문장 — 결과 도입부에서 사용자의 답을 되받는다 (v3 §5) */
+  reflectLine?: string | null;
   locale: Locale;
   onRestart: () => void;
 }
@@ -24,6 +29,9 @@ export default function ResultPanel({
   industry,
   persona,
   privacySelected,
+  scale,
+  goal,
+  reflectLine,
   locale,
   onRestart,
 }: ResultPanelProps) {
@@ -38,9 +46,11 @@ export default function ResultPanel({
         industry,
         persona,
         privacySelected,
+        scale,
+        goal,
         locale,
       }),
-    [slug, industry, persona, privacySelected, locale],
+    [slug, industry, persona, privacySelected, scale, goal, locale],
   );
 
   if (!sol) return null;
@@ -93,6 +103,15 @@ export default function ResultPanel({
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 break-keep">{title}</h2>
         <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-keep mb-8">{excerpt}</p>
       </div>
+
+      {/* symptom 되받기 — 150ms (§6-3 슬롯 · v3 §5): 사용자의 답을 결과와 연결 */}
+      {reflectLine && (
+        <div className={REVEAL} style={{ animationDelay: '150ms' }}>
+          <p className="mb-8 -mt-4 rounded-xl border border-primary/15 bg-primary-lighter/40 px-4 py-3 text-sm font-medium text-primary-dark break-keep">
+            {reflectLine}
+          </p>
+        </div>
+      )}
 
       {/* 3-Step Approach — 350ms */}
       <div className={REVEAL} style={{ animationDelay: '350ms' }}>
@@ -209,9 +228,15 @@ export default function ResultPanel({
           {ui.ctaPrimary}
           <ArrowRight className="w-4 h-4" />
         </Link>
+        {/* goal=research: 부 CTA(자세히 보기)를 시각적으로 동급 처리 (v3 §5) —
+            지금은 팔리는 것보다 이해가 목적인 방문자의 다음 걸음을 존중한다 */}
         <Link
           href={localeHref(locale, `/solutions/${slug}`)}
-          className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl border border-gray-200 text-sm font-bold text-gray-700 hover:border-primary-light transition-colors text-center"
+          className={`inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl text-sm font-bold transition-colors text-center ${
+            goal === 'research'
+              ? 'border border-primary text-primary hover:bg-primary-lighter/40'
+              : 'border border-gray-200 text-gray-700 hover:border-primary-light'
+          }`}
         >
           {ui.ctaSecondary}
         </Link>

@@ -24,6 +24,8 @@ export interface QuestionOption {
   evidence?: { attribute: string; value: string; weight: number }[];
   /** 옵션 선택 직후의 반응 멘트 (예: 규모 large — v3 §4) */
   ack?: Tri;
+  /** 결과 도입부 되받기 문장 — 증상 옵션 전용 (v3 §5, Stage 4에서 렌더) */
+  reflect?: Tri;
 }
 
 export interface Question {

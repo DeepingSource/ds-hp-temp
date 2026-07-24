@@ -37,6 +37,8 @@ export default function DiagnosisConversation({
     industry,
     resultSlug,
     privacySelected,
+    signals,
+    reflectLine,
     transcript,
     availableIndustries,
     clusters,
@@ -132,6 +134,7 @@ export default function DiagnosisConversation({
   // §6-2: 옵션 칩 페이드인(스태거 40ms/개) — 자리는 아래로 자라는 채팅 흐름
   const CHIP_ANIM = 'animate-in fade-in fill-mode-both duration-300 motion-reduce:animate-none';
   const chipDelay = (i: number) => ({ animationDelay: `${i * 40}ms` });
+
 
   const progressPercent = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
   const showChrome = uiStep.kind === 'question';
@@ -364,6 +367,9 @@ export default function DiagnosisConversation({
               industry={industry}
               persona={persona}
               privacySelected={privacySelected}
+              scale={signals.scale}
+              goal={signals.goal}
+              reflectLine={reflectLine}
               locale={locale}
               onRestart={restart}
             />

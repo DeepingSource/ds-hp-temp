@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: hotspot
     weight: 1
+  reflect:
+    ko: 특정 좌석의 장기 점유가 문제라면, 이 사례가 가장 가깝습니다.
+    en: If certain seats staying occupied is the problem, this case is the closest match.
+    jp: 特定の席の長時間占有が問題なら、この事例が最も近いです。
 - id: overall
   label:
     ko: 전체적으로 체류가 길어요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: overall
     weight: 1
+  reflect:
+    ko: 전반적으로 체류가 길다면, 좌석 전체의 흐름을 읽는 이 방식이 맞습니다.
+    en: If dwell is long across the board, this approach — reading the whole floor — fits.
+    jp: 全体的に滞在が長いなら、席全体の流れを読むこの方式が合います。

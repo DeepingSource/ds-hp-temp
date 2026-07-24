@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: drift
     weight: 1
+  reflect:
+    ko: 본사 기준과 매장이 자꾸 어긋난다면, 이 사례가 가장 가깝습니다.
+    en: If stores keep drifting from the HQ standard, this case is the closest match.
+    jp: 本部基準と店舗がずれ続けるなら、この事例が最も近いです。
 - id: no-baseline
   label:
     ko: 기준 자체를 데이터로 만들고 싶어요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: no-baseline
     weight: 1
+  reflect:
+    ko: 기준을 데이터로 만들고 싶으시다면, 이 접근이 정확히 그 일을 합니다.
+    en: If you want to build the standard itself from data, this approach does exactly that.
+    jp: 基準そのものをデータで作りたいなら、このアプローチがまさにそれです。

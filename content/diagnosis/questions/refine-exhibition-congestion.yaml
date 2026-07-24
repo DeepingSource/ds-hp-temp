@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: spot
     weight: 1
+  reflect:
+    ko: 특정 지점에 몰리는 혼잡이라면, 이 사례가 가장 가깝습니다.
+    en: If crowding clusters at specific spots, this case is the closest match.
+    jp: 特定の地点に集中する混雑なら、この事例が最も近いです。
 - id: flow
   label:
     ko: 입퇴장 동선 전체가 밀려요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: flow
     weight: 1
+  reflect:
+    ko: 입퇴장 동선 전체가 밀리는 상황이라면, 흐름을 통째로 읽는 이 접근이 맞습니다.
+    en: If the whole entry/exit flow backs up, this approach — reading the flow end to end — fits.
+    jp: 入退場の動線全体が滞るなら、流れを丸ごと読むこのアプローチが合います。

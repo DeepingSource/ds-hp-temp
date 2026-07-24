@@ -685,7 +685,12 @@
               "value": "night",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "심야 시간대에 집중된 손실이라면, 이 사례가 가장 가깝습니다.",
+            "en": "If your losses cluster late at night, this case is the closest match.",
+            "jp": "深夜帯に集中するロスなら、この事例が最も近いです。"
+          }
         },
         {
           "id": "unknown",
@@ -700,7 +705,12 @@
               "value": "unknown",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "시간대 특정이 어려운 손실이라면, 하루 전체를 기록하는 이 방식이 맞습니다.",
+            "en": "If you can't pin the losses to a time window, this approach — recording the whole day — fits.",
+            "jp": "時間帯を特定できないロスなら、一日全体を記録するこの方式が合います。"
+          }
         }
       ]
     },
@@ -735,7 +745,12 @@
               "value": "reactive",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "고객이 찾을 때에야 결품을 알게 된다면, 실시간 매대 감지가 그 간격을 없앱니다.",
+            "en": "If you only learn about stockouts when a customer asks, live shelf sensing closes that gap.",
+            "jp": "お客様に聞かれて初めて欠品に気づくなら、リアルタイムの棚検知がその隙間をなくします。"
+          }
         },
         {
           "id": "batch",
@@ -750,7 +765,12 @@
               "value": "batch",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "정기 점검 때 몰아서 발견하는 결품이라면, 상시 감지로 점검 사이를 메울 수 있습니다.",
+            "en": "If stockouts surface in batches at routine checks, continuous sensing fills the gaps between checks.",
+            "jp": "定期点検でまとめて見つかる欠品なら、常時検知で点検の合間を埋められます。"
+          }
         }
       ]
     },
@@ -785,7 +805,12 @@
               "value": "drift",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "본사 기준과 매장이 자꾸 어긋난다면, 이 사례가 가장 가깝습니다.",
+            "en": "If stores keep drifting from the HQ standard, this case is the closest match.",
+            "jp": "本部基準と店舗がずれ続けるなら、この事例が最も近いです。"
+          }
         },
         {
           "id": "no-baseline",
@@ -800,7 +825,12 @@
               "value": "no-baseline",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "기준을 데이터로 만들고 싶으시다면, 이 접근이 정확히 그 일을 합니다.",
+            "en": "If you want to build the standard itself from data, this approach does exactly that.",
+            "jp": "基準そのものをデータで作りたいなら、このアプローチがまさにそれです。"
+          }
         }
       ]
     },
@@ -835,7 +865,12 @@
               "value": "hotspot",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "특정 좌석의 장기 점유가 문제라면, 이 사례가 가장 가깝습니다.",
+            "en": "If certain seats staying occupied is the problem, this case is the closest match.",
+            "jp": "特定の席の長時間占有が問題なら、この事例が最も近いです。"
+          }
         },
         {
           "id": "overall",
@@ -850,7 +885,12 @@
               "value": "overall",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "전반적으로 체류가 길다면, 좌석 전체의 흐름을 읽는 이 방식이 맞습니다.",
+            "en": "If dwell is long across the board, this approach — reading the whole floor — fits.",
+            "jp": "全体的に滞在が長いなら、席全体の流れを読むこの方式が合います。"
+          }
         }
       ]
     },
@@ -885,7 +925,12 @@
               "value": "peak",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "특정 시간대에 몰리는 혼잡이라면, 이 사례가 가장 가깝습니다.",
+            "en": "If congestion piles up at specific hours, this case is the closest match.",
+            "jp": "特定の時間帯に集中する混雑なら、この事例が最も近いです。"
+          }
         },
         {
           "id": "random",
@@ -900,7 +945,12 @@
               "value": "random",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "예측이 어려운 불규칙한 혼잡이라면, 실시간 감지로 대응하는 이 방식이 맞습니다.",
+            "en": "If the congestion is irregular and hard to predict, this approach — responding on live signals — fits.",
+            "jp": "予測しにくい不規則な混雑なら、リアルタイム検知で対応するこの方式が合います。"
+          }
         }
       ]
     },
@@ -935,7 +985,12 @@
               "value": "spot",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "특정 지점에 몰리는 혼잡이라면, 이 사례가 가장 가깝습니다.",
+            "en": "If crowding clusters at specific spots, this case is the closest match.",
+            "jp": "特定の地点に集中する混雑なら、この事例が最も近いです。"
+          }
         },
         {
           "id": "flow",
@@ -950,7 +1005,12 @@
               "value": "flow",
               "weight": 1
             }
-          ]
+          ],
+          "reflect": {
+            "ko": "입퇴장 동선 전체가 밀리는 상황이라면, 흐름을 통째로 읽는 이 접근이 맞습니다.",
+            "en": "If the whole entry/exit flow backs up, this approach — reading the flow end to end — fits.",
+            "jp": "入退場の動線全体が滞るなら、流れを丸ごと読むこのアプローチが合います。"
+          }
         }
       ]
     },

@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: peak
     weight: 1
+  reflect:
+    ko: 특정 시간대에 몰리는 혼잡이라면, 이 사례가 가장 가깝습니다.
+    en: If congestion piles up at specific hours, this case is the closest match.
+    jp: 特定の時間帯に集中する混雑なら、この事例が最も近いです。
 - id: random
   label:
     ko: 예측이 안 되게 불규칙해요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: random
     weight: 1
+  reflect:
+    ko: 예측이 어려운 불규칙한 혼잡이라면, 실시간 감지로 대응하는 이 방식이 맞습니다.
+    en: If the congestion is irregular and hard to predict, this approach — responding on live signals — fits.
+    jp: 予測しにくい不規則な混雑なら、リアルタイム検知で対応するこの方式が合います。

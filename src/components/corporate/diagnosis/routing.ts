@@ -18,8 +18,48 @@ interface DiagnosisSignalInput {
   industry: string | null;
   persona: PersonaId | null;
   privacySelected?: boolean;
+  /** 규모 신호 (v3 §5) — 'single' | 'small' | 'mid' | 'large' */
+  scale?: string | null;
+  /** 도입 목표 신호 (v3 §5) — 'urgent' | 'planning' | 'research' */
+  goal?: string | null;
   locale: Locale;
 }
+
+/** 가격 시뮬레이터 프리셋 — 규모 답을 매장 수 쿼리로 (v3 §5 "?stores=10") */
+const SCALE_STORE_PRESET: Record<string, number> = { small: 5, mid: 10, large: 50 };
+
+/**
+ * 진단 업종 slug → 사례 매핑 키(SOLUTION_CASE_SLUGS는 솔루션 페이지 slug 기준).
+ * Stage 4 검증이 잡은 기존 결함: 'convenience'를 그대로 넘겨 사례 카드가 항상
+ * 비어 있었다 — v3 §7 시나리오 A의 "사례(cvs-100) 1순위"가 성립하려면 필수.
+ */
+const INDUSTRY_CASE_KEY: Record<string, string> = {
+  convenience: 'retail',
+  unmanned: 'retail',
+  cafe: 'food-beverage',
+  drugstore: 'drug-store',
+  mart: 'large-space',
+  logistics: 'large-space',
+  exhibition: 'large-space',
+};
+
+/** solutions yaml의 steps[].product('StoreCare'…) → PRODUCT_INFO 키('care'…).
+ *  역시 기존 결함 — 대문자 제품명이 그대로 넘어와 제품 카드가 항상 비어 있었다. */
+const PRODUCT_KEY: Record<string, string> = {
+  StoreCare: 'care',
+  StoreInsight: 'insight',
+  StoreAgent: 'agent',
+};
+
+/**
+ * goal별 카드 type 우선순위 (v3 §5) — 기존 기본 순서(사례>제품>가격>기술)에
+ * 가중치를 얹는 재정렬이지 카드 추가가 아니다. goal이 없으면 생성 순서 유지.
+ */
+const GOAL_TYPE_ORDER: Record<string, RouteCard['type'][]> = {
+  urgent: ['case-study', 'product', 'pricing', 'enterprise', 'technology', 'solution'],
+  planning: ['pricing', 'enterprise', 'case-study', 'product', 'technology', 'solution'],
+  research: ['technology', 'product', 'case-study', 'pricing', 'enterprise', 'solution'],
+};
 
 const PRODUCT_INFO: Record<
   string,
@@ -121,13 +161,13 @@ const I18N_ROUTING = {
 };
 
 export function getDiagnosisRoutes(input: DiagnosisSignalInput): RouteCard[] {
-  const { resultSlug, industry, persona, privacySelected, locale } = input;
+  const { resultSlug, industry, persona, privacySelected, scale, goal, locale } = input;
   const cards: RouteCard[] = [];
   const text = I18N_ROUTING[locale];
 
   // 1. Matching Case Studies (Priority 1)
   if (industry) {
-    const caseStudies = getCaseStudiesForSolution(industry, locale, 1);
+    const caseStudies = getCaseStudiesForSolution(INDUSTRY_CASE_KEY[industry] ?? industry, locale, 1);
     caseStudies.forEach((cs) => {
       cards.push({
         id: `case-${cs.slug}`,
@@ -145,7 +185,7 @@ export function getDiagnosisRoutes(input: DiagnosisSignalInput): RouteCard[] {
   if (resultSlug) {
     const sol: SolutionPage | undefined = solutionsBySlug[resultSlug];
     if (sol && sol.steps.length > 0) {
-      const firstProductKey = sol.steps[0].product; // e.g. 'care', 'insight', 'agent'
+      const firstProductKey = PRODUCT_KEY[sol.steps[0].product] ?? sol.steps[0].product;
       const prod = PRODUCT_INFO[firstProductKey]?.[locale];
       if (prod) {
         cards.push({
@@ -161,8 +201,10 @@ export function getDiagnosisRoutes(input: DiagnosisSignalInput): RouteCard[] {
     }
   }
 
-  // 3. Persona-driven cards (Pricing simulator / Enterprise)
-  if (persona === 'exec') {
+  // 3. Persona/scale-driven cards (Pricing simulator / Enterprise) — v3 §5:
+  //    scale=large는 persona와 무관하게 엔터프라이즈 카드 승격(현행 exec 조건 확장),
+  //    small/mid + hq_sv는 가격 시뮬레이터에 매장 수 프리셋 쿼리를 전달한다.
+  if (persona === 'exec' || scale === 'large') {
     cards.push({
       id: 'enterprise',
       type: 'enterprise',
@@ -173,12 +215,13 @@ export function getDiagnosisRoutes(input: DiagnosisSignalInput): RouteCard[] {
       badgeColor: 'amber',
     });
   } else if (persona === 'hq_sv' || persona === 'owner') {
+    const preset = scale ? SCALE_STORE_PRESET[scale] : undefined;
     cards.push({
       id: 'pricing',
       type: 'pricing',
       title: text.pricingTitle,
       description: text.pricingDesc,
-      href: localeHref(locale, '/pricing/simulator'),
+      href: localeHref(locale, `/pricing/simulator${preset ? `?stores=${preset}` : ''}`),
       badge: text.pricingBadge,
       badgeColor: 'amber',
     });
@@ -195,6 +238,12 @@ export function getDiagnosisRoutes(input: DiagnosisSignalInput): RouteCard[] {
       badge: text.techBadge,
       badgeColor: 'slate',
     });
+  }
+
+  // goal 가중 재정렬 (v3 §5) — stable sort: 같은 type 안에서는 생성 순서 유지
+  if (goal && GOAL_TYPE_ORDER[goal]) {
+    const order = GOAL_TYPE_ORDER[goal];
+    cards.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
   }
 
   // Max 4 cards cutoff per docs/diagnosis-v2-plan.md §5

@@ -23,6 +23,10 @@ options:
   - attribute: symptom
     value: reactive
     weight: 1
+  reflect:
+    ko: 고객이 찾을 때에야 결품을 알게 된다면, 실시간 매대 감지가 그 간격을 없앱니다.
+    en: If you only learn about stockouts when a customer asks, live shelf sensing closes that gap.
+    jp: お客様に聞かれて初めて欠品に気づくなら、リアルタイムの棚検知がその隙間をなくします。
 - id: batch
   label:
     ko: 정기 점검 때 몰아서 발견해요
@@ -32,3 +36,7 @@ options:
   - attribute: symptom
     value: batch
     weight: 1
+  reflect:
+    ko: 정기 점검 때 몰아서 발견하는 결품이라면, 상시 감지로 점검 사이를 메울 수 있습니다.
+    en: If stockouts surface in batches at routine checks, continuous sensing fills the gaps between checks.
+    jp: 定期点検でまとめて見つかる欠品なら、常時検知で点検の合間を埋められます。

@@ -134,6 +134,19 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     (a) => a.questionId === 'problem-cluster' && a.optionId === 'privacy',
   );
 
+  // symptom 되받기 문장 (v3 §5 · Stage 4) — 증상 답 옵션의 reflect를 로케일 해석.
+  // "심야 시간대에 집중된 손실이라면, 이 사례가 가장 가깝습니다." 식으로 결과
+  // 도입부가 사용자의 답을 되받는다 — 답이 결과를 안 바꿔도 위장이 아닌 이유.
+  const reflectLine = useMemo(() => {
+    for (const a of state.answers) {
+      const q = kb.questions.find((x) => x.id === a.questionId);
+      if (q?.signal !== 'symptom') continue;
+      const opt = (q.options ?? []).find((o) => o.id === a.optionId);
+      if (opt?.reflect) return opt.reflect[locale];
+    }
+    return null;
+  }, [state.answers, locale]);
+
   return {
     kb,
     uiStep,
@@ -142,6 +155,7 @@ export function useDiagnosisEngine(locale: Locale, preset?: DiagnosisPreset) {
     industry: state.signals.industry,
     resultSlug: state.resultSlug,
     privacySelected,
+    reflectLine,
     transcript,
     availableIndustries,
     clusters,
