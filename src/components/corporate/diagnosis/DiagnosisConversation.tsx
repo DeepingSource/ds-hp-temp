@@ -6,6 +6,7 @@ import { ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
 import { industryColorMap } from '@/data/industryList';
 import { DIAGNOSIS_UI, EXIT_OWNER, EXIT_PRIVACY, EXIT_UNSURE } from '@/data/diagnosis-i18n';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { trackEvent } from '@/components/Analytics';
 import { useDiagnosisEngine, type DiagnosisPreset } from './useDiagnosisEngine';
 import ResultPanel from './ResultPanel';
 
@@ -135,6 +136,29 @@ export default function DiagnosisConversation({
   const CHIP_ANIM = 'animate-in fade-in fill-mode-both duration-300 motion-reduce:animate-none';
   const chipDelay = (i: number) => ({ animationDelay: `${i * 40}ms` });
 
+  // 계측 (v3 §8 Phase 4 · Stage 4-2): 답변마다 diagnosis_step(6스텝 체계),
+  // 결과 도달 시 diagnosis_signal(goal·scale) 1회 — 완료율·신호 분포 추적(G4 지표)
+  const answerTracked = (optionId: string, answerText: string, qText: string) => {
+    if (uiStep.kind === 'question') {
+      trackEvent('diagnosis_step', {
+        step: uiStep.question.id,
+        n: stepNumber,
+        option: optionId,
+      });
+    }
+    answer(optionId, answerText, qText);
+  };
+  const signalTrackedRef = useRef(false);
+  useEffect(() => {
+    if (!isResult || !resultSlug || signalTrackedRef.current) return;
+    signalTrackedRef.current = true;
+    trackEvent('diagnosis_signal', {
+      goal: signals.goal ?? 'none',
+      scale: signals.scale ?? 'none',
+      result: resultSlug,
+    });
+  }, [isResult, resultSlug, signals.goal, signals.scale]);
+
 
   const progressPercent = Math.min(100, Math.round((stepNumber / totalSteps) * 100));
   const showChrome = uiStep.kind === 'question';
@@ -239,7 +263,7 @@ export default function DiagnosisConversation({
               <div className="flex flex-wrap gap-2 pt-1">
                 <button
                   type="button"
-                  onClick={() => answer(preset!.industry!, q.confirm!.yes[locale], questionText)}
+                  onClick={() => answerTracked(preset!.industry!, q.confirm!.yes[locale], questionText)}
                   className={`px-4 py-3 rounded-xl border border-primary-light bg-primary-lighter/40 text-left text-xs sm:text-sm font-bold text-primary-dark transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
                   style={chipDelay(0)}
                 >
@@ -264,7 +288,7 @@ export default function DiagnosisConversation({
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => answer(opt.id, opt.label[locale], questionText)}
+                        onClick={() => answerTracked(opt.id, opt.label[locale], questionText)}
                         className={`px-4 py-3 rounded-xl border border-gray-200 hover:border-primary-light hover:bg-primary-lighter/40 text-left text-xs sm:text-sm font-medium text-gray-800 transition-all cursor-pointer break-keep ${CHIP_ANIM}`}
                         style={chipDelay(i)}
                       >
@@ -284,7 +308,7 @@ export default function DiagnosisConversation({
                         <button
                           key={ind.slug}
                           type="button"
-                          onClick={() => answer(ind.slug, label, questionText)}
+                          onClick={() => answerTracked(ind.slug, label, questionText)}
                           className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${colors.border} ${colors.bg} ${CHIP_ANIM}`}
                           style={chipDelay(i)}
                         >
@@ -306,7 +330,7 @@ export default function DiagnosisConversation({
                         <button
                           key={c.key}
                           type="button"
-                          onClick={() => answer(c.key, label, questionText)}
+                          onClick={() => answerTracked(c.key, label, questionText)}
                           className={`flex items-center justify-between ${listButtonClass}`}
                           style={chipDelay(i)}
                         >
@@ -320,7 +344,7 @@ export default function DiagnosisConversation({
                         <button
                           key={opt.id}
                           type="button"
-                          onClick={() => answer(opt.id, opt.label[locale], questionText)}
+                          onClick={() => answerTracked(opt.id, opt.label[locale], questionText)}
                           className={`text-left text-xs text-gray-400 hover:text-gray-600 transition-colors cursor-pointer py-1 ${CHIP_ANIM}`}
                           style={chipDelay(clusters.length + i)}
                         >
@@ -337,7 +361,7 @@ export default function DiagnosisConversation({
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => answer(opt.id, opt.label[locale], questionText)}
+                        onClick={() => answerTracked(opt.id, opt.label[locale], questionText)}
                         className={listButtonClass}
                         style={chipDelay(i)}
                       >
