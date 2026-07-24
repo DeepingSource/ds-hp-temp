@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * #16 StoreDayTimelapse — "강남역점의 하루" master demo.
+ * #16 StoreDayTimelapse — "도심 편의점의 하루" 개념 타임랩스 (J8: 지명 중립화·개념 시각화).
  * Single source of truth = scrub time `t` (minutes, 360=06:00 … 1440=24:00).
  * State machine: playing ↔ scrubbing ↔ paused. Auto-play = 30s per full day loop.
  * Chart / heatmap / KPIs are PURE FUNCTIONS of `t` (memoized); only `t` (+ play state) is state.
