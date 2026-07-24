@@ -184,7 +184,7 @@ export default function FiveQuestionsMockup({
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-gray-600">{t.lead}</p>
         <a
-          href={localeHref(locale, '/company')}
+          href={localeHref(locale, '/company/team')}
           className="mt-3 inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {t.cta}

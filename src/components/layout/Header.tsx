@@ -61,12 +61,21 @@ const NAV: NavItem[] = [
     ],
   },
   {
+    // 솔루션 메가메뉴(①2-1·2-2 — Phase 2): 7업종 전체 노출, 카테고리 그룹핑 + 한 줄 설명.
+    // 종합 페이지가 없는 업종(무인·마트·전시·물류)은 /solutions 의 업종 앵커로 딥링크.
     type: 'menu', key: 'solutions', label: L('솔루션', 'Solutions', 'ソリューション'), base: '/solutions', items: [
-      { href: '/solutions', label: L('솔루션 전체', 'All solutions', 'ソリューション一覧') },
-      { href: '/solutions/retail', label: L('리테일·편의점', 'Retail', '小売・コンビニ') },
-      { href: '/solutions/food-beverage', label: L('카페·음식점', 'Food & Beverage', 'カフェ・飲食') },
-      { href: '/solutions/drug-store', label: L('드럭스토어', 'Drugstore', 'ドラッグストア') },
-      { href: '/solutions/large-space', label: L('대형 공간', 'Large space', '大型空間') },
+      { href: '/solutions', label: L('솔루션 전체', 'All solutions', 'ソリューション一覧'), desc: L('업종별 문제-해결 가이드', 'Problem–solution guide by industry', '業種別の課題解決ガイド') },
+      { header: L('리테일', 'Retail', '小売') },
+      { href: '/solutions/retail', label: L('리테일·편의점', 'Retail & convenience', '小売・コンビニ'), desc: L('결품·운영 편차·이상 감지', 'Stock-outs, variance, anomalies', '欠品・運営バラつき・異常検知') },
+      { href: '/solutions/drug-store', label: L('드럭스토어', 'Drugstore', 'ドラッグストア'), desc: L('진열 표준·알림 압축', 'Planogram & alert triage', '陳列標準・アラート圧縮') },
+      { href: '/solutions#industry-unmanned', label: L('무인매장', 'Unmanned stores', '無人店舗'), desc: L('원격 관제·이상·도난', 'Remote watch, anomaly, theft', '遠隔監視・異常・盗難') },
+      { href: '/solutions#industry-mart', label: L('대형마트', 'Hypermarkets', '大型スーパー'), desc: L('동선·계산대 혼잡·구역 전환', 'Cart paths, checkout, zones', '動線・レジ混雑・ゾーン転換') },
+      { header: L('외식', 'Food service', '外食') },
+      { href: '/solutions/food-beverage', label: L('카페·음식점', 'Cafés & restaurants', 'カフェ・飲食'), desc: L('대기·회전율·피크 대비', 'Queues, turnover, peak prep', '待機・回転率・ピーク対応') },
+      { header: L('대형·특수 공간', 'Large & special venues', '大型・特殊空間') },
+      { href: '/solutions/large-space', label: L('대형 공간', 'Large space', '大型空間'), desc: L('멀티카메라 동선 통합(MTMC)', 'One journey across cameras (MTMC)', 'マルチカメラ動線統合(MTMC)') },
+      { href: '/solutions#industry-exhibition', label: L('전시 공간', 'Exhibition spaces', '展示空間'), desc: L('부스 성과·체류·군중 흐름', 'Booths, dwell, crowd flow', 'ブース成果・滞在・群衆フロー') },
+      { href: '/solutions#industry-logistics', label: L('물류·창고', 'Logistics & warehouses', '物流・倉庫'), desc: L('안전·PPE·구역 효율', 'Safety, PPE, zone efficiency', '安全・PPE・ゾーン効率') },
     ],
   },
   {
