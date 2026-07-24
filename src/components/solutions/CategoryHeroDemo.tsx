@@ -299,32 +299,45 @@ const LARGE: Record<Locale, Head & {
   separate: string; merged: string;
   separateNote: string; mergedNote: string;
   camLabel: string; coordLabel: string; unknown: string;
+  assembledLabel: string; brokenTag: string; oneTag: string;
 }> = {
   ko: {
     eyebrow: 'MTMC 멀티카메라 추적', heading: '여러 대의 카메라가, 하나의 동선이 됩니다',
     separate: '카메라별', merged: 'MTMC 통합',
-    separateNote: '카메라마다 따로 잡혀, 같은 사람인지 알 수 없습니다',
-    mergedNote: '세 화면이 한 좌표로 — 매장 전체 동선을 하나로',
+    separateNote: '카메라마다 동선이 끊겨, 같은 사람인지 알 수 없습니다',
+    mergedNote: '끊긴 세 조각이 한 좌표로 — 매장 전체를 관통하는 하나의 동선',
     camLabel: '카메라', coordLabel: '동일인 · 통합 좌표', unknown: '동일인 여부 불명',
+    assembledLabel: '매장 전체 좌표계', brokenTag: '끊긴 동선 3개', oneTag: '이어진 동선 1개',
   },
   en: {
     eyebrow: 'MTMC multi-camera tracking', heading: 'Many cameras become one path',
     separate: 'Per camera', merged: 'MTMC merged',
-    separateNote: 'Detected separately per camera — same person unknown',
-    mergedNote: 'Three views, one coordinate — a single store-wide path',
+    separateNote: 'The path breaks at each camera — same person unknown',
+    mergedNote: 'Three broken fragments into one coordinate — a single path across the store',
     camLabel: 'Camera', coordLabel: 'Same person · merged coord', unknown: 'Identity unresolved',
+    assembledLabel: 'Store-wide coordinate', brokenTag: '3 broken paths', oneTag: '1 continuous path',
   },
   jp: {
     eyebrow: 'MTMCマルチカメラ追跡', heading: '複数のカメラが、一つの動線に',
     separate: 'カメラ別', merged: 'MTMC統合',
-    separateNote: 'カメラごとに別々で、同一人物か不明',
-    mergedNote: '三画面が一座標に — 店舗全体の動線を一つに',
+    separateNote: 'カメラごとに動線が途切れ、同一人物か不明',
+    mergedNote: '途切れた三つの断片が一座標に — 店舗全体を貫く一つの動線',
     camLabel: 'カメラ', coordLabel: '同一人物 · 統合座標', unknown: '同一人物か不明',
+    assembledLabel: '店舗全体の座標系', brokenTag: '途切れた動線3本', oneTag: 'つながった動線1本',
   },
 };
 
-// per-camera dot position (%) — three distinct viewpoints of one person
-const CAM_DOTS = [{ x: 68, y: 40 }, { x: 30, y: 62 }, { x: 52, y: 28 }];
+// ①7-1: 카메라별로 잡히는 동선 '조각'(polyline) — 점(dot)이 아니라 궤적. 각 카메라 로컬 %좌표.
+const CAM_FRAG = ['18,68 44,38 74,56', '22,58 52,30 82,52', '26,54 56,74 84,40'];
+
+// 조립된 매장 전체 동선(viewBox 360×120). 분리 모드=끊긴 3조각(간격+?), 통합 모드=이어진 1궤적.
+const BROKEN_SEGS = [
+  '24,86 58,52 90,71',
+  '102,73 142,42 190,64 222,46',
+  '234,45 276,70 312,40 340,62',
+];
+const ONE_PATH = '24,86 58,52 96,72 142,42 190,64 228,45 276,70 312,40 340,62';
+const GAP_MARKS = [{ x: 96, y: 60 }, { x: 228, y: 34 }]; // '?' at the two disconnections
 
 function LargeSpaceDemo({ locale }: { locale: Locale }) {
   const t = LARGE[locale];
@@ -350,32 +363,87 @@ function LargeSpaceDemo({ locale }: { locale: Locale }) {
           ))}
         </div>
 
+        {/* per-camera views — each holds ITS fragment of the path (not a single dot) */}
         <div className="grid gap-3 sm:grid-cols-3">
-          {CAM_DOTS.map((d, i) => (
+          {CAM_FRAG.map((pts, i) => (
             <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-slate-900">
-              {/* subtle grid */}
               <div
                 className="absolute inset-0 opacity-[0.12]"
                 style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '24px 24px' }}
                 aria-hidden="true"
               />
-              <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded bg-black/40 px-1.5 py-0.5 text-2xs font-medium text-white/70">
+              <span className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded bg-black/40 px-1.5 py-0.5 text-2xs font-medium text-white/70">
                 <Cctv className="h-3 w-3" aria-hidden="true" />
                 {t.camLabel} {i + 1}
               </span>
-              {/* detection dot */}
-              <span
-                className={`absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 transition-colors ${
-                  merged ? 'bg-primary ring-primary/30' : 'bg-amber-400 ring-amber-400/25'
-                }`}
-                style={{ left: `${d.x}%`, top: `${d.y}%` }}
-                aria-hidden="true"
-              />
+              {/* this camera's captured trajectory fragment */}
+              <svg viewBox="0 0 100 75" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                <polyline
+                  points={pts}
+                  fill="none"
+                  stroke={merged ? 'rgb(var(--primary-rgb))' : '#fbbf24'}
+                  strokeWidth={merged ? 3 : 3}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray={merged ? undefined : '5 5'}
+                  className="transition-colors duration-300 motion-reduce:transition-none"
+                />
+              </svg>
               {merged && (
-                <span className="absolute bottom-2 right-2 rounded bg-primary/20 px-1.5 py-0.5 text-2xs font-semibold text-primary-light">#1</span>
+                <span className="absolute bottom-2 right-2 z-10 rounded bg-primary/20 px-1.5 py-0.5 text-2xs font-semibold text-primary-light">#1</span>
               )}
             </div>
           ))}
+        </div>
+
+        {/* ①7-1 핵심 증명: 조립된 매장 전체 동선 — 끊긴 3조각 → 이어진 1궤적 */}
+        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <span className="text-2xs font-semibold uppercase tracking-wider text-slate-400">{t.assembledLabel}</span>
+            <span className={`rounded-full px-2.5 py-0.5 text-2xs font-bold ${merged ? 'bg-primary/20 text-primary-light' : 'bg-amber-400/15 text-amber-300'}`}>
+              {merged ? t.oneTag : t.brokenTag}
+            </span>
+          </div>
+          <svg viewBox="0 0 360 120" className="w-full h-auto" role="img" aria-label={merged ? t.mergedNote : t.separateNote}>
+            <defs>
+              <marker id="mtmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="rgb(var(--primary-rgb))" />
+              </marker>
+            </defs>
+            {merged ? (
+              <>
+                <polyline
+                  points={ONE_PATH}
+                  fill="none"
+                  stroke="rgb(var(--primary-rgb))"
+                  strokeWidth={3.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  markerEnd="url(#mtmc-arrow)"
+                />
+                <circle cx="24" cy="86" r="4.5" fill="rgb(var(--primary-rgb))" />
+              </>
+            ) : (
+              <>
+                {BROKEN_SEGS.map((seg, i) => (
+                  <polyline
+                    key={i}
+                    points={seg}
+                    fill="none"
+                    stroke="#fbbf24"
+                    strokeWidth={3.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="6 6"
+                    opacity={0.9}
+                  />
+                ))}
+                {GAP_MARKS.map((g, i) => (
+                  <text key={i} x={g.x} y={g.y} textAnchor="middle" fontSize="16" fontWeight={800} fill="#fcd34d">?</text>
+                ))}
+              </>
+            )}
+          </svg>
         </div>
 
         {/* verdict strip */}
