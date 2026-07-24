@@ -2,12 +2,13 @@
  * saai care(StoreCare) 상태 목업 시나리오 — 로케일 무관 수치·상태.
  * 표시 문자열은 컴포넌트 내 C: Record<Locale,…>. 상태 색은 사이트 상태 토큰 매핑.
  */
+import { canonicalStore } from './canonical';
 
 /** 상태 → 사이트 토큰 (좋음=success, 주의=warning, 나쁨=error, 완벽=primary) */
 export type CareState = 'good' | 'warning' | 'error' | 'perfect';
 
-/** 종합 점수 (카운트업 타깃) */
-export const careScore = 92;
+/** 종합 점수 (카운트업 타깃) — canonical perfScore 파생(값 일치·드리프트 방지, MM 2-②) */
+export const careScore = canonicalStore.perfScore;
 
 /**
  * 4개 기능 상태칩. `state`는 기본, `flipTo`가 있으면 데모 중 한 번 상태가 바뀜(온도).
