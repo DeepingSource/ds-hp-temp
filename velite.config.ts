@@ -36,6 +36,8 @@ const articles = defineCollection({
       target: s.enum(['company', 'saai']).default('company'),
       // 초안 — true 면 사이트 목록·라우트에서 제외 (articles.ts·article-metadata.ts 필터).
       draft: s.boolean().default(false),
+      // 블로그 인덱스 최상단 대형 카드(⑤3-2) — 편집 선정 1건. 여러 개면 최신 1건만 노출.
+      featured: s.boolean().default(false),
       body: s.raw(),
     })
     .transform((data) => ({

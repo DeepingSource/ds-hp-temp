@@ -15,7 +15,7 @@ const DIR = path.join(ROOT, 'content/articles');
 // (body 는 contentField 라 프론트매터가 아님 → 제외.)
 const SCHEMA_KEYS = new Set([
   'title', 'slug', 'excerpt', 'category', 'date', 'readTime', 'tags',
-  'icon', 'cover', 'coverAlt', 'lang', 'target', 'draft', 'relatedSlugs',
+  'icon', 'cover', 'coverAlt', 'lang', 'target', 'draft', 'featured', 'relatedSlugs',
 ]);
 
 const files = fs.readdirSync(DIR).filter((f) => f.endsWith('.mdx'));

@@ -289,6 +289,12 @@ export default config({
           description: '체크하면 발행되지 않고 리포에만 저장됩니다. 발행하려면 체크 해제.',
           defaultValue: false,
         }),
+        // ⑤3-2: 블로그 인덱스 최상단 대형 카드 — 편집 선정 1건(여러 개면 최신 1건만).
+        featured: fields.checkbox({
+          label: '추천 글 (인덱스 최상단 대형 카드)',
+          description: '체크하면 블로그 인덱스 맨 위 가로형 카드로 노출됩니다. 로케일당 1건 권장.',
+          defaultValue: false,
+        }),
         // A-1: relatedSlugs 는 Velite·getRelatedArticles 가 쓰는 필드. 스키마에 없으면
         // 편집자가 저장만 해도 프론트매터에서 삭제됨 → relationship 배열로 편입(오타 방지).
         relatedSlugs: fields.array(
