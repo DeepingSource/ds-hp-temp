@@ -131,7 +131,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <AnimatedSection className="pb-16 pt-2 lg:pb-20 bg-[var(--layer-section-alt,#F7F9FC)]">
         {/* A-6: max-w-6xl → 5xl(약 1024px)로 좁혀 MTMC 카드의 세로 점유를 줄인다 */}
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <SpatialTrajectoryMockup locale={locale} playMode="once" />
+          <SpatialTrajectoryMockup locale={locale} playMode="once" showTechLink />
         </div>
       </AnimatedSection>
 

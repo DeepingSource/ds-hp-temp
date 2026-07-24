@@ -1,15 +1,15 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import MockupBadge from './MockupBadge';
-import SaaiHeader from './SaaiHeader';
 import LoopVideo from '@/components/ui/LoopVideo';
 import MockupReplayButton from '@/components/ui/MockupReplayButton';
 import { MOCKUP_SCHEME, SAAI_COLORS } from '@/lib/mockup-tokens';
-import type { Locale } from '@/lib/i18n';
+import { localeHref, type Locale } from '@/lib/i18n';
 
 // MockupViewport 예외(MM §5 1a): 제품 UI 재현이 아니라 헤딩+실사 MTMC 영상+카피 카드로
 // 구성된 쇼케이스 카드라 고정 캔버스가 성립하지 않는다 — 유동 폭이 설계 의도.
@@ -25,6 +25,8 @@ interface Props {
   className?: string;
   /** 'loop'(기본): 라벨 무한 순환. 'once': 한 바퀴 후 정지 + ↻ (홈 모션 정책 D4). */
   playMode?: 'loop' | 'once';
+  /** /technology/spatial-ai 연결 CTA — 기술 페이지 자신 위에서는 끈다(기본 false). */
+  showTechLink?: boolean;
 }
 
 type PromiseCard = { n: string; title: string; body: string };
@@ -37,6 +39,7 @@ type Copy = {
   videoAlt: string;
   cards: [PromiseCard, PromiseCard, PromiseCard];
   emphasized: string;
+  techCta: string;
 };
 
 const COPY: Record<Locale, Copy> = {
@@ -52,6 +55,7 @@ const COPY: Record<Locale, Copy> = {
       { n: '03', title: 'Any Environment', body: '작은 부티크부터 대형 물류 창고까지 — 카메라 수·공간 크기·레이아웃에 관계없이 같은 골격이 작동합니다' },
     ],
     emphasized: '핵심 차별점',
+    techCta: 'Spatial AI 기술 자세히 보기',
   },
   en: {
     eyebrow: 'Spatial AI · MTMC Tracking',
@@ -65,6 +69,7 @@ const COPY: Record<Locale, Copy> = {
       { n: '03', title: 'Any Environment', body: 'From a small boutique to a vast warehouse — the same skeleton works across any camera count, size, or layout' },
     ],
     emphasized: 'Key differentiator',
+    techCta: 'Explore Spatial AI technology',
   },
   jp: {
     eyebrow: 'Spatial AI · MTMC Tracking',
@@ -78,6 +83,7 @@ const COPY: Record<Locale, Copy> = {
       { n: '03', title: 'Any Environment', body: '小さなブティックから大型物流倉庫まで — カメラ数・空間の広さ・レイアウトを問わず同じ骨格が機能します' },
     ],
     emphasized: '核心的な差別化点',
+    techCta: 'Spatial AI 技術を詳しく見る',
   },
 };
 
@@ -86,6 +92,7 @@ export default function SpatialTrajectoryMockup({
   locale = 'en',
   className = '',
   playMode = 'loop',
+  showTechLink = false,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const t = COPY[locale] ?? COPY.en;
@@ -109,17 +116,14 @@ export default function SpatialTrajectoryMockup({
       {...hoverProps}
       className={`relative rounded-2xl ${S.bodyBg} ring-1 ring-white/10 p-5 sm:p-7 text-gray-200 overflow-hidden ${className}`}
     >
-      <MockupBadge locale={locale} />
-
-      {/* Header */}
-      <SaaiHeader name="spatial ai" tone="dark" className="mb-1.5" />
+      {/* Header — saai 워드마크·예시 배지 없이 기술 아이브로만(실사 MTMC 영상 쇼케이스) */}
       <p className="font-mono text-2xs tracking-wider text-primary-light/90 uppercase mb-2">
         {t.eyebrow}
       </p>
-      <h2 className={`text-lg sm:text-xl font-bold ${S.textPrimary} leading-snug mb-2`}>
+      <h2 className={`text-xl sm:text-2xl font-bold ${S.textPrimary} leading-snug mb-2`}>
         {t.heading}
       </h2>
-      <p className={`text-xs sm:text-sm ${S.textSecondary} leading-relaxed mb-5 max-w-2xl`}>
+      <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-5 max-w-2xl">
         {t.lead}
       </p>
 
@@ -142,7 +146,7 @@ export default function SpatialTrajectoryMockup({
               {label}
             </motion.span>
             {i < t.steps.length - 1 && (
-              <span className="text-gray-600 text-xs">→</span>
+              <span className="text-gray-500 text-xs">→</span>
             )}
           </div>
         ))}
@@ -181,7 +185,7 @@ export default function SpatialTrajectoryMockup({
               )}
               <div className="flex items-baseline gap-2 mb-1.5">
                 <span
-                  className={`font-mono text-xs ${emph ? 'text-primary-light' : S.textMuted}`}
+                  className={`font-mono text-xs ${emph ? 'text-primary-light' : 'text-gray-400'}`}
                 >
                   {card.n}
                 </span>
@@ -193,11 +197,7 @@ export default function SpatialTrajectoryMockup({
                   {card.title}
                 </h3>
               </div>
-              <p
-                className={`text-xs leading-relaxed ${
-                  emph ? 'text-gray-300' : S.textSecondary
-                }`}
-              >
+              <p className="text-xs leading-relaxed text-gray-300">
                 {card.body}
               </p>
             </div>
@@ -205,6 +205,19 @@ export default function SpatialTrajectoryMockup({
         })}
         </div>
       </div>
+
+      {showTechLink && (
+        /* pr-14: once 모드 리플레이 버튼(absolute bottom-3 right-3, 36px)과 겹치지 않게 */
+        <div className="mt-5 flex justify-end pr-14">
+          <Link
+            href={localeHref(locale, '/technology/spatial-ai')}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-light hover:text-white transition-colors"
+          >
+            {t.techCta}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      )}
 
       {playMode === 'once' && done && !reducedMotion && (
         <MockupReplayButton locale={locale} onReplay={replay} tone="dark" />

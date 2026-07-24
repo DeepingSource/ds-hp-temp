@@ -102,17 +102,18 @@ export default function MockupViewport({
   return (
     <div ref={outerRef} className={`relative w-full ${className}`}>
       {/* 자리 예약 — 고정비 캔버스는 aspect-ratio(CLS 0), card는 측정 높이 × scale.
-          maxWidth 캡: scale이 maxScale로 캡될 때 예약 박스도 함께 캡해야
-          컨테이너가 캔버스보다 넓을 때 하단·우측 여백이 생기지 않는다. */}
+          고정비 캔버스는 width(캔버스 폭)+maxWidth:100%로 잡는다: 콘텐츠가 absolute라
+          폭 기여가 없어도 w-auto 호출부(제품 페이지 폰 컬럼 등)에서 intrinsic 폭을
+          유지하면서, 컨테이너가 캔버스보다 넓을 때 하단·우측 여백도 막는다. */}
       <div
         style={
           canvas.h != null
-            ? { aspectRatio: `${canvas.w} / ${canvas.h}`, maxWidth: canvas.w * maxScale }
+            ? { aspectRatio: `${canvas.w} / ${canvas.h}`, width: canvas.w * maxScale, maxWidth: '100%' }
             : contentH != null
               ? { height: contentH * scale, maxWidth: canvas.w * maxScale }
               : { maxWidth: canvas.w * maxScale }
         }
-        className={`mx-auto ${
+        className={`relative mx-auto ${
           canvas.h == null
             ? contentH == null
               ? '' // card 측정 전 — 클립 없음
@@ -122,9 +123,13 @@ export default function MockupViewport({
               : 'overflow-visible' // 고정 캔버스 평상시 — 프레임 섀도우 노출(A-1)
         }`}
       >
+        {/* 고정비 캔버스는 absolute로 띄워 스케일 전(원본) 높이가 예약 박스를 밀어
+            올리지 못하게 한다 — overflow-visible + aspect-ratio의 content-based
+            min-height가 캔버스 원본 높이만큼 죽은 공백을 만들던 버그의 뿌리.
+            card(가변)는 측정(offsetHeight) 흐름 유지를 위해 in-flow로 둔다. */}
         <div
           ref={contentRef}
-          className="saai-scope origin-top-left"
+          className={`saai-scope origin-top-left ${canvas.h != null ? 'absolute left-0 top-0' : ''}`}
           style={{ width: canvas.w, transform: `scale(${scale})` }}
         >
           {framed}

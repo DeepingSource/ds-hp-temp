@@ -1,8 +1,6 @@
 'use client';
 
 import { useCallback, useState, type MouseEvent } from 'react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   AnimatePresence, motion, useMotionTemplate, useMotionValue, type PanInfo,
@@ -12,24 +10,21 @@ import Section from '@/components/ui/Section';
 import Container from '@/components/ui/Container';
 import Eyebrow from '@/components/ui/Eyebrow';
 import PlanSteps from './PlanSteps';
+import ProductMiniScreen from './FeatureScreens';
 import { useMockupLoop } from '@/hooks/useMockupLoop';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { localeHref, type Locale } from '@/lib/i18n';
 import { solutionTaglines, productNaming, type ModeKey } from '@/lib/brand-canon';
 import { cn } from '@/lib/cn';
 
-const ActionCardMockup = dynamic(() => import('@/components/mockups/ActionCardMockup'), {
-  loading: () => <div className="h-64 animate-pulse rounded-2xl bg-slate-800/40" />,
-});
-
 /**
  * FeatureCarousel — the home "products at a glance" showcase (replaces ProductPreview).
  * A dark spotlight card auto-cycles the three modes around the operating loop
  * (care → insight → agent), then the count function, each with its tagline + a
- * floating visual. Pattern adapted from the cult-ui feature carousel to our design system:
+ * mini product screen (FeatureScreens — OperatingLoopDemo 문법의 다크 고도화판).
+ * Pattern adapted from the cult-ui feature carousel to our design system:
  * useMockupLoop drive (pause-on-hover, reduced-motion holds step 1), brand-blue
- * (--color-primary) spotlight, real product imagery, KO/EN/JP.
+ * (--color-primary) spotlight, KO/EN/JP.
  */
 
 type ProductStruct = {
@@ -39,7 +34,6 @@ type ProductStruct = {
   mode?: ModeKey;
   icon: LucideIcon;
   href: string;
-  images: { src: string; primary?: boolean }[];
 };
 
 const PRODUCTS: ProductStruct[] = [
@@ -50,7 +44,6 @@ const PRODUCTS: ProductStruct[] = [
     mode: 'care',
     icon: Radar,
     href: '/products/saai-care',
-    images: [{ src: '/images/storecare-privacy.webp', primary: true }],
   },
   {
     key: 'insight',
@@ -59,10 +52,6 @@ const PRODUCTS: ProductStruct[] = [
     mode: 'insight',
     icon: Grid3x3,
     href: '/products/saai-insight',
-    images: [
-      { src: '/images/storeinsight-dwell-chart.webp', primary: true },
-      { src: '/images/storeinsight-product-interaction.webp' },
-    ],
   },
   {
     key: 'agent',
@@ -71,7 +60,6 @@ const PRODUCTS: ProductStruct[] = [
     mode: 'agent',
     icon: ClipboardCheck,
     href: '/products/saai-agent',
-    images: [{ src: '/images/storeagent-ai-pop-mockup.webp', primary: true }],
   },
   {
     key: 'count',
@@ -79,9 +67,6 @@ const PRODUCTS: ProductStruct[] = [
     saaiName: productNaming.count.saai,
     icon: DoorOpen,
     href: '/products/store-count',
-    // 1-④(MM A4): 원본 inflow-rate.png는 세로 2533px 문서 캡처라 4/3 cover에서
-    // 중앙만 잘려 보였다 — 유입률 KPI+일별 차트 영역의 가로형 파생 크롭으로 교체.
-    images: [{ src: '/images/si-guide/inflow-rate-wide.png', primary: true }],
   },
 ];
 
@@ -94,7 +79,6 @@ const dict: Record<
     cta: string;
     steps: Record<string, string>;
     taglines: Record<string, string>;
-    alt: Record<string, string>;
   }
 > = {
   ko: {
@@ -114,12 +98,6 @@ const dict: Record<
       agent: solutionTaglines.agent.ko,
       count: '카메라 1대로 매장 밖 유동인구와 입문 고객을 비교해 유입률을 읽습니다.',
     },
-    alt: {
-      care: 'saai care — 모니터링 알림 화면',
-      insight: 'saai insight — 체류 및 구매전환 동선 분석 대시보드',
-      agent: 'saai agent — 실시간 매장 관리 및 AI POP 가이드',
-      count: 'saai count — 유동인구 대비 입문 전환 분석',
-    },
   },
   en: {
     eyebrow: 'SAAI SUITE · SOLUTIONS AT A GLANCE',
@@ -137,12 +115,6 @@ const dict: Record<
       insight: solutionTaglines.insight.en,
       agent: solutionTaglines.agent.en,
       count: 'One camera reads outside footfall against customer entrance rates.',
-    },
-    alt: {
-      care: 'saai care — monitoring alerts',
-      insight: 'saai insight — dwell & pre-purchase flow dashboard',
-      agent: 'saai agent — live store management & AI POP guide',
-      count: 'saai count — capture rate analytics',
     },
   },
   jp: {
@@ -162,12 +134,6 @@ const dict: Record<
       agent: solutionTaglines.agent.jp,
       count: 'カメラ1台で店外の通行と入店を見比べて流入率を読み取ります。',
     },
-    alt: {
-      care: 'saai care — モニタリング通知画面',
-      insight: 'saai insight — 滞在および購買転換動線分析ダッシュボード',
-      agent: 'saai agent — リアルタイム店舗管理およびAI POPガイド',
-      count: 'saai count — 流入転換分析',
-    },
   },
 };
 
@@ -180,7 +146,6 @@ const swap = (y = 12) => ({
 
 export default function FeatureCarousel({ locale }: { locale: Locale }) {
   const t = dict[locale];
-  const reduced = usePrefersReducedMotion();
   const { ref: sectionRef, isVisible: sectionShow } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
   // 방문자가 탭/스와이프로 직접 고른 뒤에는 자동 순환을 멈춘다
@@ -305,51 +270,12 @@ export default function FeatureCarousel({ locale }: { locale: Locale }) {
               </AnimatePresence>
             </div>
 
-            {/* image/mockup panel */}
-            <div className="relative aspect-[4/3] w-full lg:col-span-6">
+            {/* mini product screen panel — 고정 4/3 캔버스 대신 콘텐츠 높이(min-h 홀드)로,
+                폰 목업 스필·잘림(구 agent 슬라이드) 원인을 제거한다 */}
+            <div className="relative flex min-h-[300px] w-full items-center justify-center lg:col-span-6 lg:min-h-[340px]">
               <AnimatePresence mode="wait">
-                <motion.div key={active.key} className="absolute inset-0" {...swap(28)}>
-                  {active.key === 'agent' ? (
-                    /* Task 1-5: Live Action Card Mockup for Agent slide */
-                    /* 크기는 MockupViewport 비율 스케일 소관 — 호출부는 폭만(v2 계약).
-                       4/3 패널 높이(≈폭×0.75) 대비 폰 세로(폭×2.16) 스필을 구 수준(±80px)
-                       이하로 묶는 폭 — 250/300이면 위아래로 과하게 넘친다. */
-                    <div className="absolute inset-0 flex items-center justify-center p-2">
-                      <div className="w-full max-w-[210px] sm:max-w-[240px]">
-                        <ActionCardMockup locale={locale} active={active.key === 'agent'} />
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 overflow-hidden rounded-2xl border border-white/10 bg-slate-800/50 shadow-card">
-                        <Image
-                          src={active.images[0].src}
-                          alt={t.alt[active.key]}
-                          fill
-                          sizes="(min-width: 1024px) 520px, 100vw"
-                          className="object-cover"
-                        />
-                      </div>
-                      {active.images[1] && (
-                        <motion.div
-                          className="absolute -bottom-4 -right-3 w-2/5 overflow-hidden rounded-xl border border-white/15 bg-slate-800 shadow-card sm:-bottom-5 sm:-right-5"
-                          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: reduced ? 0.15 : 0.45, delay: reduced ? 0 : 0.12, ease: [0.23, 1, 0.32, 1] }}
-                        >
-                          <div className="relative aspect-[4/3] w-full">
-                            <Image
-                              src={active.images[1].src}
-                              alt={t.alt[active.key]}
-                              fill
-                              sizes="220px"
-                              className="object-cover"
-                            />
-                          </div>
-                        </motion.div>
-                      )}
-                    </>
-                  )}
+                <motion.div key={active.key} {...swap(28)} className="flex w-full justify-center">
+                  <ProductMiniScreen product={active.key} locale={locale} />
                 </motion.div>
               </AnimatePresence>
             </div>
