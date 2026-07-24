@@ -304,8 +304,9 @@ export const pushNotifications: PushNotificationData[] = [
     appBg: 'bg-(--saai-purple-600)',
     iconKey: 'TrendingUp',
     time: '1시간 전',
-    title: '오늘 매출 ₩1,243,000 · 이번 주 최고',
-    body: '어제 대비 +11.2%. 음료 1+1 행사 효과로 음료 구역 +34% 상승.',
+    // D7: ₩1,243,000은 어제 확정치(canonical yesterdayRevenueWon) — '오늘' 오표기 정정
+    title: '어제 매출 ₩1,243,000 · 이번 주 최고',
+    body: '전일 대비 +11.2%. 음료 1+1 행사 효과로 음료 구역 +34% 상승.',
     priorityBar: 'bg-gray-300',
   },
 ];

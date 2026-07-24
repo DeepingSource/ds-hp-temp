@@ -273,7 +273,7 @@ const PUSH: Record<Locale, PushSet> = {
       { time: '방금 전', title: '긴급: 음료 냉장고 온도 이상 감지', body: '2번 냉장고 12°C, 기준 초과 — 즉시 확인.' },
       { time: '4분 전', title: '삼각김밥 재고 12개 — 오후 품절 예상', body: '오후 3시 품절 예상. 40개 추가 발주 권장.' },
       { time: '18분 전', title: '내일 강수 70% — 우산·우비 발주 제안', body: '비 오면 우산 +180%. 우산·우비 자동 발주 대기.' },
-      { time: '1시간 전', title: '오늘 매출 ₩1,243,000 · 이번 주 최고', body: '어제 대비 +11.2% — 이번 주 최고 매출.' },
+      { time: '1시간 전', title: '어제 매출 ₩1,243,000 · 이번 주 최고', body: '전일 대비 +11.2% — 이번 주 최고 매출.' },
     ],
   },
   en: {
@@ -283,7 +283,7 @@ const PUSH: Record<Locale, PushSet> = {
       { time: 'now', title: 'Urgent: drink fridge temperature anomaly', body: 'Fridge #2 internal temp 12°C → over the 5°C limit. Check immediately.' },
       { time: '4 min ago', title: 'Rice balls at 12 — afternoon sell-out expected', body: 'At 35 sold/day avg, sell-out by 3 PM. Reorder recommended.' },
       { time: '18 min ago', title: '70% rain tomorrow — order umbrellas & ponchos', body: 'Umbrella sales +180% on rainy days. 15 umbrellas, 8 ponchos queued for auto-order.' },
-      { time: '1 hr ago', title: 'Today’s sales ₩1,243,000 · weekly high', body: '+11.2% vs. yesterday. Drink 1+1 promo lifted the drink zone +34%.' },
+      { time: '1 hr ago', title: 'Yesterday’s sales ₩1,243,000 · weekly high', body: '+11.2% day-over-day. Drink 1+1 promo lifted the drink zone +34%.' },
     ],
   },
   jp: {
@@ -293,7 +293,7 @@ const PUSH: Record<Locale, PushSet> = {
       { time: 'たった今', title: '緊急: 飲料冷蔵庫の温度異常を検知', body: '2番冷蔵庫の内部温度12°C → 許容基準(5°C)超過。直ちにご確認ください。' },
       { time: '4分前', title: 'おにぎり在庫12個 — 午後に品切れ見込み', body: '1日平均販売35個で午後3時に品切れ。追加発注を推奨します。' },
       { time: '18分前', title: '明日の降水70% — 傘・レインコート発注のご提案', body: '雨の日は傘の販売 +180%。傘15本、レインコート8着が自動発注待機中です。' },
-      { time: '1時間前', title: '本日の売上 ₩1,243,000 · 今週最高', body: '昨日比 +11.2%。ドリンク1+1キャンペーン効果で飲料区域 +34% 上昇。' },
+      { time: '1時間前', title: '昨日の売上 ₩1,243,000 · 今週最高', body: '前日比 +11.2%。ドリンク1+1キャンペーン効果で飲料区域 +34% 上昇。' },
     ],
   },
 };
