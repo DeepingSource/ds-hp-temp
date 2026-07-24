@@ -5,6 +5,7 @@ import {
   Fingerprint, ArrowRight, ShieldCheck, Cpu, Eye, Database, Check, X, Minus,
 } from 'lucide-react';
 import { localeHref, type Locale } from '@/lib/i18n';
+import { contactEnterpriseHref } from '@/lib/cta-canon';
 import { JsonLd, definedTerm } from '@/lib/structured-data';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import HeroBadge from '@/components/ui/HeroBadge';
@@ -72,6 +73,7 @@ type Copy = {
   ctaTitle: string;
   ctaSub: string;
   ctaPrimary: string;
+  ctaSecondary: string;
 };
 
 const stepIcons = [Eye, Fingerprint, Cpu, Database];
@@ -81,7 +83,7 @@ const ko: Copy = {
   heroTitleA: '신원은 지우고,',
   heroTitleB: '분석은 그대로 — 입력 시점의 익명화',
   heroSub:
-    '비전 AI는 결국 사람을 봅니다. 그 순간, 그건 개인정보가 됩니다. Anonymizer는 영상이 들어오는 첫 단계에서 얼굴과 신원을 지우고, 동선·자세·체류 같은 분석 신호는 그대로 남깁니다. 여러 사람을 동시에, 동의 없이도 보호하고 — 원본은 어디에도 남기지 않습니다. Anonymizer는 익명화 엔진이며, 이를 기존 시스템에 내장하는 개발자 도구가 SEAL SDK입니다.',
+    '비전 AI는 결국 사람을 봅니다 — 그 순간, 그건 개인정보가 됩니다. Anonymizer는 영상이 들어오는 첫 단계에서 얼굴과 신원을 지우고, 동선·자세·체류 같은 분석 신호만 남깁니다. 원본은 어디에도 남지 않으며, 이를 기존 시스템에 내장하는 개발자 도구가 SEAL SDK입니다.',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: '신원을 지우는 네 단계',
@@ -162,6 +164,7 @@ const ko: Copy = {
   ctaTitle: '당신의 환경에 맞는 익명화 구성을 함께 설계합니다',
   ctaSub: '기존 CCTV 호환, 배치 형태, 규제 요건 — 기술 팀이 직접 답변합니다.',
   ctaPrimary: '기술 검토 문의',
+  ctaSecondary: 'SEAL SDK 보기',
 };
 
 const en: Copy = {
@@ -169,7 +172,7 @@ const en: Copy = {
   heroTitleA: 'Erase the identity.',
   heroTitleB: 'Keep the analysis. Anonymized on input.',
   heroSub:
-    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, while keeping the signals analysis needs: movement, posture, dwell. It protects everyone in frame — privacy by design, with no individual opt-in needed — and keeps no original behind. Anonymizer is the anonymization engine; SEAL SDK is the developer toolkit that embeds it into your systems.',
+    'Vision AI ultimately looks at people — and the moment it does, that becomes personal data. Anonymizer erases faces and identity the instant footage comes in, keeping only the signals analysis needs: movement, posture, dwell. No original is kept anywhere; SEAL SDK is the developer toolkit that embeds it into your systems.',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: 'Four steps that erase identity',
@@ -250,6 +253,7 @@ const en: Copy = {
   ctaTitle: 'Let’s design an anonymization setup for your space',
   ctaSub: 'Compatibility with the CCTV you already have, deployment form, regulatory requirements — answered directly by our technical team.',
   ctaPrimary: 'Request a technical review',
+  ctaSecondary: 'See SEAL SDK',
 };
 
 const jp: Copy = {
@@ -257,7 +261,7 @@ const jp: Copy = {
   heroTitleA: '身元は消し、',
   heroTitleB: '分析はそのまま — 入力時点で匿名化',
   heroSub:
-    'ビジョンAIは結局、人を見ます。その瞬間、それは個人情報になります。Anonymizerは映像が入ってくる最初の段階で顔と身元を消し、動線・姿勢・滞在といった分析信号はそのまま残します。複数の人を同時に、同意なしでも保護し — 原本はどこにも残しません。Anonymizerは匿名化エンジンであり、それを既存システムに組み込む開発者向けツールがSEAL SDKです。',
+    'ビジョンAIは結局、人を見ます — その瞬間、それは個人情報になります。Anonymizerは映像が入ってくる最初の段階で顔と身元を消し、動線・姿勢・滞在といった分析信号だけを残します。原本はどこにも残らず、それを既存システムに組み込む開発者向けツールがSEAL SDKです。',
 
   mechanismEyebrow: 'Mechanism',
   mechanismTitle: '身元を消す4ステップ',
@@ -338,6 +342,7 @@ const jp: Copy = {
   ctaTitle: 'あなたの空間に合わせた匿名化構成を一緒に設計します',
   ctaSub: 'すでにあるCCTVとの互換性、配置形態、規制要件——技術チームが直接お答えします。',
   ctaPrimary: '技術検討のお問い合わせ',
+  ctaSecondary: 'SEAL SDK を見る',
 };
 
 const C: Record<Locale, Copy> = { ko, en, jp };
@@ -617,10 +622,19 @@ export default function AnonymizerView({ locale }: { locale: Locale }) {
           <p className="text-gray-600 text-lg mb-9 break-keep">
             {t.ctaSub}
           </p>
-          <Link href={localeHref(locale, '/contact')} className="btn-primary btn-lg gap-2">
-            {t.ctaPrimary}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* 이중 CTA(② D4·A-2): 주=상담(트랙 E 표준 목적지), 보조=SEAL SDK */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href={localeHref(locale, contactEnterpriseHref('anonymizer'))} className="btn-primary btn-lg gap-2">
+              {t.ctaPrimary}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href={localeHref(locale, '/technology/seal')}
+              className="inline-flex items-center justify-center gap-2 px-9 py-4 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-[14px] hover:border-primary-light transition-colors"
+            >
+              {t.ctaSecondary}
+            </Link>
+          </div>
         </div>
       </AnimatedSection>
     </div>
