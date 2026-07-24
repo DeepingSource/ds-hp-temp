@@ -37,11 +37,15 @@ type Copy = {
   rankLabel: string; ranks: { name: string; pct: number; tag?: string }[];
   connectLabel: string; connectSub: string; connect: { label: string; href: string }[]; cta: string;
   backToProducts: string;
+  /** 리테일 미디어 서사(③5-1) — 시장·차별점 앵커·발전 경로 */
+  marketLabel: string; market: string;
+  whyUsLabel: string; whyUs: string;
+  roadmapLabel: string; roadmap: { step: string; desc: string }[];
 };
 
 const C: Record<Locale, Copy> = {
   ko: {
-    eyebrow: '제품 · saai ads insight · 사이니지·전시물 반응',
+    eyebrow: '리테일 미디어 · 구매시점 광고 · saai ads insight',
     moduleBadge: 'saai 제품 모듈 · 단독 도입 가능',
     noInstall: '쓰던 CCTV로, 새 장비 없이',
     h1: '걸어둔 광고가, 시선을 잡고 있을까요?',
@@ -88,10 +92,20 @@ const C: Record<Locale, Copy> = {
       { label: 'saai agent', href: '/products/saai-agent' },
       { label: 'store pop', href: '/products/store-pop' },
       { label: 'saai insight', href: '/products/saai-insight' },
-      { label: '도입 상담', href: '/contact' },
+      { label: '미디어 성과 측정 문의', href: '/contact?type=enterprise&product=saai-ads-insight' },
     ],
-    cta: '도입 상담',
+    cta: '미디어 성과 측정 문의',
     backToProducts: '제품 전체 보기',
+    marketLabel: '왜 지금 — 리테일 미디어',
+    market: '구매가 일어나는 바로 그 앞 — 온라인이 못 가진 자리입니다. 구매 시점의 광고를 제어하려면, 현장을 실시간으로 읽을 수 있어야 합니다.',
+    whyUsLabel: '우리만 되는 이유',
+    whyUs: '현장을 실시간으로 보는 눈(CV)과, 얼굴을 지우는 손(익명화) — 둘 다 가진 곳. 모든 측정은 개인 식별 없이, 익명·비식별 데이터 위에서만 이루어집니다.',
+    roadmapLabel: '발전 경로',
+    roadmap: [
+      { step: '타겟팅', desc: '시간대·객층에 맞춘 노출 — 객층은 개인 식별 없는 익명·비식별 추정입니다.' },
+      { step: '객관 성과', desc: '노출·주목·전환을 숫자로 — 지면 단가 협상의 근거가 됩니다.' },
+      { step: '비딩', desc: '온라인 광고처럼, 매대 앞 지면을 사고파는 시장으로.' },
+    ],
   },
   en: {
     eyebrow: 'Product · saai ads insight · signage & display response',
@@ -141,9 +155,19 @@ const C: Record<Locale, Copy> = {
       { label: 'saai agent', href: '/products/saai-agent' },
       { label: 'store pop', href: '/products/store-pop' },
       { label: 'saai insight', href: '/products/saai-insight' },
-      { label: 'Talk to us', href: '/contact' },
+      { label: 'Ask about media measurement', href: '/contact?type=enterprise&product=saai-ads-insight' },
     ],
-    cta: 'Talk to us',
+    cta: 'Ask about media measurement',
+    marketLabel: 'Why now — retail media',
+    market: 'Right where the purchase happens — the one placement online never had. Controlling ads at the point of purchase means reading the floor in real time.',
+    whyUsLabel: 'Why only us',
+    whyUs: 'Eyes that read the floor live (CV), and hands that erase the face (anonymization) — we have both. Every measurement runs only on anonymous, de-identified data; no one is identified.',
+    roadmapLabel: 'Where it goes',
+    roadmap: [
+      { step: 'Targeting', desc: 'Placement by daypart and customer mix — the mix is an anonymous, de-identified estimate.' },
+      { step: 'Objective results', desc: 'Exposure, attention, conversion in numbers — the basis for pricing the placement.' },
+      { step: 'Bidding', desc: 'Like online advertising — a market for buying and selling the shelf front.' },
+    ],
     backToProducts: 'All products',
   },
   jp: {
@@ -194,10 +218,20 @@ const C: Record<Locale, Copy> = {
       { label: 'saai agent', href: '/products/saai-agent' },
       { label: 'store pop', href: '/products/store-pop' },
       { label: 'saai insight', href: '/products/saai-insight' },
-      { label: '導入のご相談', href: '/contact' },
+      { label: 'メディア成果測定のご相談', href: '/contact?type=enterprise&product=saai-ads-insight' },
     ],
-    cta: '導入のご相談',
+    cta: 'メディア成果測定のご相談',
     backToProducts: 'すべての製品',
+    marketLabel: 'なぜ今 — リテールメディア',
+    market: '購買が起きるまさにその前 — オンラインが持てなかった枠です。購買時点の広告を制御するには、現場をリアルタイムで読める必要があります。',
+    whyUsLabel: '私たちだけができる理由',
+    whyUs: '現場をリアルタイムで見る目（CV）と、顔を消す手（匿名化） — その両方を持つ場所。すべての計測は個人を特定せず、匿名・非識別データの上でのみ行われます。',
+    roadmapLabel: '発展の道筋',
+    roadmap: [
+      { step: 'ターゲティング', desc: '時間帯・客層に合わせた露出 — 客層は個人特定のない匿名・非識別推定です。' },
+      { step: '客観的成果', desc: '露出・注目・転換を数字で — 枠の単価交渉の根拠になります。' },
+      { step: 'ビッディング', desc: 'オンライン広告のように、棚前の枠を売買する市場へ。' },
+    ],
   },
 };
 
@@ -286,6 +320,14 @@ export default function SaaiAdsInsightView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* ── ①.5 왜 지금 — 리테일 미디어 시장(③5-1, stakes 상단 배치) ── */}
+      <AnimatedSection className="py-14 lg:py-16 bg-slate-950 text-white noise-overlay">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <Eyebrow tone="light" className="mb-4 justify-center">{t.marketLabel}</Eyebrow>
+          <p className="text-xl sm:text-2xl font-bold leading-relaxed break-keep">{t.market}</p>
+        </div>
+      </AnimatedSection>
+
       {/* ── ② Limits · ③ Solution ── */}
       <AnimatedSection className="py-16 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 grid gap-6 sm:grid-cols-2">
@@ -297,6 +339,16 @@ export default function SaaiAdsInsightView({ locale }: { locale: Locale }) {
             <p className="text-xs font-bold text-primary uppercase tracking-wider mb-3">{t.solutionLabel}</p>
             <p className="text-gray-700 leading-relaxed break-keep">{t.solution}</p>
             <p className="mt-3 text-sm font-semibold text-primary break-keep">{t.grounding}</p>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ── ③.5 우리만 되는 이유 — CV+익명화 앵커(③5-1 moat) ── */}
+      <AnimatedSection className="py-12 lg:py-14 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl border-2 border-primary/25 bg-primary-lighter/20 p-7 sm:p-9 text-center">
+            <p className="text-xs font-bold text-primary uppercase tracking-wider mb-3">{t.whyUsLabel}</p>
+            <p className="text-lg sm:text-xl font-bold text-gray-900 leading-relaxed break-keep">{t.whyUs}</p>
           </div>
         </div>
       </AnimatedSection>
@@ -371,6 +423,24 @@ export default function SaaiAdsInsightView({ locale }: { locale: Locale }) {
         </Container>
       </Section>
 
+      {/* ── ⑦.5 발전 경로 — 타겟팅→객관 성과→비딩(③5-1, 티켓 상승) ── */}
+      <Section variant="alt" pad="compact">
+        <Container>
+          <div className="mb-8 max-w-2xl">
+            <Eyebrow className="mb-4">{t.roadmapLabel}</Eyebrow>
+          </div>
+          <ol className="grid gap-5 sm:grid-cols-3">
+            {t.roadmap.map((r, i) => (
+              <li key={r.step} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-card">
+                <p className="text-2xs font-mono font-bold text-primary mb-2">0{i + 1}</p>
+                <h3 className="text-base font-bold text-gray-900 mb-2 break-keep">{r.step}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed break-keep">{r.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
+
       {/* ── ⑧ Connect · CTA ── */}
       <AnimatedSection className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
@@ -378,7 +448,7 @@ export default function SaaiAdsInsightView({ locale }: { locale: Locale }) {
           <p className="mx-auto max-w-2xl text-sm text-gray-500 leading-relaxed break-keep mb-7">{t.connectSub}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {t.connect.map((c) => {
-              const isCta = c.href === '/contact';
+              const isCta = c.href.startsWith('/contact');
               return (
                 <Link
                   key={c.label}
